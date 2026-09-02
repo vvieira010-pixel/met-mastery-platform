@@ -1,0 +1,24 @@
+{
+  "skill": "writing",
+  "topic": "travel-and-culture",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "write_02",
+      "type": "short",
+      "prompt": "Describe a place in your city that you think more tourists should visit. Why is it special?",
+      "rubric": "Should include specific details about the place and explain why it deserves more attention.",
+      "targetWords": 120,
+      "skill": "Writing",
+      "level": "B2"
+    },
+    {
+      "id": "vt_travel_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about the benefits of learning about other cultures through travel.",
+      "rubric": "Should mention openness, empathy, and practical communication."
+    }
+  ]
+}

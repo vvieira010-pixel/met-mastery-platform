@@ -1,0 +1,87 @@
+{
+  "skill": "reading",
+  "topic": "cherry-blossom-culture",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "trees_9_42",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 9,
+      "intro": "This passage is about Japan's cherry blossoms.",
+      "context": "Every spring, Japan turns its attention to a pale pink wave that travels slowly from south to north: the blooming of the cherry trees. For a few weeks, parks fill with families, coworkers, and friends who gather under the blossoms to eat, drink, and celebrate. The custom, known as hanami, or \"flower viewing,\" has been practiced in Japan for more than a thousand years.\n\nThe appeal of the cherry blossom lies partly in its brevity. Each tree flowers for only about two weeks before the petals fall, and the blossoms' brief life has long served as a symbol in Japanese art and poetry of the beauty — and the transience — of life itself. Weather forecasts during the season track the \"cherry blossom front\" as carefully as they track storms, and newspapers publish maps predicting when the trees will bloom in each region.\n\nThose predictions have become a source of scientific information. Records of the cherry blossom season in the city of Kyoto stretch back more than 1,200 years, making them one of the oldest continuous biological records in the world. By analyzing the dates, researchers have shown that the trees now bloom earlier than at any point in the recorded past — a shift they attribute largely to climate change and the warming of cities.\n\nThe trees themselves require careful management. Most of the famous cherry trees in Japan's parks belong to a single cultivated variety, reproduced by grafting branches onto other trees, which means they are genetically identical. This uniformity produces the stunning, synchronized displays that draw millions of visitors, but it also leaves the trees vulnerable: a disease or pest that can attack one tree can, in principle, attack them all.",
+      "question": "According to the passage, what does the brevity of the blossoms symbolize?",
+      "options": [
+        "the changing of the seasons",
+        "the shortness of life",
+        "the arrival of storms",
+        "the speed of the wind"
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 says the brief life of the blossoms symbolizes 'the beauty — and the transience — of life itself.' Transience means lasting a short time.",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_9_45",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 9,
+      "intro": "This passage is about Japan's cherry blossoms.",
+      "context": "Every spring, Japan turns its attention to a pale pink wave that travels slowly from south to north: the blooming of the cherry trees. For a few weeks, parks fill with families, coworkers, and friends who gather under the blossoms to eat, drink, and celebrate. The custom, known as hanami, or \"flower viewing,\" has been practiced in Japan for more than a thousand years.\n\nThe appeal of the cherry blossom lies partly in its brevity. Each tree flowers for only about two weeks before the petals fall, and the blossoms' brief life has long served as a symbol in Japanese art and poetry of the beauty — and the transience — of life itself. Weather forecasts during the season track the \"cherry blossom front\" as carefully as they track storms, and newspapers publish maps predicting when the trees will bloom in each region.\n\nThose predictions have become a source of scientific information. Records of the cherry blossom season in the city of Kyoto stretch back more than 1,200 years, making them one of the oldest continuous biological records in the world. By analyzing the dates, researchers have shown that the trees now bloom earlier than at any point in the recorded past — a shift they attribute largely to climate change and the warming of cities.\n\nThe trees themselves require careful management. Most of the famous cherry trees in Japan's parks belong to a single cultivated variety, reproduced by grafting branches onto other trees, which means they are genetically identical. This uniformity produces the stunning, synchronized displays that draw millions of visitors, but it also leaves the trees vulnerable: a disease or pest that can attack one tree can, in principle, attack them all.",
+      "question": "What risk results from the way the cherry trees are reproduced?",
+      "options": [
+        "The trees bloom at different times each year.",
+        "The grafted branches fail to produce flowers.",
+        "One disease could affect many trees at once.",
+        "The parks must be replanted every few years."
+      ],
+      "correct": 2,
+      "explanation": "Because the trees are 'genetically identical,' a pest or disease that attacks one 'can, in principle, attack them all.' Uniformity creates synchronized beauty but also shared weakness.",
+      "questionType": "inference"
+    },
+    {
+      "id": "trees_9_43",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 9,
+      "intro": "This passage is about Japan's cherry blossoms.",
+      "context": "Every spring, Japan turns its attention to a pale pink wave that travels slowly from south to north: the blooming of the cherry trees. For a few weeks, parks fill with families, coworkers, and friends who gather under the blossoms to eat, drink, and celebrate. The custom, known as hanami, or \"flower viewing,\" has been practiced in Japan for more than a thousand years.\n\nThe appeal of the cherry blossom lies partly in its brevity. Each tree flowers for only about two weeks before the petals fall, and the blossoms' brief life has long served as a symbol in Japanese art and poetry of the beauty — and the transience — of life itself. Weather forecasts during the season track the \"cherry blossom front\" as carefully as they track storms, and newspapers publish maps predicting when the trees will bloom in each region.\n\nThose predictions have become a source of scientific information. Records of the cherry blossom season in the city of Kyoto stretch back more than 1,200 years, making them one of the oldest continuous biological records in the world. By analyzing the dates, researchers have shown that the trees now bloom earlier than at any point in the recorded past — a shift they attribute largely to climate change and the warming of cities.\n\nThe trees themselves require careful management. Most of the famous cherry trees in Japan's parks belong to a single cultivated variety, reproduced by grafting branches onto other trees, which means they are genetically identical. This uniformity produces the stunning, synchronized displays that draw millions of visitors, but it also leaves the trees vulnerable: a disease or pest that can attack one tree can, in principle, attack them all.",
+      "question": "Why does the author mention Kyoto's records?",
+      "options": [
+        "to show that the trees now bloom earlier than in the past",
+        "to prove that Kyoto was Japan's ancient capital",
+        "to advertise the city's spring festivals",
+        "to explain how newspapers predict the blooming"
+      ],
+      "correct": 0,
+      "explanation": "The records matter because researchers used them to demonstrate that trees 'now bloom earlier than at any point in the recorded past.' That is the point of the paragraph.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "trees_9_44",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 9,
+      "intro": "This passage is about Japan's cherry blossoms.",
+      "context": "Every spring, Japan turns its attention to a pale pink wave that travels slowly from south to north: the blooming of the cherry trees. For a few weeks, parks fill with families, coworkers, and friends who gather under the blossoms to eat, drink, and celebrate. The custom, known as hanami, or \"flower viewing,\" has been practiced in Japan for more than a thousand years.\n\nThe appeal of the cherry blossom lies partly in its brevity. Each tree flowers for only about two weeks before the petals fall, and the blossoms' brief life has long served as a symbol in Japanese art and poetry of the beauty — and the transience — of life itself. Weather forecasts during the season track the \"cherry blossom front\" as carefully as they track storms, and newspapers publish maps predicting when the trees will bloom in each region.\n\nThose predictions have become a source of scientific information. Records of the cherry blossom season in the city of Kyoto stretch back more than 1,200 years, making them one of the oldest continuous biological records in the world. By analyzing the dates, researchers have shown that the trees now bloom earlier than at any point in the recorded past — a shift they attribute largely to climate change and the warming of cities.\n\nThe trees themselves require careful management. Most of the famous cherry trees in Japan's parks belong to a single cultivated variety, reproduced by grafting branches onto other trees, which means they are genetically identical. This uniformity produces the stunning, synchronized displays that draw millions of visitors, but it also leaves the trees vulnerable: a disease or pest that can attack one tree can, in principle, attack them all.",
+      "question": "In the last sentence of the passage, which word is closest in meaning to vulnerable?",
+      "options": [
+        "colorful",
+        "valuable",
+        "exposed to harm",
+        "resistant to disease"
+      ],
+      "correct": 2,
+      "explanation": "'Vulnerable' means easily harmed. The sentence explains why: genetically identical trees can all be attacked by the same disease. D is the exact opposite — a classic trap.",
+      "questionType": "vocabulary"
+    }
+  ]
+}

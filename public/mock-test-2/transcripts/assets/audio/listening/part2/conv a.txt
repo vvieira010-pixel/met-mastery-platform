@@ -1,0 +1,10 @@
+[female] Hello, I'm calling because I'd like some information about your internet service packages.
+[female] Yes, I just moved to the area and I'm looking for a reliable provider.
+[male] Great. We have several plans available. Can I start by asking for your postcode so I can check what's available in your area?
+[female] Sure, it's SW1A 1AA.
+[male] Thank you. And I'll need your account number to set up a new account.
+[female] I don't have one yet. I'm a new customer.
+[male] Oh, of course. Let me just check what packages are available at your address. One moment please.
+[female] Take your time.
+[male] Right, I can see we offer fibre broadband at your address. The speeds start at 50 megabits per second. Would you like me to go through the different options?
+[female] Yes, please.

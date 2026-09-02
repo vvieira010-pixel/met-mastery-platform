@@ -1,0 +1,208 @@
+{
+  "skill": "listening",
+  "topic": "urban-planning",
+  "totalExercises": 11,
+  "exercises": [
+    {
+      "id": "dr_L12a_mtgcfjqd_1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L12-urban-planning.mp3",
+      "audioText": "Although many urban planners argue that high-density housing is essential for growth, some residents believe it may alleviate the housing shortage while simultaneously diminishing community green spaces. The challenge lies in balancing modern infrastructure needs with the preservation of local parks, which are vital for the well-being of citizens. Ultimately, town councils must prioritize sustainable designs that integrate nature into the urban landscape rather than sacrificing it for concrete expansion.",
+      "question": "What is the main conflict mentioned regarding urban growth?",
+      "options": [
+        "The high cost of building new homes",
+        "Balancing housing needs with the preservation of green spaces",
+        "A lack of qualified urban planners",
+        "The difficulty of accessing city centers"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L12b_mtgcfjqd_2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L12-urban-planning.mp3",
+      "audioText": "Although many urban planners argue that high-density housing is essential for growth, some residents believe it may alleviate the housing shortage while simultaneously diminishing community green spaces. The challenge lies in balancing modern infrastructure needs with the preservation of local parks, which are vital for the well-being of citizens. Ultimately, town councils must prioritize sustainable designs that integrate nature into the urban landscape rather than sacrificing it for concrete expansion.",
+      "question": "What is a potential downside of high-density housing according to some residents?",
+      "options": [
+        "It increases the cost of living",
+        "It may lead to a decrease in community green spaces",
+        "It makes the city too noisy",
+        "It prevents the growth of local businesses"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L12c_mtgcfjqd_3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L12-urban-planning.mp3",
+      "audioText": "Although many urban planners argue that high-density housing is essential for growth, some residents believe it may alleviate the housing shortage while simultaneously diminishing community green spaces. The challenge lies in balancing modern infrastructure needs with the preservation of local parks, which are vital for the well-being of citizens. Ultimately, town councils must prioritize sustainable designs that integrate nature into the urban landscape rather than sacrificing it for concrete expansion.",
+      "question": "What does the author suggest town councils should prioritize?",
+      "options": [
+        "Rapid concrete expansion",
+        "Reducing the amount of social housing",
+        "Sustainable designs that integrate nature",
+        "Removing all local parks to make room for homes"
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L07a_mtgcfjqd_c",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L07-apartment-roommates.mp3",
+      "audioText": "N: Listen to two roommates talking about an apartment.\nW: I like the apartment on Green Street. It's cheaper than the others, and the kitchen is much nicer.\nM: I liked that one too, but it's pretty far from the train station.\nW: That's true, although the bus stop is right outside.\nM: Did you notice how small the bedrooms were? I'm not sure my desk would fit.\nW: Mine probably would, but just barely. On the other hand, internet is included in the rent, which would save us money every month.\nM: Good point. Why don't we visit it again on Friday and measure the rooms?\nW: That sounds like the best plan.\nN: Now answer the questions.",
+      "question": "What does the woman see as an advantage of the apartment?",
+      "options": [
+        "It is close to the train station.",
+        "It has larger bedrooms.",
+        "It costs less and has a better kitchen.",
+        "It has new furniture included."
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L07b_mtgcfjqd_d",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L07-apartment-roommates.mp3",
+      "audioText": "N: Listen to two roommates talking about an apartment.\nW: I like the apartment on Green Street. It's cheaper than the others, and the kitchen is much nicer.\nM: I liked that one too, but it's pretty far from the train station.\nW: That's true, although the bus stop is right outside.\nM: Did you notice how small the bedrooms were? I'm not sure my desk would fit.\nW: Mine probably would, but just barely. On the other hand, internet is included in the rent, which would save us money every month.\nM: Good point. Why don't we visit it again on Friday and measure the rooms?\nW: That sounds like the best plan.\nN: Now answer the questions.",
+      "question": "What do the speakers decide to do?",
+      "options": [
+        "Sign the contract that day",
+        "Visit the apartment again",
+        "Look for a third roommate",
+        "Cancel all future viewings"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L22a_mtgcfjqd_1d",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L22-urban-gardens.mp3",
+      "audioText": "Urban gardens do more than provide fresh produce — they also help cool neighborhoods during heat waves. Plants absorb sunlight and release moisture, which lowers surrounding temperatures. Cities that have invested in these gardens report measurable drops in local temperatures during summer months, along with improved air quality.",
+      "question": "What is the main idea of the talk?",
+      "options": [
+        "Urban gardens are difficult to maintain",
+        "Urban gardens offer benefits beyond food production",
+        "Heat waves are becoming more frequent",
+        "Air quality is unrelated to plants"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L22b_mtgcfjqd_1e",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L22-urban-gardens.mp3",
+      "audioText": "Urban gardens do more than provide fresh produce — they also help cool neighborhoods during heat waves. Plants absorb sunlight and release moisture, which lowers surrounding temperatures. Cities that have invested in these gardens report measurable drops in local temperatures during summer months, along with improved air quality.",
+      "question": "According to the speaker, how do plants lower temperatures?",
+      "options": [
+        "By blocking sunlight completely",
+        "By absorbing sunlight and releasing moisture",
+        "By reducing the number of buildings",
+        "By increasing humidity indoors"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L22c_mtgcfjqd_1f",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L22-urban-gardens.mp3",
+      "audioText": "Urban gardens do more than provide fresh produce — they also help cool neighborhoods during heat waves. Plants absorb sunlight and release moisture, which lowers surrounding temperatures. Cities that have invested in these gardens report measurable drops in local temperatures during summer months, along with improved air quality.",
+      "question": "What do cities with urban gardens report?",
+      "options": [
+        "Higher costs",
+        "Lower temperatures and better air quality",
+        "Fewer public parks",
+        "Increased heat waves"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_06_housing_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L06-apartment-viewing.wav",
+      "audioText": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It’s cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it’s quite far from the train station, and the bedrooms are small — I’m not sure my desk would fit.\nWoman: That’s true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let’s go again on Friday and bring a tape measure.\nN: Now answer the questions.",
+      "question": "What does the woman like about the apartment?",
+      "options": [
+        "It is close to the train station and has large bedrooms.",
+        "It is cheaper and has a nicer kitchen.",
+        "It includes free furniture.",
+        "It has a private garden."
+      ],
+      "correct": 1,
+      "explanation": "She says it’s cheaper and the kitchen was renovated.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_06_housing_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L06-apartment-viewing.wav",
+      "audioText": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It’s cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it’s quite far from the train station, and the bedrooms are small — I’m not sure my desk would fit.\nWoman: That’s true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let’s go again on Friday and bring a tape measure.\nN: Now answer the questions.",
+      "question": "What is the man’s main concern?",
+      "options": [
+        "The apartment is too expensive.",
+        "The location is far and bedrooms are small.",
+        "The kitchen is too old.",
+        "The bus stop is too noisy."
+      ],
+      "correct": 1,
+      "explanation": "He notes it’s far from the train and the bedrooms are small for his desk.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_06_housing_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L06-apartment-viewing.wav",
+      "audioText": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It’s cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it’s quite far from the train station, and the bedrooms are small — I’m not sure my desk would fit.\nWoman: That’s true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let’s go again on Friday and bring a tape measure.\nN: Now answer the questions.",
+      "question": "What do they decide to do?",
+      "options": [
+        "Sign the contract today.",
+        "Visit the apartment again on Friday to measure.",
+        "Look for a different apartment immediately.",
+        "Ask a third roommate to decide."
+      ],
+      "correct": 1,
+      "explanation": "They agree to visit again on Friday and bring a tape measure.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "skill": "reading",
+  "topic": "astronomy-and-space",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "met_2_6",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 2,
+      "intro": "This passage is about Jupiter's Great Red Spot.",
+      "context": "The Great Red Spot is a massive storm that has been active on Jupiter for centuries. About 20,000 kilometers in length and 12,000 kilometers wide, the Great Red Spot has captured the attention of scientists and amateur astronomers alike. Its name is derived from the distinct red color associated with the area, although it appears much paler in places, with colors ranging from dark red and pinkish tones to almost white. Similar to hurricanes on Earth, the storm's strong winds blow in a circular motion. However, unlike hurricanes, which form around low-pressure areas, the Great Red Spot has a high-pressure system. Due to its location in Jupiter's southern hemisphere, its winds blow in a counter-clockwise direction and can reach up to 644 kilometers per hour—almost twice as strong as the top hurricane winds recorded on Earth.\n\nThe Great Red Spot remains a source of mystery and fascination. No one knows for sure what causes the storm's reddish color. One theory suggests the strong winds kick up material buried deeper in the atmosphere, and exposure to sunlight causes that material to take on the characteristic red tones. Reasons behind the storm's lengthy duration are also unclear. Some scientists think the Great Red Spot is constantly fed by smaller storms, allowing it to continue endlessly, while others believe it may be fueled by small drops of water or ammonia from below.\n\nScientists have noted that the Great Red Spot's shape has evolved over time. Once long and thin like a sausage, it is now more of an oval shape, and scientists believe it may become circular within a few decades. The storm also appears to be slowly shrinking. As a result, researchers concede the possibility that someday the Great Red Spot could disappear entirely. However, the likelihood seems remote as it is still the largest and most powerful storm on the planet—two to three times the size of the Earth.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the characteristics of Jupiter's largest storm",
+        "how hurricanes form on Earth and Jupiter",
+        "the history of astronomical discoveries",
+        "different types of storms on Jupiter"
+      ],
+      "correct": 0,
+      "explanation": "",
+      "questionType": "main idea"
+    }
+  ]
+}

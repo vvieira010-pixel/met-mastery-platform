@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "isolated-trees",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "trees_11_52",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 11,
+      "intro": "This passage is about a famous isolated tree.",
+      "context": "On a windswept island in the Southern Ocean, roughly 700 kilometers south of New Zealand, stands a single Sitka spruce. It is the only tree on Campbell Island; its nearest neighbor is more than 200 kilometers away, on another island. Guinness World Records has called it the loneliest tree in the world.\n\nThe tree did not get there by accident. It was planted around 1901 by the governor of New Zealand at the time, who reportedly believed the island's climate was too harsh for the experiment to succeed. In a sense, he was right: more than a century later, the spruce is alive but strangely shaped. The constant cold wind has prevented it from forming a normal cone-shaped crown, and it has never produced cones at all, which means it cannot reproduce.\n\nFor years, scientists paid the tree little attention. Recently, however, researchers realized that its wood contains a remarkable record. Because the tree grew through the entire twentieth century, its annual growth rings preserve traces of the atmosphere around it — including carbon produced by human activity. In 2018, a team analyzing the tree's rings reported that a sharp change in the carbon signal appeared around 1965, and they proposed that this moment marks the point when human influence on the planet became unmistakable. Some scientists have suggested using the tree as a marker for the beginning of the Anthropocene, the proposed new geological age defined by human impact.\n\nIf adopted, the loneliest tree in the world would acquire an odd distinction: a tree that cannot reproduce, planted as a failed experiment on an uninhabited island, would become the official symbol of humanity's effect on the Earth.",
+      "question": "According to the passage, why can't the spruce reproduce?",
+      "options": [
+        "It is too far from other trees.",
+        "It has never produced cones.",
+        "It is frequently damaged by wind.",
+        "It is too old."
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 states it directly: 'it has never produced cones at all, which means it cannot reproduce.' A is true about the tree but is not the reason given.",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_11_54",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 11,
+      "intro": "This passage is about a famous isolated tree.",
+      "context": "On a windswept island in the Southern Ocean, roughly 700 kilometers south of New Zealand, stands a single Sitka spruce. It is the only tree on Campbell Island; its nearest neighbor is more than 200 kilometers away, on another island. Guinness World Records has called it the loneliest tree in the world.\n\nThe tree did not get there by accident. It was planted around 1901 by the governor of New Zealand at the time, who reportedly believed the island's climate was too harsh for the experiment to succeed. In a sense, he was right: more than a century later, the spruce is alive but strangely shaped. The constant cold wind has prevented it from forming a normal cone-shaped crown, and it has never produced cones at all, which means it cannot reproduce.\n\nFor years, scientists paid the tree little attention. Recently, however, researchers realized that its wood contains a remarkable record. Because the tree grew through the entire twentieth century, its annual growth rings preserve traces of the atmosphere around it — including carbon produced by human activity. In 2018, a team analyzing the tree's rings reported that a sharp change in the carbon signal appeared around 1965, and they proposed that this moment marks the point when human influence on the planet became unmistakable. Some scientists have suggested using the tree as a marker for the beginning of the Anthropocene, the proposed new geological age defined by human impact.\n\nIf adopted, the loneliest tree in the world would acquire an odd distinction: a tree that cannot reproduce, planted as a failed experiment on an uninhabited island, would become the official symbol of humanity's effect on the Earth.",
+      "question": "Why does the author mention the governor of New Zealand?",
+      "options": [
+        "to explain how the tree came to be on the island",
+        "to criticize an early environmental policy",
+        "to introduce the scientist who named the tree",
+        "to describe New Zealand's government in 1901"
+      ],
+      "correct": 0,
+      "explanation": "Paragraph 2 opens with 'The tree did not get there by accident' — the governor's planting explains how it arrived. C is a trap: the governor was not a scientist.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "trees_11_53",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 11,
+      "intro": "This passage is about a famous isolated tree.",
+      "context": "On a windswept island in the Southern Ocean, roughly 700 kilometers south of New Zealand, stands a single Sitka spruce. It is the only tree on Campbell Island; its nearest neighbor is more than 200 kilometers away, on another island. Guinness World Records has called it the loneliest tree in the world.\n\nThe tree did not get there by accident. It was planted around 1901 by the governor of New Zealand at the time, who reportedly believed the island's climate was too harsh for the experiment to succeed. In a sense, he was right: more than a century later, the spruce is alive but strangely shaped. The constant cold wind has prevented it from forming a normal cone-shaped crown, and it has never produced cones at all, which means it cannot reproduce.\n\nFor years, scientists paid the tree little attention. Recently, however, researchers realized that its wood contains a remarkable record. Because the tree grew through the entire twentieth century, its annual growth rings preserve traces of the atmosphere around it — including carbon produced by human activity. In 2018, a team analyzing the tree's rings reported that a sharp change in the carbon signal appeared around 1965, and they proposed that this moment marks the point when human influence on the planet became unmistakable. Some scientists have suggested using the tree as a marker for the beginning of the Anthropocene, the proposed new geological age defined by human impact.\n\nIf adopted, the loneliest tree in the world would acquire an odd distinction: a tree that cannot reproduce, planted as a failed experiment on an uninhabited island, would become the official symbol of humanity's effect on the Earth.",
+      "question": "In the second sentence of paragraph 3, which word is closest in meaning to remarkable?",
+      "options": [
+        "extraordinary",
+        "incomplete",
+        "confusing",
+        "recent"
+      ],
+      "correct": 0,
+      "explanation": "'Remarkable' means unusual and worthy of attention — extraordinary. A record of the whole twentieth century's atmosphere preserved in wood is exactly that.",
+      "questionType": "vocabulary"
+    }
+  ]
+}

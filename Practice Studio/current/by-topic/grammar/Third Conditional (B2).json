@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Third Conditional (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_10",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "If they had known about the budget cuts earlier, they _____ the new marketing project.",
+      "options": [
+        "wouldn't start",
+        "didn't start",
+        "won't have started",
+        "wouldn't have started"
+      ],
+      "correct": 3,
+      "explanation": "The third conditional is used for past unreal situations. Formula: If + past perfect, would have + past participle.",
+      "topicId": "Third Conditional (B2)"
+    },
+    {
+      "id": "G86",
+      "number": 86,
+      "category": "Third Conditional (B2)",
+      "level": "B2",
+      "question": "If we had known the restaurant was closed, we ________ somewhere else.",
+      "options": {
+        "A": "would go",
+        "B": "would have gone",
+        "C": "will go",
+        "D": "had gone"
+      },
+      "correct_answer": "B",
+      "correct_option": "would have gone",
+      "explanation": "Third conditional: If + past perfect, would have + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

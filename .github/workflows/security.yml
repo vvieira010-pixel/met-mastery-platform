@@ -1,0 +1,105 @@
+# Security scanning pipeline — runs on every push, PR and weekly schedule.
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Every Monday 06:00 UTC — surfaces new CVEs without spamming PRs.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
+jobs:
+  # ------------------------------------------------------------------
+  # CodeQL — static analysis for JS/TS security & quality
+  # ------------------------------------------------------------------
+  codeql:
+    name: CodeQL (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          queries: security-and-quality
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:${{ matrix.language }}'
+
+  # ------------------------------------------------------------------
+  # gitleaks — secret detection in repo history and PRs
+  # ------------------------------------------------------------------
+  gitleaks:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_HISTORY: true
+
+  # ------------------------------------------------------------------
+  # npm audit (deep) — surfaces CVEs daily, never blocks
+  # ------------------------------------------------------------------
+  npm-audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Audit production only
+        run: npm audit --audit-level=high --omit=dev
+
+      - name: Audit full
+        run: npm audit --audit-level=moderate || true
+
+      - name: Generate audit summary
+        if: always()
+        run: |
+          {
+            echo "### :lock: Dependency audit summary"
+            echo ""
+            echo "| Scope | Level | Status |"
+            echo "|-------|-------|--------|"
+            echo "| Production | high | $([ $? -eq 0 ] && echo ':white_check_mark: pass' || echo ':x: fail') |"
+            echo "| Full | moderate | info only |"
+          } >> $GITHUB_STEP_SUMMARY

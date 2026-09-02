@@ -1,0 +1,380 @@
+/* ============================================================================
+   stitch-theme.css — MET Mastery Stitch redesign overlay
+   Re-skins the app's existing semantic component classes to the Stitch
+   design system. Loaded LAST so it wins over redesign.css / components.css.
+   Palette + type already aligned to Stitch via tokens.css / tailwind @theme.
+   ========================================================================== */
+
+:root {
+  /* Stitch token bridge (mirror of met-mastery-platform.css) */
+  --mm-ink: #173338;
+  --mm-copy: #455f62;
+  --mm-muted: #6b7f81;
+  --mm-teal: #006877;
+  --mm-deep: #123f46;
+  --mm-teal-soft: #dff1ef;
+  --mm-rust: #a95325;
+  --mm-rust-soft: #fff0e6;
+  --mm-paper: #f6fafb;
+  --mm-white: #ffffff;
+  --mm-line: #d4e2e0;
+  --mm-line-strong: #adc5c2;
+  --mm-shadow: 0 20px 55px rgba(23, 51, 56, .1);
+  --mm-serif: 'Cormorant Garamond', Georgia, serif;
+  --mm-sans: 'DM Sans', system-ui, sans-serif;
+  --mm-radius: 14px;
+}
+
+/* ── App-wide surface + type ──────────────────────────────────────────── */
+body {
+  background: var(--mm-paper);
+  color: var(--mm-ink);
+  font-family: var(--mm-sans);
+}
+
+h1, h2, h3 { color: var(--mm-ink); letter-spacing: -0.01em; }
+
+/* Brand / display headings get the Stitch serif accent */
+.brand-section h1,
+.lp-wordmark,
+.shell-brand-copy strong,
+.dash-brand strong,
+.headline {
+  font-family: var(--mm-serif);
+}
+
+/* ── Teacher workspace shell ──────────────────────────────────────────── */
+.shell-topbar {
+  background: linear-gradient(120deg, var(--mm-deep) 0%, var(--mm-teal) 100%);
+  color: #fff;
+  border-bottom: none;
+  box-shadow: 0 8px 24px rgba(18, 63, 70, .18);
+}
+.shell-brand-copy strong { color: #fff; }
+.shell-brand-copy small { color: rgba(255, 255, 255, .72); }
+.shell-nav-section-label {
+  color: rgba(255, 255, 255, .6);
+  font-family: var(--mm-sans);
+  letter-spacing: .08em;
+}
+.shell-nav-btn {
+  color: rgba(255, 255, 255, .82);
+  border-radius: 999px;
+  font-weight: 500;
+}
+.shell-nav-btn:hover { background: rgba(255, 255, 255, .12); color: #fff; }
+.shell-nav-btn.active {
+  background: #fff;
+  color: var(--mm-deep);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+.shell-mobile-title strong { color: #fff; }
+.shell-mobile-title span { color: rgba(255, 255, 255, .72); }
+
+/* ── Student dashboard shell ────────────────────────────────────────────
+   Desktop and mobile shell rules live in the final responsive blocks below
+   so the student navigation has one predictable cascade. */
+.dash-bottom-nav { background: var(--mm-deep); }
+.dash-bottom-nav .dash-nav-btn { color: rgba(255, 255, 255, .82); }
+.dash-bottom-nav .dash-nav-btn.active { background: #fff; color: var(--mm-deep); }
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
+.card,
+.section-card,
+.kpi,
+.lp-access-panel,
+.student-card {
+   background: var(--surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--mm-radius);
+  box-shadow: var(--mm-shadow);
+}
+.card:hover { border-color: var(--mm-line-strong); }
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.btn-primary,
+.lp-submit,
+.cta-primary {
+  background: var(--mm-teal);
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 104, 119, .22);
+}
+.btn-primary:hover,
+.lp-submit:hover { background: var(--mm-deep); }
+.btn-secondary {
+  background: var(--mm-teal-soft);
+  color: var(--mm-deep);
+  border-radius: 12px;
+  border: 1px solid var(--mm-line);
+}
+
+/* ── Form fields ──────────────────────────────────────────────────────── */
+input,
+textarea,
+select,
+.lp-input {
+   background: var(--surface);
+  border: 1px solid var(--mm-line);
+  border-radius: 12px;
+  color: var(--mm-ink);
+  padding: 10px 12px;
+}
+input:focus,
+textarea:focus,
+select:focus,
+.lp-input:focus {
+  border-color: var(--mm-teal);
+  box-shadow: 0 0 0 3px rgba(0, 104, 119, .18);
+  outline: none;
+}
+label { color: var(--mm-copy); font-weight: 600; font-size: 12px; }
+
+/* ── Pills / tags ─────────────────────────────────────────────────────── */
+.pill,
+.tag {
+  border-radius: 999px;
+  border: 1px solid var(--mm-line);
+  background: var(--mm-teal-soft);
+  color: var(--mm-deep);
+}
+
+/* ── Login screen polish (already Stitch-shaped) ──────────────────────── */
+.lp-root { background: var(--mm-paper); }
+.form-section {
+   background: var(--surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--mm-radius);
+  box-shadow: var(--mm-shadow);
+}
+.section-header h2 { font-family: var(--mm-serif); color: var(--mm-ink); }
+
+/* ── Student dashboard primitives ─────────────────────────────────────── */
+.student-panel-kicker,
+.lp-access-panel-kicker,
+.student-learning-loop-kicker {
+  display: inline-block;
+  font-family: var(--mm-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--mm-teal);
+}
+.student-learning-loop {
+   background: var(--surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--mm-radius);
+  box-shadow: var(--mm-shadow);
+  padding: 20px;
+}
+.student-learning-loop-head h2 { font-family: var(--mm-serif); color: var(--mm-ink); }
+.student-learning-loop-status {
+  font-size: 12px;
+  color: var(--mm-muted);
+  background: var(--mm-teal-soft);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.student-learning-loop-step button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--mm-line);
+  background: var(--mm-paper);
+  color: var(--mm-copy);
+  padding: 8px 14px;
+  font-weight: 600;
+}
+.student-learning-loop-step.is-active button {
+  background: var(--mm-teal);
+  color: #fff;
+  border-color: var(--mm-teal);
+}
+.student-learning-loop-step.is-complete button {
+  background: var(--mm-rust-soft);
+  border-color: var(--mm-rust-soft);
+  color: var(--mm-rust);
+}
+.student-learning-loop-arrow { color: var(--mm-muted); }
+.student-learning-loop-number {
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 104, 119, .12);
+  color: var(--mm-teal);
+  font-size: 12px; font-weight: 700;
+}
+
+.stat-chip {
+   background: var(--surface);
+  border: 1px solid var(--mm-line);
+  border-radius: var(--mm-radius);
+  box-shadow: var(--mm-shadow);
+  padding: 14px 16px;
+}
+.stat-chip-icon { color: var(--mm-teal); }
+.stat-chip-value { color: var(--mm-ink); font-family: var(--mm-serif); font-size: var(--text-2xl); }
+.stat-chip-label { color: var(--mm-muted); }
+.stat-chip--clickable:hover { border-color: var(--mm-teal); }
+
+.todo-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--mm-line);
+}
+.todo-row-icon { color: var(--mm-teal); }
+.todo-row-icon--done { color: var(--mm-rust); }
+.todo-row-label { color: var(--mm-ink); font-weight: 600; }
+.todo-row-label--done { color: var(--mm-muted); text-decoration: line-through; }
+.todo-row-meta { color: var(--mm-muted); font-size: 12px; }
+
+/* ── Token bridge: retheme every surface to Stitch at once ───────────────
+   Overrides the app-chrome tokens (tokens.css) because this file is imported
+   last. Every component reading these vars adopts the Stitch palette. */
+:root {
+  --ink: #173338;
+  --ink-muted: #455f62;
+  --ink-2: #455f62;
+
+  --bg: #f2f7f6;            /* page background = Stitch paper */
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, .72);
+  --surface-hover: #f2f7f6;
+  --hover-bg: #f2f7f6;
+  --bg-deep: #d4e2e0;
+
+  --border: #d4e2e0;
+  --border-strong: #adc5c2;
+  --divider: rgba(23, 51, 56, .05);
+
+  --shadow-sm: 0 1px 2px rgba(23, 51, 56, .04);
+  --shadow-md: 0 2px 10px rgba(23, 51, 56, .06);
+  --shadow-card: 0 1px 4px rgba(23, 51, 56, .05);
+  --shadow-lg: 0 10px 24px rgba(23, 51, 56, .08);
+  --shadow-xl: 0 18px 40px rgba(23, 51, 56, .10);
+
+  --primary-hover: #123f46;
+
+  --accent: #a95325;        /* Stitch rust instead of orange */
+  --accent-hover: #8c4420;
+  --accent-text: #6b3a17;
+  --accent-subtle: rgba(169, 83, 37, .10);
+  --accent-soft: rgba(169, 83, 37, .16);
+
+  --success-bg: #e8f2f1;
+
+  --card-bg: #ffffff;
+
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --met-page-bg: #f2f7f6;
+  --met-border-shell: #d4e2e0;
+  --met-slate: #173338;
+}
+
+/* Stitch reference shell: persistent deep-teal study rail with a warm,
+   unmistakable next-action button. */
+@media (min-width: 861px) {
+  .dash-topbar {
+    background: var(--mm-teal);
+    border-right-color: rgba(255, 255, 255, .12);
+    box-shadow: .5rem 0 2rem rgba(0, 0, 0, .18);
+  }
+
+  .dash-brand { border-bottom-color: rgba(255, 255, 255, .16); }
+  .dash-brand-mark {
+    background: rgba(255, 255, 255, .96);
+    color: var(--mm-teal);
+  }
+  .dash-brand strong { color: #fff; }
+  .dash-brand small { color: rgba(255, 255, 255, .72); }
+
+  .dash-nav-btn { color: rgba(255, 255, 255, .78); }
+  .dash-nav-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+  }
+  .dash-nav-btn.active {
+    background: var(--mm-rust);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .dash-more-popover {
+    background: var(--mm-teal);
+    border-color: rgba(255, 255, 255, .14);
+  }
+  .dash-more-item { color: #fff; }
+  .dash-more-item:hover,
+  .dash-more-item:focus-visible { background: rgba(255, 255, 255, .12); }
+
+  .dash-quick-start {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    width: 100%;
+    min-height: 2.75rem;
+    margin-top: auto;
+    padding: .65rem .75rem;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--mm-rust);
+    color: #fff;
+    font: 700 .72rem/1 var(--mm-sans);
+    cursor: pointer;
+    box-shadow: 0 .45rem 1rem rgba(0, 0, 0, .12);
+    transition: background-color 160ms ease, transform 160ms ease;
+  }
+  .dash-quick-start:hover { background: #8c4420; transform: translateY(-1px); }
+  .dash-quick-start:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+  .dash-topbar-right { border-top-color: rgba(255, 255, 255, .16); }
+  .dash-topbar-name { color: rgba(255, 255, 255, .78); }
+}
+
+@media (max-width: 860px) {
+  .dash-quick-start { display: none; }
+}
+
+/* The overlay is imported after dark.css, so restore the semantic dark
+   tokens explicitly instead of allowing the light bridge above to win. */
+[data-theme='dark'] {
+  --mm-paper: #0b1520;
+  --mm-ink: #eaf1f2;
+  --mm-copy: #c2d1d4;
+  --mm-muted: #9fb4b8;
+  --mm-teal-soft: #143a40;
+  --mm-rust-soft: #3c261c;
+  --mm-line: #2a3e49;
+  --mm-line-strong: #45616a;
+  --mm-shadow: 0 20px 55px rgba(0, 0, 0, .28);
+  --bg: #0b1520;
+  --surface: #12202b;
+  --surface-hover: #1a2c38;
+  --hover-bg: #1a2c38;
+  --card-bg: #14222d;
+  --ink: #eaf1f2;
+  --ink-muted: #9fb4b8;
+  --ink-2: #9fb4b8;
+  --text: #eaf1f2;
+  --text-muted: #9fb4b8;
+  --text-2: #9fb4b8;
+  --border: #2a3e49;
+  --border-strong: rgba(255, 255, 255, .12);
+  --divider: rgba(255, 255, 255, .06);
+  --primary-hover: #7fc9d2;
+  --accent: #a95325;
+  --accent-hover: #c16c39;
+  --accent-text: #ffd6b7;
+  --accent-subtle: rgba(169, 83, 37, .2);
+  --accent-soft: rgba(169, 83, 37, .28);
+
+  /* Override colored shadows to neutral in dark mode */
+  --mm-shadow: 0 20px 55px rgba(0, 0, 0, .35);
+}

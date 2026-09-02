@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "christmas-tree-farming",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_10_47",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 10,
+      "intro": "This passage is about growing Christmas trees.",
+      "context": "Every December, millions of households bring a freshly cut evergreen into their living rooms. Few of the people decorating these trees realize that the tree was probably planted eight to ten years earlier, on a farm that operates much like any other agricultural business — except that its harvest takes nearly a decade.\n\nChristmas tree farming is a patient industry. Seedlings are planted in spring and sheared every year, trimmed into the familiar cone shape that buyers expect. Farmers must protect their crop from insects, deer, and drought for years before seeing any income from it. Weather adds further uncertainty: a single late frost can damage an entire season of new growth, and a drought in the tree's first years can kill plantings that a farmer has already tended for half a decade.\n\nThe business has changed in recent decades. Artificial trees, manufactured mostly overseas, now outsell natural ones in several countries, and many young families choose them for convenience. Natural tree growers have responded by emphasizing what a plastic tree cannot offer: the scent of pine or fir, the tradition of choosing a tree in the field, and the fact that real trees are a renewable crop. While they grow, they absorb carbon and provide habitat for wildlife; after the holidays, most are recycled into mulch.\n\nSurprisingly, many growers argue that the greater threat to their industry is not competition from artificial trees but a shortage of farmers themselves. The work is physically demanding, the profits uncertain and long delayed, and fewer young people are choosing to take over family farms. For an industry built on patience, finding the next generation may be the hardest crop of all to grow.",
+      "question": "According to the passage, why are the seedlings sheared every year?",
+      "options": [
+        "to protect them from insects",
+        "to make them grow faster",
+        "to give them the shape buyers want",
+        "to prepare them for recycling"
+      ],
+      "correct": 2,
+      "explanation": "Paragraph 2 says the trees are sheared and 'trimmed into the familiar cone shape that buyers expect.' The purpose is the shape the market demands.",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_10_50",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 10,
+      "intro": "This passage is about growing Christmas trees.",
+      "context": "Every December, millions of households bring a freshly cut evergreen into their living rooms. Few of the people decorating these trees realize that the tree was probably planted eight to ten years earlier, on a farm that operates much like any other agricultural business — except that its harvest takes nearly a decade.\n\nChristmas tree farming is a patient industry. Seedlings are planted in spring and sheared every year, trimmed into the familiar cone shape that buyers expect. Farmers must protect their crop from insects, deer, and drought for years before seeing any income from it. Weather adds further uncertainty: a single late frost can damage an entire season of new growth, and a drought in the tree's first years can kill plantings that a farmer has already tended for half a decade.\n\nThe business has changed in recent decades. Artificial trees, manufactured mostly overseas, now outsell natural ones in several countries, and many young families choose them for convenience. Natural tree growers have responded by emphasizing what a plastic tree cannot offer: the scent of pine or fir, the tradition of choosing a tree in the field, and the fact that real trees are a renewable crop. While they grow, they absorb carbon and provide habitat for wildlife; after the holidays, most are recycled into mulch.\n\nSurprisingly, many growers argue that the greater threat to their industry is not competition from artificial trees but a shortage of farmers themselves. The work is physically demanding, the profits uncertain and long delayed, and fewer young people are choosing to take over family farms. For an industry built on patience, finding the next generation may be the hardest crop of all to grow.",
+      "question": "What do many growers consider their biggest problem?",
+      "options": [
+        "the low price of artificial trees",
+        "damage caused by late frosts",
+        "a lack of young people entering the industry",
+        "the cost of recycling old trees"
+      ],
+      "correct": 2,
+      "explanation": "Paragraph 4 says the 'greater threat' is 'a shortage of farmers themselves,' because fewer young people take over family farms. A is a real challenge but the passage calls it the lesser one.",
+      "questionType": "inference"
+    }
+  ]
+}

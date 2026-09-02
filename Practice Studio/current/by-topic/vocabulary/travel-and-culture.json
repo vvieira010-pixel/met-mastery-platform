@@ -1,0 +1,62 @@
+{
+  "skill": "vocabulary",
+  "topic": "travel-and-culture",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "michigan_vocab_12",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "We missed the bus, but fortunately a taxi driver agreed to ___ us to the airport.",
+      "options": [
+        "melt",
+        "grow",
+        "drive",
+        "lend"
+      ],
+      "correct": 2,
+      "explanation": "**Drive** means take someone somewhere in a vehicle."
+    },
+    {
+      "id": "vt_travel_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Before traveling abroad, you should ___ your passport is valid.",
+      "options": [
+        "check",
+        "choose",
+        "catch",
+        "charge"
+      ],
+      "correct": 0,
+      "explanation": "“Check” here means to verify a fact."
+    },
+    {
+      "id": "vt_travel_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Learning a few words of the local language can ___ your trip more enjoyable.",
+      "options": [
+        "make",
+        "meet",
+        "move",
+        "mean"
+      ],
+      "correct": 0,
+      "explanation": "“Make something more enjoyable” is a common structure."
+    },
+    {
+      "id": "vt_travel_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "We decided to ___ a guided tour of the old city.",
+      "blanks": [
+        "take"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Participle Clauses (B2+)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_14",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "_____ by the overwhelmingly positive feedback, the development team worked through the weekend to launch the update early.",
+      "options": [
+        "Encouraging",
+        "Having encouraged",
+        "Encouraged",
+        "To encourage"
+      ],
+      "correct": 2,
+      "explanation": "A past participle clause ('Encouraged by...') is used here to mean 'Because they were encouraged by...'.",
+      "topicId": "Participle Clauses (B2+)"
+    },
+    {
+      "id": "G57",
+      "number": 57,
+      "category": "Participle Clauses (B2+)",
+      "level": "B2+",
+      "question": "________ by the unexpected news, the audience remained silent.",
+      "options": {
+        "A": "Shocking",
+        "B": "Shocked",
+        "C": "Having shocked",
+        "D": "To shock"
+      },
+      "correct_answer": "B",
+      "correct_option": "Shocked",
+      "explanation": "Use a past participle clause for people receiving an effect: shocked by the news.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

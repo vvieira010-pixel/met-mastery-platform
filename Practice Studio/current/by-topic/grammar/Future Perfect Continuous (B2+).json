@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Future Perfect Continuous (B2+)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_13",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "By next December, I _____ for this organization for exactly a decade.",
+      "options": [
+        "will be working",
+        "will have worked",
+        "will have been working",
+        "would work"
+      ],
+      "correct": 2,
+      "explanation": "The future perfect continuous is used to emphasize the duration of an action up to a specific point in the future. ('Will have worked' is also grammatically possible, but continuous is preferred for ongoing employment duration).",
+      "topicId": "Future Perfect Continuous (B2+)"
+    },
+    {
+      "id": "G18",
+      "number": 18,
+      "category": "Future Perfect Continuous (B2+)",
+      "level": "B2+",
+      "question": "By next June, I ________ at this company for ten years.",
+      "options": {
+        "A": "will work",
+        "B": "will have worked",
+        "C": "will have been working",
+        "D": "am working"
+      },
+      "correct_answer": "C",
+      "correct_option": "will have been working",
+      "explanation": "Future perfect continuous = will have been + -ing. It emphasizes duration up to a future time.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Relative Clauses (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_8",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The manager _____ office is at the end of the hall can help you with that software issue.",
+      "options": [
+        "who",
+        "whom",
+        "whose",
+        "which"
+      ],
+      "correct": 2,
+      "explanation": "'Whose' is a relative pronoun used to show possession (the office belongs to the manager).",
+      "topicId": "Relative Clauses (B2)"
+    },
+    {
+      "id": "G76",
+      "number": 76,
+      "category": "Relative Clauses (B2)",
+      "level": "B2",
+      "question": "The woman ________ lives next door is a doctor.",
+      "options": {
+        "A": "which",
+        "B": "whose",
+        "C": "who",
+        "D": "whom"
+      },
+      "correct_answer": "C",
+      "correct_option": "who",
+      "explanation": "Use 'who' for a person who is the subject of the relative clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

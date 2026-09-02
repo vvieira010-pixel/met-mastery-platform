@@ -1,0 +1,49 @@
+{
+  "skill": "listening",
+  "topic": "community",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "listening-87",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-87-volunteer-task.mp3",
+      "audioTitle": "87 · A Volunteer Task",
+      "audioSrc": "/exercises/audio/listening/listening-87-volunteer-task.mp3",
+      "audioText": "Before the visitors arrive, please place the information cards on each table and check that the water dispenser is full. You do not need to arrange the chairs; the events team has already done that.",
+      "question": "What should the volunteer do?",
+      "options": [
+        "Arrange the chairs",
+        "Place cards and check the water dispenser",
+        "Welcome visitors outside",
+        "Move the tables"
+      ],
+      "correct": 1,
+      "explanation": "The volunteer should place the cards and check the water dispenser.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-99",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-99-public-response.mp3",
+      "audioTitle": "99 · A Public Response",
+      "audioSrc": "/exercises/audio/listening/listening-99-public-response.mp3",
+      "audioText": "We recognize that residents are disappointed by the temporary closure. Nevertheless, the repairs are necessary to prevent a more serious disruption later. The center will publish weekly updates and announce the reopening date as soon as it is confirmed.",
+      "question": "What is the purpose of the statement?",
+      "options": [
+        "To deny that repairs are needed",
+        "To acknowledge concerns and explain the closure",
+        "To announce that the center has reopened",
+        "To ask residents to cancel repairs"
+      ],
+      "correct": 1,
+      "explanation": "The statement acknowledges disappointment and explains why the closure is necessary.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

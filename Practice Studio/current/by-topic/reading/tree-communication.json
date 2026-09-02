@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "tree-communication",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_2_6",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 2,
+      "intro": "This passage is about how trees communicate.",
+      "context": "Walk through a forest, and the trees may appear silent and solitary. Beneath the soil, however, an enormous amount of communication is taking place. Trees are connected by underground networks of fungi that link their roots, allowing them to exchange resources and even send warning signals to one another. Some scientists have nicknamed this system the \"wood wide web.\"\n\nThe partnership between trees and fungi is ancient and mutually beneficial. Fungal threads, which are far thinner than the finest roots, extend deep into the soil and absorb nutrients such as phosphorus and nitrogen. The fungi deliver these nutrients to tree roots in exchange for sugars that the trees produce through photosynthesis. A single teaspoon of forest soil can contain several kilometers of these fungal threads.\n\nMore surprising is evidence that trees use these networks to help each other. In one well-known experiment, ecologist Suzanne Simard found that paper birch trees transferred carbon to Douglas fir seedlings shaded from the sun — essentially feeding their struggling neighbors. Other studies suggest that when insects attack a tree, the tree releases chemical signals through the network, prompting neighboring trees to produce defensive compounds before the insects reach them.\n\nNot all scientists are convinced by these findings. Some argue that the experiments are difficult to replicate in real forests and that the movement of resources between trees may be a side effect of fungal growth rather than intentional sharing. Still, even skeptics agree that the soil beneath a forest is far busier than anyone once imagined.",
+      "question": "What is the main idea of the passage?",
+      "options": [
+        "Fungi are the most important organisms in a forest.",
+        "Trees compete with one another for nutrients in the soil.",
+        "Trees are linked by fungal networks that may let them share resources.",
+        "Forests are quieter and simpler than they appear."
+      ],
+      "correct": 2,
+      "explanation": "The whole passage develops this idea: the network exists (paragraphs 1–2), trees may share through it (paragraph 3), and scientists debate how intentional this is (paragraph 4). A and B are not supported.",
+      "questionType": "main idea"
+    },
+    {
+      "id": "trees_2_8",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 2,
+      "intro": "This passage is about how trees communicate.",
+      "context": "Walk through a forest, and the trees may appear silent and solitary. Beneath the soil, however, an enormous amount of communication is taking place. Trees are connected by underground networks of fungi that link their roots, allowing them to exchange resources and even send warning signals to one another. Some scientists have nicknamed this system the \"wood wide web.\"\n\nThe partnership between trees and fungi is ancient and mutually beneficial. Fungal threads, which are far thinner than the finest roots, extend deep into the soil and absorb nutrients such as phosphorus and nitrogen. The fungi deliver these nutrients to tree roots in exchange for sugars that the trees produce through photosynthesis. A single teaspoon of forest soil can contain several kilometers of these fungal threads.\n\nMore surprising is evidence that trees use these networks to help each other. In one well-known experiment, ecologist Suzanne Simard found that paper birch trees transferred carbon to Douglas fir seedlings shaded from the sun — essentially feeding their struggling neighbors. Other studies suggest that when insects attack a tree, the tree releases chemical signals through the network, prompting neighboring trees to produce defensive compounds before the insects reach them.\n\nNot all scientists are convinced by these findings. Some argue that the experiments are difficult to replicate in real forests and that the movement of resources between trees may be a side effect of fungal growth rather than intentional sharing. Still, even skeptics agree that the soil beneath a forest is far busier than anyone once imagined.",
+      "question": "Why does the author mention Suzanne Simard's experiment?",
+      "options": [
+        "to criticize the methods used in forest research",
+        "to explain how fungal threads absorb nutrients",
+        "to give an example of trees appearing to help one another",
+        "to introduce the scientist who discovered fungi"
+      ],
+      "correct": 2,
+      "explanation": "The paragraph's topic sentence announces 'evidence that trees use these networks to help each other,' and Simard's experiment is the example that follows.",
+      "questionType": "purpose"
+    }
+  ]
+}

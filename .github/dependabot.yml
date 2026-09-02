@@ -1,0 +1,43 @@
+# Dependabot — automated dependency updates
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      day: 'wednesday'
+      time: '09:00'
+      timezone: 'America/Sao_Paulo'
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+    # Group patch + minor updates into a single PR to reduce noise.
+    groups:
+      patch-and-minor:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+    labels:
+      - 'dependencies'
+      - 'automated'
+    reviewers:
+      - 'vviei'
+    commit-message:
+      prefix: 'chore(deps)'
+      prefix-development: 'chore(deps-dev)'
+      include: 'scope'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/.github/workflows'
+    schedule:
+      day: 'wednesday'
+      time: '09:00'
+      timezone: 'America/Sao_Paulo'
+    open-pull-requests-limit: 5
+    labels:
+      - 'dependencies'
+      - 'github-actions'
+      - 'automated'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'

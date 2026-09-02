@@ -1,0 +1,32 @@
+{
+  "skill": "vocabulary",
+  "topic": "family",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "vt_fam_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "She tries to ___ in touch with her cousins who live abroad.",
+      "options": [
+        "stay",
+        "stand",
+        "start",
+        "stop"
+      ],
+      "correct": 0,
+      "explanation": "“Stay in touch” means to keep communicating."
+    },
+    {
+      "id": "vt_fam_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Families often ___ traditions from one generation to the next.",
+      "blanks": [
+        "pass"
+      ]
+    }
+  ]
+}

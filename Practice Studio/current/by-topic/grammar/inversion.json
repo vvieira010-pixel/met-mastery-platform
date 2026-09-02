@@ -1,0 +1,201 @@
+{
+  "skill": "grammar",
+  "topic": "inversion",
+  "totalExercises": 12,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_a",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Seldom ________ ever strike in the same place twice.",
+      "options": [
+        "for lightning to",
+        "lightning did",
+        "that lightning will",
+        "does lightning"
+      ],
+      "correct": 3,
+      "explanation": "After \"Seldom,\" inversion requires: auxiliary (does) + subject (lightning)."
+    },
+    {
+      "id": "gm_mtgcfjq1_b",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Not only ________ late, but he also forgot his presentation.",
+      "options": [
+        "he arrived",
+        "did he arrive",
+        "he did arrive",
+        "arrived he"
+      ],
+      "correct": 1,
+      "explanation": "\"Not only\" triggers inversion: auxiliary (did) + subject (he) + verb (arrive)."
+    },
+    {
+      "id": "gm_mtgcfjq1_c",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Under no circumstances ________ leave the exam room early.",
+      "options": [
+        "students should",
+        "should students",
+        "students must",
+        "must students not"
+      ],
+      "correct": 1,
+      "explanation": "\"Under no circumstances\" is a negative fronted adverbial, requiring inversion: should + students."
+    },
+    {
+      "id": "gm_mtgcfjq1_15",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The company is not doing poorly — ________, profits actually rose last year.",
+      "options": [
+        "under no circumstances",
+        "apart from this",
+        "on the contrary",
+        "despite this"
+      ],
+      "correct": 2,
+      "explanation": "\"On the contrary\" contradicts the previous negative statement and introduces a positive fact."
+    },
+    {
+      "id": "gram_blank_04",
+      "type": "blank",
+      "template": "Not only ___ the report, but she also presented it.",
+      "blanks": [
+        "did she write"
+      ],
+      "explanation": "Negative inversion: when a negative phrase starts a clause, the verb is inverted.",
+      "skill": "Grammar",
+      "level": "B2"
+    },
+    {
+      "type": "mcq",
+      "skill": "Grammar",
+      "level": "B2+",
+      "title": "B2+ Inversion",
+      "question": "Correct: 'Rarely ___ such honesty.'",
+      "options": [
+        "we hear",
+        "do we hear",
+        "we do hear",
+        "hear we"
+      ],
+      "correct": 1,
+      "explanation": "Negative adverb at front triggers inversion: do we hear."
+    },
+    {
+      "id": "G41",
+      "number": 41,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "Never ________ such a difficult decision before.",
+      "options": {
+        "A": "I have made",
+        "B": "have I made",
+        "C": "I made",
+        "D": "did I made"
+      },
+      "correct_answer": "B",
+      "correct_option": "have I made",
+      "explanation": "After 'never' at the start, use inversion: Never have I made.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G42",
+      "number": 42,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "Only after the meeting ________ the real problem.",
+      "options": {
+        "A": "we understood",
+        "B": "did we understand",
+        "C": "we did understand",
+        "D": "understood we"
+      },
+      "correct_answer": "B",
+      "correct_option": "did we understand",
+      "explanation": "After 'only after' at the beginning, use auxiliary inversion: did we understand.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G43",
+      "number": 43,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "Not only ________ late, but he had also forgotten the documents.",
+      "options": {
+        "A": "he arrived",
+        "B": "did he arrive",
+        "C": "he did arrive",
+        "D": "arrived he"
+      },
+      "correct_answer": "B",
+      "correct_option": "did he arrive",
+      "explanation": "Use inversion after 'not only' when it begins the sentence: did he arrive.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G44",
+      "number": 44,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "Under no circumstances ________ this password with anyone.",
+      "options": {
+        "A": "you should share",
+        "B": "should you share",
+        "C": "you share",
+        "D": "do you share"
+      },
+      "correct_answer": "B",
+      "correct_option": "should you share",
+      "explanation": "A negative phrase at the start requires inversion: should you share.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G45",
+      "number": 45,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "Little ________ that the plan would fail.",
+      "options": {
+        "A": "they knew",
+        "B": "did they know",
+        "C": "they did know",
+        "D": "knew they"
+      },
+      "correct_answer": "B",
+      "correct_option": "did they know",
+      "explanation": "'Little did they know...' is a fixed emphatic inversion pattern.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G46",
+      "number": 46,
+      "category": "inversion",
+      "level": "B2+",
+      "question": "So difficult ________ that many students gave up.",
+      "options": {
+        "A": "the exam was",
+        "B": "was the exam",
+        "C": "did the exam",
+        "D": "the exam did"
+      },
+      "correct_answer": "B",
+      "correct_option": "was the exam",
+      "explanation": "With 'so + adjective' at the beginning, use inversion: So difficult was the exam...",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

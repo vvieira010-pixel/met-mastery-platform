@@ -1,0 +1,76 @@
+{
+  "name": "MET Mastery",
+  "version": "1.0",
+  "sourceOfTruth": "src/styles/tokens.css",
+  "tokens": {
+    "color": {
+      "primary": "#006877",
+      "primary-hover": "#004E5A",
+      "primary-light": "#BFE6EF",
+      "accent": "#DA8847",
+      "accent-hover": "#904D0E",
+      "accent-light": "#FFDCC5",
+      "bg": "#E5F0F0",
+      "surface": "#F6FAFB",
+      "ink": "#171C1D",
+      "ink-muted": "#3D494B",
+      "border": "#C6D5D4",
+      "success": "#006877",
+      "warning": "#B27A3E",
+      "error": "#8C5149",
+      "info": "#709BA1"
+    },
+    "radius": { "sm": "8px", "md": "12px", "lg": "16px", "xl": "20px", "pill": "99px" },
+    "shadow": {
+      "card": "0 1px 4px rgba(54,84,90,0.04)",
+      "modal": "0 12px 36px rgba(54,84,90,0.14)",
+      "float": "0 18px 45px rgba(23,28,29,0.12)"
+    },
+    "font": {
+      "display": "Cormorant Garamond, Georgia, serif",
+      "body": "DM Sans, Inter, sans-serif",
+      "mono": "Space Mono, monospace"
+    }
+  },
+  "components": [
+    {
+      "name": "Button / Primary",
+      "html": "<button class=\"mm-btn mm-btn--primary\">Start diagnostic</button>",
+      "css": ".mm-btn{font-family:var(--font-body,DM Sans);height:44px;min-height:44px;padding:0 1rem;border-radius:8px;border:1px solid transparent;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}.mm-btn--primary{background:#006877;color:#fff}.mm-btn--primary:hover{background:#004E5A}.mm-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,104,119,.2)}.mm-btn[aria-label]{ }"
+    },
+    {
+      "name": "Button / Secondary",
+      "html": "<button class=\"mm-btn mm-btn--secondary\">Skip</button>",
+      "css": ".mm-btn--secondary{background:transparent;color:#004E5A;border-color:#C6D5D4}.mm-btn--secondary:hover{background:#BFE6EF}"
+    },
+    {
+      "name": "Card",
+      "html": "<article class=\"mm-card\"><h3 class=\"mm-card__title\">Reading diagnostic</h3><p class=\"mm-card__meta\">12 questions · 18 min</p></article>",
+      "css": ".mm-card{background:#F6FAFB;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(54,84,90,.04)}.mm-card__title{font-family:var(--font-display,Cormorant Garamond);font-size:1.35rem;margin:0 0 .25rem;color:#171C1D}.mm-card__meta{font-size:.85rem;color:#3D494B;margin:0}"
+    },
+    {
+      "name": "Input / Field",
+      "html": "<label class=\"mm-label\" for=\"nm\">Student name</label><input id=\"nm\" class=\"mm-input\" placeholder=\" type…\">",
+      "css": ".mm-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:#3D494B;margin-bottom:.4rem}.mm-input{width:100%;height:44px;padding:0 .75rem;border:1px solid #C6D5D4;border-radius:8px;background:#F6FAFB;color:#171C1D;font-family:var(--font-body,DM Sans)}.mm-input:focus{outline:none;border-color:#006877;box-shadow:0 0 0 3px rgba(0,104,119,.2)}"
+    },
+    {
+      "name": "Chip / Pill (selected)",
+      "html": "<button class=\"mm-chip mm-chip--on\">Reading</button>",
+      "css": ".mm-chip{height:36px;padding:0 1rem;border-radius:99px;border:1px solid #C6D5D4;background:#E5F0F0;color:#171C1D;font-weight:600;cursor:pointer}.mm-chip--on{border-color:#006877;background:#BFE6EF;color:#004E5A}"
+    },
+    {
+      "name": "Score (mono)",
+      "html": "<span class=\"mm-score\">B2 · 78</span>",
+      "css": ".mm-score{font-family:Space Mono,monospace;font-weight:700;color:#006877;letter-spacing:.02em}"
+    }
+  ],
+  "rules": [
+    "Saturated primary teal (#006877) only for action + active state; amber (#DA8847) is the sole companion hue.",
+    "Page #E5F0F0 over surface #F6FAFB; never pure white panels.",
+    "44px minimum touch target on every interactive control.",
+    "Icon-only buttons and inputs must carry aria-label;",
+    "Dark mode is composed from the token set (dark.css), not an inverted light theme.",
+    "Consume tokens from src/styles/tokens.css; never hard-code hex in components.",
+    "Root-level duplicate styles (components.css, redesign.css, tokens.css, system.css) are dead — edit src/styles/* only."
+  ]
+}

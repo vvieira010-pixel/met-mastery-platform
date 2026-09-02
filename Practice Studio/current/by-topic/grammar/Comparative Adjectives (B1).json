@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Comparative Adjectives (B1)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The new booking software is much _____ to use than the old one.",
+      "options": [
+        "more easy",
+        "easier",
+        "easiest",
+        "easily"
+      ],
+      "correct": 1,
+      "explanation": "For two-syllable adjectives ending in 'y', change the 'y' to 'i' and add 'er' to form the comparative.",
+      "topicId": "Comparative Adjectives (B1)"
+    },
+    {
+      "id": "G4",
+      "number": 4,
+      "category": "Comparative Adjectives (B1)",
+      "level": "B1",
+      "question": "This exercise is ________ than the previous one.",
+      "options": {
+        "A": "more easy",
+        "B": "easier",
+        "C": "easiest",
+        "D": "the easier"
+      },
+      "correct_answer": "B",
+      "correct_option": "easier",
+      "explanation": "For short adjectives ending in -y, change y to i and add -er: easy → easier.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "water-cycle",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "met_7_33",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 7,
+      "intro": "This passage is about the water cycle.",
+      "context": "Water is constantly moving between the Earth's surface and the atmosphere in a process known as the water cycle. The sun heats water in oceans, lakes, and rivers, causing it to evaporate and rise into the air as water vapor. As the vapor rises, it cools and condenses into tiny droplets, forming clouds. When the droplets become heavy enough, they fall back to Earth as precipitation—rain, snow, sleet, or hail.\n\nOnce water reaches the ground, it follows several paths. Some of it flows over the surface into streams and rivers, eventually returning to the ocean. Some soaks into the soil and is taken up by plant roots, later released back into the air through transpiration. The rest sinks deeper, becoming groundwater that may remain underground for hundreds or even thousands of years before resurfacing.\n\nThe water cycle is essential for life. It distributes fresh water across the planet, supports agriculture, and helps regulate the Earth's temperature. However, human activities are affecting the cycle in dangerous ways. Deforestation reduces transpiration, and climate change is altering precipitation patterns, leading to more severe droughts and floods in different regions.\n\nScientists warn that protecting the water cycle requires reducing greenhouse gas emissions and preserving forests. They also emphasize that individuals can help by conserving water at home and supporting policies that protect watersheds. Though the cycle itself will continue, the quality and availability of water for human use depend on the choices people make today.",
+      "question": "In the second sentence of paragraph 3, which word is closest in meaning to 'distributes'?",
+      "options": [
+        "spreads",
+        "stores",
+        "purifies",
+        "measures"
+      ],
+      "correct": 0,
+      "explanation": "",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "met_7_32",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 7,
+      "intro": "This passage is about the water cycle.",
+      "context": "Water is constantly moving between the Earth's surface and the atmosphere in a process known as the water cycle. The sun heats water in oceans, lakes, and rivers, causing it to evaporate and rise into the air as water vapor. As the vapor rises, it cools and condenses into tiny droplets, forming clouds. When the droplets become heavy enough, they fall back to Earth as precipitation—rain, snow, sleet, or hail.\n\nOnce water reaches the ground, it follows several paths. Some of it flows over the surface into streams and rivers, eventually returning to the ocean. Some soaks into the soil and is taken up by plant roots, later released back into the air through transpiration. The rest sinks deeper, becoming groundwater that may remain underground for hundreds or even thousands of years before resurfacing.\n\nThe water cycle is essential for life. It distributes fresh water across the planet, supports agriculture, and helps regulate the Earth's temperature. However, human activities are affecting the cycle in dangerous ways. Deforestation reduces transpiration, and climate change is altering precipitation patterns, leading to more severe droughts and floods in different regions.\n\nScientists warn that protecting the water cycle requires reducing greenhouse gas emissions and preserving forests. They also emphasize that individuals can help by conserving water at home and supporting policies that protect watersheds. Though the cycle itself will continue, the quality and availability of water for human use depend on the choices people make today.",
+      "question": "According to the passage, what happens when water vapor cools?",
+      "options": [
+        "It evaporates into the atmosphere.",
+        "It condenses into droplets and forms clouds.",
+        "It soaks into the soil as groundwater.",
+        "It flows directly into the ocean."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "collocations",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1f",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Choose the sentence that uses the most natural and correct word combination (collocation).",
+      "options": [
+        "I need to do a quick phone call before the strategy session begins.",
+        "We made a lot of progress on the software migration this week.",
+        "The guest speaker did an inspiring speech at the annual conference.",
+        "She took a new business with her international partners."
+      ],
+      "correct": 1,
+      "feedbackCorrect": "Excellent! In English, we always \"make progress,\" never \"do progress.\"",
+      "feedbackIncorrect": "Look closely at the verbs paired with the nouns. We make a phone call (not do), we give or deliver a speech (not do), and we start or set up a business (not take)."
+    },
+    {
+      "id": "G3",
+      "number": 3,
+      "category": "collocations",
+      "level": "B2",
+      "question": "The manager asked everyone to ________ attention to the safety rules.",
+      "options": {
+        "A": "give",
+        "B": "make",
+        "C": "pay",
+        "D": "do"
+      },
+      "correct_answer": "C",
+      "correct_option": "pay",
+      "explanation": "The fixed collocation is 'pay attention to.'",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

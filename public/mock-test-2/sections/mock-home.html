@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MET Mock Test 3 — Michigan English Test</title>
+  <meta name="description" content="Complete all four sections of MET Mock Test 3 at your own pace. Progress saves automatically.">
+  <meta name="theme-color" content="#062B3D" />
+  <meta property="og:title" content="MET Mock Test 3">
+  <meta property="og:description" content="Complete all four sections at your own pace. Progress saves automatically.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <link rel="stylesheet" href="../css/met-brand.css">
+  <link rel="stylesheet" href="../css/met-shell.css">
+  <link rel="stylesheet" href="../css/met-standard.css">
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--met-teal-deep);
+      font-family: var(--met-font-body);
+      color: #fff;
+    }
+
+    /* ── Skip link ────────────────────────── */
+    .hm-skip {
+      position: fixed; top: var(--space-2); left: var(--space-2);
+      z-index: 9999;
+      background: var(--amber); color: #1A1A00;
+      padding: var(--space-2) var(--space-5); border-radius: var(--radius-sm);
+      font-weight: 700; font-size: var(--text-base);
+      transform: translateY(-120%);
+      opacity: 0;
+      transition: transform var(--motion-base), opacity var(--motion-base);
+    }
+    .hm-skip:focus {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── Top bar ─────────────────────────── */
+    .hm-top {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-7);
+      height: var(--space-14);
+      background: var(--met-teal-deep);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .hm-top__brand {
+      font-size: var(--text-base); font-weight: 800;
+      letter-spacing: -.015em; color: #fff;
+    }
+    .hm-top__clock {
+      font-size: var(--text-base); font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .03em;
+    }
+    .hm-top__badge {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: var(--space-half) var(--space-2); border-radius: var(--radius-xs);
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ── Hero ──────────────────────────────── */
+    .hm-hero {
+      padding: var(--space-22) var(--space-7) var(--space-18);
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+    .hm-hero__inner {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      position: relative;
+    }
+    .hm-hero__sub {
+      display: inline-flex;
+      align-items: center; gap: var(--space-six);
+      font-size: var(--text-xs); font-weight: 700;
+      text-transform: uppercase; letter-spacing: .1em;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: var(--space-1) var(--space-3); border-radius: var(--radius-xs);
+      color: rgba(255,255,255,.7);
+      margin-bottom: var(--space-5);
+    }
+    .hm-hero__sub svg {
+      color: var(--amber);
+    }
+    .hm-hero h1 {
+      font-size: clamp(2.375rem, 6.5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.03;
+      text-wrap: balance;
+      margin-bottom: var(--space-4);
+      max-width: 16ch;
+    }
+    .hm-hero h1 em {
+      font-style: normal;
+      color: #94660F;
+    }
+    .hm-hero p {
+      font-size: var(--text-lg);
+      color: rgba(255,255,255,.72);
+      max-width: 48ch;
+      line-height: 1.65;
+      margin-bottom: var(--space-8);
+    }
+    .hm-hero__actions {
+      display: flex; align-items: center; gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .hm-hero__btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-family: inherit; font-weight: 800; font-size: var(--text-base);
+      border: none; border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-7);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--motion-instant) var(--ease-spring),
+                  box-shadow var(--motion-base) var(--ease-out),
+                  background var(--motion-base);
+      position: relative;
+    }
+    .hm-hero__btn:focus-visible {
+      outline: 2px solid var(--amber-light);
+      outline-offset: 3px;
+    }
+    .hm-hero__btn:active { transform: scale(.97); }
+    .hm-hero__btn--primary {
+      background: var(--amber);
+      color: #1A1A00;
+      box-shadow: 0 var(--space-2) var(--space-7) rgba(15,23,42,.14);
+    }
+    .hm-hero__btn--primary:hover { background: var(--amber-dark); color: #1A1A00; }
+    .hm-hero__btn--ghost {
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .hm-hero__btn--ghost:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      color: #fff;
+    }
+    .hm-hero__meta {
+      display: flex; flex-wrap: wrap;
+      gap: var(--space-6); margin-top: var(--space-7);
+    }
+    .hm-hero__meta-item {
+      display: inline-flex; align-items: center; gap: var(--space-six);
+      font-size: var(--text-sm); font-weight: 500;
+      color: rgba(255,255,255,.65);
+      letter-spacing: .01em;
+    }
+    .hm-hero__meta-item svg {
+      flex-shrink: 0;
+      color: rgba(255,255,255,.3);
+    }
+    .hm-hero__meta--hidden { display: none; }
+
+    /* ── Info strip ───────────────────────────── */
+    .hm-info {
+      position: relative; z-index: 1;
+      background: var(--met-teal-darker);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: var(--space-3) var(--space-7);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.65);
+    }
+    .hm-info__name {
+      font-weight: 600;
+      color: rgba(255,255,255,.75);
+    }
+    .hm-info__status {
+      display: flex; align-items: center; gap: var(--space-six);
+    }
+    .hm-info__dot {
+      width: var(--space-six); height: var(--space-six);
+      border-radius: var(--radius-pill);
+      background: var(--green);
+      box-shadow: 0 0 0 var(--space-half) rgba(30,132,73,.2);
+    }
+
+    /* ── Section base ─────────────────────────── */
+    .hm-section {
+      padding: var(--space-18) var(--space-7);
+      position: relative;
+      z-index: 1;
+    }
+    .hm-section--alt {
+      background: var(--met-teal-darker);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .hm-section__inner {
+      width: min(var(--container-md), 100%);
+      margin: 0 auto;
+    }
+    .hm-section__label {
+      display: inline-block;
+      font-size: var(--text-xs); font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: rgba(255,255,255,.6);
+      margin-bottom: var(--space-2);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: var(--space-half) var(--space-2); border-radius: var(--radius-xs);
+    }
+    .hm-section h2 {
+      font-size: clamp(1.625rem, 4vw, 2.125rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-2);
+      text-wrap: balance;
+    }
+    .hm-section__sub {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,.7);
+      line-height: 1.65;
+      max-width: 56ch;
+      margin-bottom: var(--space-9);
+    }
+
+    /* ── Progress bar ─────────────────────────── */
+    .hm-progress {
+      padding: var(--space-7) 0 var(--space-6);
+    }
+    .hm-progress__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: var(--space-2);
+    }
+    .hm-progress__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.65);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .hm-progress__pct {
+      font-size: var(--text-base);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--amber);
+    }
+    .hm-progress__track {
+      height: var(--space-half);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius-none);
+      overflow: hidden;
+    }
+    .hm-progress__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber), var(--amber-light));
+      border-radius: var(--radius-none);
+      transition: transform var(--motion-slow) var(--ease-out);
+    }
+
+    /* ── Ability cards ─────────────────────────── */
+    .hm-abilities {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .hm-ability {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-5);
+      align-items: center;
+      padding: var(--space-6) var(--space-5);
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: background var(--motion-base), border-color var(--motion-base), opacity var(--motion-base), transform var(--motion-instant);
+      cursor: pointer;
+      position: relative;
+    }
+    .hm-ability:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+    }
+    .hm-ability:focus-visible {
+      outline: 2px solid rgba(255,255,255,.25);
+      outline-offset: 2px;
+    }
+    .hm-ability:active {
+      transform: scale(.99);
+    }
+    .hm-ability--done {
+      opacity: .4;
+      pointer-events: none;
+    }
+    .hm-ability--done .hm-ability__name {
+      text-decoration: line-through;
+    }
+
+    .hm-ability__body { min-width: 0; }
+    .hm-ability__name {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      margin-bottom: var(--space-half);
+      transition: color var(--motion-base);
+    }
+    .hm-ability__detail {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.65);
+    }
+    .hm-ability__right {
+      text-align: right;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-1);
+    }
+    .hm-ability__time {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .02em;
+    }
+    .hm-ability__status {
+      display: flex;
+      align-items: center;
+      gap: var(--space-six);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .hm-ability__status--done { color: var(--green); }
+    .hm-ability__status--next { color: var(--amber); }
+    .hm-ability__status--locked { color: rgba(255,255,255,.6); }
+
+    /* ── Done mark ─────────────────────────────── */
+    .hm-ability__check {
+      width: var(--space-5); height: var(--space-5);
+      border-radius: var(--radius-pill);
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 var(--space-half) rgba(30,132,73,.15);
+    }
+    .hm-ability__check svg {
+      width: 0.6875rem; height: 0.6875rem;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    /* ── Locked note ──────────────────────────── */
+    .hm-locked { display: none; }
+    .hm-locked.visible { display: block; }
+    .hm-note {
+      padding: var(--space-5) 0 0;
+    }
+    .hm-note p {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.6);
+      line-height: 1.6;
+    }
+
+    /* ── Mic section (same dark, no light break) ── */
+    .hm-section--mic .hm-section__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+    .hm-section--mic .hm-section__text {
+      flex: 1;
+    }
+    .hm-section--mic .hm-section__text h2 {
+      margin-bottom: var(--space-six);
+    }
+    .hm-section--mic .hm-section__text .hm-section__sub {
+      margin-bottom: 0;
+    }
+    .hm-section--mic .hm-section__action {
+      flex-shrink: 0;
+    }
+
+    .hm-mic-btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-family: inherit; font-weight: 800; font-size: var(--text-base);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-6);
+      min-height: var(--space-11);
+      cursor: pointer;
+      transition: transform var(--motion-instant) var(--ease-spring),
+                  background var(--motion-base), border-color var(--motion-base),
+                  box-shadow var(--motion-base) var(--ease-out);
+      white-space: nowrap;
+    }
+    .hm-mic-btn:focus-visible {
+      outline: 2px solid var(--amber-light);
+      outline-offset: 3px;
+    }
+    .hm-mic-btn:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+    }
+    .hm-mic-btn:active { transform: scale(.97); }
+    .hm-mic-btn--ok {
+      background: rgba(30,132,73,.15);
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .hm-mic-btn--ok:hover {
+      background: rgba(30,132,73,.25);
+    }
+    .hm-mic-btn--fail {
+      background: rgba(192,57,43,.15);
+      border-color: var(--red);
+      color: var(--red);
+    }
+    .hm-mic-btn--fail:hover {
+      background: rgba(192,57,43,.25);
+    }
+
+    /* ── Responsive ───────────────────────────── */
+    @media (max-width: 640px) {
+      .hm-hero { padding: var(--space-15) var(--space-5) var(--space-13); text-align: center; }
+      .hm-hero h1 { max-width: none; }
+      .hm-hero p { margin-left: auto; margin-right: auto; }
+      .hm-hero__actions { justify-content: center; }
+      .hm-hero__meta { justify-content: center; }
+      .hm-section { padding: var(--space-13) var(--space-5); }
+      .hm-ability { grid-template-columns: 1fr; gap: var(--space-six); padding: var(--space-5) var(--space-4); }
+      .hm-ability__right { text-align: left; flex-direction: row; align-items: center; gap: var(--space-4); }
+      .hm-section--mic .hm-section__inner { flex-direction: column; text-align: center; }
+      .hm-section--mic .hm-section__text .hm-section__sub { margin: 0 auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="hm-skip" href="#abilitiesSection">Skip to test sections</a>
+
+<!-- TOP -->
+<header class="hm-top">
+  <span class="hm-top__brand">MET Mock Test 3</span>
+  <span class="hm-top__clock" id="topClock" aria-label="Current time">00:00:00</span>
+  <span class="hm-top__badge">Sample</span>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hm-hero">
+  <div class="hm-hero__inner">
+    <span class="hm-hero__sub">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.5v3M5 6.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Michigan English Test
+    </span>
+    <h1>You're ready for<br><em>Mock Test&nbsp;3</em></h1>
+    <p>Complete all four sections at your own pace. Progress saves automatically — pick up where you left off.</p>
+    <div class="hm-hero__actions">
+      <a class="hm-hero__btn hm-hero__btn--primary" href="reading-p1.html" id="startBtn">
+        Start Mock Test 3
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="hm-hero__btn hm-hero__btn--ghost" id="detailsToggle" type="button" aria-expanded="false" aria-controls="heroMeta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5v3M7 9v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Test details
+      </button>
+    </div>
+    <div class="hm-hero__meta hm-hero__meta--hidden" id="heroMeta" aria-hidden="true">
+      <span class="hm-hero__meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v4l3 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        2 h 55 min
+      </span>
+      <span class="hm-hero__meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="2" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M5 7l2 2 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        4 sections
+      </span>
+      <span class="hm-hero__meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v3M7 10v3M1 7h3M10 7h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/></svg>
+        87 questions
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="hm-info">
+  <span class="hm-info__name" id="homeStudentName">Student</span>
+  <span class="hm-info__status">
+    <span class="hm-info__dot" aria-hidden="true"></span>
+    <span>Ready to begin</span>
+  </span>
+</div>
+
+<!-- SECTIONS -->
+<section class="hm-section hm-section--alt" id="abilitiesSection">
+  <div class="hm-section__inner">
+    <span class="hm-section__label">Test sections</span>
+    <h2>Four abilities</h2>
+    <p class="hm-section__sub">Each section has its own timer. Once submitted it's locked — you cannot re-enter it, but you'll still see your scores and feedback afterwards.</p>
+
+    <div class="hm-progress" role="progressbar" aria-labelledby="progressLabel" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar">
+      <div class="hm-progress__head">
+        <span class="hm-progress__label" id="progressLabel">Progress</span>
+        <span class="hm-progress__pct" id="progressPct">0%</span>
+      </div>
+      <div class="hm-progress__track">
+        <div class="hm-progress__fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="hm-abilities" id="abilitiesList">
+      <a class="hm-ability" id="card-reading3" href="reading-p1.html">
+        <div class="hm-ability__body">
+          <div class="hm-ability__name">Reading &amp; Grammar</div>
+          <div class="hm-ability__detail">50 questions · parts 1–3</div>
+        </div>
+        <div class="hm-ability__right">
+          <span class="hm-ability__time">65 min</span>
+          <span class="hm-ability__status hm-ability__status--next" id="status-reading3">Next</span>
+        </div>
+      </a>
+      <a class="hm-ability" id="card-listening3" href="listening-p1.html">
+        <div class="hm-ability__body">
+          <div class="hm-ability__name">Listening</div>
+          <div class="hm-ability__detail">30 questions · parts 1–3</div>
+        </div>
+        <div class="hm-ability__right">
+          <span class="hm-ability__time">50 min</span>
+          <span class="hm-ability__status hm-ability__status--locked" id="status-listening3">Locked</span>
+        </div>
+      </a>
+      <a class="hm-ability" id="card-speaking3" href="speaking-p1.html">
+        <div class="hm-ability__body">
+          <div class="hm-ability__name">Speaking</div>
+          <div class="hm-ability__detail">5 tasks · recorded responses</div>
+        </div>
+        <div class="hm-ability__right">
+          <span class="hm-ability__time">10 min</span>
+          <span class="hm-ability__status hm-ability__status--locked" id="status-speaking3">Locked</span>
+        </div>
+      </a>
+      <a class="hm-ability" id="card-writing3" href="writing-task1.html">
+        <div class="hm-ability__body">
+          <div class="hm-ability__name">Writing</div>
+          <div class="hm-ability__detail">2 tasks · free-response</div>
+        </div>
+        <div class="hm-ability__right">
+          <span class="hm-ability__time">45 min</span>
+          <span class="hm-ability__status hm-ability__status--locked" id="status-writing3">Locked</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="hm-locked" id="lockedBanner">
+      <div class="hm-note">
+        <p>Note: once a section is submitted it cannot be re-entered. Complete sections in order: <strong>Reading → Listening → Speaking → Writing</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIC CHECK -->
+<section class="hm-section hm-section--mic">
+  <div class="hm-section__inner">
+    <div class="hm-section__text">
+      <span class="hm-section__label">Speaking prep</span>
+      <h2>Microphone check</h2>
+      <p class="hm-section__sub">Before starting Speaking, make sure your microphone works.</p>
+    </div>
+    <div class="hm-section__action">
+      <button class="hm-mic-btn" id="micTestBtn" type="button">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="5" y="1" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M2.5 6.5a4.5 4.5 0 0 0 9 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 11v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <span id="micText">Test microphone</span>
+      </button>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SECTIONS = [
+    { id: 'reading3',   doneKey: 'met:done:met:reading3',   cardId: 'card-reading3',   statusId: 'status-reading3' },
+    { id: 'listening3', doneKey: 'met:done:met:listening3', cardId: 'card-listening3', statusId: 'status-listening3' },
+    { id: 'speaking3',  doneKey: 'met:done:met:speaking3',  cardId: 'card-speaking3',  statusId: 'status-speaking3' },
+    { id: 'writing3',   doneKey: 'met:done:met:writing3',   cardId: 'card-writing3',   statusId: 'status-writing3' },
+  ];
+
+  function refresh() {
+    var nextHref = null;
+    var doneCount = 0;
+    var total = SECTIONS.length;
+
+    SECTIONS.forEach(function (s) {
+      var done = localStorage.getItem(s.doneKey) === '1';
+      var card = document.getElementById(s.cardId);
+      var status = document.getElementById(s.statusId);
+      if (!card || !status) return;
+
+      if (done) {
+        doneCount++;
+        card.classList.add('hm-ability--done');
+        status.innerHTML = '<span class="hm-ability__check"><svg viewBox="0 0 16 16"><path d="M4 8.5l3 3 5-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        status.className = 'hm-ability__status hm-ability__status--done';
+      } else {
+        if (!nextHref) nextHref = card.getAttribute('href');
+        var isNext = nextHref === card.getAttribute('href');
+        status.textContent = isNext ? 'Next' : 'Locked';
+        status.className = 'hm-ability__status ' + (isNext ? 'hm-ability__status--next' : 'hm-ability__status--locked');
+      }
+    });
+
+    // Progress
+    var pct = Math.round((doneCount / total) * 100);
+    var fill = document.getElementById('progressFill');
+    var pctEl = document.getElementById('progressPct');
+    var progressBar = document.getElementById('progressBar');
+    if (fill) fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (progressBar) progressBar.setAttribute('aria-valuenow', pct);
+
+    // CTA
+    var btn = document.getElementById('startBtn');
+    if (btn) {
+      if (doneCount === total) {
+        btn.innerHTML = 'All sections completed <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7l2.5 2.5 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        btn.classList.add('hm-ability--done');
+        btn.removeAttribute('href');
+        btn.setAttribute('aria-disabled', 'true');
+      } else {
+        btn.href = nextHref || 'reading-p1.html';
+        var label = doneCount > 0 ? 'Continue Mock Test 3' : 'Start Mock Test 3';
+        btn.innerHTML = label + ' <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        btn.removeAttribute('aria-disabled');
+        btn.classList.remove('hm-ability--done');
+      }
+    }
+
+    // Locked banner
+    var locked = document.getElementById('lockedBanner');
+    if (locked) locked.classList.toggle('visible', doneCount > 0);
+  }
+
+  // Clock
+  function tick() {
+    var now = new Date();
+    var h = String(now.getHours()).padStart(2, '0');
+    var m = String(now.getMinutes()).padStart(2, '0');
+    var s = String(now.getSeconds()).padStart(2, '0');
+    var el = document.getElementById('topClock');
+    if (el) el.textContent = h + ':' + m + ':' + s;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Details toggle — defaults hidden, reveals on click
+  var dt = document.getElementById('detailsToggle');
+  if (dt) {
+    dt.addEventListener('click', function () {
+      var meta = document.getElementById('heroMeta');
+      if (!meta) return;
+      var isHidden = meta.classList.toggle('hm-hero__meta--hidden');
+      meta.setAttribute('aria-hidden', String(isHidden));
+      dt.setAttribute('aria-expanded', String(!isHidden));
+    });
+  }
+
+  // Microphone test
+  var micBtn = document.getElementById('micTestBtn');
+  var micText = document.getElementById('micText');
+  if (micBtn && micText) {
+    micBtn.addEventListener('click', function () {
+      micBtn.disabled = true;
+      micBtn.classList.remove('hm-mic-btn--ok', 'hm-mic-btn--fail');
+      micText.textContent = 'Checking\u2026';
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+          stream.getTracks().forEach(function (t) { t.stop(); });
+          micText.textContent = 'Microphone OK';
+          micBtn.classList.add('hm-mic-btn--ok');
+          micBtn.disabled = false;
+        })
+        .catch(function () {
+          micText.textContent = 'Mic blocked \u2014 check permissions';
+          micBtn.classList.add('hm-mic-btn--fail');
+          micBtn.disabled = false;
+        });
+    });
+  }
+
+  // Student name
+  var nameEl = document.getElementById('homeStudentName');
+  if (nameEl) {
+    var name = localStorage.getItem('met:student:email') || 'Student';
+    if (name.includes('@')) {
+      name = name.split('@')[0];
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    nameEl.textContent = name;
+  }
+
+  refresh();
+})();
+</script>
+</body>
+</html>

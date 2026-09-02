@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Complete — MET Mock Test</title>
+  <link rel="stylesheet" href="../css/met-brand.css" />
+  <link rel="stylesheet" href="../css/met-shell.css" />
+  <link rel="stylesheet" href="../css/met-standard.css" />
+  <style>
+    :root {
+      --thanks-bg: linear-gradient(135deg, var(--azul-wash) 0%, var(--met-teal-tint) 100%);
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--thanks-bg);
+      padding: 28px 20px;
+      font-family: var(--font);
+    }
+    main {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-xl);
+      max-width: min(640px, 100%);
+      width: 100%;
+      padding: 48px 40px;
+      text-align: center;
+      animation: fadeIn .4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .done-icon {
+      width: 64px; height: 64px;
+      background: var(--green-bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+      color: var(--green);
+      box-shadow: 0 4px 16px rgba(34,197,94,.18);
+      animation: scaleIn .5s ease;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 34px);
+      font-weight: 800 !important;
+      color: var(--azul-deep) !important;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .sub {
+      font-size: 15px;
+      color: var(--met-slate);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ── Results panel ─────────────────────────── */
+    .results-panel {
+      text-align: left;
+      margin-bottom: 28px;
+      background: var(--azul-wash);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px;
+    }
+    .results-panel h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      margin: 0 0 14px;
+      letter-spacing: 0.03em;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      transition: background .15s ease;
+    }
+    .result-row:hover { background: rgba(255,255,255,.3); }
+    .result-row:last-child { border-bottom: none; }
+    .result-row__label { color: var(--azul-deep); font-weight: 600; }
+    .result-row__score {
+      font-weight: 700;
+      color: var(--azul-mid);
+    }
+    .result-row__total { 
+      font-size: 16px; 
+      font-weight: 800; 
+      color: var(--azul-deep); 
+      border-top: 2px solid var(--azul-deep); 
+      padding-top: 12px; 
+      margin-top: 8px; 
+    }
+    .cefr-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--orange-text);
+      font-weight: 800;
+      font-size: 18px;
+      padding: 6px 18px;
+      border-radius: var(--r-full);
+      letter-spacing: 0.03em;
+      margin-top: 6px;
+      box-shadow: 0 4px 12px rgba(212,168,67,.24);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .cefr-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212,168,67,.32);
+    }
+    .cefr-desc {
+      font-size: 13px;
+      color: var(--met-slate);
+      margin-top: 8px;
+      line-height: 1.55;
+    }
+
+    /* ── Submission form ─────────────────────────────────────── */
+    .submit-form { 
+      text-align: left; 
+      margin-bottom: 28px; 
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px;
+    }
+    .submit-form label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .submit-form input[type="text"],
+    .submit-form input[type="email"] {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 10px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--azul-deep);
+      background: var(--surface);
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .submit-form input::placeholder {
+      color: var(--met-slate-400);
+    }
+    .submit-form input:focus {
+      border-color: var(--azul-mid);
+      box-shadow: 0 0 0 4px rgba(74,142,196,.08);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--orange);
+      color: var(--orange-text);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition: background .15s, transform .15s, box-shadow .15s;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 12px rgba(212,168,67,.24);
+    }
+    .btn-submit:hover {
+      background: var(--orange-dark);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212,168,67,.28);
+    }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── Success state ───────────────────────────────────────── */
+    .success-msg { display: none; }
+    .success-msg.visible { display: block; animation: fadeIn .3s ease; }
+    .form-block.hidden { display: none; }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--orange);
+      color: var(--orange-text);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: var(--r-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 24px;
+      box-shadow: 0 4px 12px rgba(212,168,67,.24);
+      font-family: inherit;
+    }
+    .btn-home:hover {
+      background: var(--orange-dark);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212,168,67,.28);
+    }
+    .btn-home:active { transform: translateY(0); }
+
+    .privacy-note {
+      font-size: 12px;
+      color: var(--met-slate);
+      margin-top: 12px;
+      line-height: 1.55;
+    }
+
+    /* ── Student identity card ───────────────────────────────── */
+    .student-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--azul-wash);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .student-card__avatar {
+      width: 36px; height: 36px;
+      background: var(--azul-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .student-card__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      line-height: 1.3;
+    }
+    .student-card__email {
+      font-size: 12px;
+      color: var(--met-slate);
+    }
+
+    .results-panel--hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="done-icon">✓</div>
+    <h1>Well done.</h1>
+    <p class="sub">Your answers will be sent to your teacher automatically.</p>
+
+    <p class="sub">This is practice — your real MET result is separate. Use this to see where you are.</p>
+
+    <!-- RESULTS PANEL — populated by JS -->
+    <div class="results-panel results-panel--hidden" id="resultsPanel">
+      <h2>Your Results</h2>
+      <div id="resultsBody"></div>
+    </div>
+
+    <a class="btn-home" href="mock-home.html">Back to dashboard</a>
+
+    <!-- REVIEW PANEL — review answers before submitting -->
+    <div class="results-panel" id="reviewPanel" style="display:none">
+      <h2 style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" id="reviewToggle">
+        <span>Review Your Answers</span>
+        <span style="font-size:12px;font-weight:400;color:var(--met-slate)">tap to expand</span>
+      </h2>
+      <div id="reviewBody" style="display:none;margin-top:12px"></div>
+    </div>
+
+    <!-- NETLIFY FORM — data-netlify="true" activates Netlify's form handler -->
+    <div class="form-block" id="formBlock">
+
+      <!-- Student identity (populated from localStorage registration) -->
+      <div class="student-card" id="studentCard">
+        <div class="student-card__avatar">👤</div>
+        <div>
+          <div class="student-card__name" id="cardName">Loading…</div>
+          <div class="student-card__email" id="cardEmail"></div>
+        </div>
+      </div>
+
+      <form class="submit-form" name="met-submission" method="POST" action="thanks.html?success=1"
+            data-netlify="true" netlify-honeypot="bot-field"
+            id="submissionForm">
+
+        <input type="hidden" name="form-name" value="met-submission" />
+        <p style="display:none"><label>Don't fill this: <input name="bot-field" /></label></p>
+
+        <!-- Filled by JS from localStorage; not shown to student -->
+        <input type="hidden" id="studentName" name="studentName" />
+        <input type="hidden" id="studentEmail" name="studentEmail" />
+
+        <!-- Hidden fields populated by JS before submit -->
+        <input type="hidden" name="submittedAt" id="submittedAt" />
+        <input type="hidden" name="sessionId" id="sessionId" />
+        <input type="hidden" name="readingAnswers" id="readingAnswers" />
+        <input type="hidden" name="listeningAnswers" id="listeningAnswers" />
+        <input type="hidden" name="writingAnswers" id="writingAnswers" />
+        <input type="hidden" name="sectionsCompleted" id="sectionsCompleted" />
+
+        <button class="btn-submit" type="submit" id="submitBtn">Submit my answers →</button>
+        <p class="privacy-note">Your answers are only shared with your teacher.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE (shown after Netlify redirect or JS success) -->
+    <div class="success-msg" id="successMsg">
+      <p class="sub" style="margin-bottom:0">Your answers have been submitted. Your teacher will review them and send feedback.</p>
+      <a class="btn-home" href="mock-home.html">← Return to Dashboard</a>
+    </div>
+  </main>
+
+  <script src="../js/speaking-upload.js"></script>
+  <script src="../js/answer-key.js"></script>
+  <script>
+  (function () {
+    var ANSWERS_KEY = 'met:answers:v1';
+    var TIMER_KEYS  = {
+      reading:   'met:timer:reading',
+      listening: 'met:timer:listening',
+      speaking:  'met:timer:speaking',
+      writing:   'met:timer:writing',
+    };
+
+    var ANSWER_KEY = window.__MET_ANSWER_KEY;
+
+    /* ── CEFR Scale ─────────────────────────────────────────── */
+    function getCEFR(total) {
+      if (total <= 16)  return { band: 'A2-', desc: 'Needs foundational reading and grammar work' };
+      if (total <= 24)  return { band: 'B1-', desc: 'Developing control, but inconsistent accuracy' };
+      if (total <= 33)  return { band: 'B1/B2', desc: 'On the edge of independent user level' };
+      if (total <= 40)  return { band: 'B2', desc: 'Solid upper-intermediate performance' };
+      if (total <= 46)  return { band: 'Strong B2', desc: 'Close to advanced control' };
+      return { band: 'C1', desc: 'Advanced proficiency' };
+    }
+
+    /* ── Compute scores from stored answers ─────────────────── */
+    function computeScores() {
+      var store = {};
+      try { store = JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}'); } catch (_) {}
+
+      function scoreSection(sectionKey, qStart, qEnd) {
+        var correct = 0;
+        var total = 0;
+        for (var q = qStart; q <= qEnd; q++) {
+          var expected = ANSWER_KEY[sectionKey][q];
+          if (!expected) continue;
+          total++;
+          var group;
+          if (sectionKey === 'grammar' || sectionKey === 'reading') {
+            group = 'rg' + q;
+          } else {
+            group = 'q' + q;
+          }
+          var userAns = store['met:answer:' + group];
+          if (userAns && userAns.charAt(0) === expected) correct++;
+        }
+        return { correct: correct, total: total };
+      }
+
+      var scores = {
+        grammar:  scoreSection('grammar', 1, 20),
+        reading:  scoreSection('reading', 21, 50),
+        listening: scoreSection('listening', 1, 50),
+      };
+
+      scores.totalCorrect = scores.grammar.correct + scores.reading.correct + scores.listening.correct;
+      scores.totalPossible = scores.grammar.total + scores.reading.total + scores.listening.total;
+      scores.cefr = getCEFR(scores.totalCorrect);
+      return scores;
+    }
+
+    /* ── Render results panel ───────────────────────────────── */
+    function renderResults(scores) {
+      var panel = document.getElementById('resultsPanel');
+      var body  = document.getElementById('resultsBody');
+      if (!panel || !body) return;
+
+      var html = '';
+
+      function addRow(label, correct, total) {
+        html += '<div class="result-row"><span class="result-row__label">' + label + '</span>' +
+                '<span class="result-row__score">' + correct + '/' + total + '</span></div>';
+      }
+
+      addRow('Grammar (Q1–20)', scores.grammar.correct, scores.grammar.total);
+      addRow('Reading (Q21–50)', scores.reading.correct, scores.reading.total);
+      addRow('Listening (Q1–50)', scores.listening.correct, scores.listening.total);
+
+      html += '<div class="result-row result-row__total"><span>Total</span>' +
+              '<span>' + scores.totalCorrect + '/' + scores.totalPossible + '</span></div>';
+
+      html += '<div style="text-align:center;margin-top:12px">' +
+              '<span class="cefr-badge">CEFR ' + scores.cefr.band + '</span>' +
+              '<div class="cefr-desc">' + scores.cefr.desc + '</div></div>';
+
+      body.innerHTML = html;
+      panel.classList.remove('results-panel--hidden');
+    }
+
+    // ── Populate student identity from registration (set on mock-home.html)
+    var storedName  = '';
+    var storedEmail = '';
+    try {
+      storedName  = localStorage.getItem('met:student:name')  || '';
+      storedEmail = localStorage.getItem('met:student:email') || '';
+    } catch (_) {}
+
+    if (storedName) {
+      document.getElementById('cardName').textContent  = storedName;
+      document.getElementById('cardEmail').textContent = storedEmail;
+      document.getElementById('studentName').value  = storedName;
+      document.getElementById('studentEmail').value = storedEmail;
+    } else {
+      // No registration found — redirect back to home to register
+      window.location.replace('mock-home.html');
+    }
+
+    // ── Compute and display scores ──
+    var scores = computeScores();
+    renderResults(scores);
+
+    // Save scores to localStorage for server submission
+    try { localStorage.setItem('met:scores:computed', JSON.stringify(scores)); } catch (_) {}
+
+    // ── Render review panel with stored answers ──
+    function renderReview() {
+      var panel = document.getElementById('reviewPanel');
+      var body = document.getElementById('reviewBody');
+      var toggle = document.getElementById('reviewToggle');
+      if (!panel || !body) return;
+
+      var store = {};
+      try { store = JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}'); } catch (_) {}
+
+      var answerKeys = Object.keys(store).filter(function (k) {
+        return k.indexOf('met:answer:') === 0 && store[k];
+      });
+      if (!answerKeys.length) return;
+
+      var html = '<div style="font-size:13px;color:var(--met-slate);margin-bottom:12px">' +
+        'Below are your stored answers. Review before submitting.</div>';
+
+      var sections = [
+        { label: 'Grammar (Q1–20)', prefix: 'rg', start: 1, end: 20 },
+        { label: 'Reading (Q21–50)', prefix: 'rg', start: 21, end: 50 },
+        { label: 'Listening (Q1–50)', prefix: 'q', start: 1, end: 50 }
+      ];
+
+      sections.forEach(function (sec) {
+        var items = '';
+        for (var q = sec.start; q <= sec.end; q++) {
+          var key = 'met:answer:' + sec.prefix + q;
+          var val = store[key];
+          if (val) {
+            items += '<span style="display:inline-block;margin:0 6px 6px 0;padding:3px 8px;background:var(--surface);border:1px solid var(--border);border-radius:4px;font-size:12px">Q' + q + ': <strong>' + val.charAt(0) + '</strong></span>';
+          }
+        }
+        if (items) {
+          html += '<div style="margin-bottom:14px"><div style="font-size:12px;font-weight:700;color:var(--azul-deep);margin-bottom:6px">' + sec.label + '</div><div>' + items + '</div></div>';
+        }
+      });
+
+      body.innerHTML = html;
+      panel.style.display = 'block';
+
+      toggle.addEventListener('click', function () {
+        var expanded = body.style.display === 'block';
+        body.style.display = expanded ? 'none' : 'block';
+        toggle.querySelector('span:last-child').textContent = expanded ? 'tap to expand' : 'tap to collapse';
+      });
+    }
+    renderReview();
+
+    // ── Check if submitted via Netlify redirect (URL has ?success=1)
+    if (new URLSearchParams(location.search).get('success') === '1') {
+      showSuccess();
+    }
+
+    function showSuccess() {
+      document.getElementById('formBlock').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('visible');
+      // Clean up answers from localStorage
+      try { localStorage.removeItem(ANSWERS_KEY); } catch (_) {}
+    }
+
+    // ── Gather answers from localStorage on form submit
+    document.getElementById('submissionForm').addEventListener('submit', function (e) {
+      var answers = {};
+      try { answers = JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}'); } catch (_) {}
+
+      function filterByGroup(prefix) {
+        var out = {};
+        Object.keys(answers).forEach(function (k) {
+          if (k.indexOf('met:answer:') === 0) out[k] = answers[k];
+        });
+        return Object.keys(out).length ? JSON.stringify(out) : '';
+      }
+
+      document.getElementById('submittedAt').value = new Date().toISOString();
+      // Link this form submission to any speaking recordings stored in Netlify Blobs
+      try {
+        var sid = (typeof window.getSpeakingSessionId === 'function')
+          ? window.getSpeakingSessionId()
+          : (localStorage.getItem('met:session:id') || '');
+        document.getElementById('sessionId').value = sid;
+      } catch (_) {}
+      document.getElementById('readingAnswers').value  = filterByGroup('met:answer:');
+      document.getElementById('listeningAnswers').value = filterByGroup('met:answer:');
+      document.getElementById('writingAnswers').value  = filterByGroup('met:answer:');
+
+      // Include computed scores in submission
+      var scoresField = document.createElement('input');
+      scoresField.type = 'hidden';
+      scoresField.name = 'scores';
+      scoresField.id = 'scoresField';
+      scoresField.value = JSON.stringify(scores);
+      document.getElementById('submissionForm').appendChild(scoresField);
+
+      // Which sections were attempted (timer key exists and had some time removed)
+      var completed = [];
+      Object.keys(TIMER_KEYS).forEach(function (sec) {
+        try {
+          var snap = JSON.parse(localStorage.getItem(TIMER_KEYS[sec]) || 'null');
+          if (snap) completed.push(sec);
+        } catch (_) {}
+      });
+      document.getElementById('sectionsCompleted').value = completed.join(', ');
+
+      // Save a normalized copy for admin reporting (best effort).
+      try {
+        var payload = {
+          studentName: document.getElementById('studentName').value || '',
+          studentEmail: document.getElementById('studentEmail').value || '',
+          submittedAt: document.getElementById('submittedAt').value || '',
+          sessionId: document.getElementById('sessionId').value || '',
+          readingAnswers: document.getElementById('readingAnswers').value || '',
+          listeningAnswers: document.getElementById('listeningAnswers').value || '',
+          writingAnswers: document.getElementById('writingAnswers').value || '',
+          scores: scoresField.value || '',
+          sectionsCompleted: document.getElementById('sectionsCompleted').value || ''
+        };
+        var body = JSON.stringify(payload);
+        if (navigator.sendBeacon) {
+          var blob = new Blob([body], { type: 'application/json' });
+          navigator.sendBeacon('/api/save-submission', blob);
+        } else {
+          fetch('/api/save-submission', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: body,
+            keepalive: true
+          }).catch(function () {});
+        }
+      } catch (_) {}
+
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('submitBtn').textContent = 'Submitting…';
+    });
+  })();
+  </script>
+</body>
+</html>

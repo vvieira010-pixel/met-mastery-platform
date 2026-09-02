@@ -1,0 +1,297 @@
+---
+name: MET Mastery
+description: Calm, clinical MET prep platform for nurses and healthcare professionals — teacher-run diagnostic → homework → feedback loop.
+colors:
+  primary: "#006877"
+  primary-hover: "#004E5A"
+  primary-light: "#BFE6EF"
+  accent: "#DA8847"
+  accent-hover: "#904D0E"
+  accent-light: "#FFDCC5"
+  accent-text: "#532800"
+  orange-text: "#532800"
+  bg: "#E5F0F0"
+  surface: "#F6FAFB"
+  ink: "#171C1D"
+  ink-muted: "#3D494B"
+  border: "#C6D5D4"
+  on-dark: "#FFFFFF"
+  on-dark-muted: "rgba(255,255,255,0.7)"
+  hero-deep: "#0f2e33"
+  hero-orb: "rgba(205,238,242,0.14)"
+  brand-mark-accent: "#DA8847"
+  shadow-ink: "rgba(54,84,90,0.12)"
+  shadow-soft: "rgba(54,84,90,0.04)"
+  success: "#006877"
+  warning: "#B27A3E"
+  error: "#8C5149"
+  info: "#709BA1"
+  section-reading: "#006877"
+  section-listening: "#0996AB"
+  section-speaking: "#904D0E"
+  overlay: "#0F1B2D"
+  scrim: "rgba(0,0,0,0.3)"
+  /* Stitch redesign overlay palette (loaded last via stitch-theme.css).
+     These colors intentionally extend the MET system with Stitch-brand hues.
+     They are not drift — they are an approved overlay palette. */
+  stitch-rust: "#a95325"
+  stitch-rust-soft: "#fff0e6"
+  stitch-deep: "#123f46"
+  stitch-teal-soft: "#dff1ef"
+  stitch-accent: "#a95325"
+  stitch-accent-hover: "#8c4420"
+  stitch-accent-text: "#6b3a17"
+  stitch-accent-soft: "rgba(169, 83, 37, .10)"
+  stitch-success-bg: "#e8f2f1"
+  stitch-card-bg: "#ffffff"
+  stitch-ink: "#173338"
+  stitch-ink-muted: "#455f62"
+  stitch-border: "#d4e2e0"
+  stitch-paper: "#f2f7f6"
+typography:
+  display:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontWeight: 600
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  body:
+    fontFamily: "DM Sans, Inter, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: "DM Sans, Inter, sans-serif"
+    fontSize: "0.72rem"
+    fontWeight: 700
+    letterSpacing: "0.045em"
+    textTransform: "uppercase"
+  mono:
+    fontFamily: "Space Mono, monospace"
+    fontWeight: 400
+    letterSpacing: "-0.02em"
+  scale:
+    xs: "0.75rem"
+    sm: "0.875rem"
+    base: "1rem"
+    lg: "1.125rem"
+    xl: "1.25rem"
+    2xl: "1.5rem"
+    3xl: "2rem"
+    4xl: "2.5rem"
+    hero: "1.85rem"
+    display: "clamp(1.85rem, 4vw, 3rem)"
+    max: "3rem"
+rounded:
+  sm: "8px"
+  xs: "4px"
+  md: "12px"
+  lg: "16px"
+  xl: "20px"
+  pill: "99px"
+  focus: "6px"
+  brand-mark: "8px 8px 8px 2px"
+spacing:
+  sm: "0.5rem"
+  md: "1rem"
+  lg: "1.5rem"
+  xl: "2rem"
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.sm}"
+    padding: "0.625rem 1rem"
+    height: "44px"
+  button-secondary:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary-hover}"
+    rounded: "{rounded.sm}"
+    padding: "0.625rem 1rem"
+  card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.md}"
+    padding: "1.5rem"
+---
+
+# Design System: MET Mastery
+
+## Overview
+
+**Creative North Star: "The Clinical Consult Room"**
+
+MET Mastery is a teacher-run MET (Michigan English Test) prep platform for nurses and healthcare professionals. The interface should feel like a calm, competent clinical environment: low visual noise, high information density where the workflow needs it, and a single deep-teal accent that signals action without shouting. Every screen serves the diagnose → assign → review → feedback loop; the teacher owns the workflow and the student sees concrete progress.
+
+The system is intentionally restrained. Teal carries structure and primary action; a warm amber/orange carries highlights, active states, and the "human" warmth of feedback. Success is teal (not green) so the palette stays mono-hue and the accent keeps its rarity. Surfaces are soft and paper-like; depth comes from faint teal-tinted shadows, not heavy borders.
+
+**Key Characteristics:**
+- Deep teal (`#006877`) as the only brand action color; amber (`#DA8847`) as a rare companion.
+- Soft, slightly cool paper surfaces (`#F6FAFB` on `#E5F0F0`), not pure white.
+- DM Sans for UI, Cormorant Garamond for display/serif moments, Space Mono for data/code.
+- 8–20px radius scale; 44px minimum touch targets on every interactive control.
+- Light and dark themes are both composed from one token set — dark mode is a real dark surface, not an inverted light theme.
+
+## Colors
+
+A near-monochrome teal system with one warm accent. Restraint is the point: the primary accent appears on ≤10% of any screen so its rarity reads as authority.
+
+### Primary
+- **Deep Teal** (`#006877`): primary action, active navigation, links, focus rings, progress fills, section coding for reading/writing. Hover `#004E5A`, tint `#BFE6EF`.
+- **Amber** (`#DA8847`): highlights, active states, speaking-section coding, warm feedback moments. Used sparingly; never as a background for body text. Hover `#904D0E`, tint `#FFDCC5`.
+
+### Neutral
+- **Page** (`#E5F0F0`): app page background — a faint clinical teal, not white.
+- **Surface** (`#F6FAFB`): cards, panels, inputs; the raised paper layer.
+- **Ink** (`#171C1D`): primary text and icons.
+- **Ink Muted** (`#3D494B`): secondary text, captions, meta.
+- **Border** (`#C6D5D4`): hairline structure and input strokes.
+
+### Semantic
+- **Success** (`#006877`): teal, not green — confirms completion within the mono-hue system.
+- **Warning** (`#B27A3E`): amber-brown for cautions; text `#785027` on `#FBF1E4`.
+- **Error** (`#8C5149`): muted clay for destructive/incorrect; text on `#F7ECE8`.
+- **Info** (`#709BA1`): cooler teal for neutral notices.
+
+### Section coding (diagnostic → homework → feedback)
+- Reading / Writing → Deep Teal (`#006877`)
+- Listening → Bright Teal (`#0996AB`)
+- Speaking → Amber (`#904D0E`)
+
+### Named Rules
+**The One Voice Rule.** The primary teal owns primary action and active state only. Decorative teal (tints, shadows) is desaturated; the saturated `#006877` is rare and therefore authoritative.
+
+**The Warm Companion Rule.** Amber is the only second hue. It encodes speaking sections, highlights, and human feedback — never error or success.
+
+## Typography
+
+**Display Font:** Cormorant Garamond (Georgia serif fallback)
+**Body Font:** DM Sans (Inter sans fallback)
+**Label/Mono Font:** Space Mono for data, scores, and code; DM Sans uppercase for field labels
+
+**Character:** Clinical and editorial. Serif display lends the calm authority of a textbook; DM Sans keeps the dense workflow scannable; Space Mono makes scores feel measured and exact.
+
+### Hierarchy
+- **Display** (600, `clamp(1.85rem, 4vw, 3rem)` / 1.08, -0.025em): page headlines, hero statements. Landing hero may scale to `clamp(2rem, 7vw, 5.5rem)` as editorial variant.
+- **Title** (600, ~1.25–1.5rem): section and card titles. Landing section h3 at `1.5rem` / `1.75rem` are approved variants.
+- **Body** (400, 1rem / 1.55): default text; max line length 65–75ch. Landing lede at `1.125rem` is an approved large-body variant.
+- **Label** (700, 0.72rem, 0.045em, uppercase): field labels, table headers, filter tags.
+- **Mono** (400, Space Mono, -0.02em): scores, bands, data — e.g. `3.5rem` B2 score, `0.75rem` captions.
+- **Scale tokens:** `xs 0.75rem / sm 0.875rem / base 1rem / lg 1.125rem / xl 1.25rem / 2xl 1.5rem / 3xl 2rem / 4xl 2.5rem / display clamp(1.85rem,4vw,3rem)`
+
+### Named Rules
+**The Measured Score Rule.** Numeric scores and bands render in Space Mono so they read as data, not prose.
+
+## Layout
+
+A centered content column (`min(100% - 2rem, 1120px)`, teacher) / app shell with a fixed sidebar on desktop and a bottom nav on mobile. Density is moderate: dashboards use bento/card grids; workflow screens use a single primary column with secondary actions in a "More" menu. Spacing rhythm follows the 8px scale (0.5 / 1 / 1.5 / 2rem). Breakpoints: ≤1024 tablet, ≤860 student-mobile, ≤768 teacher-mobile, ≤420 / ≤390 small-mobile.
+
+## Elevation & Depth
+
+Depth is conveyed by faint, cool teal-tinted shadows on a paper surface — not by borders. Surfaces are flat at rest; shadow appears on hover, elevation, and focus. Dark mode shifts shadows darker and softer.
+
+### Shadow Vocabulary
+- **Card** (`0 1px 4px rgba(54,84,90,0.04)`): resting surface.
+- **Modal** (`0 12px 36px rgba(54,84,90,0.14)`): overlay elevation.
+- **Float** (`0 18px 45px rgba(23,28,29,0.12)`): sticky/topbar and popovers.
+
+### Named Rules
+**The Flat-By-Default Rule.** Surfaces are flat at rest. Shadow is a response to state (hover, focus, elevation), never a constant.
+
+## Shapes
+
+Gently rounded rectangles. Radius scale: 8px (controls, inputs, chips), 12px (cards, panels), 16px (large containers, hero), 20px (xl), 99px (pills, badges, progress). Borders are 1px hairlines; selections use a teal border + tint rather than a heavy outline.
+
+## Components
+
+### Buttons
+- **Shape:** 8px radius, 44px min height.
+- **Primary:** background `#006877`, white text; hover `#004E5A`.
+- **Secondary / Ghost:** transparent background, `#004E5A` text, teal border; used for lower-emphasis actions.
+- **Focus:** 3px ring `rgba(0,104,119,0.2)` (light) / `rgba(95,184,196,0.35)` (dark). Icon-only buttons MUST carry an `aria-label`.
+
+### Cards / Containers
+- **Corner:** 12px. **Background:** `#F6FAFB`. **Border:** none at rest; 1px `#C6D5D4` on hover/selection. **Padding:** 1.5rem. **Shadow:** card vocabulary.
+
+### Inputs / Fields
+- **Style:** 1px `#C6D5D4` stroke, `#F6FAFB` fill, 8px radius.
+- **Focus:** border `#006877` + focus ring, outline 0.
+- **Error:** clay border `#8C5149` + `role="alert"` message in `#785027`/`#8C5149`.
+- **Label:** uppercase DM Sans 0.72rem, `#3D494B`.
+
+### Navigation
+- **Desktop:** fixed left sidebar; active item gets `#BFE6EF` tint + `#004E5A` text + teal indicator.
+- **Mobile:** fixed bottom bar, 48px targets, five daily destinations; secondary items in a "More" popover.
+
+### Chips / Pills / Tabs
+- **Pill:** 99px radius, teal-tinted fill, ink text; selected uses teal border + stronger tint.
+- **Tab line:** ink-muted text, teal underline on active.
+
+## Do's and Don'ts
+
+### Do:
+- Do keep the saturated primary teal rare — reserve it for action and active state.
+- Do use `#E5F0F0` page / `#F6FAFB` surface; avoid pure white backgrounds.
+- Do give every interactive control a 44px minimum touch target.
+- Do label icon-only buttons and inputs with `aria-label`.
+- Do flip the full token set in dark mode (already composed in `dark.css`).
+
+### Don't:
+- Don't introduce a third hue — amber is the only companion to teal.
+- Don't use pure green for success; success is teal in this system.
+- Don't rely on color alone for state (error/success need text or icon).
+- Don't hard-code hex in components; consume tokens from `tokens.css` (the single source of truth).
+- Don't edit the root-level duplicate `components.css` / `redesign.css` / `tokens.css` — they are dead copies of `src/styles/*`.
+
+## Stitch Redesign Overlay
+
+This design system overlay (`stitch-theme.css`, loaded last via `system.css`) applies the Stitch brand palette on top of the MET Mastery design foundation. The MET system remains the single source of truth for semantic colors, typography, and spacing; the Stitch overlay re-colors certain components for visual brand differentiation.
+
+### Stitch Color Palette
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `stitch-rust` | `#a95325` | Accent color for todo items, badges, active states |
+| `stitch-rust-soft` | `#fff0e6` | Soft rust background for completed steps |
+| `stitch-deep` | `#123f46` | Deep teal-brown for topbar gradients |
+| `stitch-teal-soft` | `#dff1ef` | Soft teal tint for surfaces and inputs |
+| `stitch-accent` | `#a95325` | Stitch rust — sole companion hue (replaces MET amber in overlay) |
+| `stitch-accent-hover` | `#8c4420` | Hover state for accent |
+| `stitch-accent-text` | `#6b3a17` | Text on accent backgrounds |
+| `stitch-accent-soft` | `rgba(169, 83, 37, .10)` | Subtle accent overlay |
+| `stitch-success-bg` | `#e8f2f1` | Success state background (teal-tinted) |
+| `stitch-card-bg` | `#ffffff` | Card background in overlay mode |
+| `stitch-ink` | `#173338` | Primary text color in overlay |
+| `stitch-ink-muted` | `#455f62` | Muted text in overlay |
+| `stitch-border` | `#d4e2e0` | Border color in overlay |
+| `stitch-paper` | `#f2f7f6` | Page background in overlay |
+
+### Radius Scale
+
+The Stitch overlay uses a slightly expanded radius scale for cards and inputs:
+
+| Token | Value | MET Equivalent |
+|-------|-------|----------------|
+| `--mm-radius` | `14px` | Between MET `md` (12px) and `lg` (16px) |
+| `--radius-lg` | `14px` | — |
+| `--radius-xl` | `18px` | Between MET `xl` (20px) and pill (99px) |
+
+### Shadow Vocabulary (Stitch)
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| `--mm-shadow` | `0 20px 55px rgba(23, 51, 56, .1)` | Elevation shadow for overlayer cards |
+| `--shadow-sm` | `0 1px 2px rgba(23, 51, 56, .04)` | Small shadow |
+| `--shadow-md` | `0 2px 10px rgba(23, 51, 56, .06)` | Medium shadow |
+| `--shadow-card` | `0 1px 4px rgba(23, 51, 56, .05)` | Card shadow |
+| `--shadow-lg` | `0 10px 24px rgba(23, 51, 56, .08)` | Large shadow |
+| `--shadow-xl` | `0 18px 40px rgba(23, 51, 56, .10)` | Extra-large shadow |
+
+### Import Order Note
+
+`stitch-theme.css` is loaded **last** in `system.css` (`tokens → base → components → responsive → dark → redesign → stitch-theme`). This ensures the Stitch palette wins over all earlier tokens for Stitch-branded components, while MET-typed components continue to consume from `tokens.css` as their single source of truth.
+
+### When to Use Each System
+
+- **MET Mastery components** (buttons, forms, cards without `.stitch-` prefix): Consume tokens from `tokens.css` — the canonical MET design system.
+- **Stitch-branded components** (`.stitch-` prefixed, or components inside Stitch-branded screens): May consume from `stitch-theme.css` for brand-consistent coloring.
+- **Never mix**: Do not use `var(--mm-*)` and `var(--surface)` / `var(--primary)` from different systems in the same component without intentional override.

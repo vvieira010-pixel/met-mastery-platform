@@ -1,0 +1,25 @@
+{
+  "skill": "listening",
+  "topic": "environment",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "dr_L09a_mtgcfjqd_g",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L09-water-service.mp3",
+      "audioText": "N: Listen to a public service announcement.\nAnnouncer: This is a reminder for residents of North Park. Water service will be temporarily interrupted tonight from ten p.m. until approximately six a.m. while the city replaces an old underground pipe. Residents are advised to store enough water for drinking and basic cleaning before ten p.m. If possible, avoid using washing machines or dishwashers until service is fully restored in the morning. A supply tank with bottled water will be available at the North Park Community Center for elderly residents and others with urgent needs.\nN: Now answer the questions.",
+      "question": "Why will the water service be interrupted?",
+      "options": [
+        "Because of unusually hot weather",
+        "Because the city is replacing a pipe",
+        "Because the community center is being repaired",
+        "Because residents used too much water"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "skill": "listening",
+  "topic": "healthcare",
+  "totalExercises": 12,
+  "exercises": [
+    {
+      "id": "dr_L11a_mtgcfjqd_i",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L11-nurse-handoff.mp3",
+      "audioText": "N: Listen to a nurse giving a handoff report to the next shift.\nNurse: Room 204, Mr. Thompson, admitted yesterday with pneumonia. He completed his first dose of IV antibiotics at six p.m. and tolerated it well. His temperature this morning was 37.8, down from 38.5 yesterday. He is still on oxygen at two liters, and his saturation is holding at 96 percent. He can eat soft foods but has had a reduced appetite. The main concern is his mobility — he is at risk of falls, so please ensure the bed alarm is on and assist him to the bathroom. His wife will visit at seven. That is all for now.\nN: Now answer the questions.",
+      "question": "Why was Mr. Thompson admitted to the hospital?",
+      "options": [
+        "He had a heart condition.",
+        "He has pneumonia.",
+        "He broke his leg.",
+        "He had an allergic reaction."
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L11b_mtgcfjqd_j",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L11-nurse-handoff.mp3",
+      "audioText": "N: Listen to a nurse giving a handoff report to the next shift.\nNurse: Room 204, Mr. Thompson, admitted yesterday with pneumonia. He completed his first dose of IV antibiotics at six p.m. and tolerated it well. His temperature this morning was 37.8, down from 38.5 yesterday. He is still on oxygen at two liters, and his saturation is holding at 96 percent. He can eat soft foods but has had a reduced appetite. The main concern is his mobility — he is at risk of falls, so please ensure the bed alarm is on and assist him to the bathroom. His wife will visit at seven. That is all for now.\nN: Now answer the questions.",
+      "question": "What is the main safety concern mentioned by the nurse?",
+      "options": [
+        "The patient may have an allergic reaction to the antibiotics.",
+        "The patient is at risk of falling.",
+        "The patient's oxygen level is too low.",
+        "The patient refuses to eat."
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L18a_mtgcfjqd_11",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L18-stress-immune.mp3",
+      "audioText": "Many people underestimate how much stress affects the immune system. Chronic stress can increase inflammation and make the body more vulnerable to illness. Simple habits, like regular exercise and consistent sleep schedules, can significantly reduce this risk. Today we will look at a few techniques you can start using this week.",
+      "question": "What is the speaker's main point?",
+      "options": [
+        "Exercise causes stress",
+        "Stress can weaken the immune system",
+        "Sleep prevents all illness",
+        "Inflammation is not related to health"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L18b_mtgcfjqd_12",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L18-stress-immune.mp3",
+      "audioText": "Many people underestimate how much stress affects the immune system. Chronic stress can increase inflammation and make the body more vulnerable to illness. Simple habits, like regular exercise and consistent sleep schedules, can significantly reduce this risk. Today we will look at a few techniques you can start using this week.",
+      "question": "Why does the speaker mention exercise and sleep?",
+      "options": [
+        "To criticize common habits",
+        "To suggest ways to reduce stress-related risk",
+        "To explain a medical study methodology",
+        "To introduce a new medication"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_03_clinic_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L03-clinic-reception.wav",
+      "audioText": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I’m calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She’d like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn’t look urgent — otherwise she would have called you directly.\nPatient: Okay, I’ll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you’re currently taking.\nN: Now answer the questions.",
+      "question": "Why does the doctor want to see the patient?",
+      "options": [
+        "To give an injection.",
+        "To explain the blood test results in person.",
+        "To cancel the patient’s insurance.",
+        "To collect payment."
+      ],
+      "correct": 1,
+      "explanation": "The doctor reviewed the blood test and wants to discuss the results in person tomorrow at ten.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_03_clinic_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L03-clinic-reception.wav",
+      "audioText": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I’m calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She’d like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn’t look urgent — otherwise she would have called you directly.\nPatient: Okay, I’ll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you’re currently taking.\nN: Now answer the questions.",
+      "question": "What does the receptionist imply about the results?",
+      "options": [
+        "They are very urgent.",
+        "They are probably not an emergency.",
+        "They were lost.",
+        "They need to be repeated."
+      ],
+      "correct": 1,
+      "explanation": "She says it doesn’t look urgent — otherwise the doctor would have called directly.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_03_clinic_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L03-clinic-reception.wav",
+      "audioText": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I’m calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She’d like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn’t look urgent — otherwise she would have called you directly.\nPatient: Okay, I’ll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you’re currently taking.\nN: Now answer the questions.",
+      "question": "What should the patient bring to the appointment?",
+      "options": [
+        "A family member.",
+        "Previous test results from another clinic.",
+        "ID and a list of current medications.",
+        "A referral letter."
+      ],
+      "correct": 2,
+      "explanation": "Receptionist says to bring ID and a list of any medications currently being taken.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_09_doctor_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L09-doctor-followup.wav",
+      "audioText": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that’s good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let’s meet again in two weeks.\nN: Now answer the questions.",
+      "question": "What positive change does the doctor mention?",
+      "options": [
+        "The patient’s blood pressure has decreased.",
+        "The patient no longer needs medication.",
+        "The patient’s weight has increased.",
+        "The patient’s dizziness has stopped."
+      ],
+      "correct": 0,
+      "explanation": "Doctor says blood pressure is lower than last month — good progress, medication is working.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_09_doctor_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L09-doctor-followup.wav",
+      "audioText": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that’s good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let’s meet again in two weeks.\nN: Now answer the questions.",
+      "question": "What does the doctor suggest about the medication?",
+      "options": [
+        "Take a higher dose in the morning.",
+        "Stop taking it for a week.",
+        "Try taking it in the evening.",
+        "Take it only when dizzy."
+      ],
+      "correct": 2,
+      "explanation": "Doctor suggests trying the pill in the evening and monitoring for a week.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_09_doctor_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L09-doctor-followup.wav",
+      "audioText": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that’s good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let’s meet again in two weeks.\nN: Now answer the questions.",
+      "question": "What should the patient continue to do?",
+      "options": [
+        "Eat more salty foods.",
+        "Limit salt and walk thirty minutes daily.",
+        "Stay in bed all day.",
+        "Come to the clinic every day."
+      ],
+      "correct": 1,
+      "explanation": "Keep limiting salt and walking thirty minutes a day; return in two weeks.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_9",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-9.wav",
+      "audioText": "Woman: Hello, this is Springfield Medical Clinic calling for Mr. Davis. Your blood test results have come in. The doctor would like to discuss them with you. Please call us back at 555-0199 between 9 AM and 5 PM to schedule a brief phone consultation. Thank you.",
+      "ttsText": "Hello, this is Springfield Medical Clinic calling for Mr. Davis. Your blood test results have come in. The doctor would like to discuss them with you. Please call us back at 555-0199 between 9 AM and 5 PM to schedule a brief phone consultation. Thank you.",
+      "question": "What should Mr. Davis do?",
+      "options": [
+        "Go to the clinic immediately.",
+        "Take another blood test.",
+        "Call the clinic to arrange a time to speak with the doctor.",
+        "Wait for the doctor to call him back tomorrow."
+      ],
+      "correct": 2,
+      "explanation": "The receptionist says, 'Please call us back... to schedule a brief phone consultation.'",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-85",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-85-health-workshop.mp3",
+      "audioTitle": "85 · A Health Workshop",
+      "audioSrc": "/exercises/audio/listening/listening-85-health-workshop.mp3",
+      "audioText": "This free workshop will introduce simple ways to make daily meals more balanced. It is not a medical consultation, and participants should speak to a healthcare professional about personal concerns. Recipes and a shopping guide will be provided at the end.",
+      "question": "What will participants receive?",
+      "options": [
+        "Individual medical treatment",
+        "A free gym membership",
+        "Recipes and a shopping guide",
+        "A week of prepared meals"
+      ],
+      "correct": 2,
+      "explanation": "The speaker says recipes and a shopping guide will be provided.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

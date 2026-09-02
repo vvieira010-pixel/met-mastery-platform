@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "marine-ecosystems",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "met_9_42",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 9,
+      "intro": "This passage is about the Great Barrier Reef.",
+      "context": "Stretching more than 2,300 kilometers along the northeast coast of Australia, the Great Barrier Reef is the world's largest coral reef system. It is composed of nearly 3,000 individual reefs and 900 islands, making it visible from space. The reef supports an extraordinary diversity of life, including more than 1,500 species of fish, 400 types of coral, and thousands of species of mollusks, sponges, and other marine creatures.\n\nCoral reefs are built by tiny animals called polyps, which secrete a hard skeleton of calcium carbonate. Over thousands of years, these skeletons accumulate to form the massive structures we see today. The relationship between coral and microscopic algae called zooxanthellae is essential: the algae live inside the coral and provide it with food through photosynthesis, while the coral offers the algae protection and access to sunlight.\n\nIn recent decades, the reef has faced serious threats. Rising ocean temperatures cause coral bleaching, a process in which stressed corals expel their algae and turn white. Without the algae, the corals lose their main source of energy and may die. Pollution from agricultural runoff and coastal development has also damaged large sections of the reef.\n\nScientists and conservationists are working to protect the reef through measures such as reducing carbon emissions, improving water quality, and establishing marine protected areas. However, they warn that the reef's long-term survival depends on global action to limit climate change. Without significant reductions in greenhouse gases, even local efforts may not be enough to save this natural wonder.",
+      "question": "According to the passage, what role do zooxanthellae play?",
+      "options": [
+        "They build the coral's calcium carbonate skeleton.",
+        "They provide food to the coral through photosynthesis.",
+        "They protect the coral from pollution.",
+        "They attract fish to the reef."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail"
+    },
+    {
+      "id": "met_9_41",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 9,
+      "intro": "This passage is about the Great Barrier Reef.",
+      "context": "Stretching more than 2,300 kilometers along the northeast coast of Australia, the Great Barrier Reef is the world's largest coral reef system. It is composed of nearly 3,000 individual reefs and 900 islands, making it visible from space. The reef supports an extraordinary diversity of life, including more than 1,500 species of fish, 400 types of coral, and thousands of species of mollusks, sponges, and other marine creatures.\n\nCoral reefs are built by tiny animals called polyps, which secrete a hard skeleton of calcium carbonate. Over thousands of years, these skeletons accumulate to form the massive structures we see today. The relationship between coral and microscopic algae called zooxanthellae is essential: the algae live inside the coral and provide it with food through photosynthesis, while the coral offers the algae protection and access to sunlight.\n\nIn recent decades, the reef has faced serious threats. Rising ocean temperatures cause coral bleaching, a process in which stressed corals expel their algae and turn white. Without the algae, the corals lose their main source of energy and may die. Pollution from agricultural runoff and coastal development has also damaged large sections of the reef.\n\nScientists and conservationists are working to protect the reef through measures such as reducing carbon emissions, improving water quality, and establishing marine protected areas. However, they warn that the reef's long-term survival depends on global action to limit climate change. Without significant reductions in greenhouse gases, even local efforts may not be enough to save this natural wonder.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "how coral polyps build reefs",
+        "the features and threats to the Great Barrier Reef",
+        "the tourism industry in Australia",
+        "the differences between fish and coral species"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "main idea"
+    },
+    {
+      "id": "met_9_44",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 9,
+      "intro": "This passage is about the Great Barrier Reef.",
+      "context": "Stretching more than 2,300 kilometers along the northeast coast of Australia, the Great Barrier Reef is the world's largest coral reef system. It is composed of nearly 3,000 individual reefs and 900 islands, making it visible from space. The reef supports an extraordinary diversity of life, including more than 1,500 species of fish, 400 types of coral, and thousands of species of mollusks, sponges, and other marine creatures.\n\nCoral reefs are built by tiny animals called polyps, which secrete a hard skeleton of calcium carbonate. Over thousands of years, these skeletons accumulate to form the massive structures we see today. The relationship between coral and microscopic algae called zooxanthellae is essential: the algae live inside the coral and provide it with food through photosynthesis, while the coral offers the algae protection and access to sunlight.\n\nIn recent decades, the reef has faced serious threats. Rising ocean temperatures cause coral bleaching, a process in which stressed corals expel their algae and turn white. Without the algae, the corals lose their main source of energy and may die. Pollution from agricultural runoff and coastal development has also damaged large sections of the reef.\n\nScientists and conservationists are working to protect the reef through measures such as reducing carbon emissions, improving water quality, and establishing marine protected areas. However, they warn that the reef's long-term survival depends on global action to limit climate change. Without significant reductions in greenhouse gases, even local efforts may not be enough to save this natural wonder.",
+      "question": "Why does the author mention agricultural runoff?",
+      "options": [
+        "to explain how fish are farmed near the reef",
+        "to give an example of pollution damaging the reef",
+        "to describe the main source of food for coral",
+        "to compare farming and tourism"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "purpose"
+    }
+  ]
+}

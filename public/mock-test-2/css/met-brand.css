@@ -1,0 +1,189 @@
+/* ============================================================
+   met-brand.css -- DEPRECATED ALIAS SHIM (re-export only)
+
+   met-shell.css is the single source of truth for the MET
+   palette (--met-teal*, --met-taupe*, --met-amber*, ...).
+
+   This file only re-exports legacy token names as var()
+   aliases so pages keep working until usage migrates.
+   No palette hex values are defined here.
+
+   DEPRECATED ALIASES -- remove after usage migration
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+:root {
+  /* ---- DEPRECATED ALIASES -- remove after usage migration ---- */
+
+  /* Pine family -> teal/taupe (canonical in met-shell.css) */
+  --pine-deep:      var(--met-teal-deep);
+  --pine-darker:    var(--met-teal-darker);
+  --pine-dark:      var(--met-teal-dark);
+  --pine:           var(--met-teal);
+  --pine-light:     var(--met-taupe);
+  --pine-lighter:   var(--met-taupe-light);
+  --pine-lightest:  var(--met-teal-tint);
+  --pine-wash:      var(--met-teal-tint);
+
+  /* Amber / orange family */
+  --amber:          var(--met-amber);
+  --amber-dark:     var(--met-amber-dark);
+  --amber-light:    var(--met-amber-light);
+  --amber-bg:       var(--met-amber-bg);
+  --amber-glow:     var(--met-amber-glow);
+  --orange:         var(--met-amber);
+  --orange-dark:    var(--met-amber-dark);
+  --orange-bg:      var(--met-amber-bg);
+  --orange-light:   var(--met-amber-light);
+
+  /* Status */
+  --red:            var(--met-red);
+  --red-light:      var(--met-red-light);
+  --red-bg:         var(--met-red-bg);
+  --green:          var(--met-green);
+  --green-light:    var(--met-green-light);
+  --green-bg:       var(--met-green-bg);
+  --blue:           var(--met-teal);
+
+  /* MET shorthand */
+  --met-navy:       var(--met-teal-deep);
+  --met-blue:       var(--met-teal-dark);
+  --met-wash:       var(--met-teal-tint);
+  --met-light:      var(--met-page-bg);
+  --navy:           var(--met-teal-deep);
+  --navy-dark:      var(--met-teal-deep);
+  --navy-light:     var(--met-teal);
+  --sky:            var(--met-teal-dark);
+  --sky-light:      var(--met-taupe);
+  --wash:           var(--met-teal-tint);
+  --bg-wash:        var(--met-teal-tint);
+  --teal-600:       var(--met-teal-dark);
+  /* NOTE: an old 'sky' alias that mapped to sand was deleted (zero usages) */
+
+  /* Surfaces & borders */
+  --surface:        var(--met-content-bg);
+  --surface-elevated: var(--met-content-bg);
+  --surface-muted:  var(--met-teal-tint);
+  --border:         var(--met-border-shell);
+  --border-focus:   var(--met-teal-dark);
+  --border-lt:      var(--met-taupe);
+  --page-bg:        var(--met-page-bg);
+
+  /* Focus ring */
+  --focus-ring:     var(--met-focus-ring);
+
+  /* Fonts (--met-font-body / --met-font-mono are canonical in met-shell.css) */
+  --font:           var(--met-font-body);
+
+  /* Type scale (rem system; met-shell uses a px system -- kept local) */
+  --text-xs:       0.75rem;
+  --text-sm:       0.8125rem;
+  --text-base:     0.9375rem;
+  --text-lg:       1.0625rem;
+  --text-xl:       1.25rem;
+  --text-2xl:      1.5rem;
+  --text-3xl:      1.875rem;
+  --text-4xl:      2.25rem;
+  --text-5xl:      3rem;
+  --text-display:  clamp(2.25rem, 5vw, 3.5rem);
+
+  /* Leading (aliases of the met-fh-* scale) */
+  --leading-tight:   var(--met-fh-tight);
+  --leading-snug:    var(--met-fh-snug);
+  --leading-base:    var(--met-fh-base);
+  --leading-relaxed: var(--met-fh-prose);
+
+  /* Font weights */
+  --weight-light:    300;
+  --weight-normal:   var(--met-weight-normal);
+  --weight-medium:   var(--met-weight-medium);
+  --weight-semibold: var(--met-weight-semibold);
+  --weight-bold:     var(--met-weight-bold);
+  --weight-extrabold: var(--met-weight-extrabold);
+
+  /* Spacing (steps without a met-space-* equivalent stay local) */
+  --space-0:    var(--met-space-0);
+  --space-px:   1px;
+  --space-half: 2px;
+  --space-1:    var(--met-space-1);
+  --space-six:  6px;
+  --space-2:    var(--met-space-2);
+  --space-3:    var(--met-space-3);
+  --space-4:    var(--met-space-4);
+  --space-5:    var(--met-space-5);
+  --space-6:    var(--met-space-6);
+  --space-7:    var(--met-space-7);
+  --space-8:    var(--met-space-8);
+  --space-9:    36px;
+  --space-10:   var(--met-space-10);
+  --space-11:   44px;
+  --space-12:   var(--met-space-12);
+  --space-13:   52px;
+  --space-14:   56px;
+  --space-15:   60px;
+  --space-16:   var(--met-space-16);
+  --space-18:   72px;
+  --space-20:   80px;
+  --space-22:   88px;
+  --space-24:   96px;
+
+  /* Radius */
+  --radius-none:   var(--met-radius-none);
+  --radius-xs:     var(--met-radius-xs);
+  --radius-sm:     var(--met-radius-sm);
+  --radius-md:     var(--met-radius-md);
+  --radius-lg:     var(--met-radius-lg);
+  --radius-xl:     var(--met-radius-xl);
+  --radius-2xl:    var(--met-radius-2xl);
+  --radius-pill:   var(--met-radius-pill);
+
+  /* Shadow (--shadow-2xl has no met-* equivalent) */
+  --shadow-xs:   var(--met-shadow-xs);
+  --shadow-sm:   var(--met-shadow-sm);
+  --shadow-md:   var(--met-shadow-md);
+  --shadow-lg:   var(--met-shadow-lg);
+  --shadow-xl:   var(--met-shadow-xl);
+  --shadow-2xl:  0 32px 64px rgba(15, 23, 42, 0.15), 0 12px 24px rgba(15, 23, 42, 0.1);
+  --shadow-glow: var(--met-shadow-glow);
+
+  /* Motion */
+  --motion-instant: var(--met-motion-instant);
+  --motion-fast:    var(--met-motion-fast);
+  --motion-base:    var(--met-motion-base);
+  --motion-slow:    var(--met-motion-slow);
+  --motion-slower:  var(--met-motion-slower);
+  --ease-out:       var(--met-ease-out);
+  --ease-in:        var(--met-ease-in);
+  --ease-spring:    cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --container-sm:   var(--met-container-sm);
+  --container-md:   var(--met-container-md);
+  --container-lg:   var(--met-container-lg);
+  --container-xl:   var(--met-container-xl);
+  --container-2xl:  var(--met-container-2xl);
+
+  /* Z-index */
+  --z-dropdown:   var(--met-z-dropdown);
+  --z-sticky:     var(--met-z-sticky);
+  --z-fixed:      var(--met-z-fixed);
+  --z-modal-backdrop: var(--met-z-modal-backdrop);
+  --z-modal:      var(--met-z-modal);
+  --z-popover:    var(--met-z-popover);
+  --z-tooltip:    var(--met-z-tooltip);
+  --z-toast:      var(--met-z-toast);
+
+  /* Breakpoints (for JS) */
+  --bp-sm:  640px;
+  --bp-md:  768px;
+  --bp-lg:  1024px;
+  --bp-xl:  1280px;
+  --bp-2xl: 1536px;
+
+  /* ---- Brand-only values (no canonical met-* equivalent) ---- */
+  --blue-light:     #5A9BD8;
+  --blue-bg:        #EFF6FF;
+  --met-ink:        #0F172A;
+  --border-strong:  #CBD5E1;
+  --met-font-heading:    "Cormorant Garamond", "Geist", "Aptos", "Segoe UI", system-ui, serif;
+  --met-font-subheading: "Cormorant Garamond", "Geist", "Aptos", "Segoe UI", system-ui, serif;
+}

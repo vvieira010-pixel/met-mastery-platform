@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Practice Studio - MET Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 101, 116, 0.1);
+        }
+        .learning-card {
+            background: white;
+            border: 1px solid rgba(0, 101, 116, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 101, 116, 0.05);
+            transition: all 0.3s ease;
+        }
+        .learning-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 101, 116, 0.1);
+            border-color: rgba(0, 101, 116, 0.3);
+        }
+        .card-icon-container {
+            background: linear-gradient(135deg, #F6FAFB 0%, #E3F2FD 100%);
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="bg-gradient-to-br from-surface-ice to-academic-blue-soft min-h-screen text-on-background font-body-md text-body-md overflow-x-hidden flex">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-primary dark:bg-inverse-surface h-screen w-64 fixed left-0 top-0 flex flex-col py-base shadow-xl shadow-teal-deep/20 z-50">
+<!-- Brand/Header -->
+<div class="px-6 py-8 flex flex-col items-center border-b border-primary-container/30 mb-6">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-4 border-2 border-primary-fixed/50">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">school</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-inverse-on-surface text-center">MET Mastery</h1>
+<p class="font-label-sm-bold text-label-sm-bold text-primary-fixed-dim uppercase tracking-wider mt-1 text-center">English Proficiency</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Home</span>
+</a>
+<!-- Active State: Practice -->
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-ice text-primary rounded-l-full font-bold relative after:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-2 after:bg-secondary-container active:scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">exercise</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Practice</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">import_contacts</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Lessons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">grade</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Grades</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">folder_open</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Resources</span>
+</a>
+</div>
+<!-- CTA Bottom -->
+<div class="px-6 mt-auto pb-8">
+<button class="w-full py-3 bg-gradient-to-r from-teal-deep to-primary text-on-primary rounded-lg font-label-sm-bold text-label-sm-bold uppercase shadow-lg hover:-translate-y-1 transition-transform">
+                Start Practice
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar (from JSON) -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md docked full-width top-0 sticky z-40 border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center w-full h-16 px-gutter-lg max-w-[calc(100%-256px)] mx-auto relative">
+<!-- Search -->
+<div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant/30 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all w-64">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-sm text-on-surface w-full focus:ring-0 p-0 placeholder-on-surface-variant/50" placeholder="Search resources..." type="text"/>
+</div>
+<!-- Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest rounded-full p-2 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest rounded-full p-2 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container overflow-hidden border-2 border-primary-fixed">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A small, professional portrait photo of a focused student, well-lit, optimistic expression, solid background, vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYgw___RQtIxGF-zBJkCZVjuXOSbLGJW6_Cz42ic-JQDfnA4iZeLQ3Yz_yDZtUtTX2sM2xGpIpN2iruxuJIytbRQedX-jAKYjTtnGlhM5aN7hjb_5hV6mRo7vPM50VfwiwhdCVhGovzvwIblqek64eQfeCtaaQch9D_J4r37sI9sNbuO7TSffjw330j05FcKMf6V8cze5mwtf1zAYMsqhreQDxIP4yA5HdUqcRkF0twRSZisbnglgP"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-desktop flex-1 max-w-max-width mx-auto w-full flex flex-col gap-margin-desktop">
+<!-- Hero / Context Header -->
+<section class="glass-panel rounded-xl p-8 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between relative overflow-hidden">
+<!-- Decorative background elements -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-fixed/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-12 -left-12 w-48 h-48 bg-secondary-fixed/20 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex-1 max-w-2xl">
+<a class="flex items-center gap-2 text-primary font-label-sm-bold text-label-sm-bold uppercase mb-4 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Back to dashboard
+                    </a>
+<span class="text-secondary font-label-sm-bold text-label-sm-bold uppercase tracking-widest mb-2 block">Independent Practice</span>
+<h2 class="font-display-lg text-display-lg text-on-background mb-4">Practice Studio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Choose one skill, work at your pace, and use each session to make your next class easier.
+                    </p>
+</div>
+<!-- Today's Approach Card -->
+<div class="relative z-10 bg-white rounded-lg p-6 shadow-sm border border-outline-variant/20 w-full md:w-80 border-l-4 border-l-secondary-container">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary-container">flag</span>
+<span class="font-label-sm-bold text-label-sm-bold text-on-surface-variant uppercase tracking-wider">Today's Approach</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">One focused session</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Choose the skill that will help you most right now.</p>
+</div>
+</section>
+<!-- Practice Modules Grid -->
+<section>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-lg">
+<!-- Card 1: Reading -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-2xl">menu_book</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant px-3 py-1 bg-surface-container-low rounded-full border border-outline-variant/20">Reading</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Reading Practice</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Understand the text. MET-style reading comprehension practice.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 border border-primary text-primary hover:bg-primary-fixed/20 rounded-lg font-label-sm-bold text-label-sm-bold uppercase transition-colors flex justify-between items-center group-hover:bg-primary group-hover:text-white">
+<span>Start Reading</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Listening -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-2xl">headphones</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant px-3 py-1 bg-surface-container-low rounded-full border border-outline-variant/20">Listening</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Listening Lab</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Listen with a purpose. Interactive listening &amp; embedded lessons.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 border border-primary text-primary hover:bg-primary-fixed/20 rounded-lg font-label-sm-bold text-label-sm-bold uppercase transition-colors flex justify-between items-center group-hover:bg-primary group-hover:text-white">
+<span>Start Listening</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Speaking -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-2xl">mic</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant px-3 py-1 bg-surface-container-low rounded-full border border-outline-variant/20">Speaking</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Speaking Mirror</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Organise your answer. Speaking &amp; writing practice prompts.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 border border-primary text-primary hover:bg-primary-fixed/20 rounded-lg font-label-sm-bold text-label-sm-bold uppercase transition-colors flex justify-between items-center group-hover:bg-primary group-hover:text-white">
+<span>Start Speaking</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Writing (Highlighted/Up Next feel) -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden border-2 border-primary-fixed/50 shadow-[0_0_20px_rgba(255,171,123,0.15)] ring-1 ring-energy-orange-glow/20">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-container to-energy-orange-glow"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10 bg-primary-fixed/30">
+<span class="material-symbols-outlined text-primary text-2xl">edit_note</span>
+</div>
+<span class="font-data-mono text-data-mono text-secondary-container px-3 py-1 bg-secondary-fixed-dim/20 rounded-full border border-secondary-container/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                                Recommended
+                            </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Writing Studio</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Build clear paragraphs. Paragraph &amp; short-answer tasks.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 bg-gradient-to-r from-teal-deep to-primary text-white rounded-lg font-label-sm-bold text-label-sm-bold uppercase shadow-md flex justify-between items-center hover:shadow-lg transition-all group-hover:translate-y-[-2px]">
+<span>Start Writing</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 5: Vocab -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-2xl">font_download</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant px-3 py-1 bg-surface-container-low rounded-full border border-outline-variant/20">Vocabulary</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Vocab Deep-Dive</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Meaning in context. Vocabulary matching &amp; fill-in-the-blank.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 border border-primary text-primary hover:bg-primary-fixed/20 rounded-lg font-label-sm-bold text-label-sm-bold uppercase transition-colors flex justify-between items-center group-hover:bg-primary group-hover:text-white">
+<span>Start Vocab</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 6: Grammar -->
+<div class="learning-card rounded-[16px] p-6 flex flex-col h-full group relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg card-icon-container flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-2xl">spellcheck</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant px-3 py-1 bg-surface-container-low rounded-full border border-outline-variant/20">Grammar</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Grammar Sprint</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Accuracy &amp; control. 10 grammar questions - B2 level.</p>
+<div class="mt-auto">
+<button class="w-full py-3 px-4 border border-primary text-primary hover:bg-primary-fixed/20 rounded-lg font-label-sm-bold text-label-sm-bold uppercase transition-colors flex justify-between items-center group-hover:bg-primary group-hover:text-white">
+<span>Start Grammar</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>
+
+
+
+

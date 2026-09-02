@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "food-history",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "met_5_23",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 5,
+      "intro": "This passage is about chocolate.",
+      "context": "Chocolate begins its story in the rainforests of Central and South America, where the cacao tree grows. The ancient Maya and Aztec peoples were the first to cultivate cacao, and they used its seeds to make a bitter, frothy drink that was reserved for ceremonies and for the elite. The word 'chocolate' may come from the Aztec word xocolātl, meaning 'bitter water.'\n\nWhen Spanish explorers arrived in the Americas in the 1500s, they brought cacao back to Europe. At first, chocolate remained a luxury item, consumed mainly by the wealthy. However, as trade routes expanded and production methods improved, chocolate became more widely available. In the 1800s, the invention of solid chocolate bars and milk chocolate transformed it from a drink into a treat that could be carried and shared.\n\nToday, chocolate is one of the world's most popular foods, but its production raises serious ethical questions. Most cacao is grown by small farmers in West Africa, many of whom earn very low incomes. In some regions, child labor has been documented on cacao farms, prompting international organizations to demand change. Several companies now label their products 'fair trade,' indicating that farmers received a higher price for their cacao.\n\nDespite these efforts, activists argue that more must be done to ensure that the people who grow cacao can afford to send their own children to school and live with dignity. For consumers, the challenge is to enjoy chocolate while also supporting practices that protect the rights of farmers and workers.",
+      "question": "In the third sentence of paragraph 2, which word is closest in meaning to 'transformed'?",
+      "options": [
+        "changed",
+        "hidden",
+        "destroyed",
+        "copied"
+      ],
+      "correct": 0,
+      "explanation": "",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "met_5_22",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 5,
+      "intro": "This passage is about chocolate.",
+      "context": "Chocolate begins its story in the rainforests of Central and South America, where the cacao tree grows. The ancient Maya and Aztec peoples were the first to cultivate cacao, and they used its seeds to make a bitter, frothy drink that was reserved for ceremonies and for the elite. The word 'chocolate' may come from the Aztec word xocolātl, meaning 'bitter water.'\n\nWhen Spanish explorers arrived in the Americas in the 1500s, they brought cacao back to Europe. At first, chocolate remained a luxury item, consumed mainly by the wealthy. However, as trade routes expanded and production methods improved, chocolate became more widely available. In the 1800s, the invention of solid chocolate bars and milk chocolate transformed it from a drink into a treat that could be carried and shared.\n\nToday, chocolate is one of the world's most popular foods, but its production raises serious ethical questions. Most cacao is grown by small farmers in West Africa, many of whom earn very low incomes. In some regions, child labor has been documented on cacao farms, prompting international organizations to demand change. Several companies now label their products 'fair trade,' indicating that farmers received a higher price for their cacao.\n\nDespite these efforts, activists argue that more must be done to ensure that the people who grow cacao can afford to send their own children to school and live with dignity. For consumers, the challenge is to enjoy chocolate while also supporting practices that protect the rights of farmers and workers.",
+      "question": "According to the passage, how was chocolate originally used?",
+      "options": [
+        "as a sweet candy for children",
+        "as a bitter drink for ceremonies and the elite",
+        "as a medicine for common people",
+        "as a form of money in trade"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail"
+    },
+    {
+      "id": "met_5_24",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 5,
+      "intro": "This passage is about chocolate.",
+      "context": "Chocolate begins its story in the rainforests of Central and South America, where the cacao tree grows. The ancient Maya and Aztec peoples were the first to cultivate cacao, and they used its seeds to make a bitter, frothy drink that was reserved for ceremonies and for the elite. The word 'chocolate' may come from the Aztec word xocolātl, meaning 'bitter water.'\n\nWhen Spanish explorers arrived in the Americas in the 1500s, they brought cacao back to Europe. At first, chocolate remained a luxury item, consumed mainly by the wealthy. However, as trade routes expanded and production methods improved, chocolate became more widely available. In the 1800s, the invention of solid chocolate bars and milk chocolate transformed it from a drink into a treat that could be carried and shared.\n\nToday, chocolate is one of the world's most popular foods, but its production raises serious ethical questions. Most cacao is grown by small farmers in West Africa, many of whom earn very low incomes. In some regions, child labor has been documented on cacao farms, prompting international organizations to demand change. Several companies now label their products 'fair trade,' indicating that farmers received a higher price for their cacao.\n\nDespite these efforts, activists argue that more must be done to ensure that the people who grow cacao can afford to send their own children to school and live with dignity. For consumers, the challenge is to enjoy chocolate while also supporting practices that protect the rights of farmers and workers.",
+      "question": "Why does the author mention 'fair trade' labels?",
+      "options": [
+        "to show that chocolate is becoming more expensive",
+        "to describe one attempt to improve farmers' incomes",
+        "to explain how chocolate is advertised",
+        "to compare different brands of chocolate"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "purpose"
+    }
+  ]
+}

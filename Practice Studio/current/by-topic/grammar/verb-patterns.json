@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "verb-patterns",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1n",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Identify the sentence that follows the correct underlying grammatical verb pattern.",
+      "options": [
+        "My project manager wants that I finish this data report by tonight.",
+        "I am really looking forward to visit the new office next month.",
+        "He decided to stop smoking because of his changing health priorities.",
+        "She thoroughly enjoys to read historical novels in her spare time."
+      ],
+      "correct": 2,
+      "feedbackCorrect": "Perfect choice. The verb decide is systematically followed by an infinitive construction (to stop).",
+      "feedbackIncorrect": "Look closely at the verb demands. The verb want follows the pattern want + someone + to do something (not \"wants that I finish\"). The phrase look forward to contains a preposition, meaning it must take a gerund (looking forward to visiting). The verb enjoy must be followed by a gerund (enjoys reading)."
+    },
+    {
+      "id": "G87",
+      "number": 87,
+      "category": "verb-patterns",
+      "level": "B2",
+      "question": "The coach encouraged the players ________ confident.",
+      "options": {
+        "A": "feel",
+        "B": "feeling",
+        "C": "to feel",
+        "D": "felt"
+      },
+      "correct_answer": "C",
+      "correct_option": "to feel",
+      "explanation": "The pattern is 'encourage + object + to infinitive'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

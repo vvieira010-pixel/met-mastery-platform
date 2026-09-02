@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "shopping-and-finance",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_money_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Talk about a time you made a careful purchasing decision. What did you consider?"
+    }
+  ]
+}

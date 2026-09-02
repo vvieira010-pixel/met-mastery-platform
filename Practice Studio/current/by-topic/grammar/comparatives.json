@@ -1,0 +1,132 @@
+{
+  "skill": "grammar",
+  "topic": "comparatives",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_n",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Some people are more concerned about the budget cuts ________.",
+      "options": [
+        "they are than others",
+        "other than",
+        "than others",
+        "other than them"
+      ],
+      "correct": 2,
+      "explanation": "\"More … than others\" is the correct comparative structure."
+    },
+    {
+      "id": "gm_mtgcfjq1_o",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The test was ________ we expected.",
+      "options": [
+        "more difficult than",
+        "more difficult as",
+        "difficult more than",
+        "the most difficult than"
+      ],
+      "correct": 0,
+      "explanation": "\"More difficult than\" is the correct comparative structure for two-syllable+ adjectives."
+    },
+    {
+      "id": "gm_mtgcfjq1_p",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Of all the candidates, Laura is by far ________.",
+      "options": [
+        "more qualified",
+        "the most qualified",
+        "qualified most",
+        "the more qualified"
+      ],
+      "correct": 1,
+      "explanation": "Superlative form with \"the\" and \"most\" for three-syllable adjectives."
+    },
+    {
+      "id": "of_fix_3",
+      "type": "fix",
+      "level": "B2",
+      "skill": "Grammar",
+      "errorText": "She is more taller than her younger brother.",
+      "correctedText": "She is taller than her younger brother."
+    },
+    {
+      "id": "G5",
+      "number": 5,
+      "category": "comparatives",
+      "level": "B2",
+      "question": "The new software is ________ the old version.",
+      "options": {
+        "A": "more efficient than",
+        "B": "more efficient that",
+        "C": "most efficient than",
+        "D": "efficienter than"
+      },
+      "correct_answer": "A",
+      "correct_option": "more efficient than",
+      "explanation": "Use 'more + adjective + than' with longer adjectives.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G6",
+      "number": 6,
+      "category": "comparatives",
+      "level": "B2",
+      "question": "The sooner we leave, ________ we will arrive.",
+      "options": {
+        "A": "the early",
+        "B": "the earliest",
+        "C": "the earlier",
+        "D": "earlier"
+      },
+      "correct_answer": "C",
+      "correct_option": "the earlier",
+      "explanation": "Use the double comparative pattern: 'The sooner..., the earlier...'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G7",
+      "number": 7,
+      "category": "comparatives",
+      "level": "B2",
+      "question": "Her explanation was ________ mine.",
+      "options": {
+        "A": "clearer than",
+        "B": "as clearer as",
+        "C": "more clear that",
+        "D": "the clearest than"
+      },
+      "correct_answer": "A",
+      "correct_option": "clearer than",
+      "explanation": "A comparative adjective is followed by 'than': clearer than.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G8",
+      "number": 8,
+      "category": "comparatives",
+      "level": "B2",
+      "question": "The lecture was not ________ I had expected.",
+      "options": {
+        "A": "as interesting as",
+        "B": "so interesting than",
+        "C": "more interesting that",
+        "D": "the most interesting"
+      },
+      "correct_answer": "A",
+      "correct_option": "as interesting as",
+      "explanation": "Use 'not as + adjective + as' for an unequal comparison.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "skill": "listening",
+  "topic": "general-academic",
+  "totalExercises": 9,
+  "exercises": [
+    {
+      "id": "dr_L02_mtgcfjqd_5",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L02-printer-handouts.mp3",
+      "audioText": "W: Did you print the handouts for the meeting?\nM: I tried, but the printer is out of paper, so I emailed everyone a copy instead.\nW: Fine. That should work for today.\nN: What problem did the man have?",
+      "question": "What problem did the man have?",
+      "options": [
+        "He forgot the handouts at home.",
+        "The printer had no paper.",
+        "He sent the wrong file.",
+        "The meeting started early."
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L03_mtgcfjqd_6",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L03-old-phone.mp3",
+      "audioText": "M: I can't believe your phone still works after all these years.\nW: Barely. I'm keeping it until next month, when the newer model goes on sale.\nN: What will the woman probably do next month?",
+      "question": "What will the woman probably do next month?",
+      "options": [
+        "Repair her old phone.",
+        "Borrow a phone from a friend.",
+        "Change her phone plan.",
+        "Buy a new phone."
+      ],
+      "correct": 3,
+      "listeningFormat": "next_action"
+    },
+    {
+      "id": "dr_L04_mtgcfjqd_7",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L04-noisy-window.mp3",
+      "audioText": "W: Could you close the window? The traffic is really loud today.\nM: I'd rather leave it open because it's warm in here, but if the noise is bothering you, I can shut it.\nN: What does the man mean?",
+      "question": "What does the man mean?",
+      "options": [
+        "He thinks the room is already too cold.",
+        "He wants the woman to move seats.",
+        "He prefers the window open but is willing to close it.",
+        "He cannot hear the traffic at all."
+      ],
+      "correct": 2,
+      "listeningFormat": "inference"
+    },
+    {
+      "id": "dr_L13a_mtgcfjqd_m",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L13-office-relocation.mp3",
+      "audioText": "Good morning, everyone. As you know, our department is moving to the third floor next Monday. IT staff will disconnect your computers Friday afternoon, so please back up your files before then. The new space has more natural light, but slightly smaller desks, so bring only essential items. Boxes and labels are available at the front desk starting today.",
+      "question": "What is the speaker mainly talking about?",
+      "options": [
+        "A company merger",
+        "An office move",
+        "New computer equipment",
+        "A change in work hours"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L13c_mtgcfjqd_o",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L13-office-relocation.mp3",
+      "audioText": "Good morning, everyone. As you know, our department is moving to the third floor next Monday. IT staff will disconnect your computers Friday afternoon, so please back up your files before then. The new space has more natural light, but slightly smaller desks, so bring only essential items. Boxes and labels are available at the front desk starting today.",
+      "question": "What should listeners do today?",
+      "options": [
+        "Disconnect their computers",
+        "Get boxes and labels",
+        "Measure their new desks",
+        "Submit a request form"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-1.wav",
+      "audioText": "Woman: Hi Tom, it's Sarah. I know we scheduled our meeting for Tuesday at 3 PM, but I have a dentist appointment that just opened up. Can we push it to Thursday at the same time? Let me know.",
+      "ttsText": "Hi Tom, it's Sarah. I know we scheduled our meeting for Tuesday at 3 PM, but I have a dentist appointment that just opened up. Can we push it to Thursday at the same time? Let me know.",
+      "question": "Why is Sarah calling?",
+      "options": [
+        "To cancel a meeting permanently.",
+        "To change the day of a meeting.",
+        "To invite Tom to the dentist.",
+        "To change the time of a meeting on Tuesday."
+      ],
+      "correct": 1,
+      "explanation": "Sarah asks to 'push it to Thursday', meaning she wants to reschedule the day of their existing meeting.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-83",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-83-package-collection.mp3",
+      "audioTitle": "83 · A Package Collection",
+      "audioSrc": "/exercises/audio/listening/listening-83-package-collection.mp3",
+      "audioText": "Your package has arrived at the service desk. Please bring photo identification when you collect it. The desk closes at six, but packages can be collected tomorrow morning from eight-thirty.",
+      "question": "What must the customer bring?",
+      "options": [
+        "A payment receipt",
+        "Photo identification",
+        "A delivery truck",
+        "A letter from the sender"
+      ],
+      "correct": 1,
+      "explanation": "The customer must bring photo identification.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-84",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-84-team-update.mp3",
+      "audioTitle": "84 · A Team Update",
+      "audioSrc": "/exercises/audio/listening/listening-84-team-update.mp3",
+      "audioText": "We have completed the survey and organized the responses. Next, we will prepare a short summary for the director. After receiving comments, we will revise the report and share the final version with the whole team.",
+      "question": "What will happen after the summary is prepared?",
+      "options": [
+        "The survey will begin.",
+        "The team will organize the responses.",
+        "The director will provide comments.",
+        "The final version will be shared immediately."
+      ],
+      "correct": 2,
+      "explanation": "The team will receive comments after preparing the summary, then revise the report.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-92",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-92-revised-recommendation.mp3",
+      "audioTitle": "92 · A Revised Recommendation",
+      "audioSrc": "/exercises/audio/listening/listening-92-revised-recommendation.mp3",
+      "audioText": "At first, I supported opening the facility every evening. After reviewing the staffing data, I think a three-evening schedule would be more realistic. It would still improve access without placing excessive pressure on the team.",
+      "question": "What position does the speaker finally support?",
+      "options": [
+        "Opening every evening",
+        "Closing the facility permanently",
+        "Opening three evenings a week",
+        "Reducing the staff team"
+      ],
+      "correct": 2,
+      "explanation": "The speaker changes from every evening to a more realistic three-evening schedule.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

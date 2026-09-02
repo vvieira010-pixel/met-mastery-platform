@@ -1,0 +1,8 @@
+[female] Mark, do you have a minute to discuss the research project?
+[male] Sure, come in. I was just reviewing the data we collected last week.
+[female] Great. I think we have enough information to start writing the report. But I wanted to check the methodology section with you.
+[male] Good idea. I noticed a few gaps in the participant responses. We might need to follow up with some of them.
+[female] I can contact the participants who didn't complete the survey fully. I have their email addresses.
+[male] That would be helpful. Also, when do you think we can have the first draft ready?
+[female] If I start writing today, I could have something by next Monday.
+[male] Perfect. That gives us enough time before the Friday deadline.

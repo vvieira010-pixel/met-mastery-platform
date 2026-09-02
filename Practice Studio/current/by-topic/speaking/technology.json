@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "technology",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_tech_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe how technology has changed the way you communicate with friends."
+    }
+  ]
+}

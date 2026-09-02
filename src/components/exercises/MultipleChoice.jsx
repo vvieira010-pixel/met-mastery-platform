@@ -1,0 +1,185 @@
+import { useState } from 'react';
+import { TEAL, NAVY, optionBaseStyle, MET_SECTION_STYLES } from './shared.js';
+
+const MET_SECTION_CONFIG = {
+  grammar: { ...MET_SECTION_STYLES.grammar,
+    label: 'Reading Part 1 — Grammar',
+    tip: 'Choose the option that fits both meaning AND structure. Check: tense · subject–verb agreement · articles · prepositions · modals · connectors · word form.',
+    trap: 'Choosing an option that sounds familiar but does not fit grammatically.',
+  },
+  listening_p1: { ...MET_SECTION_STYLES.listening_p1,
+    label: 'Listening Part 1 — Short Conversation',
+    tip: 'Listen for: main point · speaker intention · specific detail · implied meaning. Do not choose an answer based on one word — listen to the whole exchange.',
+    trap: 'Choosing based on one familiar word instead of the overall meaning.',
+  },
+  listening_p2: { ...MET_SECTION_STYLES.listening_p2,
+    label: 'Listening Part 2 — Longer Conversation',
+    tip: 'Listen for: main topic · sequence of events · problem and solution · what the speakers agree or disagree about · what a speaker will probably do next.',
+    trap: 'Forgetting earlier information by the time the questions appear.',
+  },
+  listening_p3: { ...MET_SECTION_STYLES.listening_p3,
+    label: 'Listening Part 3 — Short Talk',
+    tip: 'Listen for: purpose of the talk · main idea · key detail · reason · speaker attitude · what happens next. Do not focus only on isolated words.',
+    trap: 'Missing the purpose of the talk and focusing only on isolated details.',
+  },
+  reading_p2: { ...MET_SECTION_STYLES.reading_p2,
+    label: 'Reading Part 2 — Single Text',
+    tip: 'Find: main idea · specific detail · vocabulary in context · reference words (it/they/this) · inference · author purpose. Manage your time — 5 questions per text.',
+    trap: 'Reading too slowly and spending too much time on one text.',
+  },
+  reading_p3: { ...MET_SECTION_STYLES.reading_p3,
+    label: 'Reading Part 3 — Multiple Texts',
+    tip: 'Three related texts — look for: which text says a specific idea · how texts are similar or different · what writers agree or disagree about · inference across texts.',
+    trap: 'Treating the three texts separately and missing cross-text questions.',
+  },
+};
+
+export default function MultipleChoice({ exercise, onComplete }) {
+  const { question, options, correct, skill, context, instruction, metSection, imageUrl, imageAlt } = exercise;
+  const [selected, setSelected] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const sectionConfig = metSection ? MET_SECTION_CONFIG[metSection] : null;
+  const isCorrect = selected === correct;
+
+  function handleSubmit() {
+    if (selected == null) return;
+    setSubmitted(true);
+    if (onComplete) onComplete({ correct: isCorrect });
+  }
+
+  function getOptionStyle(i) {
+    const base = { ...optionBaseStyle(), cursor: submitted ? 'default' : 'pointer' };
+    if (!submitted) {
+      if (selected === i) return { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: NAVY };
+      return { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
+    }
+    if (i === correct) return { ...base, borderColor: 'var(--ex-panel-border)', background: 'var(--ex-panel-bg)', color: 'var(--text)' };
+    return { ...base, borderColor: 'var(--divider)', background: 'var(--surface)', color: 'var(--muted)', opacity: 0.6 };
+  }
+
+  function getMarker(i) {
+    if (!submitted) return selected === i ? '◉' : '○';
+    return String.fromCharCode(65 + i);
+  }
+
+  return (
+    <div onKeyDown={e => { if (e.key === 'Enter' && !submitted && selected != null) { e.preventDefault(); handleSubmit(); } }}>
+      {sectionConfig && (
+        <div style={{ padding: '10px 14px', background: sectionConfig.bg, border: `1px solid ${sectionConfig.border}`, borderRadius: 'var(--radius-sm, 6px)', marginBottom: 14 }}>
+          <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: sectionConfig.color, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 5 }}>
+            {sectionConfig.label}
+          </div>
+          <div style={{ fontSize: 'var(--text-sm)', color: sectionConfig.color === 'var(--ex-cat-purple-text)' ? 'var(--ex-cat-purple-strong)' : sectionConfig.color === 'var(--ex-cat-sky-text)' ? 'var(--ex-cat-sky-strong)' : 'var(--ex-correct-text)', lineHeight: 1.55 }}>
+            {sectionConfig.tip}
+          </div>
+          {sectionConfig.trap && (
+            <div style={{ marginTop: 6, fontSize: 'var(--text-xs)', color: 'var(--ex-hint-text)' }}>
+              <strong>Watch out:</strong> {sectionConfig.trap}
+            </div>
+          )}
+        </div>
+      )}
+
+      {skill && !sectionConfig && (
+        <div style={{ display: 'inline-block', marginBottom: 10, padding: '2px 8px', background: 'var(--ex-cat-blue-bg)', border: '1px solid var(--ex-cat-blue-border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--ex-cat-blue-text)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          {skill}
+        </div>
+      )}
+      {skill && sectionConfig && (
+        <div style={{ display: 'inline-block', marginBottom: 10, padding: '2px 8px', background: sectionConfig.bg, border: `1px solid ${sectionConfig.border}`, borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-xs)', fontWeight: 600, color: sectionConfig.color, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          {skill}
+        </div>
+      )}
+
+      {instruction && (
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)', marginBottom: 10, lineHeight: 1.6 }}>{instruction}</p>
+      )}
+      {context && (
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)', marginBottom: 10, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{context}</p>
+      )}
+
+      {imageUrl && (
+        <div style={{ marginBottom: 16, border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden', background: 'var(--ex-panel-bg)', textAlign: 'center' }}>
+          <img src={imageUrl} alt={imageAlt || 'Image for this question'} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', display: 'block', margin: '0 auto' }} />
+        </div>
+      )}
+
+      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: NAVY, marginBottom: 16, lineHeight: 1.6 }}>{question}</p>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+        {options.map((opt, i) => (
+          <button
+            key={i}
+            onClick={() => !submitted && setSelected(i)}
+            style={{
+              ...getOptionStyle(i),
+              animation: submitted ? undefined : 'fadeUp 0.18s ease-out both',
+              animationDelay: submitted ? undefined : `${i * 55}ms`,
+            }}
+            aria-pressed={selected === i}
+          >
+            <span style={{
+              width: 24, height: 24, borderRadius: '50%', display: 'grid', placeItems: 'center',
+              fontSize: 'var(--text-sm)', fontWeight: 700, flexShrink: 0,
+              background: 'transparent',
+              color: 'inherit',
+            }}>
+              {getMarker(i)}
+            </span>
+            <span>{opt}</span>
+          </button>
+        ))}
+      </div>
+
+      {!submitted ? (
+        <button
+          onClick={handleSubmit}
+          disabled={selected == null}
+          style={{
+            padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
+            cursor: selected == null ? 'not-allowed' : 'pointer',
+            background: selected == null ? 'var(--border)' : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
+            color: '#fff', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
+             opacity: selected == null ? 0.5 : 1, transition: 'opacity 0.15s',
+          }}
+        >
+          Submit answer
+        </button>
+      ) : (
+        <>
+          <div style={{
+            borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden',
+            border: '1px solid var(--ex-panel-border)',
+            animation: 'fadeUp 0.22s ease-out both',
+          }}>
+            <div style={{
+              padding: '10px 14px',
+              background: 'var(--ex-panel-bg)',
+              fontSize: 'var(--text-sm)', fontWeight: 600,
+              color: 'var(--text)',
+              borderBottom: '1px solid var(--ex-panel-border)',
+            }}>
+              Answer
+            </div>
+            <div style={{ padding: '10px 14px', background: 'var(--surface)', fontSize: 'var(--text-sm)', lineHeight: 1.7 }}>
+              <div>
+                <span style={{ color: 'var(--ex-panel-text)' }}>{options[correct]}</span>
+              </div>
+            </div>
+          </div>
+          {exercise.explanation && (
+            <div style={{
+              marginTop: 10, fontSize: 'var(--text-sm)', color: 'var(--ex-panel-text)', lineHeight: 1.65,
+              padding: '11px 14px', background: 'var(--ex-panel-bg)', borderRadius: 'var(--radius-sm, 6px)',
+              border: '1px solid var(--ex-panel-border)',
+            }}>
+              <span style={{ fontWeight: 700, color: NAVY }}>Why: </span>
+              {exercise.explanation}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}

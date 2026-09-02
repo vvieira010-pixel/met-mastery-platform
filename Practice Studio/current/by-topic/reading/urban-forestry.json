@@ -1,0 +1,387 @@
+{
+  "skill": "reading",
+  "topic": "urban-forestry",
+  "totalExercises": 19,
+  "exercises": [
+    {
+      "id": "trees_14_77",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to all three sections. Which statement would program director Ana Costa most likely agree with?",
+      "options": [
+        "Tree planting should be left to professional city crews.",
+        "A campaign succeeds through long-term community care, not just planting.",
+        "Publicity is more important than survival rates.",
+        "Trees grow best along rivers and in parks."
+      ],
+      "correct": 1,
+      "explanation": "Costa's final quote — 'Teaching them to keep it alive is the real program' — shows she values ongoing care over the planting event itself. A is the opposite of her strategy.",
+      "questionType": "cross-text"
+    },
+    {
+      "id": "trees_14_70",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. What was the skeptics' original view of the campaign?",
+      "options": [
+        "It would cost too much money.",
+        "It was intended mainly to generate publicity.",
+        "It would take longer than five years.",
+        "It planted trees in the wrong locations."
+      ],
+      "correct": 1,
+      "explanation": "Skeptics 'called it a publicity stunt' — something designed 'for headlines rather than for reality.' Note how the passage then proves them wrong with the 21,000th tree.",
+      "questionType": "detail (section C)"
+    },
+    {
+      "id": "trees_14_75",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to sections A and C. What goal do both texts share?",
+      "options": [
+        "raising money for the parks department",
+        "involving community members in planting trees",
+        "training professional arborists",
+        "celebrating the planting of the 21,000th tree"
+      ],
+      "correct": 1,
+      "explanation": "Section A recruits volunteers to plant 200 trees; section C describes a city that 'gives trees away' to residents and volunteers. Both rely on community participation.",
+      "questionType": "cross-text"
+    },
+    {
+      "id": "trees_4_19",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 4,
+      "intro": "This passage is about trees in cities.",
+      "context": "City trees do far more than decorate sidewalks. A mature tree can intercept thousands of liters of rainwater each year, easing pressure on storm drains during heavy rains. Its leaves filter dust and pollutants from the air, and its shade can lower the temperature of a street by several degrees — a benefit of growing importance as cities experience more frequent heat waves. Researchers have even found that hospital patients recover faster when their windows look out on trees.\n\nYet the life of a city tree is remarkably hard. Roots are squeezed into small pits of compacted soil, often surrounded by pavement that blocks water and air. Road salt, car exhaust, and construction damage add to the stress. As a result, the average street tree in a dense city center may live only a fraction of the lifespan it would enjoy in a forest.\n\nThe benefits of urban trees are also distributed unevenly. Wealthier neighborhoods tend to have far more tree cover than poorer ones, a pattern documented in cities around the world. Because trees lower temperatures and improve air quality, this inequality has real consequences for public health, particularly during heat waves.\n\nIn response, many cities have launched ambitious planting campaigns. Some now map every street tree and measure the \"canopy cover\" of each neighborhood, directing new plantings toward the areas that need them most. Experts caution, however, that planting is only the beginning: a young tree requires years of watering and care before it can survive on its own, and campaigns that count saplings planted but not trees surviving often achieve less than they promise.",
+      "question": "Why does the author mention wealthier neighborhoods?",
+      "options": [
+        "to show where the oldest trees are found",
+        "to suggest that trees increase property values",
+        "to show that tree cover is unequal within cities",
+        "to explain where planting campaigns began"
+      ],
+      "correct": 2,
+      "explanation": "The topic sentence of paragraph 3 is that benefits are 'distributed unevenly'; the comparison between wealthy and poor neighborhoods illustrates exactly that point.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "trees_4_18",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 4,
+      "intro": "This passage is about trees in cities.",
+      "context": "City trees do far more than decorate sidewalks. A mature tree can intercept thousands of liters of rainwater each year, easing pressure on storm drains during heavy rains. Its leaves filter dust and pollutants from the air, and its shade can lower the temperature of a street by several degrees — a benefit of growing importance as cities experience more frequent heat waves. Researchers have even found that hospital patients recover faster when their windows look out on trees.\n\nYet the life of a city tree is remarkably hard. Roots are squeezed into small pits of compacted soil, often surrounded by pavement that blocks water and air. Road salt, car exhaust, and construction damage add to the stress. As a result, the average street tree in a dense city center may live only a fraction of the lifespan it would enjoy in a forest.\n\nThe benefits of urban trees are also distributed unevenly. Wealthier neighborhoods tend to have far more tree cover than poorer ones, a pattern documented in cities around the world. Because trees lower temperatures and improve air quality, this inequality has real consequences for public health, particularly during heat waves.\n\nIn response, many cities have launched ambitious planting campaigns. Some now map every street tree and measure the \"canopy cover\" of each neighborhood, directing new plantings toward the areas that need them most. Experts caution, however, that planting is only the beginning: a young tree requires years of watering and care before it can survive on its own, and campaigns that count saplings planted but not trees surviving often achieve less than they promise.",
+      "question": "In the first sentence of paragraph 2, which word is closest in meaning to remarkably?",
+      "options": [
+        "temporarily",
+        "surprisingly",
+        "slightly",
+        "naturally"
+      ],
+      "correct": 1,
+      "explanation": "'Remarkably hard' means hard to a surprising degree. The following sentences list extreme difficulties — compacted soil, salt, exhaust — which justifies the strong word.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "trees_4_16",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 4,
+      "intro": "This passage is about trees in cities.",
+      "context": "City trees do far more than decorate sidewalks. A mature tree can intercept thousands of liters of rainwater each year, easing pressure on storm drains during heavy rains. Its leaves filter dust and pollutants from the air, and its shade can lower the temperature of a street by several degrees — a benefit of growing importance as cities experience more frequent heat waves. Researchers have even found that hospital patients recover faster when their windows look out on trees.\n\nYet the life of a city tree is remarkably hard. Roots are squeezed into small pits of compacted soil, often surrounded by pavement that blocks water and air. Road salt, car exhaust, and construction damage add to the stress. As a result, the average street tree in a dense city center may live only a fraction of the lifespan it would enjoy in a forest.\n\nThe benefits of urban trees are also distributed unevenly. Wealthier neighborhoods tend to have far more tree cover than poorer ones, a pattern documented in cities around the world. Because trees lower temperatures and improve air quality, this inequality has real consequences for public health, particularly during heat waves.\n\nIn response, many cities have launched ambitious planting campaigns. Some now map every street tree and measure the \"canopy cover\" of each neighborhood, directing new plantings toward the areas that need them most. Experts caution, however, that planting is only the beginning: a young tree requires years of watering and care before it can survive on its own, and campaigns that count saplings planted but not trees surviving often achieve less than they promise.",
+      "question": "What is the main idea of the passage?",
+      "options": [
+        "Urban trees provide major benefits but face serious challenges.",
+        "City trees are healthier than forest trees.",
+        "Planting campaigns always fail in poor neighborhoods.",
+        "Hospitals should be built near parks."
+      ],
+      "correct": 0,
+      "explanation": "Paragraph 1 lists benefits; paragraphs 2–3 present the challenges (harsh conditions, inequality); paragraph 4 discusses the response and its limits. That balanced structure is the main idea.",
+      "questionType": "main idea"
+    },
+    {
+      "id": "trees_14_71",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. How does the city carry out most of its planting?",
+      "options": [
+        "It hires a professional planting company.",
+        "It requires schools to plant trees weekly.",
+        "It gives trees to residents who plant and water them.",
+        "It pays volunteers by the hour."
+      ],
+      "correct": 2,
+      "explanation": "The strategy is that 'the city gives trees away' to residents who 'agree to plant and water a tree.' The arborist's visit is support, not the planting itself.",
+      "questionType": "detail (section C)"
+    },
+    {
+      "id": "trees_14_68",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section B. According to the text, how do trees affect shoppers?",
+      "options": [
+        "They make shoppers feel younger.",
+        "They cause shoppers to spend more time and money in an area.",
+        "They encourage shoppers to buy houses nearby.",
+        "They help shoppers find stores more easily."
+      ],
+      "correct": 1,
+      "explanation": "The text says shoppers 'spend more time — and more money — in tree-lined shopping districts.' C confuses this with the separate point about houses selling faster.",
+      "questionType": "detail (section B)"
+    },
+    {
+      "id": "trees_14_67",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section A. Why should interested volunteers act before May 2?",
+      "options": [
+        "The event will be moved to the rain date.",
+        "Online registration closes on that date.",
+        "Lunch will not be provided after that day.",
+        "The park will close for planting."
+      ],
+      "correct": 1,
+      "explanation": "'Register online by May 2' means May 2 is the deadline. The limited space (80 participants) is the extra reason to act early.",
+      "questionType": "detail (section A)"
+    },
+    {
+      "id": "trees_14_74",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. What change improved tree survival rates?",
+      "options": [
+        "using more experienced city crews",
+        "choosing more drought-resistant species",
+        "reducing the number of trees planted each year",
+        "requiring adopters to attend a short training session"
+      ],
+      "correct": 3,
+      "explanation": "Officials 'note that survival rates have improved since the city began requiring adopters to attend a short training session.' Look for the word 'since' — it marks cause and effect.",
+      "questionType": "detail (section C)"
+    },
+    {
+      "id": "trees_4_17",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 4,
+      "intro": "This passage is about trees in cities.",
+      "context": "City trees do far more than decorate sidewalks. A mature tree can intercept thousands of liters of rainwater each year, easing pressure on storm drains during heavy rains. Its leaves filter dust and pollutants from the air, and its shade can lower the temperature of a street by several degrees — a benefit of growing importance as cities experience more frequent heat waves. Researchers have even found that hospital patients recover faster when their windows look out on trees.\n\nYet the life of a city tree is remarkably hard. Roots are squeezed into small pits of compacted soil, often surrounded by pavement that blocks water and air. Road salt, car exhaust, and construction damage add to the stress. As a result, the average street tree in a dense city center may live only a fraction of the lifespan it would enjoy in a forest.\n\nThe benefits of urban trees are also distributed unevenly. Wealthier neighborhoods tend to have far more tree cover than poorer ones, a pattern documented in cities around the world. Because trees lower temperatures and improve air quality, this inequality has real consequences for public health, particularly during heat waves.\n\nIn response, many cities have launched ambitious planting campaigns. Some now map every street tree and measure the \"canopy cover\" of each neighborhood, directing new plantings toward the areas that need them most. Experts caution, however, that planting is only the beginning: a young tree requires years of watering and care before it can survive on its own, and campaigns that count saplings planted but not trees surviving often achieve less than they promise.",
+      "question": "According to the passage, what did researchers find about hospital patients?",
+      "options": [
+        "They prefer rooms on higher floors.",
+        "They recover more quickly with views of trees.",
+        "They often ask to be moved near parks.",
+        "They need more care during heat waves."
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 1 states directly that 'hospital patients recover faster when their windows look out on trees.'",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_14_66",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section A. What must volunteers younger than 16 do?",
+      "options": [
+        "register before everyone else",
+        "bring their own tools and gloves",
+        "come with an adult",
+        "attend a training session"
+      ],
+      "correct": 2,
+      "explanation": "The notice says 'Volunteers under 16 must be accompanied by an adult.' 'Accompanied by' means 'together with' — a classic MET synonym question.",
+      "questionType": "detail (section A)"
+    },
+    {
+      "id": "met_14_67",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section A. Why should interested volunteers act before May 2?",
+      "options": [
+        "The event will be moved to the rain date.",
+        "Online registration closes on that date.",
+        "Lunch will not be provided after that day.",
+        "The park will close for planting."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail (section A)"
+    },
+    {
+      "id": "met_14_68",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section B. According to the text, how do trees affect shoppers?",
+      "options": [
+        "They make shoppers feel younger.",
+        "They cause shoppers to spend more time and money in an area.",
+        "They encourage shoppers to buy houses nearby.",
+        "They help shoppers find stores more easily."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail (section B)"
+    },
+    {
+      "id": "met_14_74",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. What change improved tree survival rates?",
+      "options": [
+        "using more experienced city crews",
+        "choosing more drought-resistant species",
+        "reducing the number of trees planted each year",
+        "requiring adopters to attend a short training session"
+      ],
+      "correct": 3,
+      "explanation": "",
+      "questionType": "detail (section C)"
+    },
+    {
+      "id": "met_14_73",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. According to the audit, why did most of the lost trees die?",
+      "options": [
+        "They were planted incorrectly by volunteers.",
+        "They were not watered during a drought.",
+        "They were damaged by construction.",
+        "They were attacked by insects."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail (section C)"
+    },
+    {
+      "id": "met_14_69",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section B. According to the text, where should trees be planted to lower cooling costs?",
+      "options": [
+        "in shopping districts",
+        "in public parks",
+        "close to rivers",
+        "on the west side of a house"
+      ],
+      "correct": 3,
+      "explanation": "",
+      "questionType": "detail (section B)"
+    },
+    {
+      "id": "met_14_66",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section A. What must volunteers younger than 16 do?",
+      "options": [
+        "register before everyone else",
+        "bring their own tools and gloves",
+        "come with an adult",
+        "attend a training session"
+      ],
+      "correct": 2,
+      "explanation": "",
+      "questionType": "detail (section A)"
+    },
+    {
+      "id": "met_14_70",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 14,
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "context": "Section A:\nRiverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.\n\nSection B:\nDid you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.\n\nSection C:\nWhen Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\"",
+      "question": "The following question refers to section C. What was the skeptics' original view of the campaign?",
+      "options": [
+        "It would cost too much money.",
+        "It was intended mainly to generate publicity.",
+        "It would take longer than five years.",
+        "It planted trees in the wrong locations."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail (section C)"
+    }
+  ]
+}

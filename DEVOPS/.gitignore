@@ -1,0 +1,26 @@
+# Local + CI environment parity
+node_modules/
+dist/
+dist-build/
+.vite-cache-*/
+.vite-cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# Editor / OS
+.idea/
+.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# Test output
+coverage/
+test-output.tap
+
+# Netlify
+.netlify/

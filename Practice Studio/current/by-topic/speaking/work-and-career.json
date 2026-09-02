@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "work-and-career",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_work_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe a job you would like to have in the future. Why does it interest you?"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "giant-sequoias",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_1_4",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 1,
+      "intro": "This passage is about giant sequoia trees.",
+      "context": "Giant sequoias are the largest trees on Earth by volume, and among the oldest. They grow naturally only on the western slopes of California's Sierra Nevada mountains, in roughly seventy scattered groves. The most famous of these trees, the General Sherman Tree, stands about 84 meters tall and measures more than 11 meters across at its base. It is estimated to be between 2,200 and 2,700 years old, which means it was already centuries old when the Roman Empire was at its height.\n\nGiant sequoias owe their longevity partly to their remarkable defenses. Their bark, which can be up to 60 centimeters thick, is rich in tannin, a chemical that repels insects and resists rot. The bark is also fibrous and fire-resistant, allowing mature trees to survive the low-intensity fires that regularly sweep through their native forests. In fact, sequoias depend on fire: heat opens their cones and clears the ground of competing plants, creating ideal conditions for seeds to germinate.\n\nDespite these strengths, giant sequoias face modern threats. Climate change has brought hotter, more severe droughts to California, and recent wildfires — far more intense than those of the past — have killed thousands of mature trees. Between 2020 and 2021 alone, fires destroyed an estimated ten to fourteen percent of the world's remaining giant sequoias. In response, forest managers have begun clearing underbrush around the groves and, in some cases, wrapping the bases of famous trees in fire-resistant blankets.\n\nConservationists warn that protecting these giants will require active management rather than simple preservation. The sequoias have survived for millennia, but whether they can withstand a rapidly changing climate may depend on decisions humans make today.",
+      "question": "In the first sentence of paragraph 3, which word is closest in meaning to threats?",
+      "options": [
+        "features",
+        "changes",
+        "dangers",
+        "mysteries"
+      ],
+      "correct": 2,
+      "explanation": "A 'threat' is something that can cause harm — a danger. The sentence lists climate change and severe wildfires, which confirms this negative meaning.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "trees_1_5",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 1,
+      "intro": "This passage is about giant sequoia trees.",
+      "context": "Giant sequoias are the largest trees on Earth by volume, and among the oldest. They grow naturally only on the western slopes of California's Sierra Nevada mountains, in roughly seventy scattered groves. The most famous of these trees, the General Sherman Tree, stands about 84 meters tall and measures more than 11 meters across at its base. It is estimated to be between 2,200 and 2,700 years old, which means it was already centuries old when the Roman Empire was at its height.\n\nGiant sequoias owe their longevity partly to their remarkable defenses. Their bark, which can be up to 60 centimeters thick, is rich in tannin, a chemical that repels insects and resists rot. The bark is also fibrous and fire-resistant, allowing mature trees to survive the low-intensity fires that regularly sweep through their native forests. In fact, sequoias depend on fire: heat opens their cones and clears the ground of competing plants, creating ideal conditions for seeds to germinate.\n\nDespite these strengths, giant sequoias face modern threats. Climate change has brought hotter, more severe droughts to California, and recent wildfires — far more intense than those of the past — have killed thousands of mature trees. Between 2020 and 2021 alone, fires destroyed an estimated ten to fourteen percent of the world's remaining giant sequoias. In response, forest managers have begun clearing underbrush around the groves and, in some cases, wrapping the bases of famous trees in fire-resistant blankets.\n\nConservationists warn that protecting these giants will require active management rather than simple preservation. The sequoias have survived for millennia, but whether they can withstand a rapidly changing climate may depend on decisions humans make today.",
+      "question": "What does the author suggest about protecting giant sequoias?",
+      "options": [
+        "It is probably impossible to achieve.",
+        "It will require people to take action.",
+        "It should focus only on famous trees.",
+        "It has been successful so far."
+      ],
+      "correct": 1,
+      "explanation": "The last paragraph says protection 'will require active management rather than simple preservation' — in other words, humans must act. A is too strong; the author raises a question but does not predict failure.",
+      "questionType": "inference"
+    }
+  ]
+}

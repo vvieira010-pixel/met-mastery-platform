@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "education",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_edu_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe your favorite subject at school and explain why you enjoyed it."
+    }
+  ]
+}

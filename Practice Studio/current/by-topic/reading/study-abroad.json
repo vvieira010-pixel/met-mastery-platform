@@ -1,0 +1,71 @@
+{
+  "skill": "reading",
+  "topic": "study-abroad",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "b2_mcq_reading_08",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "The main purpose of short-term exchanges is to",
+      "options": [
+        "help students travel as tourists.",
+        "offer academic and personal development opportunities.",
+        "replace full degrees.",
+        "prevent students from working."
+      ],
+      "correct": 1,
+      "explanation": "The passage describes regular study, work experience, independence, and problem-solving, so the broad purpose is academic and personal development.",
+      "context": "Study Abroad & Work\n\nMany universities around the world now offer short-term exchange programs for international students. These programs usually last from one semester to a full academic year and allow students to take regular courses in the host institution.\n\nIn addition to academic benefits, students often gain valuable work experience through part-time jobs or paid internships. Employers tend to appreciate candidates who have international experience, because such candidates are usually more flexible, independent, and better at solving problems in unfamiliar situations.\n\nHowever, studying abroad is not always easy. Students may struggle with cultural differences, homesickness, and the high cost of living in some countries. Careful planning and a clear budget are essential before deciding to study overseas."
+    },
+    {
+      "id": "b2_mcq_reading_02",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "Employers often value international experience because",
+      "options": [
+        "students usually speak several languages.",
+        "students become more flexible and independent.",
+        "students never feel homesick.",
+        "students learn how to avoid unfamiliar situations."
+      ],
+      "correct": 1,
+      "explanation": "The passage directly links international experience with flexibility, independence, and stronger problem-solving in unfamiliar situations.",
+      "context": "Study Abroad & Work\n\nMany universities around the world now offer short-term exchange programs for international students. These programs usually last from one semester to a full academic year and allow students to take regular courses in the host institution.\n\nIn addition to academic benefits, students often gain valuable work experience through part-time jobs or paid internships. Employers tend to appreciate candidates who have international experience, because such candidates are usually more flexible, independent, and better at solving problems in unfamiliar situations.\n\nHowever, studying abroad is not always easy. Students may struggle with cultural differences, homesickness, and the high cost of living in some countries. Careful planning and a clear budget are essential before deciding to study overseas."
+    },
+    {
+      "id": "b2_mcq_reading_01",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "Short-term exchange programs allow students to",
+      "options": [
+        "finish their degrees more quickly.",
+        "study abroad for a semester or a year.",
+        "avoid taking regular courses.",
+        "work full-time in another country."
+      ],
+      "correct": 1,
+      "explanation": "The passage says these programs last from one semester to a full academic year and let students study at the host institution.",
+      "context": "Study Abroad & Work\n\nMany universities around the world now offer short-term exchange programs for international students. These programs usually last from one semester to a full academic year and allow students to take regular courses in the host institution.\n\nIn addition to academic benefits, students often gain valuable work experience through part-time jobs or paid internships. Employers tend to appreciate candidates who have international experience, because such candidates are usually more flexible, independent, and better at solving problems in unfamiliar situations.\n\nHowever, studying abroad is not always easy. Students may struggle with cultural differences, homesickness, and the high cost of living in some countries. Careful planning and a clear budget are essential before deciding to study overseas."
+    },
+    {
+      "id": "b2_mcq_reading_07",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "A student who plans to study abroad should first",
+      "options": [
+        "buy expensive electronic devices.",
+        "prepare a clear budget and plan.",
+        "avoid learning about the host culture.",
+        "refuse to work part-time."
+      ],
+      "correct": 1,
+      "explanation": "The final sentence says careful planning and a clear budget are essential before studying overseas.",
+      "context": "Study Abroad & Work\n\nMany universities around the world now offer short-term exchange programs for international students. These programs usually last from one semester to a full academic year and allow students to take regular courses in the host institution.\n\nIn addition to academic benefits, students often gain valuable work experience through part-time jobs or paid internships. Employers tend to appreciate candidates who have international experience, because such candidates are usually more flexible, independent, and better at solving problems in unfamiliar situations.\n\nHowever, studying abroad is not always easy. Students may struggle with cultural differences, homesickness, and the high cost of living in some countries. Careful planning and a clear budget are essential before deciding to study overseas."
+    }
+  ]
+}

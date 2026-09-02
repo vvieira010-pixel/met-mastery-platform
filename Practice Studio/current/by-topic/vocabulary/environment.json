@@ -1,0 +1,47 @@
+{
+  "skill": "vocabulary",
+  "topic": "environment",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "vt_env_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Communities should ___ more trees to reduce air pollution.",
+      "options": [
+        "plant",
+        "plan",
+        "play",
+        "place"
+      ],
+      "correct": 0,
+      "explanation": "“Plant trees” is the standard phrase for adding greenery."
+    },
+    {
+      "id": "vt_env_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "We can ___ energy by turning off lights when leaving a room.",
+      "options": [
+        "save",
+        "spend",
+        "seek",
+        "sell"
+      ],
+      "correct": 0,
+      "explanation": "“Save energy” means to use less of it."
+    },
+    {
+      "id": "vt_env_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Recycling helps to ___ the amount of waste sent to landfills.",
+      "blanks": [
+        "reduce"
+      ]
+    }
+  ]
+}

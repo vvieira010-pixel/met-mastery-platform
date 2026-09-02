@@ -1,0 +1,4 @@
+- generic [ref=f3e2]:
+  - link "Skip to content" [ref=f3e60] [cursor=pointer]:
+    - /url: "#student-main"
+  - generic [ref=f3e62]

@@ -1,0 +1,23 @@
+MET Mock Test – CEFR Grade Scale
+
+Use the number of correct answers out of 50 to estimate the CEFR level.
+
+0–16 correct  → A2 or below
+17–24 correct → B1-
+25–33 correct → B1 to low B2
+34–40 correct → B2
+41–46 correct → strong B2
+47–50 correct → C1
+
+Recommended final report format:
+- Score: ___ / 50
+- Estimated CEFR: ___
+- Difficulty level: Easy / Medium / Hard / Very Hard
+
+Suggested teacher interpretation:
+- A2 or below: needs foundational reading and grammar work
+- B1-: developing control, but inconsistent accuracy
+- B1 to low B2: on the edge of independent user level
+- B2: solid upper-intermediate performance
+- Strong B2: close to advanced control
+- C1: advanced proficiency

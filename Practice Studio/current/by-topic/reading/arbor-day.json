@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "arbor-day",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_3_13",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 3,
+      "intro": "This passage is about the history of Arbor Day.",
+      "context": "In the early 1870s, the American state of Nebraska was largely a treeless prairie. Settlers who had moved there missed the forests of the East, and they needed wood for fuel, construction, and shelter from the wind. Among them was a journalist named J. Sterling Morton, who believed that planting trees would improve life on the plains. At his urging, the state declared April 10, 1872, the first Arbor Day — a holiday dedicated to planting trees.\n\nThe response was remarkable. On that single day, Nebraskans planted an estimated one million trees. Communities organized competitions, and prizes were awarded to counties and individuals who planted the most trees correctly. The tradition spread quickly: within twenty years, nearly every state in the country observed some form of Arbor Day, usually in late April, when spring planting conditions are best.\n\nThe idea soon traveled beyond the United States. Today, dozens of countries hold their own tree-planting celebrations, though the dates vary according to local climates. Brazil observes Arbor Day on September 21, just as spring begins in the Southern Hemisphere. Japan, South Korea, Israel, and Australia all host similar events, some of them with roots older than the American version.\n\nMorton himself described the holiday as an investment in the future, noting that while other celebrations look back on past achievements, Arbor Day looks forward. More than 150 years later, the simple act of planting a tree remains the holiday's central tradition — and Nebraska, once called \"the treeless state,\" now has forests that did not exist before 1872.",
+      "question": "In the third sentence of paragraph 1, which phrase is closest in meaning to at his urging?",
+      "options": [
+        "because of his encouragement",
+        "despite his opposition",
+        "under his supervision",
+        "following his example"
+      ],
+      "correct": 0,
+      "explanation": "To do something 'at someone's urging' means to do it because that person strongly encouraged it. The context — Morton believed planting trees would improve life — confirms he pushed for the idea.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "trees_3_11",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 3,
+      "intro": "This passage is about the history of Arbor Day.",
+      "context": "In the early 1870s, the American state of Nebraska was largely a treeless prairie. Settlers who had moved there missed the forests of the East, and they needed wood for fuel, construction, and shelter from the wind. Among them was a journalist named J. Sterling Morton, who believed that planting trees would improve life on the plains. At his urging, the state declared April 10, 1872, the first Arbor Day — a holiday dedicated to planting trees.\n\nThe response was remarkable. On that single day, Nebraskans planted an estimated one million trees. Communities organized competitions, and prizes were awarded to counties and individuals who planted the most trees correctly. The tradition spread quickly: within twenty years, nearly every state in the country observed some form of Arbor Day, usually in late April, when spring planting conditions are best.\n\nThe idea soon traveled beyond the United States. Today, dozens of countries hold their own tree-planting celebrations, though the dates vary according to local climates. Brazil observes Arbor Day on September 21, just as spring begins in the Southern Hemisphere. Japan, South Korea, Israel, and Australia all host similar events, some of them with roots older than the American version.\n\nMorton himself described the holiday as an investment in the future, noting that while other celebrations look back on past achievements, Arbor Day looks forward. More than 150 years later, the simple act of planting a tree remains the holiday's central tradition — and Nebraska, once called \"the treeless state,\" now has forests that did not exist before 1872.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the life of a famous American journalist",
+        "the origins and spread of a tree-planting holiday",
+        "the best season for planting trees in Brazil",
+        "how Nebraska became a state"
+      ],
+      "correct": 1,
+      "explanation": "The passage follows Arbor Day from its creation in Nebraska (paragraphs 1–2) to its international spread (paragraph 3) and its philosophy (paragraph 4). A and D are only background details.",
+      "questionType": "main idea"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "skill": "listening",
+  "topic": "technology",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "dr_L18c_mtgcfjqd_13",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L18-stress-immune.mp3",
+      "audioText": "Many people underestimate how much stress affects the immune system. Chronic stress can increase inflammation and make the body more vulnerable to illness. Simple habits, like regular exercise and consistent sleep schedules, can significantly reduce this risk. Today we will look at a few techniques you can start using this week.",
+      "question": "What is the speaker's attitude toward the techniques mentioned?",
+      "options": [
+        "Skeptical",
+        "Dismissive",
+        "Encouraging",
+        "Neutral"
+      ],
+      "correct": 2,
+      "listeningFormat": "attitude"
+    },
+    {
+      "id": "dr_L21a_mtgcfjqd_1a",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L21-online-ordering.mp3",
+      "audioText": "Our sales numbers this quarter exceeded expectations, largely due to the new online ordering system. Customers reported the checkout process felt faster and more reliable. Looking ahead, we plan to expand this system to our international stores by early next year, starting with our locations in Canada and Mexico.",
+      "question": "What is the speaker mainly discussing?",
+      "options": [
+        "A decline in sales",
+        "The success of a new ordering system",
+        "A change in store locations",
+        "Customer complaints"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L21b_mtgcfjqd_1b",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L21-online-ordering.mp3",
+      "audioText": "Our sales numbers this quarter exceeded expectations, largely due to the new online ordering system. Customers reported the checkout process felt faster and more reliable. Looking ahead, we plan to expand this system to our international stores by early next year, starting with our locations in Canada and Mexico.",
+      "question": "Why does the speaker mention Canada and Mexico?",
+      "options": [
+        "They are where sales have declined",
+        "They will be the first international expansion sites",
+        "They no longer use the online system",
+        "They are opening new physical stores"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

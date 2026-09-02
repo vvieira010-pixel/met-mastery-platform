@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "brain-science",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "met_11_53",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 11,
+      "intro": "This passage is about the human brain.",
+      "context": "The human brain is the most complex organ in the body, containing roughly 86 billion neurons. Each neuron can form connections with thousands of others, creating a network far more intricate than any computer ever built. This network allows us to think, remember, feel emotions, and control our movements.\n\nDifferent parts of the brain specialize in different functions. The cerebrum, the largest part, is responsible for thinking, planning, and voluntary movement. The cerebellum, located at the back, coordinates balance and fine motor skills. Deep inside, structures such as the hippocampus play a key role in forming memories, while the amygdala processes emotions like fear and anger.\n\nDespite its complexity, the brain is remarkably adaptable. When one area is damaged, other regions can sometimes take over its functions—a phenomenon known as neuroplasticity. This ability is strongest in children, which is why young brains can recover from injuries more easily than adult brains. However, neuroplasticity continues throughout life, allowing people to learn new skills and adapt to changing circumstances.\n\nScientists are still uncovering the brain's secrets. Recent research has shown that the brain continues to produce new neurons in certain areas, even in adulthood. This discovery challenges the old belief that we are born with all the brain cells we will ever have. As imaging technology improves, researchers hope to better understand conditions such as Alzheimer's disease, depression, and schizophrenia, and to develop more effective treatments.",
+      "question": "In the third sentence of paragraph 3, which word is closest in meaning to 'phenomenon'?",
+      "options": [
+        "problem",
+        "occurrence",
+        "theory",
+        "experiment"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "met_11_55",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 11,
+      "intro": "This passage is about the human brain.",
+      "context": "The human brain is the most complex organ in the body, containing roughly 86 billion neurons. Each neuron can form connections with thousands of others, creating a network far more intricate than any computer ever built. This network allows us to think, remember, feel emotions, and control our movements.\n\nDifferent parts of the brain specialize in different functions. The cerebrum, the largest part, is responsible for thinking, planning, and voluntary movement. The cerebellum, located at the back, coordinates balance and fine motor skills. Deep inside, structures such as the hippocampus play a key role in forming memories, while the amygdala processes emotions like fear and anger.\n\nDespite its complexity, the brain is remarkably adaptable. When one area is damaged, other regions can sometimes take over its functions—a phenomenon known as neuroplasticity. This ability is strongest in children, which is why young brains can recover from injuries more easily than adult brains. However, neuroplasticity continues throughout life, allowing people to learn new skills and adapt to changing circumstances.\n\nScientists are still uncovering the brain's secrets. Recent research has shown that the brain continues to produce new neurons in certain areas, even in adulthood. This discovery challenges the old belief that we are born with all the brain cells we will ever have. As imaging technology improves, researchers hope to better understand conditions such as Alzheimer's disease, depression, and schizophrenia, and to develop more effective treatments.",
+      "question": "What do scientists hope to achieve with better imaging technology?",
+      "options": [
+        "to grow new neurons in the laboratory",
+        "to understand and treat brain disorders",
+        "to prove that adults cannot learn new skills",
+        "to replace damaged brain parts with computers"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "inference"
+    }
+  ]
+}

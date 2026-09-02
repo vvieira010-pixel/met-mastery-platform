@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Modals of Obligation - Lack of Obligation (B1)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_3",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "You _____ wear a tie to the office, but it is highly recommended for important client meetings.",
+      "options": [
+        "mustn't",
+        "don't have to",
+        "shouldn't",
+        "can't"
+      ],
+      "correct": 1,
+      "explanation": "'Don't have to' shows a lack of obligation (it's optional).",
+      "topicId": "Modals of Obligation / Lack of Obligation (B1)"
+    },
+    {
+      "id": "G48",
+      "number": 48,
+      "category": "Modals of Obligation - Lack of Obligation (B1)",
+      "level": "B1",
+      "question": "You ________ bring any food; dinner will be provided.",
+      "options": {
+        "A": "mustn't",
+        "B": "don't have to",
+        "C": "shouldn't",
+        "D": "can't"
+      },
+      "correct_answer": "B",
+      "correct_option": "don't have to",
+      "explanation": "'Don't have to' means there is no obligation. 'Mustn't' means it is prohibited.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

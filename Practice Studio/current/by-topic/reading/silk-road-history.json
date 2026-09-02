@@ -1,0 +1,87 @@
+{
+  "skill": "reading",
+  "topic": "silk-road-history",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "met_10_47",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 10,
+      "intro": "This passage is about the Silk Road.",
+      "context": "The Silk Road was not a single road but a network of trade routes that connected China to the Mediterranean Sea for more than 1,500 years. Beginning around the second century B.C.E., merchants traveled these routes carrying silk, spices, precious metals, and other goods. Along with products, ideas, technologies, and religions also spread across continents.\n\nThe journey was long and dangerous. Traders faced harsh deserts, high mountains, and the threat of bandits. To reduce risks, merchants often traveled in large caravans, stopping at oasis towns to rest and exchange goods. These towns grew wealthy as trading centers, and some, such as Samarkand and Bukhara, became famous for their architecture and learning.\n\nThe Silk Road also facilitated cultural exchange. Buddhism traveled from India to China along these routes, and later, Islam spread into Central Asia. Papermaking, gunpowder, and the compass moved from China to the West, while glassmaking and certain artistic styles traveled eastward. Historians argue that the Silk Road helped shape the civilizations of Europe, Asia, and Africa.\n\nBy the 1400s, the Silk Road began to decline as sea routes became safer and faster. European explorers sought direct access to Asian markets by sailing around Africa and across the Atlantic. Although the overland routes lost their importance, the legacy of the Silk Road endures in the languages, religions, and technologies that were shared along the way.",
+      "question": "According to the passage, what did merchants do to reduce risks on the Silk Road?",
+      "options": [
+        "They hired soldiers to protect them.",
+        "They traveled in large caravans.",
+        "They avoided oasis towns.",
+        "They sailed instead of walking."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail"
+    },
+    {
+      "id": "met_10_49",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 10,
+      "intro": "This passage is about the Silk Road.",
+      "context": "The Silk Road was not a single road but a network of trade routes that connected China to the Mediterranean Sea for more than 1,500 years. Beginning around the second century B.C.E., merchants traveled these routes carrying silk, spices, precious metals, and other goods. Along with products, ideas, technologies, and religions also spread across continents.\n\nThe journey was long and dangerous. Traders faced harsh deserts, high mountains, and the threat of bandits. To reduce risks, merchants often traveled in large caravans, stopping at oasis towns to rest and exchange goods. These towns grew wealthy as trading centers, and some, such as Samarkand and Bukhara, became famous for their architecture and learning.\n\nThe Silk Road also facilitated cultural exchange. Buddhism traveled from India to China along these routes, and later, Islam spread into Central Asia. Papermaking, gunpowder, and the compass moved from China to the West, while glassmaking and certain artistic styles traveled eastward. Historians argue that the Silk Road helped shape the civilizations of Europe, Asia, and Africa.\n\nBy the 1400s, the Silk Road began to decline as sea routes became safer and faster. European explorers sought direct access to Asian markets by sailing around Africa and across the Atlantic. Although the overland routes lost their importance, the legacy of the Silk Road endures in the languages, religions, and technologies that were shared along the way.",
+      "question": "Why does the author mention Buddhism and Islam?",
+      "options": [
+        "to show that religion was more important than trade",
+        "to illustrate how ideas spread along the routes",
+        "to explain why the routes declined",
+        "to compare different religions"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "purpose"
+    },
+    {
+      "id": "met_10_46",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 10,
+      "intro": "This passage is about the Silk Road.",
+      "context": "The Silk Road was not a single road but a network of trade routes that connected China to the Mediterranean Sea for more than 1,500 years. Beginning around the second century B.C.E., merchants traveled these routes carrying silk, spices, precious metals, and other goods. Along with products, ideas, technologies, and religions also spread across continents.\n\nThe journey was long and dangerous. Traders faced harsh deserts, high mountains, and the threat of bandits. To reduce risks, merchants often traveled in large caravans, stopping at oasis towns to rest and exchange goods. These towns grew wealthy as trading centers, and some, such as Samarkand and Bukhara, became famous for their architecture and learning.\n\nThe Silk Road also facilitated cultural exchange. Buddhism traveled from India to China along these routes, and later, Islam spread into Central Asia. Papermaking, gunpowder, and the compass moved from China to the West, while glassmaking and certain artistic styles traveled eastward. Historians argue that the Silk Road helped shape the civilizations of Europe, Asia, and Africa.\n\nBy the 1400s, the Silk Road began to decline as sea routes became safer and faster. European explorers sought direct access to Asian markets by sailing around Africa and across the Atlantic. Although the overland routes lost their importance, the legacy of the Silk Road endures in the languages, religions, and technologies that were shared along the way.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the dangers of traveling in ancient deserts",
+        "the history and impact of the Silk Road",
+        "how silk was produced in ancient China",
+        "the architecture of Samarkand and Bukhara"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "main idea"
+    },
+    {
+      "id": "met_10_48",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 10,
+      "intro": "This passage is about the Silk Road.",
+      "context": "The Silk Road was not a single road but a network of trade routes that connected China to the Mediterranean Sea for more than 1,500 years. Beginning around the second century B.C.E., merchants traveled these routes carrying silk, spices, precious metals, and other goods. Along with products, ideas, technologies, and religions also spread across continents.\n\nThe journey was long and dangerous. Traders faced harsh deserts, high mountains, and the threat of bandits. To reduce risks, merchants often traveled in large caravans, stopping at oasis towns to rest and exchange goods. These towns grew wealthy as trading centers, and some, such as Samarkand and Bukhara, became famous for their architecture and learning.\n\nThe Silk Road also facilitated cultural exchange. Buddhism traveled from India to China along these routes, and later, Islam spread into Central Asia. Papermaking, gunpowder, and the compass moved from China to the West, while glassmaking and certain artistic styles traveled eastward. Historians argue that the Silk Road helped shape the civilizations of Europe, Asia, and Africa.\n\nBy the 1400s, the Silk Road began to decline as sea routes became safer and faster. European explorers sought direct access to Asian markets by sailing around Africa and across the Atlantic. Although the overland routes lost their importance, the legacy of the Silk Road endures in the languages, religions, and technologies that were shared along the way.",
+      "question": "In the first sentence of paragraph 3, which word is closest in meaning to 'facilitated'?",
+      "options": [
+        "prevented",
+        "enabled",
+        "delayed",
+        "ignored"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "vocabulary"
+    }
+  ]
+}

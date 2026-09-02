@@ -1,0 +1,78 @@
+{
+  "skill": "vocabulary",
+  "topic": "education",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "edu_mcq1",
+      "type": "mcq",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "education",
+      "question": "Students are expected to ___ their assignments on time.",
+      "options": [
+        "submit",
+        "subject",
+        "support",
+        "suggest"
+      ],
+      "correct": 0,
+      "explanation": "Submit an assignment means to hand it in to a teacher."
+    },
+    {
+      "id": "michigan_vocab_21",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The professor encouraged students to ___ their opinions with specific examples.",
+      "options": [
+        "simplify",
+        "substantiate",
+        "distribute",
+        "postpone"
+      ],
+      "correct": 1,
+      "explanation": "**Substantiate** means support a claim with evidence."
+    },
+    {
+      "id": "vt_edu_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Students are expected to ___ their assignments on time.",
+      "options": [
+        "submit",
+        "subject",
+        "support",
+        "suggest"
+      ],
+      "correct": 0,
+      "explanation": "“Submit an assignment” means to hand it in to a teacher."
+    },
+    {
+      "id": "vt_edu_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "The teacher encouraged the class to ___ questions during the lesson.",
+      "blanks": [
+        "ask"
+      ]
+    },
+    {
+      "id": "michigan_vocab_8",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The teacher asked us to ___ the main ideas in our own words.",
+      "options": [
+        "separate",
+        "decorate",
+        "whisper",
+        "summarize"
+      ],
+      "correct": 3,
+      "explanation": "**Summarize** means give the main points briefly."
+    }
+  ]
+}

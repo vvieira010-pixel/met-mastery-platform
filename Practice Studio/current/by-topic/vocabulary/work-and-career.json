@@ -1,0 +1,376 @@
+{
+  "skill": "vocabulary",
+  "topic": "work-and-career",
+  "totalExercises": 25,
+  "exercises": [
+    {
+      "id": "vt_work_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Remote work allows employees to ___ their daily commutes.",
+      "options": [
+        "avoid",
+        "attend",
+        "accept",
+        "afford"
+      ],
+      "correct": 0,
+      "explanation": "“Avoid a commute” means not having to travel to an office."
+    },
+    {
+      "id": "vt_work_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "He decided to ___ for the position after reading the job description.",
+      "options": [
+        "apply",
+        "reply",
+        "request",
+        "return"
+      ],
+      "correct": 0,
+      "explanation": "“Apply for a position” is the standard collocation for seeking a job."
+    },
+    {
+      "id": "vt_work_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "The manager asked the team to ___ the report before the meeting.",
+      "blanks": [
+        "finish"
+      ]
+    },
+    {
+      "id": "michigan_vocab_1",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "We need to ___ the meeting until next Monday because several people are away.",
+      "options": [
+        "repair",
+        "remove",
+        "collect",
+        "postpone"
+      ],
+      "correct": 3,
+      "explanation": "**Postpone** means to delay something until a later time."
+    },
+    {
+      "id": "michigan_vocab_22",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The company has taken measures to ___ the impact of rising energy costs.",
+      "options": [
+        "memorize",
+        "manufacture",
+        "mitigate",
+        "magnify"
+      ],
+      "correct": 2,
+      "explanation": "**Mitigate** means make something less severe or harmful."
+    },
+    {
+      "id": "michigan_vocab_32",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The report does not ___ the claim that the project created more jobs than expected; the data actually suggest the opposite.",
+      "options": [
+        "corroborate",
+        "allocate",
+        "commemorate",
+        "deteriorate"
+      ],
+      "correct": 0,
+      "explanation": "**Corroborate** means confirm or support a statement with evidence."
+    },
+    {
+      "id": "michigan_vocab_3",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "Maria felt ___ before her job interview, but she became more relaxed after speaking to the manager.",
+      "options": [
+        "ancient",
+        "nervous",
+        "narrow",
+        "silent"
+      ],
+      "correct": 1,
+      "explanation": "**Nervous** means worried or anxious about something."
+    },
+    {
+      "id": "michigan_vocab_13",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The company plans to ___ several new employees next year.",
+      "options": [
+        "hurry",
+        "hire",
+        "harm",
+        "hide"
+      ],
+      "correct": 1,
+      "explanation": "**Hire** means give someone a job."
+    },
+    {
+      "id": "michigan_vocab_43",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The proposal was rejected because its projected benefits were largely ___ and could not be measured reliably.",
+      "options": [
+        "transparent",
+        "speculative",
+        "consistent",
+        "compulsory"
+      ],
+      "correct": 1,
+      "explanation": "**Speculative** means based on guesses or incomplete evidence rather than certainty."
+    },
+    {
+      "id": "michigan_vocab_53",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The organization must ___ its limited funds carefully if it is to complete all of the planned projects.",
+      "options": [
+        "dissipate",
+        "allocate",
+        "revoke",
+        "withhold"
+      ],
+      "correct": 1,
+      "explanation": "**Allocate** means distribute resources for particular purposes."
+    },
+    {
+      "id": "michigan_vocab_4",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "Please ___ the form carefully before you send it to the office.",
+      "options": [
+        "fill in",
+        "look after",
+        "break down",
+        "turn off"
+      ],
+      "correct": 0,
+      "explanation": "**Fill in** means to complete a form by writing the required information."
+    },
+    {
+      "id": "michigan_vocab_34",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The company’s attempt to ___ criticism by publishing selected statistics failed to convince the public.",
+      "options": [
+        "enforce",
+        "derive",
+        "deflect",
+        "decipher"
+      ],
+      "correct": 2,
+      "explanation": "**Deflect** means redirect criticism, blame, or attention away from oneself or a subject."
+    },
+    {
+      "id": "michigan_vocab_44",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The organization has introduced strict procedures to ___ the misuse of confidential information.",
+      "options": [
+        "forestall",
+        "commemorate",
+        "inherit",
+        "facilitate"
+      ],
+      "correct": 0,
+      "explanation": "**Forestall** means prevent something from happening by acting in advance."
+    },
+    {
+      "id": "michigan_vocab_15",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The museum is free, but visitors are asked to make a small ___ if they can.",
+      "options": [
+        "celebration",
+        "direction",
+        "solution",
+        "donation"
+      ],
+      "correct": 3,
+      "explanation": "A **donation** is money or goods given to help a person or organization."
+    },
+    {
+      "id": "michigan_vocab_35",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The agreement contains a ___ clause that permits either party to end the contract with thirty days’ notice.",
+      "options": [
+        "deviation",
+        "provision",
+        "deficiency",
+        "prejudice"
+      ],
+      "correct": 1,
+      "explanation": "A **provision** is a condition or term included in an agreement."
+    },
+    {
+      "id": "michigan_vocab_55",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The company’s decision to publish the full report was intended to ___ concerns about a lack of transparency.",
+      "options": [
+        "allay",
+        "intensify",
+        "precipitate",
+        "circumvent"
+      ],
+      "correct": 0,
+      "explanation": "**Allay** means reduce or relieve fear, concern, or suspicion."
+    },
+    {
+      "id": "michigan_vocab_26",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The committee decided to ___ the proposal because it did not address the main safety concerns.",
+      "options": [
+        "restore",
+        "reject",
+        "retain",
+        "reveal"
+      ],
+      "correct": 1,
+      "explanation": "**Reject** means refuse to accept or approve something."
+    },
+    {
+      "id": "michigan_vocab_46",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The committee’s decision to cancel the project was based on a ___ assessment of its likely environmental consequences.",
+      "options": [
+        "cursory",
+        "arbitrary",
+        "rigorous",
+        "peripheral"
+      ],
+      "correct": 2,
+      "explanation": "**Rigorous** means thorough, careful, and demanding exact standards."
+    },
+    {
+      "id": "michigan_vocab_37",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The committee sought to ___ the conflict by bringing the two departments together for private negotiations.",
+      "options": [
+        "de-escalate",
+        "authenticate",
+        "proliferate",
+        "anticipate"
+      ],
+      "correct": 0,
+      "explanation": "**De-escalate** means reduce the intensity of a conflict or tense situation."
+    },
+    {
+      "id": "michigan_vocab_18",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The manager asked the team to ___ the problem before deciding how to solve it.",
+      "options": [
+        "imitate",
+        "identify",
+        "interrupt",
+        "install"
+      ],
+      "correct": 1,
+      "explanation": "**Identify** means recognize or establish what something is."
+    },
+    {
+      "id": "michigan_vocab_28",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The agreement will ___ both sides to share information about future projects.",
+      "options": [
+        "distract",
+        "oblige",
+        "release",
+        "persuade"
+      ],
+      "correct": 1,
+      "explanation": "**Oblige** means legally or morally require someone to do something."
+    },
+    {
+      "id": "michigan_vocab_20",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "We need to ___ the financial figures before presenting the report to the board.",
+      "options": [
+        "tolerate",
+        "verify",
+        "consume",
+        "resemble"
+      ],
+      "correct": 1,
+      "explanation": "**Verify** means check that something is accurate or true."
+    },
+    {
+      "id": "work_mcq1",
+      "type": "mcq",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "work_career",
+      "question": "Remote work allows employees to ___ their daily commutes.",
+      "options": [
+        "avoid",
+        "attend",
+        "accept",
+        "afford"
+      ],
+      "correct": 0,
+      "explanation": "Avoid a commute means not having to travel to an office."
+    },
+    {
+      "id": "work_mcq2",
+      "type": "mcq",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "work_career",
+      "question": "He decided to ___ for the position after reading the job description.",
+      "options": [
+        "apply",
+        "reply",
+        "request",
+        "return"
+      ],
+      "correct": 0,
+      "explanation": "Apply for a position is the standard collocation for seeking a job."
+    },
+    {
+      "id": "work_blank1",
+      "type": "blank",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "work_career",
+      "template": "The manager asked the team to ___ the report before the meeting.",
+      "blanks": [
+        "finish"
+      ],
+      "explanation": "Finish means to complete a task."
+    }
+  ]
+}

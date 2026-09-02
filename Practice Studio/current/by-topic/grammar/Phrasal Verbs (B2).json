@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Phrasal Verbs (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_11",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "We need to _____ a solution to this supply chain problem before the board meeting tomorrow.",
+      "options": [
+        "come up with",
+        "put up with",
+        "get away with",
+        "look forward to"
+      ],
+      "correct": 0,
+      "explanation": "'Come up with' means to invent, create, or think of an idea or solution.",
+      "topicId": "Phrasal Verbs (B2)"
+    },
+    {
+      "id": "G69",
+      "number": 69,
+      "category": "Phrasal Verbs (B2)",
+      "level": "B2",
+      "question": "The manager promised to ________ the complaint and contact us soon.",
+      "options": {
+        "A": "look into",
+        "B": "look after",
+        "C": "look up",
+        "D": "look down"
+      },
+      "correct_answer": "A",
+      "correct_option": "look into",
+      "explanation": "'Look into' means investigate or examine.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

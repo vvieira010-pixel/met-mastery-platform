@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "work-and-career",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "p02-reading-flexible-work",
+      "type": "read",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "work_career",
+      "source": "Platform 0.2 MET Skills Pack",
+      "instruction": "Read the passage and answer the questions.",
+      "passage": "Flexible Work, Better Work?\n\nMany companies now allow employees to work from home for part of the week. Supporters say that flexible work can reduce commuting time and help people organize their day around their most productive hours. It may also help employers hire people who live far from the main office.\n\nHowever, remote work is not automatically successful. New employees may need more support, and teams can miss the quick conversations that happen in a shared office. For this reason, some companies use a hybrid model: employees work remotely on focused tasks but meet in person for planning, training, and problem-solving.\n\nThe best arrangement depends on the work, the team, and the quality of communication. A policy that gives people flexibility but also sets clear expectations is more likely to work well.",
+      "questions": [
+        {
+          "id": "p02-reading-q1",
+          "question": "What is one benefit of flexible work mentioned in the passage?",
+          "options": [
+            "It removes the need for communication.",
+            "It can reduce commuting time.",
+            "It guarantees higher salaries.",
+            "It replaces all in-person meetings."
+          ],
+          "correct": 1,
+          "explanation": "The first paragraph says flexible work can reduce commuting time."
+        },
+        {
+          "id": "p02-reading-q2",
+          "question": "Why might some teams prefer a hybrid model?",
+          "options": [
+            "It avoids all remote work.",
+            "It allows every employee to choose any schedule.",
+            "It combines focused remote work with in-person collaboration.",
+            "It is cheaper than training new employees."
+          ],
+          "correct": 2,
+          "explanation": "The hybrid model keeps remote focus time while reserving in-person meetings for planning, training, and problem-solving."
+        },
+        {
+          "id": "p02-reading-q3",
+          "question": "What is the writer’s overall position?",
+          "options": [
+            "Flexible work is always better.",
+            "Remote work should be banned for new employees.",
+            "The best arrangement depends on context and communication.",
+            "Companies should return to traditional offices."
+          ],
+          "correct": 2,
+          "explanation": "The final paragraph gives a balanced conclusion: the right arrangement depends on the work, team, and communication."
+        }
+      ]
+    }
+  ]
+}

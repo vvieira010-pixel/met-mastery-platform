@@ -1,0 +1,6 @@
+{
+  "name": "MET Proficiency Platform",
+  "description": "MET test prep platform for nurses and healthcare professionals. AI-powered diagnosis, homework, and feedback cycle for the Michigan English Test.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

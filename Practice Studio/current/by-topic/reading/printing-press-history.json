@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "printing-press-history",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "met_6_26",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 6,
+      "intro": "This passage is about the printing press.",
+      "context": "Before the 1400s, books in Europe were copied by hand, usually by monks working in monasteries. This process was slow and expensive, so books were rare and most people could not read. In 1455, a German goldsmith named Johannes Gutenberg changed history by introducing movable type to Europe. His printing press allowed pages to be produced quickly and in large numbers.\n\nThe effects were immediate and far-reaching. Within fifty years, printing presses had been established in cities across Europe, and the number of books in circulation increased dramatically. As books became cheaper and more common, literacy rates rose. People could now read the Bible, scientific works, and political pamphlets for themselves, rather than relying on priests or rulers to interpret information for them.\n\nHistorians argue that the printing press helped bring about the Renaissance, the Reformation, and the Scientific Revolution. By spreading new ideas rapidly, it weakened the authority of traditional institutions and encouraged individuals to think for themselves. Some scholars even call it the most important invention of the second millennium.\n\nToday, the internet plays a role similar to that of the printing press. It allows information to be shared instantly across the globe, and like the press, it has raised questions about who controls knowledge and how truth can be distinguished from falsehood. Yet the basic principle remains the same: when information becomes widely accessible, societies change.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the life of Johannes Gutenberg",
+        "how the printing press changed society",
+        "why books were expensive before 1455",
+        "the differences between the internet and the printing press"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "main idea"
+    },
+    {
+      "id": "met_6_29",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 6,
+      "intro": "This passage is about the printing press.",
+      "context": "Before the 1400s, books in Europe were copied by hand, usually by monks working in monasteries. This process was slow and expensive, so books were rare and most people could not read. In 1455, a German goldsmith named Johannes Gutenberg changed history by introducing movable type to Europe. His printing press allowed pages to be produced quickly and in large numbers.\n\nThe effects were immediate and far-reaching. Within fifty years, printing presses had been established in cities across Europe, and the number of books in circulation increased dramatically. As books became cheaper and more common, literacy rates rose. People could now read the Bible, scientific works, and political pamphlets for themselves, rather than relying on priests or rulers to interpret information for them.\n\nHistorians argue that the printing press helped bring about the Renaissance, the Reformation, and the Scientific Revolution. By spreading new ideas rapidly, it weakened the authority of traditional institutions and encouraged individuals to think for themselves. Some scholars even call it the most important invention of the second millennium.\n\nToday, the internet plays a role similar to that of the printing press. It allows information to be shared instantly across the globe, and like the press, it has raised questions about who controls knowledge and how truth can be distinguished from falsehood. Yet the basic principle remains the same: when information becomes widely accessible, societies change.",
+      "question": "Why does the author mention the internet?",
+      "options": [
+        "to show that the printing press is no longer important",
+        "to compare two technologies that spread information widely",
+        "to explain how to use the internet safely",
+        "to argue that books are better than websites"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "purpose"
+    },
+    {
+      "id": "met_6_27",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 6,
+      "intro": "This passage is about the printing press.",
+      "context": "Before the 1400s, books in Europe were copied by hand, usually by monks working in monasteries. This process was slow and expensive, so books were rare and most people could not read. In 1455, a German goldsmith named Johannes Gutenberg changed history by introducing movable type to Europe. His printing press allowed pages to be produced quickly and in large numbers.\n\nThe effects were immediate and far-reaching. Within fifty years, printing presses had been established in cities across Europe, and the number of books in circulation increased dramatically. As books became cheaper and more common, literacy rates rose. People could now read the Bible, scientific works, and political pamphlets for themselves, rather than relying on priests or rulers to interpret information for them.\n\nHistorians argue that the printing press helped bring about the Renaissance, the Reformation, and the Scientific Revolution. By spreading new ideas rapidly, it weakened the authority of traditional institutions and encouraged individuals to think for themselves. Some scholars even call it the most important invention of the second millennium.\n\nToday, the internet plays a role similar to that of the printing press. It allows information to be shared instantly across the globe, and like the press, it has raised questions about who controls knowledge and how truth can be distinguished from falsehood. Yet the basic principle remains the same: when information becomes widely accessible, societies change.",
+      "question": "According to the passage, what was one result of the printing press?",
+      "options": [
+        "Monks stopped copying books entirely.",
+        "Books became cheaper and more common.",
+        "People stopped going to church.",
+        "European cities became smaller."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "detail"
+    }
+  ]
+}

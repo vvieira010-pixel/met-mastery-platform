@@ -1,0 +1,68 @@
+{
+  "voices": {
+    "sonia": {
+      "id": "21m00Tcm4TlvDq8ikWAM",
+      "name": "Sonia"
+    },
+    "antoni": {
+      "id": "ErXwobaYiN019PkySvjV",
+      "name": "Antoni"
+    },
+    "charlie": {
+      "id": "VR6AewLTigWG4xSOukaG",
+      "name": "Charlie"
+    },
+    "george": {
+      "id": "JBFqnCBsd6RMkjVDRZzb",
+      "name": "George"
+    },
+    "arnold": {
+      "id": "VR6AewLTigWG4xSOukaG",
+      "name": "Arnold"
+    },
+    "adam": {
+      "id": "pNInz6obpgDQGcFmaJgB",
+      "name": "Adam"
+    }
+  },
+  "part2": [
+    {
+      "src": "assets/audio/listening/part2/conv a.mp3",
+      "female": "sonia",
+      "male": "antoni"
+    },
+    {
+      "src": "assets/audio/listening/part2/conv b.mp3",
+      "female": "sonia",
+      "male": "charlie"
+    },
+    {
+      "src": "assets/audio/listening/part2/conv c.mp3",
+      "female": "sonia",
+      "male": "george"
+    },
+    {
+      "src": "assets/audio/listening/part2/conv d.mp3",
+      "female": "sonia",
+      "male": "arnold"
+    }
+  ],
+  "part3": [
+    {
+      "src": "assets/audio/listening/part3/conv a.mp3",
+      "speaker": "adam"
+    },
+    {
+      "src": "assets/audio/listening/part3/conv b.mp3",
+      "speaker": "sonia"
+    },
+    {
+      "src": "assets/audio/listening/part3/conv c.mp3",
+      "speaker": "antoni"
+    },
+    {
+      "src": "assets/audio/listening/part3/conv d.mp3",
+      "speaker": "charlie"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "baobab-adaptation",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "trees_7_32",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 7,
+      "intro": "This passage is about baobab trees.",
+      "context": "Few trees are as unmistakable as the baobab. With their enormous trunks and short, stubby branches, they look as if they have been planted upside down, roots waving in the air. An African legend explains that the gods, annoyed by the tree's vanity, pulled it out of the ground and thrust it back in the wrong way.\n\nThe baobab's strange shape is a practical adaptation to dry environments. Its trunk, which can reach ten meters in diameter, works largely as a water tank: a mature tree can store more than 100,000 liters of water in its soft, spongy wood, allowing it to survive long droughts. During the rainy season, the tree produces large white flowers that open at night and are pollinated by bats. Its fruit, sometimes called monkey bread, is dry, powdery, and extraordinarily rich in vitamin C.\n\nFor the people who live near them, baobabs are far more than landmarks. Their bark can be made into rope and cloth, their leaves are cooked as vegetables, and their hollow trunks have served as shelters, shops, and even a bus stop. Because individual trees can live for more than a thousand years, they often function as the center of village life, and many are protected by local custom.\n\nThat longevity makes recent news all the more alarming. Since 2005, researchers have documented the collapse of several of the oldest and largest baobabs in Africa — trees that had survived for well over a millennium. The cause is not fully understood, but scientists suspect that a changing climate, with higher temperatures and shifting rainfall, is stressing these giants beyond their limits.",
+      "question": "According to the passage, what is the main function of the baobab's trunk?",
+      "options": [
+        "supporting its heavy branches",
+        "producing large flowers",
+        "storing water",
+        "providing shelter for bats"
+      ],
+      "correct": 2,
+      "explanation": "Paragraph 2 calls the trunk 'largely a water tank' holding more than 100,000 liters. D is a trap — bats pollinate the flowers but do not live in the trunk.",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_7_33",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 7,
+      "intro": "This passage is about baobab trees.",
+      "context": "Few trees are as unmistakable as the baobab. With their enormous trunks and short, stubby branches, they look as if they have been planted upside down, roots waving in the air. An African legend explains that the gods, annoyed by the tree's vanity, pulled it out of the ground and thrust it back in the wrong way.\n\nThe baobab's strange shape is a practical adaptation to dry environments. Its trunk, which can reach ten meters in diameter, works largely as a water tank: a mature tree can store more than 100,000 liters of water in its soft, spongy wood, allowing it to survive long droughts. During the rainy season, the tree produces large white flowers that open at night and are pollinated by bats. Its fruit, sometimes called monkey bread, is dry, powdery, and extraordinarily rich in vitamin C.\n\nFor the people who live near them, baobabs are far more than landmarks. Their bark can be made into rope and cloth, their leaves are cooked as vegetables, and their hollow trunks have served as shelters, shops, and even a bus stop. Because individual trees can live for more than a thousand years, they often function as the center of village life, and many are protected by local custom.\n\nThat longevity makes recent news all the more alarming. Since 2005, researchers have documented the collapse of several of the oldest and largest baobabs in Africa — trees that had survived for well over a millennium. The cause is not fully understood, but scientists suspect that a changing climate, with higher temperatures and shifting rainfall, is stressing these giants beyond their limits.",
+      "question": "In the first sentence of paragraph 4, which word is closest in meaning to alarming?",
+      "options": [
+        "confusing",
+        "worrying",
+        "surprising",
+        "promising"
+      ],
+      "correct": 1,
+      "explanation": "'Alarming' means causing worry or fear. The news is the collapse of ancient trees — clearly a worrying development, which the negative context confirms.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "trees_7_35",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 7,
+      "intro": "This passage is about baobab trees.",
+      "context": "Few trees are as unmistakable as the baobab. With their enormous trunks and short, stubby branches, they look as if they have been planted upside down, roots waving in the air. An African legend explains that the gods, annoyed by the tree's vanity, pulled it out of the ground and thrust it back in the wrong way.\n\nThe baobab's strange shape is a practical adaptation to dry environments. Its trunk, which can reach ten meters in diameter, works largely as a water tank: a mature tree can store more than 100,000 liters of water in its soft, spongy wood, allowing it to survive long droughts. During the rainy season, the tree produces large white flowers that open at night and are pollinated by bats. Its fruit, sometimes called monkey bread, is dry, powdery, and extraordinarily rich in vitamin C.\n\nFor the people who live near them, baobabs are far more than landmarks. Their bark can be made into rope and cloth, their leaves are cooked as vegetables, and their hollow trunks have served as shelters, shops, and even a bus stop. Because individual trees can live for more than a thousand years, they often function as the center of village life, and many are protected by local custom.\n\nThat longevity makes recent news all the more alarming. Since 2005, researchers have documented the collapse of several of the oldest and largest baobabs in Africa — trees that had survived for well over a millennium. The cause is not fully understood, but scientists suspect that a changing climate, with higher temperatures and shifting rainfall, is stressing these giants beyond their limits.",
+      "question": "What can be inferred about the baobabs that collapsed?",
+      "options": [
+        "They had already survived difficult conditions in the past.",
+        "They were killed by villagers harvesting their bark.",
+        "They were the last baobabs of their species.",
+        "They collapsed because their trunks were hollow."
+      ],
+      "correct": 0,
+      "explanation": "The trees 'had survived for well over a millennium' — surviving more than a thousand years in a dry environment means enduring many droughts before. B, C, and D are contradicted or unsupported.",
+      "questionType": "inference"
+    }
+  ]
+}

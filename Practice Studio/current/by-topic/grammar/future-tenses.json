@@ -1,0 +1,40 @@
+{
+  "skill": "grammar",
+  "topic": "future-tenses",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_v",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Everyone in the office ________ the new software by Friday.",
+      "options": [
+        "have to learn",
+        "has to learn",
+        "are learning",
+        "were learning"
+      ],
+      "correct": 1,
+      "explanation": "\"Everyone\" is singular, so \"has to learn\" is correct."
+    },
+    {
+      "id": "G19",
+      "number": 19,
+      "category": "future-tenses",
+      "level": "B2",
+      "question": "Look at those clouds! It ________ soon.",
+      "options": {
+        "A": "rains",
+        "B": "is going to rain",
+        "C": "will be raining",
+        "D": "has rained"
+      },
+      "correct_answer": "B",
+      "correct_option": "is going to rain",
+      "explanation": "Use 'be going to' for a prediction based on present evidence.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "skill": "grammar",
+  "topic": "nouns-and-determiners",
+  "totalExercises": 10,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1g",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Select the sentence that handles countable or uncountable nouns correctly.",
+      "options": [
+        "The security gate agent told us that we had too many luggages.",
+        "There is a lot of traffic on the city bridge this morning.",
+        "She gave me two very useful informations for my upcoming trip.",
+        "We need to order some new office furnitures before next month."
+      ],
+      "correct": 1,
+      "feedbackCorrect": "Correct! Traffic is an uncountable mass noun and is properly paired with the singular verb \"is\" and the modifier \"a lot of.\"",
+      "feedbackIncorrect": "Watch out for pluralizing mass nouns. Words like luggage, information, and furniture are strictly uncountable in English. They can never take a plural \"-s\" or be counted with individual numbers."
+    },
+    {
+      "id": "gm_mtgcfjq1_1h",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Identify the sentence that uses determiners (all, every, most, other) correctly.",
+      "options": [
+        "Most of people prefer working from a quiet environment these days.",
+        "I spent all day reviewing the financial spreadsheets for accuracy.",
+        "This is a my close colleague from the design department.",
+        "He carefully washed his both hands before preparing the food."
+      ],
+      "correct": 1,
+      "feedbackCorrect": "Spot on! \"All day\" is the correct determinative phrase to show the entire duration of a single day.",
+      "feedbackIncorrect": "Option A should be \"Most people\" (we only use most of before pronouns or specific determiners like most of the people). Option C incorrectly stacks an article and a possessive pronoun (\"a my friend\" should just be \"my friend\" or \"a friend of mine\"). Option D should put the determiner first: \"both his hands.\""
+    },
+    {
+      "id": "gm_mtgcfjq1_13",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "There was ________ traffic this morning — I was two hours late!",
+      "options": [
+        "many",
+        "a few",
+        "a lot of",
+        "several"
+      ],
+      "correct": 2,
+      "explanation": "\"Traffic\" is uncountable, so \"a lot of\" is correct. \"Many/a few/several\" are for countable nouns."
+    },
+    {
+      "id": "gm_mtgcfjq1_14",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "She has very ________ time to prepare — the exam is tomorrow.",
+      "options": [
+        "few",
+        "little",
+        "small",
+        "less"
+      ],
+      "correct": 1,
+      "explanation": "\"Time\" is uncountable, so \"little\" (not \"few\") is used. \"Little\" = almost none."
+    },
+    {
+      "id": "of_order_2",
+      "type": "order",
+      "level": "B2",
+      "skill": "Grammar",
+      "sentences": [
+        "Many cities face heavy traffic during the rush hour.",
+        "One solution is to improve public transport.",
+        "As a result, fewer people may rely on private cars."
+      ]
+    },
+    {
+      "id": "G52",
+      "number": 52,
+      "category": "nouns-and-determiners",
+      "level": "B1",
+      "question": "There is very ________ information available about the new course.",
+      "options": {
+        "A": "few",
+        "B": "a few",
+        "C": "little",
+        "D": "many"
+      },
+      "correct_answer": "C",
+      "correct_option": "little",
+      "explanation": "'Information' is uncountable, so use 'little', not 'few'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G53",
+      "number": 53,
+      "category": "nouns-and-determiners",
+      "level": "B1",
+      "question": "Only ________ students completed the optional assignment.",
+      "options": {
+        "A": "little",
+        "B": "a little",
+        "C": "a few",
+        "D": "much"
+      },
+      "correct_answer": "C",
+      "correct_option": "a few",
+      "explanation": "'Students' is a plural countable noun, so use 'a few'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G54",
+      "number": 54,
+      "category": "nouns-and-determiners",
+      "level": "B1",
+      "question": "I need ________ advice before I make a decision.",
+      "options": {
+        "A": "an",
+        "B": "a",
+        "C": "some",
+        "D": "many"
+      },
+      "correct_answer": "C",
+      "correct_option": "some",
+      "explanation": "'Advice' is uncountable; use 'some advice', not 'an advice'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G55",
+      "number": 55,
+      "category": "nouns-and-determiners",
+      "level": "B2",
+      "question": "______ people who attended the workshop found it useful.",
+      "options": {
+        "A": "Most of",
+        "B": "Most",
+        "C": "The most",
+        "D": "Almost"
+      },
+      "correct_answer": "B",
+      "correct_option": "Most",
+      "explanation": "Use 'most + plural noun' for a general group: Most people.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G56",
+      "number": 56,
+      "category": "nouns-and-determiners",
+      "level": "B2",
+      "question": "She has ________ experience in managing large projects.",
+      "options": {
+        "A": "many",
+        "B": "a few",
+        "C": "a lot of",
+        "D": "several"
+      },
+      "correct_answer": "C",
+      "correct_option": "a lot of",
+      "explanation": "'Experience' is uncountable in this meaning, so 'a lot of experience' is correct.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

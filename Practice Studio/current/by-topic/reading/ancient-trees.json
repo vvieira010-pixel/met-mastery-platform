@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "ancient-trees",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_5_22",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 5,
+      "intro": "This passage is about the world's oldest trees.",
+      "context": "High on the dry, windswept slopes of the White Mountains in California grows a tree that looks almost dead — and may have been growing since before the construction of the Egyptian pyramids. Bristlecone pines are the oldest known individual trees on Earth. The most famous, nicknamed Methuselah, is more than 4,800 years old, and another tree in the same region may be older still.\n\nThe bristlecone's extraordinary age is closely tied to the harshness of its environment. The trees grow at elevations above 3,000 meters, where the growing season is short, the soil is poor, and rainfall is scarce. These conditions slow the trees' growth to a crawl — some add only a centimeter of thickness in a century — but they also limit competition from other plants and reduce the risk of fire and disease. The wood of bristlecones is dense and full of resin, which makes it resistant to insects and fungi.\n\nParadoxically, parts of an ancient bristlecone are usually dead. As the tree ages, strips of bark and wood die back, leaving only a narrow ribbon of living tissue connecting the roots to a small crown of needles. This reduction actually helps the tree survive, since a smaller living section requires less water and energy.\n\nIronically, the conditions that protected bristlecones for thousands of years are now shifting. Warmer temperatures have allowed beetles and a disease called white pine blister rust to reach elevations that were once too cold for them. Scientists who have studied these trees for decades are now watching anxiously to see whether the oldest living things on Earth can adapt to a world they have never known.",
+      "question": "According to the passage, what effect does the harsh environment have on bristlecone pines?",
+      "options": [
+        "It kills them before they reach maturity.",
+        "It forces them to produce more resin than other pines.",
+        "It slows their growth but protects them from competitors and disease.",
+        "It prevents them from growing above 3,000 meters."
+      ],
+      "correct": 2,
+      "explanation": "Paragraph 2 explains both effects: growth slows 'to a crawl,' but the conditions also 'limit competition' and 'reduce the risk of fire and disease.'",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_5_24",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 5,
+      "intro": "This passage is about the world's oldest trees.",
+      "context": "High on the dry, windswept slopes of the White Mountains in California grows a tree that looks almost dead — and may have been growing since before the construction of the Egyptian pyramids. Bristlecone pines are the oldest known individual trees on Earth. The most famous, nicknamed Methuselah, is more than 4,800 years old, and another tree in the same region may be older still.\n\nThe bristlecone's extraordinary age is closely tied to the harshness of its environment. The trees grow at elevations above 3,000 meters, where the growing season is short, the soil is poor, and rainfall is scarce. These conditions slow the trees' growth to a crawl — some add only a centimeter of thickness in a century — but they also limit competition from other plants and reduce the risk of fire and disease. The wood of bristlecones is dense and full of resin, which makes it resistant to insects and fungi.\n\nParadoxically, parts of an ancient bristlecone are usually dead. As the tree ages, strips of bark and wood die back, leaving only a narrow ribbon of living tissue connecting the roots to a small crown of needles. This reduction actually helps the tree survive, since a smaller living section requires less water and energy.\n\nIronically, the conditions that protected bristlecones for thousands of years are now shifting. Warmer temperatures have allowed beetles and a disease called white pine blister rust to reach elevations that were once too cold for them. Scientists who have studied these trees for decades are now watching anxiously to see whether the oldest living things on Earth can adapt to a world they have never known.",
+      "question": "Why does the author mention the Egyptian pyramids?",
+      "options": [
+        "to compare ancient Egyptian and American landscapes",
+        "to emphasize how old the trees are",
+        "to suggest the trees were planted by ancient civilizations",
+        "to explain how scientists calculate a tree's age"
+      ],
+      "correct": 1,
+      "explanation": "The pyramids are a famous reference point for great age; saying the tree may predate them dramatizes its 4,800+ years. D is wrong because age is measured by rings, not by the pyramids.",
+      "questionType": "purpose"
+    }
+  ]
+}

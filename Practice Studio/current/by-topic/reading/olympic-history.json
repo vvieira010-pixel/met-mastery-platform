@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "olympic-history",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "met_13_65",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 13,
+      "intro": "This passage is about the Olympic Games.",
+      "context": "The Olympic Games began in ancient Greece more than 2,700 years ago as a religious and athletic festival held every four years in Olympia. Only free men who spoke Greek were allowed to compete, and the events included running, wrestling, boxing, and chariot racing. Winners received olive wreaths and were honored as heroes in their home cities.\n\nThe ancient Games continued for nearly twelve centuries until they were banned by a Roman emperor in 393 C.E. as part of an effort to suppress pagan traditions. For more than 1,500 years, no Olympic Games were held. In the late 1800s, a French educator named Baron Pierre de Coubertin proposed reviving the Olympics as a way to promote peace and international understanding through sport.\n\nThe first modern Olympics took place in Athens in 1896, with 241 athletes from 14 nations. Since then, the Games have grown into a global event, with thousands of competitors from nearly every country. The Olympic symbol of five interlocking rings represents the unity of the five continents, and the motto 'Citius, Altius, Fortius'—'Faster, Higher, Stronger'—expresses the spirit of athletic excellence.\n\nToday, the Olympics face new challenges, including the high cost of hosting the Games and concerns about the environmental impact of building large stadiums. Some critics argue that the money spent on the Olympics could be better used to address social problems. Supporters, however, believe that the Games continue to inspire people around the world and provide a rare opportunity for nations to come together in peaceful competition.",
+      "question": "What does the author suggest about the future of the Olympics?",
+      "options": [
+        "They will definitely be canceled because of costs.",
+        "They will continue despite criticisms and challenges.",
+        "They will only be held in wealthy countries.",
+        "They will stop including athletic events."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "inference"
+    },
+    {
+      "id": "met_13_64",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 13,
+      "intro": "This passage is about the Olympic Games.",
+      "context": "The Olympic Games began in ancient Greece more than 2,700 years ago as a religious and athletic festival held every four years in Olympia. Only free men who spoke Greek were allowed to compete, and the events included running, wrestling, boxing, and chariot racing. Winners received olive wreaths and were honored as heroes in their home cities.\n\nThe ancient Games continued for nearly twelve centuries until they were banned by a Roman emperor in 393 C.E. as part of an effort to suppress pagan traditions. For more than 1,500 years, no Olympic Games were held. In the late 1800s, a French educator named Baron Pierre de Coubertin proposed reviving the Olympics as a way to promote peace and international understanding through sport.\n\nThe first modern Olympics took place in Athens in 1896, with 241 athletes from 14 nations. Since then, the Games have grown into a global event, with thousands of competitors from nearly every country. The Olympic symbol of five interlocking rings represents the unity of the five continents, and the motto 'Citius, Altius, Fortius'—'Faster, Higher, Stronger'—expresses the spirit of athletic excellence.\n\nToday, the Olympics face new challenges, including the high cost of hosting the Games and concerns about the environmental impact of building large stadiums. Some critics argue that the money spent on the Olympics could be better used to address social problems. Supporters, however, believe that the Games continue to inspire people around the world and provide a rare opportunity for nations to come together in peaceful competition.",
+      "question": "Why does the author mention the five interlocking rings?",
+      "options": [
+        "to describe the design of Olympic medals",
+        "to explain the meaning of the Olympic symbol",
+        "to compare ancient and modern symbols",
+        "to show how many continents compete"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "purpose"
+    }
+  ]
+}

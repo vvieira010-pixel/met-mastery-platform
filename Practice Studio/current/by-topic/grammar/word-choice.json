@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "word-choice",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1l",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Select the sentence that uses words with similar meanings correctly based on context.",
+      "options": [
+        "Please remember me to call the client before the 3 PM deadline.",
+        "This classic song always reminds me of my early childhood holidays.",
+        "I had a great possibility to visit our corporate headquarters last summer.",
+        "The team building event yesterday evening was very fun; I couldn't stop laughing."
+      ],
+      "correct": 1,
+      "feedbackCorrect": "Spot on! Remind means to cause someone to remember something, which fits this context perfectly.",
+      "feedbackIncorrect": "Option A should use remind (\"Please remind me to call...\"). Option C should use opportunity (a favorable chance to do something) instead of possibility (the likelihood of something happening). Option D should use funny if it caused you to laugh out loud, as fun just means enjoyable."
+    },
+    {
+      "id": "G88",
+      "number": 88,
+      "category": "word-choice",
+      "level": "B2",
+      "question": "The manager gave us some useful ________ about the new project.",
+      "options": {
+        "A": "advices",
+        "B": "advice",
+        "C": "advise",
+        "D": "advising"
+      },
+      "correct_answer": "B",
+      "correct_option": "advice",
+      "explanation": "'Advice' is an uncountable noun. 'Advise' is the verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,1756 @@
+/* ============================================================
+   met-shell.css: MET Digital Sample Test UI Shell
+   Design system: Azul Marinho navy + amber/orange accent
+   High-contrast, minimalist, exam-optimised
+
+   Token bridge: this :root block is the official export surface
+   for the React platform. Import these as JS custom properties
+   or as tailwind/css-variable bridge in the consuming app.
+   ============================================================ */
+
+:root {
+  /* Color — brand */
+  --met-azul-deep:  #0F1F4D;
+  --met-azul-navy:  #1B3A6B;
+  --met-azul-mid:   #3873A8;
+  --met-azul-blue:  #2B6097;
+  --met-azul-light: #AED6F1;
+  --met-azul-sky:   #7AB5D8;
+  --met-azul-wash:  #EBF4FB;
+
+  --met-orange:         #BE5700;
+  --met-orange-dark:    #A54E00;
+  --met-orange-light:   #F4A261;
+  --met-orange-bg:      #FFF4E6;
+
+  --met-red:    #DC2626;
+  --met-green:  #15803D;
+
+  /* Color — surfaces */
+  --met-page-bg: #F5F7FA;
+  --met-topbar-bg: var(--met-azul-deep);
+  --met-infobar-bg: var(--met-azul-navy);
+  --met-sidebar-bg: #FFFFFF;
+  --met-sidebar-border: #D5DEEA;
+  --met-content-bg: #FFFFFF;
+  --met-border-shell: #D5DEEA;
+  --met-q-text-bg: var(--met-azul-wash);
+  --met-player-bg: var(--met-azul-navy);
+
+  /* Color — interactive state */
+  --met-q-info:        var(--met-azul-mid);
+  --met-q-info-hover:  var(--met-azul-blue);
+  --met-q-current:     var(--met-orange);
+  --met-q-answered:    var(--met-green);
+  --met-option-border: #D5DEEA;
+
+  --met-btn-nav-bg:     var(--met-azul-deep);
+  --met-btn-nav-hover:  var(--met-azul-navy);
+  --met-btn-finish-bg:     var(--met-orange);
+  --met-btn-finish-hover:  var(--met-orange-dark);
+  --met-btn-finish-text:  #FFFFFF;
+
+  /* Ink */
+  --met-ink-strong: var(--met-azul-deep);
+  --met-met-slate: #4A5568;
+
+  /* Typography */
+  --met-font-body: "Atkinson Hyperlegible", "Aptos", "Segoe UI", Tahoma, sans-serif;
+  --met-font-display: var(--met-font-body);
+  --met-fz-xs: 12px;
+  --met-fz-sm: 13px;
+  --met-fz-md: 14px;
+  --met-fz-lg: 16px;
+  --met-fz-question: 18px;
+  --met-fz-timer: 26px;
+  --met-fh-base: 1.4;
+  --met-fh-prose: 1.7;
+
+  /* Spacing — 4pt scale */
+  --met-space-1: 4px;
+  --met-space-2: 8px;
+  --met-space-3: 12px;
+  --met-space-4: 16px;
+  --met-space-5: 24px;
+  --met-space-6: 32px;
+  --met-space-7: 48px;
+  --met-space-8: 64px;
+  --met-radius-sm: 4px;
+  --met-radius-md: 8px;
+  --met-radius-pill: 999px;
+
+  /* Back-compat aliases for legacy var names */
+  --azul-deep: var(--met-azul-deep);
+  --azul-navy: var(--met-azul-navy);
+  --azul-mid:  var(--met-azul-mid);
+  --azul-blue: var(--met-azul-blue);
+  --azul-light:var(--met-azul-light);
+  --azul-sky:  var(--met-azul-sky);
+  --azul-wash: var(--met-azul-wash);
+  --orange:    var(--met-orange);
+  --orange-dark:var(--met-orange-dark);
+  --orange-bg: var(--met-orange-bg);
+  --red:       var(--met-red);
+  --green:     var(--met-green);
+  --surface:   var(--met-content-bg);
+  --border:    var(--met-border-shell);
+  --border-lt: var(--met-azul-light);
+  --teal-600:  var(--met-azul-mid);
+  --r-xs: var(--met-radius-sm);
+  --r-sm: var(--met-radius-sm);
+  --r-md: var(--met-radius-md);
+  --r-pill: var(--met-radius-pill);
+  --met-slate: var(--met-met-slate);
+  --met-overlay: rgba(15, 31, 77, 0.55);
+  --met-page-bg-var: var(--met-page-bg);
+  --met-topbar-bg-var: var(--met-topbar-bg);
+  --met-infobar-bg-var: var(--met-infobar-bg);
+  --met-sidebar-bg-var: var(--met-sidebar-bg);
+  --met-sidebar-border-var: var(--met-sidebar-border);
+  --met-border-shell-var: var(--met-border-shell);
+  --met-q-text-bg-var: var(--met-q-text-bg);
+  --met-player-bg-var: var(--met-player-bg);
+  --met-q-info-var: var(--met-q-info);
+  --met-q-info-hover-var: var(--met-q-info-hover);
+  --met-q-current-var: var(--met-q-current);
+  --met-q-answered-var: var(--met-q-answered);
+  --met-option-border-var: var(--met-option-border);
+  --met-btn-nav-bg-var: var(--met-btn-nav-bg);
+  --met-btn-nav-hover-var: var(--met-btn-nav-hover);
+  --met-btn-finish-bg-var: var(--met-btn-finish-bg);
+  --met-btn-finish-hover-var: var(--met-btn-finish-hover);
+  --met-btn-finish-text-var: var(--met-btn-finish-text);
+  --met-progressbar-bg: #FFFFFF;
+
+  /* ── Canonical brand extensions (mirrored by the met-brand.css shim) ── */
+  --met-blue-border:  rgba(43, 96, 151, 0.25);
+
+  --met-surface:     #ffffff;
+  --met-bg-white:    #ffffff;
+  --met-surface-alt: #F5F8FC;
+  --met-light:       var(--met-page-bg);
+  --met-bg:          #F5F8FC;
+
+  --met-line:        rgba(15, 23, 42, 0.10);
+  --met-line-strong: rgba(15, 23, 42, 0.20);
+  --met-border:      #D0DFF0;
+  --met-border-lt:   #E8F0F8;
+
+  --met-green-bg:    #ECFDF5;
+  --met-red-bg:      #FEF2F2;
+
+  --met-ink-max:     #020617;
+  --met-ink-mid:     #49617f;
+  --met-ink-muted:   #4A5568;
+  --met-ink-faint:   #4A5568;
+
+  --met-border-card: #d5e0ec;
+  --met-border-soft: #dbe4ef;
+  --met-border-xlt:  #e8eef5;
+
+  --met-shadow-sm: 0 1px 3px rgba(15,23,42,.07);
+  --met-shadow-md: 0 4px 16px rgba(15,23,42,.10);
+  --met-shadow-lg: 0 8px 32px rgba(15,23,42,.14);
+  --met-shadow-xl: 0 16px 48px rgba(15,23,42,.18);
+
+  --met-radius-lg: 20px;
+  --met-radius-xl: 28px;
+
+  --met-navy-950: #060f20;
+  --met-navy-925: #0a1a30;
+  --met-navy-900: #0a1a3e;
+  --met-navy-800: #0f2354;
+  --met-navy-700: #15306e;
+  --met-navy-600: #1b3a8a;
+  --met-navy-500: #2652b8;
+  --met-navy-400: #4a72d4;
+  --met-navy-300: #7a9fe8;
+  --met-navy-200: #b8cff5;
+  --met-navy-100: #e0eaff;
+  --met-navy-50:  #f0f4ff;
+
+  --met-teal-700: #0e7490;
+  --met-teal-600: #0891b2;
+  --met-teal-500: #06b6d4;
+  --met-teal-100: #cffafe;
+
+  --met-amber-600: #b45309;
+  --met-amber-500: #d97706;
+  --met-amber-400: #f59e0b;
+  --met-amber-100: #fef3c7;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.met-shell {
+  font-family: var(--met-font-body);
+  font-size: var(--met-fz-md);
+  background: var(--met-page-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--met-azul-deep);
+  line-height: var(--met-fh-base);
+}
+
+.met-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ---------- Outer Layout ---------- */
+.met-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ---------- TOP BAR (single-row, minimal) ----------
+   Layout: [section context pill] ··· [timer pill] ··· [Finish]
+   The former verbose Page/Section labels and progress % are
+   dropped; section context is shown inside the content header
+   via the .met-task-label and .met-page-title pair.
+   ============================================ */
+.met-top-bar {
+  background: var(--met-topbar-bg);
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--met-space-3);
+  padding: var(--met-space-2) var(--met-space-4);
+  min-height: 48px;
+  flex-shrink: 0;
+}
+
+.met-top-bar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--met-space-2);
+  font-size: var(--met-fz-sm);
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  min-width: 0;
+}
+.met-top-bar__section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--met-radius-pill);
+  padding: 4px 10px;
+  font-size: var(--met-fz-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.met-top-bar__center {
+  display: flex;
+  align-items: center;
+  gap: var(--met-space-2);
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Progress bar — width-only (no percentage label) */
+.met-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 140px;
+}
+.met-progress-bar-outer {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.18);
+  border-radius: var(--met-radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+.met-progress-bar-inner {
+  height: 100%;
+  background: var(--met-q-answered);
+  border-radius: var(--met-radius-pill);
+  width: 0%;
+  min-width: 0;
+}
+
+/* Progress % label is present in the DOM for assistive tech (announced via
+   the outer role=progressbar). It is visually hidden rather than removed. */
+.met-progress-pct {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Legacy aliases kept for any JS that writes to .met-timer */
+.met-timer { font-size: var(--met-fz-md); font-weight: 800; letter-spacing: 0.04em; color: var(--met-azul-deep); }
+.met-top-bar__timer { font-size: var(--met-fz-timer); font-weight: 800; letter-spacing: 0.02em; color: #fff; font-variant-numeric: tabular-nums; line-height: 1; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: var(--met-radius-pill); padding: 6px 14px; font-family: var(--met-font-body); }
+
+.met-top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--met-space-2);
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/* Finish Section / Finish Test button */
+.met-btn-finish {
+  background: var(--met-btn-finish-bg);
+  color: var(--met-btn-finish-text);
+  border: none;
+  border-radius: var(--met-radius-sm);
+  padding: 10px 22px;
+  font-size: var(--met-fz-sm);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  letter-spacing: 0.02em;
+  min-height: 36px;
+}
+.met-btn-finish:hover { background: var(--met-btn-finish-hover); }
+.met-btn-finish:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.met-btn-finish.hidden { visibility: hidden; }
+
+/* Editing skip-nav (temporary) */
+.met-skip-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 4px; }
+.met-skip-btn {
+  padding: 6px 14px;
+  background: var(--met-red);
+  color: #fff;
+  border: none;
+  border-radius: var(--met-radius-sm);
+  font-size: var(--met-fz-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.met-skip-btn:hover { background: var(--red-dark, #96281B); }
+
+.met-play-once-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 10px 24px;
+  background: var(--met-azul-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--met-radius-sm);
+  font-size: var(--met-fz-md);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.met-play-once-btn:hover:not(:disabled) { background: var(--met-azul-navy); }
+.met-play-once-btn:disabled { background: var(--met-azul-light); cursor: not-allowed; opacity: 0.7; }
+
+/* ---------- INFO BAR (deep navy) ----------
+   Now carries test + candidate metadata. The verbose Section+
+   Page labels that used to live in the top bar are gone — they
+   are surfaced inside the content area via .met-task-label.
+   ============================================ */
+.met-info-bar {
+  background: var(--met-infobar-bg);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--met-space-1) var(--met-space-3);
+  font-size: var(--met-fz-sm);
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+.met-info-bar__test { font-weight: 400; opacity: 0.85; }
+.met-info-bar__test span { font-weight: 700; opacity: 1; }
+.met-info-bar__candidate { font-weight: 400; opacity: 0.85; }
+.met-info-bar__candidate span { font-weight: 700; opacity: 1; }
+
+/* ---------- BODY ROW ---------- */
+.met-body-row {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background: var(--met-page-bg);
+  min-height: 0;
+}
+.met-body-row--no-sidebar .met-sidebar { display: none; }
+
+/* ---------- QUESTION NAV RAIL (horizontal top bar) ----------
+   Uses a vertical rhythm: 6px internal gap, 10px outer padding
+   so the rail reads as a thin "strip" rather than a chrome band.
+   ============================================ */
+.met-sidebar {
+  background: var(--met-sidebar-bg);
+  border-bottom: 1px solid var(--met-sidebar-border);
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--met-space-2);
+  padding: var(--met-space-2) var(--met-space-3);
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 44px;
+  scrollbar-width: thin;
+}
+.met-sidebar.hidden { display: none; }
+.met-sidebar__scroll { display: none; }
+
+.met-sidebar__section-label {
+  font-size: var(--met-fz-xs);
+  color: var(--met-azul-deep);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding-right: var(--met-space-2);
+  border-right: 1px solid var(--met-sidebar-border);
+  flex-shrink: 0;
+}
+
+.met-sidebar__numbers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--met-space-1);
+}
+
+/* Number buttons (writing/reading) — 44px tap target (P1 audit fix) */
+.met-sidebar__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 6px;
+  border-radius: var(--met-radius-sm);
+  background: var(--met-infobar-bg);
+  color: #fff;
+  font-size: var(--met-fz-sm);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, outline-color 0.15s;
+  flex-shrink: 0;
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+}
+.met-sidebar__num:hover   { background: var(--met-btn-nav-hover); }
+.met-sidebar__num:focus-visible {
+  outline-color: var(--met-orange);
+  background: var(--met-btn-nav-hover);
+}
+.met-sidebar__num.current {
+  background: var(--met-q-current);
+  position: relative;
+}
+.met-sidebar__num.current::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 5px solid var(--met-q-current);
+}
+.met-sidebar__num.answered{ background: var(--met-q-answered); }
+.met-sidebar__num[aria-current="step"] { background: var(--met-q-current); }
+.met-sidebar__num[aria-pressed="true"] { background: var(--met-q-answered); }
+.met-sidebar__num--info   { background: var(--met-q-info); color: #fff; font-style: normal; font-size: 11px; }
+.met-sidebar__num--info:hover { background: var(--met-q-info-hover); color: #fff; }
+.met-sidebar__num--info.current { background: var(--met-q-info); color: #fff; }
+
+.met-sidebar__numbers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ---------- CONTENT AREA ---------- */
+.met-content-wrap {
+  flex: 1;
+  background: var(--met-content-bg);
+  border-radius: var(--met-radius-md);
+  border: 1px solid var(--met-border-shell);
+  overflow-y: auto;
+  position: relative;
+  min-height: 0;
+  margin: var(--met-space-1) var(--met-space-1) var(--met-space-2);
+}
+
+.met-content {
+  padding: var(--met-space-5) var(--met-space-5) var(--met-space-6);
+  max-width: 100%;
+}
+
+.met-page { margin-bottom: var(--met-space-6); }
+.met-page[data-page-label="Instructions"],
+.met-page[data-page-label*="Information"] {
+  /* keep instructions compact but readable */
+  padding-bottom: var(--met-space-4);
+}
+
+/* Section titles */
+.met-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--azul-deep);
+  letter-spacing: -0.01em;
+}
+
+.met-instructions-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--azul-deep);
+  margin-bottom: 14px;
+}
+.met-instructions-text p { margin-bottom: 8px; }
+.met-instructions-text strong { font-weight: 700; }
+
+/* ---------- BOTTOM NAV BAR ---------- */
+.met-bottom-bar {
+  background: var(--met-topbar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  flex-shrink: 0;
+  min-height: 38px;
+}
+.met-bottom-bar::before {
+  content: "⚙";
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+}
+.met-bottom-bar__nav { margin-left: auto; }
+
+.met-bottom-bar__gear,
+.met-btn-gear {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: rgba(255,255,255,0.45);
+  font-size: 16px;
+  line-height: 1;
+  transition: color 0.15s;
+  border-radius: var(--r-sm);
+}
+.met-bottom-bar__gear:hover,
+.met-btn-gear:hover { color: rgba(255,255,255,0.85); }
+
+.met-bottom-bar__nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Back button — ghost style */
+.met-btn-back {
+  background: var(--met-btn-nav-bg);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+}
+.met-btn-back:hover {
+  background: var(--met-btn-nav-hover);
+  border-color: transparent;
+  color: #fff;
+}
+.met-btn-back:disabled { opacity: 0.30; cursor: not-allowed; }
+.met-btn-back.hidden { display: none; }
+
+/* Next button — filled accent */
+.met-btn-next {
+  background: var(--met-btn-nav-bg);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+  box-shadow: none;
+}
+.met-btn-next:hover {
+  background: var(--met-btn-nav-hover);
+  box-shadow: none;
+}
+.met-btn-next:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+.met-btn-next.hidden { display: none; }
+
+/* Legacy alias */
+.met-btn-nav {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+}
+.met-btn-nav:hover { background: var(--orange-dark); }
+.met-btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
+.met-btn-nav.hidden { display: none; }
+
+/* ---------- AUDIO PLAYER ---------- */
+.met-audio-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--met-player-bg);
+  border-radius: 0;
+  padding: 7px 10px;
+  margin: 14px 0;
+}
+.met-audio-player button {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 8px;
+  line-height: 1;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+  transition: background 0.15s;
+  opacity: 1;
+}
+.met-audio-player button:hover:not(:disabled) { background: rgba(255,255,255,0.12); }
+.met-audio-player button:disabled { background: var(--met-slate); cursor: default; }
+.met-audio-player[data-voice-badge]::after {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.08);
+  padding: 2px 7px;
+  line-height: 1.3;
+  white-space: nowrap;
+  content: attr(data-voice-badge);
+}
+.met-audio-scrubber {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.met-audio-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #FFB84D;
+  border: 2px solid #E07000;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.met-audio-time {
+  color: rgba(255,255,255,0.75);
+  font-size: 11px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.met-audio-volume {
+  width: 50px;
+  -webkit-appearance: none;
+  height: 3px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.met-audio-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #FFB84D;
+  border: 2px solid #E07000;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* ---------- ANSWER OPTIONS ---------- */
+.met-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--met-space-2);
+  margin-top: var(--met-space-4);
+}
+
+.met-option {
+  border: 2px solid var(--met-option-border);
+  border-radius: var(--met-radius-sm);
+  padding: var(--met-space-3);
+  background: var(--met-content-bg);
+  cursor: pointer;
+  font-size: var(--met-fz-md);
+  color: var(--met-azul-deep);
+  transition: background 0.12s, border-color 0.12s, box-shadow 0.12s, outline-color 0.12s;
+  user-select: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  min-height: 44px;
+}
+.met-option:hover {
+  background: var(--met-azul-wash);
+  border-color: var(--met-azul-mid);
+}
+.met-option:focus-visible {
+  outline-color: var(--met-azul-blue);
+}
+.met-option.selected {
+  background: var(--met-orange-bg);
+  border-color: var(--met-orange);
+  color: var(--met-azul-deep);
+  font-weight: 600;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+.met-option[aria-pressed="true"] {
+  background: var(--met-orange-bg);
+  border-color: var(--met-orange);
+  color: var(--met-azul-deep);
+  font-weight: 600;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+/* ---------- PAGE TITLES & INSTRUCTIONS ---------- */
+.met-page-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--azul-deep);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.met-instruction {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--azul-deep);
+  margin-bottom: 10px;
+}
+.met-instruction-list {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--azul-deep);
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+.met-instruction-list li { margin-bottom: 4px; }
+.met-note {
+  font-size: 13px;
+  color: var(--met-slate);
+  margin-top: 16px;
+}
+.met-end-box {
+  text-align: center;
+  padding: 40px 20px;
+}
+.met-end-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--azul-deep);
+  margin-bottom: 10px;
+}
+.met-end-subtitle {
+  font-size: 14px;
+  color: var(--met-slate);
+  line-height: 1.6;
+}
+.met-speaking-countdown-label {
+  font-size: 13px;
+  color: var(--met-slate);
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+
+/* Timer accessibility */
+.met-top-bar__timer[aria-live] {
+  /* aria-live applied in HTML */
+}
+
+/* ---------- QUESTION TEXT ---------- */
+.met-question-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  background: var(--met-q-text-bg);
+  padding: 12px 10px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.met-question-block { margin-bottom: 24px; }
+.met-question-block + .met-question-block {
+  border-top: 1px solid var(--border-lt);
+  padding-top: 20px;
+}
+
+/* ---------- MULTI-QUESTION BLOCKS (Listening Part 2 & 3) ---------- */
+.met-multi-question {
+  display: flex;
+  flex-direction: column;
+}
+.met-q-block {
+  padding: 20px 0 8px;
+  border-top: 1px solid var(--border-lt);
+}
+.met-q-block:first-child {
+  border-top: none;
+  padding-top: 4px;
+}
+.met-q-block .met-question-text {
+  background: var(--azul-wash);
+  border: 1.5px solid var(--azul-light);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-deep);
+}
+.met-q-block .met-options {
+  margin-top: 0;
+  padding-bottom: 16px;
+}
+
+/* ---------- TEXTAREA (Writing) ---------- */
+.met-textarea {
+  width: 100%;
+  border: 1px solid var(--met-border-shell);
+  border-radius: 0;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  margin-top: 12px;
+  color: var(--azul-deep);
+  outline: none;
+  line-height: 1.7;
+  background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.met-textarea:focus {
+  border-color: var(--azul-mid);
+  box-shadow: 0 0 0 3px rgba(56,115,168,.2);
+}
+.met-textarea--short { min-height: 130px; }
+.met-textarea--essay { min-height: 300px; }
+
+.met-word-count {
+  font-size: 11px;
+  color: var(--met-slate);
+  text-align: right;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- PASSAGE (Reading) ---------- */
+.met-passage-label {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--azul-deep);
+}
+.met-passage-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--azul-deep);
+  margin-bottom: 22px;
+}
+.met-passage-text p { margin-bottom: 10px; }
+.met-passage-text em { font-style: italic; }
+
+body.met-reading-shell {
+  background: var(--azul-wash);
+}
+
+.met-reading-shell .met-content-wrap,
+.met-reading-shell .met-sidebar {
+  border-color: var(--azul-light);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.met-reading-shell .met-content {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.met-reading-shell .met-page-title,
+.met-reading-shell .met-question-text,
+.met-reading-shell .met-passage-text,
+.met-reading-shell .met-instruction,
+.met-reading-shell .met-instruction-list {
+  color: var(--azul-deep);
+}
+
+.met-reading-shell .met-task-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--azul-deep);
+  background: var(--azul-wash);
+  border: 1px solid var(--azul-light);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  font-weight: 800;
+}
+
+.met-reading-shell .met-sidebar__section-label {
+  color: var(--azul-navy);
+  font-weight: 800;
+}
+
+.met-reading-shell .met-q-block {
+  background: var(--surface);
+  border: 1.5px solid var(--azul-light);
+  border-radius: var(--r-sm);
+  padding: 16px;
+  margin-top: 18px;
+}
+
+.met-reading-shell .met-option {
+  border-color: var(--azul-light);
+}
+
+.met-reading-shell .met-option:hover,
+.met-reading-shell .met-option:focus-visible {
+  background: var(--azul-wash);
+  border-color: var(--azul-navy);
+  box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.16);
+  outline: none;
+}
+
+.met-reading-shell .met-option.selected {
+  background: var(--met-orange-bg);
+  border-color: var(--orange-dark);
+  box-shadow: 0 0 0 3px rgba(165, 78, 0, 0.18);
+}
+
+/* ---------- READING: IMAGE-LIKE TEXT CARDS (Q31–50) ---------- */
+.met-reading-card {
+  position: relative;
+  background: var(--surface);
+  border: 1.5px solid var(--azul-light);
+  border-radius: var(--r-sm);
+  padding: 16px 16px 14px;
+  color: var(--azul-deep);
+  box-shadow: 0 1px 6px rgba(15, 23, 42, 0.06);
+  margin-bottom: 16px;
+}
+.met-reading-card .met-reading-card__label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  background: var(--azul-deep);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.met-reading-card .met-reading-card__body {
+  padding-left: 44px;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 78ch;
+}
+.met-reading-card .met-reading-card__body p { margin-bottom: 10px; }
+.met-reading-card .met-reading-card__body p:last-child { margin-bottom: 0; }
+.met-reading-card .met-reading-card__title {
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--azul-deep);
+}
+
+.met-reading-compact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.met-reading-compact-grid .met-reading-card {
+  margin-bottom: 0;
+}
+.met-reading-compact-grid .met-reading-card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+.met-reading-compact-grid .met-reading-card__body {
+  max-width: none;
+}
+.met-reading-compact-grid .met-reading-card:nth-child(3) .met-reading-card__body {
+  column-count: 2;
+  column-gap: 28px;
+  column-rule: 1px solid var(--border);
+}
+.met-reading-compact-grid .met-reading-card:nth-child(3) .met-reading-card__title,
+.met-reading-compact-grid .met-reading-card:nth-child(3) .met-reading-card__body p {
+  break-inside: avoid;
+}
+@media (max-width: 1100px) {
+  .met-reading-compact-grid {
+    grid-template-columns: 1fr;
+  }
+  .met-reading-compact-grid .met-reading-card:nth-child(3) {
+    grid-column: auto;
+  }
+  .met-reading-compact-grid .met-reading-card:nth-child(3) .met-reading-card__body {
+    column-count: 1;
+  }
+}
+
+/* ---------- SPEAKING ---------- */
+.met-speaking-task-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--azul-deep);
+}
+.met-speaking-prompt {
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: var(--azul-deep);
+}
+.met-speaking-timer-label {
+  font-size: 13px;
+  color: var(--met-slate);
+  margin: 12px 0 5px;
+  font-weight: 600;
+}
+.met-speaking-countdown-outer {
+  width: 100%;
+  max-width: 600px;
+  height: 8px;
+  background: var(--border);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.met-speaking-countdown-inner {
+  height: 100%;
+  background: var(--orange);
+  border-radius: var(--r-pill);
+  transition: transform 1s linear;
+  transform-origin: left;
+  width: 100%;
+}
+
+.met-speaking-image-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.met-speaking-image {
+  width: min(100%, 760px);
+  max-width: 760px;
+  max-height: 420px;
+  object-fit: contain;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  display: block;
+  margin: 14px auto;
+}
+
+.met-begin-speaking {
+  background: var(--orange-bg);
+  border: 1.5px solid var(--orange);
+  border-radius: var(--r-sm);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 10px;
+  max-width: 600px;
+  color: var(--azul-deep);
+}
+
+.met-audio-capture {
+  background: var(--azul-wash);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 14px;
+  max-width: 480px;
+  margin: 12px 0;
+}
+.met-audio-capture__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--met-slate);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.met-waveform {
+  background: var(--azul-navy);
+  border-radius: var(--r-sm);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+.met-waveform canvas { width: 100%; height: 100%; }
+
+.met-recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--azul-deep);
+}
+.met-recording-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  animation: none;
+}
+@keyframes met-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* Speaking image placeholder (when image is missing) */
+.met-speaking-image-placeholder {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--azul-wash);
+  border: 2px dashed var(--azul-light);
+  border-radius: var(--r-sm);
+  padding: 3rem 2rem;
+  color: var(--met-slate);
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 200px;
+}
+
+.met-recording-dot-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.met-recording-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* ---------- SPEAKING: COMPACT LAYOUT ---------- */
+.met-speaking-shell .met-content {
+  padding: 14px 18px 16px;
+}
+
+.met-speaking-shell .met-page-title {
+  margin-bottom: 8px;
+}
+
+.met-speaking-shell .met-task-label {
+  margin-bottom: 4px;
+}
+
+.met-speaking-shell .met-audio-player {
+  padding: 8px 10px;
+  margin-bottom: 8px !important;
+}
+
+.met-speaking-shell .met-audio-player button {
+  width: 60px;
+  min-width: 60px;
+  font-size: 11px;
+  padding: 6px 8px;
+}
+
+.met-speaking-shell .met-question-text {
+  font-size: 13px;
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.met-speaking-shell .met-speaking-image {
+  width: min(100%, 760px);
+  max-width: 760px;
+  max-height: 420px;
+  object-fit: contain;
+  margin: 14px auto;
+}
+
+.met-speaking-shell .met-speaking-countdown-label {
+  font-size: 12px;
+  margin: 6px 0 4px;
+}
+
+.met-speaking-shell .met-speaking-countdown-outer {
+  height: 6px;
+  margin-bottom: 8px;
+}
+
+.met-speaking-shell .met-audio-capture {
+  padding: 8px 10px;
+  margin: 8px 0;
+}
+
+.met-speaking-shell .met-waveform {
+  height: 44px;
+}
+
+@media (max-width: 600px) {
+  .met-speaking-shell .met-content {
+    padding: 10px 12px 12px;
+  }
+
+  .met-speaking-shell .met-question-text {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .met-speaking-shell .met-speaking-image {
+    max-height: 260px;
+  }
+}
+
+/* ---------- VIDEO PLAYER (Speaking Instructions) ---------- */
+.met-video-wrap {
+  max-width: 580px;
+  background: #000;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  position: relative;
+  margin: 12px 0;
+}
+.met-video-wrap video {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- MODALS ---------- */
+.met-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--met-overlay);
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+}
+.met-modal-overlay.active {
+  display: flex;
+}
+
+.met-modal {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  min-width: 320px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 12px 48px rgba(15,23,42,.22);
+}
+.met-modal__header {
+  background: var(--azul-deep);
+  color: #fff;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.met-modal__body {
+  padding: 28px 24px 20px;
+  text-align: center;
+}
+.met-modal__icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.met-modal__icon--warning { color: var(--orange); }
+.met-modal__icon--question { color: var(--azul-blue); }
+
+.met-modal__text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--azul-deep);
+  margin-bottom: 18px;
+}
+.met-modal__text strong { font-weight: 700; }
+
+.met-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.met-modal__actions--row {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.met-modal-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 200px;
+  justify-content: center;
+  transition: background 0.15s;
+  letter-spacing: 0.02em;
+}
+.met-modal-btn:hover { background: var(--orange-dark); }
+.met-modal-btn--secondary,
+.met-modal-btn--no {
+  background: transparent;
+  color: var(--azul-deep);
+  border: 1.5px solid var(--border);
+}
+.met-modal-btn--secondary:hover,
+.met-modal-btn--no:hover {
+  background: var(--azul-wash);
+  border-color: var(--azul-light);
+}
+.met-modal-btn--sm {
+  min-width: 100px;
+  padding: 8px 16px;
+}
+
+/* Modal button row (used in writing/reading confirm dialogs) */
+.met-modal__btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.met-modal__btns .met-modal-btn--no {
+  background: transparent;
+  color: var(--azul-deep);
+  border: 1.5px solid var(--border);
+  min-width: 100px;
+}
+.met-modal__btns .met-modal-btn--no:hover {
+  background: var(--azul-wash);
+  border-color: var(--azul-light);
+}
+.met-modal__btns .met-modal-btn--yes {
+  min-width: 100px;
+}
+
+/* Loading spinner modal */
+.met-loading-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: met-spin 0.8s linear infinite;
+  margin: 0 auto 14px;
+}
+@keyframes met-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- SCROLLING TOAST ---------- */
+.met-scroll-toast {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: var(--green);
+  color: #fff;
+  border-radius: var(--r-sm);
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
+  max-width: 280px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+.met-scroll-toast.hidden { display: none; }
+.met-scroll-toast__close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s;
+}
+.met-scroll-toast__close:hover { color: #fff; }
+
+/* ---------- PART / TASK HEADINGS ---------- */
+.met-part-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--azul-deep);
+}
+.met-task-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--met-slate);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- FILL-IN-THE-BLANK ---------- */
+.met-sentence {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: var(--azul-deep);
+}
+.met-blank {
+  display: inline-block;
+  border-bottom: 2px solid var(--azul-blue);
+  min-width: 80px;
+  text-align: center;
+}
+
+/* ---------- END-OF-SECTION ---------- */
+.met-end-text {
+  font-size: 14px;
+  color: var(--azul-deep);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+/* ---------- SCROLLBAR STYLING ---------- */
+.met-content-wrap::-webkit-scrollbar { width: 6px; }
+.met-content-wrap::-webkit-scrollbar-track { background: var(--azul-wash); border-radius: 3px; }
+.met-content-wrap::-webkit-scrollbar-thumb { background: var(--azul-light); border-radius: 3px; }
+.met-content-wrap::-webkit-scrollbar-thumb:hover { background: var(--azul-sky); }
+
+/* ---------- RESPONSIVE ---------- */
+/* Preserve ≥44×44 tap target on every viewport — never shrink the buttons.
+   Below 600px, wrap to multiple rows. */
+@media (max-width: 600px) {
+  .met-sidebar { width: 100%; max-width: 100%; gap: 4px; padding: 6px 8px; flex-wrap: wrap; }
+  .met-sidebar__numbers { flex-wrap: wrap; row-gap: 6px; }
+  .met-sidebar__num { font-size: var(--met-fz-xs); }
+  .met-content { padding: var(--met-space-4) var(--met-space-4) var(--met-space-5); }
+  .met-top-bar__right { min-width: auto; }
+  .met-btn-finish { padding: 8px 10px; font-size: 12px; }
+  .met-top-bar__timer { font-size: 18px; padding: 4px 10px; }
+}
+
+/* ---------- TOP BAR: NARROW LAYOUT ---------- */
+/* At ≤ 720px the grid switches from 3-column to a tidy 2-row stack */
+@media (max-width: 720px) {
+  .met-top-bar {
+    grid-template-columns: 1fr auto;
+    padding: var(--met-space-2) var(--met-space-3);
+    gap: var(--met-space-2);
+  }
+  .met-top-bar__left {
+    grid-column: 1 / 2;
+    min-width: 0;
+    font-size: var(--met-fz-xs);
+  }
+  .met-top-bar__right {
+    grid-column: 2 / 3;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+  .met-top-bar__center {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    gap: var(--met-space-2);
+    padding: var(--met-space-1) 0;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    order: 3;
+  }
+  .met-top-bar__section-pill { max-width: 160px; }
+}
+
+/* ---------- A11Y: Reduced motion, focus, AT users ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+  .met-recording-dot { animation: none; opacity: 1; }
+  .met-loading-spinner { animation: none; border-top-color: var(--met-orange); }
+}
+
+/* Ensure keyboard focus rings are always visible on every interactive surface */
+.met-sidebar__num:focus-visible,
+.met-option:focus-visible,
+.met-btn-finish:focus-visible,
+.met-btn-back:focus-visible,
+.met-btn-next:focus-visible,
+.met-modal-btn:focus-visible,
+.met-skip-btn:focus-visible,
+.met-play-once-btn:focus-visible,
+.met-bottom-bar__gear:focus-visible,
+.met-audio-player button:focus-visible {
+  outline: 2px solid var(--met-orange);
+  outline-offset: 2px;
+}
+
+/* High-contrast safety on iOS/Safari where :focus-visible can over-fire */
+@media (forced-colors: active) {
+  .met-option,
+  .met-sidebar__num,
+  .met-btn-finish { border-color: CanvasText; }
+}
+
+/* Custom signal for flag-for-review (used by met-sidebar__num with [data-flagged="true"]) */
+.met-sidebar__num[data-flagged="true"] {
+  position: relative;
+  background: var(--met-azul-deep);
+}
+.met-sidebar__num[data-flagged="true"]::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--met-orange);
+}
+
+/* Storage warning banner (visible when answers are at risk of being lost) */
+.met-storage-warn {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--met-orange);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--met-radius-md);
+  font-size: var(--met-fz-sm);
+  font-weight: 600;
+  z-index: 9500;
+  max-width: 90%;
+}
+.met-storage-warn.active { display: flex; align-items: center; gap: 8px; }
+.met-storage-warn button {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--met-radius-sm);
+  font-size: var(--met-fz-xs);
+  cursor: pointer;
+}
+
+/* Modal focus ring */
+.met-modal[role="dialog"] { outline: none; }
+.met-modal[role="dialog"]:focus-within { box-shadow: 0 12px 48px rgba(15,23,42,.22), 0 0 0 3px var(--met-orange); }
+
+/* Ensure timers update ARIA live at most once per second and only announce tone changes */
+.met-top-bar__timer:not([data-low]) { /* default quiet updates */ }
+.met-top-bar__timer[data-low="5"] { color: var(--met-orange); }
+.met-top-bar__timer[data-low="1"] { color: var(--met-red); animation: met-blink 1.2s ease-in-out infinite; }
+
+/* Skip to content link (already provided by host pages? Add a uniform style) */
+.met-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  background: var(--met-orange);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: var(--met-radius-sm);
+  font-weight: 700;
+  z-index: 9999;
+  transition: top 0.18s ease;
+}
+.met-skip-link:focus { top: 8px; }
+
+/* ---------- READING: TYPOGRAPHY REFINEMENT ---------- */
+.met-reading-shell {
+  font-family: "Atkinson Hyperlegible", "Aptos", "Segoe UI", Tahoma, sans-serif;
+}
+
+.met-reading-shell .met-content {
+  font-size: 15px;
+}
+
+.met-reading-shell .met-page-title {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.met-reading-shell .met-instruction,
+.met-reading-shell .met-instruction-list {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.met-reading-shell .met-task-label {
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.met-reading-shell .met-question-text {
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.met-reading-shell .met-option {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.met-reading-shell .met-reading-card {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 16px 16px 16px;
+}
+
+.met-reading-shell .met-passage-text,
+.met-reading-shell .met-reading-card .met-reading-card__body {
+  font-family: inherit;
+  font-size: 14.5px;
+  line-height: 1.82;
+  text-wrap: pretty;
+}
+
+.met-reading-shell .met-reading-card .met-reading-card__title {
+  font-family: "Atkinson Hyperlegible", "Aptos", "Segoe UI", Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.met-reading-shell .met-passage-text {
+  max-width: 82ch;
+}
+
+.met-reading-shell .met-reading-compact-grid .met-reading-card .met-reading-card__body {
+  font-size: 14px;
+  line-height: 1.72;
+}
+
+.met-reading-shell .met-sidebar__section-label,
+.met-reading-shell .met-reading-card .met-reading-card__label {
+  letter-spacing: 0;
+}
+
+/* Reading questions: hide the "Part | Question" task badge */
+.met-reading-shell .met-page[data-is-question="true"] .met-task-label {
+  display: none;
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Keep essential animations like blink for timer warnings */
+  .met-top-bar__timer[data-low="1"] {
+    animation: none !important;
+    color: var(--met-red);
+  }
+}
+

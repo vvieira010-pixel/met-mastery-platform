@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "tree-rings",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "trees_13_61",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 13,
+      "intro": "This passage is about tree rings.",
+      "context": "Every year, a tree adds a new layer of wood just beneath its bark, forming a ring that can be read like a page in a diary. In climates with distinct seasons, the ring's light-colored portion records the rapid growth of spring, while the darker band marks the slower growth of late summer. By counting and measuring these rings, scientists can determine not only a tree's age but also the conditions it lived through. The science of reading tree rings is called dendrochronology.\n\nThe width of each ring tells a story. Wide rings generally indicate years with favorable conditions — adequate rain, mild temperatures — while narrow rings reveal drought, cold, or disease. Because trees of the same species in a region respond to the same weather, their ring patterns match like fingerprints. By overlapping the patterns of living trees with those of old beams from buildings and ancient logs, researchers have built continuous chronologies stretching back more than ten thousand years.\n\nThese chronologies have practical applications. Archaeologists use them to date wooden structures with remarkable precision, sometimes identifying the exact year a timber was cut. Climate scientists rely on rings to reconstruct temperatures and rainfall for centuries before instruments existed, providing a baseline against which modern warming can be measured. Fire historians read scars within rings to learn how often forests burned in the past.\n\nThe method has limits. It works best where seasons are sharply defined; in the tropics, many trees grow year-round and form rings that are difficult or impossible to interpret. Even so, few scientific tools offer such a direct connection to the past. As one researcher put it, trees were keeping records long before humans learned to write.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "how tree rings are used to study the past",
+        "why some trees live longer than others",
+        "how wooden buildings are constructed",
+        "the difference between tropical and seasonal trees"
+      ],
+      "correct": 0,
+      "explanation": "The passage explains what rings record (paragraphs 1–2), their scientific applications (paragraph 3), and the method's limits (paragraph 4) — all about reading the past from rings.",
+      "questionType": "main idea"
+    },
+    {
+      "id": "trees_13_62",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 13,
+      "intro": "This passage is about tree rings.",
+      "context": "Every year, a tree adds a new layer of wood just beneath its bark, forming a ring that can be read like a page in a diary. In climates with distinct seasons, the ring's light-colored portion records the rapid growth of spring, while the darker band marks the slower growth of late summer. By counting and measuring these rings, scientists can determine not only a tree's age but also the conditions it lived through. The science of reading tree rings is called dendrochronology.\n\nThe width of each ring tells a story. Wide rings generally indicate years with favorable conditions — adequate rain, mild temperatures — while narrow rings reveal drought, cold, or disease. Because trees of the same species in a region respond to the same weather, their ring patterns match like fingerprints. By overlapping the patterns of living trees with those of old beams from buildings and ancient logs, researchers have built continuous chronologies stretching back more than ten thousand years.\n\nThese chronologies have practical applications. Archaeologists use them to date wooden structures with remarkable precision, sometimes identifying the exact year a timber was cut. Climate scientists rely on rings to reconstruct temperatures and rainfall for centuries before instruments existed, providing a baseline against which modern warming can be measured. Fire historians read scars within rings to learn how often forests burned in the past.\n\nThe method has limits. It works best where seasons are sharply defined; in the tropics, many trees grow year-round and form rings that are difficult or impossible to interpret. Even so, few scientific tools offer such a direct connection to the past. As one researcher put it, trees were keeping records long before humans learned to write.",
+      "question": "According to the passage, what does a narrow ring usually indicate?",
+      "options": [
+        "a year with favorable conditions",
+        "a year of drought, cold, or disease",
+        "the year the tree was planted",
+        "damage caused by construction"
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 contrasts wide rings (favorable conditions) with narrow rings, which 'reveal drought, cold, or disease.' A describes wide rings — the opposite.",
+      "questionType": "detail"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+- generic [ref=f12e5]:
+  - generic [ref=f12e6]:
+    - heading "Instale o aplicativo SurveyHeart" [level=1] [ref=f12e7]
+    - img "SurveyHeart" [ref=f12e9]
+    - generic [ref=f12e10]:
+      - paragraph [ref=f12e11]: 1. Acesso fácil pelo aplicativo
+      - paragraph [ref=f12e12]: 2. Receba Notificação Instantaneamente
+      - paragraph [ref=f12e13]: 3. Criar formulário/teste em qualquer lugar
+  - generic [ref=f12e15]:
+    - img "SurveyHeart" [ref=f12e16]
+    - generic [ref=f12e18]:
+      - button "Fazer Login com o Google. Abre em uma nova guia" [ref=f12e20] [cursor=pointer]:
+        - generic [ref=f12e22]: Fazer Login com o Google
+      - iframe
+    - generic [ref=f12e33]: ou
+    - generic [ref=f12e42]:
+      - generic: Email
+      - generic: email
+      - textbox "Email email" [ref=f12e43]
+    - button "Próximo" [ref=f12e45]
+    - generic [ref=f12e38] [cursor=pointer]:
+      - text: Não tem uma conta?
+      - generic [ref=f12e39]: Inscrever-se

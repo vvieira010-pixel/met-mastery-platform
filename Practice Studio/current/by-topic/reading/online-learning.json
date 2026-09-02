@@ -1,0 +1,39 @@
+{
+  "skill": "reading",
+  "topic": "online-learning",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "b2_mcq_reading_06",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "In the reading, the “social element of education” refers to",
+      "options": [
+        "exams and grades.",
+        "online platforms and apps.",
+        "relationships and interaction in class.",
+        "textbooks and homework."
+      ],
+      "correct": 2,
+      "explanation": "The phrase refers back to face-to-face discussions, group projects, and relationships with classmates and teachers.",
+      "context": "Online Learning & Technology\n\nOnline learning platforms have become extremely popular among adult learners. Many people choose online courses because they can study at their own pace and access materials from any device. This flexibility is particularly useful for professionals who need to combine full-time work with further studies.\n\nOn the other hand, some learners feel that online courses are less personal than traditional classes. They miss face-to-face discussions, group projects, and the opportunity to build strong relationships with classmates and teachers. For these learners, the social element of education is just as important as the content."
+    },
+    {
+      "id": "b2_mcq_reading_10",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "question": "The overall attitude of the writer toward online learning is",
+      "options": [
+        "completely negative.",
+        "balanced, showing both pros and cons.",
+        "neutral and uninterested.",
+        "extremely enthusiastic with no criticism."
+      ],
+      "correct": 1,
+      "explanation": "The writer presents both flexibility and access as benefits and reduced personal interaction as a disadvantage, creating a balanced view.",
+      "context": "Study Abroad & Work\n\nMany universities around the world now offer short-term exchange programs for international students. These programs usually last from one semester to a full academic year and allow students to take regular courses in the host institution.\n\nIn addition to academic benefits, students often gain valuable work experience through part-time jobs or paid internships. Employers tend to appreciate candidates who have international experience, because such candidates are usually more flexible, independent, and better at solving problems in unfamiliar situations.\n\nHowever, studying abroad is not always easy. Students may struggle with cultural differences, homesickness, and the high cost of living in some countries. Careful planning and a clear budget are essential before deciding to study overseas.\n\nOnline Learning & Technology\n\nOnline learning platforms have become extremely popular among adult learners. Many people choose online courses because they can study at their own pace and access materials from any device. This flexibility is particularly useful for professionals who need to combine full-time work with further studies.\n\nOn the other hand, some learners feel that online courses are less personal than traditional classes. They miss face-to-face discussions, group projects, and the opportunity to build strong relationships with classmates and teachers. For these learners, the social element of education is just as important as the content."
+    }
+  ]
+}

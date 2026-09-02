@@ -1,0 +1,42 @@
+- main [ref=f3e4]:
+  - generic [ref=f3e5]:
+    - generic [ref=f3e6]:
+      - generic [ref=f3e7]: Workspace Access
+      - heading "MET Proficiency Mastery" [level=1] [ref=f3e8]: MET ProficiencyMastery
+      - paragraph [ref=f3e9]: Personalized AI-powered preparation for healthcare professionals conquering the Michigan English Test.
+    - generic [ref=f3e10]: © 2024 · Education Systems
+  - generic [ref=f3e11]:
+    - generic [ref=f3e12]:
+      - heading "Welcome back" [level=2] [ref=f3e13]
+      - generic [ref=f3e14]: Sign in to your account
+    - generic [ref=f3e15]:
+      - generic [ref=f3e16]:
+        - generic [ref=f3e17]: ⚡ Quick Test Access
+        - generic [ref=f3e18]: Instant Session
+      - generic [ref=f3e19]:
+        - button "Student Role Ana Silva (B1 → B2)" [ref=f3e20] [cursor=pointer]:
+          - generic [ref=f3e21]: Student Role
+          - generic [ref=f3e27]: Ana Silva (B1 → B2)
+        - button "Teacher Role Vinícius (Admin)" [ref=f3e28] [cursor=pointer]:
+          - generic [ref=f3e29]: Teacher Role
+          - generic [ref=f3e34]: Vinícius (Admin)
+    - generic [ref=f3e35]: Manual Entry
+    - generic [ref=f3e39]:
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]: Email Address
+        - textbox "Email Address" [active] [ref=f3e42]:
+          - /placeholder: your@email.com
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]: Password
+        - generic [ref=f3e45]:
+          - textbox "Password" [ref=f3e46]:
+            - /placeholder: ••••••••••••
+          - button "Show password" [ref=f3e47] [cursor=pointer]
+      - generic [ref=f3e51]:
+        - generic [ref=f3e52] [cursor=pointer]:
+          - checkbox "Remember me" [checked] [ref=f3e53]
+          - generic [ref=f3e54]: Remember me
+        - button "Forgot password?" [ref=f3e56] [cursor=pointer]
+      - button "Sign in to MET" [ref=f3e57] [cursor=pointer]
+    - generic [ref=f3e58]: Don't have an account? Contact your teacher or clinical administrator to get started.
+    - generic [ref=f3e59]: MET Proficiency Mastery · Your English learning workspace

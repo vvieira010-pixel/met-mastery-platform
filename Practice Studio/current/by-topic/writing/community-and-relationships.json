@@ -1,0 +1,23 @@
+{
+  "skill": "writing",
+  "topic": "community-and-relationships",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "vt_comm_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about how people can support their local community.",
+      "rubric": "Should suggest concrete, realistic actions."
+    },
+    {
+      "id": "vt_fam_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about how communication helps solve conflicts in relationships.",
+      "rubric": "Should mention listening, honesty, and mutual understanding."
+    }
+  ]
+}

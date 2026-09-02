@@ -1,0 +1,361 @@
+{
+  "skill": "listening",
+  "topic": "travel-and-transport",
+  "totalExercises": 18,
+  "exercises": [
+    {
+      "id": "dr_L06a_mtgcfjqd_a",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L06-bike-rental.mp3",
+      "audioText": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting, and we planned a ride for Saturday.\nAssistant: In that case, I should tell you that the hill trail is partly closed after last week's heavy rain.\nCustomer: Oh. Is there another route you'd recommend?\nAssistant: Yes. The river route is open, and it's easier too. I'd also suggest helmets and a repair kit.\nCustomer: We definitely need helmets. Do they come with the bikes?\nAssistant: They do, but the repair kit costs extra.\nCustomer: That's fine. Let's do two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+      "question": "Why does the assistant mention the hill trail?",
+      "options": [
+        "To explain why the shop is busy",
+        "To warn the customer about a route problem",
+        "To suggest a more expensive bike",
+        "To ask whether the customer is experienced"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L06b_mtgcfjqd_b",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L06-bike-rental.mp3",
+      "audioText": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting, and we planned a ride for Saturday.\nAssistant: In that case, I should tell you that the hill trail is partly closed after last week's heavy rain.\nCustomer: Oh. Is there another route you'd recommend?\nAssistant: Yes. The river route is open, and it's easier too. I'd also suggest helmets and a repair kit.\nCustomer: We definitely need helmets. Do they come with the bikes?\nAssistant: They do, but the repair kit costs extra.\nCustomer: That's fine. Let's do two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+      "question": "What will the customer probably rent?",
+      "options": [
+        "Two bikes and one helmet",
+        "One bike and one repair kit",
+        "Two bikes, helmets, and a repair kit",
+        "Two bikes only"
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L21c_mtgcfjqd_1c",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L21-online-ordering.mp3",
+      "audioText": "Our sales numbers this quarter exceeded expectations, largely due to the new online ordering system. Customers reported the checkout process felt faster and more reliable. Looking ahead, we plan to expand this system to our international stores by early next year, starting with our locations in Canada and Mexico.",
+      "question": "What is the speaker's attitude about the new system?",
+      "options": [
+        "Doubtful",
+        "Positive",
+        "Indifferent",
+        "Confused"
+      ],
+      "correct": 1,
+      "listeningFormat": "attitude"
+    },
+    {
+      "id": "listen_05_train_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L05-train-delay.wav",
+      "audioText": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We’ll miss our connection if we wait.\nMan: Let’s switch to the local. It’s slower, but we’ll still get there on time, and I’d rather not risk waiting.\nWoman: Okay, let’s move to platform one now before it gets crowded.\nN: Now answer the questions.",
+      "question": "Why is the express train delayed?",
+      "options": [
+        "Bad weather.",
+        "Signal maintenance work.",
+        "A problem with the engine.",
+        "Too many passengers."
+      ],
+      "correct": 1,
+      "explanation": "The announcement says the delay is due to signal maintenance.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_05_train_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L05-train-delay.wav",
+      "audioText": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We’ll miss our connection if we wait.\nMan: Let’s switch to the local. It’s slower, but we’ll still get there on time, and I’d rather not risk waiting.\nWoman: Okay, let’s move to platform one now before it gets crowded.\nN: Now answer the questions.",
+      "question": "What alternative does the announcer suggest?",
+      "options": [
+        "Taking a bus instead.",
+        "Waiting for the next express.",
+        "Taking the 9:30 local train on platform one.",
+        "Canceling the trip."
+      ],
+      "correct": 2,
+      "explanation": "Passengers needing to arrive before ten should take the 9:30 local on platform one, arriving by 9:55.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_05_train_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L05-train-delay.wav",
+      "audioText": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We’ll miss our connection if we wait.\nMan: Let’s switch to the local. It’s slower, but we’ll still get there on time, and I’d rather not risk waiting.\nWoman: Okay, let’s move to platform one now before it gets crowded.\nN: Now answer the questions.",
+      "question": "What will the two passengers probably do?",
+      "options": [
+        "Wait on platform three for the express.",
+        "Go to platform one to catch the local.",
+        "Return home and travel tomorrow.",
+        "Ask for a refund."
+      ],
+      "correct": 1,
+      "explanation": "They decide to switch to the local and move to platform one before it gets crowded.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_10_bike_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L10-bike-rental-trails.wav",
+      "audioText": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week’s heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it’s easier. I’d also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we’ll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+      "question": "Why does the assistant mention the hill trail?",
+      "options": [
+        "To warn that part of it is closed after rain.",
+        "To advertise a new trail.",
+        "To explain shop hours.",
+        "To ask for a deposit."
+      ],
+      "correct": 0,
+      "explanation": "Assistant warns that the hill trail is partly closed after heavy rain.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_10_bike_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L10-bike-rental-trails.wav",
+      "audioText": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week’s heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it’s easier. I’d also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we’ll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+      "question": "Which route does the assistant recommend instead?",
+      "options": [
+        "The city route.",
+        "The hill route.",
+        "The river route.",
+        "The mountain route."
+      ],
+      "correct": 2,
+      "explanation": "The river route is open and easier.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_10_bike_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L10-bike-rental-trails.wav",
+      "audioText": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week’s heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it’s easier. I’d also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we’ll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+      "question": "What will the customer rent?",
+      "options": [
+        "One bike and one helmet.",
+        "Two bikes, two helmets, and a repair kit.",
+        "Two bikes only.",
+        "Two bikes and one helmet without a kit."
+      ],
+      "correct": 1,
+      "explanation": "Customer says two bikes, two helmets, and one repair kit (helmets included, kit extra).",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-2.wav",
+      "audioText": "Man: Attention passengers on platform 4. The 10:15 train to Chicago has been delayed by 20 minutes due to track maintenance. Please remain on the platform; boarding will begin shortly.",
+      "ttsText": "Attention passengers on platform 4. The 10:15 train to Chicago has been delayed by 20 minutes due to track maintenance. Please remain on the platform; boarding will begin shortly.",
+      "question": "What is the purpose of the announcement?",
+      "options": [
+        "To inform passengers of a platform change.",
+        "To explain a delay in departure.",
+        "To announce the train's arrival in Chicago.",
+        "To request passengers leave the platform."
+      ],
+      "correct": 1,
+      "explanation": "The announcer explicitly states the train is 'delayed by 20 minutes due to track maintenance.'",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_4",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-4.wav",
+      "audioText": "Woman: I'd like to return this jacket. I bought it last week, but the zipper keeps getting stuck.\nMan: I apologize for that. Do you have the receipt? I can offer you a full refund, or we can exchange it for a new one.\nWoman: I really like the color, so I'll just take a replacement, please.",
+      "ttsText": "I'd like to return this jacket. I bought it last week, but the zipper keeps getting stuck. I apologize for that. Do you have the receipt? I can offer you a full refund, or we can exchange it for a new one. I really like the color, so I'll just take a replacement, please.",
+      "question": "What does the customer decide to do?",
+      "options": [
+        "Get her money back.",
+        "Exchange the jacket for a different color.",
+        "Get a new jacket of the same type.",
+        "Repair the zipper herself."
+      ],
+      "correct": 2,
+      "explanation": "She wants a 'replacement' because she likes the color, meaning she wants a new version of the exact same item.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_6",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-6.wav",
+      "audioText": "Woman: I've been looking over Jason's quarterly numbers. While his client retention is fantastic, his new acquisitions are down by 15%.\nMan: I noticed that too. He spends so much time keeping current clients happy that he neglects outbound sales. He needs to strike a better balance.\nWoman: Let's bring it up in his performance review next week and set some hard targets for acquisition.",
+      "ttsText": "I've been looking over Jason's quarterly numbers. While his client retention is fantastic, his new acquisitions are down by 15%. I noticed that too. He spends so much time keeping current clients happy that he neglects outbound sales. He needs to strike a better balance. Let's bring it up in his performance review next week and set some hard targets for acquisition.",
+      "question": "What do the managers agree about Jason?",
+      "options": [
+        "He is losing too many existing clients.",
+        "He focuses too much on finding new clients.",
+        "He needs to improve his outbound sales performance.",
+        "He should be fired at his next performance review."
+      ],
+      "correct": 2,
+      "explanation": "They agree that his 'new acquisitions are down' and he 'neglects outbound sales', meaning he needs to improve in bringing in new business.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-77",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-77-travel-suggestion.mp3",
+      "audioTitle": "77 · A Travel Suggestion",
+      "audioSrc": "/exercises/audio/listening/listening-77-travel-suggestion.mp3",
+      "audioText": "Woman: The highway is usually crowded on Friday afternoons. Man: In that case, why don’t we take the train? It’s slightly more expensive, but we would avoid the traffic and arrive before dinner.",
+      "question": "What does the man suggest?",
+      "options": [
+        "Leaving on Saturday morning",
+        "Driving on the highway",
+        "Taking the train",
+        "Cancelling dinner"
+      ],
+      "correct": 2,
+      "explanation": "He suggests taking the train to avoid traffic.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-82",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-82-neighborhood-notice.mp3",
+      "audioTitle": "82 · A Neighborhood Notice",
+      "audioSrc": "/exercises/audio/listening/listening-82-neighborhood-notice.mp3",
+      "audioText": "Because the street will be repaved, residents should move their cars before eight tomorrow morning. The work is expected to last two days, although access for emergency vehicles will be maintained.",
+      "question": "What can be inferred?",
+      "options": [
+        "Residents will not be able to leave the neighborhood for two days.",
+        "Cars left on the street may interfere with the work.",
+        "Emergency vehicles will use a different neighborhood.",
+        "The work has already finished."
+      ],
+      "correct": 1,
+      "explanation": "Residents are asked to move cars so paving work can proceed.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-86",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-86-weather-delay.mp3",
+      "audioTitle": "86 · A Weather-Related Delay",
+      "audioSrc": "/exercises/audio/listening/listening-86-weather-delay.mp3",
+      "audioText": "The ferry service is running approximately twenty minutes late because strong winds have reduced visibility near the harbor. Passengers should remain in the waiting area and listen for further announcements.",
+      "question": "Why is the ferry delayed?",
+      "options": [
+        "The harbor is closed for construction.",
+        "Strong winds have reduced visibility.",
+        "Passengers arrived late.",
+        "The waiting area is full."
+      ],
+      "correct": 1,
+      "explanation": "The delay is caused by strong winds and reduced visibility.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-90",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-90-implied-objection.mp3",
+      "audioTitle": "90 · An Implied Objection",
+      "audioSrc": "/exercises/audio/listening/listening-90-implied-objection.mp3",
+      "audioText": "Speaker A: We can reduce the training period to one day. Speaker B: That may be possible for experienced staff, although new employees might need more time to practice the procedures.",
+      "question": "What concern does Speaker B imply?",
+      "options": [
+        "Experienced staff should receive no training.",
+        "New employees may not be ready after one day.",
+        "The procedures are unnecessary.",
+        "The training period has already been extended."
+      ],
+      "correct": 1,
+      "explanation": "The contrast with experienced staff implies that new employees may need longer training.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-91",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-91-source-comparison.mp3",
+      "audioTitle": "91 · A Source Comparison",
+      "audioSrc": "/exercises/audio/listening/listening-91-source-comparison.mp3",
+      "audioText": "The two reports agree that public transport use has increased. They differ, however, in their explanations: the first emphasizes lower fares, while the second attributes the change mainly to reduced parking availability.",
+      "question": "How do the reports differ?",
+      "options": [
+        "They report opposite changes in transport use.",
+        "They offer different explanations for the increase.",
+        "Only one report discusses public transport.",
+        "They disagree about the price of parking only."
+      ],
+      "correct": 1,
+      "explanation": "Both reports identify an increase but explain it differently.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-97",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-97-strategic-tradeoff.mp3",
+      "audioTitle": "97 · A Strategic Trade-Off",
+      "audioSrc": "/exercises/audio/listening/listening-97-strategic-tradeoff.mp3",
+      "audioText": "Moving the service online would lower operating costs, whereas keeping a physical location would preserve access for people with limited internet connectivity. The decision therefore depends on whether efficiency or inclusion is the immediate priority.",
+      "question": "What trade-off does the speaker identify?",
+      "options": [
+        "Cost efficiency versus wider physical access",
+        "Speed versus employee training",
+        "Online security versus office size",
+        "Advertising versus transportation"
+      ],
+      "correct": 0,
+      "explanation": "The speaker contrasts lower costs with maintaining access for people with limited connectivity.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

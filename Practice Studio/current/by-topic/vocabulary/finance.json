@@ -1,0 +1,62 @@
+{
+  "skill": "vocabulary",
+  "topic": "finance",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "michigan_vocab_7",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "I cannot ___ to buy a new laptop this month, so I will continue using my old one.",
+      "options": [
+        "avoid",
+        "announce",
+        "afford",
+        "attend"
+      ],
+      "correct": 2,
+      "explanation": "**Afford** means have enough money to pay for something."
+    },
+    {
+      "id": "vt_money_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "It is important to ___ a budget so you do not overspend.",
+      "options": [
+        "create",
+        "crack",
+        "catch",
+        "carry"
+      ],
+      "correct": 0,
+      "explanation": "“Create a budget” means to plan your spending."
+    },
+    {
+      "id": "vt_money_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Customers can often ___ a refund if the product is faulty.",
+      "options": [
+        "request",
+        "require",
+        "refuse",
+        "repeat"
+      ],
+      "correct": 0,
+      "explanation": "“Request a refund” means to ask for your money back."
+    },
+    {
+      "id": "vt_money_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Comparing prices helps shoppers ___ money.",
+      "blanks": [
+        "save"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "skill": "listening",
+  "topic": "food-and-dining",
+  "totalExercises": 6,
+  "exercises": [
+    {
+      "id": "listen_01_cafe_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L01-cafe-oat-milk.wav",
+      "audioText": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I’d like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we’re out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can’t have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you’d like.\nN: Now answer the questions.",
+      "question": "Why can’t the customer order a latte right now?",
+      "options": [
+        "The shop is closing early.",
+        "The customer doesn’t have enough money.",
+        "The shop is temporarily out of oat milk.",
+        "The barista doesn’t know how to make it."
+      ],
+      "correct": 2,
+      "explanation": "The barista says they are out of oat milk until the delivery around two/three, and the customer needs oat milk due to a dairy allergy.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_01_cafe_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L01-cafe-oat-milk.wav",
+      "audioText": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I’d like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we’re out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can’t have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you’d like.\nN: Now answer the questions.",
+      "question": "What does the barista offer to do?",
+      "options": [
+        "Give the customer a discount.",
+        "Reserve a latte for later.",
+        "Deliver the drink to the meeting.",
+        "Call another coffee shop."
+      ],
+      "correct": 1,
+      "explanation": "Barista says 'I can set one aside for you' if the customer returns after the meeting.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_01_cafe_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L01-cafe-oat-milk.wav",
+      "audioText": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I’d like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we’re out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can’t have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you’d like.\nN: Now answer the questions.",
+      "question": "What can be inferred about the delivery today?",
+      "options": [
+        "It will arrive earlier than usual.",
+        "It has been cancelled.",
+        "It is delayed because of traffic.",
+        "It will bring only regular milk."
+      ],
+      "correct": 2,
+      "explanation": "The driver called and said maybe three today because of traffic on Main Street — later than the usual two o’clock.",
+      "listeningFormat": "inference"
+    },
+    {
+      "id": "gemini_listening_5",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-5.wav",
+      "audioText": "Man: Welcome back to City FM. A quick reminder for those driving downtown this weekend: the annual Food Festival will close several main streets starting Friday night. Expect heavy traffic near the plaza, and consider taking the subway if you plan to attend.",
+      "ttsText": "Welcome back to City FM. A quick reminder for those driving downtown this weekend: the annual Food Festival will close several main streets starting Friday night. Expect heavy traffic near the plaza, and consider taking the subway if you plan to attend.",
+      "question": "What does the speaker advise listeners to do?",
+      "options": [
+        "Avoid attending the Food Festival.",
+        "Drive carefully near the plaza.",
+        "Use public transportation to get to the festival.",
+        "Park their cars downtown on Friday night."
+      ],
+      "correct": 2,
+      "explanation": "The speaker explicitly suggests listeners 'consider taking the subway', which is public transportation.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_8",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-8.wav",
+      "audioText": "Woman: We could try that new Italian place on 5th Street. I heard their pasta is handmade.\nMan: Honestly, I had Italian for lunch yesterday. How about the sushi restaurant near the river?\nWoman: I'm not a big fan of raw fish. What if we compromise and get Thai? There's a great spot right around the corner.\nMan: Perfect. Pad Thai sounds great.",
+      "ttsText": "We could try that new Italian place on 5th Street. I heard their pasta is handmade. Honestly, I had Italian for lunch yesterday. How about the sushi restaurant near the river? I'm not a big fan of raw fish. What if we compromise and get Thai? There's a great spot right around the corner. Perfect. Pad Thai sounds great.",
+      "question": "How do the speakers resolve their disagreement?",
+      "options": [
+        "They decide to eat Italian food.",
+        "They choose a restaurant neither originally suggested.",
+        "The man agrees to eat raw fish.",
+        "They decide to cook at home instead."
+      ],
+      "correct": 1,
+      "explanation": "She suggested Italian, he suggested sushi. They compromise on Thai, which is a third, new option.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-79",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-79-restaurant-review.mp3",
+      "audioTitle": "79 · A Restaurant Review",
+      "audioSrc": "/exercises/audio/listening/listening-79-restaurant-review.mp3",
+      "audioText": "The new restaurant has a pleasant atmosphere and the service is attentive. I found the menu a little limited, though, especially for people who do not eat meat. Overall, it is worth visiting, but I hope they add more options.",
+      "question": "What is the speaker’s overall opinion?",
+      "options": [
+        "Entirely negative",
+        "Positive with one reservation",
+        "Uncertain whether the restaurant exists",
+        "Only concerned about the atmosphere"
+      ],
+      "correct": 1,
+      "explanation": "The speaker praises the atmosphere and service but identifies a limitation in the menu.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

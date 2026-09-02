@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "healthcare",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_health_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe a time you or someone you know needed medical care. What happened?"
+    }
+  ]
+}

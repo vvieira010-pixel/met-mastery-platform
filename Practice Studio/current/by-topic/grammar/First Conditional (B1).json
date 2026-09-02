@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "First Conditional (B1)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_4",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "If the traffic is bad this afternoon, I _____ you to let you know I'll be late.",
+      "options": [
+        "call",
+        "will call",
+        "would call",
+        "am calling"
+      ],
+      "correct": 1,
+      "explanation": "The first conditional uses 'if + present simple, will + base verb' for real, possible future situations.",
+      "topicId": "First Conditional (B1)"
+    },
+    {
+      "id": "G17",
+      "number": 17,
+      "category": "First Conditional (B1)",
+      "level": "B1",
+      "question": "If you ________ hard, you will pass the exam.",
+      "options": {
+        "A": "study",
+        "B": "will study",
+        "C": "studied",
+        "D": "would study"
+      },
+      "correct_answer": "A",
+      "correct_option": "study",
+      "explanation": "In the if-clause of a first conditional, use present simple, not 'will'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

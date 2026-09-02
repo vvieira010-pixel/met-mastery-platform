@@ -1,0 +1,531 @@
+{
+  "version": "1.0",
+  "title": "MET B2 Supplementary Listening Pack (Exercises 76–100)",
+  "exercises": [
+    {
+      "id": "listening-76",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-76-room-change.mp3",
+      "audioTitle": "76 · A Room Change",
+      "audioSrc": "/exercises/audio/listening/listening-76-room-change.mp3",
+      "audioText": "The evening class will meet in Room 204 tonight because the heating system is being repaired in the usual classroom. The start time remains seven o’clock, and students should bring their course books as usual.",
+      "question": "Why has the class been moved?",
+      "options": [
+        "The teacher is absent.",
+        "The heating system is being repaired.",
+        "The room is too small.",
+        "The class starts later."
+      ],
+      "correct": 1,
+      "explanation": "The announcement says the heating system is being repaired in the usual room.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-77",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-77-travel-suggestion.mp3",
+      "audioTitle": "77 · A Travel Suggestion",
+      "audioSrc": "/exercises/audio/listening/listening-77-travel-suggestion.mp3",
+      "audioText": "Woman: The highway is usually crowded on Friday afternoons. Man: In that case, why don’t we take the train? It’s slightly more expensive, but we would avoid the traffic and arrive before dinner.",
+      "question": "What does the man suggest?",
+      "options": [
+        "Leaving on Saturday morning",
+        "Driving on the highway",
+        "Taking the train",
+        "Cancelling dinner"
+      ],
+      "correct": 2,
+      "explanation": "He suggests taking the train to avoid traffic.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-78",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-78-library-renewal.mp3",
+      "audioTitle": "78 · A Library Book Renewal",
+      "audioSrc": "/exercises/audio/listening/listening-78-library-renewal.mp3",
+      "audioText": "You can renew most library books online twice, provided nobody else has requested them. If another reader places a request, the book must be returned by its original due date.",
+      "question": "When can a book not be renewed?",
+      "options": [
+        "When it is borrowed for the first time",
+        "When another reader has requested it",
+        "When the renewal is done online",
+        "When it has been renewed twice"
+      ],
+      "correct": 1,
+      "explanation": "A request from another reader prevents renewal.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-79",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-79-restaurant-review.mp3",
+      "audioTitle": "79 · A Restaurant Review",
+      "audioSrc": "/exercises/audio/listening/listening-79-restaurant-review.mp3",
+      "audioText": "The new restaurant has a pleasant atmosphere and the service is attentive. I found the menu a little limited, though, especially for people who do not eat meat. Overall, it is worth visiting, but I hope they add more options.",
+      "question": "What is the speaker’s overall opinion?",
+      "options": [
+        "Entirely negative",
+        "Positive with one reservation",
+        "Uncertain whether the restaurant exists",
+        "Only concerned about the atmosphere"
+      ],
+      "correct": 1,
+      "explanation": "The speaker praises the atmosphere and service but identifies a limitation in the menu.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-80",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-80-workplace-reminder.mp3",
+      "audioTitle": "80 · A Workplace Reminder",
+      "audioSrc": "/exercises/audio/listening/listening-80-workplace-reminder.mp3",
+      "audioText": "Please label all shared equipment before placing it in the storage room. Unlabeled items may be moved to the temporary shelf, which will be cleared at the end of each month. If you are unsure where something belongs, ask the facilities team.",
+      "question": "What should employees do?",
+      "options": [
+        "Remove all shared equipment",
+        "Label equipment before storage",
+        "Clear the temporary shelf daily",
+        "Contact facilities about every item"
+      ],
+      "correct": 1,
+      "explanation": "The reminder asks employees to label shared equipment before storing it.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-81",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-81-course-deadline.mp3",
+      "audioTitle": "81 · A Course Deadline",
+      "audioSrc": "/exercises/audio/listening/listening-81-course-deadline.mp3",
+      "audioText": "The first assignment is due next Wednesday, not this Wednesday as some students seem to believe. You may submit it any time before midnight, but late work will receive reduced feedback.",
+      "question": "When is the assignment due?",
+      "options": [
+        "This Wednesday morning",
+        "Next Wednesday before midnight",
+        "Next Thursday at noon",
+        "At the end of the month"
+      ],
+      "correct": 1,
+      "explanation": "The assignment is due next Wednesday and may be submitted before midnight.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-82",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-82-neighborhood-notice.mp3",
+      "audioTitle": "82 · A Neighborhood Notice",
+      "audioSrc": "/exercises/audio/listening/listening-82-neighborhood-notice.mp3",
+      "audioText": "Because the street will be repaved, residents should move their cars before eight tomorrow morning. The work is expected to last two days, although access for emergency vehicles will be maintained.",
+      "question": "What can be inferred?",
+      "options": [
+        "Residents will not be able to leave the neighborhood for two days.",
+        "Cars left on the street may interfere with the work.",
+        "Emergency vehicles will use a different neighborhood.",
+        "The work has already finished."
+      ],
+      "correct": 1,
+      "explanation": "Residents are asked to move cars so paving work can proceed.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-83",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-83-package-collection.mp3",
+      "audioTitle": "83 · A Package Collection",
+      "audioSrc": "/exercises/audio/listening/listening-83-package-collection.mp3",
+      "audioText": "Your package has arrived at the service desk. Please bring photo identification when you collect it. The desk closes at six, but packages can be collected tomorrow morning from eight-thirty.",
+      "question": "What must the customer bring?",
+      "options": [
+        "A payment receipt",
+        "Photo identification",
+        "A delivery truck",
+        "A letter from the sender"
+      ],
+      "correct": 1,
+      "explanation": "The customer must bring photo identification.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-84",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-84-team-update.mp3",
+      "audioTitle": "84 · A Team Update",
+      "audioSrc": "/exercises/audio/listening/listening-84-team-update.mp3",
+      "audioText": "We have completed the survey and organized the responses. Next, we will prepare a short summary for the director. After receiving comments, we will revise the report and share the final version with the whole team.",
+      "question": "What will happen after the summary is prepared?",
+      "options": [
+        "The survey will begin.",
+        "The team will organize the responses.",
+        "The director will provide comments.",
+        "The final version will be shared immediately."
+      ],
+      "correct": 2,
+      "explanation": "The team will receive comments after preparing the summary, then revise the report.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-85",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-85-health-workshop.mp3",
+      "audioTitle": "85 · A Health Workshop",
+      "audioSrc": "/exercises/audio/listening/listening-85-health-workshop.mp3",
+      "audioText": "This free workshop will introduce simple ways to make daily meals more balanced. It is not a medical consultation, and participants should speak to a healthcare professional about personal concerns. Recipes and a shopping guide will be provided at the end.",
+      "question": "What will participants receive?",
+      "options": [
+        "Individual medical treatment",
+        "A free gym membership",
+        "Recipes and a shopping guide",
+        "A week of prepared meals"
+      ],
+      "correct": 2,
+      "explanation": "The speaker says recipes and a shopping guide will be provided.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-86",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-86-weather-delay.mp3",
+      "audioTitle": "86 · A Weather-Related Delay",
+      "audioSrc": "/exercises/audio/listening/listening-86-weather-delay.mp3",
+      "audioText": "The ferry service is running approximately twenty minutes late because strong winds have reduced visibility near the harbor. Passengers should remain in the waiting area and listen for further announcements.",
+      "question": "Why is the ferry delayed?",
+      "options": [
+        "The harbor is closed for construction.",
+        "Strong winds have reduced visibility.",
+        "Passengers arrived late.",
+        "The waiting area is full."
+      ],
+      "correct": 1,
+      "explanation": "The delay is caused by strong winds and reduced visibility.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-87",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-87-volunteer-task.mp3",
+      "audioTitle": "87 · A Volunteer Task",
+      "audioSrc": "/exercises/audio/listening/listening-87-volunteer-task.mp3",
+      "audioText": "Before the visitors arrive, please place the information cards on each table and check that the water dispenser is full. You do not need to arrange the chairs; the events team has already done that.",
+      "question": "What should the volunteer do?",
+      "options": [
+        "Arrange the chairs",
+        "Place cards and check the water dispenser",
+        "Welcome visitors outside",
+        "Move the tables"
+      ],
+      "correct": 1,
+      "explanation": "The volunteer should place the cards and check the water dispenser.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-88",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-88-project-update.mp3",
+      "audioTitle": "88 · A Project Update",
+      "audioSrc": "/exercises/audio/listening/listening-88-project-update.mp3",
+      "audioText": "The project is progressing more slowly than planned, but the main research stage is now complete. The team is waiting for permission to access the final set of records. Once that approval arrives, the analysis can continue.",
+      "question": "What is currently delaying the project?",
+      "options": [
+        "The research stage has not started.",
+        "The team lacks a final report.",
+        "The team is waiting for access permission.",
+        "The analysis has been rejected."
+      ],
+      "correct": 2,
+      "explanation": "The team is waiting for permission to access the final records.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-89",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-89-cautious-forecast.mp3",
+      "audioTitle": "89 · A Cautious Forecast",
+      "audioSrc": "/exercises/audio/listening/listening-89-cautious-forecast.mp3",
+      "audioText": "The early figures point to a modest increase in participation. However, registrations remain open for another month, so it would be premature to predict the final total. The current trend is encouraging, but not conclusive.",
+      "question": "How does the speaker view the current figures?",
+      "options": [
+        "They are conclusive.",
+        "They are encouraging but not final.",
+        "They show a definite decline.",
+        "They should be ignored completely."
+      ],
+      "correct": 1,
+      "explanation": "The speaker describes the trend as encouraging but says it is too early for a final prediction.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-90",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-90-implied-objection.mp3",
+      "audioTitle": "90 · An Implied Objection",
+      "audioSrc": "/exercises/audio/listening/listening-90-implied-objection.mp3",
+      "audioText": "Speaker A: We can reduce the training period to one day. Speaker B: That may be possible for experienced staff, although new employees might need more time to practice the procedures.",
+      "question": "What concern does Speaker B imply?",
+      "options": [
+        "Experienced staff should receive no training.",
+        "New employees may not be ready after one day.",
+        "The procedures are unnecessary.",
+        "The training period has already been extended."
+      ],
+      "correct": 1,
+      "explanation": "The contrast with experienced staff implies that new employees may need longer training.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-91",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-91-source-comparison.mp3",
+      "audioTitle": "91 · A Source Comparison",
+      "audioSrc": "/exercises/audio/listening/listening-91-source-comparison.mp3",
+      "audioText": "The two reports agree that public transport use has increased. They differ, however, in their explanations: the first emphasizes lower fares, while the second attributes the change mainly to reduced parking availability.",
+      "question": "How do the reports differ?",
+      "options": [
+        "They report opposite changes in transport use.",
+        "They offer different explanations for the increase.",
+        "Only one report discusses public transport.",
+        "They disagree about the price of parking only."
+      ],
+      "correct": 1,
+      "explanation": "Both reports identify an increase but explain it differently.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-92",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-92-revised-recommendation.mp3",
+      "audioTitle": "92 · A Revised Recommendation",
+      "audioSrc": "/exercises/audio/listening/listening-92-revised-recommendation.mp3",
+      "audioText": "At first, I supported opening the facility every evening. After reviewing the staffing data, I think a three-evening schedule would be more realistic. It would still improve access without placing excessive pressure on the team.",
+      "question": "What position does the speaker finally support?",
+      "options": [
+        "Opening every evening",
+        "Closing the facility permanently",
+        "Opening three evenings a week",
+        "Reducing the staff team"
+      ],
+      "correct": 2,
+      "explanation": "The speaker changes from every evening to a more realistic three-evening schedule.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-93",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-93-policy-condition.mp3",
+      "audioTitle": "93 · A Policy Condition",
+      "audioSrc": "/exercises/audio/listening/listening-93-policy-condition.mp3",
+      "audioText": "The committee is willing to approve the proposal, provided that the organizers submit a revised budget by Friday. Without that document, the application will remain on hold until the next meeting.",
+      "question": "What must the organizers do for approval to proceed?",
+      "options": [
+        "Cancel the next meeting",
+        "Submit a revised budget by Friday",
+        "Recruit a new committee",
+        "Reduce the proposal to one page"
+      ],
+      "correct": 1,
+      "explanation": "Approval depends on submitting the revised budget by Friday.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-94",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-94-nuanced-evaluation.mp3",
+      "audioTitle": "94 · A Nuanced Evaluation",
+      "audioSrc": "/exercises/audio/listening/listening-94-nuanced-evaluation.mp3",
+      "audioText": "The pilot has not solved every problem, but it has revealed which parts of the process require attention. I would hesitate to call it a failure; its value may lie in the information it has provided for the next stage.",
+      "question": "How does the speaker evaluate the pilot?",
+      "options": [
+        "As completely successful",
+        "As useless and unsuccessful",
+        "As imperfect but informative",
+        "As too expensive to discuss"
+      ],
+      "correct": 2,
+      "explanation": "The speaker acknowledges problems while emphasizing the useful information gained.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-95",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-95-academic-qualification.mp3",
+      "audioTitle": "95 · An Academic Qualification",
+      "audioSrc": "/exercises/audio/listening/listening-95-academic-qualification.mp3",
+      "audioText": "The findings are consistent with the hypothesis, but consistency alone does not establish causation. Further experiments would be needed to determine whether the observed relationship is genuinely responsible for the outcome.",
+      "question": "What does the speaker say is still needed?",
+      "options": [
+        "A new hypothesis with no evidence",
+        "Further experiments",
+        "A shorter report",
+        "A different outcome"
+      ],
+      "correct": 1,
+      "explanation": "The speaker says further experiments are needed to establish causation.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-96",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-96-corrected-figure.mp3",
+      "audioTitle": "96 · A Corrected Figure",
+      "audioSrc": "/exercises/audio/listening/listening-96-corrected-figure.mp3",
+      "audioText": "The survey included 480 responses. Actually, I need to correct that figure: there were 408 completed responses, plus 72 incomplete forms that were excluded from the analysis.",
+      "question": "How many responses were analyzed?",
+      "options": [
+        "72",
+        "408",
+        "480",
+        "552"
+      ],
+      "correct": 1,
+      "explanation": "The corrected figure is 408 completed responses; the incomplete forms were excluded.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-97",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-97-strategic-tradeoff.mp3",
+      "audioTitle": "97 · A Strategic Trade-Off",
+      "audioSrc": "/exercises/audio/listening/listening-97-strategic-tradeoff.mp3",
+      "audioText": "Moving the service online would lower operating costs, whereas keeping a physical location would preserve access for people with limited internet connectivity. The decision therefore depends on whether efficiency or inclusion is the immediate priority.",
+      "question": "What trade-off does the speaker identify?",
+      "options": [
+        "Cost efficiency versus wider physical access",
+        "Speed versus employee training",
+        "Online security versus office size",
+        "Advertising versus transportation"
+      ],
+      "correct": 0,
+      "explanation": "The speaker contrasts lower costs with maintaining access for people with limited connectivity.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-98",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-98-meeting-summary.mp3",
+      "audioTitle": "98 · A Meeting Summary",
+      "audioSrc": "/exercises/audio/listening/listening-98-meeting-summary.mp3",
+      "audioText": "The group agreed to keep the current deadline but to reduce the first phase of the project. They also asked the research team to clarify two assumptions before the next meeting. If the assumptions change the cost estimate, the deadline will be reconsidered.",
+      "question": "What could lead to a change in the deadline?",
+      "options": [
+        "A shorter first phase",
+        "A new meeting date",
+        "Changes to the cost estimate",
+        "The current deadline itself"
+      ],
+      "correct": 2,
+      "explanation": "The deadline may be reconsidered if clarified assumptions change the cost estimate.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-99",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-99-public-response.mp3",
+      "audioTitle": "99 · A Public Response",
+      "audioSrc": "/exercises/audio/listening/listening-99-public-response.mp3",
+      "audioText": "We recognize that residents are disappointed by the temporary closure. Nevertheless, the repairs are necessary to prevent a more serious disruption later. The center will publish weekly updates and announce the reopening date as soon as it is confirmed.",
+      "question": "What is the purpose of the statement?",
+      "options": [
+        "To deny that repairs are needed",
+        "To acknowledge concerns and explain the closure",
+        "To announce that the center has reopened",
+        "To ask residents to cancel repairs"
+      ],
+      "correct": 1,
+      "explanation": "The statement acknowledges disappointment and explains why the closure is necessary.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-100",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-100-integrated-review.mp3",
+      "audioTitle": "100 · Integrated Listening Review",
+      "audioSrc": "/exercises/audio/listening/listening-100-integrated-review.mp3",
+      "audioText": "The university is introducing a shared bicycle program for students and staff. The first phase will include 120 bicycles at four locations near the main campus. Users will need to register online, and the first thirty minutes of each trip will be free. The university plans to evaluate the program after six months before deciding whether to expand it to the residential campus.",
+      "question": "What will the university do after six months?",
+      "options": [
+        "End the program automatically",
+        "Evaluate the program before deciding about expansion",
+        "Move all bicycles to the residential campus",
+        "Charge for every first trip"
+      ],
+      "correct": 1,
+      "explanation": "The university will evaluate the first phase before deciding whether to expand the program.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

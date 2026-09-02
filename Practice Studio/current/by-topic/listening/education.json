@@ -1,0 +1,594 @@
+{
+  "skill": "listening",
+  "topic": "education",
+  "totalExercises": 31,
+  "exercises": [
+    {
+      "id": "dr_L01_mtgcfjqd_4",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L01-careers-workshop.mp3",
+      "audioText": "W: Are you going to the careers workshop this afternoon?\nM: Not today. They moved it to next Thursday because the guest speaker missed her flight.\nW: I'm glad you told me. I was about to leave for the hall.\nN: What does the man say about the workshop?",
+      "question": "What does the man say about the workshop?",
+      "options": [
+        "It has started late.",
+        "It will happen on another day.",
+        "It is only for new students.",
+        "It has changed rooms."
+      ],
+      "correct": 1,
+      "listeningFormat": "speaker_intention"
+    },
+    {
+      "id": "dr_L05a_mtgcfjqd_8",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L05-academic-advisor.mp3",
+      "audioText": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you're thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only section I can see is on Tuesday evenings, and that's when I usually work.\nAdvisor: There is an online section, but it fills up quickly. If you want that one, you should register today.\nStudent: I was hoping to take the in-person class because I learn better when I can ask questions right away.\nAdvisor: That makes sense. Still, the online section might be the better choice if your work schedule can't change.\nStudent: True. I'll call my manager this afternoon and see whether I can switch shifts. If not, I'll take the online class.\nN: Now answer the questions.",
+      "question": "Why is the student worried about the course?",
+      "options": [
+        "He has already failed it once.",
+        "He may not be free at the class time.",
+        "He cannot find the classroom.",
+        "He thinks the teacher is too strict."
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L05b_mtgcfjqd_9",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L05-academic-advisor.mp3",
+      "audioText": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you're thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only section I can see is on Tuesday evenings, and that's when I usually work.\nAdvisor: There is an online section, but it fills up quickly. If you want that one, you should register today.\nStudent: I was hoping to take the in-person class because I learn better when I can ask questions right away.\nAdvisor: That makes sense. Still, the online section might be the better choice if your work schedule can't change.\nStudent: True. I'll call my manager this afternoon and see whether I can switch shifts. If not, I'll take the online class.\nN: Now answer the questions.",
+      "question": "What will the student probably do first?",
+      "options": [
+        "Drop the course completely.",
+        "Register for a different subject.",
+        "Ask his manager about his work hours.",
+        "Join the online class immediately."
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L09b_mtgcfjqd_h",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L09-water-service.mp3",
+      "audioText": "N: Listen to a public service announcement.\nAnnouncer: This is a reminder for residents of North Park. Water service will be temporarily interrupted tonight from ten p.m. until approximately six a.m. while the city replaces an old underground pipe. Residents are advised to store enough water for drinking and basic cleaning before ten p.m. If possible, avoid using washing machines or dishwashers until service is fully restored in the morning. A supply tank with bottled water will be available at the North Park Community Center for elderly residents and others with urgent needs.\nN: Now answer the questions.",
+      "question": "Who is the bottled water especially intended for?",
+      "options": [
+        "Visitors from outside the area",
+        "Families with school-age children",
+        "Residents with urgent needs, including older people",
+        "City workers on the night shift"
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L10a_mtgcfjqd_k",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L10-walking-podcast.mp3",
+      "audioText": "N: Listen to part of a podcast.\nHost: When people feel stuck on a problem, they often assume they should stay at their desks and try harder. In fact, short walks can be surprisingly productive. Movement changes your environment and can interrupt repetitive thinking. One design team I interviewed now holds ten-minute walking meetings whenever they cannot agree on a solution. They say the conversations become calmer, and people tend to suggest more creative ideas. Of course, walking is not a replacement for focused work. You still need time to sit down, review options, and make a decision. But if your thinking starts to go in circles, getting up may be exactly what helps.\nN: Now answer the questions.",
+      "question": "What is the speaker's main point?",
+      "options": [
+        "Good ideas only come from group discussions",
+        "Walking can help people think more effectively",
+        "Meetings should always take place outdoors",
+        "Designers are more creative than other workers"
+      ],
+      "correct": 1,
+      "teacherNote": "Target: Main Idea Comprehension. High potential for lapping in \"Designers are more creative\" if students only listen for keywords.",
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L10b_mtgcfjqd_l",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L10-walking-podcast.mp3",
+      "audioText": "N: Listen to part of a podcast.\nHost: When people feel stuck on a problem, they often assume they should stay at their desks and try harder. In fact, short walks can be surprisingly productive. Movement changes your environment and can interrupt repetitive thinking. One design team I interviewed now holds ten-minute walking meetings whenever they cannot agree on a solution. They say the conversations become calmer, and people tend to suggest more creative ideas. Of course, walking is not a replacement for focused work. You still need time to sit down, review options, and make a decision. But if your thinking starts to go in circles, getting up may be exactly what helps.\nN: Now answer the questions.",
+      "question": "Why does the speaker mention the design team?",
+      "options": [
+        "To show an example of the strategy in practice",
+        "To criticize the way they make decisions",
+        "To explain why meetings waste time",
+        "To argue against working at a desk"
+      ],
+      "correct": 0,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L14a_mtgcfjqd_p",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L14-guest-lecture.mp3",
+      "audioText": "Before we continue, I want to introduce Dr. Elena Ruiz, a marine biologist who has spent fifteen years studying coral reefs. She will join us for the second half of class to describe her recent fieldwork in the Pacific. I encourage you to prepare questions, since she rarely visits campus and this is a rare chance to ask about a career in marine research.",
+      "question": "What is the purpose of this talk?",
+      "options": [
+        "To announce a class cancellation",
+        "To introduce a guest speaker",
+        "To explain a grading policy",
+        "To describe a research paper"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L14b_mtgcfjqd_q",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L14-guest-lecture.mp3",
+      "audioText": "Before we continue, I want to introduce Dr. Elena Ruiz, a marine biologist who has spent fifteen years studying coral reefs. She will join us for the second half of class to describe her recent fieldwork in the Pacific. I encourage you to prepare questions, since she rarely visits campus and this is a rare chance to ask about a career in marine research.",
+      "question": "Why does the speaker mention that Dr. Ruiz rarely visits campus?",
+      "options": [
+        "To explain why students should be prepared",
+        "To apologize for a scheduling conflict",
+        "To describe her travel schedule",
+        "To justify a change in the syllabus"
+      ],
+      "correct": 0,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L14c_mtgcfjqd_r",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L14-guest-lecture.mp3",
+      "audioText": "Before we continue, I want to introduce Dr. Elena Ruiz, a marine biologist who has spent fifteen years studying coral reefs. She will join us for the second half of class to describe her recent fieldwork in the Pacific. I encourage you to prepare questions, since she rarely visits campus and this is a rare chance to ask about a career in marine research.",
+      "question": "What will probably happen next?",
+      "options": [
+        "The class will end early",
+        "Dr. Ruiz will begin speaking",
+        "Students will take a test",
+        "The professor will assign homework"
+      ],
+      "correct": 1,
+      "listeningFormat": "next_action"
+    },
+    {
+      "id": "dr_L19a_mtgcfjqd_14",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L19-printing-press.mp3",
+      "audioText": "When the printing press spread across Europe in the fifteenth century, it did not just make books cheaper — it changed how information traveled entirely. Ideas that once took years to reach distant regions could now spread within months. This shift laid the groundwork for widespread literacy and, eventually, for public debate on a scale never seen before.",
+      "question": "What is the main topic of this talk?",
+      "options": [
+        "The invention of paper",
+        "The impact of the printing press",
+        "Literacy rates today",
+        "The history of European trade"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L19b_mtgcfjqd_15",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L19-printing-press.mp3",
+      "audioText": "When the printing press spread across Europe in the fifteenth century, it did not just make books cheaper — it changed how information traveled entirely. Ideas that once took years to reach distant regions could now spread within months. This shift laid the groundwork for widespread literacy and, eventually, for public debate on a scale never seen before.",
+      "question": "According to the speaker, what changed after the printing press spread?",
+      "options": [
+        "Books became more expensive",
+        "Information traveled faster",
+        "Fewer people learned to read",
+        "Public debate disappeared"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L19c_mtgcfjqd_16",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L19-printing-press.mp3",
+      "audioText": "When the printing press spread across Europe in the fifteenth century, it did not just make books cheaper — it changed how information traveled entirely. Ideas that once took years to reach distant regions could now spread within months. This shift laid the groundwork for widespread literacy and, eventually, for public debate on a scale never seen before.",
+      "question": "What can be inferred from the talk?",
+      "options": [
+        "The printing press had social consequences beyond publishing",
+        "The printing press was invented in the sixteenth century",
+        "Literacy declined after the printing press spread",
+        "Ideas stopped spreading across regions"
+      ],
+      "correct": 0,
+      "listeningFormat": "inference"
+    },
+    {
+      "id": "dr_L20a_mtgcfjqd_17",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L20-cooking-class.mp3",
+      "audioText": "Just a reminder that registration for the summer cooking classes closes this Friday. We have added two new sessions focused on plant-based meals due to high demand. Spaces are limited, so if you are interested, stop by the front office or register online. Do not wait until the last minute, since these classes filled up quickly last year.",
+      "question": "What is the announcement mainly about?",
+      "options": [
+        "A change in office hours",
+        "Registration for cooking classes",
+        "A new community center building",
+        "A plant-based diet study"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L20b_mtgcfjqd_18",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L20-cooking-class.mp3",
+      "audioText": "Just a reminder that registration for the summer cooking classes closes this Friday. We have added two new sessions focused on plant-based meals due to high demand. Spaces are limited, so if you are interested, stop by the front office or register online. Do not wait until the last minute, since these classes filled up quickly last year.",
+      "question": "Why were two new sessions added?",
+      "options": [
+        "To replace canceled classes",
+        "Because of high demand",
+        "To reduce costs",
+        "Because of a scheduling conflict"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L20c_mtgcfjqd_19",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L20-cooking-class.mp3",
+      "audioText": "Just a reminder that registration for the summer cooking classes closes this Friday. We have added two new sessions focused on plant-based meals due to high demand. Spaces are limited, so if you are interested, stop by the front office or register online. Do not wait until the last minute, since these classes filled up quickly last year.",
+      "question": "Why does the speaker mention last year?",
+      "options": [
+        "To explain why classes were canceled",
+        "To warn people not to wait too long",
+        "To describe a past event",
+        "To compare prices"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_02_advisor_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L02-academic-advisor.wav",
+      "audioText": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you’re thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that’s when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can’t change, the online option may be more practical.\nStudent: True. I’ll call my manager this afternoon to see if I can switch shifts. If not, I’ll take the online class.\nN: Now answer the questions.",
+      "question": "Why is the student worried about the Marketing course?",
+      "options": [
+        "He has failed it before.",
+        "He cannot find the classroom.",
+        "The only available time conflicts with work.",
+        "The professor is too strict."
+      ],
+      "correct": 2,
+      "explanation": "The only open in-person section is Tuesday evenings, when he works at the clinic.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_02_advisor_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L02-academic-advisor.wav",
+      "audioText": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you’re thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that’s when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can’t change, the online option may be more practical.\nStudent: True. I’ll call my manager this afternoon to see if I can switch shifts. If not, I’ll take the online class.\nN: Now answer the questions.",
+      "question": "What does the advisor suggest about the online section?",
+      "options": [
+        "It is easier than the in-person class.",
+        "It requires no registration.",
+        "It fills quickly and needs early registration.",
+        "It is only for advanced students."
+      ],
+      "correct": 2,
+      "explanation": "Advisor says the online section fills quickly and the student should register today if he wants it.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_02_advisor_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L02-academic-advisor.wav",
+      "audioText": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you’re thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that’s when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can’t change, the online option may be more practical.\nStudent: True. I’ll call my manager this afternoon to see if I can switch shifts. If not, I’ll take the online class.\nN: Now answer the questions.",
+      "question": "What will the student probably do first?",
+      "options": [
+        "Drop the course completely.",
+        "Ask his manager about changing work hours.",
+        "Register for the online class immediately.",
+        "Talk to another professor."
+      ],
+      "correct": 1,
+      "explanation": "He says he’ll call his manager this afternoon to see if he can switch shifts before deciding.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_04_library_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L04-library-renewal.wav",
+      "audioText": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I’ve already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I’m finishing a research paper.\nLibrarian: Let me see. There’s no hold on it from other students, so I can renew it for seven more days. After that, though, you’ll need to return it.\nStudent: That’s perfect — my paper is due Friday.\nN: Now answer the questions.",
+      "question": "Why can’t the student renew the book online again?",
+      "options": [
+        "The library website is down.",
+        "He has already reached the online renewal limit.",
+        "The book is overdue.",
+        "He forgot his library password."
+      ],
+      "correct": 1,
+      "explanation": "After two online renewals the book must be brought in to check its condition.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_04_library_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L04-library-renewal.wav",
+      "audioText": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I’ve already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I’m finishing a research paper.\nLibrarian: Let me see. There’s no hold on it from other students, so I can renew it for seven more days. After that, though, you’ll need to return it.\nStudent: That’s perfect — my paper is due Friday.\nN: Now answer the questions.",
+      "question": "What condition allows another renewal?",
+      "options": [
+        "The student pays a small fee.",
+        "No other student has requested the book.",
+        "The book is newly published.",
+        "The librarian knows the student personally."
+      ],
+      "correct": 1,
+      "explanation": "Librarian says there’s no hold from other students, so a seven-day renewal is possible.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_04_library_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L04-library-renewal.wav",
+      "audioText": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I’ve already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I’m finishing a research paper.\nLibrarian: Let me see. There’s no hold on it from other students, so I can renew it for seven more days. After that, though, you’ll need to return it.\nStudent: That’s perfect — my paper is due Friday.\nN: Now answer the questions.",
+      "question": "What can be inferred about the student’s paper?",
+      "options": [
+        "It was already submitted last week.",
+        "He will need the book until close to the deadline.",
+        "He is writing it with a partner.",
+        "He plans to ask for an extension."
+      ],
+      "correct": 1,
+      "explanation": "He says the seven days is perfect because the paper is due Friday — he needs the book until then.",
+      "listeningFormat": "inference"
+    },
+    {
+      "id": "listen_08_office_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L08-office-hybrid-policy.wav",
+      "audioText": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we’re moving to a hybrid model next month. You’ll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
+      "question": "When will employees work from home under the new model?",
+      "options": [
+        "Every day.",
+        "Only on weekends.",
+        "Monday and Friday.",
+        "Tuesday through Thursday."
+      ],
+      "correct": 2,
+      "explanation": "Manager says work from home Monday and Friday, in office Tuesday-Thursday.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_08_office_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L08-office-hybrid-policy.wav",
+      "audioText": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we’re moving to a hybrid model next month. You’ll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
+      "question": "What are employees asked to do by Friday?",
+      "options": [
+        "Buy new office furniture.",
+        "Update the shared calendar for room booking.",
+        "Submit vacation requests.",
+        "Choose a new team leader."
+      ],
+      "correct": 1,
+      "explanation": "Update the shared calendar by Friday so they know when to book meeting rooms.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_08_office_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L08-office-hybrid-policy.wav",
+      "audioText": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we’re moving to a hybrid model next month. You’ll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
+      "question": "What can employees do if they need home equipment?",
+      "options": [
+        "Talk to HR this week.",
+        "Email the manager next month.",
+        "Bring equipment from the office without asking.",
+        "Buy it themselves and keep the receipt."
+      ],
+      "correct": 0,
+      "explanation": "Manager says if you have concerns about equipment at home, talk to HR this week.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_7",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-7.wav",
+      "audioText": "Man: Before we dismiss, a quick note about the syllabus. I know the schedule says the midterm essay is due on the 14th, but since the library will be closed for renovations that week, I'm pushing the deadline to the 21st. The page requirement remains the same.",
+      "ttsText": "Before we dismiss, a quick note about the syllabus. I know the schedule says the midterm essay is due on the 14th, but since the library will be closed for renovations that week, I'm pushing the deadline to the 21st. The page requirement remains the same.",
+      "question": "Why did the professor change the deadline?",
+      "options": [
+        "Students requested more time to write.",
+        "A campus facility will be unavailable.",
+        "He decided to increase the page requirement.",
+        "The original date fell on a university holiday."
+      ],
+      "correct": 1,
+      "explanation": "The professor changed the date 'since the library will be closed for renovations'. The library is a campus facility.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_10",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-10.wav",
+      "audioText": "Woman: Your new book tackles the transition to renewable energy. Some critics argue your timeline of ten years is completely unrealistic given current infrastructure.\nMan: I understand their skepticism. However, historical precedents—like the rapid industrialization in the 20th century—prove that when economic incentives align with political will, transitions happen exponentially faster than linear projections suggest.",
+      "ttsText": "Your new book tackles the transition to renewable energy. Some critics argue your timeline of ten years is completely unrealistic given current infrastructure. I understand their skepticism. However, historical precedents—like the rapid industrialization in the 20th century—prove that when economic incentives align with political will, transitions happen exponentially faster than linear projections suggest.",
+      "question": "How does the man defend his ten-year timeline?",
+      "options": [
+        "By pointing out that the current infrastructure is already adequate.",
+        "By comparing it to fast shifts that occurred in the past.",
+        "By criticizing the economic incentives of fossil fuels.",
+        "By agreeing that his projections are purely theoretical."
+      ],
+      "correct": 1,
+      "explanation": "He defends his timeline by citing 'historical precedents' (things that happened in the past) like 'rapid industrialization'.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-76",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-76-room-change.mp3",
+      "audioTitle": "76 · A Room Change",
+      "audioSrc": "/exercises/audio/listening/listening-76-room-change.mp3",
+      "audioText": "The evening class will meet in Room 204 tonight because the heating system is being repaired in the usual classroom. The start time remains seven o’clock, and students should bring their course books as usual.",
+      "question": "Why has the class been moved?",
+      "options": [
+        "The teacher is absent.",
+        "The heating system is being repaired.",
+        "The room is too small.",
+        "The class starts later."
+      ],
+      "correct": 1,
+      "explanation": "The announcement says the heating system is being repaired in the usual room.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-78",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-78-library-renewal.mp3",
+      "audioTitle": "78 · A Library Book Renewal",
+      "audioSrc": "/exercises/audio/listening/listening-78-library-renewal.mp3",
+      "audioText": "You can renew most library books online twice, provided nobody else has requested them. If another reader places a request, the book must be returned by its original due date.",
+      "question": "When can a book not be renewed?",
+      "options": [
+        "When it is borrowed for the first time",
+        "When another reader has requested it",
+        "When the renewal is done online",
+        "When it has been renewed twice"
+      ],
+      "correct": 1,
+      "explanation": "A request from another reader prevents renewal.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-81",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-81-course-deadline.mp3",
+      "audioTitle": "81 · A Course Deadline",
+      "audioSrc": "/exercises/audio/listening/listening-81-course-deadline.mp3",
+      "audioText": "The first assignment is due next Wednesday, not this Wednesday as some students seem to believe. You may submit it any time before midnight, but late work will receive reduced feedback.",
+      "question": "When is the assignment due?",
+      "options": [
+        "This Wednesday morning",
+        "Next Wednesday before midnight",
+        "Next Thursday at noon",
+        "At the end of the month"
+      ],
+      "correct": 1,
+      "explanation": "The assignment is due next Wednesday and may be submitted before midnight.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-95",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-95-academic-qualification.mp3",
+      "audioTitle": "95 · An Academic Qualification",
+      "audioSrc": "/exercises/audio/listening/listening-95-academic-qualification.mp3",
+      "audioText": "The findings are consistent with the hypothesis, but consistency alone does not establish causation. Further experiments would be needed to determine whether the observed relationship is genuinely responsible for the outcome.",
+      "question": "What does the speaker say is still needed?",
+      "options": [
+        "A new hypothesis with no evidence",
+        "Further experiments",
+        "A shorter report",
+        "A different outcome"
+      ],
+      "correct": 1,
+      "explanation": "The speaker says further experiments are needed to establish causation.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-100",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-100-integrated-review.mp3",
+      "audioTitle": "100 · Integrated Listening Review",
+      "audioSrc": "/exercises/audio/listening/listening-100-integrated-review.mp3",
+      "audioText": "The university is introducing a shared bicycle program for students and staff. The first phase will include 120 bicycles at four locations near the main campus. Users will need to register online, and the first thirty minutes of each trip will be free. The university plans to evaluate the program after six months before deciding whether to expand it to the residential campus.",
+      "question": "What will the university do after six months?",
+      "options": [
+        "End the program automatically",
+        "Evaluate the program before deciding about expansion",
+        "Move all bicycles to the residential campus",
+        "Charge for every first trip"
+      ],
+      "correct": 1,
+      "explanation": "The university will evaluate the first phase before deciding whether to expand the program.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

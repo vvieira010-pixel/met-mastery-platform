@@ -1,0 +1,107 @@
+{
+  "skill": "reading",
+  "topic": "music-and-education",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "met_3_12",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 3,
+      "intro": "This passage is about music and education.",
+      "context": "Psychologists have known for a long time that music affects people's feelings. James Kellaris, a psychology professor, has studied ways that music affects shopping. He says that playing the right kind of music can have positive effects for a business.\n\nKellaris has identified several effects that might help businesses decide what kind of background music to play as their customers shop. Kellaris found that fast music makes a crowded store feel more crowded, and slow music makes an empty store feel lonely. Also, music with a faster tempo makes the time that customers are in the store seem shorter. This might help store owners because the more time customers are in a store, the more likely they are to buy something. A related effect happens when background music is played to customers \"on hold\" on telephone lines. If people hear fast music, they think their wait time is shorter than if they listen to slower music.\n\nKellaris also investigated what styles of music customers prefer while they are shopping or on hold, and he found there are differences between men and women. Women had the highest positive reactions to jazz, followed by classical, while men most preferred classical, followed by jazz. Rock music was least preferred by both groups. Many store owners say they pay close attention to their customers and choose their music accordingly.",
+      "question": "According to the passage, what effect does fast music have on customers in a store?",
+      "options": [
+        "It makes them buy more products.",
+        "It makes them feel the store is less crowded.",
+        "It makes them think they have spent less time there.",
+        "It makes them prefer jazz over classical music."
+      ],
+      "correct": 2,
+      "explanation": "",
+      "questionType": "detail"
+    },
+    {
+      "id": "met_4_20",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 4,
+      "intro": "This passage is about a music school.",
+      "context": "Guitar Lessons\nStudy rock, blues, or classical guitar.\nOur teachers are experts who make learning fun while challenging you to develop and grow as a musician.\nYour teacher will design a lesson plan with you based on your goals and interests.\nBeginner, intermediate, and advanced level instruction is available.\nRecitals are held in the spring and are a great opportunity for students to play in front of an audience. Participation is optional but is highly recommended.\nWe will schedule your introductory lesson with a teacher who matches your interests and needs!\nVisit the Center today to sign up!\n\n\nDid you know?\nResearch studies have shown that music has a positive effect on children's academic performance. One study found that high school students who played musical instruments scored higher on a test than their peers who did not participate in band.\nOther researchers have noted that young children who studied music have an easier time understanding some mathematical ideas. In one study, second grade students who were given four months of piano lessons did better on a fractions test than the students who did not study piano. This could be because their musical instruction taught them the relationship between eighth, quarter, half, and whole notes, and they were able to transfer that understanding to the use of fractions in other situations.\nStudies such as these surely prove that musical education should be provided in all schools, despite the cost of hiring teachers and buying instruments.",
+      "question": "The following question refers to section B. According to the passage, what is the main benefit of music for children?",
+      "options": [
+        "It helps them learn mathematical ideas.",
+        "It makes them better at sports.",
+        "It improves their memory for names.",
+        "It teaches them to play in a band."
+      ],
+      "correct": 0,
+      "explanation": "",
+      "questionType": "detail (section B)"
+    },
+    {
+      "id": "met_4_19",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 4,
+      "intro": "This passage is about a music school.",
+      "context": "Guitar Lessons\nStudy rock, blues, or classical guitar.\nOur teachers are experts who make learning fun while challenging you to develop and grow as a musician.\nYour teacher will design a lesson plan with you based on your goals and interests.\nBeginner, intermediate, and advanced level instruction is available.\nRecitals are held in the spring and are a great opportunity for students to play in front of an audience. Participation is optional but is highly recommended.\nWe will schedule your introductory lesson with a teacher who matches your interests and needs!\nVisit the Center today to sign up!\n\n\nDid you know?\nResearch studies have shown that music has a positive effect on children's academic performance. One study found that high school students who played musical instruments scored higher on a test than their peers who did not participate in band.\nOther researchers have noted that young children who studied music have an easier time understanding some mathematical ideas. In one study, second grade students who were given four months of piano lessons did better on a fractions test than the students who did not study piano. This could be because their musical instruction taught them the relationship between eighth, quarter, half, and whole notes, and they were able to transfer that understanding to the use of fractions in other situations.\nStudies such as these surely prove that musical education should be provided in all schools, despite the cost of hiring teachers and buying instruments.",
+      "question": "The following question refers to section B. How does the author feel about musical education?",
+      "options": [
+        "It is too expensive for schools.",
+        "It is an area that should be researched further.",
+        "It is most important for young children.",
+        "It should be offered in all schools."
+      ],
+      "correct": 3,
+      "explanation": "",
+      "questionType": "purpose (section B)"
+    },
+    {
+      "id": "met_3_14",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 3,
+      "intro": "This passage is about music and education.",
+      "context": "Psychologists have known for a long time that music affects people's feelings. James Kellaris, a psychology professor, has studied ways that music affects shopping. He says that playing the right kind of music can have positive effects for a business.\n\nKellaris has identified several effects that might help businesses decide what kind of background music to play as their customers shop. Kellaris found that fast music makes a crowded store feel more crowded, and slow music makes an empty store feel lonely. Also, music with a faster tempo makes the time that customers are in the store seem shorter. This might help store owners because the more time customers are in a store, the more likely they are to buy something. A related effect happens when background music is played to customers \"on hold\" on telephone lines. If people hear fast music, they think their wait time is shorter than if they listen to slower music.\n\nKellaris also investigated what styles of music customers prefer while they are shopping or on hold, and he found there are differences between men and women. Women had the highest positive reactions to jazz, followed by classical, while men most preferred classical, followed by jazz. Rock music was least preferred by both groups. Many store owners say they pay close attention to their customers and choose their music accordingly.",
+      "question": "Why does the author mention customers 'on hold'?",
+      "options": [
+        "to show that music affects people in different situations",
+        "to explain why telephone companies use music",
+        "to compare shopping and waiting experiences",
+        "to describe a new type of background music"
+      ],
+      "correct": 0,
+      "explanation": "",
+      "questionType": "purpose"
+    },
+    {
+      "id": "met_4_18",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 4,
+      "intro": "This passage is about a music school.",
+      "context": "Guitar Lessons\nStudy rock, blues, or classical guitar.\nOur teachers are experts who make learning fun while challenging you to develop and grow as a musician.\nYour teacher will design a lesson plan with you based on your goals and interests.\nBeginner, intermediate, and advanced level instruction is available.\nRecitals are held in the spring and are a great opportunity for students to play in front of an audience. Participation is optional but is highly recommended.\nWe will schedule your introductory lesson with a teacher who matches your interests and needs!\nVisit the Center today to sign up!\n\n\nDid you know?\nResearch studies have shown that music has a positive effect on children's academic performance. One study found that high school students who played musical instruments scored higher on a test than their peers who did not participate in band.\nOther researchers have noted that young children who studied music have an easier time understanding some mathematical ideas. In one study, second grade students who were given four months of piano lessons did better on a fractions test than the students who did not study piano. This could be because their musical instruction taught them the relationship between eighth, quarter, half, and whole notes, and they were able to transfer that understanding to the use of fractions in other situations.\nStudies such as these surely prove that musical education should be provided in all schools, despite the cost of hiring teachers and buying instruments.",
+      "question": "The following question refers to section B. Why did piano students do well on a fractions test?",
+      "options": [
+        "They listened to music while they studied.",
+        "The test used fractions in musical situations.",
+        "They had studied the concept of fractions in music.",
+        "They were also enrolled in a special math class."
+      ],
+      "correct": 2,
+      "explanation": "",
+      "questionType": "detail (section B)"
+    }
+  ]
+}

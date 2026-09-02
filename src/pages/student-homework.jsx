@@ -1,0 +1,604 @@
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
+import { Button } from '../components/ui/Button.jsx';
+import { SkeletonCard } from '../components/ui/Skeleton.jsx';
+import { Card } from '../components/ui/Card.jsx';
+import { getHomework, submitHomework, getReviews, getSubmissions, getDraft, saveDraft, saveHomework, removeHomeworkDrafts, loadObj, save, K } from '../lib/workflow.js';
+import { isStructuredExercise, autoGrade } from '../lib/exercise-types.js';
+import { ExercisePlayer, HomeworkStepThrough } from '../components/exercise-player.jsx';
+import { ExTypeBadge } from '../components/exercise-badge.jsx';
+import { recordPractice } from '../lib/spaced-repetition.js';
+import { printHomework } from '../lib/print-homework.js';
+import { asArray, exerciseSearchText } from './student-helpers.jsx';
+import { TopicContentRenderer } from '../components/topic-explanations.jsx';
+import { Icon } from '../components/shared.jsx';
+import { getStudentSetting, setStudentSetting } from '../lib/supabase-db.js';
+import TargetedSynonymTracker from '../components/TargetedSynonymTracker.jsx';
+
+function CorrectionNote({ c }) {
+  return (
+    <div className="hw-correction-note">
+      {c.original && <span className="hw-correction-original">{c.original}</span>}
+      {c.original && c.improved && ' → '}
+      {c.improved && <span className="hw-correction-improved">{c.improved}</span>}
+      {c.note && <span className="hw-correction-note-text">({c.note})</span>}
+    </div>
+  );
+}
+
+function ConceptBridge({ exercise, onResolve }) {
+  return (
+    <Card style={{ 
+      padding: '20px', 
+      marginBottom: 20, 
+      background: 'var(--accent-subtle)', 
+      border: '2px solid var(--accent)',
+      animation: 'fadeIn 0.3s ease-out' 
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+        <Icon.spark size={18} color="var(--accent)" />
+        <strong style={{ fontSize: 'var(--text-sm)', color: 'var(--accent)' }}>Concept Bridge</strong>
+      </div>
+      <p style={{ fontSize: 'var(--text-sm)', lineHeight: 1.6, color: 'var(--text)', marginBottom: 16 }}>
+        It looks like you're having some trouble with the logic here. Let's take a step back. 
+        <strong>{exercise.title || 'This concept'}</strong> is about {exercise.explanation?.slice(0, 100) || 'the core principle of this exercise'}.
+      </p>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button variant="primary" size="sm" onClick={onResolve}>
+          I've got it, let's try again
+        </Button>
+      </div>
+    </Card>
+  );
+}
+
+export default function StudentHomework({ student, "data-testid": testId }) {
+  const [homework, setHomework] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [expanded, setExpanded] = useState(null);
+  const [answers, setAnswers] = useState({});
+  const [responses, setResponses] = useState({});
+  const [draftMeta, setDraftMeta] = useState({});
+  const [homeworkFilter, setHomeworkFilter] = useState('todo');
+  const [submitting, setSubmitting] = useState(false);
+  const [selfChecks, setSelfChecks] = useState({});
+  const [submissions, setSubmissions] = useState([]);
+  const [selfAssessed, setSelfAssessed] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
+  const exerciseTimersRef = useRef({});
+  const dirtyHomeworkIdRef = useRef(null);
+  const currentExerciseRef = useRef(null);
+
+  function selfCheckKey(hwId) { return `hw_selfcheck:${hwId}`; }
+  function getSelfChecks(hwId) {
+    if (selfChecks[hwId]) return selfChecks[hwId];
+    return {};
+  }
+  function toggleSelfCheck(hwId, idx) {
+    const next = { ...getSelfChecks(hwId), [idx]: !getSelfChecks(hwId)[idx] };
+    setSelfChecks(prev => ({ ...prev, [hwId]: next }));
+    setStudentSetting(student.id, selfCheckKey(hwId), next).catch(() => {});
+  }
+
+  function exerciseDraftKey(hwId, exerciseId) {
+    return `student-homework:${student.id}:${hwId}:${exerciseId}`;
+  }
+
+  function saveExerciseDraft(hwId, exerciseId, response) {
+    saveDraft(exerciseDraftKey(hwId, exerciseId), { response, updatedAt: new Date().toISOString() });
+  }
+
+  function loadExerciseDrafts(hwId) {
+    const prefix = `student-homework:${student.id}:${hwId}:`;
+    const legacyKey = homeworkDraftKey(hwId);
+    const drafts = loadObj(K.drafts);
+    const exerciseDrafts = {};
+    let latestTs = null;
+    let lastExId = null;
+
+    Object.keys(drafts).forEach(key => {
+      if (key.startsWith(prefix)) {
+        const exId = key.slice(prefix.length);
+        const entry = drafts[key];
+        if (entry?.response) {
+          exerciseDrafts[exId] = entry.response;
+          if (!latestTs || entry.updatedAt > latestTs) {
+            latestTs = entry.updatedAt;
+            lastExId = exId;
+          }
+        }
+      }
+    });
+
+    const legacy = drafts[legacyKey];
+    const now = new Date().toISOString();
+    if (legacy?.responses) {
+      Object.entries(legacy.responses).forEach(([exId, res]) => {
+        if (!exerciseDrafts[exId]) {
+          exerciseDrafts[exId] = res;
+          drafts[`${prefix}${exId}`] = { response: res, updatedAt: now };
+        }
+      });
+      delete drafts[legacyKey];
+      save(K.drafts, drafts);
+    }
+
+    return {
+      responses: exerciseDrafts,
+      currentExerciseId: lastExId || legacy?.currentExerciseId || null,
+      updatedAt: latestTs || legacy?.updatedAt || null,
+    };
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setLoadError(null);
+      try {
+        const [hw, revs, subs] = await Promise.all([getHomework(student.id), getReviews(student.id), getSubmissions(student.id)]);
+        if (cancelled) return;
+        setHomework(hw || []);
+        setReviews(revs || []);
+        setSubmissions(subs || []);
+        const checks = {};
+        for (const h of (hw || [])) {
+          const saved = await getStudentSetting(student.id, `hw_selfcheck:${h.id}`);
+          if (saved && typeof saved === 'object') checks[h.id] = saved;
+        }
+        if (!cancelled && Object.keys(checks).length > 0) setSelfChecks(checks);
+      } catch (err) {
+        if (!cancelled) setLoadError(err.message || 'Failed to load homework');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [student.id]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (dirtyHomeworkIdRef.current) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, []);
+
+  function hasStructuredExercises(h) {
+    return (h.activities || []).some(a => isStructuredExercise(a));
+  }
+
+  function homeworkDraftKey(hwId) {
+    return `student-homework:${student.id}:${hwId}`;
+  }
+
+  async function toggleHomework(h) {
+    const willOpen = expanded !== h.id;
+    setExpanded(willOpen ? h.id : null);
+    if (!willOpen || h.status === 'submitted') return;
+    const draft = loadExerciseDrafts(h.id);
+    if (draft && Object.keys(draft.responses).length > 0) {
+      setResponses(prev => ({ ...prev, ...draft.responses }));
+      setDraftMeta(prev => ({
+        ...prev,
+        [h.id]: { updatedAt: draft.updatedAt, currentExerciseId: draft.currentExerciseId },
+      }));
+    }
+  }
+
+  async function handleLegacySubmit(hwId) {
+    if (!answers[hwId]?.trim()) { window.toast?.('Please write your answer.', 'warn'); return; }
+    setSubmitting(true);
+    await submitHomework(hwId, student.id, answers[hwId]);
+    const hw = await getHomework(student.id);
+    setHomework(hw || []);
+    setAnswers(prev => { const n = { ...prev }; delete n[hwId]; return n; });
+    setExpanded(null);
+    setSubmitting(false);
+    window.toast?.('Submitted! Your teacher will review soon.', 'ok');
+  }
+
+  async function handleStructuredSubmit(hwId, confidence) {
+    setSubmitting(true);
+    const hw = homework.find(h => h.id === hwId);
+    const exercises = (hw?.activities || []).filter(a => isStructuredExercise(a));
+    const summaryParts = exercises.map(ex => {
+      const res = responses[ex.id];
+      if (!res) return `[${ex.type}] — no response`;
+      switch (ex.type) {
+        case 'mcq':   return `[MCQ] ${ex.question}\nAnswer: ${ex.options?.[res.selected] || 'none'}`;
+        case 'blank': return `[BLANK] ${ex.template}\nAnswers: ${(res.blanks || []).join(', ')}`;
+        case 'short': return `[SHORT] ${ex.prompt}\n${res.text || ''}`;
+        case 'speak': return `[SPEAK] ${ex.prompt}\nTranscript: ${res.transcript || '(audio submitted)'}`;
+        case 'order': return `[ORDER] Order: ${(res.order || []).map(i => i + 1).join(' → ')}`;
+        case 'fix':   return `[FIX] ${res.text || ''}`;
+        case 'flash': return `[FLASH] ${res.learned || 0} cards learned`;
+        default:      return `[${ex.type}] response submitted`;
+      }
+    });
+    const content = summaryParts.join('\n\n---\n\n');
+    const exerciseResponses = Object.fromEntries(exercises.map(ex => [ex.id, responses[ex.id] || {}]));
+    await submitHomework(hwId, student.id, content, exerciseResponses, confidence);
+    const reviewItems = exercises.filter(ex => ex.isReviewItem && ex.reviewItemId);
+    reviewItems.forEach(ex => {
+      const grade = autoGrade(ex, exerciseResponses[ex.id]);
+      if (grade) recordPractice(student.id, ex.reviewItemId, grade.correct);
+    });
+    removeHomeworkDrafts(hwId);
+    dirtyHomeworkIdRef.current = null;
+    const hwList = await getHomework(student.id);
+    setHomework(hwList || []);
+    setResponses({});
+    setDraftMeta(prev => ({ ...prev, [hwId]: null }));
+    setExpanded(null);
+    setSubmitting(false);
+    window.toast?.('Submitted! Your teacher will review soon.', 'ok');
+  }
+
+  function updateResponse(exerciseId, updatedRes) {
+    dirtyHomeworkIdRef.current = expanded;
+    setResponses(prev => ({ ...prev, [exerciseId]: updatedRes }));
+    if (exerciseTimersRef.current[exerciseId]) clearTimeout(exerciseTimersRef.current[exerciseId]);
+    exerciseTimersRef.current[exerciseId] = setTimeout(() => {
+      saveExerciseDraft(expanded, exerciseId, updatedRes);
+      const hw = homework.find(h => h.id === expanded);
+      if (hw?.status === 'not-started') {
+        saveHomework({ ...hw, status: 'in-progress' }).then(() => {
+          setHomework(prev => prev.map(h => h.id === expanded ? { ...h, status: 'in-progress' } : h));
+        });
+      }
+      setDraftMeta(prev => ({ ...prev, [expanded]: { ...prev[expanded], updatedAt: new Date().toISOString(), currentExerciseId: exerciseId } }));
+      exerciseTimersRef.current[exerciseId] = null;
+    }, 2000);
+  }
+
+  async function saveStructuredProgress(hwId, currentExerciseId) {
+    const hw = homework.find(h => h.id === hwId);
+    const exerciseIds = new Set((hw?.activities || []).filter(a => isStructuredExercise(a)).map(ex => ex.id));
+    exerciseIds.forEach(exId => {
+      const res = responses[exId];
+      if (res) saveExerciseDraft(hwId, exId, res);
+    });
+    setDraftMeta(prev => ({ ...prev, [hwId]: { updatedAt: new Date().toISOString(), currentExerciseId } }));
+    dirtyHomeworkIdRef.current = null;
+    window.toast?.('Progress saved. You can continue later.', 'ok');
+  }
+
+  if (loading) return (
+    <div className="student-home" style={{ gap: 12 }}>
+      {[1,2,3].map(i => <SkeletonCard key={i} height={80} />)}
+    </div>
+  );
+
+  if (loadError) return (
+    <div className="student-home">
+      <div className="student-empty-card">
+        <p>Could not load homework: {loadError}</p>
+        <button className="student-wide-action" onClick={() => window.location.reload()} style={{ marginTop: 12 }}>Retry</button>
+      </div>
+    </div>
+  );
+
+  const reviewedIds = new Set(reviews.map(r => r.homeworkId));
+  const sortedHomework = [...homework].sort((a, b) => new Date(b.reviewedAt || b.assignedAt || b.createdAt || 0) - new Date(a.reviewedAt || a.assignedAt || a.createdAt || 0));
+  const visibleHomework = sortedHomework.filter(h => {
+    const reviewed = reviewedIds.has(h.id) || h.status === 'reviewed' || h.status === 'corrected' || h.status === 'completed';
+    if (homeworkFilter === 'todo') return !reviewed && h.status !== 'submitted';
+    if (homeworkFilter === 'submitted') return h.status === 'submitted' && !reviewed;
+    if (homeworkFilter === 'reviewed') return reviewed;
+    return true;
+  });
+  const reviewedCount = sortedHomework.filter(h => reviewedIds.has(h.id) || h.status === 'reviewed' || h.status === 'corrected' || h.status === 'completed').length;
+
+  return (
+    <div className="student-homework-page">
+      <section className="student-hero bg-grain fade-up">
+        <div className="student-hero-copy">
+          <p className="student-hero-kicker">Homework</p>
+          <h1>Assigned practice</h1>
+        </div>
+        <span className="student-hero-badge">{homework.length} assigned</span>
+      </section>
+
+      {homework.length === 0 && (
+        <div className="student-empty-card">
+          Nothing assigned yet — your teacher will send you tasks after class.
+        </div>
+      )}
+
+      {homework.length > 0 && (
+        <div className="student-homework-filters" aria-label="Homework filters">
+          {[['todo', 'To do'], ['submitted', 'Submitted'], ['reviewed', `Reviewed (${reviewedCount})`], ['all', 'All']].map(([id, label]) => (
+            <button key={id} type="button" className={`hw-filter-btn${homeworkFilter === id ? ' active' : ''}`} onClick={() => setHomeworkFilter(id)}>
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <section className="student-homework-list">
+      {homework.length > 0 && visibleHomework.length === 0 && (
+        <div className="student-empty-card">No homework in this view.</div>
+      )}
+      {visibleHomework.map(h => {
+        const review = reviews.find(r => r.homeworkId === h.id);
+        const isExpanded = expanded === h.id;
+        const submitted = h.status === 'submitted';
+        const statusTone = review ? 'success' : submitted ? 'warning' : 'muted';
+        const statusLabel = review ? 'Reviewed' : submitted ? 'Submitted' : (h.status || 'Not started');
+        const isStructured = hasStructuredExercises(h);
+        const structuredExercises = isStructured ? (h.activities || []).filter(a => isStructuredExercise(a)) : [];
+        const typeSummary = {};
+        structuredExercises.forEach(e => { typeSummary[e.type] = (typeSummary[e.type] || 0) + 1; });
+
+        return (
+          <article key={h.id} className={`student-panel student-panel--${statusTone}${isExpanded ? ' is-expanded' : ''}`}>
+            <div className="student-panel-head">
+              <button className="student-panel-head-btn" onClick={() => toggleHomework(h)} style={{ background: 'none', border: 'none', padding: 0, textAlign: 'left', color: 'inherit', cursor: 'pointer', width: '100%', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div className="student-homework-card-orb">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <div className="student-homework-title">
+                  <h2 style={{ margin: 0 }}>{h.title || 'Homework task'}</h2>
+                  <div className="student-homework-meta">
+                    {isStructured ? (
+                      <>
+                        <span>{structuredExercises.length} exercise{structuredExercises.length !== 1 ? 's' : ''}</span>
+                        {Object.keys(typeSummary).map(type => (<ExTypeBadge key={type} typeId={type} />))}
+                      </>
+                    ) : (
+                      <span>{h.type}</span>
+                    )}
+                    {h.dueDate && <span>Due {new Date(h.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</span>}
+                    {draftMeta[h.id]?.updatedAt && !submitted && !review && (
+                      <span>Saved {new Date(draftMeta[h.id].updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    )}
+                  </div>
+                </div>
+              </button>
+              <span className={`student-homework-status student-homework-status--${statusTone}`}>{statusLabel}</span>
+            </div>
+ 
+            {isExpanded && (
+              <div className="student-panel-body">
+                <div className="hw-print-row">
+                  <Button variant="ghost" size="sm" onClick={() => printHomework(h, { studentName: student?.name })}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon_print /> Print</span>
+                  </Button>
+                </div>
+
+
+                {review && !selfAssessed[h.id] && (
+                  <div className="hw-self-assess">
+                    <div className="hw-self-assess-title">Before you see the review...</div>
+                    <p className="hw-self-assess-desc">How do you think you did on this homework?</p>
+                    <div className="hw-self-assess-options">
+                      {[
+                        { value: 'confident', label: 'I feel confident' },
+                        { value: 'mixed', label: 'Mixed — some right, some wrong' },
+                        { value: 'struggled', label: 'I struggled with this' },
+                      ].map(opt => (
+                        <button key={opt.value} type="button" className={`hw-self-assess-btn hw-self-assess-btn--${opt.value}`} onClick={() => setSelfAssessed(prev => ({ ...prev, [h.id]: opt.value }))}>
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {review && selfAssessed[h.id] && (
+                  <div className="hw-teacher-review">
+                    <div className="hw-teacher-review-title">
+                      <span>Teacher Review</span>
+                      {review.redoRequired && (
+                        <span className="hw-redo-badge">Redo requested</span>
+                      )}
+                    </div>
+                    {review.whatImproved && (
+                      <div className="hw-teacher-review-detail">
+                        <strong>What improved: </strong>{review.whatImproved}
+                      </div>
+                    )}
+                    {review.overallNote && <p className="hw-teacher-review-note">{review.overallNote}</p>}
+                  </div>
+                )}
+
+                {(h.objective || h.description || h.estimatedTime || h.metSkillConnection) && (
+                  <div className="student-homework-brief">
+                    {h.objective && (<div><strong>Goal</strong><p>{h.objective}</p></div>)}
+                    {h.estimatedTime && (<div><strong>Time</strong><p>{h.estimatedTime}</p></div>)}
+                    {h.metSkillConnection && (<div><strong>MET skill</strong><p>{h.metSkillConnection}</p></div>)}
+                    {h.description && (<div className="student-homework-brief-wide"><strong>Instructions</strong><p>{h.description}</p></div>)}
+                  </div>
+                )}
+
+                {Array.isArray(h.topicExplanations) && h.topicExplanations.length > 0 && (
+                  <div style={{ marginBottom: 18, padding: 14, background: 'var(--surface)', border: '1px solid var(--accent-soft)', borderRadius: 'var(--radius-md)' }}>
+                    <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>
+                      Topic Background
+                    </div>
+                    {h.topicExplanations.map(topic => (
+                      <div key={topic.id} style={{ marginBottom: 14 }}>
+                        <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', marginBottom: 6, color: 'var(--primary)' }}>{topic.title}</div>
+                        <TopicContentRenderer content={topic.content} />
+                      </div>
+                        ))}
+                  </div>
+                )}
+                {isStructured && !submitted && !review && (
+                  <>
+                    {/* Concept Bridge Trigger */}
+                    {structuredExercises.some(ex => (responses[ex.id]?.reasoningFailures || 0) >= 3) && (
+                      <ConceptBridge 
+                        exercise={structuredExercises.find(ex => (responses[ex.id]?.reasoningFailures || 0) >= 3)} 
+                        onResolve={() => {
+                          // Reset failures for that exercise to let them try again
+                          const exId = structuredExercises.find(ex => (responses[ex.id]?.reasoningFailures || 0) >= 3).id;
+                          updateResponse(exId, { ...responses[exId], reasoningFailures: 0 });
+                          window.toast?.('Glad to hear it! Let\'s put it into practice.', 'ok');
+                        }} 
+                      />
+                    )}
+                    <div className="student-panel student-panel--primary" style={{ marginBottom: 18 }}>
+                      <div className="student-panel-head">
+                        <h2 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700 }}>Practice Session</h2>
+                      </div>
+                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.7 }}>
+                        <strong>How it works:</strong>
+                        <ol style={{ margin: '4px 0 10px', paddingLeft: 18 }}>
+                          <li>Work through each exercise one at a time</li>
+                          <li>Progress saves automatically — leave and come back anytime</li>
+                          <li>After the last exercise, rate your confidence before submitting</li>
+                          <li>Your teacher reviews and returns feedback</li>
+                        </ol>
+                        <strong>Why this format:</strong>
+                        <ul style={{ margin: '4px 0 0', paddingLeft: 18 }}>
+                          <li>Matches the MET exam structure to build familiarity</li>
+                          <li>Targets skills identified from your progress</li>
+                          <li>Reinforces past errors at the right time for long-term retention</li>
+                          <li>The confidence check helps you track what you really know</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </>
+                )}
+                {isStructured && !submitted && !review && (
+                  <HomeworkStepThrough
+                    exercises={structuredExercises}
+                    responses={responses}
+                    onResponse={updateResponse}
+                    onSave={(exerciseId) => saveStructuredProgress(h.id, exerciseId)}
+                    onSubmit={(confidence) => handleStructuredSubmit(h.id, confidence)}
+                    initialExerciseId={draftMeta[h.id]?.currentExerciseId}
+                    currentExerciseRef={currentExerciseRef}
+                    onNavigate={(exerciseId) => {
+                      const res = responses[exerciseId];
+                      if (res) saveExerciseDraft(h.id, exerciseId, res);
+                    }}
+                    readOnly={false}
+                  />
+                )}
+
+                {isStructured && (submitted || review) && (() => {
+                  const corrections = asArray(review?.corrections);
+                  const sub = submissions.find(s => s.homeworkId === h.id);
+                  const subResponses = sub?.responses || {};
+                  const matchedByEx = structuredExercises.map(ex => {
+                    const t = exerciseSearchText(ex);
+                    return corrections.filter(c => c.original && t.includes(String(c.original).toLowerCase()));
+                  });
+                  const matched = new Set(matchedByEx.flat());
+                  const unmatched = corrections.filter(c => !matched.has(c));
+                  return (
+                    <div>
+                      <HomeworkStepThrough
+                        exercises={structuredExercises}
+                        responses={subResponses}
+                        onResponse={() => {}}
+                        onSubmit={() => {}}
+                        onSave={() => {}}
+                        readOnly={true}
+                      />
+                      {(matchedByEx.some(n => n.length > 0) || unmatched.length > 0) && (
+                        <div className="hw-unmatched-corrections" style={{ marginTop: 16 }}>
+                          <div className="hw-section-kicker hw-section-kicker--muted">Corrections</div>
+                          {matchedByEx.map((notes, i) => notes.length > 0 && (
+                            <div key={i} style={{ marginTop: 8 }}>
+                              <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--muted)', marginBottom: 4 }}>
+                                Exercise {i + 1}
+                              </div>
+                              {notes.map((c, ci) => <CorrectionNote key={ci} c={c} />)}
+                            </div>
+                          ))}
+                          {unmatched.length > 0 && unmatched.map((c, ci) => <CorrectionNote key={ci} c={c} />)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+
+                {!isStructured && (
+                  <>
+                    {(h.activities || []).map((a, i) => (
+                      <div key={i} className="student-homework-activity">{a.instruction}</div>
+                    ))}
+                  </>
+                )}
+
+                {h.selfCheck?.filter(Boolean).length > 0 && (
+                  <div className="hw-self-check">
+                    <div className="hw-self-check-title">Self-check:</div>
+                    {h.selfCheck.filter(Boolean).map((c, i) => (
+                      <label key={i} className="hw-self-check-item">
+                        <input type="checkbox" aria-label={c}
+                          checked={!!getSelfChecks(h.id)[i]} onChange={() => toggleSelfCheck(h.id, i)} />
+                        <span>{c}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+
+                {!isStructured && !submitted && !review && (
+                  <div className="student-homework-submit">
+                    <textarea value={answers[h.id] || ''} onChange={e => setAnswers(prev => ({ ...prev, [h.id]: e.target.value }))} rows={5} placeholder="Write your answer here…" />
+                    <Button variant="primary" size="sm" onClick={() => handleLegacySubmit(h.id)} disabled={submitting || !answers[h.id]?.trim()} style={{ marginTop: 8 }}>
+                      {submitting ? 'Submitting…' : 'Submit Homework'}
+                    </Button>
+                  </div>
+                )}
+
+                {submitted && !review && (
+                  <motion.div className="student-homework-waiting" animate={{ opacity: [1, 0.55, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}>
+                    Submitted — your teacher will review this soon.
+                  </motion.div>
+                )}
+
+                {review && ((Array.isArray(review.activeErrors) && review.activeErrors.length > 0) || (Array.isArray(review.newErrors) && review.newErrors.length > 0)) && (
+                  <div className="hw-error-panel">
+                    {Array.isArray(review.activeErrors) && review.activeErrors.length > 0 && (
+                      <div className="hw-error-section">
+                        <div className="hw-section-kicker hw-section-kicker--warning">Still working on</div>
+                        {review.activeErrors.map((e, i) => (<div key={i} className="hw-error-item">• {e}</div>))}
+                      </div>
+                    )}
+                    {Array.isArray(review.newErrors) && review.newErrors.length > 0 && (
+                      <div className="hw-error-section">
+                        <div className="hw-section-kicker hw-section-kicker--danger">New to work on</div>
+                        {review.newErrors.map((e, i) => (<div key={i} className="hw-error-item">• {e}</div>))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </article>
+        );
+      })}
+      </section>
+
+      {/* Vocabulary & Logistics: Targeted Synonym Tracker */}
+      <div style={{ marginTop: 28 }}>
+        <TargetedSynonymTracker />
+      </div>
+    </div>
+  );
+}
+
+function Icon_print() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+      <rect x="6" y="14" width="12" height="8" />
+    </svg>
+  );
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "word-forms",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1i",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Choose the sentence that uses word forms (nouns, verbs, adjectives, adverbs) correctly.",
+      "options": [
+        "The client presentation was so bored that two people fell asleep.",
+        "She speaks conversational German very fluent because she lived in Berlin.",
+        "We received an official written complaint from an unhappy user.",
+        "The engineering team pulled off a completely successfully product launch."
+      ],
+      "correct": 2,
+      "feedbackCorrect": "Great job! Complaint is the correct noun form used here as the object of the verb \"received.\"",
+      "feedbackIncorrect": "Check your modifiers. Option A should use the adjective boring to describe the presentation (the presentation causes the boredom; people feel bored). Option B needs the adverb fluently to modify the verb \"speaks.\" Option D needs the adjective successful to modify the noun phrase \"product launch.\""
+    },
+    {
+      "id": "G89",
+      "number": 89,
+      "category": "word-forms",
+      "level": "B2",
+      "question": "The new policy is likely to have a positive ________ on local businesses.",
+      "options": {
+        "A": "affect",
+        "B": "effective",
+        "C": "effect",
+        "D": "affection"
+      },
+      "correct_answer": "C",
+      "correct_option": "effect",
+      "explanation": "After 'a positive', use a noun: effect. 'Affect' is usually a verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

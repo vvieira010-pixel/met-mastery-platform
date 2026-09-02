@@ -1,0 +1,24 @@
+{
+  "skill": "writing",
+  "topic": "work-and-career",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "vt_work_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write a short paragraph about the advantages of working in a team.",
+      "rubric": "Should mention collaboration, shared skills, and support among colleagues."
+    },
+    {
+      "id": "write_03",
+      "type": "short",
+      "prompt": "What are the advantages and disadvantages of working from home? Give your opinion.",
+      "rubric": "Should present at least one advantage and one disadvantage with supporting reasons.",
+      "targetWords": 130,
+      "skill": "Writing",
+      "level": "B2"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "skill": "reading",
+  "topic": "reading-language",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "type": "blank",
+      "skill": "Reading",
+      "level": "B1",
+      "title": "B1 Reading Grammar",
+      "template": "Reading ___ you learn new words.",
+      "blanks": [
+        "helps"
+      ],
+      "explanation": "helps = third-person singular present."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+- generic [ref=e5]:
+  - generic [ref=e6]:
+    - heading "Instale o aplicativo SurveyHeart" [level=1] [ref=e7]
+    - img "SurveyHeart" [ref=e9]
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: 1. Acesso fácil pelo aplicativo
+      - paragraph [ref=e12]: 2. Receba Notificação Instantaneamente
+      - paragraph [ref=e13]: 3. Criar formulário/teste em qualquer lugar
+  - generic [ref=e14]:
+    - img "surveyheartImage" [ref=e49]
+    - paragraph [ref=e50]: We have already sent you a confirmation email to vvieirac@gmail.comPor favor, verifique sua caixa de entrada para ativar sua conta
+    - img "Email Activation" [ref=e51]
+    - button "Resend" [ref=e53]

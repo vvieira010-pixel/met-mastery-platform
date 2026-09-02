@@ -1,0 +1,151 @@
+/* ============================================================
+   met-thanks.css — Completion/thanks page styles for MET Mock Test
+   Requires met-brand.css and met-standard.css loaded first.
+   ============================================================ */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--azul-wash);
+  padding: 24px 16px;
+}
+main {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-md);
+  max-width: 480px;
+  width: 100%;
+  padding: 40px 36px;
+  text-align: center;
+}
+.done-icon {
+  width: 56px; height: 56px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+  color: var(--green);
+}
+h1 {
+  font-size: 26px;
+  font-weight: 800 !important;
+  color: var(--azul-deep) !important;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.sub {
+  font-size: 14px;
+  color: var(--met-slate);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* ── Submission form ─────────────────────────────────────── */
+.submit-form { text-align: left; margin-bottom: 24px; }
+.submit-form label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--azul-deep);
+  margin-bottom: 5px;
+  letter-spacing: 0.03em;
+}
+.submit-form input[type="text"],
+.submit-form input[type="email"] {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xs);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--azul-deep);
+  background: var(--surface);
+  outline: none;
+  margin-bottom: 14px;
+  transition: border-color 0.15s;
+}
+.submit-form input:focus {
+  border-color: var(--azul-mid);
+  box-shadow: 0 0 0 3px rgba(74,142,196,.12);
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 12px;
+  border: none;
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+}
+.btn-submit:hover { background: var(--orange-dark); }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Success state ───────────────────────────────────────── */
+.success-msg { display: none; }
+.success-msg.visible { display: block; }
+.form-block.hidden { display: none; }
+
+.btn-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 28px;
+  border-radius: var(--r-xs);
+  text-decoration: none;
+  transition: background 0.15s;
+  margin-top: 20px;
+}
+.btn-home:hover { background: var(--orange-dark); }
+
+.privacy-note {
+  font-size: 11px;
+  color: var(--met-slate);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ── Student identity card ───────────────────────────────── */
+.student-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--azul-wash);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.student-card__avatar {
+  width: 36px; height: 36px;
+  background: var(--azul-mid);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.student-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-deep);
+  line-height: 1.3;
+}
+.student-card__email {
+  font-size: 12px;
+  color: var(--met-slate);
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Reported Speech - Questions (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_9",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The client called this morning and asked me when _____ the final report.",
+      "options": [
+        "will I finish",
+        "I would finish",
+        "would I finish",
+        "I will finish"
+      ],
+      "correct": 1,
+      "explanation": "In reported questions, 'will' shifts back to 'would', and the word order changes from question format to statement format (subject + verb).",
+      "topicId": "Reported Speech - Questions (B2)"
+    },
+    {
+      "id": "G82",
+      "number": 82,
+      "category": "Reported Speech - Questions (B2)",
+      "level": "B2",
+      "question": "She asked me where I ________ from.",
+      "options": {
+        "A": "am",
+        "B": "was",
+        "C": "were",
+        "D": "have been"
+      },
+      "correct_answer": "B",
+      "correct_option": "was",
+      "explanation": "In reported questions, backshift present simple to past simple: 'Where are you from?' → asked where I was from.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

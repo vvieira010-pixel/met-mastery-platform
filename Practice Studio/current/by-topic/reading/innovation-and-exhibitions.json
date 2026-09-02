@@ -1,0 +1,107 @@
+{
+  "skill": "reading",
+  "topic": "innovation-and-exhibitions",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "met_1_3",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 1,
+      "intro": "This passage is about world's fairs.",
+      "context": "Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.\n\nEarly world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a \"Crystal Palace,\" a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.\n\nIn the 1900s, with New York's 1939–1940 fair themed \"Building the World of Tomorrow,\" world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.\n\nToday, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.",
+      "question": "In the second sentence of paragraph 2, what does the phrase 'reminiscent of' mean?",
+      "options": [
+        "similar to",
+        "located near",
+        "designed by",
+        "famous in"
+      ],
+      "correct": 0,
+      "explanation": "Reminiscent means similar to.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "met_1_4",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 1,
+      "intro": "This passage is about world's fairs.",
+      "context": "Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.\n\nEarly world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a \"Crystal Palace,\" a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.\n\nIn the 1900s, with New York's 1939–1940 fair themed \"Building the World of Tomorrow,\" world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.\n\nToday, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.",
+      "question": "Why does the author mention Expo 67 in Montreal?",
+      "options": [
+        "to show that fairs began to focus on global issues",
+        "to explain why the United Nations was created",
+        "to compare Canadian and American fairs",
+        "to describe the most successful fair ever held"
+      ],
+      "correct": 0,
+      "explanation": "Expo 67 illustrates the shift to addressing global issues.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "met_1_1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 1,
+      "intro": "This passage is about world's fairs.",
+      "context": "Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.\n\nEarly world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a \"Crystal Palace,\" a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.\n\nIn the 1900s, with New York's 1939–1940 fair themed \"Building the World of Tomorrow,\" world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.\n\nToday, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the history and changing purposes of world's fairs",
+        "how inventions are tested at international exhibitions",
+        "the architecture of famous exhibition buildings",
+        "the role of the Internet in modern society"
+      ],
+      "correct": 0,
+      "explanation": "The passage traces fairs from the 1800s (displaying inventions) to the 1900s (addressing global issues) to today (still showcasing the future).",
+      "questionType": "main idea"
+    },
+    {
+      "id": "met_1_2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 1,
+      "intro": "This passage is about world's fairs.",
+      "context": "Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.\n\nEarly world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a \"Crystal Palace,\" a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.\n\nIn the 1900s, with New York's 1939–1940 fair themed \"Building the World of Tomorrow,\" world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.\n\nToday, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.",
+      "question": "According to the passage, what was the main purpose of early world's fairs?",
+      "options": [
+        "to sell products to the public",
+        "to display technological advances",
+        "to promote political agreements",
+        "to raise money for scientists"
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 says early fairs exposed audiences to 'the latest ideas' and served as 'educational forums'",
+      "questionType": "detail"
+    },
+    {
+      "id": "met_1_5",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 1,
+      "intro": "This passage is about world's fairs.",
+      "context": "Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.\n\nEarly world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a \"Crystal Palace,\" a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.\n\nIn the 1900s, with New York's 1939–1940 fair themed \"Building the World of Tomorrow,\" world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.\n\nToday, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.",
+      "question": "What does the author suggest about future world's fairs?",
+      "options": [
+        "They will probably disappear because of the Internet.",
+        "They will continue to attract people who want to see new inventions.",
+        "They will focus only on entertainment, not technology.",
+        "They will be held exclusively online."
+      ],
+      "correct": 1,
+      "explanation": "Internet hasn't removed desire to see future with own eyes.",
+      "questionType": "inference"
+    }
+  ]
+}

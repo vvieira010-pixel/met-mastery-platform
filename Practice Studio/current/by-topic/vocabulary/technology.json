@@ -1,0 +1,62 @@
+{
+  "skill": "vocabulary",
+  "topic": "technology",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "michigan_vocab_52",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The journalist was criticized for presenting a ___ interpretation of the data that ignored several inconvenient facts.",
+      "options": [
+        "nuanced",
+        "objective",
+        "selective",
+        "exhaustive"
+      ],
+      "correct": 2,
+      "explanation": "**Selective** means involving deliberate choices about what to include or exclude."
+    },
+    {
+      "id": "vt_tech_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "You should ___ your password regularly to protect your account.",
+      "options": [
+        "change",
+        "charge",
+        "choose",
+        "check"
+      ],
+      "correct": 0,
+      "explanation": "“Change a password” is the correct collocation for updating security."
+    },
+    {
+      "id": "vt_tech_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Before buying a new device, it is wise to ___ different models online.",
+      "blanks": [
+        "compare"
+      ]
+    },
+    {
+      "id": "michigan_vocab_27",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Many consumers are becoming more ___ of companies that collect personal data.",
+      "options": [
+        "wary",
+        "fond",
+        "awareless",
+        "capable"
+      ],
+      "correct": 0,
+      "explanation": "**Wary** means cautious because of possible problems or danger."
+    }
+  ]
+}

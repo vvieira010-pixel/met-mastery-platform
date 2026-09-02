@@ -1,0 +1,24 @@
+{
+  "skill": "writing",
+  "topic": "life-and-finance",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "write_01",
+      "type": "short",
+      "prompt": "Write about a time you had to make an important decision. What did you consider before deciding?",
+      "rubric": "Should mention at least two factors, explain the outcome, and use past tenses accurately.",
+      "targetWords": 120,
+      "skill": "Writing",
+      "level": "B2"
+    },
+    {
+      "id": "vt_money_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about the difference between a need and a want when managing money.",
+      "rubric": "Should clearly distinguish essentials from discretionary spending."
+    }
+  ]
+}

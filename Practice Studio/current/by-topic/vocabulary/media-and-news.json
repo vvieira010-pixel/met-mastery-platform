@@ -1,0 +1,77 @@
+{
+  "skill": "vocabulary",
+  "topic": "media-and-news",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "michigan_vocab_54",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The witness’s testimony was considered ___ because it contradicted several independently verified facts.",
+      "options": [
+        "credible",
+        "consistent",
+        "dubious",
+        "conclusive"
+      ],
+      "correct": 2,
+      "explanation": "**Dubious** means doubtful or unlikely to be reliable or true."
+    },
+    {
+      "id": "michigan_vocab_29",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The article examines the ___ relationship between sleep and academic performance.",
+      "options": [
+        "modest",
+        "casual",
+        "complex",
+        "vacant"
+      ],
+      "correct": 2,
+      "explanation": "**Complex** means involving many connected parts or ideas."
+    },
+    {
+      "id": "vt_media_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Readers should ___ news from unreliable sources.",
+      "options": [
+        "avoid",
+        "adopt",
+        "admire",
+        "adjust"
+      ],
+      "correct": 0,
+      "explanation": "“Avoid” means to stay away from something harmful."
+    },
+    {
+      "id": "vt_media_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "A good article should ___ both sides of an issue.",
+      "options": [
+        "present",
+        "prevent",
+        "pretend",
+        "protect"
+      ],
+      "correct": 0,
+      "explanation": "“Present both sides” means to show different viewpoints."
+    },
+    {
+      "id": "vt_media_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Before sharing a story, it is wise to ___ the facts.",
+      "blanks": [
+        "check"
+      ]
+    }
+  ]
+}

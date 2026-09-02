@@ -1,0 +1,15 @@
+{
+  "skill": "writing",
+  "topic": "environment",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_env_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about why protecting biodiversity is important for future generations.",
+      "rubric": "Should link biodiversity to ecosystems and human well-being."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "skill": "grammar",
+  "topic": "word-order",
+  "totalExercises": 6,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1m",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Choose the sentence that features correct, natural English word order.",
+      "options": [
+        "Do you know what time does the express train to London leave?",
+        "Could you tell me where the nearest conference room is?",
+        "I honestly wonder why did she leave the meeting so early yesterday.",
+        "Can you explain to the team how can we access the cloud network?"
+      ],
+      "correct": 1,
+      "feedbackCorrect": "Excellent! This is an indirect question. When a question is embedded inside another phrase (\"Could you tell me...\"), the word order swaps back to normal statement order (Subject + Verb: where the nearest conference room is).",
+      "feedbackIncorrect": "Options A, C, and D are all indirect structures that incorrectly keep the question word order format (does the train leave, did she leave, can we access). They should read: what time the express train leaves, why she left, and how we can access."
+    },
+    {
+      "id": "of_order_1",
+      "type": "order",
+      "level": "B2",
+      "skill": "Grammar",
+      "sentences": [
+        "First, the customer explained the problem to the assistant.",
+        "Then, the assistant offered a replacement product.",
+        "Finally, the customer left the shop feeling satisfied."
+      ]
+    },
+    {
+      "id": "of_order_3",
+      "type": "order",
+      "level": "B2",
+      "skill": "Grammar",
+      "sentences": [
+        "She woke up early and prepared her presentation.",
+        "The meeting went better than she had expected.",
+        "Later, her manager praised her clear explanation."
+      ]
+    },
+    {
+      "id": "G90",
+      "number": 90,
+      "category": "word-order",
+      "level": "B2",
+      "question": "Choose the correctly ordered sentence.",
+      "options": {
+        "A": "Always I have enjoyed learning languages.",
+        "B": "I have always enjoyed learning languages.",
+        "C": "I always have enjoyed learning languages.",
+        "D": "I have enjoyed always learning languages."
+      },
+      "correct_answer": "B",
+      "correct_option": "I have always enjoyed learning languages.",
+      "explanation": "With present perfect, an adverb of frequency such as 'always' goes between have/has and the past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G91",
+      "number": 91,
+      "category": "word-order",
+      "level": "B1",
+      "question": "Choose the correctly ordered question.",
+      "options": {
+        "A": "Where you did put my keys?",
+        "B": "Where did you put my keys?",
+        "C": "Where put you did my keys?",
+        "D": "Where you put did my keys?"
+      },
+      "correct_answer": "B",
+      "correct_option": "Where did you put my keys?",
+      "explanation": "In a past-simple question: question word + did + subject + base verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G92",
+      "number": 92,
+      "category": "word-order",
+      "level": "B2",
+      "question": "Choose the correctly ordered sentence.",
+      "options": {
+        "A": "She told me that was tired.",
+        "B": "She told that me she was tired.",
+        "C": "She told me that she was tired.",
+        "D": "She told me she was that tired."
+      },
+      "correct_answer": "C",
+      "correct_option": "She told me that she was tired.",
+      "explanation": "The correct order is subject + told + object + that-clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

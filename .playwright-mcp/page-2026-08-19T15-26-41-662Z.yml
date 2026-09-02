@@ -1,0 +1,211 @@
+- generic [ref=e1]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - link [ref=e13] [cursor=pointer]:
+        - /url: /?hl=en
+      - generic [ref=e27]:
+        - link [ref=e29] [cursor=pointer]:
+          - /url: /accounts/login/?next=%2Fnurseusabrazil%2Ffollowers%2FmutualFirst%3Fhl%3Den&source=desktop_nav
+          - text: Log In
+        - link [ref=e31] [cursor=pointer]:
+          - /url: /accounts/emailsignup/
+          - text: Sign Up
+    - main [ref=e32]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - button [ref=e38] [cursor=pointer]:
+            - link [ref=e40]
+          - heading [level=2] [ref=e48]:
+            - generic [ref=e49]: nurseusabrazil
+          - list [ref=e54]:
+            - listitem [ref=e55]:
+              - link [ref=e57] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e58]:
+                  - generic [ref=e59]: 86.6K
+                  - text: followers
+            - listitem [ref=e60]:
+              - link [ref=e62] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e63]:
+                  - generic [ref=e64]: "952"
+                  - text: following
+          - generic [ref=e66]:
+            - generic [ref=e67]: Enfermeiros nos EUA | Validação + imigracao 🇺🇸
+            - generic [ref=e69]:
+              - button [ref=e70] [cursor=pointer]:
+                - generic [ref=e71]: Do Diploma Brasileiro à licença RN nos EUA🇺🇸 🩺 + 1k Enfermeiros assessorados desde 2022 📋 Validação • Green Card 👇
+              - generic [ref=e72]:
+                - text: ...
+                - button [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74]: more
+            - button [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: wa.me/message/SDQ52SJBXFGAJ1 and 1 more
+          - menu [ref=e84]:
+            - generic [ref=e86]:
+              - list [ref=e88]:
+                - listitem [ref=e89]
+                - listitem [ref=e90]
+                - listitem [ref=e91]:
+                  - link [ref=e94] [cursor=pointer]:
+                    - /url: /stories/highlights/18029868815681316/?hl=en
+                    - button [ref=e95]:
+                      - button [ref=e96]
+                      - generic [ref=e100]: VALIDADOS NUB
+                - listitem [ref=e103]:
+                  - link [ref=e106] [cursor=pointer]:
+                    - /url: /stories/highlights/17971956802530947/?hl=en
+                    - button [ref=e107]:
+                      - button [ref=e108]
+                      - generic [ref=e112]: DÚVIDAS
+                - listitem [ref=e115]:
+                  - link [ref=e118] [cursor=pointer]:
+                    - /url: /stories/highlights/18098115890236751/?hl=en
+                    - button [ref=e119]:
+                      - button [ref=e120]
+                      - generic [ref=e124]: ETAPAS Processo
+                - listitem [ref=e127]:
+                  - link [ref=e130] [cursor=pointer]:
+                    - /url: /stories/highlights/17899031690577001/?hl=en
+                    - button [ref=e131]:
+                      - button [ref=e132]
+                      - generic [ref=e136]: FEEDBACK
+                - listitem [ref=e139]:
+                  - link [ref=e142] [cursor=pointer]:
+                    - /url: /stories/highlights/18098110531869070/?hl=en
+                    - button [ref=e143]:
+                      - button [ref=e144]
+                      - generic [ref=e148]: NURSE in 🇺🇸
+                - listitem [ref=e151]:
+                  - link [ref=e154] [cursor=pointer]:
+                    - /url: /stories/highlights/18305766097037073/?hl=en
+                    - button [ref=e155]:
+                      - button [ref=e156]
+                      - generic [ref=e160]: ASSESSORIA NUB
+                - listitem [ref=e163]:
+                  - link [ref=e166] [cursor=pointer]:
+                    - /url: /stories/highlights/17991660917684072/?hl=en
+                    - button [ref=e167]:
+                      - button [ref=e168]
+                      - generic [ref=e172]: Destaques
+                - listitem [ref=e175]:
+                  - link [ref=e178] [cursor=pointer]:
+                    - /url: /stories/highlights/18357290689144579/?hl=en
+                    - button [ref=e179]:
+                      - button [ref=e180]
+                      - generic [ref=e184]: USA EDUCATION
+                - listitem [ref=e187]:
+                  - link [ref=e190] [cursor=pointer]:
+                    - /url: /stories/highlights/18032118392671565/?hl=en
+                    - button [ref=e191]:
+                      - button [ref=e192]
+                      - generic [ref=e196]: VALIDADOS 🇺🇸
+                - listitem [ref=e199]:
+                  - link [ref=e202] [cursor=pointer]:
+                    - /url: /stories/highlights/17930445353132621/?hl=en
+                    - button [ref=e203]:
+                      - button [ref=e204]
+                      - generic [ref=e208]: TEAM NUB
+              - button [ref=e211] [cursor=pointer]
+        - tablist [ref=e214]:
+          - link [ref=e216] [cursor=pointer]:
+            - /url: /nurseusabrazil/?hl=en
+          - link [ref=e221] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e226] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e232]:
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - link [ref=e238] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DYpGkEmkWHk/?hl=en
+              - link [ref=e244] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DV7M8IAkbO1/?hl=en
+              - link [ref=e250] [cursor=pointer]:
+                - /url: /nurseusabrazil/reel/DMzvRNwsik-/?hl=en
+            - generic [ref=e255]:
+              - link [ref=e257] [cursor=pointer]:
+                - /url: /nurseusabrazil/reel/DcM5AnUx4Zn/?hl=en
+              - link [ref=e263] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DcMa6NxBY2X/?hl=en
+              - link [ref=e269] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DcJ2IksJzfx/?hl=en
+            - generic [ref=e274]:
+              - link [ref=e276] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DcHhGQgEaj9/?hl=en
+              - link [ref=e282] [cursor=pointer]:
+                - /url: /enfermeiranousa/p/DcG8e-ZFDhY/?hl=en
+              - link [ref=e288] [cursor=pointer]:
+                - /url: /nurseusabrazil/p/DcFA34VESQY/?hl=en
+            - generic [ref=e293]:
+              - link [ref=e295] [cursor=pointer]:
+                - /url: /nurseusabrazil/reel/DcEBmUCRLNW/?hl=en
+              - link [ref=e301] [cursor=pointer]:
+                - /url: /nurseusabrazil/reel/Db_xCXLRHPn/?hl=en
+              - link [ref=e307] [cursor=pointer]:
+                - /url: /nurseusabrazil/reel/Db6GZCWRoSm/?hl=en
+          - button [ref=e312] [cursor=pointer]:
+            - generic [ref=e313]: Show more posts from nurseusabrazil
+    - contentinfo [ref=e315]:
+      - generic [ref=e316]:
+        - generic [ref=e318]:
+          - link [ref=e320] [cursor=pointer]:
+            - /url: https://about.meta.com/
+            - generic [ref=e321]: Meta
+          - link [ref=e323] [cursor=pointer]:
+            - /url: https://about.instagram.com/
+            - generic [ref=e324]: About
+          - link [ref=e326] [cursor=pointer]:
+            - /url: https://about.instagram.com/blog/
+            - generic [ref=e327]: Blog
+          - link [ref=e329] [cursor=pointer]:
+            - /url: https://about.instagram.com/about-us/careers
+            - generic [ref=e330]: Jobs
+          - link [ref=e332] [cursor=pointer]:
+            - /url: https://help.instagram.com/
+            - generic [ref=e333]: Help
+          - link [ref=e335] [cursor=pointer]:
+            - /url: https://developers.facebook.com/docs/instagram
+            - generic [ref=e336]: API
+          - link [ref=e338] [cursor=pointer]:
+            - /url: /legal/privacy/?hl=en
+            - generic [ref=e339]: Privacy
+          - link [ref=e341] [cursor=pointer]:
+            - /url: /legal/terms/?hl=en
+            - generic [ref=e342]: Terms
+          - link [ref=e344] [cursor=pointer]:
+            - /url: /explore/locations/?hl=en
+            - generic [ref=e345]: Locations
+          - link [ref=e347] [cursor=pointer]:
+            - /url: /popular/?hl=en
+            - generic [ref=e348]: Popular
+          - link [ref=e350] [cursor=pointer]:
+            - /url: /web/lite/?hl=en
+            - generic [ref=e351]: Instagram Lite
+          - link [ref=e353] [cursor=pointer]:
+            - /url: https://www.meta.ai/?utm_source=foa_web_footer
+            - generic [ref=e354]: Meta AI
+          - link [ref=e356] [cursor=pointer]:
+            - /url: https://www.threads.com/
+            - generic [ref=e357]: Threads
+          - link [ref=e359] [cursor=pointer]:
+            - /url: https://www.facebook.com/help/instagram/261704639352628
+            - generic [ref=e360]: Contact Uploading & Non-Users
+          - link [ref=e362] [cursor=pointer]:
+            - /url: /accounts/meta_verified/?entrypoint=web_footer&hl=en
+            - generic [ref=e363]: Meta Verified
+        - generic [ref=e364]:
+          - generic [ref=e365] [cursor=pointer]:
+            - generic [ref=e366]: English
+            - combobox [ref=e372]
+          - generic [ref=e373]: © 2026 Instagram from Meta
+  - dialog [ref=e386]:
+    - generic [ref=e389]:
+      - generic [ref=e390]:
+        - status "Loading..." [active] [ref=e393]
+        - generic [ref=e394]:
+          - status "Loading..." [ref=e395]
+          - status "Loading..." [ref=e396]
+      - generic [ref=e397]:
+        - status "Loading..." [ref=e398]
+        - status "Loading..." [ref=e399]

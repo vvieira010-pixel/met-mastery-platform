@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - MET Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .font-display-lg { font-family: theme('fontFamily.display-lg'); font-size: 48px; line-height: 56px; letter-spacing: -0.02em; font-weight: 600; }
+            .font-data-mono { font-family: theme('fontFamily.data-mono'); font-size: 14px; line-height: 20px; font-weight: 400; }
+            .font-headline-md { font-family: theme('fontFamily.headline-md'); font-size: 24px; line-height: 32px; font-weight: 500; }
+            .font-headline-lg { font-family: theme('fontFamily.headline-lg'); font-size: 32px; line-height: 40px; font-weight: 600; }
+            .font-body-md { font-family: theme('fontFamily.body-md'); font-size: 16px; line-height: 24px; font-weight: 400; }
+            .font-body-lg { font-family: theme('fontFamily.body-lg'); font-size: 18px; line-height: 28px; font-weight: 400; }
+            .font-label-sm-bold { font-family: theme('fontFamily.label-sm-bold'); font-size: 12px; line-height: 16px; letter-spacing: 0.05em; font-weight: 700; }
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-20 bg-surface-bright/80 backdrop-blur-md">
+<a class="font-headline-md font-semibold text-primary" href="#">
+            MET Mastery
+        </a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Features</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Methodology</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Pricing</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Success Stories</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="font-label-sm-bold text-on-surface-variant hover:text-primary transition-colors hidden md:block" href="#">Sign In</a>
+<a class="bg-primary text-on-primary font-label-sm-bold px-4 py-2 rounded hover:bg-primary/90 transition-colors" href="#">
+                Get Started
+            </a>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center p-4 md:p-8">
+<div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+<!-- Login Form Side -->
+<div class="w-full max-w-md mx-auto order-2 md:order-1 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/30 shadow-sm">
+<div class="mb-8 text-center md:text-left">
+<h1 class="font-headline-lg text-on-surface mb-2">Welcome back</h1>
+<p class="font-body-md text-on-surface-variant">Sign in to see your next step.</p>
+</div>
+<form action="" class="space-y-6" method="get">
+<div>
+<label class="block font-label-sm-bold text-on-surface mb-1" for="email">Email address</label>
+<input class="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-on-surface placeholder-on-surface-variant/50" id="email" name="email" placeholder="student@example.com" required="" type="email"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1">
+<label class="block font-label-sm-bold text-on-surface" for="password">Password</label>
+<a class="font-label-sm-bold text-primary hover:text-primary/80 transition-colors" href="#">Forgot password?</a>
+</div>
+<input class="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-on-surface" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary bg-surface" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-md text-on-surface-variant" for="remember-me">
+                            Remember me
+                        </label>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-sm-bold py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors flex justify-center items-center gap-2" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-outline-variant/30 text-center">
+<p class="font-body-md text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="font-label-sm-bold text-primary hover:underline" href="#">Get Started</a>
+</p>
+</div>
+</div>
+<!-- Value Proposition Side -->
+<div class="order-1 md:order-2 flex flex-col justify-center space-y-8 md:pl-8">
+<div class="space-y-4">
+<h2 class="font-display-lg text-primary">Know what to practice next.</h2>
+<p class="font-body-lg text-on-surface-variant max-w-lg">
+                        The Learning Loop keeps you focused. Complete a diagnostic, get personalized feedback, and immediately practice the specific skills you need to improve.
+                    </p>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">loop</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
+                        The Learning Loop
+                    </h3>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary-container mt-1">check_circle</span>
+<span><strong>1. Class:</strong> Take a focused diagnostic to find your baseline.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary-container mt-1">feedback</span>
+<span><strong>2. Feedback:</strong> Receive actionable insights from certified teachers.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">edit_square</span>
+<span><strong>3. Exercise:</strong> Complete targeted drills tailored to your weak points.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-max-width-content mx-auto border-t border-outline-variant bg-surface-container-lowest mt-16">
+<div class="mb-4 md:mb-0">
+<span class="font-headline-md font-bold text-on-surface">MET Mastery</span>
+</div>
+<div class="flex gap-6 mb-4 md:mb-0">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Cookie Policy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<div>
+<p class="font-body-md text-secondary">© 2024 MET Mastery. All rights reserved.</p>
+</div>
+</footer>
+</body></html>
+
+
+
+

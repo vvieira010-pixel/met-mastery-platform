@@ -1,0 +1,32 @@
+# CODEOWNERS — automatically request review from the right people
+# Order matters: later patterns take precedence over earlier ones.
+
+# Default owner for everything
+* @vviei
+
+# Frontend — React/TypeScript
+/frontend/       @vviei
+/src/            @vviei
+/src/components/ @vviei
+/src/hooks/      @vviei
+/index.html      @vviei
+/App.tsx         @vviei
+/main.tsx        @vviei
+/types.ts        @vviei
+/vite.config.js  @vviei
+
+# API + serverless functions — highest risk surface
+/api/                @vviei
+/netlify/functions/  @vviei
+/server.ts           @vviei
+/auth.js             @vviei
+/ratelimit.js        @vviei
+
+# DevOps & CI/CD — pipeline changes require careful review
+/.github/        @vviei
+/.github/workflows/ @vviei
+/netlify.toml    @vviei
+
+# Audio / public assets — content owner only
+/public/         @vviei
+/Exercises/      @vviei

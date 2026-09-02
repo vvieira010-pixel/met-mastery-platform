@@ -1,0 +1,47 @@
+{
+  "skill": "reading",
+  "topic": "scientists-and-discovery",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "met_8_40",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 8,
+      "intro": "This passage is about Marie Curie.",
+      "context": "Marie Curie was born in Warsaw, Poland, in 1867, at a time when women were rarely allowed to attend university. Determined to continue her education, she moved to Paris in 1891 and enrolled at the Sorbonne, where she studied physics and mathematics. Despite financial difficulties and the challenges of being a woman in a male-dominated field, she graduated at the top of her class.\n\nIn 1895, she married Pierre Curie, a French physicist, and together they began researching radioactivity—a term Marie herself coined. Working in a poorly equipped laboratory, the Curies discovered two new elements: polonium, named after Marie's homeland, and radium. In 1903, Marie became the first woman to win a Nobel Prize, sharing the award in physics with Pierre and another scientist.\n\nTragedy struck in 1906 when Pierre was killed in a street accident. Marie took over his teaching position at the Sorbonne, becoming the institution's first female professor. She continued her research and, in 1911, won a second Nobel Prize, this time in chemistry, for isolating pure radium. She remains the only person to have won Nobel Prizes in two different scientific fields.\n\nDuring World War I, Curie developed mobile X-ray units that allowed doctors to examine wounded soldiers near the battlefield. She often operated these units herself, despite the health risks of prolonged exposure to radiation. She died in 1934, likely from complications related to her lifelong work with radioactive materials. Today, her legacy endures not only in science but also as a symbol of perseverance and intellectual courage.",
+      "question": "What does the author suggest about Curie's death?",
+      "options": [
+        "It was caused by an accident in the laboratory.",
+        "It was related to her work with radioactive materials.",
+        "It was the result of a street accident like Pierre's.",
+        "It was due to old age and natural causes."
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "inference"
+    },
+    {
+      "id": "met_8_36",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "met",
+      "passageId": 8,
+      "intro": "This passage is about Marie Curie.",
+      "context": "Marie Curie was born in Warsaw, Poland, in 1867, at a time when women were rarely allowed to attend university. Determined to continue her education, she moved to Paris in 1891 and enrolled at the Sorbonne, where she studied physics and mathematics. Despite financial difficulties and the challenges of being a woman in a male-dominated field, she graduated at the top of her class.\n\nIn 1895, she married Pierre Curie, a French physicist, and together they began researching radioactivity—a term Marie herself coined. Working in a poorly equipped laboratory, the Curies discovered two new elements: polonium, named after Marie's homeland, and radium. In 1903, Marie became the first woman to win a Nobel Prize, sharing the award in physics with Pierre and another scientist.\n\nTragedy struck in 1906 when Pierre was killed in a street accident. Marie took over his teaching position at the Sorbonne, becoming the institution's first female professor. She continued her research and, in 1911, won a second Nobel Prize, this time in chemistry, for isolating pure radium. She remains the only person to have won Nobel Prizes in two different scientific fields.\n\nDuring World War I, Curie developed mobile X-ray units that allowed doctors to examine wounded soldiers near the battlefield. She often operated these units herself, despite the health risks of prolonged exposure to radiation. She died in 1934, likely from complications related to her lifelong work with radioactive materials. Today, her legacy endures not only in science but also as a symbol of perseverance and intellectual courage.",
+      "question": "What is the passage mainly about?",
+      "options": [
+        "the discoveries of radium and polonium",
+        "the life and achievements of Marie Curie",
+        "how women gained access to universities",
+        "the dangers of working with radiation"
+      ],
+      "correct": 1,
+      "explanation": "",
+      "questionType": "main idea"
+    }
+  ]
+}

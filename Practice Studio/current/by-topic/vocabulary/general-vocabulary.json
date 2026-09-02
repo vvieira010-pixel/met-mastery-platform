@@ -1,0 +1,457 @@
+{
+  "skill": "vocabulary",
+  "topic": "general-vocabulary",
+  "totalExercises": 30,
+  "exercises": [
+    {
+      "id": "michigan_vocab_11",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The instructions were very ___, so everyone understood what to do.",
+      "options": [
+        "distant",
+        "clear",
+        "bitter",
+        "formal"
+      ],
+      "correct": 1,
+      "explanation": "**Clear** means easy to understand."
+    },
+    {
+      "id": "michigan_vocab_31",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The minister’s statement was deliberately ___, allowing her to avoid committing herself to a specific course of action.",
+      "options": [
+        "meticulous",
+        "tangible",
+        "unanimous",
+        "equivocal"
+      ],
+      "correct": 3,
+      "explanation": "**Equivocal** means deliberately unclear or open to more than one interpretation."
+    },
+    {
+      "id": "michigan_vocab_41",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "Rather than solving the problem, the new regulations may ___ it by creating additional administrative work.",
+      "options": [
+        "consolidate",
+        "alleviate",
+        "exacerbate",
+        "authenticate"
+      ],
+      "correct": 2,
+      "explanation": "**Exacerbate** means make a problem or bad situation worse."
+    },
+    {
+      "id": "michigan_vocab_51",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The agreement was designed to ___ cooperation between countries that had previously competed for the same resources.",
+      "options": [
+        "undermine",
+        "foster",
+        "constrain",
+        "negate"
+      ],
+      "correct": 1,
+      "explanation": "**Foster** means encourage or promote the development of something."
+    },
+    {
+      "type": "mcq",
+      "skill": "Vocabulary",
+      "level": "B2+",
+      "title": "B2+ Word Meaning",
+      "question": "'Ubiquitous' means:",
+      "options": [
+        "found everywhere",
+        "rarely seen",
+        "very large",
+        "outdated"
+      ],
+      "correct": 0,
+      "explanation": "ubiquitous = present everywhere."
+    },
+    {
+      "id": "michigan_vocab_2",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The hotel is ___ near the train station, so guests can walk there easily.",
+      "options": [
+        "suddenly",
+        "conveniently",
+        "politely",
+        "honestly"
+      ],
+      "correct": 1,
+      "explanation": "**Conveniently** means in a way that is practical or easy for a particular purpose."
+    },
+    {
+      "id": "michigan_vocab_42",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The historian attempted to ___ the conflicting accounts by comparing them with contemporary records.",
+      "options": [
+        "reconcile",
+        "provoke",
+        "distort",
+        "suspend"
+      ],
+      "correct": 0,
+      "explanation": "**Reconcile** means make two apparently conflicting accounts or ideas consistent."
+    },
+    {
+      "id": "vt_edu_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "She improved her grade by ___ more hours to studying.",
+      "options": [
+        "devoting",
+        "avoiding",
+        "forgetting",
+        "refusing"
+      ],
+      "correct": 0,
+      "explanation": "“Devote time to” means to spend time on something purposefully."
+    },
+    {
+      "id": "michigan_vocab_23",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The two proposals are broadly similar, but there is one ___ difference in their costs.",
+      "options": [
+        "residential",
+        "accidental",
+        "temporary",
+        "significant"
+      ],
+      "correct": 3,
+      "explanation": "**Significant** means important or large enough to matter."
+    },
+    {
+      "id": "michigan_vocab_33",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The researcher warned that the apparent improvement might be ___, since the study lasted only two weeks.",
+      "options": [
+        "inevitable",
+        "ephemeral",
+        "impartial",
+        "comprehensive"
+      ],
+      "correct": 1,
+      "explanation": "**Ephemeral** means lasting for a very short time."
+    },
+    {
+      "id": "vt_tech_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Most people ___ on their phones to stay connected.",
+      "options": [
+        "rely",
+        "reject",
+        "relax",
+        "return"
+      ],
+      "correct": 0,
+      "explanation": "“Rely on” means to depend on something."
+    },
+    {
+      "id": "michigan_vocab_14",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "Daniel made a ___ decision to study abroad after thinking about it for several months.",
+      "options": [
+        "noisy",
+        "lucky",
+        "thoughtful",
+        "broken"
+      ],
+      "correct": 2,
+      "explanation": "**Thoughtful** means showing careful consideration."
+    },
+    {
+      "id": "michigan_vocab_24",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Her explanation was so ___ that even a complicated technical process seemed easy to understand.",
+      "options": [
+        "prosperous",
+        "cautious",
+        "irrelevant",
+        "coherent"
+      ],
+      "correct": 3,
+      "explanation": "**Coherent** means logical, organized, and easy to follow."
+    },
+    {
+      "id": "michigan_vocab_5",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "The restaurant was so ___ that we had to wait outside for a table.",
+      "options": [
+        "ordinary",
+        "empty",
+        "crowded",
+        "private"
+      ],
+      "correct": 2,
+      "explanation": "**Crowded** means full of people, leaving little available space."
+    },
+    {
+      "id": "michigan_vocab_25",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The witness gave a ___ description of the person she had seen near the building.",
+      "options": [
+        "flexible",
+        "detailed",
+        "profitable",
+        "artificial"
+      ],
+      "correct": 1,
+      "explanation": "**Detailed** means containing many specific pieces of information."
+    },
+    {
+      "id": "michigan_vocab_45",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The speaker’s conclusion was a logical ___ from the evidence presented earlier in the lecture.",
+      "options": [
+        "impairment",
+        "intervention",
+        "incentive",
+        "inference"
+      ],
+      "correct": 3,
+      "explanation": "An **inference** is a conclusion reached from evidence and reasoning."
+    },
+    {
+      "id": "vt_comm_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "A friendly neighbor can make you feel ___ in a new area.",
+      "options": [
+        "welcome",
+        "weak",
+        "wrong",
+        "worried"
+      ],
+      "correct": 0,
+      "explanation": "“Feel welcome” describes being accepted comfortably."
+    },
+    {
+      "id": "michigan_vocab_6",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "You should wear a jacket because the weather may ___ colder this evening.",
+      "options": [
+        "invite",
+        "become",
+        "discover",
+        "borrow"
+      ],
+      "correct": 1,
+      "explanation": "**Become colder** means change to a lower temperature."
+    },
+    {
+      "id": "michigan_vocab_16",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The new policy is intended to ___ unnecessary spending without reducing the quality of public services.",
+      "options": [
+        "inherit",
+        "overlook",
+        "praise",
+        "curb"
+      ],
+      "correct": 3,
+      "explanation": "**Curb** means control or limit something undesirable."
+    },
+    {
+      "id": "michigan_vocab_36",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The author’s argument is persuasive, but it rests on a rather ___ assumption about how people respond to risk.",
+      "options": [
+        "coherent",
+        "impartial",
+        "tenuous",
+        "lucrative"
+      ],
+      "correct": 2,
+      "explanation": "**Tenuous** means weak, uncertain, or not strongly supported."
+    },
+    {
+      "id": "michigan_vocab_17",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Although the evidence was limited, the researchers drew a ___ conclusion from the results.",
+      "options": [
+        "vacant",
+        "edible",
+        "tentative",
+        "hostile"
+      ],
+      "correct": 2,
+      "explanation": "**Tentative** means uncertain or provisional rather than final."
+    },
+    {
+      "id": "michigan_vocab_47",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The new evidence may ___ the defendant’s account of what happened that evening.",
+      "options": [
+        "vindicate",
+        "impede",
+        "provoke",
+        "supersede"
+      ],
+      "correct": 0,
+      "explanation": "**Vindicate** means show that someone was right or not responsible for wrongdoing."
+    },
+    {
+      "id": "michigan_vocab_38",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The evidence is not sufficient to ___ a direct causal link between the two events.",
+      "options": [
+        "relinquish",
+        "fluctuate",
+        "exaggerate",
+        "establish"
+      ],
+      "correct": 3,
+      "explanation": "**Establish** means demonstrate or prove something with evidence."
+    },
+    {
+      "id": "michigan_vocab_48",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The policy was introduced to ___ the effects of inequality by providing additional support to disadvantaged communities.",
+      "options": [
+        "perpetuate",
+        "ameliorate",
+        "preclude",
+        "distort"
+      ],
+      "correct": 1,
+      "explanation": "**Ameliorate** means make a difficult situation or problem better."
+    },
+    {
+      "id": "michigan_vocab_9",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "After walking for three hours, the hikers were extremely ___.",
+      "options": [
+        "accurate",
+        "generous",
+        "curious",
+        "exhausted"
+      ],
+      "correct": 3,
+      "explanation": "**Exhausted** means extremely tired."
+    },
+    {
+      "id": "michigan_vocab_19",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The documentary provides a ___ account of how the city recovered after the flood.",
+      "options": [
+        "flexible",
+        "reluctant",
+        "compelling",
+        "accidental"
+      ],
+      "correct": 2,
+      "explanation": "**Compelling** means very convincing or engaging."
+    },
+    {
+      "id": "michigan_vocab_39",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The policy was criticized for being ___: it appeared to benefit large corporations while placing additional burdens on small businesses.",
+      "options": [
+        "resilient",
+        "innovative",
+        "inequitable",
+        "exemplary"
+      ],
+      "correct": 2,
+      "explanation": "**Inequitable** means unfair or lacking equality."
+    },
+    {
+      "id": "michigan_vocab_49",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "Because the instructions were highly ___, different departments interpreted them in entirely different ways.",
+      "options": [
+        "explicit",
+        "impartial",
+        "comprehensive",
+        "ambiguous"
+      ],
+      "correct": 3,
+      "explanation": "**Ambiguous** means open to more than one interpretation."
+    },
+    {
+      "id": "michigan_vocab_10",
+      "type": "mcq",
+      "level": "B1",
+      "skill": "Vocabulary",
+      "question": "If you do not know the meaning of a word, you can ___ it ___ in a dictionary.",
+      "options": [
+        "look / up",
+        "take / off",
+        "put / away",
+        "give / back"
+      ],
+      "correct": 0,
+      "explanation": "**Look up** means search for information in a reference source."
+    },
+    {
+      "id": "michigan_vocab_50",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The scientist remained ___ about the results, noting that the sample size was too small to support a definitive conclusion.",
+      "options": [
+        "skeptical",
+        "complacent",
+        "receptive",
+        "extravagant"
+      ],
+      "correct": 0,
+      "explanation": "**Skeptical** means not easily convinced and requiring strong evidence."
+    }
+  ]
+}

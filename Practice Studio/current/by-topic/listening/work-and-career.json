@@ -1,0 +1,96 @@
+{
+  "skill": "listening",
+  "topic": "work-and-career",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "dr_L13b_mtgcfjqd_n",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L13-office-relocation.mp3",
+      "audioText": "Good morning, everyone. As you know, our department is moving to the third floor next Monday. IT staff will disconnect your computers Friday afternoon, so please back up your files before then. The new space has more natural light, but slightly smaller desks, so bring only essential items. Boxes and labels are available at the front desk starting today.",
+      "question": "Why does the speaker mention Friday afternoon?",
+      "options": [
+        "It's a deadline for saving files",
+        "It's when the meeting ends",
+        "It's the last day of the month",
+        "It's when new desks arrive"
+      ],
+      "correct": 0,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "gemini_listening_3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/gemini-listening-3.wav",
+      "audioText": "Man: Are we still on track to submit the budget proposal by Friday?\nWoman: I've finished the projections, but I'm waiting on the marketing team for their final numbers. If they don't send them by tomorrow morning, we'll have to ask for an extension.\nMan: Let me call their director right now and push them.",
+      "ttsText": "Are we still on track to submit the budget proposal by Friday? I've finished the projections, but I'm waiting on the marketing team for their final numbers. If they don't send them by tomorrow morning, we'll have to ask for an extension. Let me call their director right now and push them.",
+      "question": "What is the man going to do next?",
+      "options": [
+        "Ask for an extension on the proposal.",
+        "Finish the financial projections.",
+        "Contact the marketing director.",
+        "Submit the budget proposal."
+      ],
+      "correct": 2,
+      "explanation": "The man says, 'Let me call their director right now,' referring to the marketing team.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-80",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-80-workplace-reminder.mp3",
+      "audioTitle": "80 · A Workplace Reminder",
+      "audioSrc": "/exercises/audio/listening/listening-80-workplace-reminder.mp3",
+      "audioText": "Please label all shared equipment before placing it in the storage room. Unlabeled items may be moved to the temporary shelf, which will be cleared at the end of each month. If you are unsure where something belongs, ask the facilities team.",
+      "question": "What should employees do?",
+      "options": [
+        "Remove all shared equipment",
+        "Label equipment before storage",
+        "Clear the temporary shelf daily",
+        "Contact facilities about every item"
+      ],
+      "correct": 1,
+      "explanation": "The reminder asks employees to label shared equipment before storing it.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-93",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-93-policy-condition.mp3",
+      "audioTitle": "93 · A Policy Condition",
+      "audioSrc": "/exercises/audio/listening/listening-93-policy-condition.mp3",
+      "audioText": "The committee is willing to approve the proposal, provided that the organizers submit a revised budget by Friday. Without that document, the application will remain on hold until the next meeting.",
+      "question": "What must the organizers do for approval to proceed?",
+      "options": [
+        "Cancel the next meeting",
+        "Submit a revised budget by Friday",
+        "Recruit a new committee",
+        "Reduce the proposal to one page"
+      ],
+      "correct": 1,
+      "explanation": "Approval depends on submitting the revised budget by Friday.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "type": "speak",
+      "skill": "Listening",
+      "level": "B2+",
+      "title": "B2+ Speaking Prompt",
+      "prompt": "Present an argument for or against remote work in 90 seconds.",
+      "targetSeconds": 90,
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

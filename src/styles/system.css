@@ -1,0 +1,12 @@
+/* MET Proficiency Platform — Design System
+   Entry point: imports tokens → base → components.
+   Tokens define all CSS custom properties.
+   Base provides resets, typography, and utility classes.
+   Components include cards, shell, dashboards, modals, exercises, etc. */
+
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './responsive.css';
+@import './dark.css';
+@import './redesign.css';

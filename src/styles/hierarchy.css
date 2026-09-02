@@ -1,0 +1,406 @@
+/* Hierarchy Fix — Visual Art & Brand (Pathway 1)
+   Unifies student pages: headings, kickers, cards, spacing.
+   Loaded after tokens/base/components. Low-specificity, token-driven. */
+
+:root {
+  /* Display hierarchy — editorial serif for page titles, sans for UI */
+  --h1-size: var(--text-3xl);
+  --h2-size: var(--text-2xl);
+  --h3-size: var(--text-lg);
+  --kicker-size: var(--text-xs);
+  --kicker-tracking: 0.08em;
+}
+
+/* Page titles: serif, tight tracking, ink color */
+.student-page-header h1,
+.student-home h1,
+.student-home h2 {
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+  color: var(--ink) !important;
+}
+.student-page-header h1 { font-size: var(--h1-size) !important; }
+.student-page-header h2,
+.student-home h2 { font-size: var(--h2-size) !important; }
+
+/* Section headings inside cards: sans, medium */
+.student-study-tips-header h2,
+.student-resources-featured h2,
+.student-page h3 {
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: var(--h3-size) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Kicker — single source of truth */
+.student-panel-kicker,
+.student-study-tips-header .student-panel-kicker {
+  font-family: var(--font-sans) !important;
+  font-size: var(--kicker-size) !important;
+  font-weight: 700 !important;
+  letter-spacing: var(--kicker-tracking) !important;
+  text-transform: uppercase !important;
+  color: var(--primary) !important;
+  line-height: 1 !important;
+}
+
+/* Card system — one radius + shadow scale */
+.student-study-tip-card,
+.student-subject-card,
+.student-resource-card,
+.student-resources-featured,
+.student-study-tips {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--border) !important;
+}
+.student-study-tips-grid,
+.student-subjects-grid,
+.student-resource-list {
+  gap: var(--space-6) !important;
+}
+.student-study-tip-card,
+.student-subject-card {
+  padding: var(--space-6) !important;
+}
+
+/* Tighten speaking page gradient heading — replace with solid ink for hierarchy */
+.student-speaking-page h2[style*="gradient"] {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: var(--ink) !important;
+  font-family: var(--font-serif) !important;
+}
+
+/* Color semantics — muted text via --text-muted only */
+.student-study-tip-what,
+.student-study-tip-how,
+.student-resources-featured p {
+  color: var(--text-muted) !important;
+  line-height: 1.6 !important;
+}
+
+/* Practice Studio — same card system as Subjects/Resources */
+.practice-studio-hero h1,
+.practice-studio-hero .student-page-title {
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  font-size: var(--h1-size) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+  color: var(--ink) !important;
+}
+.practice-studio-eyebrow {
+  font-family: var(--font-sans) !important;
+  font-size: var(--kicker-size) !important;
+  font-weight: 700 !important;
+  letter-spacing: var(--kicker-tracking) !important;
+  text-transform: uppercase !important;
+  color: var(--primary) !important;
+}
+.practice-studio-card {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  padding: var(--space-6) !important;
+}
+.practice-studio-card-kicker {
+  font-family: var(--font-sans) !important;
+  font-size: var(--kicker-size) !important;
+  font-weight: 700 !important;
+  letter-spacing: var(--kicker-tracking) !important;
+  text-transform: uppercase !important;
+  color: var(--primary) !important;
+}
+.practice-studio-card-body h3 {
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: var(--h3-size) !important;
+  letter-spacing: -0.01em !important;
+  color: var(--ink) !important;
+}
+.practice-studio-grid,
+.practice-studio-recent .grid-square {
+  gap: var(--space-6) !important;
+}
+.practice-studio-card-icon {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.practice-studio-card-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.55) 45%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: -120% 0;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+.practice-studio-card:hover .practice-studio-card-icon::after {
+  opacity: 1;
+  animation: studio-shimmer 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* One canonical card layout: every child gets an explicit place, including at
+   320px. This supersedes the legacy row variants in components.css. */
+.practice-studio-card {
+  display: grid !important;
+  grid-template-columns: 44px minmax(0, 1fr) !important;
+  grid-template-areas:
+    "icon kicker"
+    "icon body"
+    "footer footer" !important;
+  align-items: start !important;
+  gap: var(--space-2) var(--space-3) !important;
+  min-width: 0;
+  text-align: start;
+}
+.practice-studio-card-topline { display: contents; }
+.practice-studio-card-icon { grid-area: icon; }
+.practice-studio-card-kicker { grid-area: kicker; align-self: end; min-width: 0; }
+.practice-studio-card-body { grid-area: body; min-width: 0; }
+.practice-studio-card-body h3,
+.practice-studio-card-body p { overflow-wrap: anywhere; }
+.practice-studio-card-footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-width: 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.practice-studio-tips {
+  padding-inline: var(--space-4);
+}
+.practice-studio-tips-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+.practice-studio-tips-summary span:last-child {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+.practice-studio-tips[open] .rounded-2xl { margin-top: var(--space-3); }
+
+/* ── Animation — subtle, accessible, token-driven ── */
+@keyframes hierarchy-fade-up {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes hierarchy-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.student-study-tip-card,
+.student-subject-card,
+.student-resource-card,
+.practice-studio-card,
+.practice-studio-tips .rounded-xl {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  will-change: transform;
+}
+.student-study-tip-card:hover,
+.student-subject-card:hover,
+.student-resource-card:hover,
+.practice-studio-card:hover,
+.practice-studio-tips .rounded-xl:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* Entrance stagger — respects hierarchy order */
+.student-study-tips-grid .student-study-tip-card,
+.student-subjects-grid .student-subject-card,
+.student-resource-list .student-resource-card,
+.practice-studio-grid .practice-studio-card,
+.practice-studio-tips .rounded-xl,
+.practice-studio-recent .practice-studio-card {
+  animation: hierarchy-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.student-study-tips-grid .student-study-tip-card:nth-child(1) { animation-delay: 0.04s; }
+.student-study-tips-grid .student-study-tip-card:nth-child(2) { animation-delay: 0.08s; }
+.student-study-tips-grid .student-study-tip-card:nth-child(3) { animation-delay: 0.12s; }
+.student-study-tips-grid .student-study-tip-card:nth-child(4) { animation-delay: 0.16s; }
+.student-study-tips-grid .student-study-tip-card:nth-child(5) { animation-delay: 0.20s; }
+.student-subjects-grid .student-subject-card:nth-child(1) { animation-delay: 0.03s; }
+.student-subjects-grid .student-subject-card:nth-child(2) { animation-delay: 0.06s; }
+.student-subjects-grid .student-subject-card:nth-child(3) { animation-delay: 0.09s; }
+.student-subjects-grid .student-subject-card:nth-child(4) { animation-delay: 0.12s; }
+.student-subjects-grid .student-subject-card:nth-child(5) { animation-delay: 0.15s; }
+.student-subjects-grid .student-subject-card:nth-child(6) { animation-delay: 0.18s; }
+.practice-studio-grid .practice-studio-card:nth-child(1) { animation-delay: 0.03s; }
+.practice-studio-grid .practice-studio-card:nth-child(2) { animation-delay: 0.06s; }
+.practice-studio-grid .practice-studio-card:nth-child(3) { animation-delay: 0.09s; }
+.practice-studio-grid .practice-studio-card:nth-child(4) { animation-delay: 0.12s; }
+.practice-studio-grid .practice-studio-card:nth-child(5) { animation-delay: 0.15s; }
+.practice-studio-grid .practice-studio-card:nth-child(6) { animation-delay: 0.18s; }
+.practice-studio-tips .rounded-xl:nth-child(1) { animation-delay: 0.04s; }
+.practice-studio-tips .rounded-xl:nth-child(2) { animation-delay: 0.08s; }
+.practice-studio-tips .rounded-xl:nth-child(3) { animation-delay: 0.12s; }
+.practice-studio-tips .rounded-xl:nth-child(4) { animation-delay: 0.16s; }
+.practice-studio-tips .rounded-xl:nth-child(5) { animation-delay: 0.20s; }
+
+/* Banner + badge pulse — draws eye without motion sickness */
+.student-resources-featured,
+.student-home .rounded-2xl[class*="gradient"] {
+  animation: hierarchy-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.dash-nav-dot {
+  animation: hierarchy-float 2.4s ease-in-out infinite;
+}
+
+/* Speaking — avatar breathe + transcript highlight pulse + wave */
+@keyframes speaking-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.20; }
+  50% { transform: scale(1.08); opacity: 0.12; }
+}
+@keyframes speaking-highlight {
+  0%, 100% { background: var(--success-soft); }
+  50% { background: var(--success-soft); }
+}
+@keyframes speaking-highlight-warm {
+  0%, 100% { background: var(--surface); }
+  50% { background: var(--surface); }
+}
+@keyframes speaking-wave {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes speaking-record-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(140,81,73,0.35), 0 8px 20px rgba(0,104,119,0.15); transform: scale(1); }
+  50% { box-shadow: 0 0 0 14px rgba(140,81,73,0), 0 8px 20px rgba(0,104,119,0.15); transform: scale(1.03); }
+  100% { box-shadow: 0 0 0 0 rgba(140,81,73,0), 0 8px 20px rgba(0,104,119,0.15); transform: scale(1); }
+}
+@keyframes speaking-record-ring {
+  0% { transform: scale(0.85); opacity: 0.45; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+@keyframes speaking-timer-tick {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@keyframes studio-shimmer {
+  0% { background-position: -120% 0; }
+  100% { background-position: 220% 0; }
+}
+.student-speaking-page .animate-pulse {
+  animation: speaking-breathe 2.8s ease-in-out infinite !important;
+}
+.student-speaking-page span[style*="22c55e"] {
+  animation: speaking-highlight 1.8s ease-in-out infinite;
+  border-radius: 4px;
+}
+.student-speaking-page span[style*="FF7A31"],
+.student-speaking-page span[style*="255, 171"] {
+  animation: speaking-highlight-warm 1.8s ease-in-out infinite;
+  border-radius: 4px;
+}
+.student-speaking-page .rounded-2xl[class*="Interactive"] {
+  animation: hierarchy-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.speaking-wave-bar {
+  transform-origin: bottom;
+  animation: speaking-wave 0.9s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.speaking-wave-bar:nth-child(1) { animation-duration: 0.85s; }
+.speaking-wave-bar:nth-child(2) { animation-duration: 0.95s; }
+.speaking-wave-bar:nth-child(3) { animation-duration: 0.78s; }
+.speaking-wave-bar:nth-child(4) { animation-duration: 1.05s; }
+.speaking-wave-bar:nth-child(5) { animation-duration: 0.88s; }
+.speaking-wave-bar:nth-child(6) { animation-duration: 0.92s; }
+.speaking-record-btn {
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+.speaking-record-btn.is-recording {
+  animation: speaking-record-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+.speaking-record-btn.is-recording::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--error);
+  animation: speaking-record-ring 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+.speaking-record-btn:not(.is-recording):hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+.speaking-timer {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.speaking-timer.is-recording {
+  animation: speaking-timer-tick 1s steps(1, end) infinite;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-study-tip-card,
+  .student-subject-card,
+  .student-resource-card,
+  .student-resources-featured,
+  .dash-nav-dot,
+  .student-speaking-page .animate-pulse,
+  .student-speaking-page span[style*="22c55e"],
+  .student-speaking-page span[style*="FF7A31"],
+  .speaking-wave-bar,
+  .speaking-record-btn,
+  .speaking-record-btn::after,
+  .speaking-timer,
+  .practice-studio-card,
+  .practice-studio-tips .rounded-xl,
+  .practice-studio-card-icon::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .dash-body {
+    padding-block-end: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+  }
+  .student-home,
+  .student-progress-page,
+  .practice-studio-page,
+  .student-feedback-page,
+  .student-homework-page {
+    padding-block-end: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  .practice-studio-hero {
+    gap: var(--space-4);
+  }
+  .practice-studio-hero-note {
+    width: 100%;
+  }
+  .practice-studio-card {
+    padding: var(--space-4) !important;
+  }
+}

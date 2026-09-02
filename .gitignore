@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Local env / secrets (never commit)
+.env*
+!.env.example
+
+# Platform-specific config
+.vercel/
+.vercelignore
+.netlify/
+.npmrc
+
+# Build output (rebuilt by Netlify CI)
+dist-build/
+dist/
+.vite-cache-v2/
+
+# Local tooling & logs
+build-out.txt
+eslint-out.txt
+deno.lock
+.config/
+
+# Local runtime data (voicebox DB etc.)
+data/
+
+# Agent scratch / superseded reports
+.agents/
+.workbuddy-ai/
+
+# Source material not served by the app (199 MB audio/source)
+Mock Tests/
+
+.vercel
+.env*

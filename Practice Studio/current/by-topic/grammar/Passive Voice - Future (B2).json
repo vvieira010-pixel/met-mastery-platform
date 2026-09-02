@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Passive Voice - Future (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_7",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The updated company policies _____ to all employees by the end of the week.",
+      "options": [
+        "will be sent",
+        "will send",
+        "are sending",
+        "have sent"
+      ],
+      "correct": 0,
+      "explanation": "The sentence requires the future passive voice because the policies receive the action (they are being sent by someone).",
+      "topicId": "Passive Voice - Future (B2)"
+    },
+    {
+      "id": "G58",
+      "number": 58,
+      "category": "Passive Voice - Future (B2)",
+      "level": "B2",
+      "question": "The new bridge ________ by the end of next year.",
+      "options": {
+        "A": "will complete",
+        "B": "will be completed",
+        "C": "is completing",
+        "D": "has completed"
+      },
+      "correct_answer": "B",
+      "correct_option": "will be completed",
+      "explanation": "Future passive: will be + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

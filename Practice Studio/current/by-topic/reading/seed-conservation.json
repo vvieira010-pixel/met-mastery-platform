@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "seed-conservation",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "trees_8_38",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 8,
+      "intro": "This passage is about saving tree and plant seeds.",
+      "context": "In an underground vault in the south of England, behind doors built to withstand floods, bombs, and radiation, scientists are storing the future of the world's forests. The Millennium Seed Bank holds more than two billion seeds from nearly 40,000 plant species — the largest collection of its kind anywhere. Many of the species represented there are rare, endangered, or already extinct in the wild.\n\nCollecting seeds is a race against time. Teams of botanists travel to remote mountains, deserts, and islands to gather seeds from wild populations before habitats disappear. The work requires careful planning: seeds must be collected from many individual plants to capture the genetic diversity of a species, and many tropical seeds must be processed within days or they will spoil.\n\nOnce they arrive at the bank, seeds are cleaned, dried, and stored at minus twenty degrees Celsius. At that temperature, most seeds remain alive for decades, and some for centuries. To make sure the collection stays viable, scientists regularly remove small samples and test whether they can still germinate.\n\nThe bank is not merely a museum of plants. Its seeds have been used to restore habitats damaged by fire and development, and to support research on crops that can tolerate drought and disease. Yet the staff are frank about the bank's limits. Some trees, including oaks and chestnuts, produce seeds that cannot survive drying and freezing, so they cannot be stored this way at all. And a seed in a freezer, however well preserved, is no substitute for a living forest. The bank's true purpose, its curators say, is to buy time — time for conservation efforts to succeed before it is too late.",
+      "question": "In the second sentence of paragraph 4, which word is closest in meaning to frank?",
+      "options": [
+        "honest",
+        "uncertain",
+        "optimistic",
+        "silent"
+      ],
+      "correct": 0,
+      "explanation": "To be 'frank' is to be direct and honest. The staff openly admit the bank's limits — an honest assessment, not an uncertain or optimistic one.",
+      "questionType": "vocabulary"
+    },
+    {
+      "id": "trees_8_37",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 8,
+      "intro": "This passage is about saving tree and plant seeds.",
+      "context": "In an underground vault in the south of England, behind doors built to withstand floods, bombs, and radiation, scientists are storing the future of the world's forests. The Millennium Seed Bank holds more than two billion seeds from nearly 40,000 plant species — the largest collection of its kind anywhere. Many of the species represented there are rare, endangered, or already extinct in the wild.\n\nCollecting seeds is a race against time. Teams of botanists travel to remote mountains, deserts, and islands to gather seeds from wild populations before habitats disappear. The work requires careful planning: seeds must be collected from many individual plants to capture the genetic diversity of a species, and many tropical seeds must be processed within days or they will spoil.\n\nOnce they arrive at the bank, seeds are cleaned, dried, and stored at minus twenty degrees Celsius. At that temperature, most seeds remain alive for decades, and some for centuries. To make sure the collection stays viable, scientists regularly remove small samples and test whether they can still germinate.\n\nThe bank is not merely a museum of plants. Its seeds have been used to restore habitats damaged by fire and development, and to support research on crops that can tolerate drought and disease. Yet the staff are frank about the bank's limits. Some trees, including oaks and chestnuts, produce seeds that cannot survive drying and freezing, so they cannot be stored this way at all. And a seed in a freezer, however well preserved, is no substitute for a living forest. The bank's true purpose, its curators say, is to buy time — time for conservation efforts to succeed before it is too late.",
+      "question": "According to the passage, why do collectors gather seeds from many individual plants?",
+      "options": [
+        "to have backups in case some seeds spoil",
+        "to represent the species' genetic diversity",
+        "to avoid damaging any single plant",
+        "to satisfy international regulations"
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 gives the reason directly: 'to capture the genetic diversity of a species.' A sounds logical but refers to tropical seeds spoiling, a separate point.",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_8_39",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 8,
+      "intro": "This passage is about saving tree and plant seeds.",
+      "context": "In an underground vault in the south of England, behind doors built to withstand floods, bombs, and radiation, scientists are storing the future of the world's forests. The Millennium Seed Bank holds more than two billion seeds from nearly 40,000 plant species — the largest collection of its kind anywhere. Many of the species represented there are rare, endangered, or already extinct in the wild.\n\nCollecting seeds is a race against time. Teams of botanists travel to remote mountains, deserts, and islands to gather seeds from wild populations before habitats disappear. The work requires careful planning: seeds must be collected from many individual plants to capture the genetic diversity of a species, and many tropical seeds must be processed within days or they will spoil.\n\nOnce they arrive at the bank, seeds are cleaned, dried, and stored at minus twenty degrees Celsius. At that temperature, most seeds remain alive for decades, and some for centuries. To make sure the collection stays viable, scientists regularly remove small samples and test whether they can still germinate.\n\nThe bank is not merely a museum of plants. Its seeds have been used to restore habitats damaged by fire and development, and to support research on crops that can tolerate drought and disease. Yet the staff are frank about the bank's limits. Some trees, including oaks and chestnuts, produce seeds that cannot survive drying and freezing, so they cannot be stored this way at all. And a seed in a freezer, however well preserved, is no substitute for a living forest. The bank's true purpose, its curators say, is to buy time — time for conservation efforts to succeed before it is too late.",
+      "question": "Why does the author mention oaks and chestnuts?",
+      "options": [
+        "to list the most valuable trees in England",
+        "to recommend which trees people should plant",
+        "to give examples of trees whose seeds cannot be stored in the bank",
+        "to describe trees that resist drought and disease"
+      ],
+      "correct": 2,
+      "explanation": "They illustrate the previous statement about the bank's limits: their seeds 'cannot survive drying and freezing, so they cannot be stored this way at all.'",
+      "questionType": "purpose"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill": "writing",
+  "topic": "media-and-technology",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "vt_tech_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about one positive and one negative effect of social media on society.",
+      "rubric": "Should present a balanced view with one advantage and one drawback."
+    },
+    {
+      "id": "vt_media_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about the importance of checking facts before believing online news.",
+      "rubric": "Should mention misinformation and responsible sharing."
+    }
+  ]
+}

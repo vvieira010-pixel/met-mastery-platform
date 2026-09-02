@@ -1,0 +1,208 @@
+{
+  "skill": "listening",
+  "topic": "culture",
+  "totalExercises": 11,
+  "exercises": [
+    {
+      "id": "dr_L08a_mtgcfjqd_e",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L08-museum-volunteer.mp3",
+      "audioText": "N: Listen to a volunteer coordinator speaking at a museum.\nCoordinator: Welcome, everyone, and thank you for volunteering at the City Museum this weekend. Please arrive fifteen minutes before your shift starts so you have time to collect your name badge and leave your bags in the staff room. During the event, most of you will be helping visitors find the correct galleries. If a visitor asks you a question you cannot answer, do not guess. Instead, send the visitor to the information desk near the main entrance. Finally, remember that food and drinks are not allowed in the exhibition rooms, so please finish them before you begin your shift.\nN: Now answer the questions.",
+      "question": "What is the main purpose of the talk?",
+      "options": [
+        "To invite people to a new museum exhibition",
+        "To explain weekend procedures to volunteers",
+        "To describe the history of the museum",
+        "To advertise paid positions"
+      ],
+      "correct": 1,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L08b_mtgcfjqd_f",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L08-museum-volunteer.mp3",
+      "audioText": "N: Listen to a volunteer coordinator speaking at a museum.\nCoordinator: Welcome, everyone, and thank you for volunteering at the City Museum this weekend. Please arrive fifteen minutes before your shift starts so you have time to collect your name badge and leave your bags in the staff room. During the event, most of you will be helping visitors find the correct galleries. If a visitor asks you a question you cannot answer, do not guess. Instead, send the visitor to the information desk near the main entrance. Finally, remember that food and drinks are not allowed in the exhibition rooms, so please finish them before you begin your shift.\nN: Now answer the questions.",
+      "question": "What should volunteers do if they do not know an answer?",
+      "options": [
+        "Ask another visitor",
+        "Look it up on their phones",
+        "Send the visitor to the information desk",
+        "Write the question down for later"
+      ],
+      "correct": 2,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L15a_mtgcfjqd_s",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L15-museum-closure.mp3",
+      "audioText": "Attention, visitors: the west wing of the museum will close in fifteen minutes for a private event. If you have not yet seen the ancient pottery exhibit, please head there now, as it is located in that wing. All other galleries remain open until our normal closing time of six o'clock.",
+      "question": "What is being announced?",
+      "options": [
+        "A temporary closure",
+        "A new exhibit opening",
+        "A ticket price change",
+        "An emergency evacuation"
+      ],
+      "correct": 0,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L15b_mtgcfjqd_t",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L15-museum-closure.mp3",
+      "audioText": "Attention, visitors: the west wing of the museum will close in fifteen minutes for a private event. If you have not yet seen the ancient pottery exhibit, please head there now, as it is located in that wing. All other galleries remain open until our normal closing time of six o'clock.",
+      "question": "Why does the speaker mention the pottery exhibit?",
+      "options": [
+        "It has been moved to another wing",
+        "It is closing along with the west wing",
+        "It is the museum's most popular exhibit",
+        "It requires an additional ticket"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L15c_mtgcfjqd_u",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L15-museum-closure.mp3",
+      "audioText": "Attention, visitors: the west wing of the museum will close in fifteen minutes for a private event. If you have not yet seen the ancient pottery exhibit, please head there now, as it is located in that wing. All other galleries remain open until our normal closing time of six o'clock.",
+      "question": "What time does the rest of the museum close?",
+      "options": [
+        "In fifteen minutes",
+        "At six o'clock",
+        "At the end of the event",
+        "It stays open all night"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "dr_L16a_mtgcfjqd_v",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L16-safety-procedures.mp3",
+      "audioText": "Today's session covers our updated safety procedures. Notice the new evacuation map posted near the elevators — routes have changed since the renovation. We will also review how to report equipment problems using the new online form instead of paper slips. After this presentation, supervisors will run a short walkthrough of each floor.",
+      "question": "What is the speaker mainly discussing?",
+      "options": [
+        "Updated safety procedures",
+        "A company renovation project",
+        "New hiring policies",
+        "Building elevator repairs"
+      ],
+      "correct": 0,
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "dr_L16b_mtgcfjqd_w",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L16-safety-procedures.mp3",
+      "audioText": "Today's session covers our updated safety procedures. Notice the new evacuation map posted near the elevators — routes have changed since the renovation. We will also review how to report equipment problems using the new online form instead of paper slips. After this presentation, supervisors will run a short walkthrough of each floor.",
+      "question": "What does the speaker say has changed?",
+      "options": [
+        "The location of the elevators",
+        "The evacuation routes",
+        "The supervisor schedule",
+        "The office hours"
+      ],
+      "correct": 1,
+      "listeningFormat": "speaker_intention"
+    },
+    {
+      "id": "dr_L16c_mtgcfjqd_x",
+      "type": "listen",
+      "level": "B2",
+      "skill": "listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L16-safety-procedures.mp3",
+      "audioText": "Today's session covers our updated safety procedures. Notice the new evacuation map posted near the elevators — routes have changed since the renovation. We will also review how to report equipment problems using the new online form instead of paper slips. After this presentation, supervisors will run a short walkthrough of each floor.",
+      "question": "What will happen after the presentation?",
+      "options": [
+        "Employees will fill out paper slips",
+        "A walkthrough will take place",
+        "The building will be evacuated",
+        "New maps will be printed"
+      ],
+      "correct": 1,
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_07_museum_q1",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L07-museum-volunteer.wav",
+      "audioText": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don’t know an answer, don’t guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
+      "question": "What is the main purpose of the talk?",
+      "options": [
+        "To describe the museum’s history.",
+        "To explain weekend procedures for volunteers.",
+        "To sell tickets for a new exhibition.",
+        "To advertise paid jobs."
+      ],
+      "correct": 1,
+      "explanation": "The coordinator explains arrival time, duties, and rules for volunteers.",
+      "listeningFormat": "summary"
+    },
+    {
+      "id": "listen_07_museum_q2",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L07-museum-volunteer.wav",
+      "audioText": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don’t know an answer, don’t guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
+      "question": "What should volunteers do if they don’t know an answer?",
+      "options": [
+        "Guess to be helpful.",
+        "Call the manager.",
+        "Send the visitor to the information desk.",
+        "Ask another visitor."
+      ],
+      "correct": 2,
+      "explanation": "Instruction is not to guess but to send visitors to the information desk.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listen_07_museum_q3",
+      "type": "listen",
+      "level": "B2",
+      "skill": "Listening",
+      "plays": 2,
+      "audioSrc": "/exercises/audio/listening/listening-L07-museum-volunteer.wav",
+      "audioText": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don’t know an answer, don’t guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
+      "question": "What rule is mentioned about food and drinks?",
+      "options": [
+        "They can be taken into galleries if covered.",
+        "They are sold inside the galleries.",
+        "They are not allowed in exhibition rooms.",
+        "They are provided for volunteers."
+      ],
+      "correct": 2,
+      "explanation": "Food and drinks are not allowed in exhibition rooms; finish them before the shift.",
+      "listeningFormat": "multiple_choice"
+    }
+  ]
+}

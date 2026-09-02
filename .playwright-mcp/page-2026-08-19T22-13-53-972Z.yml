@@ -1,0 +1,714 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "SurveyHeart" [ref=e6]
+        - navigation [ref=e7]:
+          - link "Templates" [ref=e8] [cursor=pointer]:
+            - /url: /templates/
+          - link "Use Cases" [ref=e9] [cursor=pointer]:
+            - /url: /use-cases/
+          - link "Mobile App" [ref=e10] [cursor=pointer]:
+            - /url: /mobile-app/
+          - link "Compare" [ref=e11] [cursor=pointer]:
+            - /url: /compare/
+          - link "Features" [ref=e12] [cursor=pointer]:
+            - /url: /features/
+          - link "Resources" [ref=e13] [cursor=pointer]:
+            - /url: /resources/
+          - link "Pricing" [ref=e14] [cursor=pointer]:
+            - /url: /pricing/
+        - link "add Start Creating" [ref=e16] [cursor=pointer]:
+          - /url: /app
+          - generic [ref=e17]: add
+          - text: Start Creating
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - heading "Free Online Form, Survey and Poll Builder" [level=1] [ref=e22]
+            - paragraph [ref=e23]: Create free online forms, surveys, polls, feedback forms, attendance forms and registrations in minutes. Share by link, QR code or WhatsApp, collect responses instantly, and view results from anywhere.
+            - generic [ref=e24]:
+              - link "Create Free Form arrow_forward_ios" [ref=e26] [cursor=pointer]:
+                - /url: /app
+                - text: Create Free Form
+                - generic [ref=e27]: arrow_forward_ios
+              - generic [ref=e28]:
+                - link [ref=e29] [cursor=pointer]:
+                  - /url: https://play.google.com/store/apps/details?id=com.surveyheart
+                  - img "Get it on Google Play" [ref=e30]
+                - link [ref=e31] [cursor=pointer]:
+                  - /url: https://apps.apple.com/app/surveyheart-online-form-maker/id6443449067
+                  - img "Download on the App Store" [ref=e32]
+            - generic [ref=e34]:
+              - generic [ref=e35]:
+                - generic [ref=e36]: 10M+
+                - generic [ref=e37]: App installs
+              - generic [ref=e39]:
+                - generic [ref=e40]: 350M+
+                - generic [ref=e41]: Responses collected
+              - generic [ref=e43]:
+                - generic [ref=e44]: ★★★★★
+                - generic [ref=e45]: 4.4 Play Store rating
+          - button "Watch how SurveyHeart works" [ref=e50] [cursor=pointer]:
+            - img "SurveyHeart demo video - how to create an online form, survey, questionnaire and poll using the mobile app" [ref=e51]
+        - paragraph [ref=e57]: SurveyHeart is a free online form builder for creating forms, surveys, polls and quizzes. Share your form by link, QR code or WhatsApp, collect responses without requiring respondents to sign in, and manage everything from web or mobile.
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - heading "What would you like to create?" [level=2] [ref=e61]
+          - paragraph [ref=e62]: Create, share and collect responses for free. Choose the format that fits your goal.
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - img "Online Form Builder card" [ref=e67]
+              - generic [ref=e68]: description
+            - generic [ref=e70]:
+              - generic [ref=e71]: Online Form Builder
+              - generic [ref=e72]: Create registration forms, contact forms, order forms, job applications and more.
+              - link "add Create a Form" [ref=e73] [cursor=pointer]:
+                - /url: "#create"
+                - generic [ref=e74]: add
+                - text: Create a Form
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - img "Survey Maker card" [ref=e78]
+              - generic [ref=e79]: poll
+            - generic [ref=e81]:
+              - generic [ref=e82]: Survey Maker
+              - generic [ref=e83]: Ask multiple questions, collect structured feedback and understand responses with charts.
+              - link "add Create a Survey" [ref=e84] [cursor=pointer]:
+                - /url: "#create"
+                - generic [ref=e85]: add
+                - text: Create a Survey
+          - generic [ref=e86]:
+            - generic [ref=e87]:
+              - img "Poll Creator card" [ref=e89]
+              - generic [ref=e90]: how_to_vote
+            - generic [ref=e92]:
+              - generic [ref=e93]: Poll Creator
+              - generic [ref=e94]: Run quick polls, yes-or-no votes and preference polls for your group, class or audience.
+              - link "add Create a Poll" [ref=e95] [cursor=pointer]:
+                - /url: "#create"
+                - generic [ref=e96]: add
+                - text: Create a Poll
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - text: Quizzory
+              - generic [ref=e99]: open_in_new
+            - generic [ref=e100]:
+              - img "Quiz card" [ref=e102]
+              - generic [ref=e103]: quiz
+            - generic [ref=e105]:
+              - generic [ref=e106]: Quiz Maker
+              - generic [ref=e107]: Create scored quizzes, set correct answers and share them through Quizzory.
+              - link "Create a Quiz open_in_new" [ref=e108] [cursor=pointer]:
+                - /url: https://quizzory.in
+                - text: Create a Quiz
+                - generic [ref=e109]: open_in_new
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - heading "Who uses SurveyHeart?" [level=2] [ref=e113]
+          - paragraph [ref=e114]: SurveyHeart is built for anyone who needs to collect information quickly. Teachers use it for attendance and student feedback. Businesses use it for customer enquiries and orders. HR teams use it for employee surveys and applications. Events, students and NGOs use it to collect registrations, responses and feedback.
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: school
+            - heading "Teachers" [level=3] [ref=e119]
+            - paragraph [ref=e120]: Take attendance, collect assignments, run classroom surveys and share quizzes without paper.
+            - generic [ref=e121]: "Popular: Attendance, Quiz, Feedback"
+            - link "For teachers arrow_forward" [ref=e122] [cursor=pointer]:
+              - /url: /use-cases/for-teachers/
+              - text: For teachers
+              - generic [ref=e123]: arrow_forward
+          - generic [ref=e124]:
+            - generic [ref=e125]: storefront
+            - heading "Businesses" [level=3] [ref=e127]
+            - paragraph [ref=e128]: Collect customer feedback, take orders, capture leads and manage enquiries from one place.
+            - generic [ref=e129]: "Popular: Feedback, Contact, Order Form"
+            - link "For businesses arrow_forward" [ref=e130] [cursor=pointer]:
+              - /url: /use-cases/for-small-business/
+              - text: For businesses
+              - generic [ref=e131]: arrow_forward
+          - generic [ref=e132]:
+            - generic [ref=e133]: groups
+            - heading "HR Teams" [level=3] [ref=e135]
+            - paragraph [ref=e136]: Collect job applications, run employee surveys and simplify onboarding for new team members.
+            - generic [ref=e137]: "Popular: Application, Survey, Registration"
+            - link "For HR teams arrow_forward" [ref=e138] [cursor=pointer]:
+              - /url: /use-cases/for-hr-teams/
+              - text: For HR teams
+              - generic [ref=e139]: arrow_forward
+          - generic [ref=e140]:
+            - generic [ref=e141]: celebration
+            - heading "Events" [level=3] [ref=e143]
+            - paragraph [ref=e144]: Manage event registrations, collect RSVPs and gather feedback after your event.
+            - generic [ref=e145]: "Popular: Event Registration, RSVP, Feedback"
+            - link "For events arrow_forward" [ref=e146] [cursor=pointer]:
+              - /url: /use-cases/for-events/
+              - text: For events
+              - generic [ref=e147]: arrow_forward
+          - generic [ref=e148]:
+            - generic [ref=e149]: menu_book
+            - heading "Students" [level=3] [ref=e151]
+            - paragraph [ref=e152]: Create project surveys, collect research responses and manage group registrations easily.
+            - generic [ref=e153]: "Popular: Survey, Poll, Registration"
+            - link "For students arrow_forward" [ref=e154] [cursor=pointer]:
+              - /url: /use-cases/for-students/
+              - text: For students
+              - generic [ref=e155]: arrow_forward
+          - generic [ref=e156]:
+            - generic [ref=e157]: volunteer_activism
+            - heading "NGOs" [level=3] [ref=e159]
+            - paragraph [ref=e160]: Register volunteers, collect field responses and gather feedback from communities.
+            - generic [ref=e161]: "Popular: Registration, Survey, Feedback"
+            - link "For NGOs arrow_forward" [ref=e162] [cursor=pointer]:
+              - /url: /use-cases/for-ngos/
+              - text: For NGOs
+              - generic [ref=e163]: arrow_forward
+      - generic [ref=e165]:
+        - generic [ref=e166]:
+          - heading "How does SurveyHeart work?" [level=2] [ref=e167]
+          - paragraph [ref=e168]: Create a form, share it and start receiving responses in minutes.
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - generic [ref=e172]: edit
+              - generic [ref=e174]: "1"
+            - heading "Create" [level=3] [ref=e175]
+            - paragraph [ref=e176]: Choose a template or start from scratch. Add your questions and customise your form.
+          - generic [ref=e177]:
+            - generic [ref=e178]:
+              - generic [ref=e179]: share
+              - generic [ref=e181]: "2"
+            - heading "Share" [level=3] [ref=e182]
+            - paragraph [ref=e183]: Share your form by link, QR code, WhatsApp, email or embed it on your website.
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: inbox
+              - generic [ref=e188]: "3"
+            - heading "Collect" [level=3] [ref=e189]
+            - paragraph [ref=e190]: Receive responses instantly. People can fill your form without creating an account.
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - generic [ref=e193]: bar_chart
+              - generic [ref=e195]: "4"
+            - heading "Analyse" [level=3] [ref=e196]
+            - paragraph [ref=e197]: View charts, review responses and export your data to CSV, Excel and PDF.
+      - generic [ref=e199]:
+        - img "SurveyHeart mobile app - create a form and share it by QR code, WhatsApp and link" [ref=e201]
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - generic [ref=e204]: smartphone
+            - text: Mobile first
+          - heading "Create and Manage Forms from Your Phone" [level=2] [ref=e205]
+          - paragraph [ref=e206]: SurveyHeart helps you create, share and manage forms directly from your phone. Build a form on the go, send it through WhatsApp, receive response notifications and track results without needing a laptop.
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - generic [ref=e209]: edit_note
+              - generic [ref=e210]:
+                - generic [ref=e211]: Create and edit forms from your phone
+                - generic [ref=e212]: Build complete forms, surveys and polls from anywhere using Android or iOS.
+            - generic [ref=e213]:
+              - generic [ref=e214]: qr_code_2
+              - generic [ref=e215]:
+                - generic [ref=e216]: Share by WhatsApp, QR code or link
+                - generic [ref=e217]: Send your form instantly through WhatsApp, copy a link or let people scan a QR code.
+            - generic [ref=e218]:
+              - generic [ref=e219]: notifications
+              - generic [ref=e220]:
+                - generic [ref=e221]: Get notified when responses arrive
+                - generic [ref=e222]: Receive push notifications and stay updated whenever someone submits your form.
+            - generic [ref=e223]:
+              - generic [ref=e224]: bar_chart
+              - generic [ref=e225]:
+                - generic [ref=e226]: View charts and response summaries on mobile
+                - generic [ref=e227]: Check response data, charts and individual submissions directly from the app.
+          - generic [ref=e228]:
+            - link [ref=e229] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.surveyheart
+              - img "Get it on Google Play" [ref=e230]
+            - link [ref=e231] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/surveyheart-online-form-maker/id6443449067
+              - img "Download on the App Store" [ref=e232]
+          - link "Explore the mobile app arrow_forward" [ref=e233] [cursor=pointer]:
+            - /url: /mobile-app/
+            - text: Explore the mobile app
+            - generic [ref=e234]: arrow_forward
+      - generic [ref=e236]:
+        - generic [ref=e237]:
+          - heading "Everything you need to build better forms" [level=2] [ref=e238]
+          - paragraph [ref=e239]: Create forms, surveys and polls without coding. Customise your questions, share your form anywhere, track responses in real time and export your data whenever you need it.
+        - generic [ref=e240]:
+          - generic [ref=e241]:
+            - generic [ref=e242]: tune
+            - heading "Smart form builder" [level=3] [ref=e244]
+            - generic [ref=e245]:
+              - generic [ref=e246]:
+                - generic [ref=e247]: check_circle
+                - text: 20+ question types, including multiple choice, rating, text and file upload
+              - generic [ref=e248]:
+                - generic [ref=e249]: check_circle
+                - text: Required questions and progress bar
+              - generic [ref=e250]:
+                - generic [ref=e251]: check_circle
+                - text: Custom colour themes and image backgrounds
+              - generic [ref=e252]:
+                - generic [ref=e253]: check_circle
+                - text: Welcome screen and thank-you page
+              - generic [ref=e254]:
+                - generic [ref=e255]: check_circle
+                - text: Invite teammates as editors or viewers
+          - generic [ref=e256]:
+            - generic [ref=e257]: ios_share
+            - heading "Easy sharing" [level=3] [ref=e259]
+            - generic [ref=e260]:
+              - generic [ref=e261]:
+                - generic [ref=e262]: check_circle
+                - text: Share by link, QR code, WhatsApp, email or embed
+              - generic [ref=e263]:
+                - generic [ref=e264]: check_circle
+                - text: No account needed for people filling your form
+              - generic [ref=e265]:
+                - generic [ref=e266]: check_circle
+                - text: Protect forms with a passcode
+              - generic [ref=e267]:
+                - generic [ref=e268]: check_circle
+                - text: Set form opening and closing dates
+              - generic [ref=e269]:
+                - generic [ref=e270]: check_circle
+                - text: Share forms easily with groups, customers, students or employees
+          - generic [ref=e271]:
+            - generic [ref=e272]: insights
+            - heading "Response analytics" [level=3] [ref=e274]
+            - generic [ref=e275]:
+              - generic [ref=e276]:
+                - generic [ref=e277]: check_circle
+                - text: View charts for every question as responses arrive
+              - generic [ref=e278]:
+                - generic [ref=e279]: check_circle
+                - text: Browse and search individual responses
+              - generic [ref=e280]:
+                - generic [ref=e281]: check_circle
+                - text: Filter responses by date or answer
+              - generic [ref=e282]:
+                - generic [ref=e283]: check_circle
+                - text: Export responses to CSV, Excel and PDF
+              - generic [ref=e284]:
+                - generic [ref=e285]: check_circle
+                - text: Receive mobile notifications for every new response
+        - paragraph [ref=e286]: Use conditional logic to show relevant questions based on earlier answers, so you create cleaner forms and an easier experience for respondents. Set required fields, customise your form with themes or image backgrounds, and share it through link, QR code or WhatsApp. As responses arrive, SurveyHeart turns them into clear charts and summaries that you can search, filter and export.
+        - link "See all features arrow_forward" [ref=e288] [cursor=pointer]:
+          - /url: /features/
+          - text: See all features
+          - generic [ref=e289]: arrow_forward
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - heading "Start with a Free Form Template" [level=2] [ref=e293]
+          - paragraph [ref=e294]: Save time with ready-made form and survey templates. Choose one, edit the questions and share it with your audience in minutes.
+        - generic [ref=e295]:
+          - link "how_to_reg Registration Form template Registration Form Use template arrow_forward" [ref=e296] [cursor=pointer]:
+            - /url: /templates/online-registration-form/
+            - generic [ref=e297]:
+              - generic [ref=e298]: how_to_reg
+              - img "Registration Form template" [ref=e299]
+            - generic [ref=e300]:
+              - generic [ref=e301]: Registration Form
+              - generic [ref=e302]:
+                - text: Use template
+                - generic [ref=e303]: arrow_forward
+          - link "reviews Feedback Form template Feedback Form Use template arrow_forward" [ref=e304] [cursor=pointer]:
+            - /url: /templates/customer-feedback-form/
+            - generic [ref=e305]:
+              - generic [ref=e306]: reviews
+              - img "Feedback Form template" [ref=e307]
+            - generic [ref=e308]:
+              - generic [ref=e309]: Feedback Form
+              - generic [ref=e310]:
+                - text: Use template
+                - generic [ref=e311]: arrow_forward
+          - link "contact_mail Contact Form template Contact Form Use template arrow_forward" [ref=e312] [cursor=pointer]:
+            - /url: /templates/general-contact-form/
+            - generic [ref=e313]:
+              - generic [ref=e314]: contact_mail
+              - img "Contact Form template" [ref=e315]
+            - generic [ref=e316]:
+              - generic [ref=e317]: Contact Form
+              - generic [ref=e318]:
+                - text: Use template
+                - generic [ref=e319]: arrow_forward
+          - link "fact_check Attendance Form template Attendance Form Use template arrow_forward" [ref=e320] [cursor=pointer]:
+            - /url: /templates/student-attendance-form/
+            - generic [ref=e321]:
+              - generic [ref=e322]: fact_check
+              - img "Attendance Form template" [ref=e323]
+            - generic [ref=e324]:
+              - generic [ref=e325]: Attendance Form
+              - generic [ref=e326]:
+                - text: Use template
+                - generic [ref=e327]: arrow_forward
+          - link "work Job Application Form template Job Application Form Use template arrow_forward" [ref=e328] [cursor=pointer]:
+            - /url: /templates/job-application-form/
+            - generic [ref=e329]:
+              - generic [ref=e330]: work
+              - img "Job Application Form template" [ref=e331]
+            - generic [ref=e332]:
+              - generic [ref=e333]: Job Application Form
+              - generic [ref=e334]:
+                - text: Use template
+                - generic [ref=e335]: arrow_forward
+          - link "insights Customer Survey template Customer Survey Use template arrow_forward" [ref=e336] [cursor=pointer]:
+            - /url: /templates/customer-satisfaction-survey/
+            - generic [ref=e337]:
+              - generic [ref=e338]: insights
+              - img "Customer Survey template" [ref=e339]
+            - generic [ref=e340]:
+              - generic [ref=e341]: Customer Survey
+              - generic [ref=e342]:
+                - text: Use template
+                - generic [ref=e343]: arrow_forward
+          - link "event Event Registration Form template Event Registration Form Use template arrow_forward" [ref=e344] [cursor=pointer]:
+            - /url: /templates/event-registration-form/
+            - generic [ref=e345]:
+              - generic [ref=e346]: event
+              - img "Event Registration Form template" [ref=e347]
+            - generic [ref=e348]:
+              - generic [ref=e349]: Event Registration Form
+              - generic [ref=e350]:
+                - text: Use template
+                - generic [ref=e351]: arrow_forward
+          - link "event_available Appointment Form template Appointment Form Use template arrow_forward" [ref=e352] [cursor=pointer]:
+            - /url: /templates/appointment-request-form/
+            - generic [ref=e353]:
+              - generic [ref=e354]: event_available
+              - img "Appointment Form template" [ref=e355]
+            - generic [ref=e356]:
+              - generic [ref=e357]: Appointment Form
+              - generic [ref=e358]:
+                - text: Use template
+                - generic [ref=e359]: arrow_forward
+        - link "View all templates arrow_forward" [ref=e361] [cursor=pointer]:
+          - /url: /templates/
+          - text: View all templates
+          - generic [ref=e362]: arrow_forward
+      - generic [ref=e364]:
+        - generic [ref=e365]:
+          - heading "Looking for a Free Google Forms Alternative?" [level=2] [ref=e366]
+          - paragraph [ref=e367]: SurveyHeart is a free alternative for people who want to create forms from a mobile app and share them through WhatsApp or QR code. Create forms, surveys, polls and registrations, collect responses without requiring sign-in, and view results from your phone or browser.
+          - link "Compare with Google Forms arrow_forward" [ref=e368] [cursor=pointer]:
+            - /url: /compare/google-forms-alternative/
+            - text: Compare with Google Forms
+            - generic [ref=e369]: arrow_forward
+        - generic [ref=e371]:
+          - generic [ref=e372]:
+            - generic [ref=e373]: check_circle
+            - text: Native mobile app for iOS and Android
+          - generic [ref=e374]:
+            - generic [ref=e375]: check_circle
+            - text: Built in QR code sharing
+          - generic [ref=e376]:
+            - generic [ref=e377]: check_circle
+            - text: Response analytics with charts
+          - generic [ref=e378]:
+            - generic [ref=e379]: check_circle
+            - text: Manage everything from your phone
+      - generic [ref=e381]:
+        - generic [ref=e382]:
+          - heading "Trusted by Millions of Form Creators" [level=2] [ref=e383]
+          - paragraph [ref=e384]: SurveyHeart has helped millions of people create forms, surveys, polls and quizzes. Teachers, businesses, HR teams, students, event organisers and NGOs use SurveyHeart to collect information, feedback and registrations every day.
+          - generic [ref=e385]:
+            - generic [ref=e386]:
+              - generic [ref=e387]: check_circle
+              - text: Native mobile app for Android and iOS
+            - generic [ref=e388]:
+              - generic [ref=e389]: check_circle
+              - text: Built-in WhatsApp and QR code sharing
+            - generic [ref=e390]:
+              - generic [ref=e391]: check_circle
+              - text: Response charts and downloadable reports
+            - generic [ref=e392]:
+              - generic [ref=e393]: check_circle
+              - text: Create, share and manage forms from your phone
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - img "5 out of 5 stars" [ref=e398]
+              - generic [ref=e409]: App Store
+            - paragraph [ref=e412]: “Simple and easy to use application. I love using it for collecting responses from many users without any limit.”
+            - generic [ref=e413]:
+              - generic [ref=e414]: C
+              - generic [ref=e415]: Crishna5454
+          - generic [ref=e416]:
+            - generic [ref=e417]:
+              - img "5 out of 5 stars" [ref=e418]
+              - generic [ref=e429]: Google Play
+            - paragraph [ref=e435]: “I highly recommend this app. It has saved me a lot of time. I simply create a form and have everyone's information sorted out.”
+            - generic [ref=e436]:
+              - generic [ref=e437]: O
+              - generic [ref=e438]: Opolot Isaac
+          - generic [ref=e439]:
+            - generic [ref=e440]:
+              - img "5 out of 5 stars" [ref=e441]
+              - generic [ref=e452]: App Store
+            - paragraph [ref=e455]: “Very user-friendly for setup and for building unlimited forms for free. Easy to download and share in any format. Thanks, SurveyHeart team!”
+            - generic [ref=e456]:
+              - generic [ref=e457]: R
+              - generic [ref=e458]: rahul tirpude
+          - generic [ref=e459]:
+            - generic [ref=e460]:
+              - img "5 out of 5 stars" [ref=e461]
+              - generic [ref=e472]: Google Play
+            - paragraph [ref=e478]: “Very easy to use and also helpful for education purposes.”
+            - generic [ref=e479]:
+              - generic [ref=e480]: M
+              - generic [ref=e481]: Muhammad Mohsin
+          - generic [ref=e482]:
+            - generic [ref=e483]:
+              - img "5 out of 5 stars" [ref=e484]
+              - generic [ref=e495]: App Store
+            - paragraph [ref=e498]: “Best and very useful.”
+            - generic [ref=e499]:
+              - generic [ref=e500]: H
+              - generic [ref=e501]: Hiral khambhala
+          - generic [ref=e502]:
+            - generic [ref=e503]:
+              - img "5 out of 5 stars" [ref=e504]
+              - generic [ref=e515]: Google Play
+            - paragraph [ref=e521]: “Very easy to use and a good app.”
+            - generic [ref=e522]:
+              - generic [ref=e523]: "N"
+              - generic [ref=e524]: Navneet Singh
+          - generic [ref=e525]:
+            - generic [ref=e526]:
+              - img "5 out of 5 stars" [ref=e527]
+              - generic [ref=e538]: Google Play
+            - paragraph [ref=e544]: “Excellent app.”
+            - generic [ref=e545]:
+              - generic [ref=e546]: J
+              - generic [ref=e547]: Javed Naseer
+          - generic [ref=e548]:
+            - generic [ref=e549]:
+              - img "5 out of 5 stars" [ref=e550]
+              - generic [ref=e561]: App Store
+            - paragraph [ref=e564]: “Best app.”
+            - generic [ref=e565]:
+              - generic [ref=e566]: S
+              - generic [ref=e567]: SarhangPasha
+          - generic [ref=e568]:
+            - generic [ref=e569]:
+              - img "5 out of 5 stars" [ref=e570]
+              - generic [ref=e581]: App Store
+            - paragraph [ref=e584]: “Simple and easy to use application. I love using it for collecting responses from many users without any limit.”
+            - generic [ref=e585]:
+              - generic [ref=e586]: C
+              - generic [ref=e587]: Crishna5454
+          - generic [ref=e588]:
+            - generic [ref=e589]:
+              - img "5 out of 5 stars" [ref=e590]
+              - generic [ref=e601]: Google Play
+            - paragraph [ref=e607]: “I highly recommend this app. It has saved me a lot of time. I simply create a form and have everyone's information sorted out.”
+            - generic [ref=e608]:
+              - generic [ref=e609]: O
+              - generic [ref=e610]: Opolot Isaac
+          - generic [ref=e611]:
+            - generic [ref=e612]:
+              - img "5 out of 5 stars" [ref=e613]
+              - generic [ref=e624]: App Store
+            - paragraph [ref=e627]: “Very user-friendly for setup and for building unlimited forms for free. Easy to download and share in any format. Thanks, SurveyHeart team!”
+            - generic [ref=e628]:
+              - generic [ref=e629]: R
+              - generic [ref=e630]: rahul tirpude
+          - generic [ref=e631]:
+            - generic [ref=e632]:
+              - img "5 out of 5 stars" [ref=e633]
+              - generic [ref=e644]: Google Play
+            - paragraph [ref=e650]: “Very easy to use and also helpful for education purposes.”
+            - generic [ref=e651]:
+              - generic [ref=e652]: M
+              - generic [ref=e653]: Muhammad Mohsin
+          - generic [ref=e654]:
+            - generic [ref=e655]:
+              - img "5 out of 5 stars" [ref=e656]
+              - generic [ref=e667]: App Store
+            - paragraph [ref=e670]: “Best and very useful.”
+            - generic [ref=e671]:
+              - generic [ref=e672]: H
+              - generic [ref=e673]: Hiral khambhala
+          - generic [ref=e674]:
+            - generic [ref=e675]:
+              - img "5 out of 5 stars" [ref=e676]
+              - generic [ref=e687]: Google Play
+            - paragraph [ref=e693]: “Very easy to use and a good app.”
+            - generic [ref=e694]:
+              - generic [ref=e695]: "N"
+              - generic [ref=e696]: Navneet Singh
+          - generic [ref=e697]:
+            - generic [ref=e698]:
+              - img "5 out of 5 stars" [ref=e699]
+              - generic [ref=e710]: Google Play
+            - paragraph [ref=e716]: “Excellent app.”
+            - generic [ref=e717]:
+              - generic [ref=e718]: J
+              - generic [ref=e719]: Javed Naseer
+          - generic [ref=e720]:
+            - generic [ref=e721]:
+              - img "5 out of 5 stars" [ref=e722]
+              - generic [ref=e733]: App Store
+            - paragraph [ref=e736]: “Best app.”
+            - generic [ref=e737]:
+              - generic [ref=e738]: S
+              - generic [ref=e739]: SarhangPasha
+        - generic [ref=e740]:
+          - generic [ref=e741]:
+            - generic [ref=e742]: star
+            - generic [ref=e743]:
+              - generic [ref=e744]: 4.4 rating
+              - generic [ref=e745]: Play Store rating
+          - generic [ref=e746]:
+            - generic [ref=e747]: smartphone
+            - generic [ref=e748]:
+              - generic [ref=e749]: iOS and Android
+              - generic [ref=e750]: available on both platforms
+          - generic [ref=e751]:
+            - generic [ref=e752]: lock
+            - generic [ref=e753]:
+              - generic [ref=e754]: Private and secure
+              - generic [ref=e755]: your data stays yours
+        - generic [ref=e756]:
+          - generic [ref=e757]: Used by people at companies, schools and teams across India
+          - generic [ref=e758]:
+            - generic [ref=e759]:
+              - generic [ref=e760]: 10M+
+              - generic [ref=e761]: Installs
+            - generic [ref=e763]:
+              - generic [ref=e764]: 350M+
+              - generic [ref=e765]: Responses collected
+            - generic [ref=e767]:
+              - generic [ref=e768]:
+                - text: "4.4"
+                - generic [ref=e769]: star
+              - generic [ref=e770]: Play Store
+            - generic [ref=e772]:
+              - generic [ref=e773]:
+                - text: "4.7"
+                - generic [ref=e774]: star
+              - generic [ref=e775]: App Store
+      - generic [ref=e777]:
+        - heading "Ready to Create Your First Form?" [level=2] [ref=e778]
+        - paragraph [ref=e779]: Start free and create a form, survey or poll in minutes. No coding required, and no account needed for the people filling your form.
+        - generic [ref=e780]:
+          - link "add_circle Create a Free Form" [ref=e781] [cursor=pointer]:
+            - /url: /app
+            - generic [ref=e782]: add_circle
+            - text: Create a Free Form
+          - generic [ref=e783]:
+            - link [ref=e784] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.surveyheart
+              - img "Get it on Google Play" [ref=e785]
+            - link [ref=e786] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/surveyheart-online-form-maker/id6443449067
+              - img "Download on the App Store" [ref=e787]
+      - generic [ref=e789]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e791]
+        - generic [ref=e792]:
+          - generic [ref=e793]:
+            - heading "What is SurveyHeart?" [level=2] [ref=e794]
+            - paragraph [ref=e795]: SurveyHeart is a free online form builder, survey maker and poll creator. You can create registration forms, feedback forms, attendance forms, contact forms, order forms, quizzes and more without coding. Share them by link, QR code, WhatsApp, email or embed.
+          - generic [ref=e796]:
+            - heading "Is SurveyHeart free?" [level=2] [ref=e797]
+            - paragraph [ref=e798]: Yes. SurveyHeart lets you create forms, surveys and polls for free. You can build forms, share them and collect responses without a time limit. Advanced features may be available on paid plans.
+          - generic [ref=e799]:
+            - heading "Are responses unlimited on the free plan?" [level=2] [ref=e800]
+            - paragraph [ref=e801]: SurveyHeart does not apply a standard hard response cap for normal form usage. You can create and share forms freely, while unusually high-volume accounts may be reviewed under fair-use policies.
+          - generic [ref=e802]:
+            - heading "Can I create forms from my phone?" [level=2] [ref=e803]
+            - paragraph [ref=e804]: Yes. SurveyHeart has mobile apps for Android and iOS. You can create, edit, share and manage forms directly from your phone.
+          - generic [ref=e805]:
+            - heading "Do respondents need an account to fill my form?" [level=2] [ref=e806]
+            - paragraph [ref=e807]: No. People can open your form link and submit their responses without creating a SurveyHeart account or signing in.
+          - generic [ref=e808]:
+            - heading "Can I share my form through WhatsApp or QR code?" [level=2] [ref=e809]
+            - paragraph [ref=e810]: Yes. SurveyHeart supports sharing through WhatsApp, QR code, direct links, email and website embeds. This makes it easy to collect responses from groups, customers, students, employees and event attendees.
+          - generic [ref=e811]:
+            - heading "Is SurveyHeart a good Google Forms alternative?" [level=2] [ref=e812]
+            - paragraph [ref=e813]: SurveyHeart is a useful Google Forms alternative for people who want to create forms from a mobile app, share through WhatsApp or QR code, and manage responses from web or mobile.
+          - generic [ref=e814]:
+            - heading "Can I create surveys with SurveyHeart?" [level=2] [ref=e815]
+            - paragraph [ref=e816]: Yes. Create multi-question surveys with multiple choice, rating scales, open text answers, file uploads and more. You can view response charts, search submissions and export results for analysis.
+          - generic [ref=e817]:
+            - heading "Can I create quizzes with SurveyHeart?" [level=2] [ref=e818]
+            - paragraph [ref=e819]: Yes. You can create quizzes with correct answers and scoring. The quiz experience, leaderboard and result pages are powered by Quizzory, SurveyHeart's quiz-focused sister product.
+          - generic [ref=e820]:
+            - heading "Can I export form responses?" [level=2] [ref=e821]
+            - paragraph [ref=e822]: Yes. You can export form responses to CSV, Excel and PDF from the responses section. This makes it easy to analyse data, create reports or share results with your team.
+    - contentinfo [ref=e823]:
+      - generic [ref=e824]:
+        - generic [ref=e825]:
+          - img "SurveyHeart" [ref=e826]
+          - paragraph [ref=e827]: Create forms, surveys, polls and quizzes without hassle.
+          - generic [ref=e828]:
+            - link "Facebook" [ref=e829] [cursor=pointer]:
+              - /url: https://www.facebook.com/surveyheart
+            - link "Instagram" [ref=e832] [cursor=pointer]:
+              - /url: https://www.instagram.com/surveyheartapp/
+            - link "X" [ref=e837] [cursor=pointer]:
+              - /url: https://x.com/surveyheartapp
+            - link "LinkedIn" [ref=e840] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/74654182/
+            - link "YouTube" [ref=e843] [cursor=pointer]:
+              - /url: https://www.youtube.com/@surveyheart
+          - generic [ref=e846]:
+            - link [ref=e847] [cursor=pointer]:
+              - /url: https://play.google.com/store/apps/details?id=com.surveyheart
+              - img "Get it on Google Play" [ref=e848]
+            - link [ref=e849] [cursor=pointer]:
+              - /url: https://apps.apple.com/app/surveyheart-online-form-maker/id6443449067
+              - img "Download on the App Store" [ref=e850]
+        - generic [ref=e851]:
+          - generic [ref=e852]: Products
+          - generic [ref=e853]:
+            - link "Forms" [ref=e854] [cursor=pointer]:
+              - /url: /app
+            - link "Surveys" [ref=e855] [cursor=pointer]:
+              - /url: /app
+            - link "Quizzes" [ref=e856] [cursor=pointer]:
+              - /url: https://quizzory.in
+            - link "Polls" [ref=e857] [cursor=pointer]:
+              - /url: /app
+            - link "Mobile App" [ref=e858] [cursor=pointer]:
+              - /url: /mobile-app/
+        - generic [ref=e859]:
+          - generic [ref=e860]: Use Cases
+          - generic [ref=e861]:
+            - link "Education" [ref=e862] [cursor=pointer]:
+              - /url: /use-cases/for-teachers/
+            - link "Business" [ref=e863] [cursor=pointer]:
+              - /url: /use-cases/for-small-business/
+            - link "HR" [ref=e864] [cursor=pointer]:
+              - /url: /use-cases/for-hr-teams/
+            - link "Events" [ref=e865] [cursor=pointer]:
+              - /url: /use-cases/for-events/
+            - link "All use cases" [ref=e866] [cursor=pointer]:
+              - /url: /use-cases/
+        - generic [ref=e867]:
+          - generic [ref=e868]: Quick Links
+          - generic [ref=e869]:
+            - link "About" [ref=e870] [cursor=pointer]:
+              - /url: /about/
+            - link "Contact" [ref=e871] [cursor=pointer]:
+              - /url: /contact/
+            - link "Trust" [ref=e872] [cursor=pointer]:
+              - /url: /trust/fakeorreal/
+            - link "Privacy Policy" [ref=e873] [cursor=pointer]:
+              - /url: /privacy-policy/
+            - link "TOS" [ref=e874] [cursor=pointer]:
+              - /url: /terms/
+            - link "Refund & Cancellation Policy" [ref=e875] [cursor=pointer]:
+              - /url: /refund-and-cancellation-policy/
+        - generic [ref=e876]:
+          - generic [ref=e877]: Address
+          - generic [ref=e878]: "SurveyHeart LLP,Awfis Space Solutions, 2nd Floor,Survey No 34, Kothaguda Junction,Kondapur, Hyderabad,Telangana, India - 500084.Contact: +91 70105 47789"
+          - link "support@surveyheart.com" [ref=e879] [cursor=pointer]:
+            - /url: mailto:support@surveyheart.com
+      - generic [ref=e880]: © 2026 SurveyHeart LLP. All rights reserved.
+  - alert [ref=e881]

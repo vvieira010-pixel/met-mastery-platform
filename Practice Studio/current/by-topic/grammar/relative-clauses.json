@@ -1,0 +1,172 @@
+{
+  "skill": "grammar",
+  "topic": "relative-clauses",
+  "totalExercises": 10,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_e",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Students ________ study daily achieve high levels of academic success.",
+      "options": [
+        "are capable of achieving",
+        "who study",
+        "studying for",
+        "that studied"
+      ],
+      "correct": 1,
+      "explanation": "A defining relative clause with \"who\" refers to the subject (students)."
+    },
+    {
+      "id": "gm_mtgcfjq1_f",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The class is difficult, but those ________ will learn a lot.",
+      "options": [
+        "which make it out",
+        "who take it over",
+        "who see it through",
+        "that save it up"
+      ],
+      "correct": 2,
+      "explanation": "\"See it through\" = complete something difficult. \"Who\" introduces the relative clause."
+    },
+    {
+      "id": "gm_mtgcfjq1_g",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "The scientist ________ research changed medicine won the Nobel Prize.",
+      "options": [
+        "who",
+        "whose",
+        "which",
+        "that"
+      ],
+      "correct": 1,
+      "explanation": "\"Whose\" shows possession: the scientist's research changed medicine."
+    },
+    {
+      "id": "gm_mtgcfjq1_l",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "It was ________ who reported the accident to the police.",
+      "options": [
+        "them",
+        "their",
+        "they",
+        "theirs"
+      ],
+      "correct": 2,
+      "explanation": "Subject pronoun (\"they\") is needed after \"it was,\" as it functions as the subject of the relative clause."
+    },
+    {
+      "id": "gm_mtgcfjq1_1c",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Students who study daily ________ high levels of academic success.",
+      "options": [
+        "are capable of achieving",
+        "are capable to achieve",
+        "capability of achieving",
+        "capability to achieve"
+      ],
+      "correct": 0,
+      "explanation": "\"Capable\" is always followed by \"of + gerund\": \"capable of achieving.\""
+    },
+    {
+      "id": "G77",
+      "number": 77,
+      "category": "relative-clauses",
+      "level": "B1",
+      "question": "The book ________ you lent me was excellent.",
+      "options": {
+        "A": "who",
+        "B": "whose",
+        "C": "which",
+        "D": "where"
+      },
+      "correct_answer": "C",
+      "correct_option": "which",
+      "explanation": "Use 'which' for a thing as the object of a defining relative clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G78",
+      "number": 78,
+      "category": "relative-clauses",
+      "level": "B2",
+      "question": "My brother, ________ works in Canada, is visiting next week.",
+      "options": {
+        "A": "who",
+        "B": "which",
+        "C": "where",
+        "D": "whose"
+      },
+      "correct_answer": "A",
+      "correct_option": "who",
+      "explanation": "Use 'who' for a person in a non-defining relative clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G79",
+      "number": 79,
+      "category": "relative-clauses",
+      "level": "B2",
+      "question": "The company for ________ she works is expanding quickly.",
+      "options": {
+        "A": "who",
+        "B": "which",
+        "C": "where",
+        "D": "what"
+      },
+      "correct_answer": "B",
+      "correct_option": "which",
+      "explanation": "After a preposition, use 'which' for things/organizations: for which she works.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G80",
+      "number": 80,
+      "category": "relative-clauses",
+      "level": "B1",
+      "question": "That is the reason ________ I decided to leave early.",
+      "options": {
+        "A": "which",
+        "B": "who",
+        "C": "why",
+        "D": "whose"
+      },
+      "correct_answer": "C",
+      "correct_option": "why",
+      "explanation": "Use 'why' after 'reason' to explain a cause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G81",
+      "number": 81,
+      "category": "relative-clauses",
+      "level": "B1",
+      "question": "The town ________ I was born has changed a lot.",
+      "options": {
+        "A": "which",
+        "B": "who",
+        "C": "where",
+        "D": "whose"
+      },
+      "correct_answer": "C",
+      "correct_option": "where",
+      "explanation": "Use 'where' for a place in a relative clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

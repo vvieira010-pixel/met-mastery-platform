@@ -1,0 +1,24 @@
+{
+  "skill": "writing",
+  "topic": "education",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "write_05",
+      "type": "short",
+      "prompt": "Do you think children should learn a foreign language from a young age? Why or why not?",
+      "rubric": "Should present a clear position with at least two supporting arguments.",
+      "targetWords": 120,
+      "skill": "Writing",
+      "level": "B2"
+    },
+    {
+      "id": "vt_edu_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about a study method that helps you learn new information effectively.",
+      "rubric": "Should name a method and explain how it improves retention."
+    }
+  ]
+}

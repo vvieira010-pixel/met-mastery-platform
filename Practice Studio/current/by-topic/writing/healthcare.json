@@ -1,0 +1,24 @@
+{
+  "skill": "writing",
+  "topic": "healthcare",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "write_04",
+      "type": "short",
+      "prompt": "Explain how regular exercise can improve mental health. Use specific examples.",
+      "rubric": "Should link physical activity to mental wellbeing with at least two concrete benefits.",
+      "targetWords": 120,
+      "skill": "Writing",
+      "level": "B2"
+    },
+    {
+      "id": "vt_health_short1",
+      "type": "short",
+      "level": "B2",
+      "skill": "Writing",
+      "prompt": "Write about why regular exercise is important for long-term health.",
+      "rubric": "Should mention physical, mental, and preventive benefits."
+    }
+  ]
+}

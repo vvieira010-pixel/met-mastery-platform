@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "media-and-news",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_media_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe how you usually get your daily news and why you trust that source."
+    }
+  ]
+}

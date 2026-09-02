@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- MET Practice Platform -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" id="theme-color" content="#FDFCF8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        var meta = document.getElementById('theme-color');
+        var apply = function (t) {
+          window.__theme = t;
+          document.documentElement.setAttribute('data-theme', t);
+          if (meta) meta.setAttribute('content', t === 'dark' ? '#0B1520' : '#F4F9FC');
+        };
+        var t = null;
+        try { t = localStorage.getItem('vv:theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        apply(t);
+        window.__setTheme = function (next) {
+          apply(next);
+          try { localStorage.setItem('vv:theme', next); } catch (e) {}
+        };
+      })();
+    </script>
+    <title>MET Proficiency Platform</title>
+    <meta name="description" content="MET test prep platform for nurses and healthcare professionals. AI-powered diagnosis, homework, and feedback cycle for the Michigan English Test." />
+    <link rel="canonical" href="https://met-mastery.vercel.app/" />
+    <meta property="og:title" content="MET Proficiency Platform" />
+    <meta property="og:description" content="MET test prep platform for nurses and healthcare professionals. AI-powered diagnosis, homework, and feedback cycle for the Michigan English Test." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://met-mastery.vercel.app/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MET Proficiency Platform" />
+    <meta name="twitter:description" content="MET test prep platform for nurses and healthcare professionals. AI-powered diagnosis, homework, and feedback cycle for the Michigan English Test." />
+    <script type="module" src="/src/main.jsx"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

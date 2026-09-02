@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "prepositions",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gm_mtgcfjq1_1j",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "Choose the sentence that uses dependent or structural prepositions correctly.",
+      "options": [
+        "He is incredibly good in solving complex data architecture issues.",
+        "She has been happily married with her husband for over ten years.",
+        "The overall success of the project depends on your participation.",
+        "Our regional team arrived to the hotel late last night due to bad weather."
+      ],
+      "correct": 2,
+      "feedbackCorrect": "Perfect! The verb depend is strictly tied to the preposition on.",
+      "feedbackIncorrect": "Review your dependent preposition pairings. We are good at an activity (not in), someone is married to a person (not with), and we arrive at a specific building or location like a hotel (not to)."
+    },
+    {
+      "id": "G70",
+      "number": 70,
+      "category": "prepositions",
+      "level": "B2",
+      "question": "She is responsible ________ organizing the event.",
+      "options": {
+        "A": "of",
+        "B": "for",
+        "C": "to",
+        "D": "with"
+      },
+      "correct_answer": "B",
+      "correct_option": "for",
+      "explanation": "The fixed pattern is 'responsible for + noun/gerund'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

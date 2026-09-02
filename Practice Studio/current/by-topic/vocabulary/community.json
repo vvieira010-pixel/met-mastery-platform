@@ -1,0 +1,47 @@
+{
+  "skill": "vocabulary",
+  "topic": "community",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "vt_comm_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Volunteers often ___ their time to help others in need.",
+      "options": [
+        "give",
+        "gain",
+        "get",
+        "go"
+      ],
+      "correct": 0,
+      "explanation": "“Give time” means to offer it freely to a cause."
+    },
+    {
+      "id": "vt_comm_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "Local events give residents a chance to ___ with their neighbors.",
+      "blanks": [
+        "connect"
+      ]
+    },
+    {
+      "id": "michigan_vocab_30",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The charity relies heavily on volunteers, whose work is ___ to the success of the program.",
+      "options": [
+        "optional",
+        "ordinary",
+        "superficial",
+        "crucial"
+      ],
+      "correct": 3,
+      "explanation": "**Crucial** means extremely important to a result or situation."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Gerunds and Infinitives (B1)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_5",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "She decided _____ a new language before her six-month trip to Japan.",
+      "options": [
+        "learn",
+        "learning",
+        "to learn",
+        "for learning"
+      ],
+      "correct": 2,
+      "explanation": "The verb 'decide' is always followed by an infinitive with 'to'.",
+      "topicId": "Gerunds and Infinitives (B1)"
+    },
+    {
+      "id": "G32",
+      "number": 32,
+      "category": "Gerunds and Infinitives (B1)",
+      "level": "B1",
+      "question": "I enjoy ________ English podcasts on my way to work.",
+      "options": {
+        "A": "listen",
+        "B": "to listen",
+        "C": "listening to",
+        "D": "listened"
+      },
+      "correct_answer": "C",
+      "correct_option": "listening to",
+      "explanation": "'Enjoy' is followed by a gerund: enjoy listening to.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

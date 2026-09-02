@@ -1,0 +1,86 @@
+import { useId, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+
+const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+export function Modal({ open, onClose, kicker, title, subtitle, maxWidth = 680, variant, children }) {
+  const dialogRef = useRef(null);
+  const previouslyFocused = useRef(null);
+  const idPrefix = useId().replace(/:/g, '');
+  const titleId = `${idPrefix}-title`;
+  const subtitleId = `${idPrefix}-subtitle`;
+
+  useEffect(() => {
+    if (!open) return;
+    previouslyFocused.current = document.activeElement;
+
+    function handleKey(e) {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+      const els = Array.from(dialogRef.current.querySelectorAll(FOCUSABLE));
+      if (!els.length) return;
+      if (e.shiftKey && document.activeElement === els[0]) {
+        e.preventDefault(); els[els.length - 1].focus();
+      } else if (!e.shiftKey && document.activeElement === els[els.length - 1]) {
+        e.preventDefault(); els[0].focus();
+      }
+    }
+
+    document.addEventListener('keydown', handleKey);
+    // Focus first focusable element after render
+    const els = dialogRef.current?.querySelectorAll(FOCUSABLE);
+    els?.[0]?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      previouslyFocused.current?.focus?.();
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  function handleBackdrop(e) {
+    if (e.target === e.currentTarget) onClose();
+  }
+
+  const content = variant === 'fullscreen' ? (
+    <div className="modal-fullscreen" onClick={handleBackdrop}>
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={title || kicker ? titleId : undefined}>
+        <div className="modal-fullscreen-header">
+          <div id={titleId} className="modal-fullscreen-title">{title || kicker}</div>
+          <button type="button" onClick={onClose} className="modal-fullscreen-close">Close preview</button>
+        </div>
+        <div className="modal-fullscreen-body">{children}</div>
+      </div>
+    </div>
+  ) : (
+    <div className="modal-overlay-enter modal-overlay" onClick={handleBackdrop}>
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
+        aria-label={!title ? kicker : undefined}
+        aria-describedby={subtitle ? subtitleId : undefined}
+        className="modal-card-enter modal-card"
+        style={{ maxWidth }}
+      >
+        <div className="modal-header">
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {kicker && <div className="modal-kicker">{kicker}</div>}
+            {title && <div id={titleId} className="modal-title">{title}</div>}
+            {subtitle && <div id={subtitleId} className="modal-subtitle">{subtitle}</div>}
+          </div>
+          <button type="button" onClick={onClose} aria-label="Close dialog" className="modal-close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div className="modal-body">{children}</div>
+      </div>
+    </div>
+  );
+
+  return createPortal(content, document.body);
+}

@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "forest-conservation",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "trees_6_27",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 6,
+      "intro": "This passage is about a Brazilian forest.",
+      "context": "Five centuries ago, the Atlantic Forest stretched along much of Brazil's coastline, covering an area larger than France, Germany, and Italy combined. Today, less than fifteen percent of that original forest remains, most of it in small, isolated fragments. Yet what survives is extraordinary: the Atlantic Forest is home to thousands of plant and animal species found nowhere else, including the golden lion tamarin, a small monkey with a mane of bright orange fur.\n\nThe forest was cleared gradually — first for sugarcane and coffee plantations, later for cattle pasture and the growth of cities such as São Paulo and Rio de Janeiro. Because the destruction happened over centuries, much of it went unrecorded, and many Brazilians were unaware of how much had been lost.\n\nIn recent decades, however, the Atlantic Forest has become the focus of one of the world's most ambitious restoration efforts. Environmental groups, farmers, and even some large companies have joined a pact to restore millions of hectares by planting native trees and reconnecting fragments. The work is slow and expensive: land must be prepared, seedlings of dozens of native species must be grown and planted, and young forests must be protected from fire and invasive grasses for years.\n\nSupporters argue that restoration pays for itself. Forested land protects water supplies for millions of people, stores carbon, and attracts tourism. Still, ecologists point out that planting trees is not the same as rebuilding a forest. A restored area may take a century to resemble the original, and some species that disappear from a fragment may never return. For that reason, they insist, protecting the forest that still stands must come first.",
+      "question": "According to the passage, why was much of the forest's destruction unrecorded?",
+      "options": [
+        "The government hid the information.",
+        "It happened gradually over a long period.",
+        "The forest was too large to measure.",
+        "Farmers kept no written records."
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 2 states this directly: 'Because the destruction happened over centuries, much of it went unrecorded.'",
+      "questionType": "detail"
+    },
+    {
+      "id": "trees_6_29",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 6,
+      "intro": "This passage is about a Brazilian forest.",
+      "context": "Five centuries ago, the Atlantic Forest stretched along much of Brazil's coastline, covering an area larger than France, Germany, and Italy combined. Today, less than fifteen percent of that original forest remains, most of it in small, isolated fragments. Yet what survives is extraordinary: the Atlantic Forest is home to thousands of plant and animal species found nowhere else, including the golden lion tamarin, a small monkey with a mane of bright orange fur.\n\nThe forest was cleared gradually — first for sugarcane and coffee plantations, later for cattle pasture and the growth of cities such as São Paulo and Rio de Janeiro. Because the destruction happened over centuries, much of it went unrecorded, and many Brazilians were unaware of how much had been lost.\n\nIn recent decades, however, the Atlantic Forest has become the focus of one of the world's most ambitious restoration efforts. Environmental groups, farmers, and even some large companies have joined a pact to restore millions of hectares by planting native trees and reconnecting fragments. The work is slow and expensive: land must be prepared, seedlings of dozens of native species must be grown and planted, and young forests must be protected from fire and invasive grasses for years.\n\nSupporters argue that restoration pays for itself. Forested land protects water supplies for millions of people, stores carbon, and attracts tourism. Still, ecologists point out that planting trees is not the same as rebuilding a forest. A restored area may take a century to resemble the original, and some species that disappear from a fragment may never return. For that reason, they insist, protecting the forest that still stands must come first.",
+      "question": "Why does the author mention the golden lion tamarin?",
+      "options": [
+        "to illustrate the forest's unique wildlife",
+        "to describe an animal that eats Brazil nuts",
+        "to explain why the forest was cleared",
+        "to compare species in different fragments"
+      ],
+      "correct": 0,
+      "explanation": "The sentence presents the tamarin as an example of 'thousands of plant and animal species found nowhere else' — it illustrates how unique the forest's life is.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "trees_6_30",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 6,
+      "intro": "This passage is about a Brazilian forest.",
+      "context": "Five centuries ago, the Atlantic Forest stretched along much of Brazil's coastline, covering an area larger than France, Germany, and Italy combined. Today, less than fifteen percent of that original forest remains, most of it in small, isolated fragments. Yet what survives is extraordinary: the Atlantic Forest is home to thousands of plant and animal species found nowhere else, including the golden lion tamarin, a small monkey with a mane of bright orange fur.\n\nThe forest was cleared gradually — first for sugarcane and coffee plantations, later for cattle pasture and the growth of cities such as São Paulo and Rio de Janeiro. Because the destruction happened over centuries, much of it went unrecorded, and many Brazilians were unaware of how much had been lost.\n\nIn recent decades, however, the Atlantic Forest has become the focus of one of the world's most ambitious restoration efforts. Environmental groups, farmers, and even some large companies have joined a pact to restore millions of hectares by planting native trees and reconnecting fragments. The work is slow and expensive: land must be prepared, seedlings of dozens of native species must be grown and planted, and young forests must be protected from fire and invasive grasses for years.\n\nSupporters argue that restoration pays for itself. Forested land protects water supplies for millions of people, stores carbon, and attracts tourism. Still, ecologists point out that planting trees is not the same as rebuilding a forest. A restored area may take a century to resemble the original, and some species that disappear from a fragment may never return. For that reason, they insist, protecting the forest that still stands must come first.",
+      "question": "What do ecologists believe should be the priority?",
+      "options": [
+        "planting as many seedlings as possible",
+        "attracting more tourism to restored areas",
+        "reconnecting the largest fragments first",
+        "protecting the remaining original forest"
+      ],
+      "correct": 3,
+      "explanation": "The last sentence is explicit: 'protecting the forest that still stands must come first.' The reasoning: restoration takes a century and some lost species never return, so prevention beats repair.",
+      "questionType": "inference"
+    }
+  ]
+}

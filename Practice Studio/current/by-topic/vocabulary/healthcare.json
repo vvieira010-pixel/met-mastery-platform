@@ -1,0 +1,105 @@
+{
+  "skill": "vocabulary",
+  "topic": "healthcare",
+  "totalExercises": 7,
+  "exercises": [
+    {
+      "id": "health_mcq1",
+      "type": "mcq",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "healthcare",
+      "question": "Patients should ___ their doctor if side effects appear.",
+      "options": [
+        "inform",
+        "ignore",
+        "invite",
+        "imagine"
+      ],
+      "correct": 0,
+      "explanation": "Inform means to tell someone about something important, such as symptoms."
+    },
+    {
+      "id": "health_blank1",
+      "type": "blank",
+      "skill": "Vocabulary",
+      "level": "B2",
+      "topicId": "healthcare",
+      "template": "A balanced diet can help you ___ healthy.",
+      "blanks": [
+        "stay"
+      ],
+      "explanation": "Stay healthy means to remain in good health."
+    },
+    {
+      "id": "vt_health_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Patients should ___ their doctor if side effects appear.",
+      "options": [
+        "inform",
+        "ignore",
+        "invite",
+        "imagine"
+      ],
+      "correct": 0,
+      "explanation": "“Inform” means to tell someone about something important, such as symptoms."
+    },
+    {
+      "id": "vt_health_mcq2",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "The nurse explained how to ___ the medication correctly.",
+      "options": [
+        "take",
+        "make",
+        "do",
+        "get"
+      ],
+      "correct": 0,
+      "explanation": "“Take medication” is the standard collocation."
+    },
+    {
+      "id": "vt_health_blank1",
+      "type": "blank",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "template": "A balanced diet can help you ___ healthy.",
+      "blanks": [
+        "stay"
+      ]
+    },
+    {
+      "id": "vt_fam_mcq1",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "question": "Strong relationships are built on ___ and respect.",
+      "options": [
+        "trust",
+        "task",
+        "test",
+        "text"
+      ],
+      "correct": 0,
+      "explanation": "“Trust” is the foundation of healthy relationships."
+    },
+    {
+      "id": "michigan_vocab_40",
+      "type": "mcq",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "question": "The discovery has the potential to ___ our understanding of how the disease develops.",
+      "options": [
+        "confine",
+        "transform",
+        "withhold",
+        "undermine"
+      ],
+      "correct": 1,
+      "explanation": "**Transform** means change something substantially."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "skill": "speaking",
+  "topic": "travel-and-culture",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "vt_travel_speak1",
+      "type": "speak",
+      "level": "B2",
+      "skill": "Speaking",
+      "prompt": "Describe a place you have visited that was very different from your home."
+    }
+  ]
+}

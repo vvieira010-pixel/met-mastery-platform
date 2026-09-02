@@ -1,0 +1,551 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "met_explanatory_materials_interactive_b2_b2plus",
+  "title": "Interactive Practice for B2 and B2+ Materials",
+  "language": "en",
+  "levels": ["B2", "B2+"],
+  "purpose": "Practice activities linked to the explanatory materials for a language-learning platform.",
+  "originality_notice": "Original MET-style practice created for learning; not an official MET item.",
+  "scoring_note": "Scores are local practice indicators only and must not be converted into an official MET score.",
+  "materials": [
+    {
+      "id": "b2-01",
+      "material_id": "b2-material-1",
+      "level": "B2",
+      "skill": "Grammar",
+      "topic": "Modals for deduction and probability",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 90,
+      "instruction": "Choose the conclusion that is best supported by the evidence.",
+      "content": {
+        "text": "The office lights are on, but the front door is locked and nobody answers the phone.",
+        "question": "What is the most reasonable conclusion?",
+        "options": [
+          {"id": "a", "text": "Someone must be working inside."},
+          {"id": "b", "text": "The office might be closed even though the lights were left on."},
+          {"id": "c", "text": "The office cannot have electricity."},
+          {"id": "d", "text": "Everyone should be inside."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "b"},
+      "feedback": {
+        "correct": "The evidence allows a possibility, but it does not prove that someone is inside. Therefore, might be is the appropriate modal.",
+        "incorrect": "Review the strength of the evidence. Use must for a strong deduction, might for a possibility, and cannot or can’t when the evidence makes something impossible."
+      }
+    },
+    {
+      "id": "b2-02",
+      "material_id": "b2-material-2",
+      "level": "B2",
+      "skill": "Grammar",
+      "topic": "Conditionals",
+      "interaction_type": "text_input",
+      "time_limit_seconds": 150,
+      "instruction": "Complete the sentence with the correct conditional forms.",
+      "content": {
+        "sentence": "If the team had checked the address, they ___ (not take) the wrong bus and ___ (arrive) on time.",
+        "accepted_answers": [
+          "would not have taken; would have arrived",
+          "wouldn't have taken; would have arrived"
+        ]
+      },
+      "answer": {"correct_text": "would not have taken; would have arrived"},
+      "feedback": {
+        "correct": "This is a third conditional: past perfect in the if-clause and would have plus a past participle in the result clause.",
+        "incorrect": "The sentence describes an unreal past situation. Use If + had + past participle, followed by would have + past participle."
+      }
+    },
+    {
+      "id": "b2-03",
+      "material_id": "b2-material-3",
+      "level": "B2",
+      "skill": "Grammar",
+      "topic": "Reported speech",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 90,
+      "instruction": "Choose the sentence that accurately reports the statement.",
+      "content": {
+        "text": "The coordinator said, \"I have sent the revised schedule.\"",
+        "options": [
+          {"id": "a", "text": "The coordinator said that they had sent the revised schedule."},
+          {"id": "b", "text": "The coordinator said that they have send the revised schedule."},
+          {"id": "c", "text": "The coordinator asked whether they sent the schedule."},
+          {"id": "d", "text": "The coordinator said that the schedule sends them."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "Have sent normally shifts to had sent in reported speech when the reporting verb is in the past.",
+        "incorrect": "Check the tense shift and the past participle. The present perfect have sent becomes had sent."
+      }
+    },
+    {
+      "id": "b2-04",
+      "material_id": "b2-material-4",
+      "level": "B2",
+      "skill": "Grammar",
+      "topic": "Relative clauses",
+      "interaction_type": "sentence_reordering",
+      "time_limit_seconds": 120,
+      "instruction": "Arrange the words to form a correct sentence.",
+      "content": {
+        "tokens": ["The", "center", "that", "we", "visited", "offers", "free", "classes", "."]
+      },
+      "answer": {"correct_order": ["The", "center", "that", "we", "visited", "offers", "free", "classes", "."]},
+      "feedback": {
+        "correct": "The defining relative clause that we visited identifies the center. No commas are needed.",
+        "incorrect": "Place the noun before its relative clause and keep the main verb offers after the complete identifying clause."
+      }
+    },
+    {
+      "id": "b2-05",
+      "material_id": "b2-material-5",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "topic": "Academic and professional collocations",
+      "interaction_type": "matching",
+      "time_limit_seconds": 150,
+      "instruction": "Match each verb with the collocation that completes it naturally.",
+      "content": {
+        "left_items": ["gather", "reach", "draw", "address"],
+        "right_items": ["an agreement", "evidence", "attention to an issue", "a concern"]
+      },
+      "answer": {"matches": {"gather": "evidence", "reach": "an agreement", "draw": "attention to an issue", "address": "a concern"}},
+      "feedback": {
+        "correct": "These combinations are conventional collocations: gather evidence, reach an agreement, draw attention to an issue, and address a concern.",
+        "incorrect": "Study the complete phrase rather than translating each verb separately."
+      }
+    },
+    {
+      "id": "b2-06",
+      "material_id": "b2-material-6",
+      "level": "B2",
+      "skill": "Vocabulary",
+      "topic": "Word formation",
+      "interaction_type": "text_input",
+      "time_limit_seconds": 120,
+      "instruction": "Enter the correct form of the word in parentheses.",
+      "content": {
+        "sentence": "The new procedure improved the team's ___ (EFFICIENT) and reduced delays.",
+        "accepted_answers": ["efficiency"]
+      },
+      "answer": {"correct_text": "efficiency"},
+      "feedback": {
+        "correct": "The possessive phrase the team's requires a noun. Efficiency means the ability to work effectively with minimal waste.",
+        "incorrect": "Look at the word position. After the possessive team's, you need a noun, not an adjective or adverb."
+      }
+    },
+    {
+      "id": "b2-07",
+      "material_id": "b2-material-7",
+      "level": "B2",
+      "skill": "Reading",
+      "topic": "Author attitude and purpose",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 150,
+      "instruction": "Read the passage and identify the writer's attitude.",
+      "content": {
+        "text": "The revised timetable is a useful step, particularly for people who work late. Nevertheless, the limited number of evening services may prevent some residents from relying on it regularly.",
+        "question": "What is the writer's attitude?",
+        "options": [
+          {"id": "a", "text": "Cautiously positive"},
+          {"id": "b", "text": "Completely hostile"},
+          {"id": "c", "text": "Uninterested"},
+          {"id": "d", "text": "Certain that the timetable will succeed"}
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "The writer recognizes a benefit but also identifies a limitation. That combination indicates cautious or balanced support.",
+        "incorrect": "Look at both parts of the passage: useful step expresses approval, while nevertheless introduces a concern."
+      }
+    },
+    {
+      "id": "b2-08",
+      "material_id": "b2-material-8",
+      "level": "B2",
+      "skill": "Reading",
+      "topic": "Comparing two texts",
+      "interaction_type": "multiple_choice",
+      "time_limit_seconds": 180,
+      "instruction": "Read both texts and choose the conclusion supported by both.",
+      "content": {
+        "text_a": "The community repair program has helped residents extend the life of household items.",
+        "text_b": "The program is popular, although it needs more volunteers to meet demand.",
+        "question": "What conclusion is supported by both texts?",
+        "options": [
+          {"id": "a", "text": "The program has a practical benefit but faces a capacity challenge."},
+          {"id": "b", "text": "The program has stopped accepting household items."},
+          {"id": "c", "text": "Residents prefer replacing items immediately."},
+          {"id": "d", "text": "The program is used only by volunteers."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "Text A gives the practical benefit, while Text B adds the need for more volunteers. The answer integrates both.",
+        "incorrect": "A multiple-text answer must combine information from both sources rather than repeat a detail from only one."
+      }
+    },
+    {
+      "id": "b2-09",
+      "material_id": "b2-material-9",
+      "level": "B2",
+      "skill": "Listening",
+      "topic": "Intention and attitude",
+      "interaction_type": "audio_choice",
+      "time_limit_seconds": 150,
+      "instruction": "Listen to the dialogue and identify the speaker's intention. The transcript is available only during review.",
+      "content": {
+        "audio_script": "Speaker A: We could send the report today. Speaker B: We could, but the final figures have not been checked yet.",
+        "question": "What does Speaker B intend to communicate?",
+        "options": [
+          {"id": "a", "text": "The report should be sent immediately."},
+          {"id": "b", "text": "The report needs another review before it is sent."},
+          {"id": "c", "text": "The report has been cancelled."},
+          {"id": "d", "text": "The final figures are irrelevant."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "b"},
+      "feedback": {
+        "correct": "The contrast marker but introduces a concern about unchecked figures, implying that the report should wait.",
+        "incorrect": "Do not stop at the first phrase. The second speaker qualifies the proposal and explains the concern."
+      }
+    },
+    {
+      "id": "b2-10",
+      "material_id": "b2-material-10",
+      "level": "B2",
+      "skill": "Listening",
+      "topic": "Note-taking",
+      "interaction_type": "note_completion",
+      "time_limit_seconds": 180,
+      "instruction": "Listen and complete the notes with short phrases.",
+      "content": {
+        "audio_script": "The museum had low attendance on weekday mornings. After surveying visitors, the staff learned that many local workers could not arrive before noon. The museum will therefore open later twice a week and monitor attendance for three months.",
+        "note_fields": ["Problem", "Cause", "Change", "Monitoring period"]
+      },
+      "answer": {"expected": {"Problem": "low weekday-morning attendance", "Cause": "local workers could not arrive before noon", "Change": "open later twice a week", "Monitoring period": "three months"}},
+      "feedback": {
+        "correct": "Effective notes capture the problem, cause, response, and time period without reproducing the full script.",
+        "incorrect": "Listen for the signpost words after, therefore, and for the final time expression. Use brief phrases rather than full sentences."
+      }
+    },
+    {
+      "id": "b2-11",
+      "material_id": "b2-material-11",
+      "level": "B2",
+      "skill": "Writing",
+      "topic": "Developing a balanced opinion",
+      "interaction_type": "long_text",
+      "time_limit_seconds": 1200,
+      "instruction": "Write 150–180 words answering: Should universities offer more evening courses? Include a clear position, two developed reasons, one example, and one counterargument.",
+      "content": {
+        "prompt": "Should universities offer more evening courses?",
+        "word_limit": {"min": 150, "max": 180}
+      },
+      "answer": {"type": "open_response", "model_outline": ["clear position", "two developed reasons", "specific example", "counterargument and response"]},
+      "feedback": {
+        "criteria": ["task completion", "organization", "development", "grammatical control", "lexical range", "clarity"],
+        "next_action": "Add a concrete consequence to the less-developed reason and connect it with an appropriate linker such as however or as a result."
+      }
+    },
+    {
+      "id": "b2-12",
+      "material_id": "b2-material-12",
+      "level": "B2",
+      "skill": "Speaking",
+      "topic": "Developed opinion and comparison",
+      "interaction_type": "speaking_recording",
+      "time_limit_seconds": 135,
+      "instruction": "Prepare for 45 seconds and speak for 90 seconds. Compare watching films and reading books for language learning, choose one, and give two reasons and an example.",
+      "content": {
+        "prompt": "Which is more useful for language learning: watching films or reading books?",
+        "preparation_seconds": 45,
+        "response_seconds": 90
+      },
+      "answer": {"type": "open_response", "model_outline": ["clear choice", "comparison", "two connected reasons", "specific example", "conclusion"]},
+      "feedback": {
+        "criteria": ["development", "coherence", "communicative appropriacy", "language control"],
+        "next_action": "Use one contrast linker and one conclusion marker, and make sure the example directly supports the chosen option."
+      }
+    },
+    {
+      "id": "b2plus-13",
+      "material_id": "b2plus-material-13",
+      "level": "B2+",
+      "skill": "Grammar",
+      "topic": "Hedging and degrees of certainty",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 120,
+      "instruction": "Choose the claim whose certainty matches the limited evidence.",
+      "content": {
+        "text": "A small pilot study found that participants completed tasks more quickly after a schedule change.",
+        "question": "Which sentence is most appropriately cautious?",
+        "options": [
+          {"id": "a", "text": "The schedule change proves that everyone works faster."},
+          {"id": "b", "text": "The schedule change may have improved task completion in this pilot."},
+          {"id": "c", "text": "The schedule change always improves productivity."},
+          {"id": "d", "text": "The schedule change cannot affect performance."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "b"},
+      "feedback": {
+        "correct": "May have improved limits the claim to a possibility and to the pilot context.",
+        "incorrect": "The evidence comes from a small pilot, so avoid universal or conclusive claims."
+      }
+    },
+    {
+      "id": "b2plus-14",
+      "material_id": "b2plus-material-14",
+      "level": "B2+",
+      "skill": "Grammar",
+      "topic": "Emphasis and information structure",
+      "interaction_type": "text_input",
+      "time_limit_seconds": 150,
+      "instruction": "Rewrite the sentence using It was...that... to emphasize the cause.",
+      "content": {"sentence": "Poor communication caused the delay."},
+      "answer": {"accepted_answers": ["It was poor communication that caused the delay."]},
+      "feedback": {
+        "correct": "The cleft sentence places the emphasized cause after it was and preserves the original meaning.",
+        "incorrect": "Use the pattern It was + emphasized information + that + remaining clause."
+      }
+    },
+    {
+      "id": "b2plus-15",
+      "material_id": "b2plus-material-15",
+      "level": "B2+",
+      "skill": "Grammar",
+      "topic": "Participle clauses",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 120,
+      "instruction": "Choose the sentence with a logical subject for the participle clause.",
+      "content": {
+        "options": [
+          {"id": "a", "text": "Having reviewed the evidence, the team changed its recommendation."},
+          {"id": "b", "text": "Having reviewed the evidence, the recommendation changed the team."},
+          {"id": "c", "text": "Reviewed the evidence, the team having changed its recommendation."},
+          {"id": "d", "text": "Having the evidence reviewed, changed the team its recommendation."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "The team is the implied subject of both reviewed and changed, so the sentence is logical.",
+        "incorrect": "The subject of the participle clause must normally be the same as the subject of the main clause."
+      }
+    },
+    {
+      "id": "b2plus-16",
+      "material_id": "b2plus-material-16",
+      "level": "B2+",
+      "skill": "Grammar",
+      "topic": "Nominalization and register",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 120,
+      "instruction": "Choose the most formal version that remains clear and identifies the actor.",
+      "content": {
+        "options": [
+          {"id": "a", "text": "The committee's decision to revise the policy followed its consideration of the feedback."},
+          {"id": "b", "text": "The consideration of the feedback was followed by the revision implementation."},
+          {"id": "c", "text": "The policy did a consideration and then got revised."},
+          {"id": "d", "text": "There was a thing about feedback and policy."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "The sentence uses nominalization appropriately while keeping the committee as the responsible actor.",
+        "incorrect": "Formal style should not hide the actor or use unnatural noun phrases. Choose the version that is both formal and clear."
+      }
+    },
+    {
+      "id": "b2plus-17",
+      "material_id": "b2plus-material-17",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "topic": "Register",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 120,
+      "instruction": "Choose the most appropriate sentence for a formal complaint.",
+      "content": {
+        "options": [
+          {"id": "a", "text": "Your service was a mess. Fix it soon."},
+          {"id": "b", "text": "I am writing to request an explanation of the delay and information about the available remedies."},
+          {"id": "c", "text": "Hey, what happened with my order?"},
+          {"id": "d", "text": "Tell me now why this thing happened."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "b"},
+      "feedback": {
+        "correct": "The sentence is specific, respectful, and appropriate for an institutional recipient.",
+        "incorrect": "Consider the audience and purpose. A formal complaint should be firm, specific, and professional rather than emotional or slangy."
+      }
+    },
+    {
+      "id": "b2plus-18",
+      "material_id": "b2plus-material-18",
+      "level": "B2+",
+      "skill": "Vocabulary",
+      "topic": "Connotation and lexical strength",
+      "interaction_type": "single_choice",
+      "time_limit_seconds": 120,
+      "instruction": "Choose the word whose strength matches the evidence.",
+      "content": {
+        "text": "The pilot produced positive early results, but the sample was small and the follow-up period was short.",
+        "sentence": "The findings are ___, although they do not justify a final conclusion.",
+        "options": [
+          {"id": "a", "text": "promising"},
+          {"id": "b", "text": "conclusive"},
+          {"id": "c", "text": "disastrous"},
+          {"id": "d", "text": "irrelevant"}
+        ]
+      },
+      "answer": {"correct_option_id": "a"},
+      "feedback": {
+        "correct": "Promising expresses positive potential without claiming that the evidence is final.",
+        "incorrect": "The small sample and short follow-up prevent a conclusive claim. Choose a positive but limited evaluation."
+      }
+    },
+    {
+      "id": "b2plus-19",
+      "material_id": "b2plus-material-19",
+      "level": "B2+",
+      "skill": "Reading",
+      "topic": "Evidence, interpretation, and assumption",
+      "interaction_type": "classification",
+      "time_limit_seconds": 180,
+      "instruction": "Classify each statement as Explicit, Supported interpretation, or Unsupported assumption.",
+      "content": {
+        "text": "After the center introduced online registration, staff members reported spending less time entering forms manually. No survey measured whether participants found the new system easier.",
+        "statements": [
+          {"id": "s1", "text": "Staff reported spending less time entering forms."},
+          {"id": "s2", "text": "The new system may have reduced staff paperwork."},
+          {"id": "s3", "text": "Participants definitely preferred the new system."
+          }
+        ],
+        "categories": ["Explicit", "Supported interpretation", "Unsupported assumption"]
+      },
+      "answer": {"classifications": {"s1": "Explicit", "s2": "Supported interpretation", "s3": "Unsupported assumption"}},
+      "feedback": {
+        "correct": "The first statement repeats direct evidence, the second makes a cautious inference, and the third claims something that was not measured.",
+        "incorrect": "Ask whether the text states the idea directly, supports it cautiously, or provides no evidence for it."
+      }
+    },
+    {
+      "id": "b2plus-20",
+      "material_id": "b2plus-material-20",
+      "level": "B2+",
+      "skill": "Reading",
+      "topic": "Synthesis across sources",
+      "interaction_type": "long_text",
+      "time_limit_seconds": 600,
+      "instruction": "Write 80–100 words synthesizing the two sources. Preserve both the benefit and the limitation.",
+      "content": {
+        "source_a": "Short daily practice helps learners remember vocabulary.",
+        "source_b": "Learners also need opportunities to use new words in meaningful conversation.",
+        "word_limit": {"min": 80, "max": 100}
+      },
+      "answer": {"type": "open_response", "model_response": "Short daily practice can support vocabulary retention, but memorization alone may not be sufficient. Learners also need meaningful opportunities to use new words in conversation. Therefore, an effective routine could combine brief review sessions with regular speaking activities."},
+      "feedback": {
+        "criteria": ["integrates both sources", "uses an accurate relationship", "preserves the qualification", "maintains clear organization"],
+        "next_action": "Check that the response connects the sources instead of summarizing them as two unrelated sentences."
+      }
+    },
+    {
+      "id": "b2plus-21",
+      "material_id": "b2plus-material-21",
+      "level": "B2+",
+      "skill": "Listening",
+      "topic": "Indirect disagreement and stance",
+      "interaction_type": "audio_choice",
+      "time_limit_seconds": 150,
+      "instruction": "Listen to the exchange and identify the recommendation implied by the second speaker.",
+      "content": {
+        "audio_script": "Speaker A: We could hold the presentation outdoors. Speaker B: That might be enjoyable, although we should probably have an indoor option in case the weather changes.",
+        "question": "What does Speaker B recommend?",
+        "options": [
+          {"id": "a", "text": "Canceling the presentation."},
+          {"id": "b", "text": "Keeping an indoor alternative available."},
+          {"id": "c", "text": "Moving the event to another city."},
+          {"id": "d", "text": "Ignoring the weather forecast."
+          }
+        ]
+      },
+      "answer": {"correct_option_id": "b"},
+      "feedback": {
+        "correct": "The phrase should probably have an indoor option expresses a softened recommendation based on the weather concern.",
+        "incorrect": "Listen beyond the polite or positive opening. The second speaker adds a condition and a practical recommendation."
+      }
+    },
+    {
+      "id": "b2plus-22",
+      "material_id": "b2plus-material-22",
+      "level": "B2+",
+      "skill": "Listening",
+      "topic": "Discourse markers and correction",
+      "interaction_type": "audio_choice",
+      "time_limit_seconds": 150,
+      "instruction": "Listen for the correction and choose the final location.",
+      "content": {
+        "audio_script": "The workshop was originally planned for Room 3. Actually, because of the larger registration, it will take place in the auditorium.",
+        "question": "Where will the workshop take place?",
+        "options": [
+          {"id": "a", "text": "Room 2"},
+          {"id": "b", "text": "Room 3"},
+          {"id": "c", "text": "The auditorium"},
+          {"id": "d", "text": "Online"}
+        ]
+      },
+      "answer": {"correct_option_id": "c"},
+      "feedback": {
+        "correct": "Actually introduces a correction. The final location is the auditorium.",
+        "incorrect": "Do not select the first location automatically. Listen for correction markers such as actually, rather, or I mean."
+      }
+    },
+    {
+      "id": "b2plus-23",
+      "material_id": "b2plus-material-23",
+      "level": "B2+",
+      "skill": "Writing",
+      "topic": "Counterargument and rebuttal",
+      "interaction_type": "long_text",
+      "time_limit_seconds": 1500,
+      "instruction": "Write 170–200 words answering: Should public libraries reduce printed collections to create more digital services? Include a clear position, one counterargument, one rebuttal, and a specific example.",
+      "content": {
+        "prompt": "Should public libraries reduce printed collections to create more digital services?",
+        "word_limit": {"min": 170, "max": 200}
+      },
+      "answer": {"type": "open_response", "model_outline": ["clear position", "relevant counterargument", "effective rebuttal", "specific example", "organized conclusion"]},
+      "feedback": {
+        "criteria": ["argument clarity", "counterargument relevance", "rebuttal effectiveness", "cohesion", "grammatical control", "lexical precision", "audience awareness"],
+        "next_action": "Make sure the rebuttal explains how your proposal addresses the concern instead of simply saying that the concern is wrong."
+      }
+    },
+    {
+      "id": "b2plus-24",
+      "material_id": "b2plus-material-24",
+      "level": "B2+",
+      "skill": "Speaking",
+      "topic": "Reformulation, negotiation, and persuasive nuance",
+      "interaction_type": "speaking_recording",
+      "time_limit_seconds": 180,
+      "instruction": "Prepare for 60 seconds and speak for 120 seconds. Recommend either a weekly tutoring program or one large study day. Acknowledge a disadvantage, suggest a solution, and conclude with a recommendation.",
+      "content": {
+        "prompt": "Which option should a college committee fund: weekly tutoring or one large study day?",
+        "preparation_seconds": 60,
+        "response_seconds": 120
+      },
+      "answer": {"type": "open_response", "model_outline": ["clear recommendation", "reason connected to audience needs", "acknowledged disadvantage", "practical solution", "conclusion"]},
+      "feedback": {
+        "criteria": ["development", "coherence", "communicative appropriacy", "complex language control", "negotiation", "persuasive nuance"],
+        "next_action": "Use a concession such as although or that said, then reformulate one idea with a practical alternative if a word is difficult to recall."
+      }
+    }
+  ]
+}

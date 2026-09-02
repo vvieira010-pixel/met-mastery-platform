@@ -1,0 +1,1806 @@
+{
+  "nodes": [
+    {
+      "id": "listeningsection",
+      "label": "ListeningSection.jsx",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_part3_voice_map",
+      "label": "PART3_VOICE_MAP",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_flattenquestions",
+      "label": "flattenQuestions()",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L8",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_questions",
+      "label": "QUESTIONS",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L34",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_part_boundaries",
+      "label": "PART_BOUNDARIES",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L35",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_generatescript",
+      "label": "generateScript()",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L43",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_utterancesfromscript",
+      "label": "utterancesFromScript()",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L54",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_generatetalkaudio",
+      "label": "generateTalkAudio()",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L61",
+      "_origin": "ast"
+    },
+    {
+      "id": "listeningsection_listeningsection",
+      "label": "ListeningSection()",
+      "file_type": "code",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L69",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestdemo",
+      "label": "MockTestDemo.jsx",
+      "file_type": "code",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestdemo_mocktestdemo",
+      "label": "MockTestDemo()",
+      "file_type": "code",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestengine",
+      "label": "MockTestEngine.jsx",
+      "file_type": "code",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestengine_mocktesthome",
+      "label": "MockTestHome()",
+      "file_type": "code",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L21",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestengine_sectionshell",
+      "label": "SectionShell()",
+      "file_type": "code",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L86",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestengine_mocktestengine",
+      "label": "MockTestEngine()",
+      "file_type": "code",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L168",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestsidebar",
+      "label": "MockTestSidebar.jsx",
+      "file_type": "code",
+      "source_file": "MockTestSidebar.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestsidebar_mocktestsidebar",
+      "label": "MockTestSidebar()",
+      "file_type": "code",
+      "source_file": "MockTestSidebar.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestteacherdashboard",
+      "label": "MockTestTeacherDashboard.jsx",
+      "file_type": "code",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestteacherdashboard_mocktestteacherdashboard",
+      "label": "MockTestTeacherDashboard()",
+      "file_type": "code",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks",
+      "label": "MockTestThanks.jsx",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks_cefr_levels",
+      "label": "CEFR_LEVELS",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks_cefr_descriptions",
+      "label": "CEFR_DESCRIPTIONS",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks_cefr_long_labels",
+      "label": "CEFR_LONG_LABELS",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L21",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks_mocktestthanks",
+      "label": "MockTestThanks()",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L28",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktestthanks_skillcard",
+      "label": "SkillCard()",
+      "file_type": "code",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L264",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktesttimer",
+      "label": "MockTestTimer.jsx",
+      "file_type": "code",
+      "source_file": "MockTestTimer.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "mocktesttimer_mocktesttimer",
+      "label": "MockTestTimer()",
+      "file_type": "code",
+      "source_file": "MockTestTimer.jsx",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "readingsection",
+      "label": "ReadingSection.jsx",
+      "file_type": "code",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "readingsection_getflatquestions",
+      "label": "getFlatQuestions()",
+      "file_type": "code",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "readingsection_questions",
+      "label": "QUESTIONS",
+      "file_type": "code",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "readingsection_readingsection",
+      "label": "ReadingSection()",
+      "file_type": "code",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "speakingsection",
+      "label": "SpeakingSection.jsx",
+      "file_type": "code",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "speakingsection_speakingsection",
+      "label": "SpeakingSection()",
+      "file_type": "code",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "writingsection",
+      "label": "WritingSection.jsx",
+      "file_type": "code",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "writingsection_writingsection",
+      "label": "WritingSection()",
+      "file_type": "code",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase",
+      "label": "MockTestUseCase.js",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase_mocktestusecase",
+      "label": "MockTestUseCase",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase_mocktestusecase_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase_mocktestusecase_loadsession",
+      "label": ".loadSession()",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L8",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase_mocktestusecase_saveprogress",
+      "label": ".saveProgress()",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L19",
+      "_origin": "ast"
+    },
+    {
+      "id": "application_mocktestusecase_mocktestusecase_completesection",
+      "label": ".completeSection()",
+      "file_type": "code",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L23",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_answer",
+      "label": "Answer.js",
+      "file_type": "code",
+      "source_file": "domain/Answer.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_answer_answer",
+      "label": "Answer",
+      "file_type": "code",
+      "source_file": "domain/Answer.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_answer_answer_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "domain/Answer.js",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_section",
+      "label": "Section.js",
+      "file_type": "code",
+      "source_file": "domain/Section.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_section_section",
+      "label": "Section",
+      "file_type": "code",
+      "source_file": "domain/Section.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_section_section_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "domain/Section.js",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_section_section_iscompleted",
+      "label": ".isCompleted()",
+      "file_type": "code",
+      "source_file": "domain/Section.js",
+      "source_location": "L9",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession",
+      "label": "TestSession.js",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession",
+      "label": "TestSession",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_startsection",
+      "label": ".startSection()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_completesection",
+      "label": ".completeSection()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_isalldone",
+      "label": ".isAllDone()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_getsection",
+      "label": ".getSection()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L31",
+      "_origin": "ast"
+    },
+    {
+      "id": "domain_testsession_testsession_tojson",
+      "label": ".toJSON()",
+      "file_type": "code",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L35",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_localstoragerepository",
+      "label": "LocalStorageRepository.js",
+      "file_type": "code",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_localstoragerepository_localstoragerepository",
+      "label": "LocalStorageRepository",
+      "file_type": "code",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_localstoragerepository_localstoragerepository_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_localstoragerepository_localstoragerepository_load",
+      "label": ".load()",
+      "file_type": "code",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_localstoragerepository_localstoragerepository_save",
+      "label": ".save()",
+      "file_type": "code",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_supabaserepository",
+      "label": "SupabaseRepository.js",
+      "file_type": "code",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_supabaserepository_supabaserepository",
+      "label": "SupabaseRepository",
+      "file_type": "code",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_supabaserepository_supabaserepository_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_supabaserepository_supabaserepository_load",
+      "label": ".load()",
+      "file_type": "code",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "infrastructure_supabaserepository_supabaserepository_save",
+      "label": ".save()",
+      "file_type": "code",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L37",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "listeningsection",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_listening_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "mock_test_1_listening_listening_part1",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "mock_test_1_listening_listening_part2",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "mock_test_1_listening_listening_part3",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_callai_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "lib_callai_callai",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_tts_utils_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "lib_tts_utils_fetchconversationaudio",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "lib_tts_utils_fetchaudiowithgender",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_part3_voice_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_flattenquestions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_questions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_part_boundaries",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_generatescript",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_utterancesfromscript",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_generatetalkaudio",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "listeningsection",
+      "target": "listeningsection_listeningsection",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ListeningSection.jsx",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "mocktestengine",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "mocktestteacherdashboard",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_ui_button_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "ui_button_button",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "mocktestdemo_mocktestdemo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_index_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mock_test_1_index_mock_test_1",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktesttimer",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "readingsection",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "listeningsection",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "speakingsection",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "writingsection",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktestthanks",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_ui_button_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "ui_button_button",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_shared_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "components_shared_icon",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "application_mocktestusecase",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "application_mocktestusecase_mocktestusecase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "infrastructure_localstoragerepository",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "infrastructure_localstoragerepository_localstoragerepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_mock_test_infrastructure_supabaserepository_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "infrastructure_supabaserepository_supabaserepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktestengine_mocktesthome",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktestengine_sectionshell",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktestengine_mocktestengine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestsidebar",
+      "target": "mocktestsidebar_mocktestsidebar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestSidebar.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_ui_button_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "ui_button_button",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_components_shared_jsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "components_shared_icon",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_supabase_storage_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "lib_supabase_storage_getsupabaseconfig",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "lib_supabase_storage_buildsupabaseheaders",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestteacherdashboard",
+      "target": "mocktestteacherdashboard_mocktestteacherdashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTeacherDashboard.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_index_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mock_test_1_index_mock_test_1",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mock_test_1_index_getcefrlevel",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mock_test_1_index_getcefrcolor",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_mock_test_scoring_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "lib_mock_test_scoring_scorereading",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "lib_mock_test_scoring_scorelistening",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_workflow_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "lib_workflow_savemocktestresult",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_supabase_db_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "lib_supabase_db_uploadmocktestaudio",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mocktestthanks_cefr_levels",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mocktestthanks_cefr_descriptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mocktestthanks_cefr_long_labels",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mocktestthanks_mocktestthanks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestthanks",
+      "target": "mocktestthanks_skillcard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestThanks.jsx",
+      "source_location": "L264",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktesttimer",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTimer.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktesttimer",
+      "target": "mocktesttimer_mocktesttimer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestTimer.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_reading_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "mock_test_1_reading_reading_part1",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "mock_test_1_reading_reading_part2",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "mock_test_1_reading_reading_part3",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "readingsection_getflatquestions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "readingsection_questions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "readingsection",
+      "target": "readingsection_readingsection",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ReadingSection.jsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "speakingsection",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "speakingsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_speaking_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "speakingsection",
+      "target": "mock_test_1_speaking_speaking_tasks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "speakingsection",
+      "target": "speakingsection_speakingsection",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SpeakingSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "writingsection",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "writingsection",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_data_mock_test_1_writing_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "writingsection",
+      "target": "mock_test_1_writing_writing_tasks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "writingsection",
+      "target": "writingsection_writingsection",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "WritingSection.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase",
+      "target": "domain_testsession",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase",
+      "target": "domain_testsession_testsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase",
+      "target": "application_mocktestusecase_mocktestusecase",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase_mocktestusecase",
+      "target": "application_mocktestusecase_mocktestusecase_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase_mocktestusecase",
+      "target": "application_mocktestusecase_mocktestusecase_loadsession",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase_mocktestusecase",
+      "target": "application_mocktestusecase_mocktestusecase_saveprogress",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "application_mocktestusecase_mocktestusecase",
+      "target": "application_mocktestusecase_mocktestusecase_completesection",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "application/MockTestUseCase.js",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_answer",
+      "target": "domain_answer_answer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/Answer.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_answer_answer",
+      "target": "domain_answer_answer_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/Answer.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_section",
+      "target": "domain_section_section",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/Section.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_section_section",
+      "target": "domain_section_section_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/Section.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_section_section",
+      "target": "domain_section_section_iscompleted",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/Section.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession",
+      "target": "domain_section",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession",
+      "target": "domain_section_section",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession",
+      "target": "domain_testsession_testsession",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_startsection",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_completesection",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_isalldone",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_getsection",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "domain_testsession_testsession",
+      "target": "domain_testsession_testsession_tojson",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "domain/TestSession.js",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_localstoragerepository",
+      "target": "infrastructure_localstoragerepository_localstoragerepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_localstoragerepository_localstoragerepository",
+      "target": "infrastructure_localstoragerepository_localstoragerepository_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_localstoragerepository_localstoragerepository",
+      "target": "infrastructure_localstoragerepository_localstoragerepository_load",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_localstoragerepository_localstoragerepository",
+      "target": "infrastructure_localstoragerepository_localstoragerepository_save",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/LocalStorageRepository.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository",
+      "target": "c_users_vviei_opencode_vv_method_platform_master_src_lib_supabase_storage_js",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository",
+      "target": "lib_supabase_storage_getsupabaseconfig",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository",
+      "target": "lib_supabase_storage_buildsupabaseheaders",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository",
+      "target": "infrastructure_supabaserepository_supabaserepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository_supabaserepository",
+      "target": "infrastructure_supabaserepository_supabaserepository_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository_supabaserepository",
+      "target": "infrastructure_supabaserepository_supabaserepository_load",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "infrastructure_supabaserepository_supabaserepository",
+      "target": "infrastructure_supabaserepository_supabaserepository_save",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "infrastructure/SupabaseRepository.js",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "mocktestengine_mocktestengine",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestdemo",
+      "target": "mocktestteacherdashboard_mocktestteacherdashboard",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestDemo.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktesttimer_mocktesttimer",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "readingsection_readingsection",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "listeningsection_listeningsection",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "speakingsection_speakingsection",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "writingsection_writingsection",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "mocktestengine",
+      "target": "mocktestthanks_mocktestthanks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "MockTestEngine.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

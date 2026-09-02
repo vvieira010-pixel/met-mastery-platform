@@ -1,0 +1,41 @@
+{
+  "skill": "grammar",
+  "topic": "Past Perfect (B2)",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "gemini_grammar_6",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Grammar",
+      "question": "By the time we arrived at the conference, the keynote speaker _____ her presentation.",
+      "options": [
+        "already finished",
+        "had already finished",
+        "has already finished",
+        "was finishing"
+      ],
+      "correct": 1,
+      "explanation": "The past perfect (had + past participle) is used to show that one action in the past happened before another action in the past.",
+      "topicId": "Past Perfect (B2)"
+    },
+    {
+      "id": "G65",
+      "number": 65,
+      "category": "Past Perfect (B2)",
+      "level": "B2",
+      "question": "When we got to the cinema, the film ________.",
+      "options": {
+        "A": "already started",
+        "B": "had already started",
+        "C": "has already started",
+        "D": "was already starting"
+      },
+      "correct_answer": "B",
+      "correct_option": "had already started",
+      "explanation": "Use past perfect for the earlier of two past actions.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

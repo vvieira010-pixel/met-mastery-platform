@@ -1,0 +1,67 @@
+{
+  "skill": "reading",
+  "topic": "mangrove-ecosystems",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "trees_12_59",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 12,
+      "intro": "This passage is about mangrove forests.",
+      "context": "Where tropical rivers meet the sea, forests grow in salt water — an environment that would kill almost any other tree. Mangroves survive there thanks to a set of extraordinary adaptations. Some species filter salt at their roots, while others absorb it and later excrete it through their leaves. Many stand on arching prop roots that anchor them in soft mud and lift them above the daily tides.\n\nThese tangled forests perform services out of proportion to their size. Their dense roots trap sediment and slow storm-driven waves, protecting coastlines from erosion and flooding; researchers have calculated that mangroves can reduce the height of storm waves by as much as two-thirds. They are also among the most efficient forests on Earth at storing carbon, locking it away in waterlogged soils where it can remain for thousands of years. And their sheltered waters serve as nurseries for countless fish, crabs, and shrimp, supporting fisheries on which millions of people depend.\n\nDespite this value, mangroves have long been treated as wasteland. Over the past half century, vast areas have been cleared for shrimp farms, rice fields, and waterfront development. Because mangrove soils store so much carbon, destroying them releases large quantities of greenhouse gases — which means that losing these forests worsens the very storms and rising seas they once protected against.\n\nThe picture is not entirely bleak. In several countries, communities have begun replanting mangroves, and some governments now pay villages to protect them. Experience has shown, however, that restoration succeeds only when the right species are planted in the right places; many early projects failed because seedlings were placed where mangroves could never naturally grow.",
+      "question": "Why does the author mention shrimp farms?",
+      "options": [
+        "to recommend a sustainable source of seafood",
+        "to describe what mangrove nurseries support",
+        "to give an example of why mangroves are cleared",
+        "to compare farming and fishing economies"
+      ],
+      "correct": 2,
+      "explanation": "Paragraph 3 says vast areas 'have been cleared for shrimp farms, rice fields, and waterfront development' — the farms exemplify the causes of destruction. B confuses this with the fish nurseries of paragraph 2.",
+      "questionType": "purpose"
+    },
+    {
+      "id": "trees_12_60",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 12,
+      "intro": "This passage is about mangrove forests.",
+      "context": "Where tropical rivers meet the sea, forests grow in salt water — an environment that would kill almost any other tree. Mangroves survive there thanks to a set of extraordinary adaptations. Some species filter salt at their roots, while others absorb it and later excrete it through their leaves. Many stand on arching prop roots that anchor them in soft mud and lift them above the daily tides.\n\nThese tangled forests perform services out of proportion to their size. Their dense roots trap sediment and slow storm-driven waves, protecting coastlines from erosion and flooding; researchers have calculated that mangroves can reduce the height of storm waves by as much as two-thirds. They are also among the most efficient forests on Earth at storing carbon, locking it away in waterlogged soils where it can remain for thousands of years. And their sheltered waters serve as nurseries for countless fish, crabs, and shrimp, supporting fisheries on which millions of people depend.\n\nDespite this value, mangroves have long been treated as wasteland. Over the past half century, vast areas have been cleared for shrimp farms, rice fields, and waterfront development. Because mangrove soils store so much carbon, destroying them releases large quantities of greenhouse gases — which means that losing these forests worsens the very storms and rising seas they once protected against.\n\nThe picture is not entirely bleak. In several countries, communities have begun replanting mangroves, and some governments now pay villages to protect them. Experience has shown, however, that restoration succeeds only when the right species are planted in the right places; many early projects failed because seedlings were placed where mangroves could never naturally grow.",
+      "question": "What lesson does the author draw about mangrove restoration?",
+      "options": [
+        "It is always more expensive than expected.",
+        "It fails when species are planted in unsuitable locations.",
+        "It works only when governments pay for it.",
+        "It should focus on areas near fisheries."
+      ],
+      "correct": 1,
+      "explanation": "The final sentence states that restoration 'succeeds only when the right species are planted in the right places,' and early failures came from planting where mangroves 'could never naturally grow.'",
+      "questionType": "inference"
+    },
+    {
+      "id": "trees_12_57",
+      "type": "mcq",
+      "level": "B2",
+      "skill": "Reading",
+      "topicId": "trees",
+      "passageId": 12,
+      "intro": "This passage is about mangrove forests.",
+      "context": "Where tropical rivers meet the sea, forests grow in salt water — an environment that would kill almost any other tree. Mangroves survive there thanks to a set of extraordinary adaptations. Some species filter salt at their roots, while others absorb it and later excrete it through their leaves. Many stand on arching prop roots that anchor them in soft mud and lift them above the daily tides.\n\nThese tangled forests perform services out of proportion to their size. Their dense roots trap sediment and slow storm-driven waves, protecting coastlines from erosion and flooding; researchers have calculated that mangroves can reduce the height of storm waves by as much as two-thirds. They are also among the most efficient forests on Earth at storing carbon, locking it away in waterlogged soils where it can remain for thousands of years. And their sheltered waters serve as nurseries for countless fish, crabs, and shrimp, supporting fisheries on which millions of people depend.\n\nDespite this value, mangroves have long been treated as wasteland. Over the past half century, vast areas have been cleared for shrimp farms, rice fields, and waterfront development. Because mangrove soils store so much carbon, destroying them releases large quantities of greenhouse gases — which means that losing these forests worsens the very storms and rising seas they once protected against.\n\nThe picture is not entirely bleak. In several countries, communities have begun replanting mangroves, and some governments now pay villages to protect them. Experience has shown, however, that restoration succeeds only when the right species are planted in the right places; many early projects failed because seedlings were placed where mangroves could never naturally grow.",
+      "question": "According to the passage, how do some mangroves handle salt?",
+      "options": [
+        "They store it in their prop roots.",
+        "They remove it through their leaves.",
+        "They convert it into sediment.",
+        "They release it into the mud at low tide."
+      ],
+      "correct": 1,
+      "explanation": "Paragraph 1 says some species 'absorb it and later excrete it through their leaves.' A and C confuse this with other details of the same paragraph.",
+      "questionType": "detail"
+    }
+  ]
+}

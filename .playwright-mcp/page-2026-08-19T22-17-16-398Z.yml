@@ -1,0 +1,34 @@
+- generic [ref=f12e5]:
+  - generic [ref=f12e6]:
+    - heading "Instale o aplicativo SurveyHeart" [level=1] [ref=f12e7]
+    - img "SurveyHeart" [ref=f12e9]
+    - generic [ref=f12e10]:
+      - paragraph [ref=f12e11]: 1. Acesso fácil pelo aplicativo
+      - paragraph [ref=f12e12]: 2. Receba Notificação Instantaneamente
+      - paragraph [ref=f12e13]: 3. Criar formulário/teste em qualquer lugar
+  - generic [ref=f12e15]:
+    - img "SurveyHeart" [ref=f12e16]
+    - generic [ref=f12e51]:
+      - button "Inscrever-se no Google. Abre em uma nova guia" [ref=f12e53] [cursor=pointer]:
+        - generic [ref=f12e55]: Inscrever-se no Google
+      - iframe
+    - generic [ref=f12e33]: ou
+    - generic [ref=f12e40]:
+      - generic [ref=f12e42]:
+        - generic: Email
+        - generic: email
+        - textbox "Email email" [ref=f12e43]: vvieirac@gmail.com
+      - generic [ref=f12e67]:
+        - generic: senha
+        - generic: lock
+        - textbox "senha lock" [ref=f12e68]
+      - generic [ref=f12e70]:
+        - generic: Redigite a senha
+        - generic: lock
+        - textbox "Redigite a senha lock" [ref=f12e71]
+    - button "Inscrever-se" [ref=f12e72]
+    - generic [ref=f12e73]:
+      - generic [ref=f12e74] [cursor=pointer]: Ao se inscrever, você concorda com os termos da SurveyHeartTermos de uso ePolítica de Privacidade
+      - generic [ref=f12e76] [cursor=pointer]:
+        - text: Já tem uma conta?
+        - generic [ref=f12e77]: Entrar

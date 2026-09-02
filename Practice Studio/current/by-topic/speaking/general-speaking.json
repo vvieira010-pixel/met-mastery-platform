@@ -1,0 +1,22 @@
+{
+  "skill": "speaking",
+  "topic": "general-speaking",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "type": "mcq",
+      "skill": "Speaking",
+      "level": "B2+",
+      "title": "B2+ Formal Request",
+      "question": "Most formal request phrasing?",
+      "options": [
+        "I would be grateful if...",
+        "Gimme that",
+        "You must",
+        "Hurry up"
+      ],
+      "correct": 0,
+      "explanation": "Conditional polite form is most formal."
+    }
+  ]
+}

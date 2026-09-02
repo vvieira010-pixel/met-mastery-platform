@@ -1,0 +1,22 @@
+{
+  "skill": "writing",
+  "topic": "grammar-practice",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "type": "order",
+      "skill": "Writing",
+      "level": "B2+",
+      "title": "B2+ Sentence Order",
+      "sentences": [
+        "It",
+        "is",
+        "vital",
+        "that",
+        "data",
+        "be",
+        "verified"
+      ]
+    }
+  ]
+}

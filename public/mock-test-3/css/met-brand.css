@@ -1,0 +1,189 @@
+/* ============================================================
+   met-brand.css — MET Prep Platform Design Tokens
+   DEPRECATED ALIASES — remove after usage migration
+   Canonical values live in met-shell.css under --met-* names.
+   This file re-exports them under the legacy azul/orange names
+   (each alias carries the former value as a var() fallback so
+   pages loading this file without met-shell.css keep working),
+   plus the component rules: typography, buttons, focus ring.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+:root {
+  /* DEPRECATED ALIASES — remove after usage migration */
+
+  /* ── Azul Marinho Palette (canonical: --met-azul-* in met-shell.css) ── */
+  --azul-wash:  var(--met-azul-wash,  #EBF4FB);
+  --azul-light: var(--met-azul-light, #AED6F1);
+  --azul-sky:   var(--met-azul-sky,   #7AB5D8);
+  --azul-mid:   var(--met-azul-mid,   #3873A8);
+  --azul-blue:  var(--met-azul-blue,  #2B6097);
+  --azul-navy:  var(--met-azul-navy,  #1B3A6B);
+  --azul-deep:  var(--met-azul-deep,  #0F1F4D);
+
+  /* ── Orange / Amber Accent (canonical: --met-orange-* in met-shell.css) ── */
+  --orange:       var(--met-orange,       #BE5700);
+  --orange-dark:  var(--met-orange-dark,  #A54E00);
+  --orange-light: var(--met-orange-light, #F4A261);
+  --orange-bg:    var(--met-orange-bg,    #FFF4E6);
+
+  /* ── MET Brand Shorthand (canonical: met-shell.css) ────────── */
+  --met-navy:   var(--met-azul-deep,  #0F1F4D);
+  --met-blue:   var(--met-azul-blue,  #2B6097);
+  --met-sky:    var(--met-azul-light, #AED6F1);
+  --met-wash:   var(--met-azul-wash,  #EBF4FB);
+  --met-light:  var(--met-page-bg,    #F5F8FC);
+
+  /* ── Font Stack (kept literal — canonical typography in met-shell.css) ── */
+  --met-font-heading:    "Cormorant Garamond", "Plus Jakarta Sans", "Aptos", "Segoe UI", system-ui, serif;
+  --met-font-subheading: "Cormorant Garamond", "Plus Jakarta Sans", "Aptos", "Segoe UI", system-ui, serif;
+  --met-font-body:       "DM Sans", "Aptos", "Segoe UI", system-ui, sans-serif;
+  --font:                var(--met-font-body);
+
+  /* ── Semantic Aliases ──────────────────────────────────────── */
+  --navy:        var(--met-azul-navy,  #1B3A6B);
+  --navy-dark:   var(--met-azul-deep,  #0F1F4D);
+  --navy-light:  var(--met-azul-blue,  #2B6097);
+  --sky:         var(--met-azul-mid,   #3873A8);
+  --sky-light:   var(--met-azul-sky,   #7AB5D8);
+  --wash:        var(--met-azul-light, #AED6F1);
+  --bg-wash:     var(--met-azul-wash,  #EBF4FB);
+
+  --ink:         var(--met-azul-deep, #0F1F4D);
+  --text:        var(--met-azul-deep, #0F1F4D);
+  --muted:       var(--met-slate,     #4A5568);
+  --ink-soft:    var(--met-slate,     #4A5568);
+  --text-mid:    var(--met-slate,     #4A5568);
+  --text-muted:  var(--met-slate,     #4A5568);
+
+  --primary:       var(--met-orange,      #BE5700);
+  --primary-dark:  var(--met-orange-dark, #A54E00);
+  --primary-soft:  var(--met-orange-bg,   #FFF4E6);
+
+  /* Legacy aliases — kept for backward compatibility */
+  --teal:          var(--met-azul-blue,  #2B6097);
+  --blue:          var(--met-azul-blue,  #2B6097);
+  --blue-mid:      var(--met-azul-mid,   #3873A8);
+  --blue-light:    var(--met-azul-wash,  #EBF4FB);
+  --blue-border:   var(--met-blue-border, rgba(43, 96, 151, 0.25));
+  --amber:         var(--met-orange-light, #F4A261);
+  --amber-dark:    var(--met-orange,       #BE5700);
+
+  /* ── Surface & Background (canonical: met-shell.css) ───────── */
+  --surface:       var(--met-surface,     #ffffff);
+  --bg-white:      var(--met-bg-white,    #ffffff);
+  --surface-alt:   var(--met-surface-alt, #F5F8FC);
+  --page-bg:       var(--met-page-bg,     #F5F8FC);
+  --bg:            var(--met-bg,          #F5F8FC);
+
+  /* ── Borders (canonical: met-shell.css) ────────────────────── */
+  --line:          var(--met-line,        rgba(15, 23, 42, 0.10));
+  --line-strong:   var(--met-line-strong, rgba(15, 23, 42, 0.20));
+  --border:        var(--met-border,      #D0DFF0);
+  --border-lt:     var(--met-border-lt,   #E8F0F8);
+
+  /* ── Status Colors (canonical: --met-red / --met-green in met-shell.css) ── */
+  --green:         var(--met-green,    #059669);
+  --green-bg:      var(--met-green-bg, #ECFDF5);
+  --red:           var(--met-red,      #DC2626);
+  --red-bg:        var(--met-red-bg,   #FEF2F2);
+
+  /* ── Dashboard text scale (canonical: --met-ink-* in met-shell.css) ── */
+  --ink-max:     var(--met-ink-max,   #020617);
+  --ink-mid:     var(--met-ink-mid,   #49617f);
+  --ink-muted:   var(--met-ink-muted, #4A5568);
+  --ink-faint:   var(--met-ink-muted, #4A5568);
+
+  /* ── Dashboard borders (canonical: --met-border-* in met-shell.css) ── */
+  --border-card: var(--met-border-card, #d5e0ec);
+  --border-soft: var(--met-border-soft, #dbe4ef);
+  --border-xlt:  var(--met-border-xlt,  #e8eef5);
+
+  /* ── Shadows (canonical: --met-shadow-* in met-shell.css) ──── */
+  --shadow-sm: var(--met-shadow-sm, 0 1px 3px rgba(15,23,42,.07));
+  --shadow-md: var(--met-shadow-md, 0 4px 16px rgba(15,23,42,.10));
+  --shadow-lg: var(--met-shadow-lg, 0 8px 32px rgba(15,23,42,.14));
+  --shadow-xl: var(--met-shadow-xl, 0 16px 48px rgba(15,23,42,.18));
+
+  /* ── Radius (canonical: --met-radius-* in met-shell.css) ───── */
+  --r-xs:    var(--met-radius-sm,   4px);
+  --r-sm:    var(--met-radius-sm,   8px);
+  --r-md:    var(--met-radius-md,   12px);
+  --r-lg:    var(--met-radius-lg,   20px);
+  --r-xl:    var(--met-radius-xl,   28px);
+  --r-pill:  var(--met-radius-pill, 999px);
+
+  /* ── Extended Navy Scale (canonical: --met-navy-* in met-shell.css) ── */
+  --navy-950: var(--met-navy-950, #060f20);
+  --navy-925: var(--met-navy-925, #0a1a30);
+  --navy-900: var(--met-navy-900, #0a1a3e);
+  --navy-800: var(--met-navy-800, #0f2354);
+  --navy-700: var(--met-navy-700, #15306e);
+  --navy-600: var(--met-navy-600, #1b3a8a);
+  --navy-500: var(--met-navy-500, #2652b8);
+  --navy-400: var(--met-navy-400, #4a72d4);
+  --navy-300: var(--met-navy-300, #7a9fe8);
+  --navy-200: var(--met-navy-200, #b8cff5);
+  --navy-100: var(--met-navy-100, #e0eaff);
+  --navy-50:  var(--met-navy-50,  #f0f4ff);
+
+  /* ── Teal Scale (canonical: --met-teal-* in met-shell.css) ─── */
+  --teal-700: var(--met-teal-700, #0e7490);
+  --teal-600: var(--met-teal-600, #0891b2);
+  --teal-500: var(--met-teal-500, #06b6d4);
+  --teal-100: var(--met-teal-100, #cffafe);
+
+  /* ── Amber Scale (canonical: --met-amber-* in met-shell.css) ── */
+  --amber-600: var(--met-amber-600, #b45309);
+  --amber-500: var(--met-amber-500, #d97706);
+  --amber-400: var(--met-amber-400, #f59e0b);
+  --amber-100: var(--met-amber-100, #fef3c7);
+}
+
+/* ── Typography Base ────────────────────────────────────────── */
+body {
+  font-family: var(--met-font-body) !important;
+  color: var(--met-navy) !important;
+}
+h1, h2 {
+  font-family: var(--met-font-heading) !important;
+  font-weight: 700 !important;
+  color: var(--met-navy) !important;
+  letter-spacing: -0.01em;
+}
+h3, h4, h5, h6,
+nav a,
+.section-label, .process-kicker, .cta-kicker {
+  font-family: var(--met-font-subheading) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn, .btn-primary, .button.primary, .action-btn.primary,
+.start-btn, .next-btn, .submit-btn, .listening-selector-link {
+  background:   var(--orange) !important;
+  border-color: var(--orange) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: var(--r-sm) !important;
+}
+.btn:hover, .btn-primary:hover, .button.primary:hover,
+.action-btn.primary:hover, .start-btn:hover, .next-btn:hover,
+.submit-btn:hover, .listening-selector-link:hover {
+  background:   var(--orange-dark) !important;
+  border-color: var(--orange-dark) !important;
+}
+.btn-outline, .button.secondary, .action-btn.secondary {
+  border-color: var(--border) !important;
+  color: var(--met-navy) !important;
+  background: transparent !important;
+}
+.btn-outline:hover, .button.secondary:hover, .action-btn.secondary:hover {
+  background: var(--bg-wash) !important;
+}
+
+/* ── Focus ring ──────────────────────────────────────────────── */
+a:focus-visible, button:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(224, 112, 0, 0.40) !important;
+  outline-offset: 3px !important;
+}
