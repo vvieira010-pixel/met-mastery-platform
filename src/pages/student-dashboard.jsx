@@ -198,8 +198,7 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
           </div>
         </header>
 
-        <div id="student-content">
-        <div className="dash-body" role="tabpanel" id={`panel-${tab}`} aria-label={`${activeTabLabel} content`}>
+        <main id="student-content" className="dash-body" aria-label={`${activeTabLabel} content`}>
             {tab === 'home' && <StudentHome student={student} onTab={handleTabChange} />}
             <Suspense fallback={<div className="student-suspense-fallback">Loading…</div>}>
                {tab === 'practice-studio' && <PracticeStudio studentId={student.id} onBack={() => handleTabChange('home')} />}
@@ -211,8 +210,7 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
               {tab === 'messages' && <StudentInbox student={student} />}
               {tab === 'settings' && <StudentSettings student={student} onSignOut={onSignOut} onNavigate={handleTabChange} />}
             </Suspense>
-        </div>
-        </div>
+        </main>
 
         <nav className="dash-bottom-nav" aria-label="Student navigation (mobile)">
           {BOTTOM_NAV_TABS.map(item => (

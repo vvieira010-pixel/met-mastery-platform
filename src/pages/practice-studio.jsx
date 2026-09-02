@@ -67,6 +67,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
   const [sessionKey, setSessionKey] = useState(0);
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   const daysLeft = getDaysUntilExam();
   const examMode = getExamMode();
@@ -99,6 +100,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
     if (!selectedKind) return;
     let cancelled = false;
     setLoading(true);
+    setLoadError(false);
     setFadingVerdict(null);
     setSessionScore(null);
     async function load() {
@@ -120,6 +122,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
         }
       } catch (e) {
         console.warn('[PracticeStudio] Failed to load exercises:', e);
+        if (!cancelled) setLoadError(true);
       }
       if (!cancelled) {
         setExercises(ex);
@@ -271,6 +274,16 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
       ) : loading ? (
         <div className="practice-studio-loading">
           <p>Loading exercises…</p>
+        </div>
+      ) : loadError ? (
+        <div title="Exercises unavailable" style={{ textAlign: 'center', padding: '24px' }}>
+          <p>We couldn't load this practice set. Please try again.</p>
+          <button type="button" onClick={() => setSessionKey(k => k + 1)}>Try again</button>
+        </div>
+      ) : exercises.length === 0 ? (
+        <div title="No exercises available" style={{ textAlign: 'center', padding: '24px' }}>
+          <p>There aren't any exercises for this selection yet. Choose another topic or return to all skills.</p>
+          <button type="button" onClick={() => setSessionKey(k => k + 1)}>Try again</button>
         </div>
       ) : (
         <div key={sessionKey} className="practice-studio-exercises">
