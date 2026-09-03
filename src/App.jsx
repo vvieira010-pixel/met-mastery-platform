@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, Suspense } from 'react';
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import LoginScreen from './pages/login.jsx';
 import LandingPage from './pages/landing-complete.jsx';
 import StudentDashboard from './pages/student-dashboard.jsx';
@@ -59,6 +59,10 @@ const SocialStudio = lazyWithRetry(() => import('./pages/social-studio.jsx'));
 
 export default function App() {
   const [auth, setAuth] = useState(null);
+  // Keep a live ref to auth so the once-mounted realtime subscription below
+  // reads the current role instead of the value captured on first render.
+  const authRef = useRef(auth);
+  useEffect(() => { authRef.current = auth; }, [auth]);
   const [showLogin, setShowLogin] = useState(false);
 
   // Global error handler — catches unhandled rejections and window.onerror
@@ -248,7 +252,7 @@ export default function App() {
    // logged-out → logged-in transition (otherwise React throws "Rendered more
    // hooks than during the previous render" and blanks the app on sign in).
   function refreshPending() {
-    if (auth?.role !== 'teacher') return;
+    if (authRef.current?.role !== 'teacher') return;
     getAllSubmissions().then(list => {
       setPendingSubmissions((list || []).filter(s => s.status === 'submitted').length);
     }).catch(e => console.warn('[submissions] failed to load:', e));

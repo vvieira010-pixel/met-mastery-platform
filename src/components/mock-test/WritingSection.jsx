@@ -84,6 +84,12 @@ export default function WritingSection({ onComplete, writingData }) {
         .ws__prompt { font-size: var(--text-base); line-height: 1.7; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-4); margin: 0; }
         .ws__textarea { min-height: 200px; }
         .ws__wordcount { font-size: var(--text-sm); color: var(--text-muted); text-align: right; }
+        @media (max-width: 640px) {
+          .ws { padding: var(--space-4) var(--space-3); }
+          .ws__main { max-width: 100%; }
+          .ws__prompt { padding: var(--space-3); font-size: var(--text-sm); }
+          .ws__textarea { min-height: 160px; font-size: 16px; }
+        }
       `}</style>
     </div>
   );

@@ -236,6 +236,13 @@ export default function SpeakingSection({ onComplete, speakingData }) {
         .ss__icon--success { color: var(--success); }
         .ss__icon--warning { color: var(--warning); }
         .ss__prep-count { color: var(--text-muted); font-size: var(--text-sm); }
+        @media (max-width: 640px) {
+          .ss { padding: var(--space-4) var(--space-3); }
+          .ss__content { max-width: 100%; }
+          .ss__prompt { padding: var(--space-3); font-size: var(--text-sm); }
+          .ss__countdown-time { font-size: 28px; }
+          .ss__btn { align-self: stretch; min-height: 44px; }
+        }
       `}</style>
     </div>
   );

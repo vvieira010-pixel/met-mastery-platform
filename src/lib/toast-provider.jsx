@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
 const ToastContext = createContext(null);
 
@@ -6,11 +6,13 @@ const TOAST_GLYPHS = { ok: '+', info: 'i', warn: '!', go: '→' };
 
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
+  const timers = useRef([]);
 
   const toast = useCallback((msg, kind = 'ok') => {
     const id = Math.random().toString(36).slice(2);
     setToasts(arr => [...arr, { id, msg, kind }]);
-    setTimeout(() => setToasts(arr => arr.filter(x => x.id !== id)), 3200);
+    const t = setTimeout(() => setToasts(arr => arr.filter(x => x.id !== id)), 3200);
+    timers.current.push(t);
   }, []);
 
   useEffect(() => {
@@ -20,11 +22,14 @@ export function ToastProvider({ children }) {
     return () => {
       window.removeEventListener('vv-toast', onToast);
       delete window.toast;
+      timers.current.forEach(clearTimeout);
     };
   }, [toast]);
 
+  const value = useMemo(() => ({ toast }), [toast]);
+
   return (
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={value}>
       {children}
       <ToastHost toasts={toasts} />
     </ToastContext.Provider>

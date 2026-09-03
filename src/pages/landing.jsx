@@ -93,67 +93,13 @@ const faqs = [
   },
 ];
 
-// Sample Interactive Question for the Hero & Platform Preview
-const sampleQuestions = [
-  {
-    id: 'q1',
-    skill: 'Grammar (Inversion)',
-    level: 'CEFR B2/C1',
-    prompt: 'Scarcely ______ the lecture started when the alarm sounded.',
-    options: [
-      { id: 'a', text: 'had', correct: true },
-      { id: 'b', text: 'was', correct: false },
-      { id: 'c', text: 'did', correct: false },
-      { id: 'd', text: 'would', correct: false },
-    ],
-    explanation:
-      'Correct! After negative or restrictive adverbials like "scarcely" or "hardly", we use inversion with past perfect ("scarcely had + subject + past participle").',
-  },
-  {
-    id: 'q2',
-    skill: 'Academic Collocation',
-    level: 'CEFR C1',
-    prompt: 'The university board reached a ______ decision to approve the revised scholarship guidelines.',
-    options: [
-      { id: 'a', text: 'unanimous', correct: true },
-      { id: 'b', text: 'unified', correct: false },
-      { id: 'c', text: 'solitary', correct: false },
-      { id: 'd', text: 'singular', correct: false },
-    ],
-    explanation:
-      'Correct! "Reach a unanimous decision" is the standard collocated phrase when all committee members are in complete agreement.',
-  },
-];
-
 export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid": testId }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
-  // Hero interactive preview state
-  const [heroTab, setHeroTab] = useState('plan'); // 'plan' | 'diagnostic' | 'exercise'
-  const [heroSelectedOption, setHeroSelectedOption] = useState(null);
-  const [heroAnswerChecked, setHeroAnswerChecked] = useState(false);
-
   // Showcase section state — distilled to 2 tabs (diagnostic + feedback)
   const [showcaseTab, setShowcaseTab] = useState('feedback'); // 'diagnostic' | 'feedback'
-  const [practiceQuestionIdx, setPracticeQuestionIdx] = useState(0);
-  const [practiceSelectedOpt, setPracticeSelectedOpt] = useState(null);
-  const [practiceChecked, setPracticeChecked] = useState(false);
-
-  // Interactive student checklist inside showcase
-  const [studentTasks, setStudentTasks] = useState([
-    { id: 't1', title: 'Listening Part 2: Two-speaker conversation', tag: 'Listening', time: '12 min', done: true },
-    { id: 't2', title: 'Grammar Drill: Negative inversion structures', tag: 'Grammar', time: '15 min', done: false },
-    { id: 't3', title: 'Writing Task 1: Formal academic proposal', tag: 'Writing', time: '25 min', done: false },
-    { id: 't4', title: 'Vocabulary Review: 15 spaced repetition items', tag: 'Vocab', time: '8 min', done: false },
-  ]);
-
-  const toggleTask = (id) => {
-    setStudentTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    );
-  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -169,8 +115,6 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
       target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth' });
     }
   };
-
-  const currentPracticeQ = sampleQuestions[practiceQuestionIdx];
 
   return (
     <div className="v8-landing" data-testid={testId}>

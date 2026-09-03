@@ -143,6 +143,24 @@ export default function ReadingSection({ onComplete, readingData }) {
           onFinish={handleFinish}
         />
       </div>
+      <style>{`
+        .rs { display: flex; min-height: 100%; }
+        .rs__main { flex: 1; min-width: 0; padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); max-width: 960px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .rs__passage { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); margin: 0; }
+        .rs__passage-title { margin: 0 0 var(--space-2); font-size: var(--text-lg); font-weight: 700; color: var(--text); }
+        .rs__passage-text { margin: 0; font-size: var(--text-base); line-height: 1.65; color: var(--text); white-space: pre-wrap; }
+        .rs__passage-text-block + .rs__passage-text-block { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px dashed var(--border); }
+        .rs__question { display: flex; flex-direction: column; gap: var(--space-3); }
+        .rs__q-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+        .rs__q-text { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text); }
+        .rs__options { display: flex; flex-direction: column; gap: var(--space-2); }
+        @media (max-width: 640px) {
+          .rs__main { padding: var(--space-4) var(--space-3); gap: var(--space-4); }
+          .rs__passage { padding: var(--space-3) var(--space-4); }
+          .rs__passage-title { font-size: var(--text-base); }
+          .rs__passage-text { font-size: var(--text-sm); }
+        }
+      `}</style>
     </div>
   );
 }

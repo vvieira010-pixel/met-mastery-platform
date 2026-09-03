@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Icon } from './shared.jsx';
 import { saveDiagnosis } from '../lib/workflow.js';
+import { useBodyScrollLock } from '../lib/use-body-scroll-lock.js';
 
 const BASELINE_QUESTIONS = [
   {
@@ -74,6 +75,9 @@ export default function BaselineDiagnosticModal({
   });
   const [submitting, setSubmitting] = useState(false);
   const [completedResult, setCompletedResult] = useState(null);
+
+  // Prevent background page scroll while this modal is open.
+  useBodyScrollLock(isOpen);
 
   if (!isOpen) return null;
 

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MET Mastery — Academic Progress</title>
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ---- Page / dashboard shell (context only) ---- */
+    :root {
+      --card-bg: #ffffff;
+      --card-radius: 16px;
+      --card-padding: 22px;
+      --ink: #1f2a3d;          /* deep navy text */
+      --ink-soft: #6b7891;     /* muted slate label */
+      --hairline: #eef1f6;     /* faint divider */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #f6f8fb;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .dashboard {
+      max-width: 760px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    /* ---- The "Academic Progress" widget card ---- */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      padding: var(--card-padding);
+      box-shadow: 0 1px 2px rgba(31, 42, 61, 0.04),
+                  0 6px 18px rgba(31, 42, 61, 0.06);
+    }
+
+    .card__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .card__title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin: 0;
+    }
+
+    .card__sub {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      margin: 2px 0 16px;
+    }
+
+    /* ---- Chart canvas wrapper: responsive + preserves card padding ---- */
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      height: 320px;   /* fixed height; width follows the card */
+    }
+
+    /* ---- Minimalist legend (replaces old legend block) ---- */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .legend__item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .legend__dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- ============================================================
+         ACADEMIC PROGRESS WIDGET
+         Replace the previous legend + raw-data block with this markup.
+         ============================================================ -->
+    <section class="card" aria-label="Academic Progress">
+      <div class="card__head">
+        <h2 class="card__title">Academic Progress</h2>
+      </div>
+      <p class="card__sub">Daily percentage scores · Monday – Sunday</p>
+
+      <!-- Chart canvas (scales responsively inside the card) -->
+      <div class="chart-wrap">
+        <canvas id="academicProgressChart"></canvas>
+      </div>
+
+      <!-- Minimalist legend (blue & emerald palette) -->
+      <div class="legend">
+        <span class="legend__item"><span class="legend__dot" style="background:#1b2a4a"></span>Reading</span>
+        <span class="legend__item"><span class="legend__dot" style="background:#7d9cc4"></span>Listening</span>
+        <span class="legend__item"><span class="legend__dot" style="background:#10b981"></span>Speaking</span>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    (function () {
+      const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+      const data = {
+        labels,
+        datasets: [
+          {
+            label: "Reading",
+            data: [72, 78, 75, 82, 80, 85, 88],
+            borderColor: "#1b2a4a",        // deep navy
+            backgroundColor: "rgba(27, 42, 74, 0.08)",
+            pointBackgroundColor: "#1b2a4a",
+            pointBorderColor: "#ffffff",
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            borderWidth: 2.5,
+            tension: 0.35,
+            fill: true
+          },
+          {
+            label: "Listening",
+            data: [65, 70, 68, 72, 75, 73, 79],
+            borderColor: "#7d9cc4",        // soft slate blue
+            backgroundColor: "rgba(125, 156, 196, 0.07)",
+            pointBackgroundColor: "#7d9cc4",
+            pointBorderColor: "#ffffff",
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            borderWidth: 2.5,
+            tension: 0.35,
+            fill: true
+          },
+          {
+            label: "Speaking",
+            data: [58, 62, 67, 64, 70, 74, 76],
+            borderColor: "#10b981",        // emerald green
+            backgroundColor: "rgba(16, 185, 129, 0.08)",
+            pointBackgroundColor: "#10b981",
+            pointBorderColor: "#ffffff",
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            borderWidth: 2.5,
+            tension: 0.35,
+            fill: true
+          }
+        ]
+      };
+
+      const config = {
+        type: "line",
+        data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,     // canvas fills .chart-wrap height
+          interaction: { mode: "index", intersect: false },
+          plugins: {
+            legend: { display: false },   // using custom HTML legend above
+            tooltip: {
+              backgroundColor: "#1f2a3d",
+              titleColor: "#ffffff",
+              bodyColor: "#eef1f6",
+              padding: 10,
+              cornerRadius: 8,
+              displayColors: true,
+              callbacks: {
+                label: function (ctx) {
+                  return ctx.dataset.label + ": " + ctx.parsed.y + "%";
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },    // no vertical grid lines
+              border: { display: false },  // subtle, no axis line
+              ticks: { color: "#6b7891", font: { size: 12 } }
+            },
+            y: {
+              min: 0,
+              max: 100,
+              grid: { display: false },    // remove heavy background grid
+              border: { display: false },  // subtle, no axis line
+              ticks: {
+                color: "#6b7891",
+                font: { size: 12 },
+                stepSize: 20,
+                callback: function (value) { return value + "%"; }
+              }
+            }
+          }
+        }
+      };
+
+      new Chart(document.getElementById("academicProgressChart"), config);
+    })();
+  </script>
+</body>
+</html>

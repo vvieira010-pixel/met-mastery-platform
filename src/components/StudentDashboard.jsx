@@ -3,7 +3,6 @@ import { Icon } from './shared.jsx';
 import StudentOnboardingTour from './StudentOnboardingTour.jsx';
 import MetProgressPathGraph from './MetProgressPathGraph.jsx';
 import CefrSkillGapFlags from './CefrSkillGapFlags.jsx';
-import ImprovementMatrix from './ImprovementMatrix.jsx';
 import {
   getHomework,
   getDiagnoses,

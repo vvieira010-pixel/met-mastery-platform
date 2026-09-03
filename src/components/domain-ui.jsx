@@ -15,8 +15,6 @@ export function StudentFeedbackView({ feedback }) {
   if (!feedback || typeof feedback !== 'object') return null;
   const wins = (Array.isArray(feedback.whatYouDidWell) ? feedback.whatYouDidWell : [])
     .filter(w => w && (w.strength || w.explanation));
-  const fixes = (Array.isArray(feedback.whatToImprove) ? feedback.whatToImprove : [])
-    .filter(f => f && (f.area || f.howToImprove || f.insteadOf || f.sayInstead));
   const card = {
     border: '1px solid var(--border)', borderRadius: 'var(--radius-md)',
     padding: 16, background: 'var(--surface)',

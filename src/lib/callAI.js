@@ -44,7 +44,7 @@ export async function callAI(prompt, { max_tokens = 2048, system, temperature = 
       try {
         const errJson = await r.json();
         errorMsg = errJson?.error?.message || errorMsg;
-      } catch {}
+      } catch (parseErr) { console.warn('[callAI] could not parse AI error body', { status: r.status, message: parseErr?.message }); }
     } else {
       const text = await r.text().catch(() => '');
       if (text.includes('<!doctype') || text.includes('<html')) {

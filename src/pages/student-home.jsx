@@ -5,9 +5,10 @@ import { getExamMode, getExamModeLabel, getExamModeDescription, MODE_BUILDING, M
 import { getDueCount, getDueItems, toMCQ, getAllEntries } from '../lib/spaced-repetition.js';
 import { getTeacherSetting, getStudentSetting, setStudentSetting } from '../lib/supabase-db.js';
 import { asArray, getSkillTrend, hasVisibleApprovedStudentFeedback } from './student-helpers.jsx';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { lazyWithRetry } from '../lib/utils.js';
+import { useBodyScrollLock } from '../lib/use-body-scroll-lock.js';
 import LiveClassSchedulingGuardrails from '../components/LiveClassSchedulingGuardrails.jsx';
+import AcademicProgressChart from '../components/AcademicProgressChart.jsx';
 
 const ReviewSession = lazyWithRetry(() => import('../components/ReviewSession.jsx'));
 const ExercisePlayer = lazyWithRetry(() => import('../components/exercises/ExercisePlayer.jsx'));
@@ -102,6 +103,14 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
   const [qpSessionKey, setQpSessionKey] = useState(0);
   const [qpProgress, setQpProgress] = useState({});
   const [reduceMotion, setReduceMotion] = useState(false);
+
+  // recharts is ~127 KB gzip — lazy-load it so it stays out of the entry chunk.
+  const [loaded, setLoaded] = useState(false);
+  const [Modules, setModules] = useState(null);
+  useEffect(() => { import('recharts').then(m => { setModules(m); setLoaded(true); }); }, []);
+
+  // Keep the page from scrolling behind the Quick Practice modal.
+  useBodyScrollLock(qpOpen);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -462,6 +471,17 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
           </div>
 
           <div className="home-bento fade-up" style={{ '--delay': '0.3s' }}>
+            <Card bezel as="section" className="home-bento-cell" style={{ gridColumn: '1 / -1' }} data-testid="academic-progress-chart" aria-labelledby="academic-progress-title">
+              <div className="student-panel-head">
+                <div>
+                  <span className="student-panel-kicker">This week</span>
+                  <h2 id="academic-progress-title">Academic Progress</h2>
+                </div>
+                <span className="student-pill">Daily scores · Mon–Sun</span>
+              </div>
+              <AcademicProgressChart />
+            </Card>
+
             <Card bezel className="home-bento-cell home-bento-cell--orange home-evidence-card">
               <div className="student-panel-head">
                 <div>
@@ -474,21 +494,23 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
                 <span><i className="student-chart-key student-chart-key--confidence" aria-hidden="true" />Confidence</span>
               </div>
               <div className="student-chart-wrap">
-                {developmentData.length > 0 ? (
+                {!loaded ? (
+                  <div className="student-chart-skeleton" style={{ height: 260, borderRadius: 8, background: 'var(--bg-2, rgba(0,0,0,0.04))' }} aria-hidden="true" />
+                ) : developmentData.length > 0 ? (
                   <>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={developmentData} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--divider)" />
-                      <XAxis dataKey="name" fontSize={11} tickLine={false} axisLine={false} />
-                      <YAxis fontSize={11} tickLine={false} axisLine={false} domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
-                      <Tooltip
+                  <Modules.ResponsiveContainer width="100%" height="100%">
+                    <Modules.BarChart data={developmentData} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
+                      <Modules.CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--divider)" />
+                      <Modules.XAxis dataKey="name" fontSize={11} tickLine={false} axisLine={false} />
+                      <Modules.YAxis fontSize={11} tickLine={false} axisLine={false} domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
+                      <Modules.Tooltip
                         cursor={{ fill: 'var(--orange-soft)' }}
                         formatter={(value, name) => [value + '%', name]}
                       />
-                      <Bar dataKey="development" name="Development" fill="var(--orange)" radius={[4, 4, 0, 0]} isAnimationActive={!reduceMotion} />
-                      <Bar dataKey="confidence" name="Confidence" fill="var(--primary)" fillOpacity={0.7} radius={[4, 4, 0, 0]} isAnimationActive={!reduceMotion} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                      <Modules.Bar dataKey="development" name="Development" fill="var(--orange)" radius={[4, 4, 0, 0]} isAnimationActive={!reduceMotion} />
+                      <Modules.Bar dataKey="confidence" name="Confidence" fill="var(--primary)" fillOpacity={0.7} radius={[4, 4, 0, 0]} isAnimationActive={!reduceMotion} />
+                    </Modules.BarChart>
+                  </Modules.ResponsiveContainer>
                   <table className="sr-only">
                     <caption>Development trend across homework, diagnoses, and practice</caption>
                     <thead><tr><th>Item</th><th>Development</th><th>Confidence</th></tr></thead>

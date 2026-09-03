@@ -264,6 +264,24 @@ export default function ListeningSection({ onComplete, listeningData }) {
           onFinish={handleFinish}
         />
       </div>
+      <style>{`
+        .ls { display: flex; min-height: 100%; }
+        .ls__main { flex: 1; min-width: 0; padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); max-width: 960px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .ls__q-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+        .ls__part-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+        .ls__part-header-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); }
+        .ls__part-header-instructions { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.5; }
+        .ls__audio-row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+        .ls__audio-row audio { flex: 1; min-width: 0; }
+        .ls__audio-status { font-size: var(--text-sm); color: var(--text-muted); }
+        .ls__q-text { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text); }
+        .ls__options { display: flex; flex-direction: column; gap: var(--space-2); }
+        @media (max-width: 640px) {
+          .ls__main { padding: var(--space-4) var(--space-3); gap: var(--space-4); }
+          .ls__part-header { padding: var(--space-3) var(--space-4); }
+          .ls__audio-row audio { width: 100%; }
+        }
+      `}</style>
     </div>
   );
 }

@@ -1,17 +1,5 @@
-import { useState, useMemo } from 'react';
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ReferenceLine,
-  Legend,
-} from 'recharts';
+import { useState, useMemo, useEffect } from 'react';
+// recharts is lazy-loaded below (~146 KB; not needed on first paint)
 import { Icon } from './shared.jsx';
 import { asArray, getProgressStage } from '../pages/student-helpers.jsx';
 
@@ -87,6 +75,14 @@ export default function MetProgressPathGraph({
   'data-testid': testId = 'met-progress-path-graph',
 }) {
   const [viewMode, setViewMode] = useState('overall'); // 'overall' | 'skills'
+
+  // recharts dynamic import (deferred until this view is actually rendered)
+  const [rechartsModules, setRechartsModules] = useState(null);
+  useEffect(() => {
+    let mounted = true;
+    import('recharts').then((m) => { if (mounted) setRechartsModules(m); });
+    return () => { mounted = false; };
+  }, []);
 
   // Build the chronological trajectory path
   const pathData = useMemo(() => {
@@ -395,90 +391,94 @@ export default function MetProgressPathGraph({
 
       {/* ── RECHARTS VISUALIZATION ── */}
       <div style={{ width: '100%', height: 280, position: 'relative' }}>
-        <ResponsiveContainer width="100%" height="100%">
-          {viewMode === 'overall' ? (
-            <AreaChart data={pathData} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
-              <defs>
-                <linearGradient id="metPathGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--primary, #0284c7)" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="var(--primary, #0284c7)" stopOpacity={0.02} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
-              <XAxis
-                dataKey="name"
-                tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
-                tickLine={false}
-              />
-              <YAxis
-                domain={[20, 80]}
-                ticks={[20, 40, 53, 65, 80]}
-                tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
-                tickLine={false}
-              />
-              <Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
+        {rechartsModules ? (
+          <rechartsModules.ResponsiveContainer width="100%" height="100%">
+            {viewMode === 'overall' ? (
+              <rechartsModules.AreaChart data={pathData} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="metPathGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--primary, #0284c7)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--primary, #0284c7)" stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <rechartsModules.CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
+                <rechartsModules.XAxis
+                  dataKey="name"
+                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tickLine={false}
+                />
+                <rechartsModules.YAxis
+                  domain={[20, 80]}
+                  ticks={[20, 40, 53, 65, 80]}
+                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tickLine={false}
+                />
+                <rechartsModules.Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
 
-              {/* Benchmark Reference Lines */}
-              <ReferenceLine
-                y={53}
-                stroke="#16a34a"
-                strokeDasharray="4 4"
-                label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
-              />
-              <ReferenceLine
-                y={65}
-                stroke="#0ea5e9"
-                strokeDasharray="4 4"
-                label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: '#0ea5e9', fontSize: 10, fontWeight: 700 }}
-              />
+                {/* Benchmark Reference Lines */}
+                <rechartsModules.ReferenceLine
+                  y={53}
+                  stroke="#16a34a"
+                  strokeDasharray="4 4"
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
+                />
+                <rechartsModules.ReferenceLine
+                  y={65}
+                  stroke="#0ea5e9"
+                  strokeDasharray="4 4"
+                  label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: '#0ea5e9', fontSize: 10, fontWeight: 700 }}
+                />
 
-              <Area
-                type="monotone"
-                dataKey="overall"
-                name="Scaled Score"
-                stroke="var(--primary, #0284c7)"
-                strokeWidth={3}
-                fillOpacity={1}
-                fill="url(#metPathGradient)"
-                dot={{ r: 5, fill: 'var(--primary, #0284c7)', strokeWidth: 2, stroke: '#ffffff' }}
-                activeDot={{ r: 7, strokeWidth: 2, stroke: 'var(--primary, #0284c7)' }}
-              />
-            </AreaChart>
-          ) : (
-            <LineChart data={pathData} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
-              <XAxis
-                dataKey="name"
-                tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
-                tickLine={false}
-              />
-              <YAxis
-                domain={[20, 80]}
-                ticks={[20, 40, 53, 65, 80]}
-                tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
-                tickLine={false}
-              />
-              <Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
-              <Legend wrapperStyle={{ fontSize: 11, paddingTop: 6 }} />
+                <rechartsModules.Area
+                  type="monotone"
+                  dataKey="overall"
+                  name="Scaled Score"
+                  stroke="var(--primary, #0284c7)"
+                  strokeWidth={3}
+                  fillOpacity={1}
+                  fill="url(#metPathGradient)"
+                  dot={{ r: 5, fill: 'var(--primary, #0284c7)', strokeWidth: 2, stroke: '#ffffff' }}
+                  activeDot={{ r: 7, strokeWidth: 2, stroke: 'var(--primary, #0284c7)' }}
+                />
+              </rechartsModules.AreaChart>
+            ) : (
+              <rechartsModules.LineChart data={pathData} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
+                <rechartsModules.CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
+                <rechartsModules.XAxis
+                  dataKey="name"
+                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tickLine={false}
+                />
+                <rechartsModules.YAxis
+                  domain={[20, 80]}
+                  ticks={[20, 40, 53, 65, 80]}
+                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tickLine={false}
+                />
+                <rechartsModules.Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
+                <rechartsModules.Legend wrapperStyle={{ fontSize: 11, paddingTop: 6 }} />
 
-              <ReferenceLine
-                y={53}
-                stroke="#16a34a"
-                strokeDasharray="4 4"
-                label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
-              />
+                <rechartsModules.ReferenceLine
+                  y={53}
+                  stroke="#16a34a"
+                  strokeDasharray="4 4"
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
+                />
 
-              <Line type="monotone" dataKey="listening" name="Listening" stroke="#0284c7" strokeWidth={2} dot={{ r: 4 }} />
-              <Line type="monotone" dataKey="reading" name="Reading" stroke="#10b981" strokeWidth={2} dot={{ r: 4 }} />
-              <Line type="monotone" dataKey="speaking" name="Speaking" stroke="#f59e0b" strokeWidth={2} dot={{ r: 4 }} />
-              <Line type="monotone" dataKey="writing" name="Writing" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 4 }} />
-            </LineChart>
-          )}
-        </ResponsiveContainer>
+                <rechartsModules.Line type="monotone" dataKey="listening" name="Listening" stroke="#0284c7" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="reading" name="Reading" stroke="#10b981" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="speaking" name="Speaking" stroke="#f59e0b" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="writing" name="Writing" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 4 }} />
+              </rechartsModules.LineChart>
+            )}
+          </rechartsModules.ResponsiveContainer>
+        ) : (
+          <div className="student-chart-skeleton" style={{ width: '100%', height: 280, borderRadius: 8, background: 'var(--bg-2, rgba(0,0,0,0.04))' }} aria-hidden="true" />
+        )}
 
         {/* Screen Reader Accessible Table */}
         <table className="sr-only">

@@ -1,5 +1,6 @@
 import { useId, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useBodyScrollLock } from '../../lib/use-body-scroll-lock.js';
 
 const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -9,6 +10,9 @@ export function Modal({ open, onClose, kicker, title, subtitle, maxWidth = 680, 
   const idPrefix = useId().replace(/:/g, '');
   const titleId = `${idPrefix}-title`;
   const subtitleId = `${idPrefix}-subtitle`;
+
+  // Prevent background scroll behind the open modal (and its fullscreen variant).
+  useBodyScrollLock(open);
 
   useEffect(() => {
     if (!open) return;

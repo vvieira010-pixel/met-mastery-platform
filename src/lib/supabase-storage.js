@@ -215,7 +215,7 @@ export async function signInWithPassword(email, password) {
   });
   if (!res.ok) {
     let msg = `Sign-in failed (${res.status})`;
-    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch {}
+    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch (err) { console.warn('[supabase-storage] could not parse error body', { status: res.status, message: err?.message }); }
     throw new Error(msg);
   }
   return res.json();
@@ -235,7 +235,7 @@ export async function signUpWithPassword(email, password) {
   });
   if (!res.ok) {
     let msg = `Sign-up failed (${res.status})`;
-    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch {}
+    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch (err) { console.warn('[supabase-storage] could not parse error body', { status: res.status, message: err?.message }); }
     throw new Error(msg);
   }
   return res.json();
@@ -264,7 +264,7 @@ export async function resetPasswordForEmail(email, redirectTo) {
   });
   if (!res.ok) {
     let msg = `Reset request failed (${res.status})`;
-    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch {}
+    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch (err) { console.warn('[supabase-storage] could not parse error body', { status: res.status, message: err?.message }); }
     throw new Error(msg);
   }
   return { ok: true };
@@ -289,7 +289,7 @@ export async function updateUserPassword(newPassword, accessToken) {
   });
   if (!res.ok) {
     let msg = `Password update failed (${res.status})`;
-    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch {}
+    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch (err) { console.warn('[supabase-storage] could not parse error body', { status: res.status, message: err?.message }); }
     throw new Error(msg);
   }
   return { ok: true };
@@ -322,7 +322,7 @@ export async function sendMagicLink(email, redirectTo, { createUser = false } = 
   });
   if (!res.ok) {
     let msg = `Magic-link request failed (${res.status})`;
-    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch {}
+    try { const j = await res.json(); msg = j.msg || j.error_description || j.error || msg; } catch (err) { console.warn('[supabase-storage] could not parse error body', { status: res.status, message: err?.message }); }
     throw new Error(msg);
   }
   return { ok: true };

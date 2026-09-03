@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from 'react'; // ExercisePlayer
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react'; // ExercisePlayer
 import { motion } from 'motion/react';
 import { Icon } from '../shared.jsx';
 import { loadExercises } from './validateExercise.js';
@@ -374,7 +374,7 @@ function ScoreSummary({ results }) {
  *   onSessionComplete — called with { results, score } when all done
  */
 export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4 }) {
-  const { exercises, errors } = loadExercises(Array.isArray(raw) ? raw : (raw || []));
+  const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
   const [results, setResults] = useState([]);
   const [done, setDone] = useState(false);

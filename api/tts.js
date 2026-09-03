@@ -3,6 +3,8 @@
  * Supports Deepgram, ElevenLabs, OpenAI, and Gemini.
  */
 
+import { isSameOrigin } from './_config.js';
+
 const env = (name) => process.env[name] || '';
 
 const VOICES = {
@@ -92,6 +94,12 @@ async function tryGemini(text, gender) {
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: { message: 'Method not allowed' } });
+  }
+
+  // Mirror the cross-origin guard used by save-submission.js — without it any
+  // origin can drive the (paid) TTS cascade and bill our provider accounts.
+  if (!isSameOrigin(req)) {
+    return res.status(403).json({ error: { message: 'Forbidden — cross-origin request.' } });
   }
 
   let body = req.body;

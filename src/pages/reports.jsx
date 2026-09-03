@@ -7,7 +7,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { getDiagnoses, getHomework, getErrorBank, getAllSubmissions, getProgressNotes } from '../lib/workflow.js';
 import { buildExerciseMix } from '../lib/report-metrics.js';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+// recharts is lazy-loaded below (~146 KB; not needed on first paint)
 
 export default function ReportsPage({ students, onNavigate, workspaceQuery = '', "data-testid": testId }) {
   const [selectedStudent, setSelectedStudent] = useState('');
@@ -15,6 +15,13 @@ export default function ReportsPage({ students, onNavigate, workspaceQuery = '',
   const [loading, setLoading] = useState(false);
   const [exerciseTypeFilter, setExerciseTypeFilter] = useState('all');
   const [reduceMotion, setReduceMotion] = useState(false);
+  // recharts dynamic import (deferred until this view is actually rendered)
+  const [rechartsModules, setRechartsModules] = useState(null);
+  useEffect(() => {
+    let mounted = true;
+    import('recharts').then((m) => { if (mounted) setRechartsModules(m); });
+    return () => { mounted = false; };
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -161,18 +168,22 @@ export default function ReportsPage({ students, onNavigate, workspaceQuery = '',
               <SectionHeader title="Which MET skills have enough evidence?" icon={<Icon.diagnose size={14} />} />
               <p className="text-caption">Approved diagnoses only. Missing evidence stays visible instead of becoming a score.</p>
               <div className="chart-wrap-320 mt-2">
-                <ResponsiveContainer>
-                  <BarChart data={report.skillCoverageChart} layout="vertical" margin={{ top: 8, right: 16, left: 48, bottom: 8 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                    <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: 'var(--text-2)' }} axisLine={{ stroke: 'var(--divider)' }} tickLine={{ stroke: 'var(--divider)' }} label={{ value: 'Approved diagnoses', position: 'insideBottom', offset: -2, fill: 'var(--text-2)', fontSize: 11 }} />
-                    <YAxis type="category" dataKey="skill" width={82} tick={{ fontSize: 12, fill: 'var(--text-2)' }} axisLine={{ stroke: 'var(--divider)' }} tickLine={{ stroke: 'var(--divider)' }} />
-                    <Tooltip cursor={{ fill: 'var(--ink-light)' }} />
-                    <Legend wrapperStyle={{ fontSize: 12 }} />
-                  <Bar dataKey="enoughEvidence" name="Evaluated with evidence" stackId="coverage" fill="var(--accent)" isAnimationActive={!reduceMotion} animationDuration={900} />
-                  <Bar dataKey="lowEvidence" name="Not evaluated enough" stackId="coverage" fill="var(--warning)" isAnimationActive={!reduceMotion} animationDuration={1100} />
-                  <Bar dataKey="notEvaluated" name="Not evaluated" stackId="coverage" fill="var(--muted)" isAnimationActive={!reduceMotion} animationDuration={1300} />
-                  </BarChart>
-                </ResponsiveContainer>
+                {rechartsModules ? (
+                  <rechartsModules.ResponsiveContainer>
+                    <rechartsModules.BarChart data={report.skillCoverageChart} layout="vertical" margin={{ top: 8, right: 16, left: 48, bottom: 8 }}>
+                      <rechartsModules.CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <rechartsModules.XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: 'var(--text-2)' }} axisLine={{ stroke: 'var(--divider)' }} tickLine={{ stroke: 'var(--divider)' }} label={{ value: 'Approved diagnoses', position: 'insideBottom', offset: -2, fill: 'var(--text-2)', fontSize: 11 }} />
+                      <rechartsModules.YAxis type="category" dataKey="skill" width={82} tick={{ fontSize: 12, fill: 'var(--text-2)' }} axisLine={{ stroke: 'var(--divider)' }} tickLine={{ stroke: 'var(--divider)' }} />
+                      <rechartsModules.Tooltip cursor={{ fill: 'var(--ink-light)' }} />
+                      <rechartsModules.Legend wrapperStyle={{ fontSize: 12 }} />
+                    <rechartsModules.Bar dataKey="enoughEvidence" name="Evaluated with evidence" stackId="coverage" fill="var(--accent)" isAnimationActive={!reduceMotion} animationDuration={900} />
+                    <rechartsModules.Bar dataKey="lowEvidence" name="Not evaluated enough" stackId="coverage" fill="var(--warning)" isAnimationActive={!reduceMotion} animationDuration={1100} />
+                    <rechartsModules.Bar dataKey="notEvaluated" name="Not evaluated" stackId="coverage" fill="var(--muted)" isAnimationActive={!reduceMotion} animationDuration={1300} />
+                    </rechartsModules.BarChart>
+                  </rechartsModules.ResponsiveContainer>
+                ) : (
+                  <div className="student-chart-skeleton" style={{ height: 320, borderRadius: 8, background: 'var(--bg-2, rgba(0,0,0,0.04))' }} aria-hidden="true" />
+                )}
                 <table className="sr-only">
                   <caption>Skill coverage across diagnoses</caption>
                   <thead><tr><th>Skill</th><th>Evaluated with evidence</th><th>Not evaluated enough</th><th>Not evaluated</th></tr></thead>

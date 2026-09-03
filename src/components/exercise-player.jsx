@@ -530,13 +530,16 @@ function SpeakPlayer({ ex, res, update, readOnly }) {
   useEffect(() => () => { clearInterval(timerRef.current); mediaRef.current?.stream?.getTracks().forEach(t => t.stop()); }, []);
 
   // Restore a previously-recorded answer (base64 inline, or a signed URL for a Storage path).
+  // Depend on the individual fields, not `res` — the caller passes
+  // `responses?.[id] || {}`, a fresh object literal on every render, which ran
+  // this effect (and re-signed the audio URL) on every single render.
   useEffect(() => {
     if (res?.audioB64) { setPlaybackUrl(res.audioB64); setStatus('done'); return; }
     if (res?.audioPath) {
       setStatus('done');
       createSignedAudioUrl(res.audioPath).then(url => { if (url) setPlaybackUrl(url); });
     }
-  }, [res]);
+  }, [res?.audioB64, res?.audioPath]);
 
   return (
     <div>
@@ -728,10 +731,21 @@ function OrderPlayer({ ex, res, update, readOnly }) {
     return shuffleArray(indices, ex.id);
   });
 
-  // Sync order to response
+  // `update` is recreated on every render by the parent, so it must never sit
+  // in a dep array — doing so made the sync effect fire every render, which
+  // called update -> parent setState -> re-render -> effect, i.e. an unbounded
+  // loop. Route it through a ref and call it explicitly where order changes.
+  const updateRef = useRef(update);
+  useEffect(() => { updateRef.current = update; });
+
+  // Persist the initial (deterministic) shuffle exactly once, so a student who
+  // never reorders still has an `order` on their response for grading.
+  const didInitOrder = useRef(false);
   useEffect(() => {
-    if (!readOnly && order.length > 0) update({ order });
-  }, [order, readOnly, update]);
+    if (readOnly || didInitOrder.current || order.length === 0) return;
+    didInitOrder.current = true;
+    updateRef.current({ order });
+  }, [order, readOnly]);
 
   const move = (i, dir) => {
     if (readOnly) return;
@@ -740,6 +754,7 @@ function OrderPlayer({ ex, res, update, readOnly }) {
     const next = [...order];
     [next[i], next[j]] = [next[j], next[i]];
     setLocalOrder(next);
+    updateRef.current({ order: next });
   };
 
   const isCorrect = order.every((idx, i) => idx === i);
