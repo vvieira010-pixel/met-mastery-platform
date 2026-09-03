@@ -58,15 +58,32 @@ async function getSupplementaryListening() {
   return supplementaryListeningPromise;
 }
 
+let met26Promise = null;
+async function getMet26Conversations() {
+  if (!met26Promise) {
+    met26Promise = (async () => {
+      try {
+        const mod = await import('../../met_26_conversations.json', { with: { type: 'json' } });
+        return mod.default?.exercises || mod.exercises || [];
+      } catch {
+        return [];
+      }
+    })();
+  }
+  return met26Promise;
+}
+
 export async function getListeningAudioGroups() {
   const { vocabTopics } = await getFullData();
   const { LISTENING } = await import('./met-b2-exercises.js');
   const supplementary = await getSupplementaryListening();
+  const met26 = await getMet26Conversations();
 
   const allListening = [
     ...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'listen')),
     ...LISTENING,
-    ...supplementary
+    ...supplementary,
+    ...met26
   ];
 
   const groups = new Map();
@@ -128,11 +145,13 @@ export async function getListeningExercises(audioId) {
   const { vocabTopics } = await getFullData();
   const { LISTENING } = await import('./met-b2-exercises.js');
   const supplementary = await getSupplementaryListening();
+  const met26 = await getMet26Conversations();
   
   const allListening = [
     ...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'listen' || e.type === 'embed')),
     ...LISTENING,
-    ...supplementary
+    ...supplementary,
+    ...met26
   ];
 
   return allListening
