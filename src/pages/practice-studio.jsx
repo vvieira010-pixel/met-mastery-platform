@@ -278,8 +278,9 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                   </div>
                   <div className="grid-square">
                     {visible.map(t => (
-                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} aria-label={t.title.replace(' · ', ' — ')} style={{ cursor: 'pointer' }}>
+                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} ariaLabel={`${t.title.replace(' · ', ' — ')}${t.subtitle ? ` — ${t.subtitle}` : ''}`} style={{ cursor: 'pointer', minHeight: 44, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }} aria-hidden="true">{t.title}</div>
+                      {t.subtitle && <div style={{ fontSize: 'var(--text-2xs)', color: 'var(--muted)', textAlign: 'center', marginTop: 4, lineHeight: 1.3 }} aria-hidden="true">{t.subtitle}</div>}
                     </Card>
                     ))}
                   </div>
@@ -339,8 +340,9 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                   </div>
                   <div className="grid-square">
                     {items.map(t => (
-                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} aria-label={t.title.replace(' · ', ' — ')} style={{ cursor: 'pointer' }}>
+                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} ariaLabel={`${t.title.replace(' · ', ' — ')}${t.subtitle ? ` — ${t.subtitle}` : ''}`} style={{ cursor: 'pointer', minHeight: 44, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }} aria-hidden="true">{t.title}</div>
+                      {t.subtitle && <div style={{ fontSize: 'var(--text-2xs)', color: 'var(--muted)', textAlign: 'center', marginTop: 4, lineHeight: 1.3 }} aria-hidden="true">{t.subtitle}</div>}
                     </Card>
                     ))}
                   </div>
@@ -419,13 +421,13 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
           {fadingVerdict && sessionScore !== null && (
             <div className={`fading-verdict fading-verdict--${fadingVerdict.verdict}`} style={{ marginTop: 12, padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid', fontSize: 'var(--text-xs)', lineHeight: 1.5 }}>
               {fadingVerdict.verdict === 'reduce' && (
-                <>You've progressed to <strong>Level {fadingVerdict.newLevel}</strong> ({getLevelInfo(fadingVerdict.newLevel).label}) for this topic. {fadingVerdict.reason}.</>
+                <>Progress! Now <strong>{getLevelInfo(fadingVerdict.newLevel).label}</strong> — fewer hints for this topic. {fadingVerdict.reason}.</>
               )}
               {fadingVerdict.verdict === 'restore' && (
-                <>{fadingVerdict.reason}. You're now at <strong>Level {fadingVerdict.newLevel}</strong>.</>
+                <>{fadingVerdict.reason}. Now <strong>{getLevelInfo(fadingVerdict.newLevel).label}</strong> — more support, and that's okay.</>
               )}
               {fadingVerdict.verdict === 'hold' && (
-                <>Holding at <strong>Level {fadingVerdict.currentLevel}</strong>. Keep practising — consistency builds confidence.</>
+                <>Staying at <strong>{getLevelInfo(fadingVerdict.currentLevel).label}</strong>. Keep practising — consistency builds confidence.</>
               )}
             </div>
           )}
