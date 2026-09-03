@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import LoginScreen from './pages/login.jsx';
-import LandingPage from './pages/landing.jsx';
+import LandingPage from './pages/landing-complete.jsx';
 import StudentDashboard from './pages/student-dashboard.jsx';
 import ErrorBoundary from './components/error-boundary.jsx';
 import { logError } from './lib/error-logger.js';

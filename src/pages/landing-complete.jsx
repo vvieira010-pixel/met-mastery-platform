@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import '../styles/landing-complete.css';
+import '../styles/landing-complete-overrides.css';
+import '../styles/landing-complete-full-page.css';
 
 const skills = [['Reading', '78%'], ['Listening', '54%'], ['Writing', '66%'], ['Speaking', '71%'], ['Grammar', '64%'], ['Vocabulary', '69%']];
 const methodSteps = [
@@ -10,18 +13,18 @@ const methodSteps = [
   ['06', 'Ask your teacher', 'Bring writing and speaking work to a human when nuance matters most.'],
 ];
 
-export function App() {
+export default function LandingComplete({ onMemberSignIn, "data-testid": testId }) {
   const [tourOpen, setTourOpen] = useState(false);
   const [taskStarted, setTaskStarted] = useState(false);
   const [question, setQuestion] = useState(2);
   const [audience, setAudience] = useState('student');
   const [menuOpen, setMenuOpen] = useState(false);
-  return <main className="landing-preview">
+  return <main className="landing-preview" data-testid={testId}>
     <header className="site-header">
       <a className="site-brand" href="#top"><span className="brand-mark">M</span><span>MET Mastery</span></a>
       <button className="menu-button" type="button" onClick={() => setMenuOpen((open) => !open)} aria-expanded={menuOpen} aria-controls="site-nav">Menu</button>
       <nav id="site-nav" className={menuOpen ? 'open' : ''}><a href="#method" onClick={() => setMenuOpen(false)}>The learning loop</a><a href="#how" onClick={() => setMenuOpen(false)}>How it works</a><a href="#teachers" onClick={() => setMenuOpen(false)}>For teachers</a></nav>
-      <a className="signin-link" href="#start">Sign in</a><a className="header-cta" href="#start">Find my starting point <span aria-hidden="true">→</span></a>
+      <button className="signin-link" type="button" onClick={onMemberSignIn}>Sign in</button><a className="header-cta" href="#start">Find my starting point <span aria-hidden="true">→</span></a>
     </header>
     <section className="hero" id="top">
       <div className="hero-copy"><p className="eyebrow">CLEAR PRACTICE. BETTER FEEDBACK. REAL PROGRESS.</p><h1>Stop guessing.<br /><span>Start with a plan.</span></h1><p>Take one diagnostic, see which skills need your time, and practise with a teacher-supported plan built around your target score.</p><div className="hero-actions"><a className="hero-primary" href="#start">Find my starting point <span>→</span></a><a className="hero-secondary" href="#how">See how it works <span>↓</span></a></div><ul><li>All six MET skills</li><li>Provisional, honest scoring</li><li>Teacher review when it counts</li></ul></div>
