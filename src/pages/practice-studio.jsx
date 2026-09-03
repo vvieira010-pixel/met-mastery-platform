@@ -2,27 +2,26 @@ import { useState, useEffect, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Icon, Card } from '../components/shared.jsx';
+import { Icon } from '../components/shared.jsx';
 import ExercisePlayer from '../components/exercises/ExercisePlayer.jsx';
 import FadingBanner from '../components/FadingBanner.jsx';
 import { getGrammarExercises, getTopicList, getVocabExercises, getSpeakingExercises, getWritingExercises, getListeningExercises, getListeningAudioGroups, getReadingExercises } from '../lib/vocab-homework-bank.js';
 import { savePracticeSession } from '../lib/workflow.js';
 import { getExamMode, getDaysUntilExam, MODE_SPRINT } from '../lib/exam-window.js';
 import { LISTENING_FORMATS } from '../lib/exercise-types.js';
-import { getScaffoldLevel, setScaffoldLevel, classifyRetrieval, evaluateFading, getLevelInfo, logSession } from '../lib/fading-manager.js';
+import { getScaffoldLevel, setScaffoldLevel, classifyRetrieval, evaluateFading, logSession } from '../lib/fading-manager.js';
 gsap.registerPlugin(ScrollTrigger);
 
 const MODE_LABELS = { grammar:'Grammar Sprint', vocab:'Vocab Deep-Dive', reading:'Reading Lab', speaking:'Speaking Mirror', writing:'Writing Studio', listening:'Listening Lab' };
 const MODE_SUBTITLES = { grammar:'Tenses to inversion — 21 topics', vocab:'Work to media — 11 topics', reading:'Two passages — 5 Q each', speaking:'Picture to persuasion — 11 topics', writing:'Short answer to essay — 11 topics', listening:'26 MET 26 + B2 76–100 — 86 groups' };
 const MODE_ICONS = { grammar:Icon.edit, vocab:Icon.star, reading:Icon.book, speaking:Icon.mic, writing:Icon.edit, listening:Icon.headset };
-const KIND_OPTIONS = [{id:'grammar',label:'Grammar'},{id:'vocab',label:'Vocabulary'},{id:'reading',label:'Reading'},{id:'speaking',label:'Speaking'},{id:'writing',label:'Writing'},{id:'listening',label:'Listening'}];
-
 export default function PracticeStudio({ studentId, onBack, "data-testid": testId }){
   const [selectedTopic,setSelectedTopic]=useState(null); const [selectedKind,setSelectedKind]=useState(null);
   const [selectedListeningFormat,setSelectedListeningFormat]=useState('all'); const [listeningSearch,setListeningSearch]=useState('');
-  const [sessionKey,setSessionKey]=useState(0); const [exercises,setExercises]=useState([]); const [loading,setLoading]=useState(false); const [loadError,setLoadError]=useState(false);
+  const [sessionKey,setSessionKey]=useState(0); const [exercises,setExercises]=useState([]); const [loading,setLoading]=useState(false);
+  const [loadError, setLoadError] = useState(false);
   const daysLeft=getDaysUntilExam(); const examMode=getExamMode(); const [topics,setTopics]=useState([]);
-  const [scaffoldLevel,setScaffoldLevelState]=useState(4); const [fadingVerdict,setFadingVerdict]=useState(null); const [sessionScore,setSessionScore]=useState(null);
+  const [scaffoldLevel,setScaffoldLevelState]=useState(4); const [fadingVerdict,setFadingVerdict]=useState(null);
   const heroRef=useRef(null); const pinRef=useRef(null); const galleryRef=useRef(null); const marqueeRef=useRef(null);
 
   useGSAP(()=>{
@@ -43,7 +42,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
   useEffect(()=>{ if(!selectedKind) return; (async()=>{ if(selectedKind==='listening'){ setTopics(await getListeningAudioGroups()); } else setTopics(getTopicList(selectedKind)); })(); },[selectedKind]);
   useEffect(()=>{ if(!selectedKind) return; setScaffoldLevelState(getScaffoldLevel(selectedKind,selectedTopic)); },[selectedKind,selectedTopic]);
   useEffect(()=>{
-    if(!selectedKind) return; let c=false; setLoading(true); setLoadError(false); setFadingVerdict(null); setSessionScore(null);
+    if(!selectedKind) return; let c=false; setLoading(true); setLoadError(false); setFadingVerdict(null);
     (async()=>{
       let ex=[]; try{
         if(selectedKind==='grammar'&&selectedTopic) ex=await getGrammarExercises(selectedTopic);
@@ -52,7 +51,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
         else if(selectedKind==='speaking'&&selectedTopic) ex=await getSpeakingExercises(selectedTopic);
         else if(selectedKind==='writing'&&selectedTopic) ex=await getWritingExercises(selectedTopic);
         else if(selectedKind==='listening') { ex=await getListeningExercises(selectedTopic); if(selectedListeningFormat!=='all') ex=ex.filter(i=>(i.listeningFormat||'multiple_choice')===selectedListeningFormat); }
-      }catch(e){ if(!c) setLoadError(true); }
+      }catch{ if(!c) setLoadError(true); }
       if(!c){ setExercises(ex); setLoading(false); }
     })(); return()=>{c=true};
   },[selectedKind,selectedTopic,selectedListeningFormat,sessionKey]);
@@ -60,11 +59,15 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
   const showTopicPicker = selectedKind && !selectedTopic;
   const selectedTopicTitle = topics.find(t=>t.id===selectedTopic)?.title||'';
   const showLanding = !selectedKind;
-  const handleSelectMode=k=>{setSelectedKind(k); setSelectedTopic(null); setSelectedListeningFormat('all'); setListeningSearch(''); setSessionKey(v=>v+1); setFadingVerdict(null); setSessionScore(null);};
-  const handleBackToLanding=()=>{setSelectedKind(null); setSelectedTopic(null); setSelectedListeningFormat('all'); setListeningSearch(''); setExercises([]); setFadingVerdict(null); setSessionScore(null);};
-  const handleTryAnother=()=> setSelectedTopic(null);
+  const handleSelectMode=k=>{setSelectedKind(k); setSelectedTopic(null); setSelectedListeningFormat('all'); setListeningSearch(''); setSessionKey(v=>v+1); setFadingVerdict(null);};
+  const handleBackToLanding=()=>{setSelectedKind(null); setSelectedTopic(null); setSelectedListeningFormat('all'); setListeningSearch(''); setExercises([]); setFadingVerdict(null);};
+  const retryExerciseLoad=()=>setSessionKey(value=>value+1);
+  const filteredTopics = topics.filter(topic=>{
+    const query=listeningSearch.trim().toLowerCase();
+    return !query || `${topic.title||''} ${topic.subtitle||''} ${topic.id||''}`.toLowerCase().includes(query);
+  });
   const handleSessionComplete=summary=>{
-    const {score,maxHintLevel,hintUsed,results,confidenceBefore}=summary; setSessionScore(score);
+    const {score,maxHintLevel,hintUsed,results,confidenceBefore}=summary;
     if(score!==null&&studentId){
       const quality=classifyRetrieval(maxHintLevel||0,hintUsed||false,score);
       const correctCount=results?.filter(r=>r?.correct===true).length||0;
@@ -171,23 +174,43 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
           <button onClick={handleBackToLanding} className="text-sm text-black/50 hover:text-black mb-6">← All skills</button>
           <div className="flex flex-wrap gap-3 mb-8">
             <input value={listeningSearch} onChange={e=>setListeningSearch(e.target.value)} placeholder="Search topics…" className="flex-1 min-w-[260px] max-w-[420px] px-4 py-3 rounded-full border border-black/10 bg-white text-sm" aria-label="Search topics"/>
-            <span className="text-xs text-black/40 self-center">{topics.length} topics</span>
+            <span className="text-xs text-black/40 self-center">{filteredTopics.length} of {topics.length} topics</span>
           </div>
           <div className="grid grid-cols-12 gap-4 auto-rows-[minmax(140px,auto)] grid-flow-dense">
-            {topics.slice(0,12).map(t=>(
+            {filteredTopics.map(t=>(
               <button key={t.id} onClick={()=>setSelectedTopic(t.id)} className="col-span-12 md:col-span-4 lg:col-span-3 p-6 rounded-2xl bg-white border border-black/5 text-left hover:shadow-xl transition-all group overflow-hidden">
                 <h4 className="font-semibold tracking-tight group-hover:translate-x-1 transition-transform">{t.title}</h4>
                 {t.subtitle&&<p className="text-xs text-black/50 mt-1 line-clamp-2">{t.subtitle}</p>}
               </button>
             ))}
           </div>
+          {filteredTopics.length===0&&<div className="rounded-2xl border border-dashed border-black/15 bg-white px-6 py-12 text-center"><h3 className="font-semibold">No matching topics</h3><p className="mt-2 text-sm text-black/50">Try a different search, or clear the search to see every topic.</p><button onClick={()=>setListeningSearch('')} className="mt-5 rounded-full bg-black px-4 py-2 text-sm font-medium text-white">Clear search</button></div>}
         </div>
       ) : (
         <div className="px-6 py-12 max-w-[720px] mx-auto">
           {selectedTopicTitle&&<p className="text-xs tracking-widest text-black/30 mb-3">{selectedTopicTitle}</p>}
           {selectedKind==='listening'&&<label className="flex items-center gap-3 mb-4 text-sm text-black/50">Listening format<select className="px-3 py-2 rounded-full border border-black/10 bg-white text-sm" value={selectedListeningFormat} onChange={e=>setSelectedListeningFormat(e.target.value)}><option value="all">All formats</option>{LISTENING_FORMATS.map(f=><option key={f.id} value={f.id}>{f.label}</option>)}</select></label>}
           <FadingBanner level={scaffoldLevel} verdict={fadingVerdict?.verdict} reason={fadingVerdict?.reason} />
-          <ExercisePlayer exercises={exercises} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} />
+          {loading ? (
+            <section className="rounded-2xl border border-black/10 bg-white px-6 py-12 text-center" aria-live="polite">
+              <p className="text-sm font-semibold">Loading your exercises…</p>
+              <p className="mt-2 text-sm text-black/50">Preparing this practice set.</p>
+            </section>
+          ) : loadError ? (
+            <section className="rounded-2xl border border-black/10 bg-white px-6 py-12 text-center" title="Exercises unavailable" aria-live="polite">
+              <h2 className="text-lg font-semibold">Exercises unavailable</h2>
+              <p className="mt-2 text-sm text-black/55">We could not load this practice set. Please try again.</p>
+              <div className="mt-6 flex justify-center gap-3"><button onClick={retryExerciseLoad} className="rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white">Try again</button><button onClick={()=>setSelectedTopic(null)} className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium">Choose another topic</button></div>
+            </section>
+          ) : exercises.length === 0 ? (
+            <section className="rounded-2xl border border-black/10 bg-white px-6 py-12 text-center" title="No exercises available">
+              <h2 className="text-lg font-semibold">No exercises available</h2>
+              <p className="mt-2 text-sm text-black/55">There are no exercises in this set yet. Choose another topic or skill.</p>
+              <div className="mt-6 flex justify-center gap-3"><button onClick={()=>setSelectedTopic(null)} className="rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white">Choose another topic</button><button onClick={handleBackToLanding} className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium">All skills</button></div>
+            </section>
+          ) : (
+            <ExercisePlayer exercises={exercises} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} />
+          )}
         </div>
       )}
     </main>
