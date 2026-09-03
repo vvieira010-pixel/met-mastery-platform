@@ -13,7 +13,6 @@ import ErrorCorrection from './ErrorCorrection.jsx';
 import Listening from './Listening.jsx';
 import ReadExercise from './ReadExercise.jsx';
 import EmbeddedLesson from './EmbeddedLesson.jsx';
-import ConfidenceSlider from '../ConfidenceSlider.jsx';
 import ErrorDiagnosisGate from '../ErrorDiagnosisGate.jsx';
 
 const TEAL = 'var(--accent)';
@@ -112,8 +111,6 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
   const [hintLevel, setHintLevel] = useState(0);
   const [showErrorGate, setShowErrorGate] = useState(false);
   const [errorCategory, setErrorCategory] = useState(null);
-  const [confidenceAfter, setConfidenceAfter] = useState(null);
-  const [showConfidenceAfter, setShowConfidenceAfter] = useState(false);
   const { hints, loading: hintsLoading } = useAIPoweredHints(exercise, scaffoldLevel);
   const maxHints = hintLimit(scaffoldLevel);
   const actualHints = (hints || []).length > 0 ? hints : [];
@@ -152,21 +149,7 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
 
   const handleComplete = useCallback((answerResult) => {
     onComplete?.({ ...answerResult, errorCategory: errorCategory || null });
-    if (answerResult && answerResult.correct !== null) {
-      setShowConfidenceAfter(true);
-    }
   }, [onComplete, errorCategory]);
-
-  const handleConfidenceAfter = useCallback((val) => {
-    setConfidenceAfter(val);
-  }, []);
-
-  const handleConfirmConfidence = useCallback(() => {
-    setShowConfidenceAfter(false);
-    if (confidenceAfter !== null && onComplete) {
-      onComplete({ ...result, confidenceAfter });
-    }
-  }, [confidenceAfter, result, onComplete]);
 
   function renderExercise() {
     const props = { exercise, onComplete: handleComplete };
@@ -242,20 +225,6 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
       {!done && showErrorGate && (
         <div style={{ padding: '0 20px' }}>
           <ErrorDiagnosisGate onDiagnose={handleDiagnose} onSkip={handleSkipGate} />
-        </div>
-      )}
-
-      {/* Confidence after — shown after submission */}
-      {showConfidenceAfter && confidenceAfter === null && (
-        <div style={{ padding: '0 20px 16px' }}>
-          <ConfidenceSlider label="After seeing the answer, how confident are you in this topic?" onConfidence={handleConfidenceAfter} />
-          <button
-            type="button"
-            onClick={handleConfirmConfidence}
-            style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--accent)', color: '#fff', fontWeight: 600, fontSize: 'var(--text-xs)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-          >
-            Confirm
-          </button>
         </div>
       )}
 
@@ -384,7 +353,6 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   const onDoneRef = useRef(onSessionComplete);
   const resultsRef = useRef(results);
   const maxHintLevelRef = useRef(0);
-  const exerciseConfidenceAfterRef = useRef({});
   useEffect(() => { currentRef.current = current; });
   useEffect(() => { totalRef.current = exercises.length; });
   useEffect(() => { onDoneRef.current = onSessionComplete; });
@@ -398,8 +366,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     setResults(prev => {
       const next = [...prev];
       const idx = currentRef.current;
-      const confAfter = result?.confidenceAfter ?? exerciseConfidenceAfterRef.current[idx];
-      next[idx] = { ...result, index: idx, confidenceAfter: confAfter || null };
+      next[idx] = { ...result, index: idx };
       return next;
     });
   }, [setResults]);
@@ -509,7 +476,6 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
               setResults([]);
               setDone(false);
               maxHintLevelRef.current = 0;
-              exerciseConfidenceAfterRef.current = {};
             }}
             style={{
               marginTop: 16, padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)',

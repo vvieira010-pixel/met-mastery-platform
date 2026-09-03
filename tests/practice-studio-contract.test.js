@@ -6,6 +6,7 @@ import test from 'node:test';
 const root = path.resolve(import.meta.dirname, '..');
 const practiceStudio = fs.readFileSync(path.join(root, 'src', 'pages', 'practice-studio.jsx'), 'utf8');
 const dashboard = fs.readFileSync(path.join(root, 'src', 'pages', 'student-dashboard.jsx'), 'utf8');
+const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ExercisePlayer.jsx'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
   assert.match(practiceStudio, /const \[loadError, setLoadError\] = useState\(false\)/);
@@ -24,5 +25,9 @@ test('Dialogue exercise triggers completion when the final line is revealed', ()
   const dialogueCode = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Dialogue.jsx'), 'utf8');
   assert.match(dialogueCode, /next >= lines\.length - 1 && onComplete/);
   assert.match(dialogueCode, /✓ Dialogue complete/);
+});
+
+test('Practice Studio does not ask a confidence question after each answer', () => {
+  assert.doesNotMatch(exercisePlayer, /After seeing the answer|ConfidenceSlider|confidenceAfter|showConfidenceAfter/);
 });
 
