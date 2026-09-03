@@ -266,22 +266,31 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
             const met26 = filtered.filter(t => t.id.includes('met26'));
             const supplementary = filtered.filter(t => !t.id.includes('met26') && /listening-(7\d|8\d|9\d|100)/.test(t.id));
             const core = filtered.filter(t => !met26.includes(t) && !supplementary.includes(t));
-            const Section = ({ title, count, items, badge }) => items.length === 0 ? null : (
-              <div style={{ marginBottom: 16, padding: 14, background: 'var(--surface)', border: '1px solid var(--ink-faint)', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--ink-faint)' }}>
-                  <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>{title}</h4>
-                  <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{count}</span>
-                  {badge && <span className="pill pill-success" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{badge}</span>}
-                </div>
-                <div className="grid-square">
-                  {items.map(t => (
-                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer' }}>
-                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
+            const Section = ({ title, count, items, badge }) => {
+              const [showAll, setShowAll] = useState(false);
+              const visible = showAll ? items : items.slice(0, 6);
+              return items.length === 0 ? null : (
+                <div style={{ marginBottom: 16, padding: 14, background: 'var(--surface)', border: '1px solid var(--ink-faint)', borderRadius: 'var(--radius-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--ink-faint)' }}>
+                    <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>{title}</h4>
+                    <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{count}</span>
+                    {badge && <span className="pill pill-success" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{badge}</span>}
+                  </div>
+                  <div className="grid-square">
+                    {visible.map(t => (
+                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} aria-label={t.title.replace(' · ', ' — ')} style={{ cursor: 'pointer' }}>
+                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }} aria-hidden="true">{t.title}</div>
                     </Card>
-                  ))}
+                    ))}
+                  </div>
+                  {items.length > 6 && (
+                    <button type="button" onClick={() => setShowAll(v => !v)} className="v8-btn v8-btn-outline" style={{ marginTop: 12, width: '100%', minHeight: 44 }}>
+                      {showAll ? 'Show less' : `Show ${items.length - 6} more`}
+                    </button>
+                  )}
                 </div>
-              </div>
-            );
+              );
+            };
             return (
               <div className="practice-studio-topics">
                 <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -290,12 +299,12 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                     <input className="search-input" placeholder="Search conversations…" value={listeningSearch} onChange={e => setListeningSearch(e.target.value)} aria-label="Search listening topics" />
                     {listeningSearch && <button type="button" className="search-clear" onClick={() => setListeningSearch('')} aria-label="Clear search">✕</button>}
                   </div>
-                  <span className="text-xs text-[var(--muted)]">{filtered.length} of {topics.length}</span>
+                  <span className="text-xs text-[var(--muted)]" role="status" aria-live="polite" aria-atomic="true">{filtered.length} of {topics.length}</span>
                 </div>
                 <Section title="MET 26 Conversations" count={`${met26.length} · two-speaker`} items={met26} badge="New" />
                 <Section title="B2 Supplementary 76–100" count={`${supplementary.length} · exam-style`} items={supplementary} />
                 <Section title="Core Listening" count={`${core.length}`} items={core} />
-                {filtered.length === 0 && <p className="text-sm text-[var(--muted)]" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
+                {filtered.length === 0 && <p className="text-sm text-[var(--muted)]" role="status" aria-live="polite" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
               </div>
             );
           })()
@@ -330,9 +339,9 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                   </div>
                   <div className="grid-square">
                     {items.map(t => (
-                      <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer' }}>
-                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
-                      </Card>
+                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} aria-label={t.title.replace(' · ', ' — ')} style={{ cursor: 'pointer' }}>
+                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }} aria-hidden="true">{t.title}</div>
+                    </Card>
                     ))}
                   </div>
                 </div>
@@ -347,7 +356,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                     <input className="search-input" placeholder="Search topics…" value={listeningSearch} onChange={e => setListeningSearch(e.target.value)} aria-label="Search topics" />
                     {listeningSearch && <button type="button" className="search-clear" onClick={() => setListeningSearch('')} aria-label="Clear search">✕</button>}
                   </div>
-                  <span className="text-xs text-[var(--muted)]">{filteredAll.length} of {topics.length}</span>
+                  <span className="text-xs text-[var(--muted)]" role="status" aria-live="polite" aria-atomic="true">{filteredAll.length} of {topics.length}</span>
                 </div>
                 {groups.map(g => <Group key={g.title} title={g.title} ids={g.ids} />)}
                 {unmatched.length > 0 && (
@@ -365,7 +374,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                     </div>
                   </div>
                 )}
-                {filteredAll.length === 0 && <p className="text-sm text-[var(--muted)]" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
+                {filteredAll.length === 0 && <p className="text-sm text-[var(--muted)]" role="status" aria-live="polite" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
               </div>
             );
           })()
