@@ -31,7 +31,7 @@ export default function StudentCurriculum({ 'data-testid': testId }) {
               <button type="button" onClick={() => setExpanded(isExpanded ? null : lesson.id)} aria-expanded={isExpanded}>
                 <span className="student-curriculum-step-number">{lesson.number}</span>
                 <span className="student-curriculum-step-copy"><strong>{lesson.title}</strong><small>{lesson.status}</small></span>
-                <Icon.chevronD size={15} />
+                <Icon.chevronDown size={15} />
               </button>
               {isExpanded && <p>{lesson.detail}</p>}
               {index < LESSONS.length - 1 && <span className="student-curriculum-connector" aria-hidden="true" />}

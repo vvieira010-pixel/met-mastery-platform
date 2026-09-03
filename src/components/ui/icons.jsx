@@ -77,4 +77,8 @@ export const Icon = {
   trophy:   (p) => <SvgIcon {...p}><path d="M6 9H4.5a2.5 2.5 0 010-5H6m12 5h1.5a2.5 2.5 0 000-5H18"/><path d="M6 9h12v1a6 6 0 01-12 0V9z"/><path d="M8 20h8"/><path d="M12 14v6"/></SvgIcon>,
    diamond:  (p) => <SvgIcon d="M12 2L2 12l10 10 10-10L12 2z M2 12h20" fill="currentColor" {...p} />,
   group:    (p) => <SvgIcon {...p}><path d="M17 21v-2a4 4 0 00-3-3.87"/><path d="M7 21v-2a4 4 0 013-3.87"/><circle cx="12" cy="7" r="4"/><path d="M7 5.13a4 4 0 010 7.75"/></SvgIcon>,
+  alert:    (p) => <SvgIcon {...p}><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></SvgIcon>,
+  help:     (p) => <SvgIcon {...p}><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3h2"/><path d="M12 17h.01"/></SvgIcon>,
+  video:    (p) => <SvgIcon {...p}><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></SvgIcon>,
+  write:    (p) => <SvgIcon {...p}><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></SvgIcon>,
 };
