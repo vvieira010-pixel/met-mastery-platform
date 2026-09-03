@@ -1,0 +1,719 @@
+{
+  "modules": [
+    {
+      "id": "b2_listening_dialogues_mp3",
+      "title": "MET B2 Listening — 10 Conversations × 3 Questions (mp3 versions)",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "sourceNote": "Same content as dialogue-bank.json but pointed at the .mp3 audio versions.",
+      "items": [
+        {
+          "id": "listen_01_cafe_mp3",
+          "audioFile": "listening-L01-cafe-oat-milk.mp3",
+          "script": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I'd like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we're out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can't have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you'd like.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why can't the customer order a latte right now?",
+              "options": ["The shop is closing early.", "The customer doesn't have enough money.", "The shop is temporarily out of oat milk.", "The barista doesn't know how to make it."],
+              "correct": 2,
+              "explanation": "The barista says they are out of oat milk until the delivery around two/three, and the customer needs oat milk due to a dairy allergy."
+            },
+            {
+              "stem": "What does the barista offer to do?",
+              "options": ["Give the customer a discount.", "Reserve a latte for later.", "Deliver the drink to the meeting.", "Call another coffee shop."],
+              "correct": 1,
+              "explanation": "Barista says 'I can set one aside for you' if the customer returns after the meeting."
+            },
+            {
+              "stem": "What can be inferred about the delivery today?",
+              "options": ["It will arrive earlier than usual.", "It has been cancelled.", "It is delayed because of traffic.", "It will bring only regular milk."],
+              "correct": 2,
+              "explanation": "The driver called and said maybe three today because of traffic on Main Street — later than the usual two o'clock."
+            }
+          ]
+        },
+        {
+          "id": "listen_02_advisor_mp3",
+          "audioFile": "listening-L02-academic-advisor.mp3",
+          "script": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you're thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that's when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can't change, the online option may be more practical.\nStudent: True. I'll call my manager this afternoon to see if I can switch shifts. If not, I'll take the online class.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the student worried about the Marketing course?",
+              "options": ["He has failed it before.", "He cannot find the classroom.", "The only available time conflicts with work.", "The professor is too strict."],
+              "correct": 2,
+              "explanation": "The only open in-person section is Tuesday evenings, when he works at the clinic."
+            },
+            {
+              "stem": "What does the advisor suggest about the online section?",
+              "options": ["It is easier than the in-person class.", "It requires no registration.", "It fills quickly and needs early registration.", "It is only for advanced students."],
+              "correct": 2,
+              "explanation": "Advisor says the online section fills quickly and the student should register today if he wants it."
+            },
+            {
+              "stem": "What will the student probably do first?",
+              "options": ["Drop the course completely.", "Ask his manager about changing work hours.", "Register for the online class immediately.", "Talk to another professor."],
+              "correct": 1,
+              "explanation": "He says he'll call his manager this afternoon to see if he can switch shifts before deciding."
+            }
+          ]
+        },
+        {
+          "id": "listen_03_clinic_mp3",
+          "audioFile": "listening-L03-clinic-reception.mp3",
+          "script": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I'm calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She'd like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn't look urgent — otherwise she would have called you directly.\nPatient: Okay, I'll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you're currently taking.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why does the doctor want to see the patient?",
+              "options": ["To give an injection.", "To explain the blood test results in person.", "To cancel the patient's insurance.", "To collect payment."],
+              "correct": 1,
+              "explanation": "The doctor reviewed the blood test and wants to discuss the results in person tomorrow at ten."
+            },
+            {
+              "stem": "What does the receptionist imply about the results?",
+              "options": ["They are very urgent.", "They are probably not an emergency.", "They were lost.", "They need to be repeated."],
+              "correct": 1,
+              "explanation": "She says it doesn't look urgent — otherwise the doctor would have called directly."
+            },
+            {
+              "stem": "What should the patient bring to the appointment?",
+              "options": ["A family member.", "Previous test results from another clinic.", "ID and a list of current medications.", "A referral letter."],
+              "correct": 2,
+              "explanation": "Receptionist says to bring ID and a list of any medications currently being taken."
+            }
+          ]
+        },
+        {
+          "id": "listen_04_library_mp3",
+          "audioFile": "listening-L04-library-renewal.mp3",
+          "script": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I've already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I'm finishing a research paper.\nLibrarian: Let me see. There's no hold on it from other students, so I can renew it for seven more days. After that, though, you'll need to return it.\nStudent: That's perfect — my paper is due Friday.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why can't the student renew the book online again?",
+              "options": ["The library website is down.", "He has already reached the online renewal limit.", "The book is overdue.", "He forgot his library password."],
+              "correct": 1,
+              "explanation": "After two online renewals the book must be brought in to check its condition."
+            },
+            {
+              "stem": "What condition allows another renewal?",
+              "options": ["The student pays a small fee.", "No other student has requested the book.", "The book is newly published.", "The librarian knows the student personally."],
+              "correct": 1,
+              "explanation": "Librarian says there's no hold from other students, so a seven-day renewal is possible."
+            },
+            {
+              "stem": "What can be inferred about the student's paper?",
+              "options": ["It was already submitted last week.", "He will need the book until close to the deadline.", "He is writing it with a partner.", "He plans to ask for an extension."],
+              "correct": 1,
+              "explanation": "He says the seven days is perfect because the paper is due Friday — he needs the book until then."
+            }
+          ]
+        },
+        {
+          "id": "listen_05_train_mp3",
+          "audioFile": "listening-L05-train-delay.mp3",
+          "script": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We'll miss our connection if we wait.\nMan: Let's switch to the local. It's slower, but we'll still get there on time, and I'd rather not risk waiting.\nWoman: Okay, let's move to platform one now before it gets crowded.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the express train delayed?",
+              "options": ["Bad weather.", "Signal maintenance work.", "A problem with the engine.", "Too many passengers."],
+              "correct": 1,
+              "explanation": "The announcement says the delay is due to signal maintenance."
+            },
+            {
+              "stem": "What alternative does the announcer suggest?",
+              "options": ["Taking a bus instead.", "Waiting for the next express.", "Taking the 9:30 local train on platform one.", "Canceling the trip."],
+              "correct": 2,
+              "explanation": "Passengers needing to arrive before ten should take the 9:30 local on platform one, arriving by 9:55."
+            },
+            {
+              "stem": "What will the two passengers probably do?",
+              "options": ["Wait on platform three for the express.", "Go to platform one to catch the local.", "Return home and travel tomorrow.", "Ask for a refund."],
+              "correct": 1,
+              "explanation": "They decide to switch to the local and move to platform one before it gets crowded."
+            }
+          ]
+        },
+        {
+          "id": "listen_06_housing_mp3",
+          "audioFile": "listening-L06-apartment-viewing.mp3",
+          "script": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It's cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it's quite far from the train station, and the bedrooms are small — I'm not sure my desk would fit.\nWoman: That's true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let's go again on Friday and bring a tape measure.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What does the woman like about the apartment?",
+              "options": ["It is close to the train station and has large bedrooms.", "It is cheaper and has a nicer kitchen.", "It includes free furniture.", "It has a private garden."],
+              "correct": 1,
+              "explanation": "She says it's cheaper and the kitchen was renovated."
+            },
+            {
+              "stem": "What is the man's main concern?",
+              "options": ["The apartment is too expensive.", "The location is far and bedrooms are small.", "The kitchen is too old.", "The bus stop is too noisy."],
+              "correct": 1,
+              "explanation": "He notes it's far from the train and the bedrooms are small for his desk."
+            },
+            {
+              "stem": "What do they decide to do?",
+              "options": ["Sign the contract today.", "Visit the apartment again on Friday to measure.", "Look for a different apartment immediately.", "Ask a third roommate to decide."],
+              "correct": 1,
+              "explanation": "They agree to visit again on Friday and bring a tape measure."
+            }
+          ]
+        },
+        {
+          "id": "listen_07_museum_mp3",
+          "audioFile": "listening-L07-museum-volunteer.mp3",
+          "script": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don't know an answer, don't guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the main purpose of the talk?",
+              "options": ["To describe the museum's history.", "To explain weekend procedures for volunteers.", "To sell tickets for a new exhibition.", "To advertise paid jobs."],
+              "correct": 1,
+              "explanation": "The coordinator explains arrival time, duties, and rules for volunteers."
+            },
+            {
+              "stem": "What should volunteers do if they don't know an answer?",
+              "options": ["Guess to be helpful.", "Call the manager.", "Send the visitor to the information desk.", "Ask another visitor."],
+              "correct": 2,
+              "explanation": "Instruction is not to guess but to send visitors to the information desk."
+            },
+            {
+              "stem": "What rule is mentioned about food and drinks?",
+              "options": ["They can be taken into galleries if covered.", "They are sold inside the galleries.", "They are not allowed in exhibition rooms.", "They are provided for volunteers."],
+              "correct": 2,
+              "explanation": "Food and drinks are not allowed in exhibition rooms; finish them before the shift."
+            }
+          ]
+        },
+        {
+          "id": "listen_08_office_mp3",
+          "audioFile": "listening-L08-office-hybrid-policy.mp3",
+          "script": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we're moving to a hybrid model next month. You'll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "When will employees work from home under the new model?",
+              "options": ["Every day.", "Only on weekends.", "Monday and Friday.", "Tuesday through Thursday."],
+              "correct": 2,
+              "explanation": "Manager says work from home Monday and Friday, in office Tuesday-Thursday."
+            },
+            {
+              "stem": "What are employees asked to do by Friday?",
+              "options": ["Buy new office furniture.", "Update the shared calendar for room booking.", "Submit vacation requests.", "Choose a new team leader."],
+              "correct": 1,
+              "explanation": "Update the shared calendar by Friday so they know when to book meeting rooms."
+            },
+            {
+              "stem": "What can employees do if they need home equipment?",
+              "options": ["Talk to HR this week.", "Email the manager next month.", "Bring equipment from the office without asking.", "Buy it themselves and keep the receipt."],
+              "correct": 0,
+              "explanation": "Manager says if you have concerns about equipment at home, talk to HR this week."
+            }
+          ]
+        },
+        {
+          "id": "listen_09_doctor_mp3",
+          "audioFile": "listening-L09-doctor-followup.mp3",
+          "script": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that's good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let's meet again in two weeks.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What positive change does the doctor mention?",
+              "options": ["The patient's blood pressure has decreased.", "The patient no longer needs medication.", "The patient's weight has increased.", "The patient's dizziness has stopped."],
+              "correct": 0,
+              "explanation": "Doctor says blood pressure is lower than last month — good progress, medication is working."
+            },
+            {
+              "stem": "What does the doctor suggest about the medication?",
+              "options": ["Take a higher dose in the morning.", "Stop taking it for a week.", "Try taking it in the evening.", "Take it only when dizzy."],
+              "correct": 2,
+              "explanation": "Doctor suggests trying the pill in the evening and monitoring for a week."
+            },
+            {
+              "stem": "What should the patient continue to do?",
+              "options": ["Eat more salty foods.", "Limit salt and walk thirty minutes daily.", "Stay in bed all day.", "Come to the clinic every day."],
+              "correct": 1,
+              "explanation": "Keep limiting salt and walking thirty minutes a day; return in two weeks."
+            }
+          ]
+        },
+        {
+          "id": "listen_10_bike_mp3",
+          "audioFile": "listening-L10-bike-rental-trails.mp3",
+          "script": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week's heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it's easier. I'd also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we'll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why does the assistant mention the hill trail?",
+              "options": ["To warn that part of it is closed after rain.", "To advertise a new trail.", "To explain shop hours.", "To ask for a deposit."],
+              "correct": 0,
+              "explanation": "Assistant warns that the hill trail is partly closed after heavy rain."
+            },
+            {
+              "stem": "Which route does the assistant recommend instead?",
+              "options": ["The city route.", "The hill route.", "The river route.", "The mountain route."],
+              "correct": 2,
+              "explanation": "The river route is open and easier."
+            },
+            {
+              "stem": "What will the customer rent?",
+              "options": ["One bike and one helmet.", "Two bikes, two helmets, and a repair kit.", "Two bikes only.", "Two bikes and one helmet without a kit."],
+              "correct": 1,
+              "explanation": "Customer says two bikes, two helmets, and one repair kit (helmets included, kit extra)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_listening_parts_p1_draft",
+      "title": "MET B2 Listening Part 1 — Short Conversations (DRAFT: scripts inferred from filenames; needs audio verification)",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "draftNotice": "Scripts and questions are best-effort drafts reconstructed from the truncated audio filename. They MUST be verified against the actual audio before publication. Correct answer indices and explanations are educated guesses based on filename clues.",
+      "items": [
+        {
+          "id": "p1_01_draft",
+          "audioFile": "listening-p1_01-woman-did-the-professor-cance.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-did-the-professor-cance...']\nN: Listen to a short conversation.\nWoman: Did the professor cancel today's lecture?\nMan: She postponed it. She said she'll send an email tomorrow with the new date.\nWoman: Oh good. I was about to walk all the way across campus for nothing.\nMan: Yeah — she posted it on the course page last night. You should check before you leave next time.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What did the professor do about today's lecture?",
+              "options": ["She moved it to another day.", "She cancelled the course permanently.", "She gave an extra lecture.", "She moved it to a different room."],
+              "correct": 0,
+              "explanation": "Man says the professor postponed it and will email the new date."
+            },
+            {
+              "stem": "Where did the man see the announcement?",
+              "options": ["On the department noticeboard.", "On the course web page.", "In a text message.", "On the university radio."],
+              "correct": 1,
+              "explanation": "He says the professor posted it on the course page last night."
+            },
+            {
+              "stem": "What will the woman do in future before leaving?",
+              "options": ["Call the professor.", "Check the course page first.", "Take the bus instead of walking.", "Skip morning lectures."],
+              "correct": 1,
+              "explanation": "Man suggests she check the course page before leaving next time."
+            }
+          ]
+        },
+        {
+          "id": "p1_02_draft",
+          "audioFile": "listening-p1_02-man-i-tried-to-print-my-paper.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-i-tried-to-print-my-paper...']\nN: Listen to a short conversation.\nWoman: You look frustrated. What happened?\nMan: I tried to print my paper in the computer lab, but the printer isn't working.\nWoman: Did you try the one on the second floor?\nMan: I did, but it's out of paper, and I can't find the key to the supply closet.\nWoman: Ask the desk assistant — they usually keep a spare key and can reload the paper.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the man's problem?",
+              "options": ["He can't find a working printer.", "He lost his paper.", "The lab is closed.", "His computer crashed."],
+              "correct": 0,
+              "explanation": "He tried to print but the printer isn't working and the second-floor one is out of paper."
+            },
+            {
+              "stem": "What does the woman suggest?",
+              "options": ["Use a different lab next week.", "Email the paper to the professor.", "Ask the desk assistant for help.", "Buy a personal printer."],
+              "correct": 2,
+              "explanation": "She says the desk assistant usually keeps a spare key and can reload paper."
+            },
+            {
+              "stem": "What else is missing besides paper?",
+              "options": ["The power cable.", "The key to the supply closet.", "A USB drive.", "The student's ID card."],
+              "correct": 1,
+              "explanation": "He can't find the key to the supply closet where the paper is kept."
+            }
+          ]
+        },
+        {
+          "id": "p1_03_draft",
+          "audioFile": "listening-p1_03-woman-i-thought-the-meeting-s.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-i-thought-the-meeting-s...']\nN: Listen to a short conversation.\nMan: You look upset. What happened at the meeting?\nWoman: I thought the meeting started at three, but it had been moved to two. I missed the first half.\nMan: Did they email the new time?\nWoman: Yes, but the email went to my school account, and I never check that one.\nMan: You should update your contact information in the system so you get the alerts in the right place.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why did the woman miss part of the meeting?",
+              "options": ["She arrived at the wrong building.", "The meeting was moved earlier.", "She forgot to set an alarm.", "The meeting was cancelled."],
+              "correct": 1,
+              "explanation": "The meeting was moved from three to two, and she arrived late."
+            },
+            {
+              "stem": "Why didn't she see the email about the new time?",
+              "options": ["It was sent to the wrong address.", "She never checks that school account.", "It was sent as a text message.", "Her inbox was full."],
+              "correct": 1,
+              "explanation": "She says the email went to her school account, which she never checks."
+            },
+            {
+              "stem": "What does the man suggest?",
+              "options": ["Reschedule the meeting.", "Update her contact info in the system.", "Stop attending meetings.", "Switch schools."],
+              "correct": 1,
+              "explanation": "He suggests updating her contact information so alerts go to the right place."
+            }
+          ]
+        },
+        {
+          "id": "p1_04_draft",
+          "audioFile": "listening-p1_04-man-are-you-still-going-to-th.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-are-you-still-going-to-th...']\nN: Listen to a short conversation.\nWoman: Are you still going to the conference next weekend?\nWoman: I was planning to, but my flight was cancelled, so I'm not sure I'll make it.\nMan: That's too bad. Have you tried rebooking with another airline?\nWoman: I'm checking now. If I can't get a seat by tomorrow, I'll just watch the recordings later.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why might the woman not attend the conference?",
+              "options": ["She changed her mind.", "Her flight was cancelled.", "She lost her ticket.", "The conference was postponed."],
+              "correct": 1,
+              "explanation": "Her flight was cancelled, so she's not sure she can make it."
+            },
+            {
+              "stem": "What is she doing to try to attend?",
+              "options": ["Driving instead.", "Rebooking with another airline.", "Asking a friend for a ride.", "Postponing her trip."],
+              "correct": 1,
+              "explanation": "She is checking rebooking options with other airlines."
+            },
+            {
+              "stem": "What will she do if she can't attend?",
+              "options": ["Skip the topic.", "Watch the recordings later.", "Cancel the conference.", "Send a written summary."],
+              "correct": 1,
+              "explanation": "If she can't get a seat by tomorrow, she'll watch the recordings later."
+            }
+          ]
+        },
+        {
+          "id": "p1_05_draft",
+          "audioFile": "listening-p1_05-woman-i-cant-believe-the-res.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-i-cant-believe-the-res...']\nN: Listen to a short conversation.\nMan: What's wrong?\nWoman: I can't believe the restaurant turned away my reservation. I booked a table for seven online last night.\nMan: Did you get a confirmation email?\nWoman: No, that's the strange part. The website said it was confirmed, but when I arrived, they had no record of it.\nMan: That sounds like a system error. You should call the manager tomorrow and ask for an apology meal.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the woman upset?",
+              "options": ["The food was cold.", "Her reservation was not honoured.", "The restaurant was too noisy.", "The bill was too high."],
+              "correct": 1,
+              "explanation": "The restaurant had no record of her reservation, even though the site said it was confirmed."
+            },
+            {
+              "stem": "What did she have as proof of the booking?",
+              "options": ["A printed receipt.", "A confirmation email she never received.", "A credit card statement.", "A text message from the chef."],
+              "correct": 1,
+              "explanation": "She says the website said confirmed but she never got the confirmation email."
+            },
+            {
+              "stem": "What does the man suggest?",
+              "options": ["Leave a negative review.", "Call the manager for a complimentary meal.", "Never go back.", "Book through a different site."],
+              "correct": 1,
+              "explanation": "He suggests calling the manager and asking for an apology meal."
+            }
+          ]
+        },
+        {
+          "id": "p1_06_draft",
+          "audioFile": "listening-p1_06-man-your-presentation-was-rea.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-your-presentation-was-rea...']\nN: Listen to a short conversation.\nWoman: How did my presentation go?\nMan: It was really clear. I liked how you explained each step before moving on.\nWoman: Thanks. I was nervous about the data section — I thought it was too detailed.\nMan: Honestly, the detail helped. Some audience members might have wanted more visuals, but I think it worked.\nWoman: Good to know. I'll add more charts for the next one.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What does the man say about the woman's presentation?",
+              "options": ["It was confusing.", "It was clear and well structured.", "It was too short.", "It lacked data."],
+              "correct": 1,
+              "explanation": "He says it was really clear and that explaining each step before moving on worked well."
+            },
+            {
+              "stem": "What was the woman worried about?",
+              "options": ["Speaking too fast.", "The level of detail in the data.", "The colour of her slides.", "Running over time."],
+              "correct": 1,
+              "explanation": "She was nervous the data section was too detailed."
+            },
+            {
+              "stem": "What will the woman change in future presentations?",
+              "options": ["Speak more quietly.", "Remove the data section.", "Add more visuals like charts.", "Shorten her introduction."],
+              "correct": 2,
+              "explanation": "She says she'll add more charts for the next one."
+            }
+          ]
+        },
+        {
+          "id": "p1_07_draft",
+          "audioFile": "listening-p1_07-woman-did-you-return-the-movi.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-did-you-return-the-movi...']\nN: Listen to a short conversation.\nMan: Did you return the movie you borrowed?\nWoman: Not yet. The rental shop closed before I got there yesterday evening.\nMan: It's due tonight. Just drop it in the return slot at the front of the shop on your way to class.\nWoman: Good idea — that way I won't be charged a late fee.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why hasn't the woman returned the movie yet?",
+              "options": ["She forgot about it.", "The rental shop was closed yesterday.", "She lost the movie.", "She decided to keep it."],
+              "correct": 1,
+              "explanation": "She says the rental shop closed before she could get there yesterday evening."
+            },
+            {
+              "stem": "When is the movie due?",
+              "options": ["Tomorrow morning.", "Tonight.", "Next week.", "Already overdue."],
+              "correct": 1,
+              "explanation": "Man says it's due tonight."
+            },
+            {
+              "stem": "How will she return it?",
+              "options": ["By mail.", "In person at the counter.", "Drop it in the return slot on her way to class.", "Ask a friend to do it."],
+              "correct": 2,
+              "explanation": "Man suggests dropping it in the return slot on the way to class to avoid a late fee."
+            }
+          ]
+        },
+        {
+          "id": "p1_08_draft",
+          "audioFile": "listening-p1_08-man-im-surprised-jenna-drove.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-im-surprised-jenna-drove...']\nN: Listen to a short conversation.\nWoman: I heard Jenna drove to the conference yesterday.\nMan: I'm surprised — Jenna never drives. She usually takes the train.\nWoman: Maybe she had heavy luggage this time. She did mention bringing boxes of samples.\nMan: That makes sense. The train would have been awkward with all that.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the man surprised?",
+              "options": ["Jenna usually drives long distances.", "Jenna normally takes the train.", "Jenna doesn't travel often.", "Jenna is afraid of driving."],
+              "correct": 1,
+              "explanation": "He says Jenna never drives and usually takes the train."
+            },
+            {
+              "stem": "What is the woman's explanation?",
+              "options": ["Jenna bought a new car.", "Jenna had heavy boxes to bring.", "The trains were on strike.", "Jenna moved to a new city."],
+              "correct": 1,
+              "explanation": "She mentions Jenna was bringing boxes of samples, which would be awkward on a train."
+            },
+            {
+              "stem": "What can be inferred about Jenna's trip?",
+              "options": ["It was her first trip alone.", "She needed to carry heavy items.", "She cancelled the conference.", "She drove to the airport."],
+              "correct": 1,
+              "explanation": "Boxes of samples imply she needed to carry heavy items."
+            }
+          ]
+        },
+        {
+          "id": "p1_09_draft",
+          "audioFile": "listening-p1_09-woman-this-soup-tastes-much-b.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-this-soup-tastes-much-b...']\nN: Listen to a short conversation.\nMan: Try the soup — I made it from a new recipe.\nWoman: This soup tastes much better than the one from last week. What did you change?\nMan: I added a little ginger and used chicken stock instead of water. It also has more vegetables.\nWoman: It's perfect for a cold day. Will you share the recipe?\nMan: Sure, I'll text it to you tonight.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What does the woman notice about the soup?",
+              "options": ["It is colder than usual.", "It tastes much better than last time.", "It has less salt.", "It is too spicy."],
+              "correct": 1,
+              "explanation": "She says this soup tastes much better than the one from last week."
+            },
+            {
+              "stem": "What change did the man make?",
+              "options": ["He added sugar.", "He used chicken stock and more vegetables.", "He removed the salt.", "He cooked it for longer."],
+              "correct": 1,
+              "explanation": "He says he added ginger, used chicken stock instead of water, and added more vegetables."
+            },
+            {
+              "stem": "What will he do later?",
+              "options": ["Cook the soup again tomorrow.", "Send her the recipe by text tonight.", "Buy more vegetables.", "Open a restaurant."],
+              "correct": 1,
+              "explanation": "He says he'll text the recipe to her tonight."
+            }
+          ]
+        },
+        {
+          "id": "p1_10_draft",
+          "audioFile": "listening-p1_10-man-i-was-going-to-take-the-b.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-i-was-going-to-take-the-b...']\nN: Listen to a short conversation.\nWoman: How was your commute this morning?\nMan: I was going to take the bus, but it was full, so I walked instead.\nWoman: That's a long walk — aren't you tired?\nMan: A bit, but I saved the fare and got some fresh air, so it's not so bad.\nWoman: I should try walking more often.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What did the man do instead of taking the bus?",
+              "options": ["He drove his car.", "He walked.", "He took a taxi.", "He stayed home."],
+              "correct": 1,
+              "explanation": "He says the bus was full so he walked instead."
+            },
+            {
+              "stem": "Why was the bus full?",
+              "options": ["It was rush hour.", "The driver was absent.", "It was a holiday.", "The bus was being repaired."],
+              "correct": 0,
+              "explanation": "Implied — he had planned to take the bus on a regular commute morning."
+            },
+            {
+              "stem": "How does the man feel about walking?",
+              "options": ["He regrets it.", "He thinks it was worthwhile.", "He wants a ride home.", "He is too tired to continue."],
+              "correct": 1,
+              "explanation": "He says he saved the fare and got fresh air, so it's not so bad."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_listening_parts_p2_draft",
+      "title": "MET B2 Listening Part 2 — Extended Conversations (DRAFT: scripts inferred from filenames; needs audio verification)",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "draftNotice": "Scripts and questions are best-effort drafts reconstructed from the truncated audio filename. They MUST be verified against the actual audio before publication. Correct answer indices and explanations are educated guesses based on filename clues.",
+      "items": [
+        {
+          "id": "p2_01_draft",
+          "audioFile": "listening-p2_01-woman-im-looking-for-a-lapto.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-im-looking-for-a-lapto...']\nN: Listen to an extended conversation.\nWoman: Excuse me, I'm looking for a laptop I can use for video editing. What do you recommend?\nSalesperson: For video editing you'll want at least sixteen gigabytes of RAM and a dedicated graphics card. This model has a fast processor and a large SSD, which will speed up your renders.\nWoman: That's good. How long does the battery last?\nSalesperson: About seven hours of normal use, but for heavy editing it'll be closer to four.\nWoman: Fine. Does it come with a warranty?\nSalesperson: Yes, a two-year international warranty. You can also add accidental damage coverage for an extra hundred dollars.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the woman shopping for?",
+              "options": ["A camera.", "A laptop.", "A monitor.", "A tablet."],
+              "correct": 1,
+              "explanation": "She says she's looking for a laptop for video editing."
+            },
+            {
+              "stem": "Why does the salesperson recommend this specific model?",
+              "options": ["It is the cheapest option.", "It has features suitable for video editing.", "It comes in many colours.", "It has the longest battery life."],
+              "correct": 1,
+              "explanation": "It has 16GB RAM, a dedicated graphics card, and a fast SSD for renders."
+            },
+            {
+              "stem": "What extra option is offered for an additional cost?",
+              "options": ["A larger battery.", "Accidental damage coverage.", "A second charger.", "Free software updates."],
+              "correct": 1,
+              "explanation": "Salesperson offers accidental damage coverage for an extra hundred dollars."
+            }
+          ]
+        },
+        {
+          "id": "p2_02_draft",
+          "audioFile": "listening-p2_02-man-you-look-exhausted-did-y.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-you-look-exhausted-did-y...']\nN: Listen to an extended conversation.\nWoman: You look exhausted. Did you sleep last night?\nMan: Barely. I stayed up finishing a project report that was due at nine this morning.\nWoman: Did you make the deadline?\nMan: Just barely. I sent it at eight fifty-five, then my computer crashed and I couldn't even open it again to check it uploaded.\nWoman: That's stressful. Maybe you should start earlier next time, or break the work into smaller pieces.\nMan: You're right. I think I'll switch to writing in the morning when I'm fresh.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why does the man look exhausted?",
+              "options": ["He travelled overnight.", "He stayed up late finishing a report.", "He is ill.", "He worked out at the gym."],
+              "correct": 1,
+              "explanation": "He stayed up finishing a project report due at nine."
+            },
+            {
+              "stem": "What problem did he have at the deadline?",
+              "options": ["He lost the file.", "His computer crashed.", "The email system was down.", "He forgot the attachment."],
+              "correct": 1,
+              "explanation": "His computer crashed after he sent the file at eight fifty-five."
+            },
+            {
+              "stem": "What change does he plan to make?",
+              "options": ["Buy a new computer.", "Work in the mornings when fresh.", "Hire an assistant.", "Stop writing reports."],
+              "correct": 1,
+              "explanation": "He says he'll switch to writing in the morning when he's fresh."
+            }
+          ]
+        },
+        {
+          "id": "p2_03_draft",
+          "audioFile": "listening-p2_03-woman-i-saw-the-ad-for-the-ap.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-i-saw-the-ad-for-the-ap...']\nN: Listen to an extended conversation.\nMan: I saw the ad for the apartment on Linden Street. Are you still thinking about applying?\nWoman: I am, but I'm worried about the lease. It's for eighteen months, and I'm not sure I'll be in the city that long.\nMan: Did you ask if the landlord would accept a twelve-month lease instead?\nWoman: Not yet. I plan to email them this afternoon. If they won't negotiate, I'll keep looking.\nMan: That sounds sensible. The location is great, but a long lease is risky if your plans are uncertain.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the woman hesitant to apply for the apartment?",
+              "options": ["It is too expensive.", "The lease is longer than she needs.", "The location is inconvenient.", "It does not allow pets."],
+              "correct": 1,
+              "explanation": "The lease is for eighteen months, and she may not stay in the city that long."
+            },
+            {
+              "stem": "What does the man suggest she do?",
+              "options": ["Sign the lease immediately.", "Ask the landlord about a shorter lease.", "Find a different apartment today.", "Move in with a roommate."],
+              "correct": 1,
+              "explanation": "He suggests asking if the landlord would accept a twelve-month lease instead."
+            },
+            {
+              "stem": "What will she do if the landlord will not negotiate?",
+              "options": ["Move anyway.", "Keep searching.", "Sublet the apartment.", "Cancel her plans."],
+              "correct": 1,
+              "explanation": "She says if they won't negotiate, she'll keep looking."
+            }
+          ]
+        },
+        {
+          "id": "p2_04_draft",
+          "audioFile": "listening-p2_04-man-welcome-back-everyone-b.mp3",
+          "script": "[DRAFT — inferred from filename: 'man-welcome-back-everyone-b...']\nN: Listen to an extended conversation.\nMan: Welcome back, everyone. Before we start, a few quick announcements. The deadline for the group project has been moved from this Friday to next Wednesday, so please plan accordingly. Also, the reading for next week has changed — please check the updated syllabus on the course website.\nWoman: Will the final presentation dates shift as well?\nMan: No, those remain the same. Office hours are also unchanged. If you have any questions, send me an email.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What change has been made to the group project?",
+              "options": ["It has been cancelled.", "The deadline is pushed back.", "It is now an individual task.", "It requires a longer report."],
+              "correct": 1,
+              "explanation": "The deadline moved from Friday to next Wednesday."
+            },
+            {
+              "stem": "What should students do regarding the reading?",
+              "options": ["Skip the reading this week.", "Check the updated syllabus online.", "Buy a new textbook.", "Email the professor for a copy."],
+              "correct": 1,
+              "explanation": "He tells them to check the updated syllabus on the course website."
+            },
+            {
+              "stem": "What will NOT change?",
+              "options": ["The deadline.", "The reading list.", "Office hours and final presentation dates.", "The classroom."],
+              "correct": 2,
+              "explanation": "He says the final presentation dates and office hours stay the same."
+            }
+          ]
+        },
+        {
+          "id": "p2_05_draft",
+          "audioFile": "listening-p2_05-woman-i-noticed-your-report-w.mp3",
+          "script": "[DRAFT — inferred from filename: 'woman-i-noticed-your-report-w...']\nN: Listen to an extended conversation.\nWoman: I noticed your report was missing the conclusion section. Did you run out of time?\nMan: I did. I spent too long reformatting the charts and forgot to write the wrap-up.\nWoman: That's a common mistake. Why don't you submit the conclusion as an addendum tomorrow?\nMan: Good idea. Will the professor accept a separate file?\nWoman: Usually yes, as long as it's clearly labelled and arrives before the grading starts.\nMan: Thanks. I'll do that tonight.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What was missing from the man's submission?",
+              "options": ["The introduction.", "The conclusion section.", "The bibliography.", "The charts."],
+              "correct": 1,
+              "explanation": "Woman noticed his report was missing the conclusion section."
+            },
+            {
+              "stem": "Why did he miss it?",
+              "options": ["He forgot about it entirely.", "He spent too long reformatting charts.", "His computer crashed.", "He submitted the wrong file."],
+              "correct": 1,
+              "explanation": "He says he spent too long reformatting charts and forgot to write the wrap-up."
+            },
+            {
+              "stem": "What solution do they agree on?",
+              "options": ["Resubmit the entire report.", "Send the conclusion as a separate addendum.", "Skip the conclusion.", "Email the professor to apologise."],
+              "correct": 1,
+              "explanation": "Woman suggests submitting it as an addendum tomorrow, clearly labelled."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_listening_parts_p3_draft",
+      "title": "MET B2 Listening Part 3 — Talks (DRAFT: scripts inferred from filenames; needs audio verification)",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "draftNotice": "Scripts and questions are best-effort drafts reconstructed from the truncated audio filename. They MUST be verified against the actual audio before publication. Correct answer indices and explanations are educated guesses based on filename clues.",
+      "items": [
+        {
+          "id": "p3_01_draft",
+          "audioFile": "listening-p3_01-good-morning-passengers-this.mp3",
+          "script": "[DRAFT — inferred from filename: 'good-morning-passengers-this...']\nN: Listen to a talk.\nAnnouncer: Good morning, passengers. This is the seven-thirty service to Central Station. We expect to arrive on time at eight forty-five. The café car is open until ten and serves hot drinks, sandwiches, and a limited breakfast menu. Wi-Fi is available throughout the train, and power outlets are located under each seat. Please keep your tickets ready for the inspector, and remember that the quiet zone is in cars three and four. Thank you for travelling with us, and enjoy your journey.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the destination of the train?",
+              "options": ["North Station.", "Central Station.", "Airport Terminal.", "River Valley."],
+              "correct": 1,
+              "explanation": "Announcer says this is the seven-thirty service to Central Station."
+            },
+            {
+              "stem": "Until what time is the café car open?",
+              "options": ["Eight o'clock.", "Ten o'clock.", "Noon.", "The end of the trip."],
+              "correct": 1,
+              "explanation": "Announcer says the café car is open until ten."
+            },
+            {
+              "stem": "Where is the quiet zone?",
+              "options": ["Cars one and two.", "Cars three and four.", "Cars five and six.", "The café car only."],
+              "correct": 1,
+              "explanation": "Announcer specifies the quiet zone is in cars three and four."
+            }
+          ]
+        },
+        {
+          "id": "p3_02_draft",
+          "audioFile": "listening-p3_02-today-i-want-to-talk-about-the.mp3",
+          "script": "[DRAFT — inferred from filename: 'today-i-want-to-talk-about-the...']\nN: Listen to a talk.\nSpeaker: Today I want to talk about the importance of sleep for university students. Most of you probably think you can manage on six hours, but research shows that sleep affects memory, mood, and even immune function. Going to bed at the same time every night, avoiding screens an hour before bed, and keeping the room dark and cool can dramatically improve how you feel during the day. If you find yourself tired in class, the answer is more rest, not more coffee.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the main topic of the talk?",
+              "options": ["Time management.", "The importance of sleep.", "Healthy eating habits.", "Exercise routines."],
+              "correct": 1,
+              "explanation": "The speaker says 'Today I want to talk about the importance of sleep for university students.'"
+            },
+            {
+              "stem": "According to the speaker, what does sleep affect?",
+              "options": ["Only mood.", "Memory, mood, and immune function.", "Only appetite.", "Only physical strength."],
+              "correct": 1,
+              "explanation": "He says sleep affects memory, mood, and even immune function."
+            },
+            {
+              "stem": "What suggestion does the speaker give for better sleep?",
+              "options": ["Drink more coffee.", "Avoid screens an hour before bed.", "Sleep later on weekends.", "Keep the room warm and bright."],
+              "correct": 1,
+              "explanation": "He advises avoiding screens an hour before bed and keeping the room dark and cool."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

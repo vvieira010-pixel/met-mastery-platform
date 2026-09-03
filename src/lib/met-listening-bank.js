@@ -1,4 +1,5 @@
 import listeningData from '../data/exercises/listening/met-listening-skills-bank.json';
+import partsData from '../data/exercises/listening/met-listening-parts-bank.json';
 import { dbList, dbEnabled } from './supabase-db.js';
 
 function buildModule(mod) {
@@ -10,7 +11,7 @@ function buildModule(mod) {
         type: 'listen',
         level: 'B2',
         audioText: item.script,
-        audioSrc: item.audioFile ? `/Listenings/${encodeURIComponent(item.audioFile)}` : '',
+        audioSrc: item.audioFile ? `/audio/listening/${encodeURIComponent(item.audioFile)}` : '',
         plays: 2,
         question: q.stem,
         options: q.options,
@@ -33,7 +34,10 @@ function buildModule(mod) {
   };
 }
 
-export const listeningModules = (listeningData?.modules || []).map(buildModule);
+export const listeningModules = [
+  ...((listeningData?.modules || []).map(buildModule)),
+  ...((partsData?.modules || []).map(buildModule)),
+];
 
 export async function getSupabaseListeningModules() {
   if (!dbEnabled()) return [];
