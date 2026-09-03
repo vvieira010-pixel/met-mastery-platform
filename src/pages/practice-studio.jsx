@@ -109,8 +109,8 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
       try {
         if (selectedKind === 'grammar') {
           ex = await getGrammarExercises();
-        } else if (selectedKind === 'reading') {
-          ex = await getReadingExercises();
+        } else if (selectedKind === 'reading' && selectedTopic) {
+          ex = await getReadingExercises(selectedTopic);
         } else if (selectedKind === 'vocab' && selectedTopic) {
           ex = await getVocabExercises(selectedTopic);
         } else if (selectedKind === 'speaking' && selectedTopic) {
@@ -134,7 +134,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
     return () => { cancelled = true; };
   }, [selectedKind, selectedTopic, selectedListeningFormat, sessionKey]);
 
-  const showTopicPicker = selectedKind && selectedKind !== 'grammar' && selectedKind !== 'reading' && !selectedTopic;
+  const showTopicPicker = selectedKind && selectedKind !== 'grammar' && !selectedTopic;
   const selectedTopicTitle = topics.find(t => t.id === selectedTopic)?.title || '';
   const showLanding = !selectedKind;
 
@@ -299,14 +299,16 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
           (() => {
             const q = listeningSearch.trim().toLowerCase();
             const filteredAll = q ? topics.filter(t => t.title.toLowerCase().includes(q) || t.id.toLowerCase().includes(q)) : topics;
-            const isB2 = selectedKind === 'b2_mcq';
-            const groups = isB2
-              ? [{ title: 'B2 Skills', ids: ['reading','listening','speaking','writing','vocabulary','grammar'] }]
-              : [
-                  { title: 'Work & Study', ids: ['work_career','healthcare','education','technology'] },
-                  { title: 'Life & Community', ids: ['environment','community','travel_culture','money_consumer','family_relationships','media_news'] },
-                  { title: 'General', ids: ['general'] },
-                ];
+            let groups;
+            if (selectedKind === 'reading') {
+              groups = [{ title: 'Reading Passages', ids: ['study_abroad','online_learning'] }];
+            } else {
+              groups = [
+                { title: 'Work & Study', ids: ['work_career','healthcare','education','technology'] },
+                { title: 'Life & Community', ids: ['environment','community','travel_culture','money_consumer','family_relationships','media_news'] },
+                { title: 'General', ids: ['general'] },
+              ];
+            }
             const Group = ({ title, ids }) => {
               const items = filteredAll.filter(t => ids.includes(t.id));
               if (items.length === 0) return null;

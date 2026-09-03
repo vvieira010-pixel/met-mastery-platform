@@ -25,6 +25,12 @@ export function getTopicList(mode) {
       { id: 'grammar', title: 'Grammar' },
     ];
   }
+  if (mode === 'reading') {
+    return [
+      { id: 'study_abroad', title: 'Study Abroad & Work' },
+      { id: 'online_learning', title: 'Online Learning & Technology' },
+    ];
+  }
   if (mode === 'listening') {
     return []; // Handled asynchronously in PracticeSession or via a new helper
   }
@@ -156,9 +162,15 @@ export async function getWritingExercises(topicId) {
   return [...base, ...b2];
 }
 
-export async function getReadingExercises() {
+export async function getReadingExercises(topicId) {
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
-  return getMetB2MultipleChoice('reading');
+  const all = getMetB2MultipleChoice('reading');
+  if (!topicId) return all;
+  const studyIds = new Set(['b2_mcq_reading_01','b2_mcq_reading_02','b2_mcq_reading_03','b2_mcq_reading_07','b2_mcq_reading_08']);
+  const onlineIds = new Set(['b2_mcq_reading_04','b2_mcq_reading_05','b2_mcq_reading_06','b2_mcq_reading_09','b2_mcq_reading_10']);
+  if (topicId === 'study_abroad') return all.filter(e => studyIds.has(e.id));
+  if (topicId === 'online_learning') return all.filter(e => onlineIds.has(e.id));
+  return all;
 }
 
 export async function getListeningExercises(audioId) {
