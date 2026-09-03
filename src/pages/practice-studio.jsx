@@ -10,7 +10,7 @@ import {
   getWritingExercises,
   getListeningExercises,
   getListeningAudioGroups,
-  getMetB2MultipleChoiceExercises,
+  getReadingExercises,
 } from '../lib/vocab-homework-bank.js';
 import { savePracticeSession } from '../lib/workflow.js';
 import { getExamMode, getDaysUntilExam, MODE_SPRINT } from '../lib/exam-window.js';
@@ -30,7 +30,7 @@ const MODE_LABELS = {
   speaking: 'Speaking Mirror',
   writing: 'Writing Studio',
   listening: 'Listening Lab',
-  b2_mcq: 'B2 Skills Pack',
+  reading: 'Reading Lab',
 };
 
 const MODE_SUBTITLES = {
@@ -39,7 +39,7 @@ const MODE_SUBTITLES = {
   speaking: 'Speaking & writing practice prompts',
   writing: 'Paragraph & short-answer writing tasks',
   listening: 'Interactive listening — 26 new MET 26 conversations + B2 76–100',
-  b2_mcq: 'Grammar, vocabulary, reading, listening, writing & speaking',
+  reading: 'Reading comprehension · B2 passages',
 };
 
 const MODE_ICONS = {
@@ -48,16 +48,16 @@ const MODE_ICONS = {
   speaking: Icon.mic,
   writing: Icon.edit,
   listening: Icon.headset,
-  b2_mcq: Icon.book,
+  reading: Icon.book,
 };
 
 const KIND_OPTIONS = [
   { id: 'grammar', label: 'Grammar' },
   { id: 'vocab', label: 'Vocabulary' },
+  { id: 'reading', label: 'Reading' },
   { id: 'speaking', label: 'Speaking' },
   { id: 'writing', label: 'Writing' },
   { id: 'listening', label: 'Listening' },
-  { id: 'b2_mcq', label: 'B2 Skills Pack' },
 ];
 
 export default function PracticeStudio({ studentId, onBack, "data-testid": testId }) {
@@ -109,6 +109,8 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
       try {
         if (selectedKind === 'grammar') {
           ex = await getGrammarExercises();
+        } else if (selectedKind === 'reading') {
+          ex = await getReadingExercises();
         } else if (selectedKind === 'vocab' && selectedTopic) {
           ex = await getVocabExercises(selectedTopic);
         } else if (selectedKind === 'speaking' && selectedTopic) {
@@ -118,8 +120,6 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
         } else if (selectedKind === 'listening') {
           ex = await getListeningExercises(selectedTopic);
           if (selectedListeningFormat !== 'all') ex = ex.filter(item => (item.listeningFormat || 'multiple_choice') === selectedListeningFormat);
-        } else if (selectedKind === 'b2_mcq' && selectedTopic) {
-          ex = await getMetB2MultipleChoiceExercises(selectedTopic);
         }
       } catch (e) {
         console.warn('[PracticeStudio] Failed to load exercises:', e);
@@ -134,7 +134,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
     return () => { cancelled = true; };
   }, [selectedKind, selectedTopic, selectedListeningFormat, sessionKey]);
 
-  const showTopicPicker = selectedKind && selectedKind !== 'grammar' && !selectedTopic;
+  const showTopicPicker = selectedKind && selectedKind !== 'grammar' && selectedKind !== 'reading' && !selectedTopic;
   const selectedTopicTitle = topics.find(t => t.id === selectedTopic)?.title || '';
   const showLanding = !selectedKind;
 

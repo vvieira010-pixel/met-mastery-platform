@@ -156,6 +156,11 @@ export async function getWritingExercises(topicId) {
   return [...base, ...b2];
 }
 
+export async function getReadingExercises() {
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  return getMetB2MultipleChoice('reading');
+}
+
 export async function getListeningExercises(audioId) {
   const { vocabTopics } = await getFullData();
   const { LISTENING } = await import('./met-b2-exercises.js');
