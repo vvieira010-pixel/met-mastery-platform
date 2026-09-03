@@ -366,7 +366,6 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
             );
           })()
         )
-        )
       ) : loading ? (
         <div className="practice-studio-loading">
           <p>Loading exercises…</p>
