@@ -14,7 +14,7 @@ function sectionToLabel(section) {
     .replace(/Vocabulary/g, 'Voc.').replace(/Listening/g, 'Lis.').replace(/Reading/g, 'Read.').slice(0, 18);
 }
 
-function SubskillRadar({ sectionData }) {
+function SubskillRadar({ sectionData, 'data-testid': testId = 'subskill-radar' }) {
   const [loaded, setLoaded] = useState(false);
   const [Modules, setModules] = useState(null);
   const [chartHeight, setChartHeight] = useState(400);
@@ -240,7 +240,7 @@ export default function StudentProgress({ student, "data-testid": testId }) {
                   </div>
                   <span className="student-pill">{skills.length} skill{skills.length !== 1 ? 's' : ''}</span>
                 </div>
-                <SubskillRadar sectionData={radarData} />
+                <SubskillRadar sectionData={radarData} data-testid={testId ? `${testId}-skill-radar` : 'student-progress-skill-radar'} />
               </section>
             );
           })()}
