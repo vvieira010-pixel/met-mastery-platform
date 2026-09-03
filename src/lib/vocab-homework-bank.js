@@ -78,12 +78,15 @@ export async function getListeningAudioGroups() {
   const { LISTENING } = await import('./met-b2-exercises.js');
   const supplementary = await getSupplementaryListening();
   const met26 = await getMet26Conversations();
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2Listening = getMetB2MultipleChoice('listening');
 
   const allListening = [
     ...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'listen')),
     ...LISTENING,
     ...supplementary,
-    ...met26
+    ...met26,
+    ...b2Listening
   ];
 
   const groups = new Map();
@@ -117,28 +120,40 @@ export async function getGrammarExercises() {
   const { grammarMCQs } = await getFullData();
   const drillMod = await import('./met-grammar-bank.js');
   const drillQuestions = drillMod.getGrammarModules().flatMap(m => m.exercises);
-  return [...grammarMCQs, ...drillQuestions];
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2 = getMetB2MultipleChoice('grammar');
+  return [...grammarMCQs, ...drillQuestions, ...b2];
 }
 
 export async function getVocabExercises(topicId) {
   const { vocabTopics } = await getFullData();
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  return topic.exercises.filter(e => e.type === 'mcq' || e.type === 'blank');
+  const base = topic.exercises.filter(e => e.type === 'mcq' || e.type === 'blank');
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2All = getMetB2MultipleChoice('vocabulary');
+  // B2 vocab is not topic-specific — mix in as general practice
+  return [...base, ...b2All];
 }
 
 export async function getSpeakingExercises(topicId) {
   const { vocabTopics } = await getFullData();
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  return topic.exercises.filter(e => e.type === 'speak' || e.type === 'short');
+  const base = topic.exercises.filter(e => e.type === 'speak' || e.type === 'short');
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2 = getMetB2MultipleChoice('speaking');
+  return [...base, ...b2];
 }
 
 export async function getWritingExercises(topicId) {
   const { vocabTopics } = await getFullData();
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  return topic.exercises.filter(e => e.type === 'short');
+  const base = topic.exercises.filter(e => e.type === 'short');
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2 = getMetB2MultipleChoice('writing');
+  return [...base, ...b2];
 }
 
 export async function getListeningExercises(audioId) {
@@ -146,12 +161,15 @@ export async function getListeningExercises(audioId) {
   const { LISTENING } = await import('./met-b2-exercises.js');
   const supplementary = await getSupplementaryListening();
   const met26 = await getMet26Conversations();
+  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+  const b2Listening = getMetB2MultipleChoice('listening');
   
   const allListening = [
     ...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'listen' || e.type === 'embed')),
     ...LISTENING,
     ...supplementary,
-    ...met26
+    ...met26,
+    ...b2Listening
   ];
 
   return allListening
