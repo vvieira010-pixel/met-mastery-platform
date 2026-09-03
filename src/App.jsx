@@ -395,26 +395,6 @@ export default function App() {
 
 
   const handleSignIn = async (payload) => {
-    if (payload?.mockDirect || payload?.role) {
-      if (payload.role === 'teacher') {
-        setSessionRole('teacher');
-        setAuth({
-          role: 'teacher',
-          email: payload.email || 'vvieira010@gmail.com',
-          displayName: payload.displayName || 'Vinícius (Teacher)',
-        });
-      } else if (payload.role === 'student') {
-        setSessionRole('student');
-        setAuth({
-          role: 'student',
-          studentId: payload.studentId || (students[0]?.id || 'st_1'),
-          email: payload.email || (students[0]?.email || 'ana.silva@example.com'),
-          displayName: payload.displayName || (students[0]?.name || 'Ana Silva'),
-        });
-      }
-      return;
-    }
-
     const stored = readStoredSupabaseSession() || payload;
     if (!stored?.access_token) return;
     const { url, anonKey } = getSupabaseConfig();
@@ -472,7 +452,6 @@ export default function App() {
             <StudentDashboard 
               student={student} 
               onSignOut={handleSignOut} 
-              onSwitchRole={() => handleSignIn({ mockDirect: true, role: 'teacher', email: 'vvieira010@gmail.com', displayName: 'Vinícius (Teacher)' })} 
             />
           </Suspense>
         </ErrorBoundary>
@@ -497,31 +476,6 @@ export default function App() {
 
   const rightSlot = (
     <div className="shell-topbar-right">
-      <button
-        type="button"
-        onClick={() => handleSignIn({
-          mockDirect: true,
-          role: 'student',
-          studentId: students[0]?.id || 'st_1',
-          email: students[0]?.email || 'ana.silva@example.com',
-          displayName: students[0]?.name || 'Ana Silva',
-        })}
-        aria-label="Preview student view"
-        title="Preview student view"
-        className="shell-settings-btn"
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '4px',
-          padding: '4px 8px',
-          fontSize: '12px',
-          fontWeight: 600,
-        }}
-        data-testid="student-preview-toggle"
-      >
-        <Icon.student size={14} />
-        <span className="hidden sm:inline">Student View</span>
-      </button>
       <button
         type="button"
         onClick={() => setDarkMode(v => !v)}
