@@ -299,6 +299,34 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
           (() => {
             const q = listeningSearch.trim().toLowerCase();
             const filteredAll = q ? topics.filter(t => t.title.toLowerCase().includes(q) || t.id.toLowerCase().includes(q)) : topics;
+            const isB2 = selectedKind === 'b2_mcq';
+            const groups = isB2
+              ? [{ title: 'B2 Skills', ids: ['reading','listening','speaking','writing','vocabulary','grammar'] }]
+              : [
+                  { title: 'Work & Study', ids: ['work_career','healthcare','education','technology'] },
+                  { title: 'Life & Community', ids: ['environment','community','travel_culture','money_consumer','family_relationships','media_news'] },
+                  { title: 'General', ids: ['general'] },
+                ];
+            const Group = ({ title, ids }) => {
+              const items = filteredAll.filter(t => ids.includes(t.id));
+              if (items.length === 0) return null;
+              return (
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                    <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>{title}</h4>
+                    <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{items.length}</span>
+                  </div>
+                  <div className="grid-square">
+                    {items.map(t => (
+                      <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer' }}>
+                        <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              );
+            };
+            const unmatched = filteredAll.filter(t => !groups.flatMap(g => g.ids).includes(t.id));
             return (
               <div className="practice-studio-topics">
                 <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -309,14 +337,19 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                   </div>
                   <span className="text-xs text-[var(--muted)]">{filteredAll.length} of {topics.length}</span>
                 </div>
-                <p className="practice-studio-topics-desc">Choose a topic to practice.</p>
-                <div className="grid-square">
-                  {filteredAll.map(t => (
-                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer', transition: 'all 0.2s' }}>
-                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
-                    </Card>
-                  ))}
-                </div>
+                {groups.map(g => <Group key={g.title} title={g.title} ids={g.ids} />)}
+                {unmatched.length > 0 && (
+                  <div style={{ marginBottom: 20 }}>
+                    <h4 style={{ margin: 0, marginBottom: 10, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>Other</h4>
+                    <div className="grid-square">
+                      {unmatched.map(t => (
+                        <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer' }}>
+                          <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {filteredAll.length === 0 && <p className="text-sm text-[var(--muted)]" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
               </div>
             );
