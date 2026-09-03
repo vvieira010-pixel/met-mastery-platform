@@ -310,7 +310,7 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
               groups = [
                 { title: 'Core Grammar', ids: ['gm_common_mistakes','gm_conditionals','gm_passive','gm_modals','gm_inversion','gm_relatives','gm_articles'] },
                 { title: 'Structure & Usage', ids: ['gm_pronouns','gm_comparatives','gm_phrasal','gm_agreement','gm_reported','gm_gerunds','gm_quantifiers','gm_connectors','gm_demonstratives','gm_adverbs','gm_infinitives','gm_somewhere'] },
-                { title: 'Practice Sets', ids: ['gm_order_fix','gm_grammar_50_more'] },
+                { title: 'Practice Sets', ids: ['gm_order_fix','gm_grammar_50_more','gm_full_bank'] },
               ];
             } else {
               groups = [

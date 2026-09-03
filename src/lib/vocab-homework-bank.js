@@ -27,8 +27,26 @@ export function getTopicList(mode) {
   }
   if (mode === 'reading') {
     return [
+      { id: 'reading_full_bank', title: 'Full Reading Bank' },
       { id: 'study_abroad', title: 'Study Abroad & Work' },
       { id: 'online_learning', title: 'Online Learning & Technology' },
+    ];
+  }
+  if (mode === 'speaking') {
+    return [
+      { id: 'describe_image', title: 'Describe the Image' },
+      { id: 'speaking_full_bank', title: 'Full Speaking Bank' },
+      { id: 'work_career', title: 'Work and Career' },
+      { id: 'healthcare', title: 'Healthcare and Patient Care' },
+      { id: 'education', title: 'Education and Learning' },
+      { id: 'technology', title: 'Technology and Digital Life' },
+      { id: 'environment', title: 'Environment and Sustainability' },
+      { id: 'community', title: 'Community and Public Services' },
+      { id: 'travel_culture', title: 'Travel, Culture, and Moving Abroad' },
+      { id: 'money_consumer', title: 'Money, Consumer Choices, and Advertising' },
+      { id: 'family_relationships', title: 'Family, Relationships, and Social Life' },
+      { id: 'media_news', title: 'Media, News, and Communication' },
+      { id: 'general', title: 'General Vocabulary' },
     ];
   }
   if (mode === 'grammar') {
@@ -54,6 +72,24 @@ export function getTopicList(mode) {
       { id: 'gm_somewhere', title: 'Somewhere / Anywhere' },
       { id: 'gm_order_fix', title: 'Sentence Ordering & Error Correction' },
       { id: 'gm_grammar_50_more', title: 'Grammar — 48 More' },
+      { id: 'gm_full_bank', title: 'Full Grammar Bank' },
+    ];
+  }
+  if (mode === 'writing' || mode === 'vocab') {
+    const label = mode === 'writing' ? 'Writing' : 'Vocabulary';
+    return [
+      { id: `${mode}_full_bank`, title: `Full ${label} Bank` },
+      { id: 'work_career', title: 'Work and Career' },
+      { id: 'healthcare', title: 'Healthcare and Patient Care' },
+      { id: 'education', title: 'Education and Learning' },
+      { id: 'technology', title: 'Technology and Digital Life' },
+      { id: 'environment', title: 'Environment and Sustainability' },
+      { id: 'community', title: 'Community and Public Services' },
+      { id: 'travel_culture', title: 'Travel, Culture, and Moving Abroad' },
+      { id: 'money_consumer', title: 'Money, Consumer Choices, and Advertising' },
+      { id: 'family_relationships', title: 'Family, Relationships, and Social Life' },
+      { id: 'media_news', title: 'Media, News, and Communication' },
+      { id: 'general', title: 'General Vocabulary' },
     ];
   }
   if (mode === 'listening') {
@@ -150,6 +186,11 @@ export async function getListeningAudioGroups() {
 export async function getGrammarExercises(topicId) {
   const drillMod = await import('./met-grammar-bank.js');
   const allModules = drillMod.getGrammarModules();
+  if (topicId === 'gm_full_bank') {
+    const { grammarMCQs } = await getFullData();
+    const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+    return [...grammarMCQs, ...allModules.flatMap(m => m.exercises), ...getMetB2MultipleChoice('grammar')];
+  }
   if (topicId) {
     const mod = allModules.find(m => m.id === topicId);
     if (mod) return mod.exercises;
@@ -163,44 +204,106 @@ export async function getGrammarExercises(topicId) {
 
 export async function getVocabExercises(topicId) {
   const { vocabTopics } = await getFullData();
+  if (topicId === 'vocab_full_bank') {
+    const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
+    const extras = await import('../data/exercises/vocabulary/b2-vocab-50-more.json', { with: { type: 'json' } }).then(m => (m.default?.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ));
+    return [...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'mcq' || e.type === 'blank')), ...getMetB2MultipleChoice('vocabulary'), ...extras];
+  }
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
   const base = topic.exercises.filter(e => e.type === 'mcq' || e.type === 'blank');
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2All = getMetB2MultipleChoice('vocabulary');
   // B2 vocab is not topic-specific — mix in as general practice
-  return [...base, ...b2All];
+  const extras = topicId === 'general'
+    ? await import('../data/exercises/vocabulary/b2-vocab-50-more.json', { with: { type: 'json' } }).then(m => (m.default?.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ))
+    : [];
+  return [...base, ...b2All, ...extras];
 }
 
 export async function getSpeakingExercises(topicId) {
+  if (topicId === 'describe_image') {
+    const { default: imageDescriptionExercises } = await import('../data/exercises/speaking/image-description.js');
+    return imageDescriptionExercises;
+  }
   const { vocabTopics } = await getFullData();
+  if (topicId === 'speaking_full_bank') topicId = 'general';
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  const base = topic.exercises.filter(e => e.type === 'speak' || e.type === 'short');
+  const base = topicId === 'general'
+    ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'speak' || e.type === 'short'))
+    : topic.exercises.filter(e => e.type === 'speak' || e.type === 'short');
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('speaking');
-  return [...base, ...b2];
+  const { default: extended } = await import('../data/exercises/speaking/b2-speaking-50-more.json', { with: { type: 'json' } });
+  const more = (extended?.modules || []).flatMap(mod => mod.exercises || []).map(ex => ({ ...ex, type: 'speak' }));
+  return [...base, ...b2, ...more];
 }
 
 export async function getWritingExercises(topicId) {
   const { vocabTopics } = await getFullData();
+  if (topicId === 'writing_full_bank') topicId = 'general';
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  const base = topic.exercises.filter(e => e.type === 'short');
+  const base = topicId === 'general'
+    ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'short'))
+    : topic.exercises.filter(e => e.type === 'short');
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('writing');
-  return [...base, ...b2];
+  const { default: extended } = await import('../data/exercises/writing/b2-writing-50-more.json', { with: { type: 'json' } });
+  const more = (extended?.modules || []).flatMap(mod => mod.exercises || []);
+  return [...base, ...b2, ...more];
 }
 
 export async function getReadingExercises(topicId) {
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const all = getMetB2MultipleChoice('reading');
-  if (!topicId) return all;
+  const extended = await loadExtendedReadingExercises();
+  if (!topicId || topicId === 'reading_full_bank') return [...all, ...extended];
   const studyIds = new Set(['b2_mcq_reading_01','b2_mcq_reading_02','b2_mcq_reading_03','b2_mcq_reading_07','b2_mcq_reading_08']);
   const onlineIds = new Set(['b2_mcq_reading_04','b2_mcq_reading_05','b2_mcq_reading_06','b2_mcq_reading_09','b2_mcq_reading_10']);
-  if (topicId === 'study_abroad') return all.filter(e => studyIds.has(e.id));
-  if (topicId === 'online_learning') return all.filter(e => onlineIds.has(e.id));
-  return all;
+  if (topicId === 'study_abroad') return [...all.filter(e => studyIds.has(e.id)), ...extended];
+  if (topicId === 'online_learning') return [...all.filter(e => onlineIds.has(e.id)), ...extended];
+  return [...all, ...extended];
+}
+
+function normalizeBankMCQ(item) {
+  const options = Array.isArray(item.options) ? item.options : Object.entries(item.options || {}).sort(([a], [b]) => a.localeCompare(b)).map(([, value]) => value);
+  const correct = typeof item.correct === 'number' ? item.correct : typeof item.correctAnswer === 'string'
+    ? Math.max(0, options.findIndex(option => option === item.correctAnswer || option.startsWith(item.correctAnswer)))
+    : typeof item.answer === 'number' ? item.answer : 0;
+  return {
+    ...item,
+    id: `bank_${item.id}`,
+    type: 'mcq',
+    question: item.question || item.stem || item.prompt || '',
+    options: options.map(option => typeof option === 'string' ? option : option.text || option.label || String(option)),
+    correct,
+  };
+}
+
+let extendedReadingPromise = null;
+async function loadExtendedReadingExercises() {
+  if (!extendedReadingPromise) {
+    extendedReadingPromise = Promise.all([
+      import('../data/exercises/reading/b2-reading.json', { with: { type: 'json' } }),
+      import('../data/exercises/reading/b2-reading-50-more.json', { with: { type: 'json' } }),
+      import('../data/exercises/reading/reading-23-trees-77.json', { with: { type: 'json' } }),
+      import('../data/exercises/reading/reading-23-met-subjects-77.json', { with: { type: 'json' } }),
+    ]).then(modules => modules.flatMap(({ default: data }) => (data.modules || []).flatMap(mod => mod.items || mod.passages || []).flatMap(item => (item.questions || []).map((question, index) => ({
+      id: `reading_bank_${item.id || 'passage'}_${index + 1}`,
+      type: 'read',
+      passage: item.passage || '',
+      source: item.source,
+      questions: [{
+        ...question,
+        id: question.id || `${item.id || 'reading'}_q${index + 1}`,
+        question: question.question || question.stem || question.prompt || '',
+        options: (question.options || []).map(option => typeof option === 'string' ? option : option.text || option.label || String(option)),
+      }],
+    })))));
+  }
+  return extendedReadingPromise;
 }
 
 export async function getListeningExercises(audioId) {
