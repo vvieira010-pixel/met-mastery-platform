@@ -3,6 +3,10 @@ import readingData from '../data/exercises/reading/b2-reading.json';
 import writingData from '../data/exercises/writing/b2-writing.json';
 import speakingData from '../data/exercises/speaking/b2-speaking.json';
 import grammarData from '../data/exercises/grammar/b2-grammar.json';
+import readingMoreData from '../data/exercises/reading/b2-reading-50-more.json';
+import speakingMoreData from '../data/exercises/speaking/b2-speaking-50-more.json';
+import writingMoreData from '../data/exercises/writing/b2-writing-50-more.json';
+import vocabMoreData from '../data/exercises/vocabulary/b2-vocab-50-more.json';
 import { listeningModules, getSupabaseListeningModules } from './met-listening-bank.js';
 
 let _counter = 0;
@@ -92,6 +96,10 @@ const _allModules = [
   ...(writingData?.modules || []).map(buildModule),
   ...(speakingData?.modules || []).map(buildModule),
   ...(grammarData?.modules || []).map(buildModule),
+  ...(readingMoreData?.modules || []).map(buildModule),
+  ...(speakingMoreData?.modules || []).map(buildModule),
+  ...(writingMoreData?.modules || []).map(buildModule),
+  ...(vocabMoreData?.modules || []).map(buildModule),
   ...listeningModules,
 ];
 

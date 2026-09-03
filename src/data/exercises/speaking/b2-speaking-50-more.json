@@ -1,0 +1,464 @@
+{
+  "modules": [
+    {
+      "id": "b2_speaking_50_more",
+      "title": "Speaking — 50 More MET Prompts",
+      "skill": "speaking",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "sourceNote": "10 prompt sets × 5 tasks (picture description, personal question, preference, advantages/disadvantages, roleplay/persuasion). 60s for tasks 1-3, 90s for tasks 4-5.",
+      "exercises": [
+        {
+          "id": "speak_task_mtlebxak_b",
+          "type": "speaking",
+          "topic": "Farmers Market",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a farmers market with stalls of fresh fruit and vegetables, vendors talking to customers, baskets of produce, and people carrying bags."
+        },
+        {
+          "id": "speak_task_mtlebxak_c",
+          "type": "speaking",
+          "topic": "Farmers Market",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the last time you bought something at a market or street fair."
+        },
+        {
+          "id": "speak_task_mtlebxak_d",
+          "type": "speaking",
+          "topic": "Farmers Market",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people prefer to buy food at farmers markets, while others prefer supermarkets. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_e",
+          "type": "speaking",
+          "topic": "Farmers Market",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about growing their own vegetables at home to save money. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_f",
+          "type": "speaking",
+          "topic": "Farmers Market",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering closing the main square on weekends to hold a farmers market. Some drivers are against losing parking spaces. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_g",
+          "type": "speaking",
+          "topic": "Birthday Party",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a birthday party with children playing games, a table with a cake and balloons, parents talking in the background, and presents on a chair."
+        },
+        {
+          "id": "speak_task_mtlebxak_h",
+          "type": "speaking",
+          "topic": "Birthday Party",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the most memorable birthday or celebration you have had."
+        },
+        {
+          "id": "speak_task_mtlebxak_i",
+          "type": "speaking",
+          "topic": "Birthday Party",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people prefer small celebrations with close friends, while others prefer big parties. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_j",
+          "type": "speaking",
+          "topic": "Birthday Party",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about spending a large amount of money on an extravagant birthday party. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_k",
+          "type": "speaking",
+          "topic": "Birthday Party",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your child's school is considering banning birthday celebrations with food in classrooms because of allergy risks. I am the school principal. Tell me what you think of this proposal and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_l",
+          "type": "speaking",
+          "topic": "Dentist",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a dental office with a patient in a chair, a dentist wearing a mask and gloves, equipment with lights, and a poster about brushing teeth."
+        },
+        {
+          "id": "speak_task_mtlebxak_m",
+          "type": "speaking",
+          "topic": "Dentist",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about a time you visited a dentist or doctor for a check-up."
+        },
+        {
+          "id": "speak_task_mtlebxak_n",
+          "type": "speaking",
+          "topic": "Dentist",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people go to the dentist only when something hurts, while others go for regular check-ups. Which approach do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_o",
+          "type": "speaking",
+          "topic": "Dentist",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about getting their teeth whitened at an expensive clinic. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_p",
+          "type": "speaking",
+          "topic": "Dentist",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering adding free dental check-ups for children in public schools. Some people say the money should go to other services. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_q",
+          "type": "speaking",
+          "topic": "Camping",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a campsite in a forest with two tents, a family sitting around a campfire, a pot over the fire, and trees and mountains in the background."
+        },
+        {
+          "id": "speak_task_mtlebxak_r",
+          "type": "speaking",
+          "topic": "Camping",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the last time you spent a night away from home."
+        },
+        {
+          "id": "speak_task_mtlebxak_s",
+          "type": "speaking",
+          "topic": "Camping",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people love camping in nature, while others prefer staying in hotels. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_t",
+          "type": "speaking",
+          "topic": "Camping",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about a camping trip in a remote area without any previous experience. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_u",
+          "type": "speaking",
+          "topic": "Camping",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "A national park in your country is considering limiting the number of visitors per day to protect nature. I am the park director. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_v",
+          "type": "speaking",
+          "topic": "Gardening",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a garden with an older woman planting flowers, tools on the ground, a watering can, and rows of vegetables."
+        },
+        {
+          "id": "speak_task_mtlebxak_w",
+          "type": "speaking",
+          "topic": "Gardening",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about a time you grew a plant or took care of a garden."
+        },
+        {
+          "id": "speak_task_mtlebxak_x",
+          "type": "speaking",
+          "topic": "Gardening",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people find gardening relaxing, while others consider it boring and tiring work. Which view do you agree with, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_y",
+          "type": "speaking",
+          "topic": "Gardening",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A city is considering turning empty lots into community gardens where residents can grow food. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_z",
+          "type": "speaking",
+          "topic": "Gardening",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your neighborhood association is proposing that every house replace part of its lawn with trees and plants to reduce heat. I am a member of the association. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_10",
+          "type": "speaking",
+          "topic": "Zoo",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a zoo with visitors watching giraffes, a child pointing excitedly, a guide with a group, and information signs near the fence."
+        },
+        {
+          "id": "speak_task_mtlebxak_11",
+          "type": "speaking",
+          "topic": "Zoo",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the last time you visited a zoo or aquarium."
+        },
+        {
+          "id": "speak_task_mtlebxak_12",
+          "type": "speaking",
+          "topic": "Zoo",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people believe zoos help protect animals, while others believe they should not exist. Which view do you agree with, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_13",
+          "type": "speaking",
+          "topic": "Zoo",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A city is considering building a large modern zoo with natural habitats instead of cages. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_14",
+          "type": "speaking",
+          "topic": "Zoo",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering closing the old zoo and releasing the animals into sanctuaries. Some families are against losing the attraction. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_15",
+          "type": "speaking",
+          "topic": "Barber Shop",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a barber shop with a customer in a chair, a barber cutting hair with scissors, mirrors on the walls, and another customer waiting and reading a magazine."
+        },
+        {
+          "id": "speak_task_mtlebxak_16",
+          "type": "speaking",
+          "topic": "Barber Shop",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about a time you had a haircut you really liked or really disliked."
+        },
+        {
+          "id": "speak_task_mtlebxak_17",
+          "type": "speaking",
+          "topic": "Barber Shop",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people change their hairstyle often, while others keep the same style for years. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_18",
+          "type": "speaking",
+          "topic": "Barber Shop",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about cutting their own hair at home to save money. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_19",
+          "type": "speaking",
+          "topic": "Barber Shop",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering offering free haircut vouchers to unemployed people. Some taxpayers think the money should be spent elsewhere. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_1a",
+          "type": "speaking",
+          "topic": "Board Games",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a living room where a group of friends is playing a board game, dice on the table, snacks and drinks nearby, and one person laughing while another thinks carefully."
+        },
+        {
+          "id": "speak_task_mtlebxak_1b",
+          "type": "speaking",
+          "topic": "Board Games",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the last time you played a game with friends or family."
+        },
+        {
+          "id": "speak_task_mtlebxak_1c",
+          "type": "speaking",
+          "topic": "Board Games",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people prefer playing games on screens, while others prefer physical board games. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1d",
+          "type": "speaking",
+          "topic": "Board Games",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A school is considering adding a weekly board game afternoon to develop students' social skills. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1e",
+          "type": "speaking",
+          "topic": "Board Games",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your child's school is considering banning all games during breaks, including traditional games, to avoid conflicts between students. I am the school principal. Tell me what you think of this proposal and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_1f",
+          "type": "speaking",
+          "topic": "Street Food",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: a busy street at night with food carts, a vendor cooking behind a grill, steam rising, customers waiting in line, and colorful lights."
+        },
+        {
+          "id": "speak_task_mtlebxak_1g",
+          "type": "speaking",
+          "topic": "Street Food",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the best or worst street food you have ever eaten."
+        },
+        {
+          "id": "speak_task_mtlebxak_1h",
+          "type": "speaking",
+          "topic": "Street Food",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people love trying street food when traveling, while others avoid it completely. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1i",
+          "type": "speaking",
+          "topic": "Street Food",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A friend is thinking about leaving their office job to run a food truck. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1j",
+          "type": "speaking",
+          "topic": "Street Food",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering banning street food vendors from the historic center to keep the area clean. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        },
+        {
+          "id": "speak_task_mtlebxak_1k",
+          "type": "speaking",
+          "topic": "Wedding",
+          "taskNumber": 1,
+          "seconds": 60,
+          "promptType": "picture description",
+          "prompt": "Describe this picture: an outdoor wedding with a couple exchanging vows, guests seated on white chairs, flowers along an aisle, and a photographer taking pictures."
+        },
+        {
+          "id": "speak_task_mtlebxak_1l",
+          "type": "speaking",
+          "topic": "Wedding",
+          "taskNumber": 2,
+          "seconds": 60,
+          "promptType": "personal question",
+          "prompt": "Tell us about the most special celebration you have ever attended."
+        },
+        {
+          "id": "speak_task_mtlebxak_1m",
+          "type": "speaking",
+          "topic": "Wedding",
+          "taskNumber": 3,
+          "seconds": 60,
+          "promptType": "preference",
+          "prompt": "Some people prefer big traditional weddings, while others prefer small simple ceremonies. Which do you prefer, and why?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1n",
+          "type": "speaking",
+          "topic": "Wedding",
+          "taskNumber": 4,
+          "seconds": 90,
+          "promptType": "advantages and disadvantages",
+          "prompt": "A couple is thinking about taking a loan to pay for a large wedding. What are the advantages and disadvantages of this idea?"
+        },
+        {
+          "id": "speak_task_mtlebxak_1o",
+          "type": "speaking",
+          "topic": "Wedding",
+          "taskNumber": 5,
+          "seconds": 90,
+          "promptType": "roleplay / persuasion",
+          "prompt": "Your city is considering creating a free public program that helps couples plan simple low-cost weddings. Some people say the city should not spend money on this. I am a member of the city council. Tell me what you think of this plan and convince me to agree with you."
+        }
+      ]
+    }
+  ]
+}

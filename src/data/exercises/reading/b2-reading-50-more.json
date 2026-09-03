@@ -1,0 +1,634 @@
+{
+  "modules": [
+    {
+      "id": "b2_reading_50_more",
+      "title": "Reading — 50 More MET Questions (10 Passages)",
+      "skill": "reading",
+      "levelRange": "B1-C1",
+      "moduleType": "reading_set",
+      "sourceNote": "10 MET-style passages × 5 questions (main idea, detail, vocabulary in context, author's purpose, inference). Levels B1-C1.",
+      "items": [
+        {
+          "id": "read_pass_mtlebxad_1",
+          "passage": "Honeybees live in highly organized colonies of up to 60,000 individuals. Each colony contains a single queen, whose only job is to lay eggs; a few hundred males, called drones; and thousands of female worker bees, which perform every other task in the hive. Workers clean the hive, feed the young, guard the entrance, and, most famously, forage for nectar and pollen.\n\nTo communicate the location of food sources, honeybees perform a \"waggle dance.\" A bee that has found a rich patch of flowers returns to the hive and moves in a figure-eight pattern on the vertical comb. The angle of her dance indicates the direction of the food relative to the sun, while the duration of the waggle signals the distance. Karl von Frisch, who decoded this behavior, received a Nobel Prize for the discovery in 1973.\n\nBees are also essential partners in human agriculture. As they move from flower to flower collecting nectar, they transfer pollen, fertilizing crops such as apples, almonds, and watermelons. Commercial beekeepers transport billions of bees across countries each year to pollinate orchards and fields. In recent years, however, beekeepers have reported unusually high colony losses, a phenomenon known as colony collapse disorder. Scientists believe the causes are multiple, including pesticides, parasites, disease, and the loss of flowering habitats.",
+          "source": "Honeybees. This passage is about honeybees.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "the organization, communication, and importance of honeybees",
+                "how bees make honey from nectar",
+                "the life of Karl von Frisch",
+                "why bees sting humans"
+              ],
+              "correct": 0,
+              "explanation": "The passage covers colony structure (paragraph 1), the waggle dance (paragraph 2), and bees' role in agriculture and their decline (paragraph 3)."
+            },
+            {
+              "stem": "According to the passage, what is the queen bee's only job?",
+              "options": [
+                "guarding the hive entrance",
+                "laying eggs",
+                "collecting nectar",
+                "cleaning the comb"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 states the queen's 'only job is to lay eggs.'"
+            },
+            {
+              "stem": "What does the duration of the waggle indicate?",
+              "options": [
+                "the direction of the food",
+                "the size of the flower patch",
+                "the distance to the food",
+                "the quality of the nectar"
+              ],
+              "correct": 2,
+              "explanation": "Paragraph 2: the angle indicates direction 'while the duration of the waggle signals the distance.'"
+            },
+            {
+              "stem": "In the first sentence of paragraph 2, which word is closest in meaning to 'communicate'?",
+              "options": [
+                "share information",
+                "travel quickly",
+                "argue",
+                "remember"
+              ],
+              "correct": 0,
+              "explanation": "To communicate is to share or convey information. The waggle dance conveys the location of food."
+            },
+            {
+              "stem": "What can be inferred about colony collapse disorder?",
+              "options": [
+                "It has a single, easily identified cause.",
+                "It only affects wild bees.",
+                "It results from several combined factors.",
+                "It has been completely solved by scientists."
+              ],
+              "correct": 2,
+              "explanation": "The last sentence says 'the causes are multiple, including pesticides, parasites, disease, and the loss of flowering habitats.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_2",
+          "passage": "According to legend, coffee was discovered in Ethiopia by a goat herder named Kaldi, who noticed that his goats became unusually energetic after eating the red berries of a certain shrub. Whether or not the story is true, coffee was certainly first cultivated in the region, and by the 1400s it was being grown in Yemen, where Sufi monks drank it to stay awake during long nights of prayer.\n\nFrom the Middle East, coffee spread along trade routes to Turkey and then to Europe in the 1600s. Some European authorities viewed the new drink with suspicion; in Italy, clergymen briefly condemned it, and in England, King Charles II attempted to close the coffeehouses. His effort failed, largely because coffeehouses had become centers of conversation, business, and political debate. Merchants, scholars, and ordinary citizens gathered there to exchange news and ideas, earning the establishments the nickname 'penny universities.'\n\nBy the 1700s, European powers were planting coffee in their colonies, and Brazil eventually became the world's largest producer, a position it still holds today. Coffee is now one of the most valuable traded commodities on Earth, with an estimated two billion cups consumed every day. Few products have traveled so far from a goat herder's discovery to a global daily ritual.",
+          "source": "The History of Coffee. This passage is about the history of coffee.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "how coffee spread from Ethiopia to the world",
+                "why coffee is bad for people's health",
+                "how to prepare traditional Turkish coffee",
+                "the economy of modern Brazil"
+              ],
+              "correct": 0,
+              "explanation": "The passage traces coffee from its legendary discovery through Yemen, Europe, and the colonies to its global status today."
+            },
+            {
+              "stem": "Why did Sufi monks drink coffee?",
+              "options": [
+                "to celebrate religious holidays",
+                "to stay awake during night prayers",
+                "to treat illnesses",
+                "to honor their visitors"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: monks drank it 'to stay awake during long nights of prayer.'"
+            },
+            {
+              "stem": "Why does the author mention the nickname 'penny universities'?",
+              "options": [
+                "to show that coffeehouses were cheap to open",
+                "to illustrate that coffeehouses were places of learning and debate",
+                "to criticize the quality of English education",
+                "to compare English and Italian coffee"
+              ],
+              "correct": 1,
+              "explanation": "The nickname reflects the previous sentence: people gathered there 'to exchange news and ideas.' For the price of a penny (a cup of coffee), one could join the conversation."
+            },
+            {
+              "stem": "In the second sentence of paragraph 2, which word is closest in meaning to 'suspicion'?",
+              "options": [
+                "enthusiasm",
+                "distrust",
+                "curiosity",
+                "silence"
+              ],
+              "correct": 1,
+              "explanation": "'Suspicion' means distrust. The examples — condemnation in Italy, a closing attempt in England — show distrust of the new drink."
+            },
+            {
+              "stem": "What does the author imply about Kaldi's story?",
+              "options": [
+                "It is a well-documented historical fact.",
+                "It is popular but may not be literally true.",
+                "It was invented in the 1600s.",
+                "It explains how coffee reached Brazil."
+              ],
+              "correct": 1,
+              "explanation": "The author hedges with 'According to legend' and 'Whether or not the story is true' — signaling the tale may be mythical."
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_3",
+          "passage": "Humans spend roughly a third of their lives asleep, yet science is only beginning to understand why. One dominant theory holds that sleep allows the brain to consolidate memories, transferring the day's experiences from short-term storage into permanent knowledge. Another theory emphasizes repair: during deep sleep, the body releases growth hormone and repairs tissue, while the brain clears out waste products that accumulate during waking hours.\n\nWhatever its full purpose, sleep clearly follows a structure. A typical night consists of four to six cycles, each lasting about ninety minutes and moving through light sleep, deep sleep, and rapid eye movement (REM) sleep. Dreams occur mostly during REM, when the brain is almost as active as it is while awake but the body's muscles are temporarily paralyzed, preventing sleepers from acting out their dreams.\n\nModern life, however, is not kind to sleep. Artificial light, late-night screens, irregular schedules, and caffeine all push bedtimes later, and many adults sleep less than the recommended seven to nine hours. The consequences are well documented: chronic sleep deprivation weakens the immune system, impairs concentration and mood, and is linked to obesity, diabetes, and heart disease. Experts advise keeping a regular schedule, avoiding screens before bed, and treating sleep as a necessity rather than a luxury.",
+          "source": "Sleep. This passage is about sleep.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "why people dream during REM sleep",
+                "the possible purposes of sleep and the effects of not getting enough",
+                "how to cure insomnia without medicine",
+                "the discovery of sleep cycles"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 presents theories of sleep's purpose, paragraph 2 its structure, and paragraph 3 the consequences of deprivation and advice."
+            },
+            {
+              "stem": "According to the passage, what happens during deep sleep?",
+              "options": [
+                "dreams occur most frequently",
+                "the body repairs tissue and releases growth hormone",
+                "the brain becomes as active as when awake",
+                "sleepers act out their dreams"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: during deep sleep 'the body releases growth hormone and repairs tissue.' A and C describe REM sleep — a classic confusion trap."
+            },
+            {
+              "stem": "Why are the muscles temporarily paralyzed during REM sleep?",
+              "options": [
+                "to allow the brain to rest completely",
+                "to prevent sleepers from acting out their dreams",
+                "to consolidate memories",
+                "to clear waste from the brain"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 2 states the paralysis 'prevents sleepers from acting out their dreams.'"
+            },
+            {
+              "stem": "In the fourth sentence of paragraph 3, which word is closest in meaning to 'chronic'?",
+              "options": [
+                "occasional",
+                "severe",
+                "long-lasting",
+                "sudden"
+              ],
+              "correct": 2,
+              "explanation": "'Chronic' describes a condition that continues for a long time. It contrasts with one night of bad sleep — chronic deprivation is ongoing."
+            },
+            {
+              "stem": "What do experts believe about sleep?",
+              "options": [
+                "It can be safely reduced with practice.",
+                "It is a biological necessity, not an optional comfort.",
+                "It is less important than diet or exercise.",
+                "It can be replaced by short naps."
+              ],
+              "correct": 1,
+              "explanation": "The final sentence advises treating sleep 'as a necessity rather than a luxury.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_4",
+          "passage": "The first electric vehicles appeared surprisingly early — by the 1900s, electric cars competed with gasoline and steam cars on American streets, and at one point nearly a third of the cars on the road were electric. Quiet, clean, and easy to start, they were especially popular with urban drivers. But limited range, high battery costs, and the cheapness of gasoline led to their near-disappearance by the 1930s.\n\nTheir modern revival began at the end of the twentieth century, when concerns about air pollution and oil dependence pushed automakers to try again. Early modern electric cars were expensive and impractical, but battery technology improved steadily. Lithium-ion batteries, which store far more energy per kilogram than earlier types, gradually made electric cars competitive with gasoline vehicles in both range and price.\n\nToday, electric cars represent the fastest-growing segment of the auto market, and several countries have announced plans to ban the sale of new gasoline cars within the next two decades. Challenges remain, however. Charging infrastructure is still uneven, the electricity that powers the cars is not always generated cleanly, and producing batteries requires large quantities of minerals such as lithium and cobalt, whose mining raises environmental and ethical concerns. Supporters respond that even accounting for these issues, electric cars produce significantly fewer emissions over their lifetime than gasoline vehicles — and that the grid, unlike a fuel tank, gets cleaner every year.",
+          "source": "Electric Cars. This passage is about electric cars.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "the rise, fall, and revival of electric cars",
+                "how lithium-ion batteries are manufactured",
+                "why gasoline cars are cheaper than electric cars",
+                "the history of steam-powered vehicles"
+              ],
+              "correct": 0,
+              "explanation": "The passage covers the early electric era, its decline, the modern revival, and remaining challenges."
+            },
+            {
+              "stem": "Why did early electric cars nearly disappear?",
+              "options": [
+                "they were too noisy",
+                "limited range, high cost, and cheap gasoline",
+                "governments banned them",
+                "they caused air pollution"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 lists the causes: 'limited range, high battery costs, and the cheapness of gasoline.'"
+            },
+            {
+              "stem": "What advantage did lithium-ion batteries offer?",
+              "options": [
+                "they weighed more than earlier batteries",
+                "they stored more energy per kilogram",
+                "they eliminated the need for charging",
+                "they were cheaper than gasoline engines"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 2: lithium-ion batteries 'store far more energy per kilogram than earlier types.'"
+            },
+            {
+              "stem": "In the first sentence of paragraph 3, which word is closest in meaning to 'segment'?",
+              "options": [
+                "section",
+                "problem",
+                "engine",
+                "country"
+              ],
+              "correct": 0,
+              "explanation": "A 'segment' of a market is a distinct section or portion of it."
+            },
+            {
+              "stem": "How do supporters answer the criticism that electricity generation is not always clean?",
+              "options": [
+                "They deny that electricity comes from power plants.",
+                "They argue electric cars still pollute more than gasoline cars.",
+                "They note that the electrical grid will improve over time.",
+                "They say mining minerals has no environmental impact."
+              ],
+              "correct": 2,
+              "explanation": "The last sentence: 'the grid, unlike a fuel tank, gets cleaner every year.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_5",
+          "passage": "Leonardo da Vinci began painting the Mona Lisa around 1503 and worked on it intermittently for years, carrying the small wooden panel with him until the end of his life. The portrait shows Lisa Gherardini, the wife of a Florentine merchant, seated against an imaginary landscape of winding rivers and hazy mountains.\n\nFor centuries the painting was admired by artists and collectors, but it was not world-famous. That changed in 1911, when a worker at the Louvre museum in Paris simply walked out of the building with the painting hidden under his coat. The theft made headlines around the globe, and newspapers speculated wildly about the crime and the missing masterpiece. When the painting was recovered two years later in Italy, crowds lined up to see it, and its fame was permanently secured.\n\nThe Mona Lisa's reputation now rests on more than notoriety. Leonardo's technique of soft, blurred outlines — called sfumato — gives the face a lifelike, mysterious quality, and the subject's ambiguous smile has fascinated viewers for five hundred years. The painting is protected behind bulletproof glass, and millions of visitors each year crowd around it, often holding up phones to photograph a face they have already seen a thousand times in reproductions.",
+          "source": "The Mona Lisa. This passage is about the Mona Lisa.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "how Leonardo painted his self-portraits",
+                "the Mona Lisa's creation and how it became world-famous",
+                "the history of the Louvre museum",
+                "how to restore old paintings"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 covers the creation, paragraph 2 the 1911 theft that made it famous, and paragraph 3 its artistic qualities and status today."
+            },
+            {
+              "stem": "Who is the subject of the Mona Lisa?",
+              "options": [
+                "Leonardo's mother",
+                "a Florentine merchant's wife",
+                "a French queen",
+                "an unknown noblewoman"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: the portrait shows 'Lisa Gherardini, the wife of a Florentine merchant.'"
+            },
+            {
+              "stem": "Why does the author mention the 1911 theft?",
+              "options": [
+                "to explain how the painting became world-famous",
+                "to criticize the Louvre's security",
+                "to prove the painting is a fake",
+                "to describe Leonardo's travels"
+              ],
+              "correct": 0,
+              "explanation": "The topic sentence says 'That changed in 1911' — the theft is presented as the turning point in the painting's fame."
+            },
+            {
+              "stem": "In the first sentence of paragraph 3, which word is closest in meaning to 'notoriety'?",
+              "options": [
+                "fame from a scandal",
+                "artistic skill",
+                "old age",
+                "high price"
+              ],
+              "correct": 0,
+              "explanation": "'Notoriety' is fame gained from negative or scandalous events — here, the theft."
+            },
+            {
+              "stem": "What does the last sentence suggest about modern visitors?",
+              "options": [
+                "They are often disappointed by the painting.",
+                "They photograph the painting even though its image is already familiar.",
+                "They are forbidden from looking at it directly.",
+                "They prefer the reproductions to the original."
+              ],
+              "correct": 1,
+              "explanation": "Visitors 'hold up phones to photograph a face they have already seen a thousand times in reproductions' — they know the image, yet still want their own photo of the original."
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_6",
+          "passage": "In 79 C.E., the Roman city of Pompeii was a prosperous town of perhaps twelve thousand people, complete with theaters, bathhouses, bakeries, and elegant villas decorated with frescoes. On a late summer day, the nearby mountain that residents knew as Vesuvius erupted with a violence no one had anticipated — the mountain, they did not realize, was a volcano.\n\nThe eruption began with an enormous column of ash and pumice that rose high into the sky and rained down on the city for hours. Many residents fled immediately, and most of them survived. Those who delayed, however, or who sheltered indoors from the falling debris, were trapped when a series of superheated clouds of gas and volcanic material swept down the mountain's slopes at hundreds of kilometers per hour, killing everyone in their path within moments.\n\nPompeii lay buried under meters of ash, where it remained, largely forgotten, for nearly seventeen centuries. Paradoxically, the disaster preserved the city with extraordinary completeness. When systematic excavations began in the eighteenth century, archaeologists found streets, buildings, artifacts, and even loaves of bread exactly as they had been on the morning of the eruption. Plaster poured into hollows left by decomposed bodies revealed the final poses of victims. Today, Pompeii is one of the world's most visited archaeological sites, offering a uniquely detailed snapshot of ordinary Roman life frozen at a single moment.",
+          "source": "Pompeii. This passage is about the ancient city of Pompeii.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "how volcanoes form over millions of years",
+                "the destruction of Pompeii and how it was preserved",
+                "daily life in ancient Rome",
+                "the history of archaeology"
+              ],
+              "correct": 1,
+              "explanation": "The passage describes the eruption and destruction (paragraphs 1–2) and the preservation and excavation (paragraph 3)."
+            },
+            {
+              "stem": "Why did residents not expect the eruption?",
+              "options": [
+                "Vesuvius had never erupted before.",
+                "They did not know the mountain was a volcano.",
+                "Roman scientists had predicted it would not happen.",
+                "The volcano was too far from the city."
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: 'the mountain, they did not realize, was a volcano.'"
+            },
+            {
+              "stem": "What killed the people who stayed in the city?",
+              "options": [
+                "falling buildings",
+                "superheated clouds of gas and volcanic material",
+                "the eruption's lava flows",
+                "starvation after the eruption"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 2 describes 'superheated clouds of gas and volcanic material' that killed 'everyone in their path within moments.' Note that lava, a common trap, is not mentioned as the killer."
+            },
+            {
+              "stem": "In the first sentence of paragraph 3, which word is closest in meaning to 'Paradoxically'?",
+              "options": [
+                "Predictably",
+                "In a seemingly contradictory way",
+                "Unfortunately",
+                "Coincidentally"
+              ],
+              "correct": 1,
+              "explanation": "'Paradoxically' introduces an apparent contradiction: a terrible disaster is what preserved the city in extraordinary detail."
+            },
+            {
+              "stem": "Why does the author mention loaves of bread?",
+              "options": [
+                "to show that Pompeii's economy depended on baking",
+                "to give a vivid example of how completely daily life was preserved",
+                "to explain what the victims ate before dying",
+                "to compare Roman and modern diets"
+              ],
+              "correct": 1,
+              "explanation": "The bread is one item in a list — streets, buildings, artifacts, even bread — all found 'exactly as they had been.' It illustrates the completeness of preservation."
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_7",
+          "passage": "Every year, billions of animals move across the planet in search of food, warmth, or safe places to reproduce. Arctic terns fly from pole to pole, a round trip of some 70,000 kilometers — the longest migration of any animal. Wildebeest herds sweep across African plains, monarch butterflies travel thousands of kilometers between Canada and Mexico, and humpback whales shuttle between polar feeding grounds and tropical breeding waters.\n\nTo navigate these enormous distances, animals use a remarkable toolkit. Some species track landmarks, rivers, coastlines, and mountain ranges. Others use the sun and stars as compasses, or, astonishingly, sense the Earth's magnetic field, effectively reading an invisible map. Young animals often learn the route by following experienced adults, while others inherit the knowledge genetically, flying routes they have never flown before without any guide.\n\nMigration, however, is becoming more dangerous. Cities, farms, and highways fragment the landscapes through which animals travel; dams block fish; and artificial lights disorient birds. Climate change adds pressure by shifting the timing of seasons, so that migrants sometimes arrive after their food sources have already peaked. Conservationists are responding with wildlife corridors that reconnect fragmented habitats, programs that dim city lights during migration season, and international agreements that protect stopover sites across borders.",
+          "source": "Animal Migration. This passage is about animal migration.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "why birds fly in V formations",
+                "how animals migrate and the growing dangers they face",
+                "the effects of climate change on farming",
+                "how Earth's magnetic field works"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 gives examples of migration, paragraph 2 explains navigation, and paragraph 3 discusses threats and conservation responses."
+            },
+            {
+              "stem": "Which animal makes the longest migration?",
+              "options": [
+                "the wildebeest",
+                "the monarch butterfly",
+                "the Arctic tern",
+                "the humpback whale"
+              ],
+              "correct": 2,
+              "explanation": "Paragraph 1: the Arctic tern's pole-to-pole trip is 'the longest migration of any animal.'"
+            },
+            {
+              "stem": "How do some young animals learn migration routes?",
+              "options": [
+                "by sensing the magnetic field",
+                "by following experienced adults",
+                "by using the stars at night",
+                "by memorizing coastlines"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 2: 'Young animals often learn the route by following experienced adults.'"
+            },
+            {
+              "stem": "In the first sentence of paragraph 3, which word is closest in meaning to 'fragment'?",
+              "options": [
+                "protect",
+                "cross",
+                "break apart",
+                "brighten"
+              ],
+              "correct": 2,
+              "explanation": "To 'fragment' a landscape is to break it into separated pieces — cities, farms, and highways cut continuous habitat into fragments."
+            },
+            {
+              "stem": "What does the author suggest about migration timing and climate change?",
+              "options": [
+                "Animals have already adapted completely.",
+                "Migrants may miss peak food availability.",
+                "Climate change has no effect on migration.",
+                "Animals now migrate earlier every year."
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 3: shifting seasons mean 'migrants sometimes arrive after their food sources have already peaked.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_8",
+          "passage": "Before photography, if you wanted a picture of your family, you commissioned a painter — an option only the wealthy could afford. The invention of photography in the nineteenth century changed that, though the first photographs were far from easy to produce. Early processes required exposures lasting many minutes, so subjects had to sit perfectly still, and results could not be copied or shared.\n\nThe decisive breakthroughs came in stages. The daguerreotype of 1839 produced a single, sharp, unrepeatable image on a metal plate. Later processes used glass negatives, which allowed multiple prints from a single exposure. Then, in 1888, George Eastman's Kodak camera put photography into ordinary hands. The device came pre-loaded with film for one hundred photographs; when finished, the customer mailed the entire camera to the factory, which returned developed prints and a reloaded camera. Eastman's slogan — 'You press the button, we do the rest' — captured the new philosophy perfectly.\n\nThe twentieth century brought color film, instant cameras, and finally digital sensors, which eliminated film entirely. Smartphones then placed a capable camera in nearly every pocket on Earth, and billions of photographs are now taken every day. Critics argue that quantity has replaced quality, that images are shared and forgotten within seconds. Yet the camera's democratic promise has never been more fully realized: today, almost anyone can document their life, and events anywhere on the planet can be witnessed by everyone.",
+          "source": "The History of Photography. This passage is about the history of photography.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "the development of photography from exclusive art to everyday tool",
+                "the life of George Eastman",
+                "how to develop film at home",
+                "the invention of the smartphone camera"
+              ],
+              "correct": 0,
+              "explanation": "The passage traces photography from expensive portraits through Kodak's democratization to the smartphone era."
+            },
+            {
+              "stem": "What was a limitation of early photographs?",
+              "options": [
+                "they were only in black and white",
+                "exposures took many minutes and subjects had to sit still",
+                "they could not be framed",
+                "they were forbidden by law"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: 'Early processes required exposures lasting many minutes, so subjects had to sit perfectly still.'"
+            },
+            {
+              "stem": "Why does the author quote the slogan 'You press the button, we do the rest'?",
+              "options": [
+                "to show that Kodak's cameras were free of charge",
+                "to illustrate how Kodak made photography simple for ordinary people",
+                "to prove that early cameras were unreliable",
+                "to criticize Kodak's advertising methods"
+              ],
+              "correct": 1,
+              "explanation": "The slogan shows the company removed all technical difficulty — the customer just pressed the button, matching the paragraph's theme of putting photography 'into ordinary hands.'"
+            },
+            {
+              "stem": "In the last sentence of paragraph 3, which word is closest in meaning to 'democratic'?",
+              "options": [
+                "political",
+                "available to everyone",
+                "expensive",
+                "electronic"
+              ],
+              "correct": 1,
+              "explanation": "Here 'democratic' means accessible to all people, not related to politics — the camera's promise was for everyone, not just the wealthy."
+            },
+            {
+              "stem": "How does the author respond to critics of modern photography?",
+              "options": [
+                "The author agrees that photos were better in the past.",
+                "The author believes smartphones should be banned.",
+                "The author sees the wide availability of photography as a positive achievement.",
+                "The author thinks most photos are made by professionals."
+              ],
+              "correct": 2,
+              "explanation": "Despite mentioning critics, the final sentence is optimistic: 'the camera's democratic promise has never been more fully realized.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxad_9",
+          "passage": "At roughly 430 meters below sea level, the shore of the Dead Sea is the lowest dry land on Earth. The lake, which lies between Jordan and Israel, is nearly ten times saltier than the ocean — so salty that fish cannot survive in it and swimmers float effortlessly on its dense water. The salt and minerals have made the region a destination for health treatments since ancient times; Herod the Great built spa palaces on its shores more than two thousand years ago.\n\nThe Dead Sea is actually shrinking at an alarming rate. Its main source of water, the Jordan River, has been heavily diverted for agriculture and drinking water, while the hot desert climate evaporates roughly a meter of surface water every year. The water level has fallen by tens of meters over the past half century, and thousands of sinkholes have opened up along the retreating shoreline, damaging roads and forcing communities to relocate.\n\nProposed solutions include pumping seawater from the Red Sea through a canal to replenish the lake, a massive and expensive engineering project that has been discussed for decades but never fully funded. Environmentalists argue that the most effective step would be allowing more water to flow down the Jordan River, though that would require political cooperation among the countries that share its water. Meanwhile, resorts continue to advertise the same 'floating' experience that Herod's guests once enjoyed — a reminder that some natural wonders may not survive human choices.",
+          "source": "The Dead Sea. This passage is about the Dead Sea.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "why the Dead Sea is salty",
+                "the Dead Sea's unique qualities and its shrinking water level",
+                "spa treatments in the ancient world",
+                "how sinkholes form in deserts"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1 describes the sea's unique properties, and paragraphs 2–3 focus on the shrinkage and proposed responses."
+            },
+            {
+              "stem": "Why can swimmers float easily in the Dead Sea?",
+              "options": [
+                "the water is warm",
+                "the water is extremely dense with salt",
+                "the lake is very shallow",
+                "the water contains minerals"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: the lake is 'so salty... that swimmers float effortlessly on its dense water.'"
+            },
+            {
+              "stem": "What has happened along the retreating shoreline?",
+              "options": [
+                "new resorts have been built",
+                "thousands of sinkholes have opened",
+                "the Jordan River changed course",
+                "fish have returned to the lake"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 2: 'thousands of sinkholes have opened up along the retreating shoreline.'"
+            },
+            {
+              "stem": "In the second sentence of paragraph 3, which word is closest in meaning to 'replenish'?",
+              "options": [
+                "refill",
+                "pollute",
+                "measure",
+                "divide"
+              ],
+              "correct": 0,
+              "explanation": "To 'replenish' is to refill or restore. Pumping seawater into the lake would refill its lost water."
+            },
+            {
+              "stem": "What obstacle does the Red Sea canal project face?",
+              "options": [
+                "no one has ever proposed it",
+                "it has been discussed for decades but never funded",
+                "the technology does not exist",
+                "resorts oppose it"
+              ],
+              "correct": 1,
+              "explanation": "The passage says the project 'has been discussed for decades but never fully funded.'"
+            }
+          ]
+        },
+        {
+          "id": "read_pass_mtlebxae_a",
+          "passage": "About one in ten humans prefers the left hand, a proportion that has apparently remained stable for thousands of years — archaeologists find the same ratio in ancient tools, weapons, and even in marks on fossil teeth. Intriguingly, the same rough proportion appears in chimpanzees and some other primates, suggesting that the preference has deep evolutionary roots.\n\nFor most of history, left-handed people fared badly. Many cultures associated the left side with misfortune, a prejudice embedded in language itself: the Latin word for left, sinister, gave English its word for something threatening, while 'right' also means correct. Left-handed children were often forced to write with their right hands, a practice that continued in schools well into the twentieth century and that caused considerable distress and, some studies suggest, impaired learning.\n\nWhy left-handedness persists is still debated. One leading theory points to competition: in fights and sports, left-handers are unpredictable because they are rare, giving them an advantage that keeps the trait alive at low levels. Another theory concerns the brain's two hemispheres, noting that language and hand control share neural territory, and that the wiring that produces left-handedness may be a by-product of how these functions are distributed. What is certain is that handedness is at least partly genetic, since handedness runs in families, though no single 'left-handed gene' has been found.",
+          "source": "Left-Handedness. This passage is about left-handedness.",
+          "questions": [
+            {
+              "stem": "What is the passage mainly about?",
+              "options": [
+                "the history and possible origins of left-handedness",
+                "why left-handed people are more creative",
+                "how archaeologists study ancient tools",
+                "the differences between human and animal brains"
+              ],
+              "correct": 0,
+              "explanation": "The passage covers the stability of the ratio, historical prejudice, and modern theories explaining why left-handedness persists."
+            },
+            {
+              "stem": "How do scientists know the proportion of left-handers was the same in the past?",
+              "options": [
+                "from ancient writings",
+                "from marks on fossil teeth and ancient tools",
+                "from studying chimpanzees",
+                "from family records"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 1: 'archaeologists find the same ratio in ancient tools, weapons, and even in marks on fossil teeth.'"
+            },
+            {
+              "stem": "Why does the author mention the Latin word 'sinister'?",
+              "options": [
+                "to show that prejudice against left-handedness exists in language itself",
+                "to prove that Romans were left-handed",
+                "to explain how English grammar developed",
+                "to compare Latin and English alphabets"
+              ],
+              "correct": 0,
+              "explanation": "The example supports the claim that many cultures 'associated the left side with misfortune' — the prejudice survives in the word 'sinister.'"
+            },
+            {
+              "stem": "According to the competition theory, why do left-handers have an advantage?",
+              "options": [
+                "they are stronger on average",
+                "they are rare and therefore unpredictable",
+                "they learn faster",
+                "they see better"
+              ],
+              "correct": 1,
+              "explanation": "Paragraph 3: 'left-handers are unpredictable because they are rare, giving them an advantage.'"
+            },
+            {
+              "stem": "In the last sentence of paragraph 3, which phrase is closest in meaning to 'runs in families'?",
+              "options": [
+                "is passed down through generations",
+                "causes arguments at home",
+                "changes over time",
+                "is equally common everywhere"
+              ],
+              "correct": 0,
+              "explanation": "A characteristic that 'runs in families' appears in relatives across generations — evidence that handedness is partly genetic."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

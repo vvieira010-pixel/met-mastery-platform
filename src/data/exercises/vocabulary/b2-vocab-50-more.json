@@ -1,0 +1,610 @@
+{
+  "modules": [
+    {
+      "id": "b2_vocab_50_more",
+      "title": "Vocabulary — 50 More B2 Questions",
+      "skill": "vocabulary",
+      "levelRange": "B2",
+      "moduleType": "mcq_set",
+      "sourceNote": "50 MCQ items across 9 types: synonym_choice (7), mixed_vocabulary (3), word_in_context (6), register (4), definition_match (7), confusables (5), antonym_choice (6), collocation (6), phrasal_verb (6).",
+      "items": [
+        {
+          "id": "vocab_q_mtlebxbq_33",
+          "stem": "Choose the word that is closest in meaning to: crucial.",
+          "options": [
+            "very rare",
+            "slightly useful",
+            "well known",
+            "extremely important"
+          ],
+          "correct": 3,
+          "explanation": "'crucial' means 'extremely important'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_34",
+          "stem": "Choose the word that is closest in meaning to: postpone.",
+          "options": [
+            "shorten",
+            "confirm",
+            "delay",
+            "cancel"
+          ],
+          "correct": 2,
+          "explanation": "'postpone' means 'delay'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_35",
+          "stem": "Choose the word that is closest in meaning to: enormous.",
+          "options": [
+            "tiny",
+            "narrow",
+            "average",
+            "huge"
+          ],
+          "correct": 3,
+          "explanation": "'enormous' means 'huge'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_36",
+          "stem": "Choose the word that is closest in meaning to: apparent.",
+          "options": [
+            "hidden",
+            "doubtful",
+            "obvious",
+            "secondary"
+          ],
+          "correct": 2,
+          "explanation": "'apparent' means 'obvious'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_37",
+          "stem": "Choose the word that is closest in meaning to: persistent.",
+          "options": [
+            "irregular",
+            "occasional",
+            "hesitant",
+            "continuing despite difficulty"
+          ],
+          "correct": 3,
+          "explanation": "'persistent' means 'continuing despite difficulty'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_38",
+          "stem": "Choose the word that is closest in meaning to: scattered.",
+          "options": [
+            "gathered",
+            "hidden",
+            "stacked",
+            "spread out"
+          ],
+          "correct": 3,
+          "explanation": "'scattered' means 'spread out'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_39",
+          "stem": "Choose the word that is closest in meaning to: hollow.",
+          "options": [
+            "heavy",
+            "solid",
+            "empty inside",
+            "sealed"
+          ],
+          "correct": 2,
+          "explanation": "'hollow' means 'empty inside'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3a",
+          "stem": "Choose the word that is opposite in meaning to: abundant.",
+          "options": [
+            "plentiful",
+            "wide",
+            "scarce",
+            "rich"
+          ],
+          "correct": 2,
+          "explanation": "The opposite of 'abundant' is 'scarce'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3b",
+          "stem": "Choose the word that is opposite in meaning to: artificial.",
+          "options": [
+            "natural",
+            "synthetic",
+            "fake",
+            "manufactured"
+          ],
+          "correct": 0,
+          "explanation": "The opposite of 'artificial' is 'natural'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3c",
+          "stem": "Choose the word that is opposite in meaning to: increase.",
+          "options": [
+            "expand",
+            "double",
+            "decrease",
+            "grow"
+          ],
+          "correct": 2,
+          "explanation": "The opposite of 'increase' is 'decrease'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3d",
+          "stem": "Choose the word that is opposite in meaning to: temporary.",
+          "options": [
+            "short-lived",
+            "brief",
+            "passing",
+            "permanent"
+          ],
+          "correct": 3,
+          "explanation": "The opposite of 'temporary' is 'permanent'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3e",
+          "stem": "Choose the word that is opposite in meaning to: succeed.",
+          "options": [
+            "manage",
+            "win",
+            "achieve",
+            "fail"
+          ],
+          "correct": 3,
+          "explanation": "The opposite of 'succeed' is 'fail'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3f",
+          "stem": "Choose the word that is opposite in meaning to: visible.",
+          "options": [
+            "apparent",
+            "clear",
+            "hidden",
+            "obvious"
+          ],
+          "correct": 2,
+          "explanation": "The opposite of 'visible' is 'hidden'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3g",
+          "stem": "Choose the correct definition of: crucial.",
+          "options": [
+            "very rare",
+            "well known",
+            "slightly useful",
+            "extremely important"
+          ],
+          "correct": 3,
+          "explanation": "'crucial' means: extremely important."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3h",
+          "stem": "Choose the correct definition of: postpone.",
+          "options": [
+            "to move to a later time",
+            "to cancel completely",
+            "to shorten",
+            "to confirm quickly"
+          ],
+          "correct": 0,
+          "explanation": "'postpone' means: to move to a later time."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3i",
+          "stem": "Choose the correct definition of: apparent.",
+          "options": [
+            "highly technical",
+            "easy to see or understand",
+            "completely wrong",
+            "difficult to notice"
+          ],
+          "correct": 1,
+          "explanation": "'apparent' means: easy to see or understand."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3j",
+          "stem": "Choose the correct definition of: persistent.",
+          "options": [
+            "changing often",
+            "easily discouraged",
+            "lasting a second",
+            "continuing firmly despite problems"
+          ],
+          "correct": 3,
+          "explanation": "'persistent' means: continuing firmly despite problems."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3k",
+          "stem": "Choose the correct definition of: hollow.",
+          "options": [
+            "completely solid",
+            "perfectly round",
+            "having an empty space inside",
+            "very heavy"
+          ],
+          "correct": 2,
+          "explanation": "'hollow' means: having an empty space inside."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3l",
+          "stem": "Choose the correct definition of: abundant.",
+          "options": [
+            "poorly made",
+            "barely enough",
+            "almost gone",
+            "existing in large quantities"
+          ],
+          "correct": 3,
+          "explanation": "'abundant' means: existing in large quantities."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3m",
+          "stem": "Choose the correct definition of: obstacle.",
+          "options": [
+            "something that blocks progress",
+            "a type of tool",
+            "a long journey",
+            "a final decision"
+          ],
+          "correct": 0,
+          "explanation": "'obstacle' means: something that blocks progress."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3n",
+          "stem": "Choose the correct verb for the collocation: ______ cold",
+          "options": [
+            "a cold",
+            "make",
+            "take",
+            "do"
+          ],
+          "correct": 0,
+          "explanation": "The natural collocation is 'catch a cold'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3o",
+          "stem": "Choose the correct verb for the collocation: ______ photo",
+          "options": [
+            "a photo",
+            "give",
+            "do",
+            "make"
+          ],
+          "correct": 0,
+          "explanation": "The natural collocation is 'take a photo'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3p",
+          "stem": "Choose the correct verb for the collocation: ______ favor",
+          "options": [
+            "make",
+            "have",
+            "take",
+            "a favor"
+          ],
+          "correct": 3,
+          "explanation": "The natural collocation is 'do a favor'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3q",
+          "stem": "Choose the correct verb for the collocation: ______ argument",
+          "options": [
+            "do",
+            "take",
+            "an argument",
+            "make"
+          ],
+          "correct": 2,
+          "explanation": "The natural collocation is 'have an argument'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3r",
+          "stem": "Choose the correct verb for the collocation: ______ secret",
+          "options": [
+            "make",
+            "a secret",
+            "hold",
+            "save"
+          ],
+          "correct": 1,
+          "explanation": "The natural collocation is 'keep a secret'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3s",
+          "stem": "Choose the correct verb for the collocation: ______ visit",
+          "options": [
+            "make",
+            "go",
+            "a visit",
+            "do"
+          ],
+          "correct": 2,
+          "explanation": "The natural collocation is 'pay a visit'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3t",
+          "stem": "Choose the correct meaning of the phrasal verb: come across.",
+          "options": [
+            "to agree",
+            "to visit someone",
+            "to cross a street",
+            "to find by chance"
+          ],
+          "correct": 3,
+          "explanation": "'come across' means: to find by chance."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3u",
+          "stem": "Choose the correct meaning of the phrasal verb: get over.",
+          "options": [
+            "to climb over",
+            "to repeat",
+            "to recover from",
+            "to control someone"
+          ],
+          "correct": 2,
+          "explanation": "'get over' means: to recover from."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3v",
+          "stem": "Choose the correct meaning of the phrasal verb: break down.",
+          "options": [
+            "to sleep badly",
+            "to divide into groups",
+            "to stop working (machine)",
+            "to hit something"
+          ],
+          "correct": 2,
+          "explanation": "'break down' means: to stop working (machine)."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3w",
+          "stem": "Choose the correct meaning of the phrasal verb: turn up.",
+          "options": [
+            "to arrive or appear",
+            "to increase the heat",
+            "to flip over",
+            "to leave early"
+          ],
+          "correct": 0,
+          "explanation": "'turn up' means: to arrive or appear."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3x",
+          "stem": "Choose the correct meaning of the phrasal verb: cut down on.",
+          "options": [
+            "to shorten a story",
+            "to reduce consumption of",
+            "to copy text",
+            "to cut a tree"
+          ],
+          "correct": 1,
+          "explanation": "'cut down on' means: to reduce consumption of."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3y",
+          "stem": "Choose the correct meaning of the phrasal verb: run into.",
+          "options": [
+            "to meet unexpectedly",
+            "to borrow money",
+            "to crash a car",
+            "to enter running"
+          ],
+          "correct": 0,
+          "explanation": "'run into' means: to meet unexpectedly."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_3z",
+          "stem": "What does the bold word mean in this sentence? Despite the apparent simplicity of the recipe, the dish is hard to master.",
+          "options": [
+            "obvious",
+            "false",
+            "minor",
+            "hidden"
+          ],
+          "correct": 0,
+          "explanation": "In this context, the word means 'obvious'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_40",
+          "stem": "What does the bold word mean in this sentence? The city has abundant parks and green spaces for residents.",
+          "options": [
+            "few",
+            "small",
+            "plentiful",
+            "expensive"
+          ],
+          "correct": 2,
+          "explanation": "In this context, the word means 'plentiful'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_41",
+          "stem": "What does the bold word mean in this sentence? Money was the main obstacle preventing the project from starting.",
+          "options": [
+            "goal",
+            "advantage",
+            "barrier",
+            "result"
+          ],
+          "correct": 2,
+          "explanation": "In this context, the word means 'barrier'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_42",
+          "stem": "What does the bold word mean in this sentence? She gave a hollow promise that she had no intention of keeping.",
+          "options": [
+            "honest",
+            "formal",
+            "detailed",
+            "insincere, empty"
+          ],
+          "correct": 3,
+          "explanation": "In this context, the word means 'insincere, empty'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_43",
+          "stem": "What does the bold word mean in this sentence? His persistent cough finally forced him to see a doctor.",
+          "options": [
+            "loud",
+            "continuing for a long time",
+            "recent",
+            "mild"
+          ],
+          "correct": 1,
+          "explanation": "In this context, the word means 'continuing for a long time'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_44",
+          "stem": "What does the bold word mean in this sentence? The company decided to postpone the product launch until spring.",
+          "options": [
+            "delay",
+            "announce",
+            "cancel",
+            "complete"
+          ],
+          "correct": 0,
+          "explanation": "In this context, the word means 'delay'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_45",
+          "stem": "Choose the more formal equivalent of: get in touch.",
+          "options": [
+            "contact",
+            "avoid",
+            "greet"
+          ],
+          "correct": 0,
+          "explanation": "'contact' is more formal than 'get in touch'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_46",
+          "stem": "Choose the more formal equivalent of: find out.",
+          "options": [
+            "ignore",
+            "discover",
+            "search"
+          ],
+          "correct": 1,
+          "explanation": "'discover' is more formal than 'find out'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_47",
+          "stem": "Choose the more formal equivalent of: put off.",
+          "options": [
+            "finish",
+            "postpone",
+            "start"
+          ],
+          "correct": 1,
+          "explanation": "'postpone' is more formal than 'put off'."
+        },
+        {
+          "id": "vocab_q_mtlebxbq_48",
+          "stem": "Choose the more formal equivalent of: lots of.",
+          "options": [
+            "a great deal of",
+            "a few of",
+            "too much of"
+          ],
+          "correct": 0,
+          "explanation": "'a great deal of' is more formal than 'lots of'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_49",
+          "stem": "Choose the correct word: I need your _______ on this report before Friday.",
+          "options": [
+            "advising",
+            "advise",
+            "advice",
+            "advices"
+          ],
+          "correct": 2,
+          "explanation": "The correct word here is 'advice'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4a",
+          "stem": "Choose the correct word: The medication will _______ your symptoms.",
+          "options": [
+            "relieved",
+            "relief",
+            "relieve",
+            "relieving"
+          ],
+          "correct": 2,
+          "explanation": "The correct word here is 'relieve'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4b",
+          "stem": "Choose the correct word: Please _______ your answers carefully.",
+          "options": [
+            "reviewer",
+            "revise for",
+            "revision",
+            "review"
+          ],
+          "correct": 3,
+          "explanation": "The correct word here is 'review'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4c",
+          "stem": "Choose the correct word: The hotel offers a _______ of services.",
+          "options": [
+            "varying",
+            "variety",
+            "various",
+            "variation"
+          ],
+          "correct": 1,
+          "explanation": "The correct word here is 'variety'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4d",
+          "stem": "Choose the correct word: She was _______ exhausted after the trip.",
+          "options": [
+            "utter",
+            "utterly",
+            "utterly of",
+            "uttermost"
+          ],
+          "correct": 1,
+          "explanation": "The correct word here is 'utterly'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4e",
+          "stem": "Choose the correct word: The new bridge was a remarkable engineering _______.",
+          "options": [
+            "achieving",
+            "achievement",
+            "achiever",
+            "achieve"
+          ],
+          "correct": 1,
+          "explanation": "The correct word here is 'achievement'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4f",
+          "stem": "Choose the correct word: Scientists have found _______ evidence linking diet and health.",
+          "options": [
+            "compellingly",
+            "compelled",
+            "compel",
+            "compelling"
+          ],
+          "correct": 3,
+          "explanation": "The correct word here is 'compelling'."
+        },
+        {
+          "id": "vocab_q_mtlebxbr_4g",
+          "stem": "Choose the correct word: The team made a _______ effort to finish on time.",
+          "options": [
+            "tremendously",
+            "tremendousness",
+            "tremendous",
+            "tremendous of"
+          ],
+          "correct": 2,
+          "explanation": "The correct word here is 'tremendous'."
+        }
+      ]
+    }
+  ]
+}
