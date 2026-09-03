@@ -16,21 +16,22 @@
 /* ── Card ──────────────────────────────────────────────────────── */
 .card {
   background: var(--surface);
-  border-radius: var(--radius-sm);
-  border: none;
-  box-shadow: 0 1px 4px rgba(var(--text-rgb), 0.04);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--divider);
+  box-shadow: var(--shadow-soft);
   padding: var(--space-6);
-  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth), border-color var(--transition-fast);
 }
 
 
 .card:hover {
-  box-shadow: 0 8px 24px rgba(var(--text-rgb), 0.06);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-float-xl);
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
 }
 
 .card:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
 }
 
 .card--static {
@@ -38,7 +39,7 @@
 }
 
 .card--static:hover {
-  box-shadow: 0 1px 4px rgba(var(--text-rgb), 0.04);
+  box-shadow: var(--shadow-soft);
   transform: none;
 }
 
@@ -48,7 +49,28 @@
 
 .card-sm {
   padding: var(--space-4);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
+}
+
+/* Double-bezel (Doppelrand) — plate in a tray, drawn with a stacked ring so the
+   card's own layout/flow is never disturbed. */
+.card.bezel {
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 0 0 1px var(--divider),
+    0 0 0 calc(var(--bezel-pad) + 1px) var(--bezel-tray),
+    0 0 0 calc(var(--bezel-pad) + 2px) var(--divider),
+    var(--shadow-soft);
+  border: none;
+}
+
+.card.bezel:hover {
+  box-shadow:
+    0 0 0 1px var(--divider),
+    0 0 0 calc(var(--bezel-pad) + 1px) var(--bezel-tray),
+    0 0 0 calc(var(--bezel-pad) + 2px) var(--divider),
+    var(--shadow-float-xl);
+  transform: translateY(-3px);
 }
 
 /* ── Button ──────────────────────────────────────────────────────
@@ -66,10 +88,11 @@
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
   line-height: 1.5;
+  letter-spacing: -0.01em;
   border-radius: var(--radius-pill);
   border: none;
   cursor: pointer;
-  transition: background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-base), box-shadow var(--transition-base), color var(--transition-base), transform var(--transition-base);
   white-space: nowrap;
   text-decoration: none;
   min-height: 44px;
@@ -81,8 +104,8 @@
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.28), 0 0 0 1px var(--surface);
 }
 
 .btn:hover:not(:disabled) {
@@ -91,6 +114,30 @@
 
 .btn:active:not(:disabled) {
   transform: scale(0.97);
+}
+
+/* Button-in-button: trailing icon sits in its own circular island. */
+.btn-label { display: inline-flex; align-items: center; }
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65em;
+  height: 1.65em;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.2);
+  margin-left: 0.55rem;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+.btn-sm .btn-icon { margin-left: 0.4rem; }
+.btn-lg .btn-icon { margin-left: 0.7rem; }
+.btn:hover:not(:disabled) .btn-icon { transform: translate(2px, -1px); }
+.btn:active:not(:disabled) .btn-icon { transform: scale(1.08); }
+
+/* Neutrals (ghost / outline / secondary text) get an ink-tinted icon island. */
+.btn-ghost .btn-icon,
+.btn-outline .btn-icon {
+  background: rgba(var(--ink-rgb), 0.08);
 }
 
 .btn-primary {
@@ -1116,24 +1163,30 @@
   height: 100dvh;
   overflow: hidden;
   background: transparent;
-  padding-top: calc(52px + env(safe-area-inset-top, 0px));
+  padding-top: calc(76px + env(safe-area-inset-top, 0px));
 }
 
+/* Floating glass "island" topbar — detached from the top edge, blurred, hairline. */
 .shell-topbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 10px;
+  left: 12px;
+  right: 12px;
   z-index: var(--z-fixed);
-  height: calc(52px + env(safe-area-inset-top, 0px));
+  height: calc(56px + env(safe-area-inset-top, 0px));
   padding-top: env(safe-area-inset-top, 0px);
   flex-shrink: 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 10px 30px -18px rgba(var(--ink-rgb), 0.45);
   display: flex;
   align-items: center;
-  padding: env(safe-area-inset-top, 0px) 8px 0;
-  gap: 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+  gap: 4px;
   box-sizing: border-box;
 }
 
@@ -1147,14 +1200,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-border);
   cursor: pointer;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--muted);
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.shell-settings-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .shell-settings-btn:hover {
@@ -1246,17 +1307,17 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  padding: 4px 7px;
-  border-radius: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
   background: none;
   border: none;
   cursor: pointer;
   font-family: var(--font-sans);
-  min-height: 44px;
+  min-height: 40px;
   font-size: var(--text-xs);
   font-weight: 500;
   color: var(--muted);
-  transition: background 0.12s, color 0.12s, transform var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
   text-align: left;
   white-space: nowrap;
 }
@@ -1265,9 +1326,10 @@
 .shell-nav-btn:focus-visible { outline: 2px solid rgba(168,218,220,0.9); outline-offset: 1px; }
 .shell-nav-btn:active { transform: scale(0.96); }
 .shell-nav-btn.active {
-  background: var(--accent-subtle);
-  color: var(--primary);
+  background: var(--primary);
+  color: #fff;
   font-weight: 600;
+  box-shadow: 0 4px 14px -6px rgba(var(--primary-rgb), 0.5);
 }
 
 .shell-main {
@@ -2202,11 +2264,15 @@
 }
 
 .td-headline {
+  font-family: var(--font-display);
   font-size: var(--text-4xl);
-  font-weight: 800;
-  color: var(--primary);
-  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.05;
 }
+
+.td-dashboard-header .eyebrow { margin-bottom: 14px; }
 
 .td-sub {
   font-size: var(--text-sm);
@@ -5285,22 +5351,23 @@
 
 /* ── Dashboard Animations ──────────────────────────────────────── */
 @keyframes td-slide-left {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(-24px); filter: blur(8px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 @keyframes td-slide-right {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(24px); filter: blur(8px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 @keyframes td-scale-up {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(18px) scale(0.97); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
 }
 
 .td-anim {
-  animation-duration: 0.6s;
+  animation-duration: 0.8s;
   animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-timing-function: var(--ease-out-expo);
+  will-change: transform, opacity, filter;
 }
 .td-anim-left  { animation-name: td-slide-left; }
 .td-anim-right { animation-name: td-slide-right; }
@@ -5344,6 +5411,10 @@
 
 .bg-grain {
   position: relative;
+  /* Soft radial mesh for spatial depth behind the dashboard content. */
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(var(--primary-rgb), 0.06), transparent 60%),
+    radial-gradient(90% 60% at 0% 0%, rgba(var(--accent-rgb), 0.05), transparent 55%);
 }
 .bg-grain::after {
   content: '';
@@ -5351,11 +5422,40 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.045;
+  opacity: var(--grain-opacity, 0.045);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 160px 160px;
 }
+
+/* ── Eyebrow / display-type helpers (modern editorial system) ───── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-light);
+  border: 1px solid rgba(var(--primary-rgb), 0.18);
+}
+.eyebrow--accent {
+  color: var(--accent-text);
+  background: var(--accent-light);
+  border-color: rgba(var(--accent-rgb), 0.22);
+}
+.eyebrow--ghost {
+  color: var(--muted);
+  background: var(--surface-hover);
+  border-color: var(--border);
+}
+
+.font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
 
 /* ── Page transitions ──────────────────────────────────────────── */
 @keyframes fadeUp {
@@ -5365,6 +5465,27 @@
 
 .shell-main > * {
   animation: fadeUp 0.2s ease-out both;
+}
+
+/* ── Scroll-entry reveal (IntersectionObserver-driven) ──────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 24px));
+  filter: blur(var(--reveal-blur, 10px));
+  transition:
+    opacity 0.8s var(--ease-spring),
+    transform 0.8s var(--ease-spring),
+    filter 0.8s var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; will-change: auto; }
 }
 
 /* ── Accessibility: reduced motion ─────────────────────────────── */

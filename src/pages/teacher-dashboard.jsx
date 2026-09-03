@@ -8,6 +8,7 @@ import { Icon, SectionHeader, Pill, Avatar, SkeletonCard, EmptyState } from '../
 import { IlloNoClasses } from '../components/ui/empty-illustrations.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
+import { Reveal } from '../components/ui/Reveal.jsx';
 import {
   getClassEvents, getAllSubmissions, getReviews,
   getStudentCycleState, requestInboxNotificationPermission,
@@ -138,10 +139,11 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
       <div aria-live="polite" aria-atomic="true" style={{ position: 'fixed', left: '-9999px' }}>
         {loading ? 'Loading dashboard' : `${students.length} students, ${classesToday} classes today`}
       </div>
-      <div className="td-dashboard-header mb-4">
+      <Reveal className="td-dashboard-header mb-4" y={18} blur={8}>
+        <span className="eyebrow eyebrow--accent">Today · {today}</span>
         <h1 className="td-headline">Good {timeOfDay()}, {teacherName}.</h1>
-        <p className="td-sub">{today}, your teaching cycle at a glance.</p>
-      </div>
+        <p className="td-sub">Your teaching cycle at a glance — what needs you now.</p>
+      </Reveal>
 
         {/* Today's priority */}
         <Card className="td-priority-card td-priority-card-premium td-anim td-anim-up" bezel>
@@ -150,8 +152,8 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
             <h2 className="td-priority-title">{priority.title}</h2>
             <p className="td-priority-text">{priority.text}</p>
           </div>
-          <Button className="td-priority-action" variant="primary" onClick={() => onNavigate(priority.target, priority.params || {})}>
-            {priority.action} <Icon.arrowR size={14} />
+          <Button className="td-priority-action" variant="primary" icon={<Icon.arrowR size={14} />} onClick={() => onNavigate(priority.target, priority.params || {})}>
+            {priority.action}
           </Button>
         </Card>
 
@@ -216,7 +218,7 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
                         <div className="td-row-sub" style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)' }}>{ev.title}</div>
                         <div className="td-row-sub" style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)' }}>{ev.startTime || '—'}</div>
                       </div>
-                      <Button variant="primary" size="sm" onClick={() => onNavigate('calendar:class', { classEventId: ev.id })}>Open</Button>
+                      <Button variant="primary" size="sm" icon={<Icon.arrowR size={12} />} onClick={() => onNavigate('calendar:class', { classEventId: ev.id })}>Open</Button>
                     </Card>
                   );
                 })}
@@ -357,8 +359,8 @@ function StudentRow({ student: s, onNavigate, onAction, seedsStages, onSetSeedsS
       </div>
 
       <div style={{ marginTop: 'auto', paddingTop: 12, width: '100%', textAlign: 'center' }}>
-        <Button variant="primary" size="sm" style={{ width: '100%' }} onClick={(e) => { e.stopPropagation(); onAction(s); }}>
-          {config.action} <Icon.arrowR size={12} />
+        <Button variant="primary" size="sm" style={{ width: '100%' }} icon={<Icon.arrowR size={12} />} onClick={(e) => { e.stopPropagation(); onAction(s); }}>
+          {config.action}
         </Button>
       </div>
     </Card>

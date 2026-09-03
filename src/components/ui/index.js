@@ -1,6 +1,8 @@
 export { Avatar } from './Avatar.jsx';
 export { Button } from './Button.jsx';
 export { Card } from './Card.jsx';
+export { Bezel } from './Bezel.jsx';
+export { Reveal } from './Reveal.jsx';
 export { EmptyState } from './EmptyState.jsx';
 export { FormField } from './FormField.jsx';
 export { Kpi } from './Kpi.jsx';

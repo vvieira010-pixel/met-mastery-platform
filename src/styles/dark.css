@@ -497,3 +497,32 @@
 [data-theme="dark"] .modal-kicker {
   opacity: 0.8;
 }
+
+/* ── Dark-mode remap for the modern craft layer (added 2026-09-03) ── */
+[data-theme="dark"] {
+  --glass-bg: rgba(13, 22, 30, 0.66);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --bezel-tray: rgba(255, 255, 255, 0.05);
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.4), 0 16px 40px -14px rgba(0, 0, 0, 0.55);
+  --shadow-float-xl: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
+  --shadow-inset-hi: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  --grain-opacity: 0.06;
+}
+
+[data-theme="dark"] .shell-topbar {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .shell-settings-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.4), 0 0 0 1px var(--surface);
+}
+
+[data-theme="dark"] .eyebrow {
+  background: rgba(var(--primary-rgb), 0.18);
+  border-color: rgba(var(--primary-rgb), 0.3);
+}
