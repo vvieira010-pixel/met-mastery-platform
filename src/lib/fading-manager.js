@@ -9,13 +9,14 @@ const SCAFFOLD_LEVELS = {
   0: { label: 'Independent', desc: 'Fully independent practice' },
 };
 
-function storageKey(mode, topicId) {
+function storageKey(mode, topicId, studentId) {
   const suffix = topicId || mode;
-  return `${mode}:${suffix}`;
+  const owner = studentId || 'anonymous';
+  return `${owner}:${mode}:${suffix}`;
 }
 
-export function getScaffoldLevel(mode, topicId) {
-  const key = storageKey(mode, topicId);
+export function getScaffoldLevel(mode, topicId, studentId) {
+  const key = storageKey(mode, topicId, studentId);
   try {
     const v = localStorage.getItem(`${STORAGE_LEVEL_PREFIX}:${key}`);
     if (v !== null) {
@@ -26,20 +27,20 @@ export function getScaffoldLevel(mode, topicId) {
   return 4;
 }
 
-export function setScaffoldLevel(mode, topicId, level) {
-  const key = storageKey(mode, topicId);
+export function setScaffoldLevel(mode, topicId, level, studentId) {
+  const key = storageKey(mode, topicId, studentId);
   try { localStorage.setItem(`${STORAGE_LEVEL_PREFIX}:${key}`, String(level)); } catch {}
 }
 
-function getSessionLog(mode, topicId) {
-  const key = storageKey(mode, topicId);
+function getSessionLog(mode, topicId, studentId) {
+  const key = storageKey(mode, topicId, studentId);
   try { return JSON.parse(localStorage.getItem(`${STORAGE_LOG_PREFIX}:${key}`) || '[]'); } catch { return []; }
 }
 
-export function logSession(mode, topicId, data) {
-  const log = getSessionLog(mode, topicId);
+export function logSession(mode, topicId, data, studentId) {
+  const log = getSessionLog(mode, topicId, studentId);
   log.push({ ...data, timestamp: new Date().toISOString() });
-  const key = storageKey(mode, topicId);
+  const key = storageKey(mode, topicId, studentId);
   try { localStorage.setItem(`${STORAGE_LOG_PREFIX}:${key}`, JSON.stringify(log)); } catch {}
   return log;
 }
@@ -52,9 +53,9 @@ export function classifyRetrieval(maxHintLevel, hintUsed, score) {
   return 'minimal';
 }
 
-export function evaluateFading(mode, topicId) {
-  const log = getSessionLog(mode, topicId);
-  const currentLevel = getScaffoldLevel(mode, topicId);
+export function evaluateFading(mode, topicId, studentId) {
+  const log = getSessionLog(mode, topicId, studentId);
+  const currentLevel = getScaffoldLevel(mode, topicId, studentId);
 
   if (log.length < 2) {
     return { verdict: 'hold', currentLevel, newLevel: currentLevel };

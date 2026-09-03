@@ -72,6 +72,7 @@ export async function savePracticeSession(studentId, data) {
     results: data?.results || null, submittedAt: new Date().toISOString(),
     confidenceBefore: data?.confidenceBefore ?? null,
     errorCategories: data?.errorCategories || null,
+    status: data?.status || 'completed',
   };
   if (dbReady('practiceSubmissions')) {
     try { const saved = await dbUpsert('practiceSubmissions', record); if (saved) return saved; }

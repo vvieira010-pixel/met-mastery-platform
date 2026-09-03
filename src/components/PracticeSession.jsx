@@ -88,9 +88,9 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
   }, [selectedKind]);
 
   useEffect(() => {
-    const level = getScaffoldLevel(selectedKind, selectedTopic);
+    const level = getScaffoldLevel(selectedKind, selectedTopic, studentId);
     setScaffoldLevelState(level);
-  }, [selectedKind, selectedTopic]);
+  }, [selectedKind, selectedTopic, studentId]);
 
   useEffect(() => {
     let cancelled = false;
@@ -136,11 +136,11 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
   function handleSessionComplete(summary) {
     const { score, maxHintLevel, hintUsed, results, confidenceBefore } = summary;
     setSessionScore(score);
+    const quality = score !== null ? classifyRetrieval(maxHintLevel || 0, hintUsed || false, score) : null;
+    const correctCount = results?.filter(r => r?.correct === true).length || 0;
+    const errorCategories = results?.filter(r => r?.errorCategory).map(r => r.errorCategory) || null;
 
     if (score !== null && studentId) {
-      const quality = classifyRetrieval(maxHintLevel || 0, hintUsed || false, score);
-      const correctCount = results?.filter(r => r?.correct === true).length || 0;
-      const errorCategories = results?.filter(r => r?.errorCategory).map(r => r.errorCategory) || null;
       logSession(selectedKind, selectedTopic, {
         score,
         maxHintLevel: maxHintLevel || 0,
@@ -151,9 +151,11 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
         correctCount,
         totalScored: results?.filter(r => r?.correct !== null && r?.correct !== undefined).length || 0,
         confidenceBefore: confidenceBefore ?? null,
-      });
+      }, studentId);
 
-      savePracticeSession(studentId, {
+    }
+
+    if (studentId) savePracticeSession(studentId, {
         mode: selectedKind,
         topicId: selectedTopic,
         topicTitle: selectedTopicTitle,
@@ -166,13 +168,15 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
         results,
         confidenceBefore: confidenceBefore ?? null,
         errorCategories,
+        status: score === null ? 'submitted_for_review' : 'completed',
       });
 
-      const result = evaluateFading(selectedKind, selectedTopic);
+    if (score !== null && studentId) {
+      const result = evaluateFading(selectedKind, selectedTopic, studentId);
       setFadingVerdict(result);
 
       if (result.verdict === 'reduce' || result.verdict === 'restore') {
-        setScaffoldLevel(selectedKind, selectedTopic, result.newLevel);
+        setScaffoldLevel(selectedKind, selectedTopic, result.newLevel, studentId);
         setScaffoldLevelState(result.newLevel);
       }
     }

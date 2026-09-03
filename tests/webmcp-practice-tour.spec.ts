@@ -51,5 +51,7 @@ test('WebMCP tour guides a learner into a Grammar Sprint without acting for them
   expect(grammarHighlight.visible).toBe(true);
   await expect(page.getByRole('heading', { name: 'Grammar Sprint' })).toBeVisible();
   await page.getByRole('button', { name: /Grammar Sprint/ }).click();
+  await expect(page.getByRole('button', { name: 'Common Mistakes' })).toBeVisible();
+  await page.getByRole('button', { name: 'Common Mistakes' }).click();
   await expect(page.locator('[data-tour-target="practice-session"]')).toBeVisible();
 });

@@ -12,7 +12,7 @@ test('supplementary listening pack contains 25 playable source records', async (
   assert.equal(listeningPack.exercises.length, 25);
 
   const groups = await getListeningAudioGroups();
-  const packGroups = groups.filter(group => group.title.includes(' · '));
+  const packGroups = groups.filter(group => /\/listening\/listening-(?:7[6-9]|8\d|9\d|100)-/.test(group.id));
   assert.equal(packGroups.length, listeningPack.exercises.length);
 
   const exercises = (await Promise.all(packGroups.map(group => getListeningExercises(group.id)))).flat();

@@ -398,35 +398,37 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     setResults(prev => {
       const next = [...prev];
       const idx = currentRef.current;
-      const confAfter = exerciseConfidenceAfterRef.current[idx];
+      const confAfter = result?.confidenceAfter ?? exerciseConfidenceAfterRef.current[idx];
       next[idx] = { ...result, index: idx, confidenceAfter: confAfter || null };
       return next;
     });
   }, [setResults]);
 
+  const finishSession = useCallback((completedResults = resultsRef.current) => {
+    setDone(true);
+    const cb = onDoneRef.current;
+    if (!cb) return;
+    const live = completedResults.filter(r => r && r.correct !== null && r.correct !== undefined);
+    const score = live.length > 0 ? Math.round((live.filter(r => r.correct).length / live.length) * 100) : null;
+    cb({
+      results: completedResults,
+      score,
+      maxHintLevel: maxHintLevelRef.current,
+      hintUsed: maxHintLevelRef.current > 0,
+      confidenceBefore,
+    });
+  }, [confidenceBefore]);
+
   const handleNext = useCallback(() => {
     const idx = currentRef.current;
     const nextIdx = idx + 1;
     if (nextIdx >= totalRef.current) {
-      setDone(true);
-      const cb = onDoneRef.current;
-      if (cb) {
-        const live = resultsRef.current.filter(r => r && r.correct !== null && r.correct !== undefined);
-        const score = live.length > 0 ? Math.round((live.filter(r => r.correct).length / live.length) * 100) : null;
-        const maxHL = maxHintLevelRef.current;
-        cb({
-          results: resultsRef.current,
-          score,
-          maxHintLevel: maxHL,
-          hintUsed: maxHL > 0,
-          confidenceBefore,
-        });
-      }
+      finishSession();
     } else {
       maxHintLevelRef.current = 0;
       setCurrent(nextIdx);
     }
-  }, [setCurrent, setDone, confidenceBefore]);
+  }, [finishSession]);
 
   const handleBack = useCallback(() => {
     if (currentRef.current > 0) setCurrent(c => c - 1);
@@ -435,11 +437,11 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   const handleSkip = useCallback(() => {
     const nextIdx = currentRef.current + 1;
     if (nextIdx >= totalRef.current) {
-      setDone(true);
+      finishSession();
     } else {
       setCurrent(nextIdx);
     }
-  }, [setCurrent, setDone]);
+  }, [setCurrent, finishSession]);
 
   // Errors only (nothing valid loaded)
   if (errors.length > 0 && exercises.length === 0) {
@@ -502,7 +504,13 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
         >
           <ScoreSummary results={results.filter(Boolean)} total={exercises.length} />
           <button
-            onClick={() => { setCurrent(0); setResults([]); setDone(false); }}
+            onClick={() => {
+              setCurrent(0);
+              setResults([]);
+              setDone(false);
+              maxHintLevelRef.current = 0;
+              exerciseConfidenceAfterRef.current = {};
+            }}
             style={{
               marginTop: 16, padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)',
               border: '1.5px solid var(--border)', background: 'var(--surface)',

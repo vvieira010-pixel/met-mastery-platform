@@ -16,6 +16,7 @@
     "lint:fix": "eslint src/ api/ --fix",
     "lint:tokens": "node scripts/token-lint.mjs",
     "test": "node --test \"tests/**/*.test.js\"",
+    "test:e2e": "playwright test --project=Chromium",
     "test:watch": "node --test --watch \"tests/**/*.test.js\""
   },
   "dependencies": {

@@ -30,6 +30,7 @@ import {
   getLevelInfo,
   computeCalibration,
   extractErrorCategories,
+  getScaffoldLevel,
   setScaffoldLevel,
   logSession,
 } from '../src/lib/fading-manager.js';
@@ -123,7 +124,7 @@ describe('fading-manager — classifyRetrieval', () => {
 
 describe('fading-manager — level gates', () => {
   test('hintLimit tiers', () => {
-    assert.equal(hintLimit(4), 2);
+    assert.equal(hintLimit(4), 3);
     assert.equal(hintLimit(3), 2);
     assert.equal(hintLimit(2), 1);
     assert.equal(hintLimit(1), 0);
@@ -135,7 +136,14 @@ describe('fading-manager — level gates', () => {
   });
   test('getLevelInfo falls back for unknown level', () => {
     assert.equal(getLevelInfo(0).label, 'Independent');
-    assert.equal(getLevelInfo(99).label, 'Guided Practice');
+    assert.equal(getLevelInfo(99).label, 'Full Support');
+  });
+  test('scaffold levels are isolated per student', () => {
+    const mode = 'mode';
+    const topic = uid();
+    setScaffoldLevel(mode, topic, 2, 'student-a');
+    assert.equal(getScaffoldLevel(mode, topic, 'student-a'), 2);
+    assert.equal(getScaffoldLevel(mode, topic, 'student-b'), 4);
   });
 });
 
@@ -163,12 +171,12 @@ describe('fading-manager — calibration + errors', () => {
 });
 
 describe('fading-manager — evaluateFading verdicts', () => {
-  test('level 4 storage is migrated to level 3 and cannot reduce past the new maximum', () => {
+  test('level 4 storage remains the highest support level', () => {
     const mode = 'mode';
     const topic = uid();
     setScaffoldLevel(mode, topic, 4);
     const v = evaluateFading(mode, topic);
-    assert.equal(v.currentLevel, 3);
+    assert.equal(v.currentLevel, 4);
     assert.equal(v.verdict, 'hold');
   });
   test('two minimal low-score sessions -> restore', () => {
