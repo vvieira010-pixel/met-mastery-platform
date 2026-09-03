@@ -296,16 +296,31 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
             );
           })()
         ) : (
-          <div className="practice-studio-topics">
-            <p className="practice-studio-topics-desc">Choose a topic to practice.</p>
-            <div className="grid-square">
-              {topics.map(t => (
-                <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer', transition: 'all 0.2s' }}>
-                  <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
-                </Card>
-              ))}
-            </div>
-          </div>
+          (() => {
+            const q = listeningSearch.trim().toLowerCase();
+            const filteredAll = q ? topics.filter(t => t.title.toLowerCase().includes(q) || t.id.toLowerCase().includes(q)) : topics;
+            return (
+              <div className="practice-studio-topics">
+                <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+                  <div className="search-input-wrap" style={{ flex: '1 1 260px', maxWidth: 420 }}>
+                    <span aria-hidden="true" style={{ opacity: 0.6 }}>🔍</span>
+                    <input className="search-input" placeholder="Search topics…" value={listeningSearch} onChange={e => setListeningSearch(e.target.value)} aria-label="Search topics" />
+                    {listeningSearch && <button type="button" className="search-clear" onClick={() => setListeningSearch('')} aria-label="Clear search">✕</button>}
+                  </div>
+                  <span className="text-xs text-[var(--muted)]">{filteredAll.length} of {topics.length}</span>
+                </div>
+                <p className="practice-studio-topics-desc">Choose a topic to practice.</p>
+                <div className="grid-square">
+                  {filteredAll.map(t => (
+                    <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer', transition: 'all 0.2s' }}>
+                      <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', textAlign: 'center' }}>{t.title}</div>
+                    </Card>
+                  ))}
+                </div>
+                {filteredAll.length === 0 && <p className="text-sm text-[var(--muted)]" style={{ textAlign: 'center', padding: 24 }}>No matches for “{listeningSearch}”.</p>}
+              </div>
+            );
+          })()
         )
         )
       ) : loading ? (
