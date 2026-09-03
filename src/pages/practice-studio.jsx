@@ -263,8 +263,8 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
             const supplementary = filtered.filter(t => !t.id.includes('met26') && /listening-(7\d|8\d|9\d|100)/.test(t.id));
             const core = filtered.filter(t => !met26.includes(t) && !supplementary.includes(t));
             const Section = ({ title, count, items, badge }) => items.length === 0 ? null : (
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <div style={{ marginBottom: 16, padding: 14, background: 'var(--surface)', border: '1px solid var(--ink-faint)', borderRadius: 'var(--radius-sm)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--ink-faint)' }}>
                   <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>{title}</h4>
                   <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{count}</span>
                   {badge && <span className="pill pill-success" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{badge}</span>}
@@ -311,8 +311,8 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
               const items = filteredAll.filter(t => ids.includes(t.id));
               if (items.length === 0) return null;
               return (
-                <div style={{ marginBottom: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                <div style={{ marginBottom: 16, padding: 14, background: 'var(--surface)', border: '1px solid var(--ink-faint)', borderRadius: 'var(--radius-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--ink-faint)' }}>
                     <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>{title}</h4>
                     <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{items.length}</span>
                   </div>
@@ -339,8 +339,11 @@ export default function PracticeStudio({ studentId, onBack, "data-testid": testI
                 </div>
                 {groups.map(g => <Group key={g.title} title={g.title} ids={g.ids} />)}
                 {unmatched.length > 0 && (
-                  <div style={{ marginBottom: 20 }}>
-                    <h4 style={{ margin: 0, marginBottom: 10, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>Other</h4>
+                  <div style={{ marginBottom: 16, padding: 14, background: 'var(--surface)', border: '1px solid var(--ink-faint)', borderRadius: 'var(--radius-sm)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid var(--ink-faint)' }}>
+                      <h4 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--ink)' }}>Other</h4>
+                      <span className="pill pill-default" style={{ fontSize: 'var(--text-2xs)', padding: '2px 8px' }}>{unmatched.length}</span>
+                    </div>
                     <div className="grid-square">
                       {unmatched.map(t => (
                         <Card key={t.id} className="square-card" onClick={() => setSelectedTopic(t.id)} style={{ cursor: 'pointer' }}>
