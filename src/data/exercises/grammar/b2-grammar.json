@@ -1,0 +1,95 @@
+{
+  "modules": [
+    {
+      "id": "b2_grammar_mcq",
+      "title": "MET B2 Grammar — Multiple Choice",
+      "skill": "grammar",
+      "levelRange": "B2",
+      "items": [
+        {
+          "id": "gram_01",
+          "type": "mcq",
+          "question": "By the time we arrived, the concert ___.",
+          "options": ["already started", "had already started", "has already started", "was already starting"],
+          "correct": 1,
+          "explanation": "Past perfect 'had started' is used for an action completed before another past action."
+        },
+        {
+          "id": "gram_02",
+          "type": "mcq",
+          "question": "She would have passed the exam if she ___ harder.",
+          "options": ["studied", "had studied", "has studied", "studies"],
+          "correct": 1,
+          "explanation": "Third conditional requires past perfect in the if-clause."
+        },
+        {
+          "id": "gram_03",
+          "type": "mcq",
+          "question": "The report ___ by the team before the deadline.",
+          "options": ["was completed", "completed", "has been completed", "is completed"],
+          "correct": 0,
+          "explanation": "Passive voice is needed because the report receives the action."
+        },
+        {
+          "id": "gram_04",
+          "type": "mcq",
+          "question": "I wish I ___ more time to travel last year.",
+          "options": ["have", "had", "would have", "having"],
+          "correct": 1,
+          "explanation": "'Wish' + past simple expresses regret about a present or general situation."
+        },
+        {
+          "id": "gram_05",
+          "type": "mcq",
+          "question": "Neither the manager nor the employees ___ aware of the change.",
+          "options": ["was", "is", "were", "has been"],
+          "correct": 2,
+          "explanation": "With 'neither...nor', the verb agrees with the nearest subject (employees = plural)."
+        }
+      ]
+    },
+    {
+      "id": "b2_grammar_blanks",
+      "title": "MET B2 Grammar — Fill the Blank",
+      "skill": "grammar",
+      "levelRange": "B2",
+      "items": [
+        {
+          "id": "gram_blank_01",
+          "type": "blank",
+          "template": "If I ___ (know) about the traffic, I would have left earlier.",
+          "blanks": ["had known"],
+          "explanation": "Third conditional: 'if + past perfect, would have + past participle'."
+        },
+        {
+          "id": "gram_blank_02",
+          "type": "blank",
+          "template": "She has been working here ___ 2019.",
+          "blanks": ["since"],
+          "explanation": "'Since' is used with a point in time; 'for' is used with a duration."
+        },
+        {
+          "id": "gram_blank_03",
+          "type": "blank",
+          "template": "The project is expected ___ (complete) by next month.",
+          "blanks": ["to be completed"],
+          "explanation": "Passive infinitive: 'expected to be + past participle'."
+        },
+        {
+          "id": "gram_blank_04",
+          "type": "blank",
+          "template": "Not only ___ the report, but she also presented it.",
+          "blanks": ["did she write"],
+          "explanation": "Negative inversion: when a negative phrase starts a clause, the verb is inverted."
+        },
+        {
+          "id": "gram_blank_05",
+          "type": "blank",
+          "template": "He suggested that we ___ (take) a different approach.",
+          "blanks": ["take"],
+          "explanation": "After 'suggested that', use the base form of the verb (subjunctive)."
+        }
+      ]
+    }
+  ]
+}

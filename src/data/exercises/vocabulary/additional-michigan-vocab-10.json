@@ -1,0 +1,137 @@
+{
+  "title": "Additional Michigan Vocab 10",
+  "level": "B2+",
+  "skill": "vocabulary",
+  "items": [
+    {
+      "id": 46,
+      "question": "The committee’s decision to cancel the project was based on a ___ assessment of its likely environmental consequences.",
+      "options": {
+        "A": "cursory",
+        "B": "arbitrary",
+        "C": "rigorous",
+        "D": "peripheral"
+      },
+      "correctAnswer": "C",
+      "explanation": "**Rigorous** means thorough, careful, and demanding exact standards.",
+      "level": "B2+"
+    },
+    {
+      "id": 47,
+      "question": "The new evidence may ___ the defendant’s account of what happened that evening.",
+      "options": {
+        "A": "vindicate",
+        "B": "impede",
+        "C": "provoke",
+        "D": "supersede"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Vindicate** means show that someone was right or not responsible for wrongdoing.",
+      "level": "B2+"
+    },
+    {
+      "id": 48,
+      "question": "The policy was introduced to ___ the effects of inequality by providing additional support to disadvantaged communities.",
+      "options": {
+        "A": "perpetuate",
+        "B": "ameliorate",
+        "C": "preclude",
+        "D": "distort"
+      },
+      "correctAnswer": "B",
+      "explanation": "**Ameliorate** means make a difficult situation or problem better.",
+      "level": "B2+"
+    },
+    {
+      "id": 49,
+      "question": "Because the instructions were highly ___, different departments interpreted them in entirely different ways.",
+      "options": {
+        "A": "explicit",
+        "B": "impartial",
+        "C": "comprehensive",
+        "D": "ambiguous"
+      },
+      "correctAnswer": "D",
+      "explanation": "**Ambiguous** means open to more than one interpretation.",
+      "level": "B2+"
+    },
+    {
+      "id": 50,
+      "question": "The scientist remained ___ about the results, noting that the sample size was too small to support a definitive conclusion.",
+      "options": {
+        "A": "skeptical",
+        "B": "complacent",
+        "C": "receptive",
+        "D": "extravagant"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Skeptical** means not easily convinced and requiring strong evidence.",
+      "level": "B2+"
+    },
+    {
+      "id": 51,
+      "question": "The agreement was designed to ___ cooperation between countries that had previously competed for the same resources.",
+      "options": {
+        "A": "undermine",
+        "B": "foster",
+        "C": "constrain",
+        "D": "negate"
+      },
+      "correctAnswer": "B",
+      "explanation": "**Foster** means encourage or promote the development of something.",
+      "level": "B2+"
+    },
+    {
+      "id": 52,
+      "question": "The journalist was criticized for presenting a ___ interpretation of the data that ignored several inconvenient facts.",
+      "options": {
+        "A": "nuanced",
+        "B": "objective",
+        "C": "selective",
+        "D": "exhaustive"
+      },
+      "correctAnswer": "C",
+      "explanation": "**Selective** means involving deliberate choices about what to include or exclude.",
+      "level": "B2+"
+    },
+    {
+      "id": 53,
+      "question": "The organization must ___ its limited funds carefully if it is to complete all of the planned projects.",
+      "options": {
+        "A": "dissipate",
+        "B": "allocate",
+        "C": "revoke",
+        "D": "withhold"
+      },
+      "correctAnswer": "B",
+      "explanation": "**Allocate** means distribute resources for particular purposes.",
+      "level": "B2+"
+    },
+    {
+      "id": 54,
+      "question": "The witness’s testimony was considered ___ because it contradicted several independently verified facts.",
+      "options": {
+        "A": "credible",
+        "B": "consistent",
+        "C": "dubious",
+        "D": "conclusive"
+      },
+      "correctAnswer": "C",
+      "explanation": "**Dubious** means doubtful or unlikely to be reliable or true.",
+      "level": "B2+"
+    },
+    {
+      "id": 55,
+      "question": "The company’s decision to publish the full report was intended to ___ concerns about a lack of transparency.",
+      "options": {
+        "A": "allay",
+        "B": "intensify",
+        "C": "precipitate",
+        "D": "circumvent"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Allay** means reduce or relieve fear, concern, or suspicion.",
+      "level": "B2+"
+    }
+  ]
+}

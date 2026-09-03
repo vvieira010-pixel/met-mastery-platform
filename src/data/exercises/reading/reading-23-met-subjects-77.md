@@ -1,0 +1,730 @@
+# Reading 23 — MET Subjects
+
+**MET-Style Reading Practice · 77 questions · Level B1–C1**
+
+Choose the best answer (A, B, C, or D) for each question.
+
+---
+## Text 1 — World's Fairs
+*This passage is about world's fairs.*
+
+Elevators, telephones, televisions—crowds marveled at these scientific wonders when they were introduced. These inventions may now be used by millions of people on a daily basis, but once they were found exclusively at world's fairs.
+
+Early world's fairs in the 1800s captivated audiences, exposing them to the latest ideas within distinctive and impressive structures. Significant examples are London's Great Exhibition of 1851, housed within a "Crystal Palace," a massive temporary glass building supported by a cast iron frame, and Chicago's World's Columbian Exposition of 1893 with its over two-hundred buildings and structures erected specifically for the fair in neoclassical architectural style, including fountains reminiscent of those in Rome. These fairs served as educational forums, gathering people from around the globe to share new developments and witness progress.
+
+In the 1900s, with New York's 1939–1940 fair themed "Building the World of Tomorrow," world's fairs took on a new role—that of addressing global issues. While technological advances remained an important feature of those events, audiences began to see world's fairs as a means to support cross-cultural dialogue and the exchange of possible solutions to social and political conflict. In harmony with this purpose, the highly successful Expo 67, held in Montreal, Canada, featured the United Nations—an international organization whose stated mission is to achieve world peace—alongside the dozens of countries participating in the exhibition.
+
+Today, many people communicate their opinions over the Internet, and this virtual world has largely reduced the need to meet as a group within one physical space. It has not, however, diminished the visceral desire to see the future with our own eyes and touch it with our hands, nor has it suppressed that social compulsion to exhibit our achievements. Thus, at Expo 2010 in Shanghai, China, people gathered once again to witness the unveiling of awe-inspiring machines. Perhaps one day they will become familiar to all of us.
+
+**1.** What is the passage mainly about?
+- A. the history and changing purposes of world's fairs
+- B. how inventions are tested at international exhibitions
+- C. the architecture of famous exhibition buildings
+- D. the role of the Internet in modern society
+
+**2.** According to the passage, what was the main purpose of early world's fairs?
+- A. to sell products to the public
+- B. to display technological advances
+- C. to promote political agreements
+- D. to raise money for scientists
+
+**3.** In the second sentence of paragraph 2, what does the phrase 'reminiscent of' mean?
+- A. similar to
+- B. located near
+- C. designed by
+- D. famous in
+
+**4.** Why does the author mention Expo 67 in Montreal?
+- A. to show that fairs began to focus on global issues
+- B. to explain why the United Nations was created
+- C. to compare Canadian and American fairs
+- D. to describe the most successful fair ever held
+
+**5.** What does the author suggest about future world's fairs?
+- A. They will probably disappear because of the Internet.
+- B. They will continue to attract people who want to see new inventions.
+- C. They will focus only on entertainment, not technology.
+- D. They will be held exclusively online.
+
+---
+## Text 2 — Jupiter's Great Red Spot
+*This passage is about Jupiter's Great Red Spot.*
+
+The Great Red Spot is a massive storm that has been active on Jupiter for centuries. About 20,000 kilometers in length and 12,000 kilometers wide, the Great Red Spot has captured the attention of scientists and amateur astronomers alike. Its name is derived from the distinct red color associated with the area, although it appears much paler in places, with colors ranging from dark red and pinkish tones to almost white. Similar to hurricanes on Earth, the storm's strong winds blow in a circular motion. However, unlike hurricanes, which form around low-pressure areas, the Great Red Spot has a high-pressure system. Due to its location in Jupiter's southern hemisphere, its winds blow in a counter-clockwise direction and can reach up to 644 kilometers per hour—almost twice as strong as the top hurricane winds recorded on Earth.
+
+The Great Red Spot remains a source of mystery and fascination. No one knows for sure what causes the storm's reddish color. One theory suggests the strong winds kick up material buried deeper in the atmosphere, and exposure to sunlight causes that material to take on the characteristic red tones. Reasons behind the storm's lengthy duration are also unclear. Some scientists think the Great Red Spot is constantly fed by smaller storms, allowing it to continue endlessly, while others believe it may be fueled by small drops of water or ammonia from below.
+
+Scientists have noted that the Great Red Spot's shape has evolved over time. Once long and thin like a sausage, it is now more of an oval shape, and scientists believe it may become circular within a few decades. The storm also appears to be slowly shrinking. As a result, researchers concede the possibility that someday the Great Red Spot could disappear entirely. However, the likelihood seems remote as it is still the largest and most powerful storm on the planet—two to three times the size of the Earth.
+
+**6.** What is the passage mainly about?
+- A. the characteristics of Jupiter's largest storm
+- B. how hurricanes form on Earth and Jupiter
+- C. the history of astronomical discoveries
+- D. different types of storms on Jupiter
+
+**7.** According to the passage, how is the Great Red Spot different from hurricanes on Earth?
+- A. It has a high-pressure system.
+- B. It blows in a circular motion.
+- C. It forms in the southern hemisphere.
+- D. It has very strong winds.
+
+**8.** In the fourth sentence of paragraph 3, which word is closest in meaning to 'concede'?
+- A. admit
+- B. prove
+- C. wonder
+- D. announce
+
+**9.** Why does the author mention the storm's changing shape?
+- A. to show that the storm is becoming weaker
+- B. to illustrate that the storm is still changing over time
+- C. to explain why the storm is red
+- D. to compare Jupiter to Earth
+
+**10.** What is the author's opinion about the future of the Great Red Spot?
+- A. It will probably remain active.
+- B. It will most likely disappear soon.
+- C. Its color will become darker.
+- D. It will grow larger than Earth.
+
+---
+## Text 3 — Music and Learning
+*This passage is about music and education.*
+
+Psychologists have known for a long time that music affects people's feelings. James Kellaris, a psychology professor, has studied ways that music affects shopping. He says that playing the right kind of music can have positive effects for a business.
+
+Kellaris has identified several effects that might help businesses decide what kind of background music to play as their customers shop. Kellaris found that fast music makes a crowded store feel more crowded, and slow music makes an empty store feel lonely. Also, music with a faster tempo makes the time that customers are in the store seem shorter. This might help store owners because the more time customers are in a store, the more likely they are to buy something. A related effect happens when background music is played to customers "on hold" on telephone lines. If people hear fast music, they think their wait time is shorter than if they listen to slower music.
+
+Kellaris also investigated what styles of music customers prefer while they are shopping or on hold, and he found there are differences between men and women. Women had the highest positive reactions to jazz, followed by classical, while men most preferred classical, followed by jazz. Rock music was least preferred by both groups. Many store owners say they pay close attention to their customers and choose their music accordingly.
+
+**11.** What is the passage mainly about?
+- A. how businesses can use music to influence customers
+- B. why men and women prefer different types of music
+- C. the history of psychological research on music
+- D. how music affects people's emotions at home
+
+**12.** According to the passage, what effect does fast music have on customers in a store?
+- A. It makes them buy more products.
+- B. It makes them feel the store is less crowded.
+- C. It makes them think they have spent less time there.
+- D. It makes them prefer jazz over classical music.
+
+**13.** In the second sentence of paragraph 2, which word is closest in meaning to 'identified'?
+- A. recognized
+- B. created
+- C. ignored
+- D. copied
+
+**14.** Why does the author mention customers 'on hold'?
+- A. to show that music affects people in different situations
+- B. to explain why telephone companies use music
+- C. to compare shopping and waiting experiences
+- D. to describe a new type of background music
+
+**15.** What do store owners do with Kellaris's findings?
+- A. They ignore them because they are too complicated.
+- B. They use them to choose music for their stores.
+- C. They share them with their competitors.
+- D. They test them in their own research labs.
+
+---
+## Text 4 — Grandville Music Center
+*This passage is about a music school.*
+
+Guitar Lessons
+Study rock, blues, or classical guitar.
+Our teachers are experts who make learning fun while challenging you to develop and grow as a musician.
+Your teacher will design a lesson plan with you based on your goals and interests.
+Beginner, intermediate, and advanced level instruction is available.
+Recitals are held in the spring and are a great opportunity for students to play in front of an audience. Participation is optional but is highly recommended.
+We will schedule your introductory lesson with a teacher who matches your interests and needs!
+Visit the Center today to sign up!
+
+
+Did you know?
+Research studies have shown that music has a positive effect on children's academic performance. One study found that high school students who played musical instruments scored higher on a test than their peers who did not participate in band.
+Other researchers have noted that young children who studied music have an easier time understanding some mathematical ideas. In one study, second grade students who were given four months of piano lessons did better on a fractions test than the students who did not study piano. This could be because their musical instruction taught them the relationship between eighth, quarter, half, and whole notes, and they were able to transfer that understanding to the use of fractions in other situations.
+Studies such as these surely prove that musical education should be provided in all schools, despite the cost of hiring teachers and buying instruments.
+
+**16.** The following question refers to section A. What can be inferred about the guitar teachers?
+- A. They can play other instruments.
+- B. They have teaching experience.
+- C. They prefer to teach beginners.
+- D. They use the same lesson plans for all students.
+
+**17.** The following question refers to section A. What should someone do who wants to take guitar lessons?
+- A. send in a registration form
+- B. prepare a lesson plan
+- C. visit the Grandville Music Center
+- D. email the director
+
+**18.** The following question refers to section B. Why did piano students do well on a fractions test?
+- A. They listened to music while they studied.
+- B. The test used fractions in musical situations.
+- C. They had studied the concept of fractions in music.
+- D. They were also enrolled in a special math class.
+
+**19.** The following question refers to section B. How does the author feel about musical education?
+- A. It is too expensive for schools.
+- B. It is an area that should be researched further.
+- C. It is most important for young children.
+- D. It should be offered in all schools.
+
+**20.** The following question refers to section B. According to the passage, what is the main benefit of music for children?
+- A. It helps them learn mathematical ideas.
+- B. It makes them better at sports.
+- C. It improves their memory for names.
+- D. It teaches them to play in a band.
+
+---
+## Text 5 — The History of Chocolate
+*This passage is about chocolate.*
+
+Chocolate begins its story in the rainforests of Central and South America, where the cacao tree grows. The ancient Maya and Aztec peoples were the first to cultivate cacao, and they used its seeds to make a bitter, frothy drink that was reserved for ceremonies and for the elite. The word 'chocolate' may come from the Aztec word xocolātl, meaning 'bitter water.'
+
+When Spanish explorers arrived in the Americas in the 1500s, they brought cacao back to Europe. At first, chocolate remained a luxury item, consumed mainly by the wealthy. However, as trade routes expanded and production methods improved, chocolate became more widely available. In the 1800s, the invention of solid chocolate bars and milk chocolate transformed it from a drink into a treat that could be carried and shared.
+
+Today, chocolate is one of the world's most popular foods, but its production raises serious ethical questions. Most cacao is grown by small farmers in West Africa, many of whom earn very low incomes. In some regions, child labor has been documented on cacao farms, prompting international organizations to demand change. Several companies now label their products 'fair trade,' indicating that farmers received a higher price for their cacao.
+
+Despite these efforts, activists argue that more must be done to ensure that the people who grow cacao can afford to send their own children to school and live with dignity. For consumers, the challenge is to enjoy chocolate while also supporting practices that protect the rights of farmers and workers.
+
+**21.** What is the passage mainly about?
+- A. the history and ethical issues surrounding chocolate
+- B. how chocolate is made from cacao beans
+- C. the difference between Maya and Aztec cultures
+- D. why chocolate is so popular around the world
+
+**22.** According to the passage, how was chocolate originally used?
+- A. as a sweet candy for children
+- B. as a bitter drink for ceremonies and the elite
+- C. as a medicine for common people
+- D. as a form of money in trade
+
+**23.** In the third sentence of paragraph 2, which word is closest in meaning to 'transformed'?
+- A. changed
+- B. hidden
+- C. destroyed
+- D. copied
+
+**24.** Why does the author mention 'fair trade' labels?
+- A. to show that chocolate is becoming more expensive
+- B. to describe one attempt to improve farmers' incomes
+- C. to explain how chocolate is advertised
+- D. to compare different brands of chocolate
+
+**25.** What does the author suggest consumers should do?
+- A. stop eating chocolate entirely
+- B. buy only the cheapest chocolate available
+- C. choose chocolate that supports fair practices
+- D. demand that all chocolate be made in Europe
+
+---
+## Text 6 — The Printing Press
+*This passage is about the printing press.*
+
+Before the 1400s, books in Europe were copied by hand, usually by monks working in monasteries. This process was slow and expensive, so books were rare and most people could not read. In 1455, a German goldsmith named Johannes Gutenberg changed history by introducing movable type to Europe. His printing press allowed pages to be produced quickly and in large numbers.
+
+The effects were immediate and far-reaching. Within fifty years, printing presses had been established in cities across Europe, and the number of books in circulation increased dramatically. As books became cheaper and more common, literacy rates rose. People could now read the Bible, scientific works, and political pamphlets for themselves, rather than relying on priests or rulers to interpret information for them.
+
+Historians argue that the printing press helped bring about the Renaissance, the Reformation, and the Scientific Revolution. By spreading new ideas rapidly, it weakened the authority of traditional institutions and encouraged individuals to think for themselves. Some scholars even call it the most important invention of the second millennium.
+
+Today, the internet plays a role similar to that of the printing press. It allows information to be shared instantly across the globe, and like the press, it has raised questions about who controls knowledge and how truth can be distinguished from falsehood. Yet the basic principle remains the same: when information becomes widely accessible, societies change.
+
+**26.** What is the passage mainly about?
+- A. the life of Johannes Gutenberg
+- B. how the printing press changed society
+- C. why books were expensive before 1455
+- D. the differences between the internet and the printing press
+
+**27.** According to the passage, what was one result of the printing press?
+- A. Monks stopped copying books entirely.
+- B. Books became cheaper and more common.
+- C. People stopped going to church.
+- D. European cities became smaller.
+
+**28.** In the second sentence of paragraph 3, which word is closest in meaning to 'weakened'?
+- A. reduced the power of
+- B. increased the cost of
+- C. improved the quality of
+- D. protected the interests of
+
+**29.** Why does the author mention the internet?
+- A. to show that the printing press is no longer important
+- B. to compare two technologies that spread information widely
+- C. to explain how to use the internet safely
+- D. to argue that books are better than websites
+
+**30.** What does the author believe about accessible information?
+- A. It always leads to positive changes.
+- B. It makes societies more difficult to govern.
+- C. It tends to bring about social change.
+- D. It should be controlled by governments.
+
+---
+## Text 7 — The Water Cycle
+*This passage is about the water cycle.*
+
+Water is constantly moving between the Earth's surface and the atmosphere in a process known as the water cycle. The sun heats water in oceans, lakes, and rivers, causing it to evaporate and rise into the air as water vapor. As the vapor rises, it cools and condenses into tiny droplets, forming clouds. When the droplets become heavy enough, they fall back to Earth as precipitation—rain, snow, sleet, or hail.
+
+Once water reaches the ground, it follows several paths. Some of it flows over the surface into streams and rivers, eventually returning to the ocean. Some soaks into the soil and is taken up by plant roots, later released back into the air through transpiration. The rest sinks deeper, becoming groundwater that may remain underground for hundreds or even thousands of years before resurfacing.
+
+The water cycle is essential for life. It distributes fresh water across the planet, supports agriculture, and helps regulate the Earth's temperature. However, human activities are affecting the cycle in dangerous ways. Deforestation reduces transpiration, and climate change is altering precipitation patterns, leading to more severe droughts and floods in different regions.
+
+Scientists warn that protecting the water cycle requires reducing greenhouse gas emissions and preserving forests. They also emphasize that individuals can help by conserving water at home and supporting policies that protect watersheds. Though the cycle itself will continue, the quality and availability of water for human use depend on the choices people make today.
+
+**31.** What is the passage mainly about?
+- A. how the water cycle works and why it matters
+- B. the different types of precipitation
+- C. why climate change causes droughts
+- D. how to conserve water at home
+
+**32.** According to the passage, what happens when water vapor cools?
+- A. It evaporates into the atmosphere.
+- B. It condenses into droplets and forms clouds.
+- C. It soaks into the soil as groundwater.
+- D. It flows directly into the ocean.
+
+**33.** In the second sentence of paragraph 3, which word is closest in meaning to 'distributes'?
+- A. spreads
+- B. stores
+- C. purifies
+- D. measures
+
+**34.** Why does the author mention deforestation?
+- A. to explain why forests are cut down
+- B. to give an example of how humans affect the water cycle
+- C. to describe the benefits of planting trees
+- D. to compare forests and oceans
+
+**35.** What does the author suggest about the future of the water cycle?
+- A. It will stop if people do not conserve water.
+- B. It will continue, but water quality may suffer.
+- C. It will become faster as the Earth warms.
+- D. It will provide more water than in the past.
+
+---
+## Text 8 — Marie Curie
+*This passage is about Marie Curie.*
+
+Marie Curie was born in Warsaw, Poland, in 1867, at a time when women were rarely allowed to attend university. Determined to continue her education, she moved to Paris in 1891 and enrolled at the Sorbonne, where she studied physics and mathematics. Despite financial difficulties and the challenges of being a woman in a male-dominated field, she graduated at the top of her class.
+
+In 1895, she married Pierre Curie, a French physicist, and together they began researching radioactivity—a term Marie herself coined. Working in a poorly equipped laboratory, the Curies discovered two new elements: polonium, named after Marie's homeland, and radium. In 1903, Marie became the first woman to win a Nobel Prize, sharing the award in physics with Pierre and another scientist.
+
+Tragedy struck in 1906 when Pierre was killed in a street accident. Marie took over his teaching position at the Sorbonne, becoming the institution's first female professor. She continued her research and, in 1911, won a second Nobel Prize, this time in chemistry, for isolating pure radium. She remains the only person to have won Nobel Prizes in two different scientific fields.
+
+During World War I, Curie developed mobile X-ray units that allowed doctors to examine wounded soldiers near the battlefield. She often operated these units herself, despite the health risks of prolonged exposure to radiation. She died in 1934, likely from complications related to her lifelong work with radioactive materials. Today, her legacy endures not only in science but also as a symbol of perseverance and intellectual courage.
+
+**36.** What is the passage mainly about?
+- A. the discoveries of radium and polonium
+- B. the life and achievements of Marie Curie
+- C. how women gained access to universities
+- D. the dangers of working with radiation
+
+**37.** According to the passage, why did Marie Curie move to Paris?
+- A. to escape a war in Poland
+- B. to attend university
+- C. to work with Pierre Curie
+- D. to win a Nobel Prize
+
+**38.** In the second sentence of paragraph 2, which word is closest in meaning to 'coined'?
+- A. invented
+- B. borrowed
+- C. translated
+- D. criticized
+
+**39.** Why does the author mention the mobile X-ray units?
+- A. to show how Curie applied science to help others
+- B. to explain how X-rays were discovered
+- C. to describe the technology of World War I
+- D. to compare war medicine and peacetime medicine
+
+**40.** What does the author suggest about Curie's death?
+- A. It was caused by an accident in the laboratory.
+- B. It was related to her work with radioactive materials.
+- C. It was the result of a street accident like Pierre's.
+- D. It was due to old age and natural causes.
+
+---
+## Text 9 — The Great Barrier Reef
+*This passage is about the Great Barrier Reef.*
+
+Stretching more than 2,300 kilometers along the northeast coast of Australia, the Great Barrier Reef is the world's largest coral reef system. It is composed of nearly 3,000 individual reefs and 900 islands, making it visible from space. The reef supports an extraordinary diversity of life, including more than 1,500 species of fish, 400 types of coral, and thousands of species of mollusks, sponges, and other marine creatures.
+
+Coral reefs are built by tiny animals called polyps, which secrete a hard skeleton of calcium carbonate. Over thousands of years, these skeletons accumulate to form the massive structures we see today. The relationship between coral and microscopic algae called zooxanthellae is essential: the algae live inside the coral and provide it with food through photosynthesis, while the coral offers the algae protection and access to sunlight.
+
+In recent decades, the reef has faced serious threats. Rising ocean temperatures cause coral bleaching, a process in which stressed corals expel their algae and turn white. Without the algae, the corals lose their main source of energy and may die. Pollution from agricultural runoff and coastal development has also damaged large sections of the reef.
+
+Scientists and conservationists are working to protect the reef through measures such as reducing carbon emissions, improving water quality, and establishing marine protected areas. However, they warn that the reef's long-term survival depends on global action to limit climate change. Without significant reductions in greenhouse gases, even local efforts may not be enough to save this natural wonder.
+
+**41.** What is the passage mainly about?
+- A. how coral polyps build reefs
+- B. the features and threats to the Great Barrier Reef
+- C. the tourism industry in Australia
+- D. the differences between fish and coral species
+
+**42.** According to the passage, what role do zooxanthellae play?
+- A. They build the coral's calcium carbonate skeleton.
+- B. They provide food to the coral through photosynthesis.
+- C. They protect the coral from pollution.
+- D. They attract fish to the reef.
+
+**43.** In the third sentence of paragraph 3, which word is closest in meaning to 'expel'?
+- A. absorb
+- B. release
+- C. consume
+- D. attract
+
+**44.** Why does the author mention agricultural runoff?
+- A. to explain how fish are farmed near the reef
+- B. to give an example of pollution damaging the reef
+- C. to describe the main source of food for coral
+- D. to compare farming and tourism
+
+**45.** What do scientists believe is necessary to save the reef?
+- A. local efforts alone will be sufficient
+- B. global action to reduce climate change
+- C. stopping all tourism near the reef
+- D. moving the coral to cooler waters
+
+---
+## Text 10 — The Silk Road
+*This passage is about the Silk Road.*
+
+The Silk Road was not a single road but a network of trade routes that connected China to the Mediterranean Sea for more than 1,500 years. Beginning around the second century B.C.E., merchants traveled these routes carrying silk, spices, precious metals, and other goods. Along with products, ideas, technologies, and religions also spread across continents.
+
+The journey was long and dangerous. Traders faced harsh deserts, high mountains, and the threat of bandits. To reduce risks, merchants often traveled in large caravans, stopping at oasis towns to rest and exchange goods. These towns grew wealthy as trading centers, and some, such as Samarkand and Bukhara, became famous for their architecture and learning.
+
+The Silk Road also facilitated cultural exchange. Buddhism traveled from India to China along these routes, and later, Islam spread into Central Asia. Papermaking, gunpowder, and the compass moved from China to the West, while glassmaking and certain artistic styles traveled eastward. Historians argue that the Silk Road helped shape the civilizations of Europe, Asia, and Africa.
+
+By the 1400s, the Silk Road began to decline as sea routes became safer and faster. European explorers sought direct access to Asian markets by sailing around Africa and across the Atlantic. Although the overland routes lost their importance, the legacy of the Silk Road endures in the languages, religions, and technologies that were shared along the way.
+
+**46.** What is the passage mainly about?
+- A. the dangers of traveling in ancient deserts
+- B. the history and impact of the Silk Road
+- C. how silk was produced in ancient China
+- D. the architecture of Samarkand and Bukhara
+
+**47.** According to the passage, what did merchants do to reduce risks on the Silk Road?
+- A. They hired soldiers to protect them.
+- B. They traveled in large caravans.
+- C. They avoided oasis towns.
+- D. They sailed instead of walking.
+
+**48.** In the first sentence of paragraph 3, which word is closest in meaning to 'facilitated'?
+- A. prevented
+- B. enabled
+- C. delayed
+- D. ignored
+
+**49.** Why does the author mention Buddhism and Islam?
+- A. to show that religion was more important than trade
+- B. to illustrate how ideas spread along the routes
+- C. to explain why the routes declined
+- D. to compare different religions
+
+**50.** What does the author suggest about the Silk Road's legacy?
+- A. It disappeared completely after the 1400s.
+- B. It can still be seen in cultures today.
+- C. It was less important than sea routes.
+- D. It only affected China and Europe.
+
+---
+## Text 11 — The Human Brain
+*This passage is about the human brain.*
+
+The human brain is the most complex organ in the body, containing roughly 86 billion neurons. Each neuron can form connections with thousands of others, creating a network far more intricate than any computer ever built. This network allows us to think, remember, feel emotions, and control our movements.
+
+Different parts of the brain specialize in different functions. The cerebrum, the largest part, is responsible for thinking, planning, and voluntary movement. The cerebellum, located at the back, coordinates balance and fine motor skills. Deep inside, structures such as the hippocampus play a key role in forming memories, while the amygdala processes emotions like fear and anger.
+
+Despite its complexity, the brain is remarkably adaptable. When one area is damaged, other regions can sometimes take over its functions—a phenomenon known as neuroplasticity. This ability is strongest in children, which is why young brains can recover from injuries more easily than adult brains. However, neuroplasticity continues throughout life, allowing people to learn new skills and adapt to changing circumstances.
+
+Scientists are still uncovering the brain's secrets. Recent research has shown that the brain continues to produce new neurons in certain areas, even in adulthood. This discovery challenges the old belief that we are born with all the brain cells we will ever have. As imaging technology improves, researchers hope to better understand conditions such as Alzheimer's disease, depression, and schizophrenia, and to develop more effective treatments.
+
+**51.** What is the passage mainly about?
+- A. how the brain controls movement
+- B. the structure and abilities of the human brain
+- C. the causes of brain diseases
+- D. the differences between children's and adults' brains
+
+**52.** According to the passage, what does the cerebellum do?
+- A. It forms memories.
+- B. It processes emotions.
+- C. It coordinates balance and fine motor skills.
+- D. It controls thinking and planning.
+
+**53.** In the third sentence of paragraph 3, which word is closest in meaning to 'phenomenon'?
+- A. problem
+- B. occurrence
+- C. theory
+- D. experiment
+
+**54.** Why does the author mention neuroplasticity?
+- A. to show that the brain can change and adapt
+- B. to explain why children learn languages faster
+- C. to describe a type of brain disease
+- D. to compare brains and computers
+
+**55.** What do scientists hope to achieve with better imaging technology?
+- A. to grow new neurons in the laboratory
+- B. to understand and treat brain disorders
+- C. to prove that adults cannot learn new skills
+- D. to replace damaged brain parts with computers
+
+---
+## Text 12 — Renewable Energy
+*This passage is about renewable energy.*
+
+As the world's population grows and economies expand, the demand for energy continues to rise. Most of this energy still comes from fossil fuels such as coal, oil, and natural gas. Burning these fuels releases carbon dioxide and other greenhouse gases, which contribute to climate change. For this reason, many countries are investing in renewable energy sources—those that can be replenished naturally and produce little or no pollution.
+
+Solar and wind power are the fastest-growing renewable sources. Solar panels convert sunlight directly into electricity, while wind turbines use the motion of air to generate power. Both technologies have become significantly cheaper in recent years, making them competitive with fossil fuels in many regions. However, they also have limitations: solar panels produce no energy at night, and wind turbines depend on consistent wind patterns.
+
+Hydroelectric power, generated by dams on rivers, currently provides more electricity worldwide than any other renewable source. It is reliable and can be adjusted quickly to meet changing demand. Yet large dams can disrupt ecosystems and displace communities, leading to environmental and social concerns.
+
+Experts agree that no single energy source can meet the world's needs alone. Instead, a mix of renewables—solar, wind, hydro, and others—combined with improvements in energy storage and efficiency, will be necessary to reduce emissions while ensuring a stable power supply. The transition will require significant investment, but the long-term benefits for the climate and public health are expected to outweigh the costs.
+
+**56.** What is the passage mainly about?
+- A. how fossil fuels are formed
+- B. the advantages and challenges of renewable energy
+- C. why solar power is better than wind power
+- D. the history of hydroelectric dams
+
+**57.** According to the passage, what is a limitation of solar power?
+- A. It produces greenhouse gases.
+- B. It cannot generate electricity at night.
+- C. It is more expensive than fossil fuels.
+- D. It requires large dams.
+
+**58.** In the second sentence of paragraph 1, which word is closest in meaning to 'replenished'?
+- A. replaced
+- B. reduced
+- C. measured
+- D. stored
+
+**59.** Why does the author mention large dams?
+- A. to recommend building more of them
+- B. to show that hydroelectric power has drawbacks
+- C. to compare rivers and oceans
+- D. to explain how fish migrate
+
+**60.** What do experts believe about the future of energy?
+- A. One renewable source will dominate the market.
+- B. Fossil fuels will remain the main source forever.
+- C. A combination of renewables will be needed.
+- D. Energy storage is not important.
+
+---
+## Text 13 — The Olympic Games
+*This passage is about the Olympic Games.*
+
+The Olympic Games began in ancient Greece more than 2,700 years ago as a religious and athletic festival held every four years in Olympia. Only free men who spoke Greek were allowed to compete, and the events included running, wrestling, boxing, and chariot racing. Winners received olive wreaths and were honored as heroes in their home cities.
+
+The ancient Games continued for nearly twelve centuries until they were banned by a Roman emperor in 393 C.E. as part of an effort to suppress pagan traditions. For more than 1,500 years, no Olympic Games were held. In the late 1800s, a French educator named Baron Pierre de Coubertin proposed reviving the Olympics as a way to promote peace and international understanding through sport.
+
+The first modern Olympics took place in Athens in 1896, with 241 athletes from 14 nations. Since then, the Games have grown into a global event, with thousands of competitors from nearly every country. The Olympic symbol of five interlocking rings represents the unity of the five continents, and the motto 'Citius, Altius, Fortius'—'Faster, Higher, Stronger'—expresses the spirit of athletic excellence.
+
+Today, the Olympics face new challenges, including the high cost of hosting the Games and concerns about the environmental impact of building large stadiums. Some critics argue that the money spent on the Olympics could be better used to address social problems. Supporters, however, believe that the Games continue to inspire people around the world and provide a rare opportunity for nations to come together in peaceful competition.
+
+**61.** What is the passage mainly about?
+- A. the history and significance of the Olympic Games
+- B. how to train for Olympic events
+- C. the problems with modern stadiums
+- D. the life of Baron Pierre de Coubertin
+
+**62.** According to the passage, who could compete in the ancient Olympics?
+- A. anyone who lived in Greece
+- B. free men who spoke Greek
+- C. athletes from all countries
+- D. only winners of local contests
+
+**63.** In the second sentence of paragraph 2, which word is closest in meaning to 'suppress'?
+- A. encourage
+- B. eliminate
+- C. celebrate
+- D. reform
+
+**64.** Why does the author mention the five interlocking rings?
+- A. to describe the design of Olympic medals
+- B. to explain the meaning of the Olympic symbol
+- C. to compare ancient and modern symbols
+- D. to show how many continents compete
+
+**65.** What does the author suggest about the future of the Olympics?
+- A. They will definitely be canceled because of costs.
+- B. They will continue despite criticisms and challenges.
+- C. They will only be held in wealthy countries.
+- D. They will stop including athletic events.
+
+---
+## Text 14 — A City Tree Program
+*This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.*
+
+### Section A
+Riverside Park Tree Adoption Day
+Saturday, May 9, 9:00 a.m. – 1:00 p.m.
+
+Help us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.
+
+### Section B
+Did you know?
+
+A single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.
+
+### Section C
+When Riverdale launched its "20,000 Trees" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.
+
+The program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. "A city crew can plant a tree in an hour," she says, "but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood."
+
+Not everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. "We learned that handing someone a tree is the easy part," Costa admits. "Teaching them to keep it alive is the real program."
+
+
+**66.** The following question refers to section A. What must volunteers younger than 16 do?
+- A. register before everyone else
+- B. bring their own tools and gloves
+- C. come with an adult
+- D. attend a training session
+
+**67.** The following question refers to section A. Why should interested volunteers act before May 2?
+- A. The event will be moved to the rain date.
+- B. Online registration closes on that date.
+- C. Lunch will not be provided after that day.
+- D. The park will close for planting.
+
+**68.** The following question refers to section B. According to the text, how do trees affect shoppers?
+- A. They make shoppers feel younger.
+- B. They cause shoppers to spend more time and money in an area.
+- C. They encourage shoppers to buy houses nearby.
+- D. They help shoppers find stores more easily.
+
+**69.** The following question refers to section B. According to the text, where should trees be planted to lower cooling costs?
+- A. in shopping districts
+- B. in public parks
+- C. close to rivers
+- D. on the west side of a house
+
+**70.** The following question refers to section C. What was the skeptics' original view of the campaign?
+- A. It would cost too much money.
+- B. It was intended mainly to generate publicity.
+- C. It would take longer than five years.
+- D. It planted trees in the wrong locations.
+
+**71.** The following question refers to section C. How does the city carry out most of its planting?
+- A. It hires a professional planting company.
+- B. It requires schools to plant trees weekly.
+- C. It gives trees to residents who plant and water them.
+- D. It pays volunteers by the hour.
+
+**72.** The following question refers to section C. In the last sentence of the second paragraph, what does Costa mean by 'recruit the neighborhood'?
+- A. hire neighbors as city employees
+- B. get local residents to care for the trees
+- C. ask neighbors to donate money
+- D. move trees into people's yards
+
+**73.** The following question refers to section C. According to the audit, why did most of the lost trees die?
+- A. They were planted incorrectly by volunteers.
+- B. They were not watered during a drought.
+- C. They were damaged by construction.
+- D. They were attacked by insects.
+
+**74.** The following question refers to section C. What change improved tree survival rates?
+- A. using more experienced city crews
+- B. choosing more drought-resistant species
+- C. reducing the number of trees planted each year
+- D. requiring adopters to attend a short training session
+
+**75.** The following question refers to sections A and C. What goal do both texts share?
+- A. raising money for the parks department
+- B. involving community members in planting trees
+- C. training professional arborists
+- D. celebrating the planting of the 21,000th tree
+
+**76.** The following question refers to sections B and C. How is the information in section B relevant to section C?
+- A. It proves that the audit in section C was inaccurate.
+- B. It explains the deadline mentioned in section C.
+- C. It describes benefits that may motivate residents to accept free trees.
+- D. It contradicts the skeptics quoted in section C.
+
+**77.** The following question refers to all three sections. Which statement would program director Ana Costa most likely agree with?
+- A. Tree planting should be left to professional city crews.
+- B. A campaign succeeds through long-term community care, not just planting.
+- C. Publicity is more important than survival rates.
+- D. Trees grow best along rivers and in parks.
+
+---
+# Answer Key (Teacher)
+
+**1. A** — _main idea_ · The passage traces fairs from the 1800s (displaying inventions) to the 1900s (addressing global issues) to today (still showcasing the future).
+**2. B** — _detail_ · Paragraph 2 says early fairs exposed audiences to 'the latest ideas' and served as 'educational forums'
+**3. A** — _vocabulary_ · Reminiscent means similar to.
+**4. A** — _purpose_ · Expo 67 illustrates the shift to addressing global issues.
+**5. B** — _inference_ · Internet hasn't removed desire to see future with own eyes.
+**6. A** — _main idea_ · 
+**7. A** — _detail_ · 
+**8. A** — _vocabulary_ · 
+**9. B** — _purpose_ · 
+**10. A** — _inference_ · 
+**11. A** — _main idea_ · 
+**12. C** — _detail_ · 
+**13. A** — _vocabulary_ · 
+**14. A** — _purpose_ · 
+**15. B** — _inference_ · 
+**16. B** — _detail (section A)_ · 
+**17. C** — _detail (section A)_ · 
+**18. C** — _detail (section B)_ · 
+**19. D** — _purpose (section B)_ · 
+**20. A** — _detail (section B)_ · 
+**21. A** — _main idea_ · 
+**22. B** — _detail_ · 
+**23. A** — _vocabulary_ · 
+**24. B** — _purpose_ · 
+**25. C** — _inference_ · 
+**26. B** — _main idea_ · 
+**27. B** — _detail_ · 
+**28. A** — _vocabulary_ · 
+**29. B** — _purpose_ · 
+**30. C** — _inference_ · 
+**31. A** — _main idea_ · 
+**32. B** — _detail_ · 
+**33. A** — _vocabulary_ · 
+**34. B** — _purpose_ · 
+**35. B** — _inference_ · 
+**36. B** — _main idea_ · 
+**37. B** — _detail_ · 
+**38. A** — _vocabulary_ · 
+**39. A** — _purpose_ · 
+**40. B** — _inference_ · 
+**41. B** — _main idea_ · 
+**42. B** — _detail_ · 
+**43. B** — _vocabulary_ · 
+**44. B** — _purpose_ · 
+**45. B** — _inference_ · 
+**46. B** — _main idea_ · 
+**47. B** — _detail_ · 
+**48. B** — _vocabulary_ · 
+**49. B** — _purpose_ · 
+**50. B** — _inference_ · 
+**51. B** — _main idea_ · 
+**52. C** — _detail_ · 
+**53. B** — _vocabulary_ · 
+**54. A** — _purpose_ · 
+**55. B** — _inference_ · 
+**56. B** — _main idea_ · 
+**57. B** — _detail_ · 
+**58. A** — _vocabulary_ · 
+**59. B** — _purpose_ · 
+**60. C** — _inference_ · 
+**61. A** — _main idea_ · 
+**62. B** — _detail_ · 
+**63. B** — _vocabulary_ · 
+**64. B** — _purpose_ · 
+**65. B** — _inference_ · 
+**66. C** — _detail (section A)_ · 
+**67. B** — _detail (section A)_ · 
+**68. B** — _detail (section B)_ · 
+**69. D** — _detail (section B)_ · 
+**70. B** — _detail (section C)_ · 
+**71. C** — _detail (section C)_ · 
+**72. B** — _vocabulary (section C)_ · 
+**73. B** — _detail (section C)_ · 
+**74. D** — _detail (section C)_ · 
+**75. B** — _cross-text_ · 
+**76. C** — _cross-text_ · 
+**77. B** — _cross-text_ · 

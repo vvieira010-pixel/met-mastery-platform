@@ -1,0 +1,42 @@
+export const SPEAKING_TASKS = [
+  {
+    id: 'spk_1',
+    title: 'Task 1: Picture Description',
+    prompt: 'Look at the picture representing a triage area in a medical center. Describe what you see in detail, including the people, their actions, and the environment.',
+    description: 'Describe the scene and details accurately.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'spk_2',
+    title: 'Task 2: Comparing Situations',
+    prompt: 'Compare two approaches to patient education: one-on-one bedside instruction versus digital video modules. Discuss advantages and disadvantages of each.',
+    description: 'Compare and contrast two healthcare scenarios.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'spk_3',
+    title: 'Task 3: Expressing an Opinion',
+    prompt: 'Some healthcare facilities advocate for mandatory 12-hour shifts, while others prefer 8-hour shifts to reduce burnout. What is your opinion? Support your view with clear reasons.',
+    description: 'State your position clearly with supporting arguments.',
+    prepSeconds: 30,
+    speakSeconds: 60,
+  },
+  {
+    id: 'spk_4',
+    title: 'Task 4: Explaining a Process',
+    prompt: 'Explain the essential steps in conducting a thorough hand hygiene protocol or preparing a patient for a diagnostic test.',
+    description: 'Provide clear sequential instructions.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'spk_5',
+    title: 'Task 5: Roleplay / Situation Advice',
+    prompt: 'A patient is feeling nervous about an upcoming routine surgical procedure. Explain what to expect, address common anxieties, and offer reassuring, professional guidance.',
+    description: 'Communicate empathetically and effectively in a simulated situation.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+];

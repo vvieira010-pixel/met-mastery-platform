@@ -1,0 +1,220 @@
+{
+  "title": "Listening Bank - Final 10 (B1-B2+)",
+  "level": "Mixed (B1-B2+)",
+  "skill": "listening",
+  "instructions": "Listen to the audio and answer the question.",
+  "items": [
+    {
+      "id": 1,
+      "question": "[Audio Script]\nWoman: Hi Tom, it's Sarah. I know we scheduled our meeting for Tuesday at 3 PM, but I have a dentist appointment that just opened up. Can we push it to Thursday at the same time? Let me know.\n\n[Question]\nWhy is Sarah calling?",
+      "options": {
+        "A": "To cancel a meeting permanently.",
+        "B": "To change the day of a meeting.",
+        "C": "To invite Tom to the dentist.",
+        "D": "To change the time of a meeting on Tuesday."
+      },
+      "correctAnswer": "B",
+      "explanation": "Sarah asks to 'push it to Thursday', meaning she wants to reschedule the day of their existing meeting.",
+      "incorrectOptionExplanations": {
+        "A": "She doesn't cancel it permanently; she asks to move it to Thursday.",
+        "C": "The dentist appointment is her excuse, not an invitation.",
+        "D": "She wants to keep the 'same time' (3 PM), but change the day."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Gist / Main Purpose (B1)",
+      "teachingTip": "Remind students that the phrase 'push it to' is a very common business idiom meaning to reschedule for a later date.",
+      "exampleSentence": "Can we push our meeting to next week?"
+    },
+    {
+      "id": 2,
+      "question": "[Audio Script]\nMan: Attention passengers on platform 4. The 10:15 train to Chicago has been delayed by 20 minutes due to track maintenance. Please remain on the platform; boarding will begin shortly.\n\n[Question]\nWhat is the purpose of the announcement?",
+      "options": {
+        "A": "To inform passengers of a platform change.",
+        "B": "To explain a delay in departure.",
+        "C": "To announce the train's arrival in Chicago.",
+        "D": "To request passengers leave the platform."
+      },
+      "correctAnswer": "B",
+      "explanation": "The announcer explicitly states the train is 'delayed by 20 minutes due to track maintenance.'",
+      "incorrectOptionExplanations": {
+        "A": "The announcement is made on platform 4, but does not say the platform has changed.",
+        "C": "The train is going to Chicago, but it hasn't arrived there yet.",
+        "D": "The announcer says 'remain on the platform,' meaning stay, not leave."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Specific Detail (B1)",
+      "teachingTip": "Train station announcements frequently test the difference between 'departure' and 'arrival'. Ensure students know these nouns.",
+      "exampleSentence": "We apologize for the delay in our departure."
+    },
+    {
+      "id": 3,
+      "question": "[Audio Script]\nMan: Are we still on track to submit the budget proposal by Friday?\nWoman: I've finished the projections, but I'm waiting on the marketing team for their final numbers. If they don't send them by tomorrow morning, we'll have to ask for an extension.\nMan: Let me call their director right now and push them.\n\n[Question]\nWhat is the man going to do next?",
+      "options": {
+        "A": "Ask for an extension on the proposal.",
+        "B": "Finish the financial projections.",
+        "C": "Contact the marketing director.",
+        "D": "Submit the budget proposal."
+      },
+      "correctAnswer": "C",
+      "explanation": "The man says, 'Let me call their director right now,' referring to the marketing team.",
+      "incorrectOptionExplanations": {
+        "A": "The woman says they will ask for an extension ONLY if marketing doesn't send the numbers by tomorrow.",
+        "B": "The woman has already finished the projections.",
+        "D": "They cannot submit it yet because they are missing the marketing numbers."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Next Action (B2)",
+      "teachingTip": "Highlight the phrasal verb 'wait on' (waiting for someone to do something) which is crucial context here.",
+      "exampleSentence": "I can't finish the report because I'm waiting on Jane to send the data."
+    },
+    {
+      "id": 4,
+      "question": "[Audio Script]\nWoman: I'd like to return this jacket. I bought it last week, but the zipper keeps getting stuck.\nMan: I apologize for that. Do you have the receipt? I can offer you a full refund, or we can exchange it for a new one.\nWoman: I really like the color, so I'll just take a replacement, please.\n\n[Question]\nWhat does the customer decide to do?",
+      "options": {
+        "A": "Get her money back.",
+        "B": "Exchange the jacket for a different color.",
+        "C": "Get a new jacket of the same type.",
+        "D": "Repair the zipper herself."
+      },
+      "correctAnswer": "C",
+      "explanation": "She wants a 'replacement' because she likes the color, meaning she wants a new version of the exact same item.",
+      "incorrectOptionExplanations": {
+        "A": "The cashier offers a refund, but she chooses the replacement.",
+        "B": "She says she 'really likes the color,' so she doesn't want a different one.",
+        "D": "She returns it because the zipper is broken; she isn't fixing it herself."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Inference / Paraphrasing (B2)",
+      "teachingTip": "Point out how 'take a replacement' is a direct paraphrase of 'exchange it for a new one' offered by the cashier.",
+      "exampleSentence": "The appliance was broken, so the store gave me a free replacement."
+    },
+    {
+      "id": 5,
+      "question": "[Audio Script]\nMan: Welcome back to City FM. A quick reminder for those driving downtown this weekend: the annual Food Festival will close several main streets starting Friday night. Expect heavy traffic near the plaza, and consider taking the subway if you plan to attend.\n\n[Question]\nWhat does the speaker advise listeners to do?",
+      "options": {
+        "A": "Avoid attending the Food Festival.",
+        "B": "Drive carefully near the plaza.",
+        "C": "Use public transportation to get to the festival.",
+        "D": "Park their cars downtown on Friday night."
+      },
+      "correctAnswer": "C",
+      "explanation": "The speaker explicitly suggests listeners 'consider taking the subway', which is public transportation.",
+      "incorrectOptionExplanations": {
+        "A": "He doesn't say avoid it; he just gives advice on how to get there.",
+        "B": "He mentions heavy traffic but tells them to take the subway, not to drive carefully.",
+        "D": "He warns that streets will be closed, making parking downtown a bad idea."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Specific Detail / Advice (B2)",
+      "teachingTip": "Students often miss the word 'consider' as an advisory verb. Explain that 'consider doing X' means 'you should probably do X'.",
+      "exampleSentence": "You should consider taking a taxi since it's raining."
+    },
+    {
+      "id": 6,
+      "question": "[Audio Script]\nWoman: I've been looking over Jason's quarterly numbers. While his client retention is fantastic, his new acquisitions are down by 15%.\nMan: I noticed that too. He spends so much time keeping current clients happy that he neglects outbound sales. He needs to strike a better balance.\nWoman: Let's bring it up in his performance review next week and set some hard targets for acquisition.\n\n[Question]\nWhat do the managers agree about Jason?",
+      "options": {
+        "A": "He is losing too many existing clients.",
+        "B": "He focuses too much on finding new clients.",
+        "C": "He needs to improve his outbound sales performance.",
+        "D": "He should be fired at his next performance review."
+      },
+      "correctAnswer": "C",
+      "explanation": "They agree that his 'new acquisitions are down' and he 'neglects outbound sales', meaning he needs to improve in bringing in new business.",
+      "incorrectOptionExplanations": {
+        "A": "The woman says his 'client retention is fantastic', meaning he is keeping his clients.",
+        "B": "The opposite is true; he spends too much time on current clients.",
+        "D": "They want to 'set some hard targets', meaning they want to improve him, not fire him."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Speaker Agreement / Inference (B2+)",
+      "teachingTip": "Break down business vocabulary for B2+ students: 'client retention' (keeping clients) vs. 'acquisitions / outbound sales' (getting new ones).",
+      "exampleSentence": "Our outbound sales team is responsible for finding new customers."
+    },
+    {
+      "id": 7,
+      "question": "[Audio Script]\nMan: Before we dismiss, a quick note about the syllabus. I know the schedule says the midterm essay is due on the 14th, but since the library will be closed for renovations that week, I'm pushing the deadline to the 21st. The page requirement remains the same.\n\n[Question]\nWhy did the professor change the deadline?",
+      "options": {
+        "A": "Students requested more time to write.",
+        "B": "A campus facility will be unavailable.",
+        "C": "He decided to increase the page requirement.",
+        "D": "The original date fell on a university holiday."
+      },
+      "correctAnswer": "B",
+      "explanation": "The professor changed the date 'since the library will be closed for renovations'. The library is a campus facility.",
+      "incorrectOptionExplanations": {
+        "A": "The professor doesn't mention students asking for more time.",
+        "C": "He explicitly says 'the page requirement remains the same'.",
+        "D": "It's closed for renovations, not a holiday."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Cause and Effect / Paraphrasing (B2+)",
+      "teachingTip": "Show how 'library' translates to the broader category 'campus facility' in advanced multiple-choice questions.",
+      "exampleSentence": "All campus facilities, including the gym and library, close at midnight."
+    },
+    {
+      "id": 8,
+      "question": "[Audio Script]\nWoman: We could try that new Italian place on 5th Street. I heard their pasta is handmade.\nMan: Honestly, I had Italian for lunch yesterday. How about the sushi restaurant near the river?\nWoman: I'm not a big fan of raw fish. What if we compromise and get Thai? There's a great spot right around the corner.\nMan: Perfect. Pad Thai sounds great.\n\n[Question]\nHow do the speakers resolve their disagreement?",
+      "options": {
+        "A": "They decide to eat Italian food.",
+        "B": "They choose a restaurant neither originally suggested.",
+        "C": "The man agrees to eat raw fish.",
+        "D": "They decide to cook at home instead."
+      },
+      "correctAnswer": "B",
+      "explanation": "She suggested Italian, he suggested sushi. They compromise on Thai, which is a third, new option.",
+      "incorrectOptionExplanations": {
+        "A": "The man rejected Italian because he had it yesterday.",
+        "C": "The woman rejected sushi, not the man, and they didn't choose it anyway.",
+        "D": "Cooking at home is never mentioned."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Identifying Outcomes (B2)",
+      "teachingTip": "Teach the verb 'compromise'. It frequently appears in listening texts where two speakers have to reach a middle ground.",
+      "exampleSentence": "We couldn't agree on a movie, so we compromised and watched a documentary."
+    },
+    {
+      "id": 9,
+      "question": "[Audio Script]\nWoman: Hello, this is Springfield Medical Clinic calling for Mr. Davis. Your blood test results have come in. The doctor would like to discuss them with you. Please call us back at 555-0199 between 9 AM and 5 PM to schedule a brief phone consultation. Thank you.\n\n[Question]\nWhat should Mr. Davis do?",
+      "options": {
+        "A": "Go to the clinic immediately.",
+        "B": "Take another blood test.",
+        "C": "Call the clinic to arrange a time to speak with the doctor.",
+        "D": "Wait for the doctor to call him back tomorrow."
+      },
+      "correctAnswer": "C",
+      "explanation": "The receptionist says, 'Please call us back... to schedule a brief phone consultation.'",
+      "incorrectOptionExplanations": {
+        "A": "She asks him to call, not to visit in person.",
+        "B": "The results are in; she doesn't mention taking a new test.",
+        "D": "She explicitly asks him to call them back."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Understanding Instructions (B1)",
+      "teachingTip": "Make sure B1 students know that 'consultation' is a formal word for a meeting or discussion with a professional.",
+      "exampleSentence": "I have a consultation with my lawyer this afternoon."
+    },
+    {
+      "id": 10,
+      "question": "[Audio Script]\nWoman: Your new book tackles the transition to renewable energy. Some critics argue your timeline of ten years is completely unrealistic given current infrastructure.\nMan: I understand their skepticism. However, historical precedents—like the rapid industrialization in the 20th century—prove that when economic incentives align with political will, transitions happen exponentially faster than linear projections suggest.\n\n[Question]\nHow does the man defend his ten-year timeline?",
+      "options": {
+        "A": "By pointing out that the current infrastructure is already adequate.",
+        "B": "By comparing it to fast shifts that occurred in the past.",
+        "C": "By criticizing the economic incentives of fossil fuels.",
+        "D": "By agreeing that his projections are purely theoretical."
+      },
+      "correctAnswer": "B",
+      "explanation": "He defends his timeline by citing 'historical precedents' (things that happened in the past) like 'rapid industrialization'.",
+      "incorrectOptionExplanations": {
+        "A": "He doesn't deny the current infrastructure issue; he argues change will happen quickly regardless.",
+        "C": "He mentions economic incentives, but doesn't explicitly criticize fossil fuels in this clip.",
+        "D": "He doesn't say they are theoretical; he firmly believes they will happen faster than people think."
+      },
+      "grammarOrVocabularyFocus": "Listening Focus: Understanding Argument/Attitude (B2+)",
+      "teachingTip": "Advanced vocabulary alert: Teach 'precedent' (an earlier event that acts as a guide or example for the future).",
+      "exampleSentence": "The judge's decision set a dangerous legal precedent."
+    }
+  ],
+  "answerKey": [
+    {"id": 1, "answer": "B"},
+    {"id": 2, "answer": "B"},
+    {"id": 3, "answer": "C"},
+    {"id": 4, "answer": "C"},
+    {"id": 5, "answer": "C"},
+    {"id": 6, "answer": "C"},
+    {"id": 7, "answer": "B"},
+    {"id": 8, "answer": "B"},
+    {"id": 9, "answer": "C"},
+    {"id": 10, "answer": "B"}
+  ]
+}

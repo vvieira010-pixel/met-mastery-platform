@@ -1,0 +1,664 @@
+{
+  "pack": {
+    "id": "met_full_b1_b2_b2plus",
+    "title": "MET Full Practice Pack — B1, B2, B2+",
+    "subtitle": "Vocabulary, Grammar, Listening, Speaking, Reading, Writing (3 exercise types per skill per level)",
+    "level": "B1 / B2 / B2+"
+  },
+  "modules": [
+    {
+      "id": "vocab_b1",
+      "title": "B1 Vocabulary",
+      "skill": "Vocabulary",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "flash",
+          "skill": "Vocabulary",
+          "level": "B1",
+          "title": "B1 Vocabulary Match",
+          "pairs": [
+            { "term": "achieve", "def": "to reach a goal through effort" },
+            { "term": "bargain", "def": "something bought at a low price" },
+            { "term": "commute", "def": "to travel regularly to work" }
+          ]
+        },
+        {
+          "type": "blank",
+          "skill": "Vocabulary",
+          "level": "B1",
+          "title": "B1 Vocabulary in Context",
+          "template": "She ___ a healthy lifestyle by exercising daily.",
+          "blanks": ["maintains"],
+          "explanation": "maintains = keeps something at a good level."
+        },
+        {
+          "type": "mcq",
+          "skill": "Vocabulary",
+          "level": "B1",
+          "title": "B1 Word Meaning",
+          "question": "Which word means 'to travel to work regularly'?",
+          "options": ["commute", "bargain", "achieve", "hesitate"],
+          "correct": 0,
+          "explanation": "commute = travel between home and work."
+        }
+      ]
+    },
+    {
+      "id": "vocab_b2",
+      "title": "B2 Vocabulary",
+      "skill": "Vocabulary",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "flash",
+          "skill": "Vocabulary",
+          "level": "B2",
+          "title": "B2 Vocabulary Match",
+          "pairs": [
+            { "term": "ambiguous", "def": "open to more than one meaning" },
+            { "term": "undermine", "def": "to weaken gradually" },
+            { "term": "subsequent", "def": "coming after something" }
+          ]
+        },
+        {
+          "type": "blank",
+          "skill": "Vocabulary",
+          "level": "B2",
+          "title": "B2 Vocabulary in Context",
+          "template": "The results ___ a clear upward trend in usage.",
+          "blanks": ["imply"],
+          "explanation": "imply = suggest indirectly."
+        },
+        {
+          "type": "mcq",
+          "skill": "Vocabulary",
+          "level": "B2",
+          "title": "B2 Word Meaning",
+          "question": "Which is a synonym of 'weaken gradually'?",
+          "options": ["undermine", "anticipate", "fluctuate", "recover"],
+          "correct": 0,
+          "explanation": "undermine = weaken gradually."
+        }
+      ]
+    },
+    {
+      "id": "vocab_b2plus",
+      "title": "B2+ Vocabulary",
+      "skill": "Vocabulary",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "flash",
+          "skill": "Vocabulary",
+          "level": "B2+",
+          "title": "B2+ Vocabulary Match",
+          "pairs": [
+            { "term": "ubiquitous", "def": "found everywhere" },
+            { "term": "corroborate", "def": "to confirm with evidence" },
+            { "term": "mitigate", "def": "to reduce severity" }
+          ]
+        },
+        {
+          "type": "blank",
+          "skill": "Vocabulary",
+          "level": "B2+",
+          "title": "B2+ Vocabulary in Context",
+          "template": "The new policy will ___ the risk of data loss.",
+          "blanks": ["mitigate"],
+          "explanation": "mitigate = make less severe."
+        },
+        {
+          "type": "mcq",
+          "skill": "Vocabulary",
+          "level": "B2+",
+          "title": "B2+ Word Meaning",
+          "question": "'Ubiquitous' means:",
+          "options": ["found everywhere", "rarely seen", "very large", "outdated"],
+          "correct": 0,
+          "explanation": "ubiquitous = present everywhere."
+        }
+      ]
+    },
+    {
+      "id": "grammar_b1",
+      "title": "B1 Grammar",
+      "skill": "Grammar",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "blank",
+          "skill": "Grammar",
+          "level": "B1",
+          "title": "B1 Conditionals",
+          "template": "If it rains, we ___ the trip.",
+          "blanks": ["will cancel"],
+          "explanation": "First conditional: if + present, will + base."
+        },
+        {
+          "type": "order",
+          "skill": "Grammar",
+          "level": "B1",
+          "title": "B1 Sentence Order",
+          "sentences": ["He", "works", "in", "a", "bank"]
+        },
+        {
+          "type": "mcq",
+          "skill": "Grammar",
+          "level": "B1",
+          "title": "B1 Verb Form",
+          "question": "Correct: 'She ___ to Paris three times.'",
+          "options": ["has been", "has went", "have been", "went"],
+          "correct": 0,
+          "explanation": "Present perfect: has been."
+        }
+      ]
+    },
+    {
+      "id": "grammar_b2",
+      "title": "B2 Grammar",
+      "skill": "Grammar",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "blank",
+          "skill": "Grammar",
+          "level": "B2",
+          "title": "B2 Third Conditional",
+          "template": "Had I known, I ___ you.",
+          "blanks": ["would have helped"],
+          "explanation": "Third conditional: Had + past participle, would have + past participle."
+        },
+        {
+          "type": "order",
+          "skill": "Grammar",
+          "level": "B2",
+          "title": "B2 Sentence Order",
+          "sentences": ["The", "report", "must", "have", "been", "written", "carelessly"]
+        },
+        {
+          "type": "mcq",
+          "skill": "Grammar",
+          "level": "B2",
+          "title": "B2 Reported Speech",
+          "question": "Reported: 'I am tired' -> He said he ___ tired.",
+          "options": ["was", "is", "has been", "had been"],
+          "correct": 0,
+          "explanation": "Backshift: am -> was."
+        }
+      ]
+    },
+    {
+      "id": "grammar_b2plus",
+      "title": "B2+ Grammar",
+      "skill": "Grammar",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "blank",
+          "skill": "Grammar",
+          "level": "B2+",
+          "title": "B2+ Inversion",
+          "template": "Were it not for you, we ___.",
+          "blanks": ["would have failed"],
+          "explanation": "Inversion after 'were it not for' uses would have + past participle."
+        },
+        {
+          "type": "order",
+          "skill": "Grammar",
+          "level": "B2+",
+          "title": "B2+ Sentence Order",
+          "sentences": ["Little", "did", "they", "know", "the", "truth"]
+        },
+        {
+          "type": "mcq",
+          "skill": "Grammar",
+          "level": "B2+",
+          "title": "B2+ Inversion",
+          "question": "Correct: 'Rarely ___ such honesty.'",
+          "options": ["we hear", "do we hear", "we do hear", "hear we"],
+          "correct": 1,
+          "explanation": "Negative adverb at front triggers inversion: do we hear."
+        }
+      ]
+    },
+    {
+      "id": "listening_b1",
+      "title": "B1 Listening",
+      "skill": "Listening",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "listen",
+          "skill": "Listening",
+          "level": "B1",
+          "title": "B1 Hotel Check-In",
+          "audioText": "Reception: Good morning. Do you have a reservation? Guest: Yes, under Maria Silva. Reception: A single room for two nights. Guest: That is right.",
+          "plays": 2,
+          "question": "What is the guest's name?",
+          "options": ["Maria Silva", "John Costa", "Ana Lima", "No reservation"],
+          "correct": 0,
+          "explanation": "The guest says 'under Maria Silva'."
+        },
+        {
+          "type": "dialogue",
+          "skill": "Listening",
+          "level": "B1",
+          "title": "B1 Short Dialogue",
+          "lines": [
+            { "speaker": "A", "text": "Where shall we meet?" },
+            { "speaker": "B", "text": "How about the cafe at five?" }
+          ]
+        },
+        {
+          "type": "speak",
+          "skill": "Listening",
+          "level": "B1",
+          "title": "B1 Speaking Prompt",
+          "prompt": "Describe your daily commute in three sentences.",
+          "targetSeconds": 60
+        }
+      ]
+    },
+    {
+      "id": "listening_b2",
+      "title": "B2 Listening",
+      "skill": "Listening",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "listen",
+          "skill": "Listening",
+          "level": "B2",
+          "title": "B2 Work Delay",
+          "audioText": "The project was delayed because the supplier missed the deadline. As a result, the team worked overtime to finish on time.",
+          "plays": 2,
+          "question": "Why was the project delayed?",
+          "options": ["Supplier missed deadline", "Staff were ill", "No budget", "Bad weather"],
+          "correct": 0,
+          "explanation": "The audio states the supplier missed the deadline."
+        },
+        {
+          "type": "dialogue",
+          "skill": "Listening",
+          "level": "B2",
+          "title": "B2 Work Dialogue",
+          "lines": [
+            { "speaker": "Manager", "text": "Can you send the report today?" },
+            { "speaker": "Employee", "text": "I will send it by four." }
+          ]
+        },
+        {
+          "type": "speak",
+          "skill": "Listening",
+          "level": "B2",
+          "title": "B2 Speaking Prompt",
+          "prompt": "Explain a time you solved a problem at work or school.",
+          "targetSeconds": 90
+        }
+      ]
+    },
+    {
+      "id": "listening_b2plus",
+      "title": "B2+ Listening",
+      "skill": "Listening",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "listen",
+          "skill": "Listening",
+          "level": "B2+",
+          "title": "B2+ Policy Update",
+          "audioText": "The committee's decision, while controversial, underscores a paradigm shift in policy that few analysts had anticipated.",
+          "plays": 2,
+          "question": "What does the decision show?",
+          "options": ["A paradigm shift in policy", "A small budget cut", "A staffing change", "A marketing plan"],
+          "correct": 0,
+          "explanation": "The audio says it underscores a paradigm shift."
+        },
+        {
+          "type": "dialogue",
+          "skill": "Listening",
+          "level": "B2+",
+          "title": "B2+ Analysis Dialogue",
+          "lines": [
+            { "speaker": "Analyst", "text": "The data contradicts the hypothesis." },
+            { "speaker": "Lead", "text": "Then we must revisit our model." }
+          ]
+        },
+        {
+          "type": "speak",
+          "skill": "Listening",
+          "level": "B2+",
+          "title": "B2+ Speaking Prompt",
+          "prompt": "Present an argument for or against remote work in 90 seconds.",
+          "targetSeconds": 90
+        }
+      ]
+    },
+    {
+      "id": "speaking_b1",
+      "title": "B1 Speaking",
+      "skill": "Speaking",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "speak",
+          "skill": "Speaking",
+          "level": "B1",
+          "title": "B1 Speaking Prompt",
+          "prompt": "Talk about your favorite hobby for one minute.",
+          "targetSeconds": 60
+        },
+        {
+          "type": "dialogue",
+          "skill": "Speaking",
+          "level": "B1",
+          "title": "B1 Social Dialogue",
+          "lines": [
+            { "speaker": "A", "text": "Do you like coffee?" },
+            { "speaker": "B", "text": "Yes, especially in the morning." }
+          ]
+        },
+        {
+          "type": "mcq",
+          "skill": "Speaking",
+          "level": "B1",
+          "title": "B1 Opening Phrase",
+          "question": "Best opening for a short presentation?",
+          "options": ["Good morning, today I will...", "I hate this topic", "Whatever", "Bye everyone"],
+          "correct": 0,
+          "explanation": "A clear greeting is the right opening."
+        }
+      ]
+    },
+    {
+      "id": "speaking_b2",
+      "title": "B2 Speaking",
+      "skill": "Speaking",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "speak",
+          "skill": "Speaking",
+          "level": "B2",
+          "title": "B2 Speaking Prompt",
+          "prompt": "Give your opinion on social media using reasons and examples.",
+          "targetSeconds": 90
+        },
+        {
+          "type": "dialogue",
+          "skill": "Speaking",
+          "level": "B2",
+          "title": "B2 Planning Dialogue",
+          "lines": [
+            { "speaker": "A", "text": "Should we meet earlier?" },
+            { "speaker": "B", "text": "Yes, three o'clock works better." }
+          ]
+        },
+        {
+          "type": "mcq",
+          "skill": "Speaking",
+          "level": "B2",
+          "title": "B2 Polite Disagreement",
+          "question": "Most polite way to disagree?",
+          "options": ["I see your point, however...", "You are wrong", "No way", "Forget it"],
+          "correct": 0,
+          "explanation": "Acknowledging then contrasting is polite."
+        }
+      ]
+    },
+    {
+      "id": "speaking_b2plus",
+      "title": "B2+ Speaking",
+      "skill": "Speaking",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "speak",
+          "skill": "Speaking",
+          "level": "B2+",
+          "title": "B2+ Speaking Prompt",
+          "prompt": "Defend a position on the use of AI in education.",
+          "targetSeconds": 120
+        },
+        {
+          "type": "dialogue",
+          "skill": "Speaking",
+          "level": "B2+",
+          "title": "B2+ Risk Dialogue",
+          "lines": [
+            { "speaker": "A", "text": "How do we mitigate the risk?" },
+            { "speaker": "B", "text": "By diversifying the supply chain." }
+          ]
+        },
+        {
+          "type": "mcq",
+          "skill": "Speaking",
+          "level": "B2+",
+          "title": "B2+ Formal Request",
+          "question": "Most formal request phrasing?",
+          "options": ["I would be grateful if...", "Gimme that", "You must", "Hurry up"],
+          "correct": 0,
+          "explanation": "Conditional polite form is most formal."
+        }
+      ]
+    },
+    {
+      "id": "reading_b1",
+      "title": "B1 Reading",
+      "skill": "Reading",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "mcq",
+          "skill": "Reading",
+          "level": "B1",
+          "title": "B1 Reading Comprehension",
+          "context": "Tom enjoys cycling to work. It keeps him fit and saves money on transport. He rides even when it rains.",
+          "question": "Why does Tom cycle to work?",
+          "options": ["Fitness and savings", "He has no bike", "It is faster", "He dislikes walking"],
+          "correct": 0,
+          "explanation": "The text says it keeps him fit and saves money."
+        },
+        {
+          "type": "blank",
+          "skill": "Reading",
+          "level": "B1",
+          "title": "B1 Reading Grammar",
+          "template": "Reading ___ you learn new words.",
+          "blanks": ["helps"],
+          "explanation": "helps = third-person singular present."
+        },
+        {
+          "type": "order",
+          "skill": "Reading",
+          "level": "B1",
+          "title": "B1 Sentence Order",
+          "sentences": ["Cats", "are", "popular", "pets"]
+        }
+      ]
+    },
+    {
+      "id": "reading_b2",
+      "title": "B2 Reading",
+      "skill": "Reading",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "mcq",
+          "skill": "Reading",
+          "level": "B2",
+          "title": "B2 Reading Comprehension",
+          "context": "Cities are expanding green spaces to improve air quality. Residents report better well-being, though maintenance costs rise.",
+          "question": "What is the main benefit mentioned?",
+          "options": ["Better air and well-being", "Lower costs", "More cars", "Less green space"],
+          "correct": 0,
+          "explanation": "The text cites air quality and well-being."
+        },
+        {
+          "type": "blank",
+          "skill": "Reading",
+          "level": "B2",
+          "title": "B2 Reading Grammar",
+          "template": "The article ___ yesterday.",
+          "blanks": ["was published"],
+          "explanation": "Past passive: was published."
+        },
+        {
+          "type": "order",
+          "skill": "Reading",
+          "level": "B2",
+          "title": "B2 Sentence Order",
+          "sentences": ["Good", "writing", "needs", "clear", "structure"]
+        }
+      ]
+    },
+    {
+      "id": "reading_b2plus",
+      "title": "B2+ Reading",
+      "skill": "Reading",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "mcq",
+          "skill": "Reading",
+          "level": "B2+",
+          "title": "B2+ Reading Comprehension",
+          "context": "The proliferation of sensors yields unprecedented data, yet privacy frameworks lag behind the technology that produces it.",
+          "question": "What is the concern raised?",
+          "options": ["Privacy frameworks lag behind tech", "Too few sensors", "High cost", "Poor quality data"],
+          "correct": 0,
+          "explanation": "The text states privacy frameworks lag behind technology."
+        },
+        {
+          "type": "blank",
+          "skill": "Reading",
+          "level": "B2+",
+          "title": "B2+ Reading Grammar",
+          "template": "Had they read it, they ___ the risk.",
+          "blanks": ["would have understood"],
+          "explanation": "Third conditional with past perfect."
+        },
+        {
+          "type": "order",
+          "skill": "Reading",
+          "level": "B2+",
+          "title": "B2+ Sentence Order",
+          "sentences": ["The", "evidence", "strongly", "supports", "the", "claim"]
+        }
+      ]
+    },
+    {
+      "id": "writing_b1",
+      "title": "B1 Writing",
+      "skill": "Writing",
+      "levelRange": "B1",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "short",
+          "skill": "Writing",
+          "level": "B1",
+          "title": "B1 Free Writing",
+          "prompt": "Write three sentences about your last holiday.",
+          "rubric": "Three complete sentences; past tense; clear topic."
+        },
+        {
+          "type": "fix",
+          "skill": "Writing",
+          "level": "B1",
+          "title": "B1 Error Correction",
+          "errorText": "He go to school every day.",
+          "correctedText": "He goes to school every day."
+        },
+        {
+          "type": "order",
+          "skill": "Writing",
+          "level": "B1",
+          "title": "B1 Sentence Order",
+          "sentences": ["I", "like", "apples"]
+        }
+      ]
+    },
+    {
+      "id": "writing_b2",
+      "title": "B2 Writing",
+      "skill": "Writing",
+      "levelRange": "B2",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "short",
+          "skill": "Writing",
+          "level": "B2",
+          "title": "B2 Free Writing",
+          "prompt": "Write a paragraph comparing city and village life.",
+          "rubric": "Clear comparison; two sides; examples; B2 grammar."
+        },
+        {
+          "type": "fix",
+          "skill": "Writing",
+          "level": "B2",
+          "title": "B2 Error Correction",
+          "errorText": "If I will have time, I will call you.",
+          "correctedText": "If I have time, I will call you."
+        },
+        {
+          "type": "order",
+          "skill": "Writing",
+          "level": "B2",
+          "title": "B2 Sentence Order",
+          "sentences": ["We", "should", "prepare", "early"]
+        }
+      ]
+    },
+    {
+      "id": "writing_b2plus",
+      "title": "B2+ Writing",
+      "skill": "Writing",
+      "levelRange": "B2+",
+      "moduleType": "exercise_list",
+      "exercises": [
+        {
+          "type": "short",
+          "skill": "Writing",
+          "level": "B2+",
+          "title": "B2+ Free Writing",
+          "prompt": "Write an essay outline on the impact of technology on education.",
+          "rubric": "Thesis; 2-3 points; counterargument; conclusion."
+        },
+        {
+          "type": "fix",
+          "skill": "Writing",
+          "level": "B2+",
+          "title": "B2+ Error Correction",
+          "errorText": "Despite the rain, but we went out.",
+          "correctedText": "Despite the rain, we went out."
+        },
+        {
+          "type": "order",
+          "skill": "Writing",
+          "level": "B2+",
+          "title": "B2+ Sentence Order",
+          "sentences": ["It", "is", "vital", "that", "data", "be", "verified"]
+        }
+      ]
+    }
+  ]
+}

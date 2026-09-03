@@ -1,0 +1,47 @@
+﻿{
+  "modules": [
+    {
+      "id": "b2_writing_short_answers",
+      "title": "MET B2 Writing — Short Answer Questions",
+      "skill": "writing",
+      "levelRange": "B2",
+      "items": [
+        {
+          "id": "write_01",
+          "type": "short",
+          "prompt": "Write about a time you had to make an important decision. What did you consider before deciding?",
+          "rubric": "Should mention at least two factors, explain the outcome, and use past tenses accurately.",
+          "targetWords": 120
+        },
+        {
+          "id": "write_02",
+          "type": "short",
+          "prompt": "Describe a place in your city that you think more tourists should visit. Why is it special?",
+          "rubric": "Should include specific details about the place and explain why it deserves more attention.",
+          "targetWords": 120
+        },
+        {
+          "id": "write_03",
+          "type": "short",
+          "prompt": "What are the advantages and disadvantages of working from home? Give your opinion.",
+          "rubric": "Should present at least one advantage and one disadvantage with supporting reasons.",
+          "targetWords": 130
+        },
+        {
+          "id": "write_04",
+          "type": "short",
+          "prompt": "Explain how regular exercise can improve mental health. Use specific examples.",
+          "rubric": "Should link physical activity to mental wellbeing with at least two concrete benefits.",
+          "targetWords": 120
+        },
+        {
+          "id": "write_05",
+          "type": "short",
+          "prompt": "Do you think children should learn a foreign language from a young age? Why or why not?",
+          "rubric": "Should present a clear position with at least two supporting arguments.",
+          "targetWords": 120
+        }
+      ]
+    }
+  ]
+}

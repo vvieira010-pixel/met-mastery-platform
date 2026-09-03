@@ -1,0 +1,263 @@
+{
+  "modules": [
+    {
+      "id": "b2_listening_dialogues_10x3",
+      "title": "MET B2 Listening — 10 Conversations × 3 Questions",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "items": [
+        {
+          "id": "listen_01_cafe",
+          "audioFile": "listening-L01-cafe-oat-milk.wav",
+          "script": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I’d like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we’re out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can’t have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you’d like.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why can’t the customer order a latte right now?",
+              "options": ["The shop is closing early.", "The customer doesn’t have enough money.", "The shop is temporarily out of oat milk.", "The barista doesn’t know how to make it."],
+              "correct": 2,
+              "explanation": "The barista says they are out of oat milk until the delivery around two/three, and the customer needs oat milk due to a dairy allergy."
+            },
+            {
+              "stem": "What does the barista offer to do?",
+              "options": ["Give the customer a discount.", "Reserve a latte for later.", "Deliver the drink to the meeting.", "Call another coffee shop."],
+              "correct": 1,
+              "explanation": "Barista says 'I can set one aside for you' if the customer returns after the meeting."
+            },
+            {
+              "stem": "What can be inferred about the delivery today?",
+              "options": ["It will arrive earlier than usual.", "It has been cancelled.", "It is delayed because of traffic.", "It will bring only regular milk."],
+              "correct": 2,
+              "explanation": "The driver called and said maybe three today because of traffic on Main Street — later than the usual two o’clock."
+            }
+          ]
+        },
+        {
+          "id": "listen_02_advisor",
+          "audioFile": "listening-L02-academic-advisor.wav",
+          "script": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you’re thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that’s when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can’t change, the online option may be more practical.\nStudent: True. I’ll call my manager this afternoon to see if I can switch shifts. If not, I’ll take the online class.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the student worried about the Marketing course?",
+              "options": ["He has failed it before.", "He cannot find the classroom.", "The only available time conflicts with work.", "The professor is too strict."],
+              "correct": 2,
+              "explanation": "The only open in-person section is Tuesday evenings, when he works at the clinic."
+            },
+            {
+              "stem": "What does the advisor suggest about the online section?",
+              "options": ["It is easier than the in-person class.", "It requires no registration.", "It fills quickly and needs early registration.", "It is only for advanced students."],
+              "correct": 2,
+              "explanation": "Advisor says the online section fills quickly and the student should register today if he wants it."
+            },
+            {
+              "stem": "What will the student probably do first?",
+              "options": ["Drop the course completely.", "Ask his manager about changing work hours.", "Register for the online class immediately.", "Talk to another professor."],
+              "correct": 1,
+              "explanation": "He says he’ll call his manager this afternoon to see if he can switch shifts before deciding."
+            }
+          ]
+        },
+        {
+          "id": "listen_03_clinic",
+          "audioFile": "listening-L03-clinic-reception.wav",
+          "script": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I’m calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She’d like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn’t look urgent — otherwise she would have called you directly.\nPatient: Okay, I’ll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you’re currently taking.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why does the doctor want to see the patient?",
+              "options": ["To give an injection.", "To explain the blood test results in person.", "To cancel the patient’s insurance.", "To collect payment."],
+              "correct": 1,
+              "explanation": "The doctor reviewed the blood test and wants to discuss the results in person tomorrow at ten."
+            },
+            {
+              "stem": "What does the receptionist imply about the results?",
+              "options": ["They are very urgent.", "They are probably not an emergency.", "They were lost.", "They need to be repeated."],
+              "correct": 1,
+              "explanation": "She says it doesn’t look urgent — otherwise the doctor would have called directly."
+            },
+            {
+              "stem": "What should the patient bring to the appointment?",
+              "options": ["A family member.", "Previous test results from another clinic.", "ID and a list of current medications.", "A referral letter."],
+              "correct": 2,
+              "explanation": "Receptionist says to bring ID and a list of any medications currently being taken."
+            }
+          ]
+        },
+        {
+          "id": "listen_04_library",
+          "audioFile": "listening-L04-library-renewal.wav",
+          "script": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I’ve already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I’m finishing a research paper.\nLibrarian: Let me see. There’s no hold on it from other students, so I can renew it for seven more days. After that, though, you’ll need to return it.\nStudent: That’s perfect — my paper is due Friday.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why can’t the student renew the book online again?",
+              "options": ["The library website is down.", "He has already reached the online renewal limit.", "The book is overdue.", "He forgot his library password."],
+              "correct": 1,
+              "explanation": "After two online renewals the book must be brought in to check its condition."
+            },
+            {
+              "stem": "What condition allows another renewal?",
+              "options": ["The student pays a small fee.", "No other student has requested the book.", "The book is newly published.", "The librarian knows the student personally."],
+              "correct": 1,
+              "explanation": "Librarian says there’s no hold from other students, so a seven-day renewal is possible."
+            },
+            {
+              "stem": "What can be inferred about the student’s paper?",
+              "options": ["It was already submitted last week.", "He will need the book until close to the deadline.", "He is writing it with a partner.", "He plans to ask for an extension."],
+              "correct": 1,
+              "explanation": "He says the seven days is perfect because the paper is due Friday — he needs the book until then."
+            }
+          ]
+        },
+        {
+          "id": "listen_05_train",
+          "audioFile": "listening-L05-train-delay.wav",
+          "script": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We’ll miss our connection if we wait.\nMan: Let’s switch to the local. It’s slower, but we’ll still get there on time, and I’d rather not risk waiting.\nWoman: Okay, let’s move to platform one now before it gets crowded.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why is the express train delayed?",
+              "options": ["Bad weather.", "Signal maintenance work.", "A problem with the engine.", "Too many passengers."],
+              "correct": 1,
+              "explanation": "The announcement says the delay is due to signal maintenance."
+            },
+            {
+              "stem": "What alternative does the announcer suggest?",
+              "options": ["Taking a bus instead.", "Waiting for the next express.", "Taking the 9:30 local train on platform one.", "Canceling the trip."],
+              "correct": 2,
+              "explanation": "Passengers needing to arrive before ten should take the 9:30 local on platform one, arriving by 9:55."
+            },
+            {
+              "stem": "What will the two passengers probably do?",
+              "options": ["Wait on platform three for the express.", "Go to platform one to catch the local.", "Return home and travel tomorrow.", "Ask for a refund."],
+              "correct": 1,
+              "explanation": "They decide to switch to the local and move to platform one before it gets crowded."
+            }
+          ]
+        },
+        {
+          "id": "listen_06_housing",
+          "audioFile": "listening-L06-apartment-viewing.wav",
+          "script": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It’s cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it’s quite far from the train station, and the bedrooms are small — I’m not sure my desk would fit.\nWoman: That’s true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let’s go again on Friday and bring a tape measure.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What does the woman like about the apartment?",
+              "options": ["It is close to the train station and has large bedrooms.", "It is cheaper and has a nicer kitchen.", "It includes free furniture.", "It has a private garden."],
+              "correct": 1,
+              "explanation": "She says it’s cheaper and the kitchen was renovated."
+            },
+            {
+              "stem": "What is the man’s main concern?",
+              "options": ["The apartment is too expensive.", "The location is far and bedrooms are small.", "The kitchen is too old.", "The bus stop is too noisy."],
+              "correct": 1,
+              "explanation": "He notes it’s far from the train and the bedrooms are small for his desk."
+            },
+            {
+              "stem": "What do they decide to do?",
+              "options": ["Sign the contract today.", "Visit the apartment again on Friday to measure.", "Look for a different apartment immediately.", "Ask a third roommate to decide."],
+              "correct": 1,
+              "explanation": "They agree to visit again on Friday and bring a tape measure."
+            }
+          ]
+        },
+        {
+          "id": "listen_07_museum",
+          "audioFile": "listening-L07-museum-volunteer.wav",
+          "script": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don’t know an answer, don’t guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What is the main purpose of the talk?",
+              "options": ["To describe the museum’s history.", "To explain weekend procedures for volunteers.", "To sell tickets for a new exhibition.", "To advertise paid jobs."],
+              "correct": 1,
+              "explanation": "The coordinator explains arrival time, duties, and rules for volunteers."
+            },
+            {
+              "stem": "What should volunteers do if they don’t know an answer?",
+              "options": ["Guess to be helpful.", "Call the manager.", "Send the visitor to the information desk.", "Ask another visitor."],
+              "correct": 2,
+              "explanation": "Instruction is not to guess but to send visitors to the information desk."
+            },
+            {
+              "stem": "What rule is mentioned about food and drinks?",
+              "options": ["They can be taken into galleries if covered.", "They are sold inside the galleries.", "They are not allowed in exhibition rooms.", "They are provided for volunteers."],
+              "correct": 2,
+              "explanation": "Food and drinks are not allowed in exhibition rooms; finish them before the shift."
+            }
+          ]
+        },
+        {
+          "id": "listen_08_office",
+          "audioFile": "listening-L08-office-hybrid-policy.wav",
+          "script": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we’re moving to a hybrid model next month. You’ll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "When will employees work from home under the new model?",
+              "options": ["Every day.", "Only on weekends.", "Monday and Friday.", "Tuesday through Thursday."],
+              "correct": 2,
+              "explanation": "Manager says work from home Monday and Friday, in office Tuesday-Thursday."
+            },
+            {
+              "stem": "What are employees asked to do by Friday?",
+              "options": ["Buy new office furniture.", "Update the shared calendar for room booking.", "Submit vacation requests.", "Choose a new team leader."],
+              "correct": 1,
+              "explanation": "Update the shared calendar by Friday so they know when to book meeting rooms."
+            },
+            {
+              "stem": "What can employees do if they need home equipment?",
+              "options": ["Talk to HR this week.", "Email the manager next month.", "Bring equipment from the office without asking.", "Buy it themselves and keep the receipt."],
+              "correct": 0,
+              "explanation": "Manager says if you have concerns about equipment at home, talk to HR this week."
+            }
+          ]
+        },
+        {
+          "id": "listen_09_doctor",
+          "audioFile": "listening-L09-doctor-followup.wav",
+          "script": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that’s good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let’s meet again in two weeks.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "What positive change does the doctor mention?",
+              "options": ["The patient’s blood pressure has decreased.", "The patient no longer needs medication.", "The patient’s weight has increased.", "The patient’s dizziness has stopped."],
+              "correct": 0,
+              "explanation": "Doctor says blood pressure is lower than last month — good progress, medication is working."
+            },
+            {
+              "stem": "What does the doctor suggest about the medication?",
+              "options": ["Take a higher dose in the morning.", "Stop taking it for a week.", "Try taking it in the evening.", "Take it only when dizzy."],
+              "correct": 2,
+              "explanation": "Doctor suggests trying the pill in the evening and monitoring for a week."
+            },
+            {
+              "stem": "What should the patient continue to do?",
+              "options": ["Eat more salty foods.", "Limit salt and walk thirty minutes daily.", "Stay in bed all day.", "Come to the clinic every day."],
+              "correct": 1,
+              "explanation": "Keep limiting salt and walking thirty minutes a day; return in two weeks."
+            }
+          ]
+        },
+        {
+          "id": "listen_10_bike",
+          "audioFile": "listening-L10-bike-rental-trails.wav",
+          "script": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week’s heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it’s easier. I’d also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we’ll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
+          "questions": [
+            {
+              "stem": "Why does the assistant mention the hill trail?",
+              "options": ["To warn that part of it is closed after rain.", "To advertise a new trail.", "To explain shop hours.", "To ask for a deposit."],
+              "correct": 0,
+              "explanation": "Assistant warns that the hill trail is partly closed after heavy rain."
+            },
+            {
+              "stem": "Which route does the assistant recommend instead?",
+              "options": ["The city route.", "The hill route.", "The river route.", "The mountain route."],
+              "correct": 2,
+              "explanation": "The river route is open and easier."
+            },
+            {
+              "stem": "What will the customer rent?",
+              "options": ["One bike and one helmet.", "Two bikes, two helmets, and a repair kit.", "Two bikes only.", "Two bikes and one helmet without a kit."],
+              "correct": 1,
+              "explanation": "Customer says two bikes, two helmets, and one repair kit (helmets included, kit extra)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

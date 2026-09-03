@@ -1,0 +1,99 @@
+﻿{
+  "modules": [
+    {
+      "id": "b2_reading_comprehension",
+      "title": "MET B2 Reading — Comprehension Passages",
+      "skill": "reading",
+      "levelRange": "B2",
+      "items": [
+        {
+          "id": "read_01",
+          "type": "read",
+          "passage": "Remote work has transformed the modern workplace. Studies show that employees who work from home at least part of the week report higher job satisfaction and lower stress levels. Companies benefit too — they save on office space and can hire talent from anywhere in the world. However, some managers worry about maintaining team cohesion and productivity. Research suggests that hybrid models, where employees split time between office and home, may offer the best of both worlds. The key challenge is ensuring that remote workers feel included in team decisions and have equal access to opportunities for advancement.",
+          "source": "Workplace Trends Report 2024",
+          "questions": [
+            {
+              "id": "read_01_q1",
+              "question": "What is the main advantage of remote work for employees?",
+              "options": ["Higher salaries", "Better equipment", "Greater job satisfaction", "More vacation days"],
+              "correct": 2,
+              "explanation": "The passage states employees 'report higher job satisfaction and lower stress levels'."
+            },
+            {
+              "id": "read_01_q2",
+              "question": "What concern do some managers have about remote work?",
+              "options": ["Increased costs", "Legal issues", "Team cohesion and productivity", "Customer complaints"],
+              "correct": 2,
+              "explanation": "The passage mentions managers 'worry about maintaining team cohesion and productivity'."
+            },
+            {
+              "id": "read_01_q3",
+              "question": "According to the passage, what may be the ideal arrangement?",
+              "options": ["Fully remote work", "Full-time office work", "Hybrid models", "Freelance contracts"],
+              "correct": 2,
+              "explanation": "The passage states 'hybrid models... may offer the best of both worlds'."
+            }
+          ]
+        },
+        {
+          "id": "read_02",
+          "type": "read",
+          "passage": "Public libraries are evolving beyond their traditional role as book repositories. Many now offer free internet access, computer classes, language courses, and even tool-lending programs. In some cities, libraries have become community hubs where people can attend workshops, meet with career counselors, or participate in local history projects. This transformation reflects a broader understanding that libraries serve as equalizers — providing resources to people regardless of their income or background. Despite budget pressures, library usage has actually increased in many areas, particularly among job seekers and students who need quiet study spaces.",
+          "source": "Community Services Journal",
+          "questions": [
+            {
+              "id": "read_02_q1",
+              "question": "What does the passage say about modern libraries?",
+              "options": ["They only lend books.", "They offer a wide range of services.", "They have closed due to budget cuts.", "They charge fees for computer use."],
+              "correct": 1,
+              "explanation": "The passage describes libraries offering 'free internet access, computer classes, language courses' and more."
+            },
+            {
+              "id": "read_02_q2",
+              "question": "Why are libraries described as 'equalizers'?",
+              "options": ["They charge the same fee to everyone.", "They provide resources regardless of income.", "They are located in equal numbers across cities.", "They employ staff from diverse backgrounds."],
+              "correct": 1,
+              "explanation": "Libraries 'provide resources to people regardless of their income or background'."
+            },
+            {
+              "id": "read_02_q3",
+              "question": "What trend in library usage is mentioned?",
+              "options": ["Usage has declined significantly.", "Only elderly people use libraries.", "Usage has increased in many areas.", "Libraries are only used in rural areas."],
+              "correct": 2,
+              "explanation": "The passage states 'library usage has actually increased in many areas'."
+            }
+          ]
+        },
+        {
+          "id": "read_03",
+          "type": "read",
+          "passage": "The four-day work week has gained attention as companies experiment with shorter schedules. A recent trial in the UK involved 61 companies and found that most maintained or improved productivity while reducing employee stress and burnout. Employees reported better work-life balance and fewer sick days. However, critics argue that the model may not work in all industries, particularly healthcare, retail, and hospitality, where continuous coverage is essential. Some experts also worry that压缩ed schedules could lead to longer daily hours, which might reduce the intended benefits. The debate continues as more organizations consider whether the benefits outweigh the practical challenges.",
+          "source": "Business Weekly",
+          "questions": [
+            {
+              "id": "read_03_q1",
+              "question": "What was the main finding of the UK trial?",
+              "options": ["Productivity decreased significantly.", "Most companies maintained or improved productivity.", "Employee turnover doubled.", "Customer satisfaction dropped."],
+              "correct": 1,
+              "explanation": "The passage states 'most maintained or improved productivity while reducing employee stress'."
+            },
+            {
+              "id": "read_03_q2",
+              "question": "What is one concern about the four-day work week?",
+              "options": ["Employees want more hours.", "It only works in small companies.", "Some industries need continuous coverage.", "It increases training costs."],
+              "correct": 2,
+              "explanation": "Critics argue it may not work in 'healthcare, retail, and hospitality, where continuous coverage is essential'."
+            },
+            {
+              "id": "read_03_q3",
+              "question": "What does the passage suggest about the debate?",
+              "options": ["It has been settled in favor of the four-day week.", "More evidence is needed.", "The model will replace traditional schedules.", "Only large corporations support it."],
+              "correct": 1,
+              "explanation": "The passage ends with 'The debate continues as more organizations consider' the model."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

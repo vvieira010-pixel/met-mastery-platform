@@ -23,7 +23,7 @@ deno.lock
 .config/
 
 # Local runtime data (voicebox DB etc.)
-data/
+/data/
 
 # Agent scratch / superseded reports
 .agents/

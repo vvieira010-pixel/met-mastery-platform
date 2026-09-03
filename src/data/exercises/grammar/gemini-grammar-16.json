@@ -1,0 +1,362 @@
+{
+  "title": "Grammar Bank - Final 16 (B1-B2+)",
+  "level": "Mixed (B1-B2+)",
+  "skill": "grammar",
+  "instructions": "Choose the correct word or phrase to complete the sentence.",
+  "items": [
+    {
+      "id": 1,
+      "question": "I _____ in this city since I graduated from college five years ago.",
+      "options": {
+        "A": "live",
+        "B": "am living",
+        "C": "have lived",
+        "D": "was living"
+      },
+      "correctAnswer": "C",
+      "explanation": "The present perfect is used for an action that started in the past and continues into the present, especially with 'since'.",
+      "incorrectOptionExplanations": {
+        "A": "Simple present is for routines, not actions spanning from the past to now.",
+        "B": "Present continuous is for temporary actions happening right now.",
+        "C": "Correct answer.",
+        "D": "Past continuous implies an interrupted action in the past."
+      },
+      "grammarOrVocabularyFocus": "Present Perfect vs. Other Tenses (B1)",
+      "teachingTip": "Remind students that 'since' + a specific point in the past almost always triggers the present perfect.",
+      "exampleSentence": "She has worked at this company since 2021."
+    },
+    {
+      "id": 2,
+      "question": "The new booking software is much _____ to use than the old one.",
+      "options": {
+        "A": "more easy",
+        "B": "easier",
+        "C": "easiest",
+        "D": "easily"
+      },
+      "correctAnswer": "B",
+      "explanation": "For two-syllable adjectives ending in 'y', change the 'y' to 'i' and add 'er' to form the comparative.",
+      "incorrectOptionExplanations": {
+        "A": "'More easy' is grammatically incorrect; 'easy' takes the '-er' suffix.",
+        "B": "Correct answer.",
+        "C": "Superlative is used for three or more things, but here we are comparing two (new vs. old).",
+        "D": "This is an adverb, but we need an adjective to describe the software."
+      },
+      "grammarOrVocabularyFocus": "Comparative Adjectives (B1)",
+      "teachingTip": "Have students practice spotting the word 'than', which is a huge clue that a comparative form is needed.",
+      "exampleSentence": "This exercise is easier than the one we did yesterday."
+    },
+    {
+      "id": 3,
+      "question": "You _____ wear a tie to the office, but it is highly recommended for important client meetings.",
+      "options": {
+        "A": "mustn't",
+        "B": "don't have to",
+        "C": "shouldn't",
+        "D": "can't"
+      },
+      "correctAnswer": "B",
+      "explanation": "'Don't have to' shows a lack of obligation (it's optional).",
+      "incorrectOptionExplanations": {
+        "A": "'Mustn't' means it is forbidden, which contradicts the second half of the sentence.",
+        "B": "Correct answer.",
+        "C": "'Shouldn't' is advice against doing it, but the sentence says it's recommended.",
+        "D": "'Can't' means you lack the ability or permission."
+      },
+      "grammarOrVocabularyFocus": "Modals of Obligation / Lack of Obligation (B1)",
+      "teachingTip": "Draw a clear distinction between 'mustn't' (prohibited) and 'don't have to' (your choice) as students constantly mix these up.",
+      "exampleSentence": "You don't have to attend the seminar, but it would be good for your career."
+    },
+    {
+      "id": 4,
+      "question": "If the traffic is bad this afternoon, I _____ you to let you know I'll be late.",
+      "options": {
+        "A": "call",
+        "B": "will call",
+        "C": "would call",
+        "D": "am calling"
+      },
+      "correctAnswer": "B",
+      "explanation": "The first conditional uses 'if + present simple, will + base verb' for real, possible future situations.",
+      "incorrectOptionExplanations": {
+        "A": "Missing 'will' for the future result clause.",
+        "B": "Correct answer.",
+        "C": "'Would call' is for the second conditional (unreal/hypothetical situations).",
+        "D": "Present continuous is for planned future arrangements, not conditional results."
+      },
+      "grammarOrVocabularyFocus": "First Conditional (B1)",
+      "teachingTip": "Show students the 'If X happens, Y will happen' formula as a concrete math equation to memorize.",
+      "exampleSentence": "If I pass the MET, I will apply to that university."
+    },
+    {
+      "id": 5,
+      "question": "She decided _____ a new language before her six-month trip to Japan.",
+      "options": {
+        "A": "learn",
+        "B": "learning",
+        "C": "to learn",
+        "D": "for learning"
+      },
+      "correctAnswer": "C",
+      "explanation": "The verb 'decide' is always followed by an infinitive with 'to'.",
+      "incorrectOptionExplanations": {
+        "A": "Needs the particle 'to'.",
+        "B": "Gerund form is incorrect after 'decide'.",
+        "C": "Correct answer.",
+        "D": "'For' + gerund is used to explain the purpose of an object, not after 'decide'."
+      },
+      "grammarOrVocabularyFocus": "Gerunds and Infinitives (B1)",
+      "teachingTip": "Group verbs logically for students: verbs about plans and choices (decide, plan, hope, want) usually take the infinitive.",
+      "exampleSentence": "We decided to delay the project until next quarter."
+    },
+    {
+      "id": 6,
+      "question": "By the time we arrived at the conference, the keynote speaker _____ her presentation.",
+      "options": {
+        "A": "already finished",
+        "B": "had already finished",
+        "C": "has already finished",
+        "D": "was finishing"
+      },
+      "correctAnswer": "B",
+      "explanation": "The past perfect (had + past participle) is used to show that one action in the past happened before another action in the past.",
+      "incorrectOptionExplanations": {
+        "A": "Simple past doesn't clearly establish the sequence of which action happened first.",
+        "B": "Correct answer.",
+        "C": "Present perfect cannot be used when the narrative is entirely in the past.",
+        "D": "Past continuous means it was happening simultaneously, but 'already' implies completion."
+      },
+      "grammarOrVocabularyFocus": "Past Perfect (B2)",
+      "teachingTip": "Draw a timeline on the screen: Action 1 (speaker finished) happens before Action 2 (we arrived). Action 1 gets the Past Perfect.",
+      "exampleSentence": "By the time I got to the station, the train had already left."
+    },
+    {
+      "id": 7,
+      "question": "The updated company policies _____ to all employees by the end of the week.",
+      "options": {
+        "A": "will be sent",
+        "B": "will send",
+        "C": "are sending",
+        "D": "have sent"
+      },
+      "correctAnswer": "A",
+      "explanation": "The sentence requires the future passive voice because the policies receive the action (they are being sent by someone).",
+      "incorrectOptionExplanations": {
+        "A": "Correct answer.",
+        "B": "Active voice. Policies cannot send themselves.",
+        "C": "Present continuous active voice. Incorrect meaning.",
+        "D": "Present perfect active voice. Incorrect meaning."
+      },
+      "grammarOrVocabularyFocus": "Passive Voice - Future (B2)",
+      "teachingTip": "Ask the student: 'Who is doing the action?' If the subject isn't doing the action, they need a passive structure (Be + Past Participle).",
+      "exampleSentence": "The results will be published next Monday."
+    },
+    {
+      "id": 8,
+      "question": "The manager _____ office is at the end of the hall can help you with that software issue.",
+      "options": {
+        "A": "who",
+        "B": "whom",
+        "C": "whose",
+        "D": "which"
+      },
+      "correctAnswer": "C",
+      "explanation": "'Whose' is a relative pronoun used to show possession (the office belongs to the manager).",
+      "incorrectOptionExplanations": {
+        "A": "Used for the subject of a clause, not possession.",
+        "B": "Used for the object of a clause, not possession.",
+        "C": "Correct answer.",
+        "D": "Used for things, not people or possession."
+      },
+      "grammarOrVocabularyFocus": "Relative Clauses (B2)",
+      "teachingTip": "Tell students that if they can replace the blank with 'his' or 'her' in two separate sentences, they need 'whose' to link them.",
+      "exampleSentence": "She is the student whose essay won the competition."
+    },
+    {
+      "id": 9,
+      "question": "The client called this morning and asked me when _____ the final report.",
+      "options": {
+        "A": "will I finish",
+        "B": "I would finish",
+        "C": "would I finish",
+        "D": "I will finish"
+      },
+      "correctAnswer": "B",
+      "explanation": "In reported questions, 'will' shifts back to 'would', and the word order changes from question format to statement format (subject + verb).",
+      "incorrectOptionExplanations": {
+        "A": "Incorrect question word order and failure to backshift 'will'.",
+        "B": "Correct answer.",
+        "C": "Backshifts correctly to 'would', but uses question word order.",
+        "D": "Uses statement word order, but fails to backshift 'will' to 'would'."
+      },
+      "grammarOrVocabularyFocus": "Reported Speech - Questions (B2)",
+      "teachingTip": "Remind students that reported questions are not actually questions anymore—they are statements. Therefore, no inverted word order.",
+      "exampleSentence": "She asked me where I was going."
+    },
+    {
+      "id": 10,
+      "question": "If they had known about the budget cuts earlier, they _____ the new marketing project.",
+      "options": {
+        "A": "wouldn't start",
+        "B": "didn't start",
+        "C": "won't have started",
+        "D": "wouldn't have started"
+      },
+      "correctAnswer": "D",
+      "explanation": "The third conditional is used for past unreal situations. Formula: If + past perfect, would have + past participle.",
+      "incorrectOptionExplanations": {
+        "A": "This is second conditional (for present/future unreal situations).",
+        "B": "Simple past doesn't form a conditional result clause.",
+        "C": "Mixes future 'won't' with past conditional.",
+        "D": "Correct answer."
+      },
+      "grammarOrVocabularyFocus": "Third Conditional (B2)",
+      "teachingTip": "Use the concept of 'regrets' or 'changing the past' to explain the third conditional's purpose.",
+      "exampleSentence": "If I had studied harder, I would have passed the exam."
+    },
+    {
+      "id": 11,
+      "question": "We need to _____ a solution to this supply chain problem before the board meeting tomorrow.",
+      "options": {
+        "A": "come up with",
+        "B": "put up with",
+        "C": "get away with",
+        "D": "look forward to"
+      },
+      "correctAnswer": "A",
+      "explanation": "'Come up with' means to invent, create, or think of an idea or solution.",
+      "incorrectOptionExplanations": {
+        "A": "Correct answer.",
+        "B": "Means to tolerate something negative.",
+        "C": "Means to escape punishment for doing something wrong.",
+        "D": "Means to be excited about a future event."
+      },
+      "grammarOrVocabularyFocus": "Phrasal Verbs (B2)",
+      "teachingTip": "Teach three-part phrasal verbs in chunks with a common collocated noun (e.g., come up with an idea/solution).",
+      "exampleSentence": "She came up with a brilliant marketing strategy."
+    },
+    {
+      "id": 12,
+      "question": "Rarely _____ such dedication from a new employee during their first month on the job.",
+      "options": {
+        "A": "we have seen",
+        "B": "do we see",
+        "C": "we see",
+        "D": "see we"
+      },
+      "correctAnswer": "B",
+      "explanation": "When negative or restrictive adverbs (rarely, seldom, never) are placed at the beginning of a sentence for emphasis, subject-auxiliary inversion is required.",
+      "incorrectOptionExplanations": {
+        "A": "Lacks the required inversion (should be 'have we seen').",
+        "B": "Correct answer.",
+        "C": "Standard word order; incorrect after 'Rarely' at the start of a sentence.",
+        "D": "Grammatically incorrect structure."
+      },
+      "grammarOrVocabularyFocus": "Inversion for Emphasis (B2+)",
+      "teachingTip": "Tell students that starting with a negative adverb forces the sentence to behave like a question structurally (auxiliary before subject).",
+      "exampleSentence": "Never have I ever seen such a beautiful sunset."
+    },
+    {
+      "id": 13,
+      "question": "By next December, I _____ for this organization for exactly a decade.",
+      "options": {
+        "A": "will be working",
+        "B": "will have worked",
+        "C": "will have been working",
+        "D": "would work"
+      },
+      "correctAnswer": "C",
+      "explanation": "The future perfect continuous is used to emphasize the duration of an action up to a specific point in the future. ('Will have worked' is also grammatically possible, but continuous is preferred for ongoing employment duration).",
+      "incorrectOptionExplanations": {
+        "A": "Future continuous focuses on an action in progress at a time, not the accumulated duration.",
+        "B": "Possible, but less natural than continuous when emphasizing the 'exactly a decade' duration of an ongoing action.",
+        "C": "Correct answer.",
+        "D": "Conditional 'would' does not fit a definite future timeline."
+      },
+      "grammarOrVocabularyFocus": "Future Perfect Continuous (B2+)",
+      "teachingTip": "Look for the double time marker: 'By [future time]' + 'for [duration]'. This usually signals Future Perfect Continuous.",
+      "exampleSentence": "By 5 PM, she will have been studying for six hours straight."
+    },
+    {
+      "id": 14,
+      "question": "_____ by the overwhelmingly positive feedback, the development team worked through the weekend to launch the update early.",
+      "options": {
+        "A": "Encouraging",
+        "B": "Having encouraged",
+        "C": "Encouraged",
+        "D": "To encourage"
+      },
+      "correctAnswer": "C",
+      "explanation": "A past participle clause ('Encouraged by...') is used here to mean 'Because they were encouraged by...'.",
+      "incorrectOptionExplanations": {
+        "A": "Present participle means the team was doing the encouraging, but they received it.",
+        "B": "Means the team encouraged someone else prior to working.",
+        "C": "Correct answer.",
+        "D": "Infinitive of purpose. Means they worked through the weekend in order to encourage the feedback."
+      },
+      "grammarOrVocabularyFocus": "Participle Clauses (B2+)",
+      "teachingTip": "Show students how to unpack the clause to check meaning: 'Because they were encouraged = Encouraged'.",
+      "exampleSentence": "Exhausted from the trip, he fell asleep immediately."
+    },
+    {
+      "id": 15,
+      "question": "If he had accepted the promotion in London last year, he _____ much closer to his family right now.",
+      "options": {
+        "A": "would be",
+        "B": "would have been",
+        "C": "will be",
+        "D": "is"
+      },
+      "correctAnswer": "A",
+      "explanation": "This is a mixed conditional. The condition is in the past (If he had accepted), but the result is in the present (right now), requiring 'would + base verb'.",
+      "incorrectOptionExplanations": {
+        "A": "Correct answer.",
+        "B": "Third conditional result, which would mean the result was also in the past.",
+        "C": "First conditional result, which clashes with the past condition.",
+        "D": "Simple present does not convey the hypothetical nature of the result."
+      },
+      "grammarOrVocabularyFocus": "Mixed Conditionals (B2+)",
+      "teachingTip": "Have students hunt for time markers in conditional sentences. 'Last year' vs 'right now' is the giveaway that it's mixed.",
+      "exampleSentence": "If I had eaten breakfast, I wouldn't be hungry now."
+    },
+    {
+      "id": 16,
+      "question": "What _____ was not the delay itself, but the complete lack of communication from the airline staff.",
+      "options": {
+        "A": "frustrated me most",
+        "B": "did frustrate me most",
+        "C": "I was frustrated most",
+        "D": "was frustrated me most"
+      },
+      "correctAnswer": "A",
+      "explanation": "This is a cleft sentence starting with 'What', used to focus on a specific part of a sentence. Structure: What + subject/verb + is/was...",
+      "incorrectOptionExplanations": {
+        "A": "Correct answer.",
+        "B": "Unnecessary use of 'did' for emphasis in a structure that is already emphatic.",
+        "C": "Passive voice is incorrect here; the delay is what caused the frustration.",
+        "D": "Grammatically incorrect structure mixing 'was' and 'frustrated'."
+      },
+      "grammarOrVocabularyFocus": "Cleft Sentences / Emphasis (B2+)",
+      "teachingTip": "Translate the cleft sentence back to a normal sentence to show how it works: 'The lack of communication frustrated me most' -> 'What frustrated me most was...'",
+      "exampleSentence": "What I need right now is a good cup of coffee."
+    }
+  ],
+  "answerKey": [
+    {"id": 1, "answer": "C"},
+    {"id": 2, "answer": "B"},
+    {"id": 3, "answer": "B"},
+    {"id": 4, "answer": "B"},
+    {"id": 5, "answer": "C"},
+    {"id": 6, "answer": "B"},
+    {"id": 7, "answer": "A"},
+    {"id": 8, "answer": "C"},
+    {"id": 9, "answer": "B"},
+    {"id": 10, "answer": "D"},
+    {"id": 11, "answer": "A"},
+    {"id": 12, "answer": "B"},
+    {"id": 13, "answer": "C"},
+    {"id": 14, "answer": "C"},
+    {"id": 15, "answer": "A"},
+    {"id": 16, "answer": "A"}
+  ]
+}

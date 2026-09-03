@@ -1,0 +1,1152 @@
+{
+  "id": "reading-23",
+  "title": "Reading 23 — Trees (MET-Style Reading Practice)",
+  "totalQuestions": 77,
+  "level": "B1–C1 (MET)",
+  "format": {
+    "style": "MET (Michigan English Test) reading",
+    "choicesPerQuestion": 4,
+    "structure": "13 single passages × 5 questions + 1 multi-text set (A/B/C) × 12 questions",
+    "questionTypes": [
+      "main idea",
+      "detail",
+      "vocabulary in context",
+      "author's purpose",
+      "inference",
+      "cross-text"
+    ]
+  },
+  "passages": [
+    {
+      "passageId": 1,
+      "kind": "single",
+      "topic": "Giant Sequoias",
+      "intro": "This passage is about giant sequoia trees.",
+      "text": "Giant sequoias are the largest trees on Earth by volume, and among the oldest. They grow naturally only on the western slopes of California's Sierra Nevada mountains, in roughly seventy scattered groves. The most famous of these trees, the General Sherman Tree, stands about 84 meters tall and measures more than 11 meters across at its base. It is estimated to be between 2,200 and 2,700 years old, which means it was already centuries old when the Roman Empire was at its height.\n\nGiant sequoias owe their longevity partly to their remarkable defenses. Their bark, which can be up to 60 centimeters thick, is rich in tannin, a chemical that repels insects and resists rot. The bark is also fibrous and fire-resistant, allowing mature trees to survive the low-intensity fires that regularly sweep through their native forests. In fact, sequoias depend on fire: heat opens their cones and clears the ground of competing plants, creating ideal conditions for seeds to germinate.\n\nDespite these strengths, giant sequoias face modern threats. Climate change has brought hotter, more severe droughts to California, and recent wildfires — far more intense than those of the past — have killed thousands of mature trees. Between 2020 and 2021 alone, fires destroyed an estimated ten to fourteen percent of the world's remaining giant sequoias. In response, forest managers have begun clearing underbrush around the groves and, in some cases, wrapping the bases of famous trees in fire-resistant blankets.\n\nConservationists warn that protecting these giants will require active management rather than simple preservation. The sequoias have survived for millennia, but whether they can withstand a rapidly changing climate may depend on decisions humans make today.",
+      "questions": [
+        {
+          "number": 1,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "the characteristics of giant sequoias and the challenges to their survival",
+            "B": "how forest fires spread through California",
+            "C": "the process of measuring the world's oldest trees",
+            "D": "the history of California's national parks"
+          },
+          "correct": "A",
+          "explanation": "The passage describes the sequoias' size, defenses, and dependence on fire, and then focuses on modern threats. B and D are minor details; C is never discussed."
+        },
+        {
+          "number": 2,
+          "type": "detail",
+          "question": "According to the passage, what does tannin do?",
+          "options": {
+            "A": "It makes sequoia cones open.",
+            "B": "It helps protect sequoias from insects and rot.",
+            "C": "It makes the bark fibrous and thick.",
+            "D": "It helps seeds germinate after fires."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 says tannin 'repels insects and resists rot.' Watch out for A and D — opening cones and clearing ground are effects of fire, not tannin."
+        },
+        {
+          "number": 3,
+          "type": "purpose",
+          "question": "In paragraph 2, why does the author mention fire?",
+          "options": {
+            "A": "to explain how sequoias both resist and depend on it",
+            "B": "to argue that forest fires should always be prevented",
+            "C": "to describe the greatest danger facing sequoias today",
+            "D": "to compare natural fires with fires started by people"
+          },
+          "correct": "A",
+          "explanation": "The paragraph says the bark is fire-resistant AND that 'sequoias depend on fire' to reproduce. C is wrong because paragraph 3 shows today's extreme fires are different from the low-intensity fires described here."
+        },
+        {
+          "number": 4,
+          "type": "vocabulary",
+          "question": "In the first sentence of paragraph 3, which word is closest in meaning to threats?",
+          "options": {
+            "A": "features",
+            "B": "changes",
+            "C": "dangers",
+            "D": "mysteries"
+          },
+          "correct": "C",
+          "explanation": "A 'threat' is something that can cause harm — a danger. The sentence lists climate change and severe wildfires, which confirms this negative meaning."
+        },
+        {
+          "number": 5,
+          "type": "inference",
+          "question": "What does the author suggest about protecting giant sequoias?",
+          "options": {
+            "A": "It is probably impossible to achieve.",
+            "B": "It will require people to take action.",
+            "C": "It should focus only on famous trees.",
+            "D": "It has been successful so far."
+          },
+          "correct": "B",
+          "explanation": "The last paragraph says protection 'will require active management rather than simple preservation' — in other words, humans must act. A is too strong; the author raises a question but does not predict failure."
+        }
+      ]
+    },
+    {
+      "passageId": 2,
+      "kind": "single",
+      "topic": "How Trees Communicate",
+      "intro": "This passage is about how trees communicate.",
+      "text": "Walk through a forest, and the trees may appear silent and solitary. Beneath the soil, however, an enormous amount of communication is taking place. Trees are connected by underground networks of fungi that link their roots, allowing them to exchange resources and even send warning signals to one another. Some scientists have nicknamed this system the \"wood wide web.\"\n\nThe partnership between trees and fungi is ancient and mutually beneficial. Fungal threads, which are far thinner than the finest roots, extend deep into the soil and absorb nutrients such as phosphorus and nitrogen. The fungi deliver these nutrients to tree roots in exchange for sugars that the trees produce through photosynthesis. A single teaspoon of forest soil can contain several kilometers of these fungal threads.\n\nMore surprising is evidence that trees use these networks to help each other. In one well-known experiment, ecologist Suzanne Simard found that paper birch trees transferred carbon to Douglas fir seedlings shaded from the sun — essentially feeding their struggling neighbors. Other studies suggest that when insects attack a tree, the tree releases chemical signals through the network, prompting neighboring trees to produce defensive compounds before the insects reach them.\n\nNot all scientists are convinced by these findings. Some argue that the experiments are difficult to replicate in real forests and that the movement of resources between trees may be a side effect of fungal growth rather than intentional sharing. Still, even skeptics agree that the soil beneath a forest is far busier than anyone once imagined.",
+      "questions": [
+        {
+          "number": 6,
+          "type": "main idea",
+          "question": "What is the main idea of the passage?",
+          "options": {
+            "A": "Fungi are the most important organisms in a forest.",
+            "B": "Trees compete with one another for nutrients in the soil.",
+            "C": "Trees are linked by fungal networks that may let them share resources.",
+            "D": "Forests are quieter and simpler than they appear."
+          },
+          "correct": "C",
+          "explanation": "The whole passage develops this idea: the network exists (paragraphs 1–2), trees may share through it (paragraph 3), and scientists debate how intentional this is (paragraph 4). A and B are not supported."
+        },
+        {
+          "number": 7,
+          "type": "detail",
+          "question": "According to the passage, what do fungi receive from trees?",
+          "options": {
+            "A": "water",
+            "B": "sugars",
+            "C": "phosphorus",
+            "D": "defensive compounds"
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 states the fungi get 'sugars that the trees produce through photosynthesis.' Phosphorus (C) flows the other way — from the fungi to the tree."
+        },
+        {
+          "number": 8,
+          "type": "purpose",
+          "question": "Why does the author mention Suzanne Simard's experiment?",
+          "options": {
+            "A": "to criticize the methods used in forest research",
+            "B": "to explain how fungal threads absorb nutrients",
+            "C": "to give an example of trees appearing to help one another",
+            "D": "to introduce the scientist who discovered fungi"
+          },
+          "correct": "C",
+          "explanation": "The paragraph's topic sentence announces 'evidence that trees use these networks to help each other,' and Simard's experiment is the example that follows."
+        },
+        {
+          "number": 9,
+          "type": "vocabulary",
+          "question": "In the second sentence of paragraph 4, which word is closest in meaning to replicate?",
+          "options": {
+            "A": "repeat",
+            "B": "explain",
+            "C": "finance",
+            "D": "publish"
+          },
+          "correct": "A",
+          "explanation": "To 'replicate' an experiment is to repeat it and get the same result. The skeptical scientists doubt the findings can be reproduced outside controlled conditions."
+        },
+        {
+          "number": 10,
+          "type": "inference",
+          "question": "What can be inferred about the skeptics mentioned in paragraph 4?",
+          "options": {
+            "A": "They believe the experiments were dishonest.",
+            "B": "They have conducted no research on forests.",
+            "C": "They accept that underground fungal activity is significant.",
+            "D": "They think trees should not be studied in laboratories."
+          },
+          "correct": "C",
+          "explanation": "The final sentence says 'even skeptics agree that the soil beneath a forest is far busier than anyone once imagined' — they doubt the interpretation, not the importance of the phenomenon."
+        }
+      ]
+    },
+    {
+      "passageId": 3,
+      "kind": "single",
+      "topic": "Arbor Day",
+      "intro": "This passage is about the history of Arbor Day.",
+      "text": "In the early 1870s, the American state of Nebraska was largely a treeless prairie. Settlers who had moved there missed the forests of the East, and they needed wood for fuel, construction, and shelter from the wind. Among them was a journalist named J. Sterling Morton, who believed that planting trees would improve life on the plains. At his urging, the state declared April 10, 1872, the first Arbor Day — a holiday dedicated to planting trees.\n\nThe response was remarkable. On that single day, Nebraskans planted an estimated one million trees. Communities organized competitions, and prizes were awarded to counties and individuals who planted the most trees correctly. The tradition spread quickly: within twenty years, nearly every state in the country observed some form of Arbor Day, usually in late April, when spring planting conditions are best.\n\nThe idea soon traveled beyond the United States. Today, dozens of countries hold their own tree-planting celebrations, though the dates vary according to local climates. Brazil observes Arbor Day on September 21, just as spring begins in the Southern Hemisphere. Japan, South Korea, Israel, and Australia all host similar events, some of them with roots older than the American version.\n\nMorton himself described the holiday as an investment in the future, noting that while other celebrations look back on past achievements, Arbor Day looks forward. More than 150 years later, the simple act of planting a tree remains the holiday's central tradition — and Nebraska, once called \"the treeless state,\" now has forests that did not exist before 1872.",
+      "questions": [
+        {
+          "number": 11,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "the life of a famous American journalist",
+            "B": "the origins and spread of a tree-planting holiday",
+            "C": "the best season for planting trees in Brazil",
+            "D": "how Nebraska became a state"
+          },
+          "correct": "B",
+          "explanation": "The passage follows Arbor Day from its creation in Nebraska (paragraphs 1–2) to its international spread (paragraph 3) and its philosophy (paragraph 4). A and D are only background details."
+        },
+        {
+          "number": 12,
+          "type": "detail",
+          "question": "According to the passage, why did Nebraska settlers want trees?",
+          "options": {
+            "A": "They wanted to start a holiday.",
+            "B": "They planned to sell the wood.",
+            "C": "They needed wood and protection from the wind.",
+            "D": "They hoped to attract more settlers."
+          },
+          "correct": "C",
+          "explanation": "Paragraph 1 says they 'needed wood for fuel, construction, and shelter from the wind.' A is a result, not a reason; B and D are never mentioned."
+        },
+        {
+          "number": 13,
+          "type": "vocabulary",
+          "question": "In the third sentence of paragraph 1, which phrase is closest in meaning to at his urging?",
+          "options": {
+            "A": "because of his encouragement",
+            "B": "despite his opposition",
+            "C": "under his supervision",
+            "D": "following his example"
+          },
+          "correct": "A",
+          "explanation": "To do something 'at someone's urging' means to do it because that person strongly encouraged it. The context — Morton believed planting trees would improve life — confirms he pushed for the idea."
+        },
+        {
+          "number": 14,
+          "type": "purpose",
+          "question": "Why does the author mention Brazil?",
+          "options": {
+            "A": "to compare tree species in different countries",
+            "B": "to show how Arbor Day was adapted to a different climate",
+            "C": "to explain where Arbor Day is most popular",
+            "D": "to describe the oldest tree-planting festival"
+          },
+          "correct": "B",
+          "explanation": "The paragraph says dates 'vary according to local climates,' and Brazil's September date is the example that illustrates this adaptation."
+        },
+        {
+          "number": 15,
+          "type": "detail",
+          "question": "What did Morton believe made Arbor Day different from other holidays?",
+          "options": {
+            "A": "It was celebrated in more countries.",
+            "B": "It focused on the future rather than the past.",
+            "C": "It involved competitions and prizes.",
+            "D": "It was held in the spring."
+          },
+          "correct": "B",
+          "explanation": "The last paragraph quotes Morton's view directly: other celebrations 'look back on past achievements,' while Arbor Day 'looks forward' — an investment in the future."
+        }
+      ]
+    },
+    {
+      "passageId": 4,
+      "kind": "single",
+      "topic": "Trees in Cities",
+      "intro": "This passage is about trees in cities.",
+      "text": "City trees do far more than decorate sidewalks. A mature tree can intercept thousands of liters of rainwater each year, easing pressure on storm drains during heavy rains. Its leaves filter dust and pollutants from the air, and its shade can lower the temperature of a street by several degrees — a benefit of growing importance as cities experience more frequent heat waves. Researchers have even found that hospital patients recover faster when their windows look out on trees.\n\nYet the life of a city tree is remarkably hard. Roots are squeezed into small pits of compacted soil, often surrounded by pavement that blocks water and air. Road salt, car exhaust, and construction damage add to the stress. As a result, the average street tree in a dense city center may live only a fraction of the lifespan it would enjoy in a forest.\n\nThe benefits of urban trees are also distributed unevenly. Wealthier neighborhoods tend to have far more tree cover than poorer ones, a pattern documented in cities around the world. Because trees lower temperatures and improve air quality, this inequality has real consequences for public health, particularly during heat waves.\n\nIn response, many cities have launched ambitious planting campaigns. Some now map every street tree and measure the \"canopy cover\" of each neighborhood, directing new plantings toward the areas that need them most. Experts caution, however, that planting is only the beginning: a young tree requires years of watering and care before it can survive on its own, and campaigns that count saplings planted but not trees surviving often achieve less than they promise.",
+      "questions": [
+        {
+          "number": 16,
+          "type": "main idea",
+          "question": "What is the main idea of the passage?",
+          "options": {
+            "A": "Urban trees provide major benefits but face serious challenges.",
+            "B": "City trees are healthier than forest trees.",
+            "C": "Planting campaigns always fail in poor neighborhoods.",
+            "D": "Hospitals should be built near parks."
+          },
+          "correct": "A",
+          "explanation": "Paragraph 1 lists benefits; paragraphs 2–3 present the challenges (harsh conditions, inequality); paragraph 4 discusses the response and its limits. That balanced structure is the main idea."
+        },
+        {
+          "number": 17,
+          "type": "detail",
+          "question": "According to the passage, what did researchers find about hospital patients?",
+          "options": {
+            "A": "They prefer rooms on higher floors.",
+            "B": "They recover more quickly with views of trees.",
+            "C": "They often ask to be moved near parks.",
+            "D": "They need more care during heat waves."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 1 states directly that 'hospital patients recover faster when their windows look out on trees.'"
+        },
+        {
+          "number": 18,
+          "type": "vocabulary",
+          "question": "In the first sentence of paragraph 2, which word is closest in meaning to remarkably?",
+          "options": {
+            "A": "temporarily",
+            "B": "surprisingly",
+            "C": "slightly",
+            "D": "naturally"
+          },
+          "correct": "B",
+          "explanation": "'Remarkably hard' means hard to a surprising degree. The following sentences list extreme difficulties — compacted soil, salt, exhaust — which justifies the strong word."
+        },
+        {
+          "number": 19,
+          "type": "purpose",
+          "question": "Why does the author mention wealthier neighborhoods?",
+          "options": {
+            "A": "to show where the oldest trees are found",
+            "B": "to suggest that trees increase property values",
+            "C": "to show that tree cover is unequal within cities",
+            "D": "to explain where planting campaigns began"
+          },
+          "correct": "C",
+          "explanation": "The topic sentence of paragraph 3 is that benefits are 'distributed unevenly'; the comparison between wealthy and poor neighborhoods illustrates exactly that point."
+        },
+        {
+          "number": 20,
+          "type": "inference",
+          "question": "What does the author imply about some planting campaigns?",
+          "options": {
+            "A": "They plant the wrong species of trees.",
+            "B": "They may report a misleading picture of success.",
+            "C": "They should be managed by experts only.",
+            "D": "They cost more than the trees are worth."
+          },
+          "correct": "B",
+          "explanation": "The final sentence says campaigns that count saplings planted — but not trees surviving — 'often achieve less than they promise.' In other words, the reported numbers can be misleading."
+        }
+      ]
+    },
+    {
+      "passageId": 5,
+      "kind": "single",
+      "topic": "The Oldest Trees",
+      "intro": "This passage is about the world's oldest trees.",
+      "text": "High on the dry, windswept slopes of the White Mountains in California grows a tree that looks almost dead — and may have been growing since before the construction of the Egyptian pyramids. Bristlecone pines are the oldest known individual trees on Earth. The most famous, nicknamed Methuselah, is more than 4,800 years old, and another tree in the same region may be older still.\n\nThe bristlecone's extraordinary age is closely tied to the harshness of its environment. The trees grow at elevations above 3,000 meters, where the growing season is short, the soil is poor, and rainfall is scarce. These conditions slow the trees' growth to a crawl — some add only a centimeter of thickness in a century — but they also limit competition from other plants and reduce the risk of fire and disease. The wood of bristlecones is dense and full of resin, which makes it resistant to insects and fungi.\n\nParadoxically, parts of an ancient bristlecone are usually dead. As the tree ages, strips of bark and wood die back, leaving only a narrow ribbon of living tissue connecting the roots to a small crown of needles. This reduction actually helps the tree survive, since a smaller living section requires less water and energy.\n\nIronically, the conditions that protected bristlecones for thousands of years are now shifting. Warmer temperatures have allowed beetles and a disease called white pine blister rust to reach elevations that were once too cold for them. Scientists who have studied these trees for decades are now watching anxiously to see whether the oldest living things on Earth can adapt to a world they have never known.",
+      "questions": [
+        {
+          "number": 21,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how scientists discovered the oldest tree",
+            "B": "why bristlecone pines live so long and what now threatens them",
+            "C": "how trees survive in Egyptian deserts",
+            "D": "the different species of pine trees in California"
+          },
+          "correct": "B",
+          "explanation": "Paragraphs 2–3 explain the longevity (harsh environment, dead wood reducing needs), and paragraph 4 presents the new threats. That combination is the main idea."
+        },
+        {
+          "number": 22,
+          "type": "detail",
+          "question": "According to the passage, what effect does the harsh environment have on bristlecone pines?",
+          "options": {
+            "A": "It kills them before they reach maturity.",
+            "B": "It forces them to produce more resin than other pines.",
+            "C": "It slows their growth but protects them from competitors and disease.",
+            "D": "It prevents them from growing above 3,000 meters."
+          },
+          "correct": "C",
+          "explanation": "Paragraph 2 explains both effects: growth slows 'to a crawl,' but the conditions also 'limit competition' and 'reduce the risk of fire and disease.'"
+        },
+        {
+          "number": 23,
+          "type": "vocabulary",
+          "question": "In the second sentence of paragraph 3, which phrase is closest in meaning to die back?",
+          "options": {
+            "A": "burn completely",
+            "B": "bend in the wind",
+            "C": "wither away",
+            "D": "fall off"
+          },
+          "correct": "C",
+          "explanation": "To 'die back' means parts of a plant wither and die while the rest stays alive. The sentence contrasts the dead strips with the 'narrow ribbon of living tissue,' which confirms this."
+        },
+        {
+          "number": 24,
+          "type": "purpose",
+          "question": "Why does the author mention the Egyptian pyramids?",
+          "options": {
+            "A": "to compare ancient Egyptian and American landscapes",
+            "B": "to emphasize how old the trees are",
+            "C": "to suggest the trees were planted by ancient civilizations",
+            "D": "to explain how scientists calculate a tree's age"
+          },
+          "correct": "B",
+          "explanation": "The pyramids are a famous reference point for great age; saying the tree may predate them dramatizes its 4,800+ years. D is wrong because age is measured by rings, not by the pyramids."
+        },
+        {
+          "number": 25,
+          "type": "inference",
+          "question": "What is ironic, according to the author?",
+          "options": {
+            "A": "The oldest trees look almost dead.",
+            "B": "The climate conditions that once protected the trees are changing.",
+            "C": "The trees are threatened by a disease named after another pine.",
+            "D": "Scientists are anxious about trees they cannot study."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 4 begins 'Ironically, the conditions that protected bristlecones for thousands of years are now shifting.' A is surprising but is called 'paradoxical' in paragraph 3 — the question asks about the irony in paragraph 4."
+        }
+      ]
+    },
+    {
+      "passageId": 6,
+      "kind": "single",
+      "topic": "Restoring the Atlantic Forest",
+      "intro": "This passage is about a Brazilian forest.",
+      "text": "Five centuries ago, the Atlantic Forest stretched along much of Brazil's coastline, covering an area larger than France, Germany, and Italy combined. Today, less than fifteen percent of that original forest remains, most of it in small, isolated fragments. Yet what survives is extraordinary: the Atlantic Forest is home to thousands of plant and animal species found nowhere else, including the golden lion tamarin, a small monkey with a mane of bright orange fur.\n\nThe forest was cleared gradually — first for sugarcane and coffee plantations, later for cattle pasture and the growth of cities such as São Paulo and Rio de Janeiro. Because the destruction happened over centuries, much of it went unrecorded, and many Brazilians were unaware of how much had been lost.\n\nIn recent decades, however, the Atlantic Forest has become the focus of one of the world's most ambitious restoration efforts. Environmental groups, farmers, and even some large companies have joined a pact to restore millions of hectares by planting native trees and reconnecting fragments. The work is slow and expensive: land must be prepared, seedlings of dozens of native species must be grown and planted, and young forests must be protected from fire and invasive grasses for years.\n\nSupporters argue that restoration pays for itself. Forested land protects water supplies for millions of people, stores carbon, and attracts tourism. Still, ecologists point out that planting trees is not the same as rebuilding a forest. A restored area may take a century to resemble the original, and some species that disappear from a fragment may never return. For that reason, they insist, protecting the forest that still stands must come first.",
+      "questions": [
+        {
+          "number": 26,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "the animals of the Atlantic Forest",
+            "B": "the coffee industry in Brazil",
+            "C": "the loss of the Atlantic Forest and efforts to restore it",
+            "D": "the history of São Paulo and Rio de Janeiro"
+          },
+          "correct": "C",
+          "explanation": "The passage moves from the forest's former size (paragraph 1) to its destruction (paragraph 2), restoration efforts (paragraph 3), and the limits of restoration (paragraph 4). A, B, and D are only details."
+        },
+        {
+          "number": 27,
+          "type": "detail",
+          "question": "According to the passage, why was much of the forest's destruction unrecorded?",
+          "options": {
+            "A": "The government hid the information.",
+            "B": "It happened gradually over a long period.",
+            "C": "The forest was too large to measure.",
+            "D": "Farmers kept no written records."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 states this directly: 'Because the destruction happened over centuries, much of it went unrecorded.'"
+        },
+        {
+          "number": 28,
+          "type": "vocabulary",
+          "question": "In the third sentence of paragraph 3, which word is closest in meaning to pact?",
+          "options": {
+            "A": "protest",
+            "B": "agreement",
+            "C": "donation",
+            "D": "deadline"
+          },
+          "correct": "B",
+          "explanation": "A 'pact' is a formal agreement between groups. Here, environmental groups, farmers, and companies 'joined' it — only an agreement can be joined this way."
+        },
+        {
+          "number": 29,
+          "type": "purpose",
+          "question": "Why does the author mention the golden lion tamarin?",
+          "options": {
+            "A": "to illustrate the forest's unique wildlife",
+            "B": "to describe an animal that eats Brazil nuts",
+            "C": "to explain why the forest was cleared",
+            "D": "to compare species in different fragments"
+          },
+          "correct": "A",
+          "explanation": "The sentence presents the tamarin as an example of 'thousands of plant and animal species found nowhere else' — it illustrates how unique the forest's life is."
+        },
+        {
+          "number": 30,
+          "type": "inference",
+          "question": "What do ecologists believe should be the priority?",
+          "options": {
+            "A": "planting as many seedlings as possible",
+            "B": "attracting more tourism to restored areas",
+            "C": "reconnecting the largest fragments first",
+            "D": "protecting the remaining original forest"
+          },
+          "correct": "D",
+          "explanation": "The last sentence is explicit: 'protecting the forest that still stands must come first.' The reasoning: restoration takes a century and some lost species never return, so prevention beats repair."
+        }
+      ]
+    },
+    {
+      "passageId": 7,
+      "kind": "single",
+      "topic": "Baobab Trees",
+      "intro": "This passage is about baobab trees.",
+      "text": "Few trees are as unmistakable as the baobab. With their enormous trunks and short, stubby branches, they look as if they have been planted upside down, roots waving in the air. An African legend explains that the gods, annoyed by the tree's vanity, pulled it out of the ground and thrust it back in the wrong way.\n\nThe baobab's strange shape is a practical adaptation to dry environments. Its trunk, which can reach ten meters in diameter, works largely as a water tank: a mature tree can store more than 100,000 liters of water in its soft, spongy wood, allowing it to survive long droughts. During the rainy season, the tree produces large white flowers that open at night and are pollinated by bats. Its fruit, sometimes called monkey bread, is dry, powdery, and extraordinarily rich in vitamin C.\n\nFor the people who live near them, baobabs are far more than landmarks. Their bark can be made into rope and cloth, their leaves are cooked as vegetables, and their hollow trunks have served as shelters, shops, and even a bus stop. Because individual trees can live for more than a thousand years, they often function as the center of village life, and many are protected by local custom.\n\nThat longevity makes recent news all the more alarming. Since 2005, researchers have documented the collapse of several of the oldest and largest baobabs in Africa — trees that had survived for well over a millennium. The cause is not fully understood, but scientists suspect that a changing climate, with higher temperatures and shifting rainfall, is stressing these giants beyond their limits.",
+      "questions": [
+        {
+          "number": 31,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "the features, uses, and recent decline of baobab trees",
+            "B": "African legends about trees",
+            "C": "how baobab fruit became a popular food",
+            "D": "the effects of drought on African villages"
+          },
+          "correct": "A",
+          "explanation": "The passage covers the tree's appearance and adaptations (paragraphs 1–2), its uses for people (paragraph 3), and the alarming collapse of ancient trees (paragraph 4)."
+        },
+        {
+          "number": 32,
+          "type": "detail",
+          "question": "According to the passage, what is the main function of the baobab's trunk?",
+          "options": {
+            "A": "supporting its heavy branches",
+            "B": "producing large flowers",
+            "C": "storing water",
+            "D": "providing shelter for bats"
+          },
+          "correct": "C",
+          "explanation": "Paragraph 2 calls the trunk 'largely a water tank' holding more than 100,000 liters. D is a trap — bats pollinate the flowers but do not live in the trunk."
+        },
+        {
+          "number": 33,
+          "type": "vocabulary",
+          "question": "In the first sentence of paragraph 4, which word is closest in meaning to alarming?",
+          "options": {
+            "A": "confusing",
+            "B": "worrying",
+            "C": "surprising",
+            "D": "promising"
+          },
+          "correct": "B",
+          "explanation": "'Alarming' means causing worry or fear. The news is the collapse of ancient trees — clearly a worrying development, which the negative context confirms."
+        },
+        {
+          "number": 34,
+          "type": "purpose",
+          "question": "Why does the author mention the African legend?",
+          "options": {
+            "A": "to prove that baobabs were once planted upside down",
+            "B": "to introduce the tree's unusual appearance",
+            "C": "to explain why people protect the trees",
+            "D": "to compare beliefs in different African cultures"
+          },
+          "correct": "B",
+          "explanation": "The legend comes right after the description of the tree looking 'planted upside down' — it is an entertaining way to present the appearance. A treats the legend as fact, which the author does not."
+        },
+        {
+          "number": 35,
+          "type": "inference",
+          "question": "What can be inferred about the baobabs that collapsed?",
+          "options": {
+            "A": "They had already survived difficult conditions in the past.",
+            "B": "They were killed by villagers harvesting their bark.",
+            "C": "They were the last baobabs of their species.",
+            "D": "They collapsed because their trunks were hollow."
+          },
+          "correct": "A",
+          "explanation": "The trees 'had survived for well over a millennium' — surviving more than a thousand years in a dry environment means enduring many droughts before. B, C, and D are contradicted or unsupported."
+        }
+      ]
+    },
+    {
+      "passageId": 8,
+      "kind": "single",
+      "topic": "The Millennium Seed Bank",
+      "intro": "This passage is about saving tree and plant seeds.",
+      "text": "In an underground vault in the south of England, behind doors built to withstand floods, bombs, and radiation, scientists are storing the future of the world's forests. The Millennium Seed Bank holds more than two billion seeds from nearly 40,000 plant species — the largest collection of its kind anywhere. Many of the species represented there are rare, endangered, or already extinct in the wild.\n\nCollecting seeds is a race against time. Teams of botanists travel to remote mountains, deserts, and islands to gather seeds from wild populations before habitats disappear. The work requires careful planning: seeds must be collected from many individual plants to capture the genetic diversity of a species, and many tropical seeds must be processed within days or they will spoil.\n\nOnce they arrive at the bank, seeds are cleaned, dried, and stored at minus twenty degrees Celsius. At that temperature, most seeds remain alive for decades, and some for centuries. To make sure the collection stays viable, scientists regularly remove small samples and test whether they can still germinate.\n\nThe bank is not merely a museum of plants. Its seeds have been used to restore habitats damaged by fire and development, and to support research on crops that can tolerate drought and disease. Yet the staff are frank about the bank's limits. Some trees, including oaks and chestnuts, produce seeds that cannot survive drying and freezing, so they cannot be stored this way at all. And a seed in a freezer, however well preserved, is no substitute for a living forest. The bank's true purpose, its curators say, is to buy time — time for conservation efforts to succeed before it is too late.",
+      "questions": [
+        {
+          "number": 36,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how the Millennium Seed Bank collects and preserves seeds",
+            "B": "the dangers faced by botanists on expeditions",
+            "C": "why English forests are endangered",
+            "D": "how to germinate tropical seeds at home"
+          },
+          "correct": "A",
+          "explanation": "Every paragraph contributes to this: the collection (paragraph 1), collecting (paragraph 2), storage and testing (paragraph 3), and uses and limits (paragraph 4)."
+        },
+        {
+          "number": 37,
+          "type": "detail",
+          "question": "According to the passage, why do collectors gather seeds from many individual plants?",
+          "options": {
+            "A": "to have backups in case some seeds spoil",
+            "B": "to represent the species' genetic diversity",
+            "C": "to avoid damaging any single plant",
+            "D": "to satisfy international regulations"
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 gives the reason directly: 'to capture the genetic diversity of a species.' A sounds logical but refers to tropical seeds spoiling, a separate point."
+        },
+        {
+          "number": 38,
+          "type": "vocabulary",
+          "question": "In the second sentence of paragraph 4, which word is closest in meaning to frank?",
+          "options": {
+            "A": "honest",
+            "B": "uncertain",
+            "C": "optimistic",
+            "D": "silent"
+          },
+          "correct": "A",
+          "explanation": "To be 'frank' is to be direct and honest. The staff openly admit the bank's limits — an honest assessment, not an uncertain or optimistic one."
+        },
+        {
+          "number": 39,
+          "type": "purpose",
+          "question": "Why does the author mention oaks and chestnuts?",
+          "options": {
+            "A": "to list the most valuable trees in England",
+            "B": "to recommend which trees people should plant",
+            "C": "to give examples of trees whose seeds cannot be stored in the bank",
+            "D": "to describe trees that resist drought and disease"
+          },
+          "correct": "C",
+          "explanation": "They illustrate the previous statement about the bank's limits: their seeds 'cannot survive drying and freezing, so they cannot be stored this way at all.'"
+        },
+        {
+          "number": 40,
+          "type": "inference",
+          "question": "What do the curators believe is the bank's true purpose?",
+          "options": {
+            "A": "to replace natural forests with seed collections",
+            "B": "to give conservation efforts more time to work",
+            "C": "to supply seeds for commercial farming",
+            "D": "to educate the public about rare plants"
+          },
+          "correct": "B",
+          "explanation": "The final sentence quotes the curators: the purpose is 'to buy time — time for conservation efforts to succeed.' A is the opposite of what they say about a freezer being 'no substitute for a living forest.'"
+        }
+      ]
+    },
+    {
+      "passageId": 9,
+      "kind": "single",
+      "topic": "Cherry Blossoms",
+      "intro": "This passage is about Japan's cherry blossoms.",
+      "text": "Every spring, Japan turns its attention to a pale pink wave that travels slowly from south to north: the blooming of the cherry trees. For a few weeks, parks fill with families, coworkers, and friends who gather under the blossoms to eat, drink, and celebrate. The custom, known as hanami, or \"flower viewing,\" has been practiced in Japan for more than a thousand years.\n\nThe appeal of the cherry blossom lies partly in its brevity. Each tree flowers for only about two weeks before the petals fall, and the blossoms' brief life has long served as a symbol in Japanese art and poetry of the beauty — and the transience — of life itself. Weather forecasts during the season track the \"cherry blossom front\" as carefully as they track storms, and newspapers publish maps predicting when the trees will bloom in each region.\n\nThose predictions have become a source of scientific information. Records of the cherry blossom season in the city of Kyoto stretch back more than 1,200 years, making them one of the oldest continuous biological records in the world. By analyzing the dates, researchers have shown that the trees now bloom earlier than at any point in the recorded past — a shift they attribute largely to climate change and the warming of cities.\n\nThe trees themselves require careful management. Most of the famous cherry trees in Japan's parks belong to a single cultivated variety, reproduced by grafting branches onto other trees, which means they are genetically identical. This uniformity produces the stunning, synchronized displays that draw millions of visitors, but it also leaves the trees vulnerable: a disease or pest that can attack one tree can, in principle, attack them all.",
+      "questions": [
+        {
+          "number": 41,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how to grow cherry trees in parks",
+            "B": "the cultural importance and scientific value of Japan's cherry blossoms",
+            "C": "the history of Japanese weather forecasting",
+            "D": "why Japanese parks are crowded in spring"
+          },
+          "correct": "B",
+          "explanation": "The passage covers the hanami tradition (paragraphs 1–2), the scientific value of the records (paragraph 3), and the management of the trees (paragraph 4). C and D are small details."
+        },
+        {
+          "number": 42,
+          "type": "detail",
+          "question": "According to the passage, what does the brevity of the blossoms symbolize?",
+          "options": {
+            "A": "the changing of the seasons",
+            "B": "the shortness of life",
+            "C": "the arrival of storms",
+            "D": "the speed of the wind"
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 says the brief life of the blossoms symbolizes 'the beauty — and the transience — of life itself.' Transience means lasting a short time."
+        },
+        {
+          "number": 43,
+          "type": "purpose",
+          "question": "Why does the author mention Kyoto's records?",
+          "options": {
+            "A": "to show that the trees now bloom earlier than in the past",
+            "B": "to prove that Kyoto was Japan's ancient capital",
+            "C": "to advertise the city's spring festivals",
+            "D": "to explain how newspapers predict the blooming"
+          },
+          "correct": "A",
+          "explanation": "The records matter because researchers used them to demonstrate that trees 'now bloom earlier than at any point in the recorded past.' That is the point of the paragraph."
+        },
+        {
+          "number": 44,
+          "type": "vocabulary",
+          "question": "In the last sentence of the passage, which word is closest in meaning to vulnerable?",
+          "options": {
+            "A": "colorful",
+            "B": "valuable",
+            "C": "exposed to harm",
+            "D": "resistant to disease"
+          },
+          "correct": "C",
+          "explanation": "'Vulnerable' means easily harmed. The sentence explains why: genetically identical trees can all be attacked by the same disease. D is the exact opposite — a classic trap."
+        },
+        {
+          "number": 45,
+          "type": "inference",
+          "question": "What risk results from the way the cherry trees are reproduced?",
+          "options": {
+            "A": "The trees bloom at different times each year.",
+            "B": "The grafted branches fail to produce flowers.",
+            "C": "One disease could affect many trees at once.",
+            "D": "The parks must be replanted every few years."
+          },
+          "correct": "C",
+          "explanation": "Because the trees are 'genetically identical,' a pest or disease that attacks one 'can, in principle, attack them all.' Uniformity creates synchronized beauty but also shared weakness."
+        }
+      ]
+    },
+    {
+      "passageId": 10,
+      "kind": "single",
+      "topic": "Christmas Tree Farming",
+      "intro": "This passage is about growing Christmas trees.",
+      "text": "Every December, millions of households bring a freshly cut evergreen into their living rooms. Few of the people decorating these trees realize that the tree was probably planted eight to ten years earlier, on a farm that operates much like any other agricultural business — except that its harvest takes nearly a decade.\n\nChristmas tree farming is a patient industry. Seedlings are planted in spring and sheared every year, trimmed into the familiar cone shape that buyers expect. Farmers must protect their crop from insects, deer, and drought for years before seeing any income from it. Weather adds further uncertainty: a single late frost can damage an entire season of new growth, and a drought in the tree's first years can kill plantings that a farmer has already tended for half a decade.\n\nThe business has changed in recent decades. Artificial trees, manufactured mostly overseas, now outsell natural ones in several countries, and many young families choose them for convenience. Natural tree growers have responded by emphasizing what a plastic tree cannot offer: the scent of pine or fir, the tradition of choosing a tree in the field, and the fact that real trees are a renewable crop. While they grow, they absorb carbon and provide habitat for wildlife; after the holidays, most are recycled into mulch.\n\nSurprisingly, many growers argue that the greater threat to their industry is not competition from artificial trees but a shortage of farmers themselves. The work is physically demanding, the profits uncertain and long delayed, and fewer young people are choosing to take over family farms. For an industry built on patience, finding the next generation may be the hardest crop of all to grow.",
+      "questions": [
+        {
+          "number": 46,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how to decorate a Christmas tree",
+            "B": "the challenges of the Christmas tree farming industry",
+            "C": "the history of artificial Christmas trees",
+            "D": "why real trees smell better than plastic ones"
+          },
+          "correct": "B",
+          "explanation": "The passage describes the long, risky production cycle (paragraphs 1–2), competition from artificial trees (paragraph 3), and the shortage of farmers (paragraph 4) — all challenges of the industry."
+        },
+        {
+          "number": 47,
+          "type": "detail",
+          "question": "According to the passage, why are the seedlings sheared every year?",
+          "options": {
+            "A": "to protect them from insects",
+            "B": "to make them grow faster",
+            "C": "to give them the shape buyers want",
+            "D": "to prepare them for recycling"
+          },
+          "correct": "C",
+          "explanation": "Paragraph 2 says the trees are sheared and 'trimmed into the familiar cone shape that buyers expect.' The purpose is the shape the market demands."
+        },
+        {
+          "number": 48,
+          "type": "vocabulary",
+          "question": "In the last sentence of paragraph 2, which word is closest in meaning to tended?",
+          "options": {
+            "A": "planted",
+            "B": "harvested",
+            "C": "cared for",
+            "D": "paid for"
+          },
+          "correct": "C",
+          "explanation": "To 'tend' a crop is to look after it. The sentence describes a farmer losing trees he had 'tended for half a decade' — cared for over five years."
+        },
+        {
+          "number": 49,
+          "type": "purpose",
+          "question": "Why does the author mention the scent of pine or fir?",
+          "options": {
+            "A": "to explain why artificial trees are manufactured overseas",
+            "B": "to illustrate an advantage natural trees have over artificial ones",
+            "C": "to describe how trees absorb carbon",
+            "D": "to suggest that scent attracts wildlife"
+          },
+          "correct": "B",
+          "explanation": "The scent is the first example of 'what a plastic tree cannot offer' — it supports the growers' response to competition from artificial trees."
+        },
+        {
+          "number": 50,
+          "type": "inference",
+          "question": "What do many growers consider their biggest problem?",
+          "options": {
+            "A": "the low price of artificial trees",
+            "B": "damage caused by late frosts",
+            "C": "a lack of young people entering the industry",
+            "D": "the cost of recycling old trees"
+          },
+          "correct": "C",
+          "explanation": "Paragraph 4 says the 'greater threat' is 'a shortage of farmers themselves,' because fewer young people take over family farms. A is a real challenge but the passage calls it the lesser one."
+        }
+      ]
+    },
+    {
+      "passageId": 11,
+      "kind": "single",
+      "topic": "The Loneliest Tree",
+      "intro": "This passage is about a famous isolated tree.",
+      "text": "On a windswept island in the Southern Ocean, roughly 700 kilometers south of New Zealand, stands a single Sitka spruce. It is the only tree on Campbell Island; its nearest neighbor is more than 200 kilometers away, on another island. Guinness World Records has called it the loneliest tree in the world.\n\nThe tree did not get there by accident. It was planted around 1901 by the governor of New Zealand at the time, who reportedly believed the island's climate was too harsh for the experiment to succeed. In a sense, he was right: more than a century later, the spruce is alive but strangely shaped. The constant cold wind has prevented it from forming a normal cone-shaped crown, and it has never produced cones at all, which means it cannot reproduce.\n\nFor years, scientists paid the tree little attention. Recently, however, researchers realized that its wood contains a remarkable record. Because the tree grew through the entire twentieth century, its annual growth rings preserve traces of the atmosphere around it — including carbon produced by human activity. In 2018, a team analyzing the tree's rings reported that a sharp change in the carbon signal appeared around 1965, and they proposed that this moment marks the point when human influence on the planet became unmistakable. Some scientists have suggested using the tree as a marker for the beginning of the Anthropocene, the proposed new geological age defined by human impact.\n\nIf adopted, the loneliest tree in the world would acquire an odd distinction: a tree that cannot reproduce, planted as a failed experiment on an uninhabited island, would become the official symbol of humanity's effect on the Earth.",
+      "questions": [
+        {
+          "number": 51,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how spruce trees adapt to cold climates",
+            "B": "how an isolated tree became scientifically important",
+            "C": "the plant life of Campbell Island",
+            "D": "the history of Guinness World Records"
+          },
+          "correct": "B",
+          "explanation": "The passage moves from the tree's isolation (paragraph 1) and origin (paragraph 2) to its unexpected scientific role (paragraphs 3–4) — that transformation is the main idea."
+        },
+        {
+          "number": 52,
+          "type": "detail",
+          "question": "According to the passage, why can't the spruce reproduce?",
+          "options": {
+            "A": "It is too far from other trees.",
+            "B": "It has never produced cones.",
+            "C": "It is frequently damaged by wind.",
+            "D": "It is too old."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 states it directly: 'it has never produced cones at all, which means it cannot reproduce.' A is true about the tree but is not the reason given."
+        },
+        {
+          "number": 53,
+          "type": "vocabulary",
+          "question": "In the second sentence of paragraph 3, which word is closest in meaning to remarkable?",
+          "options": {
+            "A": "extraordinary",
+            "B": "incomplete",
+            "C": "confusing",
+            "D": "recent"
+          },
+          "correct": "A",
+          "explanation": "'Remarkable' means unusual and worthy of attention — extraordinary. A record of the whole twentieth century's atmosphere preserved in wood is exactly that."
+        },
+        {
+          "number": 54,
+          "type": "purpose",
+          "question": "Why does the author mention the governor of New Zealand?",
+          "options": {
+            "A": "to explain how the tree came to be on the island",
+            "B": "to criticize an early environmental policy",
+            "C": "to introduce the scientist who named the tree",
+            "D": "to describe New Zealand's government in 1901"
+          },
+          "correct": "A",
+          "explanation": "Paragraph 2 opens with 'The tree did not get there by accident' — the governor's planting explains how it arrived. C is a trap: the governor was not a scientist."
+        },
+        {
+          "number": 55,
+          "type": "detail",
+          "question": "What did researchers find in the tree's rings?",
+          "options": {
+            "A": "evidence of a severe storm in 1901",
+            "B": "proof that the tree could reproduce",
+            "C": "evidence of human impact on the atmosphere around 1965",
+            "D": "signs that the tree is dying"
+          },
+          "correct": "C",
+          "explanation": "Paragraph 3 describes 'a sharp change in the carbon signal... around 1965,' interpreted as the moment 'human influence on the planet became unmistakable.'"
+        }
+      ]
+    },
+    {
+      "passageId": 12,
+      "kind": "single",
+      "topic": "Mangrove Forests",
+      "intro": "This passage is about mangrove forests.",
+      "text": "Where tropical rivers meet the sea, forests grow in salt water — an environment that would kill almost any other tree. Mangroves survive there thanks to a set of extraordinary adaptations. Some species filter salt at their roots, while others absorb it and later excrete it through their leaves. Many stand on arching prop roots that anchor them in soft mud and lift them above the daily tides.\n\nThese tangled forests perform services out of proportion to their size. Their dense roots trap sediment and slow storm-driven waves, protecting coastlines from erosion and flooding; researchers have calculated that mangroves can reduce the height of storm waves by as much as two-thirds. They are also among the most efficient forests on Earth at storing carbon, locking it away in waterlogged soils where it can remain for thousands of years. And their sheltered waters serve as nurseries for countless fish, crabs, and shrimp, supporting fisheries on which millions of people depend.\n\nDespite this value, mangroves have long been treated as wasteland. Over the past half century, vast areas have been cleared for shrimp farms, rice fields, and waterfront development. Because mangrove soils store so much carbon, destroying them releases large quantities of greenhouse gases — which means that losing these forests worsens the very storms and rising seas they once protected against.\n\nThe picture is not entirely bleak. In several countries, communities have begun replanting mangroves, and some governments now pay villages to protect them. Experience has shown, however, that restoration succeeds only when the right species are planted in the right places; many early projects failed because seedlings were placed where mangroves could never naturally grow.",
+      "questions": [
+        {
+          "number": 56,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how shrimp farms are built in tropical rivers",
+            "B": "the value of mangrove forests and the threats they face",
+            "C": "why salt water kills most trees",
+            "D": "the best methods for fishing near coasts"
+          },
+          "correct": "B",
+          "explanation": "The passage covers adaptations (paragraph 1), services (paragraph 2), destruction (paragraph 3), and restoration (paragraph 4) — value plus threats is the complete picture."
+        },
+        {
+          "number": 57,
+          "type": "detail",
+          "question": "According to the passage, how do some mangroves handle salt?",
+          "options": {
+            "A": "They store it in their prop roots.",
+            "B": "They remove it through their leaves.",
+            "C": "They convert it into sediment.",
+            "D": "They release it into the mud at low tide."
+          },
+          "correct": "B",
+          "explanation": "Paragraph 1 says some species 'absorb it and later excrete it through their leaves.' A and C confuse this with other details of the same paragraph."
+        },
+        {
+          "number": 58,
+          "type": "vocabulary",
+          "question": "In the first sentence of paragraph 2, which phrase is closest in meaning to out of proportion to?",
+          "options": {
+            "A": "greater than expected given",
+            "B": "in direct competition with",
+            "C": "unrelated to",
+            "D": "damaged by"
+          },
+          "correct": "A",
+          "explanation": "The sentence means the forests' services are surprisingly large compared to their small size — greater than their size would lead you to expect."
+        },
+        {
+          "number": 59,
+          "type": "purpose",
+          "question": "Why does the author mention shrimp farms?",
+          "options": {
+            "A": "to recommend a sustainable source of seafood",
+            "B": "to describe what mangrove nurseries support",
+            "C": "to give an example of why mangroves are cleared",
+            "D": "to compare farming and fishing economies"
+          },
+          "correct": "C",
+          "explanation": "Paragraph 3 says vast areas 'have been cleared for shrimp farms, rice fields, and waterfront development' — the farms exemplify the causes of destruction. B confuses this with the fish nurseries of paragraph 2."
+        },
+        {
+          "number": 60,
+          "type": "inference",
+          "question": "What lesson does the author draw about mangrove restoration?",
+          "options": {
+            "A": "It is always more expensive than expected.",
+            "B": "It fails when species are planted in unsuitable locations.",
+            "C": "It works only when governments pay for it.",
+            "D": "It should focus on areas near fisheries."
+          },
+          "correct": "B",
+          "explanation": "The final sentence states that restoration 'succeeds only when the right species are planted in the right places,' and early failures came from planting where mangroves 'could never naturally grow.'"
+        }
+      ]
+    },
+    {
+      "passageId": 13,
+      "kind": "single",
+      "topic": "Tree Rings",
+      "intro": "This passage is about tree rings.",
+      "text": "Every year, a tree adds a new layer of wood just beneath its bark, forming a ring that can be read like a page in a diary. In climates with distinct seasons, the ring's light-colored portion records the rapid growth of spring, while the darker band marks the slower growth of late summer. By counting and measuring these rings, scientists can determine not only a tree's age but also the conditions it lived through. The science of reading tree rings is called dendrochronology.\n\nThe width of each ring tells a story. Wide rings generally indicate years with favorable conditions — adequate rain, mild temperatures — while narrow rings reveal drought, cold, or disease. Because trees of the same species in a region respond to the same weather, their ring patterns match like fingerprints. By overlapping the patterns of living trees with those of old beams from buildings and ancient logs, researchers have built continuous chronologies stretching back more than ten thousand years.\n\nThese chronologies have practical applications. Archaeologists use them to date wooden structures with remarkable precision, sometimes identifying the exact year a timber was cut. Climate scientists rely on rings to reconstruct temperatures and rainfall for centuries before instruments existed, providing a baseline against which modern warming can be measured. Fire historians read scars within rings to learn how often forests burned in the past.\n\nThe method has limits. It works best where seasons are sharply defined; in the tropics, many trees grow year-round and form rings that are difficult or impossible to interpret. Even so, few scientific tools offer such a direct connection to the past. As one researcher put it, trees were keeping records long before humans learned to write.",
+      "questions": [
+        {
+          "number": 61,
+          "type": "main idea",
+          "question": "What is the passage mainly about?",
+          "options": {
+            "A": "how tree rings are used to study the past",
+            "B": "why some trees live longer than others",
+            "C": "how wooden buildings are constructed",
+            "D": "the difference between tropical and seasonal trees"
+          },
+          "correct": "A",
+          "explanation": "The passage explains what rings record (paragraphs 1–2), their scientific applications (paragraph 3), and the method's limits (paragraph 4) — all about reading the past from rings."
+        },
+        {
+          "number": 62,
+          "type": "detail",
+          "question": "According to the passage, what does a narrow ring usually indicate?",
+          "options": {
+            "A": "a year with favorable conditions",
+            "B": "a year of drought, cold, or disease",
+            "C": "the year the tree was planted",
+            "D": "damage caused by construction"
+          },
+          "correct": "B",
+          "explanation": "Paragraph 2 contrasts wide rings (favorable conditions) with narrow rings, which 'reveal drought, cold, or disease.' A describes wide rings — the opposite."
+        },
+        {
+          "number": 63,
+          "type": "vocabulary",
+          "question": "In the second sentence of paragraph 2, which word is closest in meaning to adequate?",
+          "options": {
+            "A": "sufficient",
+            "B": "heavy",
+            "C": "frozen",
+            "D": "unusual"
+          },
+          "correct": "A",
+          "explanation": "'Adequate' means enough for the need — sufficient. Adequate rain is enough rain for good growth, which fits the context of favorable conditions."
+        },
+        {
+          "number": 64,
+          "type": "purpose",
+          "question": "Why does the author mention fingerprints?",
+          "options": {
+            "A": "to show that no two trees are exactly alike",
+            "B": "to explain how police and scientists use similar methods",
+            "C": "to illustrate how closely the ring patterns of regional trees match",
+            "D": "to describe marks left on trees by insects"
+          },
+          "correct": "C",
+          "explanation": "The simile 'match like fingerprints' describes how trees of the same species in a region produce identical patterns — this matching is what allows chronologies to be built."
+        },
+        {
+          "number": 65,
+          "type": "detail",
+          "question": "What limitation of dendrochronology does the author mention?",
+          "options": {
+            "A": "It cannot date buildings accurately.",
+            "B": "It damages the trees being studied.",
+            "C": "It is less useful for tropical trees.",
+            "D": "It requires instruments that are expensive."
+          },
+          "correct": "C",
+          "explanation": "Paragraph 4 explains that in the tropics, year-round growth produces rings that are 'difficult or impossible to interpret.'"
+        }
+      ]
+    },
+    {
+      "passageId": 14,
+      "kind": "multi-text",
+      "topic": "A City Tree Program",
+      "intro": "This set of texts is about a city tree program. Section A is a public notice. Section B is an information box. Section C is a news article.",
+      "sections": {
+        "A": "Riverside Park Tree Adoption Day\nSaturday, May 9, 9:00 a.m. – 1:00 p.m.\n\nHelp us plant 200 native trees along the river! No experience is necessary — our staff will provide tools, gloves, and instruction. Volunteers under 16 must be accompanied by an adult. Lunch will be provided for all registered volunteers. Space is limited to 80 participants, so register online by May 2 at the Parks Department website. Rain date: May 16.",
+        "B": "Did you know?\n\nA single mature tree can absorb about 20 kilograms of carbon dioxide per year and release enough oxygen for two people. Trees planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent. Studies have also shown that shoppers spend more time — and more money — in tree-lined shopping districts, and that houses on streets with trees sell faster and at higher prices than similar houses on treeless streets.",
+        "C": "When Riverdale launched its \"20,000 Trees\" campaign five years ago, skeptics called it a publicity stunt. The city promised to plant 20,000 trees in five years — a number that seemed designed for headlines rather than for reality. This spring, however, the city announced that it had planted its 21,000th tree, exceeding its goal with months to spare.\n\nThe program's success rests on an unusual strategy: rather than doing all the work itself, the city gives trees away. Residents who agree to plant and water a tree in their yard receive one free of charge, along with instructions and a follow-up visit from a city arborist. Schools and businesses can request larger plantings, which the city installs with the help of volunteers. According to program director Ana Costa, the approach works because it spreads responsibility. \"A city crew can plant a tree in an hour,\" she says, \"but that tree needs water every week for three years. We can't be everywhere — so we recruit the neighborhood.\"\n\nNot everyone is convinced. A recent audit found that about 15 percent of the trees planted in the campaign's first two years have died, most of them from lack of water during a drought. City officials acknowledge the losses but note that survival rates have improved since the city began requiring adopters to attend a short training session. \"We learned that handing someone a tree is the easy part,\" Costa admits. \"Teaching them to keep it alive is the real program.\""
+      },
+      "questions": [
+        {
+          "number": 66,
+          "type": "detail (section A)",
+          "question": "The following question refers to section A. What must volunteers younger than 16 do?",
+          "options": {
+            "A": "register before everyone else",
+            "B": "bring their own tools and gloves",
+            "C": "come with an adult",
+            "D": "attend a training session"
+          },
+          "correct": "C",
+          "explanation": "The notice says 'Volunteers under 16 must be accompanied by an adult.' 'Accompanied by' means 'together with' — a classic MET synonym question."
+        },
+        {
+          "number": 67,
+          "type": "detail (section A)",
+          "question": "The following question refers to section A. Why should interested volunteers act before May 2?",
+          "options": {
+            "A": "The event will be moved to the rain date.",
+            "B": "Online registration closes on that date.",
+            "C": "Lunch will not be provided after that day.",
+            "D": "The park will close for planting."
+          },
+          "correct": "B",
+          "explanation": "'Register online by May 2' means May 2 is the deadline. The limited space (80 participants) is the extra reason to act early."
+        },
+        {
+          "number": 68,
+          "type": "detail (section B)",
+          "question": "The following question refers to section B. According to the text, how do trees affect shoppers?",
+          "options": {
+            "A": "They make shoppers feel younger.",
+            "B": "They cause shoppers to spend more time and money in an area.",
+            "C": "They encourage shoppers to buy houses nearby.",
+            "D": "They help shoppers find stores more easily."
+          },
+          "correct": "B",
+          "explanation": "The text says shoppers 'spend more time — and more money — in tree-lined shopping districts.' C confuses this with the separate point about houses selling faster."
+        },
+        {
+          "number": 69,
+          "type": "detail (section B)",
+          "question": "The following question refers to section B. According to the text, where should trees be planted to lower cooling costs?",
+          "options": {
+            "A": "in shopping districts",
+            "B": "in public parks",
+            "C": "close to rivers",
+            "D": "on the west side of a house"
+          },
+          "correct": "D",
+          "explanation": "The text states that trees 'planted on the west side of a house can reduce summer air-conditioning costs by up to 30 percent' — the west side blocks the hot afternoon sun."
+        },
+        {
+          "number": 70,
+          "type": "detail (section C)",
+          "question": "The following question refers to section C. What was the skeptics' original view of the campaign?",
+          "options": {
+            "A": "It would cost too much money.",
+            "B": "It was intended mainly to generate publicity.",
+            "C": "It would take longer than five years.",
+            "D": "It planted trees in the wrong locations."
+          },
+          "correct": "B",
+          "explanation": "Skeptics 'called it a publicity stunt' — something designed 'for headlines rather than for reality.' Note how the passage then proves them wrong with the 21,000th tree."
+        },
+        {
+          "number": 71,
+          "type": "detail (section C)",
+          "question": "The following question refers to section C. How does the city carry out most of its planting?",
+          "options": {
+            "A": "It hires a professional planting company.",
+            "B": "It requires schools to plant trees weekly.",
+            "C": "It gives trees to residents who plant and water them.",
+            "D": "It pays volunteers by the hour."
+          },
+          "correct": "C",
+          "explanation": "The strategy is that 'the city gives trees away' to residents who 'agree to plant and water a tree.' The arborist's visit is support, not the planting itself."
+        },
+        {
+          "number": 72,
+          "type": "vocabulary (section C)",
+          "question": "The following question refers to section C. In the last sentence of the second paragraph, what does Costa mean by 'recruit the neighborhood'?",
+          "options": {
+            "A": "hire neighbors as city employees",
+            "B": "get local residents to care for the trees",
+            "C": "ask neighbors to donate money",
+            "D": "move trees into people's yards"
+          },
+          "correct": "B",
+          "explanation": "Costa explains the logic just before: a tree 'needs water every week for three years. We can't be everywhere.' Recruiting the neighborhood = involving residents in the long-term care."
+        },
+        {
+          "number": 73,
+          "type": "detail (section C)",
+          "question": "The following question refers to section C. According to the audit, why did most of the lost trees die?",
+          "options": {
+            "A": "They were planted incorrectly by volunteers.",
+            "B": "They were not watered during a drought.",
+            "C": "They were damaged by construction.",
+            "D": "They were attacked by insects."
+          },
+          "correct": "B",
+          "explanation": "The audit found the dead trees died 'from lack of water during a drought.' This detail connects back to Costa's point about weekly watering."
+        },
+        {
+          "number": 74,
+          "type": "detail (section C)",
+          "question": "The following question refers to section C. What change improved tree survival rates?",
+          "options": {
+            "A": "using more experienced city crews",
+            "B": "choosing more drought-resistant species",
+            "C": "reducing the number of trees planted each year",
+            "D": "requiring adopters to attend a short training session"
+          },
+          "correct": "D",
+          "explanation": "Officials 'note that survival rates have improved since the city began requiring adopters to attend a short training session.' Look for the word 'since' — it marks cause and effect."
+        },
+        {
+          "number": 75,
+          "type": "cross-text",
+          "question": "The following question refers to sections A and C. What goal do both texts share?",
+          "options": {
+            "A": "raising money for the parks department",
+            "B": "involving community members in planting trees",
+            "C": "training professional arborists",
+            "D": "celebrating the planting of the 21,000th tree"
+          },
+          "correct": "B",
+          "explanation": "Section A recruits volunteers to plant 200 trees; section C describes a city that 'gives trees away' to residents and volunteers. Both rely on community participation."
+        },
+        {
+          "number": 76,
+          "type": "cross-text",
+          "question": "The following question refers to sections B and C. How is the information in section B relevant to section C?",
+          "options": {
+            "A": "It proves that the audit in section C was inaccurate.",
+            "B": "It explains the deadline mentioned in section C.",
+            "C": "It describes benefits that may motivate residents to accept free trees.",
+            "D": "It contradicts the skeptics quoted in section C."
+          },
+          "correct": "C",
+          "explanation": "Section B lists benefits (cleaner air, lower energy bills, higher property values). These are exactly the reasons a resident in section C might accept a free tree for their yard — B motivates the participation C describes."
+        },
+        {
+          "number": 77,
+          "type": "cross-text",
+          "question": "The following question refers to all three sections. Which statement would program director Ana Costa most likely agree with?",
+          "options": {
+            "A": "Tree planting should be left to professional city crews.",
+            "B": "A campaign succeeds through long-term community care, not just planting.",
+            "C": "Publicity is more important than survival rates.",
+            "D": "Trees grow best along rivers and in parks."
+          },
+          "correct": "B",
+          "explanation": "Costa's final quote — 'Teaching them to keep it alive is the real program' — shows she values ongoing care over the planting event itself. A is the opposite of her strategy."
+        }
+      ]
+    }
+  ]
+}

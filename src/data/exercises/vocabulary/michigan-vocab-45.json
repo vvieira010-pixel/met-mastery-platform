@@ -1,0 +1,592 @@
+{
+  "title": "Michigan Vocabulary 45",
+  "level": "B1-B2+",
+  "skill": "vocabulary",
+  "items": [
+    {
+      "id": 1,
+      "question": "We need to ___ the meeting until next Monday because several people are away.",
+      "options": {
+        "A": "postpone",
+        "B": "repair",
+        "C": "collect",
+        "D": "remove"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Postpone** means to delay something until a later time.",
+      "level": "B1"
+    },
+    {
+      "id": 2,
+      "question": "The hotel is ___ near the train station, so guests can walk there easily.",
+      "options": {
+        "A": "politely",
+        "B": "conveniently",
+        "C": "suddenly",
+        "D": "honestly"
+      },
+      "correctAnswer": "B",
+      "explanation": "**Conveniently** means in a way that is practical or easy for a particular purpose.",
+      "level": "B1"
+    },
+    {
+      "id": 3,
+      "question": "Maria felt ___ before her job interview, but she became more relaxed after speaking to the manager.",
+      "options": {
+        "A": "nervous",
+        "B": "ancient",
+        "C": "narrow",
+        "D": "silent"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Nervous** means worried or anxious about something.",
+      "level": "B1"
+    },
+    {
+      "id": 4,
+      "question": "Please ___ the form carefully before you send it to the office.",
+      "options": {
+        "A": "fill in",
+        "B": "break down",
+        "C": "turn off",
+        "D": "look after"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Fill in** means to complete a form by writing the required information.",
+      "level": "B1"
+    },
+    {
+      "id": 5,
+      "question": "The restaurant was so ___ that we had to wait outside for a table.",
+      "options": {
+        "A": "crowded",
+        "B": "empty",
+        "C": "private",
+        "D": "ordinary"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Crowded** means full of people, leaving little available space.",
+      "level": "B1"
+    },
+    {
+      "id": 6,
+      "question": "You should wear a jacket because the weather may ___ colder this evening.",
+      "options": {
+        "A": "become",
+        "B": "borrow",
+        "C": "invite",
+        "D": "discover"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Become colder** means change to a lower temperature.",
+      "level": "B1"
+    },
+    {
+      "id": 7,
+      "question": "I cannot ___ to buy a new laptop this month, so I will continue using my old one.",
+      "options": {
+        "A": "afford",
+        "B": "attend",
+        "C": "avoid",
+        "D": "announce"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Afford** means have enough money to pay for something.",
+      "level": "B1"
+    },
+    {
+      "id": 8,
+      "question": "The teacher asked us to ___ the main ideas in our own words.",
+      "options": {
+        "A": "summarize",
+        "B": "separate",
+        "C": "whisper",
+        "D": "decorate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Summarize** means give the main points briefly.",
+      "level": "B1"
+    },
+    {
+      "id": 9,
+      "question": "After walking for three hours, the hikers were extremely ___.",
+      "options": {
+        "A": "exhausted",
+        "B": "curious",
+        "C": "generous",
+        "D": "accurate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Exhausted** means extremely tired.",
+      "level": "B1"
+    },
+    {
+      "id": 10,
+      "question": "If you do not know the meaning of a word, you can ___ it ___ in a dictionary.",
+      "options": {
+        "A": "look / up",
+        "B": "take / off",
+        "C": "put / away",
+        "D": "give / back"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Look up** means search for information in a reference source.",
+      "level": "B1"
+    },
+    {
+      "id": 11,
+      "question": "The instructions were very ___, so everyone understood what to do.",
+      "options": {
+        "A": "clear",
+        "B": "bitter",
+        "C": "distant",
+        "D": "formal"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Clear** means easy to understand.",
+      "level": "B1"
+    },
+    {
+      "id": 12,
+      "question": "We missed the bus, but fortunately a taxi driver agreed to ___ us to the airport.",
+      "options": {
+        "A": "drive",
+        "B": "grow",
+        "C": "lend",
+        "D": "melt"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Drive** means take someone somewhere in a vehicle.",
+      "level": "B1"
+    },
+    {
+      "id": 13,
+      "question": "The company plans to ___ several new employees next year.",
+      "options": {
+        "A": "hire",
+        "B": "hide",
+        "C": "harm",
+        "D": "hurry"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Hire** means give someone a job.",
+      "level": "B1"
+    },
+    {
+      "id": 14,
+      "question": "Daniel made a ___ decision to study abroad after thinking about it for several months.",
+      "options": {
+        "A": "thoughtful",
+        "B": "broken",
+        "C": "noisy",
+        "D": "lucky"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Thoughtful** means showing careful consideration.",
+      "level": "B1"
+    },
+    {
+      "id": 15,
+      "question": "The museum is free, but visitors are asked to make a small ___ if they can.",
+      "options": {
+        "A": "donation",
+        "B": "direction",
+        "C": "solution",
+        "D": "celebration"
+      },
+      "correctAnswer": "A",
+      "explanation": "A **donation** is money or goods given to help a person or organization.",
+      "level": "B1"
+    },
+    {
+      "id": 16,
+      "question": "The new policy is intended to ___ unnecessary spending without reducing the quality of public services.",
+      "options": {
+        "A": "curb",
+        "B": "praise",
+        "C": "inherit",
+        "D": "overlook"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Curb** means control or limit something undesirable.",
+      "level": "B2"
+    },
+    {
+      "id": 17,
+      "question": "Although the evidence was limited, the researchers drew a ___ conclusion from the results.",
+      "options": {
+        "A": "tentative",
+        "B": "edible",
+        "C": "vacant",
+        "D": "hostile"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Tentative** means uncertain or provisional rather than final.",
+      "level": "B2"
+    },
+    {
+      "id": 18,
+      "question": "The manager asked the team to ___ the problem before deciding how to solve it.",
+      "options": {
+        "A": "identify",
+        "B": "imitate",
+        "C": "interrupt",
+        "D": "install"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Identify** means recognize or establish what something is.",
+      "level": "B2"
+    },
+    {
+      "id": 19,
+      "question": "The documentary provides a ___ account of how the city recovered after the flood.",
+      "options": {
+        "A": "compelling",
+        "B": "reluctant",
+        "C": "accidental",
+        "D": "flexible"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Compelling** means very convincing or engaging.",
+      "level": "B2"
+    },
+    {
+      "id": 20,
+      "question": "We need to ___ the financial figures before presenting the report to the board.",
+      "options": {
+        "A": "verify",
+        "B": "tolerate",
+        "C": "resemble",
+        "D": "consume"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Verify** means check that something is accurate or true.",
+      "level": "B2"
+    },
+    {
+      "id": 21,
+      "question": "The professor encouraged students to ___ their opinions with specific examples.",
+      "options": {
+        "A": "substantiate",
+        "B": "postpone",
+        "C": "simplify",
+        "D": "distribute"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Substantiate** means support a claim with evidence.",
+      "level": "B2"
+    },
+    {
+      "id": 22,
+      "question": "The company has taken measures to ___ the impact of rising energy costs.",
+      "options": {
+        "A": "mitigate",
+        "B": "magnify",
+        "C": "memorize",
+        "D": "manufacture"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Mitigate** means make something less severe or harmful.",
+      "level": "B2"
+    },
+    {
+      "id": 23,
+      "question": "The two proposals are broadly similar, but there is one ___ difference in their costs.",
+      "options": {
+        "A": "significant",
+        "B": "temporary",
+        "C": "residential",
+        "D": "accidental"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Significant** means important or large enough to matter.",
+      "level": "B2"
+    },
+    {
+      "id": 24,
+      "question": "Her explanation was so ___ that even a complicated technical process seemed easy to understand.",
+      "options": {
+        "A": "coherent",
+        "B": "cautious",
+        "C": "prosperous",
+        "D": "irrelevant"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Coherent** means logical, organized, and easy to follow.",
+      "level": "B2"
+    },
+    {
+      "id": 25,
+      "question": "The witness gave a ___ description of the person she had seen near the building.",
+      "options": {
+        "A": "detailed",
+        "B": "flexible",
+        "C": "profitable",
+        "D": "artificial"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Detailed** means containing many specific pieces of information.",
+      "level": "B2"
+    },
+    {
+      "id": 26,
+      "question": "The committee decided to ___ the proposal because it did not address the main safety concerns.",
+      "options": {
+        "A": "reject",
+        "B": "retain",
+        "C": "reveal",
+        "D": "restore"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Reject** means refuse to accept or approve something.",
+      "level": "B2"
+    },
+    {
+      "id": 27,
+      "question": "Many consumers are becoming more ___ of companies that collect personal data.",
+      "options": {
+        "A": "wary",
+        "B": "fond",
+        "C": "capable",
+        "D": "awareless"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Wary** means cautious because of possible problems or danger.",
+      "level": "B2"
+    },
+    {
+      "id": 28,
+      "question": "The agreement will ___ both sides to share information about future projects.",
+      "options": {
+        "A": "oblige",
+        "B": "persuade",
+        "C": "distract",
+        "D": "release"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Oblige** means legally or morally require someone to do something.",
+      "level": "B2"
+    },
+    {
+      "id": 29,
+      "question": "The article examines the ___ relationship between sleep and academic performance.",
+      "options": {
+        "A": "complex",
+        "B": "vacant",
+        "C": "modest",
+        "D": "casual"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Complex** means involving many connected parts or ideas.",
+      "level": "B2"
+    },
+    {
+      "id": 30,
+      "question": "The charity relies heavily on volunteers, whose work is ___ to the success of the program.",
+      "options": {
+        "A": "crucial",
+        "B": "optional",
+        "C": "superficial",
+        "D": "ordinary"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Crucial** means extremely important to a result or situation.",
+      "level": "B2"
+    },
+    {
+      "id": 31,
+      "question": "The minister’s statement was deliberately ___, allowing her to avoid committing herself to a specific course of action.",
+      "options": {
+        "A": "equivocal",
+        "B": "unanimous",
+        "C": "meticulous",
+        "D": "tangible"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Equivocal** means deliberately unclear or open to more than one interpretation.",
+      "level": "B2+"
+    },
+    {
+      "id": 32,
+      "question": "The report does not ___ the claim that the project created more jobs than expected; the data actually suggest the opposite.",
+      "options": {
+        "A": "corroborate",
+        "B": "allocate",
+        "C": "commemorate",
+        "D": "deteriorate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Corroborate** means confirm or support a statement with evidence.",
+      "level": "B2+"
+    },
+    {
+      "id": 33,
+      "question": "The researcher warned that the apparent improvement might be ___, since the study lasted only two weeks.",
+      "options": {
+        "A": "ephemeral",
+        "B": "impartial",
+        "C": "inevitable",
+        "D": "comprehensive"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Ephemeral** means lasting for a very short time.",
+      "level": "B2+"
+    },
+    {
+      "id": 34,
+      "question": "The company’s attempt to ___ criticism by publishing selected statistics failed to convince the public.",
+      "options": {
+        "A": "deflect",
+        "B": "derive",
+        "C": "decipher",
+        "D": "enforce"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Deflect** means redirect criticism, blame, or attention away from oneself or a subject.",
+      "level": "B2+"
+    },
+    {
+      "id": 35,
+      "question": "The agreement contains a ___ clause that permits either party to end the contract with thirty days’ notice.",
+      "options": {
+        "A": "provision",
+        "B": "deviation",
+        "C": "prejudice",
+        "D": "deficiency"
+      },
+      "correctAnswer": "A",
+      "explanation": "A **provision** is a condition or term included in an agreement.",
+      "level": "B2+"
+    },
+    {
+      "id": 36,
+      "question": "The author’s argument is persuasive, but it rests on a rather ___ assumption about how people respond to risk.",
+      "options": {
+        "A": "tenuous",
+        "B": "lucrative",
+        "C": "impartial",
+        "D": "coherent"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Tenuous** means weak, uncertain, or not strongly supported.",
+      "level": "B2+"
+    },
+    {
+      "id": 37,
+      "question": "The committee sought to ___ the conflict by bringing the two departments together for private negotiations.",
+      "options": {
+        "A": "de-escalate",
+        "B": "anticipate",
+        "C": "proliferate",
+        "D": "authenticate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**De-escalate** means reduce the intensity of a conflict or tense situation.",
+      "level": "B2+"
+    },
+    {
+      "id": 38,
+      "question": "The evidence is not sufficient to ___ a direct causal link between the two events.",
+      "options": {
+        "A": "establish",
+        "B": "exaggerate",
+        "C": "relinquish",
+        "D": "fluctuate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Establish** means demonstrate or prove something with evidence.",
+      "level": "B2+"
+    },
+    {
+      "id": 39,
+      "question": "The policy was criticized for being ___: it appeared to benefit large corporations while placing additional burdens on small businesses.",
+      "options": {
+        "A": "inequitable",
+        "B": "innovative",
+        "C": "resilient",
+        "D": "exemplary"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Inequitable** means unfair or lacking equality.",
+      "level": "B2+"
+    },
+    {
+      "id": 40,
+      "question": "The discovery has the potential to ___ our understanding of how the disease develops.",
+      "options": {
+        "A": "transform",
+        "B": "withhold",
+        "C": "confine",
+        "D": "undermine"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Transform** means change something substantially.",
+      "level": "B2+"
+    },
+    {
+      "id": 41,
+      "question": "Rather than solving the problem, the new regulations may ___ it by creating additional administrative work.",
+      "options": {
+        "A": "exacerbate",
+        "B": "alleviate",
+        "C": "authenticate",
+        "D": "consolidate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Exacerbate** means make a problem or bad situation worse.",
+      "level": "B2+"
+    },
+    {
+      "id": 42,
+      "question": "The historian attempted to ___ the conflicting accounts by comparing them with contemporary records.",
+      "options": {
+        "A": "reconcile",
+        "B": "provoke",
+        "C": "suspend",
+        "D": "distort"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Reconcile** means make two apparently conflicting accounts or ideas consistent.",
+      "level": "B2+"
+    },
+    {
+      "id": 43,
+      "question": "The proposal was rejected because its projected benefits were largely ___ and could not be measured reliably.",
+      "options": {
+        "A": "speculative",
+        "B": "compulsory",
+        "C": "transparent",
+        "D": "consistent"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Speculative** means based on guesses or incomplete evidence rather than certainty.",
+      "level": "B2+"
+    },
+    {
+      "id": 44,
+      "question": "The organization has introduced strict procedures to ___ the misuse of confidential information.",
+      "options": {
+        "A": "forestall",
+        "B": "facilitate",
+        "C": "inherit",
+        "D": "commemorate"
+      },
+      "correctAnswer": "A",
+      "explanation": "**Forestall** means prevent something from happening by acting in advance.",
+      "level": "B2+"
+    },
+    {
+      "id": 45,
+      "question": "The speaker’s conclusion was a logical ___ from the evidence presented earlier in the lecture.",
+      "options": {
+        "A": "inference",
+        "B": "incentive",
+        "C": "impairment",
+        "D": "intervention"
+      },
+      "correctAnswer": "A",
+      "explanation": "An **inference** is a conclusion reached from evidence and reasoning.",
+      "level": "B2+"
+    }
+  ]
+}

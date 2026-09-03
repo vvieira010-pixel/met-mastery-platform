@@ -1,0 +1,42 @@
+export const SPEAKING_TASKS = [
+  {
+    id: 'mt2_spk_1',
+    title: 'Task 1: Picture Description',
+    prompt: 'Look at the image showing a multidisciplinary clinical team in a consultation room. Describe the environment, the team members, and the collaborative activities shown.',
+    description: 'Describe the scene and details accurately.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'mt2_spk_2',
+    title: 'Task 2: Comparing Situations',
+    prompt: 'Compare centralized hospital pharmacies with decentralized automated dispensing cabinets located on nursing units. Discuss safety, speed, and workflow impacts.',
+    description: 'Compare and contrast two healthcare approaches.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'mt2_spk_3',
+    title: 'Task 3: Expressing an Opinion',
+    prompt: 'Should hospitals implement mandatory continuing education hours on digital health records every year? Provide reasons and examples to justify your opinion.',
+    description: 'Express and defend your viewpoint.',
+    prepSeconds: 30,
+    speakSeconds: 60,
+  },
+  {
+    id: 'mt2_spk_4',
+    title: 'Task 4: Explaining a Process',
+    prompt: 'Explain the protocol for conducting safe patient handoffs between shift changes in an inpatient medical unit.',
+    description: 'Explain a structured clinical process.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+  {
+    id: 'mt2_spk_5',
+    title: 'Task 5: Roleplay / Situation Advice',
+    prompt: 'A junior nurse is hesitant about questioning a senior physician’s unclear prescription order. Advise the junior colleague on effective assertion techniques and patient safety priorities.',
+    description: 'Deliver professional advisory communication.',
+    prepSeconds: 20,
+    speakSeconds: 60,
+  },
+];

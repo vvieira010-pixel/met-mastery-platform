@@ -1,0 +1,130 @@
+{
+  "title": "MET Vocabulary Exercise Bank",
+  "subtitle": "B2 vocabulary practice across common MET topics",
+  "modules": [
+    {
+      "id": "work_career",
+      "title": "Work and Career",
+      "levelRange": "B2",
+      "targetVocabulary": [
+        { "word": "avoid", "definition": "to stay away from something" },
+        { "word": "apply", "definition": "to make a formal request for a job" },
+        { "word": "commute", "definition": "regular travel between home and work" }
+      ],
+      "learningObjectives": ["Use work-related vocabulary in context", "Understand job application language"],
+      "exercises": [
+        {
+          "type": "multiple_choice_single",
+          "items": [
+            {
+              "id": "work_mcq1",
+              "prompt": "Remote work allows employees to ___ their daily commutes.",
+              "options": [
+                { "id": "a", "text": "avoid" },
+                { "id": "b", "text": "attend" },
+                { "id": "c", "text": "accept" },
+                { "id": "d", "text": "afford" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": "Avoid a commute means not having to travel to an office."
+            },
+            {
+              "id": "work_mcq2",
+              "prompt": "He decided to ___ for the position after reading the job description.",
+              "options": [
+                { "id": "a", "text": "apply" },
+                { "id": "b", "text": "reply" },
+                { "id": "c", "text": "request" },
+                { "id": "d", "text": "return" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": "Apply for a position is the standard collocation for seeking a job."
+            }
+          ]
+        },
+        {
+          "type": "fill_in_the_blank",
+          "items": [
+            {
+              "id": "work_blank1",
+              "sentence": "The manager asked the team to ___ the report before the meeting.",
+              "correctAnswer": "finish",
+              "explanation": "Finish means to complete a task."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healthcare",
+      "title": "Healthcare and Patient Care",
+      "levelRange": "B2",
+      "targetVocabulary": [
+        { "word": "inform", "definition": "to tell someone about something important" },
+        { "word": "medication", "definition": "medicine taken to treat an illness" },
+        { "word": "symptoms", "definition": "signs of an illness" }
+      ],
+      "learningObjectives": ["Use healthcare vocabulary naturally", "Understand patient-doctor communication"],
+      "exercises": [
+        {
+          "type": "multiple_choice_single",
+          "items": [
+            {
+              "id": "health_mcq1",
+              "prompt": "Patients should ___ their doctor if side effects appear.",
+              "options": [
+                { "id": "a", "text": "inform" },
+                { "id": "b", "text": "ignore" },
+                { "id": "c", "text": "invite" },
+                { "id": "d", "text": "imagine" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": "Inform means to tell someone about something important, such as symptoms."
+            }
+          ]
+        },
+        {
+          "type": "fill_in_the_blank",
+          "items": [
+            {
+              "id": "health_blank1",
+              "sentence": "A balanced diet can help you ___ healthy.",
+              "correctAnswer": "stay",
+              "explanation": "Stay healthy means to remain in good health."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "title": "Education and Learning",
+      "levelRange": "B2",
+      "targetVocabulary": [
+        { "word": "submit", "definition": "to hand in work to a teacher" },
+        { "word": "devote", "definition": "to spend time on something purposefully" },
+        { "word": "assignment", "definition": "a task given by a teacher" }
+      ],
+      "learningObjectives": ["Use education vocabulary in context", "Understand academic language"],
+      "exercises": [
+        {
+          "type": "multiple_choice_single",
+          "items": [
+            {
+              "id": "edu_mcq1",
+              "prompt": "Students are expected to ___ their assignments on time.",
+              "options": [
+                { "id": "a", "text": "submit" },
+                { "id": "b", "text": "subject" },
+                { "id": "c", "text": "support" },
+                { "id": "d", "text": "suggest" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": "Submit an assignment means to hand it in to a teacher."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
