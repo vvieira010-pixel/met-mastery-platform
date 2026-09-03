@@ -1,0 +1,5 @@
+@media (max-width: 1500px) {
+  .product-proof { padding-inline: 10%; }
+  .workspace-frame { width: min(100%, 1000px); }
+  .callout { display: none; }
+}
