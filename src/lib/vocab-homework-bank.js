@@ -31,6 +31,31 @@ export function getTopicList(mode) {
       { id: 'online_learning', title: 'Online Learning & Technology' },
     ];
   }
+  if (mode === 'grammar') {
+    return [
+      { id: 'gm_common_mistakes', title: 'Common Mistakes' },
+      { id: 'gm_conditionals', title: 'Conditionals' },
+      { id: 'gm_passive', title: 'Passive Voice' },
+      { id: 'gm_modals', title: 'Modal Verbs' },
+      { id: 'gm_inversion', title: 'Inversion' },
+      { id: 'gm_relatives', title: 'Relative Clauses' },
+      { id: 'gm_articles', title: 'Articles' },
+      { id: 'gm_pronouns', title: 'Pronouns' },
+      { id: 'gm_comparatives', title: 'Comparatives' },
+      { id: 'gm_phrasal', title: 'Phrasal Verbs' },
+      { id: 'gm_agreement', title: 'Subject-Verb Agreement' },
+      { id: 'gm_reported', title: 'Reported Speech' },
+      { id: 'gm_gerunds', title: 'Gerunds vs Infinitives' },
+      { id: 'gm_quantifiers', title: 'Quantifiers' },
+      { id: 'gm_connectors', title: 'Connectors' },
+      { id: 'gm_demonstratives', title: 'Demonstratives' },
+      { id: 'gm_adverbs', title: 'Adverbs of Degree' },
+      { id: 'gm_infinitives', title: 'Infinitives of Purpose' },
+      { id: 'gm_somewhere', title: 'Somewhere / Anywhere' },
+      { id: 'gm_order_fix', title: 'Sentence Ordering & Error Correction' },
+      { id: 'gm_grammar_50_more', title: 'Grammar — 48 More' },
+    ];
+  }
   if (mode === 'listening') {
     return []; // Handled asynchronously in PracticeSession or via a new helper
   }
@@ -122,10 +147,15 @@ export async function getListeningAudioGroups() {
   return Array.from(groups.entries()).map(([id, title]) => ({ id, title }));
 }
 
-export async function getGrammarExercises() {
-  const { grammarMCQs } = await getFullData();
+export async function getGrammarExercises(topicId) {
   const drillMod = await import('./met-grammar-bank.js');
-  const drillQuestions = drillMod.getGrammarModules().flatMap(m => m.exercises);
+  const allModules = drillMod.getGrammarModules();
+  if (topicId) {
+    const mod = allModules.find(m => m.id === topicId);
+    if (mod) return mod.exercises;
+  }
+  const { grammarMCQs } = await getFullData();
+  const drillQuestions = allModules.flatMap(m => m.exercises);
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('grammar');
   return [...grammarMCQs, ...drillQuestions, ...b2];
