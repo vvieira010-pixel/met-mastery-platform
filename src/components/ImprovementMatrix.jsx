@@ -92,7 +92,7 @@ export default function ImprovementMatrix({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 'var(--radius-lg, 12px)',
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05))',
@@ -111,25 +111,25 @@ export default function ImprovementMatrix({
                 padding: '2px 8px',
                 borderRadius: 4,
                 background: 'rgba(22, 163, 74, 0.1)',
-                color: '#16a34a',
+                color: '#3D8C65',
               }}
             >
               Constructive Evaluation UI
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>
               Writing & Speaking Feedback
             </span>
           </div>
-          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
             Improvement Matrix
           </h3>
-          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
             Categorized breakdown tracking your journey from current production to elevated B2 proficiency.
           </p>
         </div>
 
         {/* Skill Filter Buttons */}
-        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #f1f5f9)', padding: 3, borderRadius: 8 }}>
+        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #FDFCF8)', padding: 3, borderRadius: 8 }}>
           {[
             { id: 'all', label: 'All Skills' },
             { id: 'writing', label: 'Writing Focus', icon: <Icon.write size={13} /> },
@@ -142,7 +142,7 @@ export default function ImprovementMatrix({
               style={{
                 border: 'none',
                 background: selectedFilter === f.id ? 'var(--surface, #ffffff)' : 'transparent',
-                color: selectedFilter === f.id ? 'var(--text, #0f172a)' : 'var(--muted, #64748b)',
+                color: selectedFilter === f.id ? 'var(--text, #1A2E35)' : 'var(--muted, #6B7C80)',
                 fontWeight: selectedFilter === f.id ? 700 : 500,
                 fontSize: '0.76rem',
                 padding: '5px 12px',
@@ -165,7 +165,7 @@ export default function ImprovementMatrix({
       <div
         style={{
           background: 'linear-gradient(90deg, rgba(22, 163, 74, 0.08) 0%, rgba(2, 132, 199, 0.08) 100%)',
-          borderLeft: '4px solid #16a34a',
+          borderLeft: '4px solid #3D8C65',
           borderRadius: 6,
           padding: '10px 14px',
           marginBottom: 16,
@@ -175,13 +175,13 @@ export default function ImprovementMatrix({
         }}
       >
         <span style={{ fontSize: '1.1rem' }}>🌟</span>
-        <div style={{ fontSize: '0.8rem', color: 'var(--text, #1e293b)', lineHeight: 1.45 }}>
+        <div style={{ fontSize: '0.8rem', color: 'var(--text, #2B454E)', lineHeight: 1.45 }}>
           <strong>Constructive growth mindset:</strong> These targets are stepping stones to sharpen your Michigan English Test score. You are demonstrating solid foundations—applying these specific upgrades will noticeably strengthen your fluency!
         </div>
       </div>
 
       {/* Responsive Table */}
-      <div style={{ overflowX: 'auto', borderRadius: 8, border: '1px solid var(--border, #e2e8f0)' }}>
+      <div style={{ overflowX: 'auto', borderRadius: 8, border: '1px solid var(--border, #F6F4EE)' }}>
         <table
           style={{
             width: '100%',
@@ -192,14 +192,14 @@ export default function ImprovementMatrix({
           }}
         >
           <thead>
-            <tr style={{ background: 'var(--bg, #f8fafc)', borderBottom: '2px solid var(--border, #e2e8f0)' }}>
-              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #0f172a)', width: '30%' }}>
+            <tr style={{ background: 'var(--bg, #FDFCF8)', borderBottom: '2px solid var(--border, #F6F4EE)' }}>
+              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #1A2E35)', width: '30%' }}>
                 Current Language
               </th>
-              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #0f172a)', width: '32%' }}>
+              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #1A2E35)', width: '32%' }}>
                 What to Change
               </th>
-              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #0f172a)', width: '38%' }}>
+              <th style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text, #1A2E35)', width: '38%' }}>
                 How to Improve
               </th>
             </tr>
@@ -213,7 +213,7 @@ export default function ImprovementMatrix({
                   key={row.id || idx}
                   style={{
                     background: isEven ? 'var(--surface, #ffffff)' : 'rgba(248, 250, 252, 0.5)',
-                    borderBottom: '1px solid var(--border, #f1f5f9)',
+                    borderBottom: '1px solid var(--border, #FDFCF8)',
                     transition: 'background 0.15s ease',
                   }}
                 >
@@ -227,14 +227,14 @@ export default function ImprovementMatrix({
                           padding: '2px 6px',
                           borderRadius: 4,
                           background: isSpeaking ? 'rgba(245, 158, 11, 0.12)' : 'rgba(139, 92, 246, 0.12)',
-                          color: isSpeaking ? '#d97706' : '#7c3aed',
+                          color: isSpeaking ? '#C9803C' : '#7c3aed',
                           textTransform: 'capitalize',
                         }}
                       >
                         {row.skill}
                       </span>
                       {row.category && (
-                        <span style={{ fontSize: '0.7rem', color: 'var(--muted, #64748b)' }}>
+                        <span style={{ fontSize: '0.7rem', color: 'var(--muted, #6B7C80)' }}>
                           {row.category}
                         </span>
                       )}
@@ -246,7 +246,7 @@ export default function ImprovementMatrix({
                         borderLeft: '3px solid #f87171',
                         borderRadius: 4,
                         fontStyle: 'italic',
-                        color: 'var(--text-2, #334155)',
+                        color: 'var(--text-2, #2B454E)',
                         fontSize: '0.8rem',
                       }}
                     >
@@ -255,9 +255,9 @@ export default function ImprovementMatrix({
                   </td>
 
                   {/* What to Change Column */}
-                  <td style={{ padding: '14px', verticalAlign: 'top', color: 'var(--text, #1e293b)' }}>
+                  <td style={{ padding: '14px', verticalAlign: 'top', color: 'var(--text, #2B454E)' }}>
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
-                      <span style={{ color: '#0284c7', marginTop: 2, flexShrink: 0 }}>
+                      <span style={{ color: '#2D7A8C', marginTop: 2, flexShrink: 0 }}>
                         <Icon.alert size={14} />
                       </span>
                       <span style={{ fontSize: '0.8rem', lineHeight: 1.5 }}>
@@ -272,7 +272,7 @@ export default function ImprovementMatrix({
                       style={{
                         padding: '10px 12px',
                         background: 'rgba(22, 163, 74, 0.06)',
-                        borderLeft: '3px solid #16a34a',
+                        borderLeft: '3px solid #3D8C65',
                         borderRadius: 6,
                       }}
                     >
@@ -290,7 +290,7 @@ export default function ImprovementMatrix({
                           {row.encouragement || 'B2 Upgrade'}
                         </span>
                       </div>
-                      <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text, #0f172a)', lineHeight: 1.5 }}>
+                      <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text, #1A2E35)', lineHeight: 1.5 }}>
                         {row.howToImprove}
                       </p>
                     </div>

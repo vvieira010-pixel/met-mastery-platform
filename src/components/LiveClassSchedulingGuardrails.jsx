@@ -142,7 +142,7 @@ export default function LiveClassSchedulingGuardrails({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 'var(--radius-lg, 12px)',
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05))',
@@ -161,26 +161,26 @@ export default function LiveClassSchedulingGuardrails({
                 padding: '2px 8px',
                 borderRadius: 4,
                 background: 'rgba(2, 132, 199, 0.1)',
-                color: 'var(--primary, #0284c7)',
+                color: 'var(--primary, #2D7A8C)',
               }}
             >
               Scheduling Guardrails
             </span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
               24-Hour Policy Enforcement
             </span>
           </div>
-          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
             Upcoming Live Classes & Scheduling Controls
           </h3>
-          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
             Changes and cancellations require at least 24 hours advance notice to respect instructional preparation.
           </p>
         </div>
 
         {/* Policy Pill Badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(245, 158, 11, 0.1)', padding: '6px 10px', borderRadius: 8 }}>
-          <Icon.clock size={14} style={{ color: '#d97706' }} />
+          <Icon.clock size={14} style={{ color: '#C9803C' }} />
           <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#92400e' }}>
             Enforced 24h Advance Notice
           </span>
@@ -189,7 +189,7 @@ export default function LiveClassSchedulingGuardrails({
 
       {/* Class List */}
       {sortedClasses.length === 0 ? (
-        <div style={{ padding: '20px', textAlign: 'center', background: 'var(--bg, #f8fafc)', borderRadius: 8, color: 'var(--muted, #64748b)', fontSize: '0.82rem' }}>
+        <div style={{ padding: '20px', textAlign: 'center', background: 'var(--bg, #FDFCF8)', borderRadius: 8, color: 'var(--muted, #6B7C80)', fontSize: '0.82rem' }}>
           No upcoming live classes scheduled at this moment. Check with your teacher to book your next session!
         </div>
       ) : (
@@ -211,8 +211,8 @@ export default function LiveClassSchedulingGuardrails({
                   gap: 14,
                   padding: '14px 16px',
                   borderRadius: 10,
-                  background: 'var(--bg, #f8fafc)',
-                  border: `1px solid ${cls.isOver24h ? 'var(--border, #e2e8f0)' : 'rgba(245, 158, 11, 0.4)'}`,
+                  background: 'var(--bg, #FDFCF8)',
+                  border: `1px solid ${cls.isOver24h ? 'var(--border, #F6F4EE)' : 'rgba(245, 158, 11, 0.4)'}`,
                 }}
                 data-testid={`upcoming-class-row-${cls.id}`}
               >
@@ -224,7 +224,7 @@ export default function LiveClassSchedulingGuardrails({
                       height: 42,
                       borderRadius: 8,
                       background: cls.isOver24h ? 'rgba(2, 132, 199, 0.1)' : 'rgba(245, 158, 11, 0.12)',
-                      color: cls.isOver24h ? 'var(--primary, #0284c7)' : '#d97706',
+                      color: cls.isOver24h ? 'var(--primary, #2D7A8C)' : '#C9803C',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -236,7 +236,7 @@ export default function LiveClassSchedulingGuardrails({
 
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                      <strong style={{ fontSize: '0.9rem', color: 'var(--text, #0f172a)' }}>
+                      <strong style={{ fontSize: '0.9rem', color: 'var(--text, #1A2E35)' }}>
                         {cls.title || 'Live MET Strategy Session'}
                       </strong>
                       <span
@@ -246,14 +246,14 @@ export default function LiveClassSchedulingGuardrails({
                           padding: '1px 6px',
                           borderRadius: 4,
                           background: cls.isOver24h ? 'rgba(22, 163, 74, 0.1)' : 'rgba(245, 158, 11, 0.15)',
-                          color: cls.isOver24h ? '#16a34a' : '#b45309',
+                          color: cls.isOver24h ? '#3D8C65' : '#b45309',
                         }}
                       >
                         {cls.isOver24h ? `In ${hoursLeft}h (Policy Met)` : `Locked: Starts in ${hoursLeft}h ${minsLeft}m`}
                       </span>
                     </div>
 
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, fontSize: '0.78rem', color: 'var(--text-2, #334155)' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, fontSize: '0.78rem', color: 'var(--text-2, #2B454E)' }}>
                       <span><Icon.clock size={13} /> {dateStr} at {timeStr}</span>
                       <span><Icon.progress size={13} /> Focus: {cls.metSkillFocus || cls.classFocus || 'MET Intensive'}</span>
                     </div>
@@ -270,9 +270,9 @@ export default function LiveClassSchedulingGuardrails({
                         style={{
                           padding: '6px 12px',
                           borderRadius: 6,
-                          border: '1px solid var(--border, #cbd5e1)',
+                          border: '1px solid var(--border, #E8E5DF)',
                           background: 'var(--surface, #ffffff)',
-                          color: 'var(--text, #0f172a)',
+                          color: 'var(--text, #1A2E35)',
                           fontSize: '0.75rem',
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -289,7 +289,7 @@ export default function LiveClassSchedulingGuardrails({
                           borderRadius: 6,
                           border: '1px solid rgba(239, 68, 68, 0.3)',
                           background: 'rgba(239, 68, 68, 0.05)',
-                          color: '#dc2626',
+                          color: '#A34E48',
                           fontSize: '0.75rem',
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -347,12 +347,12 @@ export default function LiveClassSchedulingGuardrails({
           }}
         >
           <div style={{ background: 'var(--surface, #ffffff)', padding: 24, borderRadius: 12, maxWidth: 460, width: '100%', boxShadow: '0 20px 25px rgba(0,0,0,0.15)' }}>
-            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: '#dc2626' }}>Cancel Upcoming Class</h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-2, #334155)', margin: '0 0 14px' }}>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: '#A34E48' }}>Cancel Upcoming Class</h3>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-2, #2B454E)', margin: '0 0 14px' }}>
               Verified: You have provided <strong>{Math.round(selectedClass.hoursUntil)} hours advance notice</strong> (exceeds the 24-hour requirement). Your teacher will be notified immediately.
             </p>
             <div style={{ marginBottom: 14 }}>
-              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                 Reason for cancellation (optional):
               </label>
               <textarea
@@ -360,14 +360,14 @@ export default function LiveClassSchedulingGuardrails({
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="e.g., Work commitment conflict, need more preparation time..."
-                style={{ width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', fontSize: '0.8rem' }}
+                style={{ width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', fontSize: '0.8rem' }}
               />
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
               <button
                 type="button"
                 onClick={() => setSelectedClass(null)}
-                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
               >
                 Go Back
               </button>
@@ -375,7 +375,7 @@ export default function LiveClassSchedulingGuardrails({
                 type="button"
                 onClick={handleConfirmCancel}
                 disabled={processing}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: '#dc2626', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: '#A34E48', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
                 data-testid="confirm-cancel-btn"
               >
                 {processing ? 'Processing...' : 'Confirm 24h+ Cancellation'}
@@ -402,13 +402,13 @@ export default function LiveClassSchedulingGuardrails({
           }}
         >
           <div style={{ background: 'var(--surface, #ffffff)', padding: 24, borderRadius: 12, maxWidth: 460, width: '100%', boxShadow: '0 20px 25px rgba(0,0,0,0.15)' }}>
-            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: 'var(--text, #0f172a)' }}>Request Class Reschedule</h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-2, #334155)', margin: '0 0 14px' }}>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: 'var(--text, #1A2E35)' }}>Request Class Reschedule</h3>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-2, #2B454E)', margin: '0 0 14px' }}>
               Notice policy met ({Math.round(selectedClass.hoursUntil)} hours in advance). Propose a new date and time for your teacher:
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                   Requested Date:
                 </label>
                 <input
@@ -416,23 +416,23 @@ export default function LiveClassSchedulingGuardrails({
                   value={newDate}
                   min={minRescheduleDate}
                   onChange={(e) => setNewDate(e.target.value)}
-                  style={{ width: '100%', padding: '6px 10px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', fontSize: '0.8rem' }}
+                  style={{ width: '100%', padding: '6px 10px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', fontSize: '0.8rem' }}
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                   Requested Time:
                 </label>
                 <input
                   type="time"
                   value={newTime}
                   onChange={(e) => setNewTime(e.target.value)}
-                  style={{ width: '100%', padding: '6px 10px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', fontSize: '0.8rem' }}
+                  style={{ width: '100%', padding: '6px 10px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', fontSize: '0.8rem' }}
                 />
               </div>
             </div>
             <div style={{ marginBottom: 14 }}>
-              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                 Reason / Note:
               </label>
               <textarea
@@ -440,14 +440,14 @@ export default function LiveClassSchedulingGuardrails({
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Add a note to your teacher..."
-                style={{ width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', fontSize: '0.8rem' }}
+                style={{ width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', fontSize: '0.8rem' }}
               />
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
               <button
                 type="button"
                 onClick={() => setSelectedClass(null)}
-                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
               >
                 Cancel
               </button>
@@ -455,7 +455,7 @@ export default function LiveClassSchedulingGuardrails({
                 type="button"
                 onClick={handleConfirmReschedule}
                 disabled={processing}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #0284c7)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
                 data-testid="confirm-reschedule-btn"
               >
                 {processing ? 'Sending...' : 'Send Reschedule Request'}
@@ -482,11 +482,11 @@ export default function LiveClassSchedulingGuardrails({
           }}
         >
           <div style={{ background: 'var(--surface, #ffffff)', padding: 24, borderRadius: 12, maxWidth: 460, width: '100%', boxShadow: '0 20px 25px rgba(0,0,0,0.15)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#d97706', marginBottom: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#C9803C', marginBottom: 10 }}>
               <Icon.lock size={22} />
               <h3 style={{ margin: 0, fontSize: '1.15rem', color: '#92400e' }}>24-Hour Notice Policy Guardrail</h3>
             </div>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text, #1e293b)', lineHeight: 1.5, margin: '0 0 12px' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text, #2B454E)', lineHeight: 1.5, margin: '0 0 12px' }}>
               Under the VV Method Course Policy, self-service cancellations and adjustments are locked within <strong>24 hours of class start</strong>.
             </p>
             <div style={{ padding: '10px 14px', background: 'rgba(245, 158, 11, 0.08)', borderRadius: 8, border: '1px solid rgba(245, 158, 11, 0.2)', marginBottom: 16, fontSize: '0.78rem', color: '#78350f' }}>
@@ -499,14 +499,14 @@ export default function LiveClassSchedulingGuardrails({
               <button
                 type="button"
                 onClick={() => setPolicyModalClass(null)}
-                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #cbd5e1)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 14px', borderRadius: 6, border: '1px solid var(--border, #E8E5DF)', background: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
               >
                 Close
               </button>
               <button
                 type="button"
                 onClick={() => handleEmergencyMessageTeacher(policyModalClass)}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #0284c7)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}
                 data-testid="emergency-message-teacher-btn"
               >
                 <Icon.chat size={14} /> Message Teacher

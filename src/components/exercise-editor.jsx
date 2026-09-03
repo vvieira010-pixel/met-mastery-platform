@@ -475,7 +475,7 @@ function SpeakEditor({ ex, update }) {
           </div>
         )}
         {uploadErr && (
-          <div style={{ ...hintText, color: 'var(--danger, #DC2626)' }}>{uploadErr}</div>
+          <div style={{ ...hintText, color: 'var(--danger, #A34E48)' }}>{uploadErr}</div>
         )}
         <input
           className="input" value={ex.imageUrl || ''}

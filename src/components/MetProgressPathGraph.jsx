@@ -5,9 +5,9 @@ import { asArray, getProgressStage } from '../pages/student-helpers.jsx';
 
 function getCefrBandInfo(score) {
   const s = Number(score) || 0;
-  if (s >= 65) return { level: 'B2+ / C1', label: 'Advanced / Exam Ready', color: '#0ea5e9' };
-  if (s >= 53) return { level: 'B2', label: 'Independent Passing Standard', color: '#16a34a' };
-  if (s >= 40) return { level: 'B1', label: 'Threshold / Developing', color: '#f59e0b' };
+  if (s >= 65) return { level: 'B2+ / C1', label: 'Advanced / Exam Ready', color: '#2D7A8C' };
+  if (s >= 53) return { level: 'B2', label: 'Independent Passing Standard', color: '#3D8C65' };
+  if (s >= 40) return { level: 'B1', label: 'Threshold / Developing', color: '#E08E45' };
   return { level: 'A2', label: 'Foundation Stage', color: '#8b5cf6' };
 }
 
@@ -30,18 +30,18 @@ function MetProgressTooltip({ active, payload, label, pathData = [], viewMode = 
 
   return (
     <div style={{
-      background: 'var(--surface, #1e293b)',
-      border: '1px solid var(--border, #334155)',
+      background: 'var(--surface, #2B454E)',
+      border: '1px solid var(--border, #2B454E)',
       borderRadius: 8,
       padding: '10px 14px',
       boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
       fontSize: '0.8rem',
-      color: 'var(--text, #f8fafc)',
+      color: 'var(--text, #FDFCF8)',
       minWidth: 180,
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, borderBottom: '1px solid var(--divider, rgba(255,255,255,0.1))', paddingBottom: 4 }}>
         <strong style={{ fontSize: '0.85rem' }}>{pt.checkpoint}</strong>
-        <span style={{ fontSize: '0.72rem', color: isProj ? 'var(--accent, #38bdf8)' : 'var(--muted, #94a3b8)' }}>
+        <span style={{ fontSize: '0.72rem', color: isProj ? 'var(--accent, #38bdf8)' : 'var(--muted, #6B7C80)' }}>
           {isProj ? 'Projected Goal' : pt.date}
         </span>
       </div>
@@ -50,7 +50,7 @@ function MetProgressTooltip({ active, payload, label, pathData = [], viewMode = 
         <span style={{ fontSize: '1.25rem', fontWeight: 800, color: cefr.color }}>
           {pt.overall}
         </span>
-        <span style={{ fontSize: '0.75rem', color: 'var(--muted, #94a3b8)' }}>/ 80 scaled</span>
+        <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>/ 80 scaled</span>
         <span style={{ marginLeft: 'auto', fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: 4, background: 'rgba(255,255,255,0.08)' }}>
           {pt.stage}
         </span>
@@ -58,9 +58,9 @@ function MetProgressTooltip({ active, payload, label, pathData = [], viewMode = 
 
       {viewMode === 'skills' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 8px', marginTop: 8, paddingTop: 6, borderTop: '1px solid var(--divider, rgba(255,255,255,0.1))', fontSize: '0.72rem' }}>
-          <span style={{ color: '#0284c7' }}>Listening: <strong>{pt.listening}</strong></span>
-          <span style={{ color: '#10b981' }}>Reading: <strong>{pt.reading}</strong></span>
-          <span style={{ color: '#f59e0b' }}>Speaking: <strong>{pt.speaking}</strong></span>
+          <span style={{ color: '#2D7A8C' }}>Listening: <strong>{pt.listening}</strong></span>
+          <span style={{ color: '#3D8C65' }}>Reading: <strong>{pt.reading}</strong></span>
+          <span style={{ color: '#E08E45' }}>Speaking: <strong>{pt.speaking}</strong></span>
           <span style={{ color: '#8b5cf6' }}>Writing: <strong>{pt.writing}</strong></span>
         </div>
       )}
@@ -218,7 +218,7 @@ export default function MetProgressPathGraph({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 12,
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.08))',
@@ -233,7 +233,7 @@ export default function MetProgressPathGraph({
             height: 36,
             borderRadius: 8,
             background: 'var(--primary-light, rgba(2, 132, 199, 0.12))',
-            color: 'var(--primary, #0284c7)',
+            color: 'var(--primary, #2D7A8C)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -241,17 +241,17 @@ export default function MetProgressPathGraph({
             <Icon.progress size={20} />
           </div>
           <div>
-            <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)' }} data-testid="progress-path-title">
+            <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }} data-testid="progress-path-title">
               Your MET progress path
             </h2>
-            <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: 'var(--muted, #64748b)' }}>
+            <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: 'var(--muted, #6B7C80)' }}>
               Scaled score trajectory across milestones toward the 53 (B2 Pass) and 65 (Exam Ready) targets.
             </p>
           </div>
         </div>
 
         {/* View Mode Toggle Button Group */}
-        <div style={{ display: 'flex', background: 'var(--bg, #f1f5f9)', borderRadius: 8, padding: 3, gap: 2 }}>
+        <div style={{ display: 'flex', background: 'var(--bg, #FDFCF8)', borderRadius: 8, padding: 3, gap: 2 }}>
           <button
             type="button"
             onClick={() => setViewMode('overall')}
@@ -263,7 +263,7 @@ export default function MetProgressPathGraph({
               fontSize: '0.78rem',
               fontWeight: 600,
               cursor: 'pointer',
-              color: viewMode === 'overall' ? 'var(--primary, #0284c7)' : 'var(--muted, #64748b)',
+              color: viewMode === 'overall' ? 'var(--primary, #2D7A8C)' : 'var(--muted, #6B7C80)',
               boxShadow: viewMode === 'overall' ? '0 1px 2px rgba(0,0,0,0.08)' : 'none',
               transition: 'all 0.15s ease',
             }}
@@ -282,7 +282,7 @@ export default function MetProgressPathGraph({
               fontSize: '0.78rem',
               fontWeight: 600,
               cursor: 'pointer',
-              color: viewMode === 'skills' ? 'var(--primary, #0284c7)' : 'var(--muted, #64748b)',
+              color: viewMode === 'skills' ? 'var(--primary, #2D7A8C)' : 'var(--muted, #6B7C80)',
               boxShadow: viewMode === 'skills' ? '0 1px 2px rgba(0,0,0,0.08)' : 'none',
               transition: 'all 0.15s ease',
             }}
@@ -302,19 +302,19 @@ export default function MetProgressPathGraph({
       }}>
         {/* Metric 1: Current Scaled Score */}
         <div style={{
-          background: 'var(--bg, #f8fafc)',
+          background: 'var(--bg, #FDFCF8)',
           borderRadius: 8,
           padding: '10px 14px',
-          border: '1px solid var(--border, #e2e8f0)',
+          border: '1px solid var(--border, #F6F4EE)',
         }}>
-          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #64748b)', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #6B7C80)', letterSpacing: '0.04em' }}>
             Current Scaled Score
           </span>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 2 }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text, #0f172a)' }}>
+            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text, #1A2E35)' }}>
               {currentPoint.overall}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>/ 80</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>/ 80</span>
           </div>
           <span style={{ fontSize: '0.7rem', fontWeight: 600, color: cefrInfo.color }}>
             Band {cefrInfo.level}
@@ -323,67 +323,67 @@ export default function MetProgressPathGraph({
 
         {/* Metric 2: B2 Benchmark Distance */}
         <div style={{
-          background: 'var(--bg, #f8fafc)',
+          background: 'var(--bg, #FDFCF8)',
           borderRadius: 8,
           padding: '10px 14px',
-          border: '1px solid var(--border, #e2e8f0)',
+          border: '1px solid var(--border, #F6F4EE)',
         }}>
-          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #64748b)', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #6B7C80)', letterSpacing: '0.04em' }}>
             B2 Benchmark (53)
           </span>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 2 }}>
             <span style={{
               fontSize: '1.4rem',
               fontWeight: 800,
-              color: deltaToB2Passing >= 0 ? 'var(--success, #16a34a)' : 'var(--accent, #0ea5e9)',
+              color: deltaToB2Passing >= 0 ? 'var(--success, #3D8C65)' : 'var(--accent, #2D7A8C)',
             }}>
               {deltaToB2Passing >= 0 ? `+${deltaToB2Passing}` : `${deltaToB2Passing}`}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>pts</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>pts</span>
           </div>
-          <span style={{ fontSize: '0.7rem', color: deltaToB2Passing >= 0 ? 'var(--success, #16a34a)' : 'var(--muted, #64748b)', fontWeight: 600 }}>
+          <span style={{ fontSize: '0.7rem', color: deltaToB2Passing >= 0 ? 'var(--success, #3D8C65)' : 'var(--muted, #6B7C80)', fontWeight: 600 }}>
             {deltaToB2Passing >= 0 ? 'Passing benchmark met' : `${Math.abs(deltaToB2Passing)} pts to B2 pass`}
           </span>
         </div>
 
         {/* Metric 3: Growth from Baseline */}
         <div style={{
-          background: 'var(--bg, #f8fafc)',
+          background: 'var(--bg, #FDFCF8)',
           borderRadius: 8,
           padding: '10px 14px',
-          border: '1px solid var(--border, #e2e8f0)',
+          border: '1px solid var(--border, #F6F4EE)',
         }}>
-          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #64748b)', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #6B7C80)', letterSpacing: '0.04em' }}>
             Trajectory Growth
           </span>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 2 }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: deltaFromBaseline >= 0 ? 'var(--primary, #0284c7)' : 'var(--muted, #64748b)' }}>
+            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: deltaFromBaseline >= 0 ? 'var(--primary, #2D7A8C)' : 'var(--muted, #6B7C80)' }}>
               {deltaFromBaseline >= 0 ? `+${deltaFromBaseline}` : deltaFromBaseline}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>pts</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>pts</span>
           </div>
-          <span style={{ fontSize: '0.7rem', color: 'var(--muted, #64748b)' }}>
+          <span style={{ fontSize: '0.7rem', color: 'var(--muted, #6B7C80)' }}>
             From baseline ({baselinePoint.overall})
           </span>
         </div>
 
         {/* Metric 4: Target Goal */}
         <div style={{
-          background: 'var(--bg, #f8fafc)',
+          background: 'var(--bg, #FDFCF8)',
           borderRadius: 8,
           padding: '10px 14px',
-          border: '1px solid var(--border, #e2e8f0)',
+          border: '1px solid var(--border, #F6F4EE)',
         }}>
-          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #64748b)', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted, #6B7C80)', letterSpacing: '0.04em' }}>
             Readiness Target
           </span>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 2 }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent, #0ea5e9)' }}>
+            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent, #2D7A8C)' }}>
               65
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>/ 80</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>/ 80</span>
           </div>
-          <span style={{ fontSize: '0.7rem', color: 'var(--muted, #64748b)' }}>
+          <span style={{ fontSize: '0.7rem', color: 'var(--muted, #6B7C80)' }}>
             Exam Ready (Stage 5)
           </span>
         </div>
@@ -397,22 +397,22 @@ export default function MetProgressPathGraph({
               <rechartsModules.AreaChart data={pathData} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="metPathGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--primary, #0284c7)" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="var(--primary, #0284c7)" stopOpacity={0.02} />
+                    <stop offset="5%" stopColor="var(--primary, #2D7A8C)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--primary, #2D7A8C)" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
                 <rechartsModules.CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
                 <rechartsModules.XAxis
                   dataKey="name"
-                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tick={{ fill: 'var(--muted, #6B7C80)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #F6F4EE)' }}
                   tickLine={false}
                 />
                 <rechartsModules.YAxis
                   domain={[20, 80]}
                   ticks={[20, 40, 53, 65, 80]}
-                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tick={{ fill: 'var(--muted, #6B7C80)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #F6F4EE)' }}
                   tickLine={false}
                 />
                 <rechartsModules.Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
@@ -420,27 +420,27 @@ export default function MetProgressPathGraph({
                 {/* Benchmark Reference Lines */}
                 <rechartsModules.ReferenceLine
                   y={53}
-                  stroke="#16a34a"
+                  stroke="#3D8C65"
                   strokeDasharray="4 4"
-                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#3D8C65', fontSize: 10, fontWeight: 700 }}
                 />
                 <rechartsModules.ReferenceLine
                   y={65}
-                  stroke="#0ea5e9"
+                  stroke="#2D7A8C"
                   strokeDasharray="4 4"
-                  label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: '#0ea5e9', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: '#2D7A8C', fontSize: 10, fontWeight: 700 }}
                 />
 
                 <rechartsModules.Area
                   type="monotone"
                   dataKey="overall"
                   name="Scaled Score"
-                  stroke="var(--primary, #0284c7)"
+                  stroke="var(--primary, #2D7A8C)"
                   strokeWidth={3}
                   fillOpacity={1}
                   fill="url(#metPathGradient)"
-                  dot={{ r: 5, fill: 'var(--primary, #0284c7)', strokeWidth: 2, stroke: '#ffffff' }}
-                  activeDot={{ r: 7, strokeWidth: 2, stroke: 'var(--primary, #0284c7)' }}
+                  dot={{ r: 5, fill: 'var(--primary, #2D7A8C)', strokeWidth: 2, stroke: '#ffffff' }}
+                  activeDot={{ r: 7, strokeWidth: 2, stroke: 'var(--primary, #2D7A8C)' }}
                 />
               </rechartsModules.AreaChart>
             ) : (
@@ -448,15 +448,15 @@ export default function MetProgressPathGraph({
                 <rechartsModules.CartesianGrid strokeDasharray="3 3" stroke="var(--divider, rgba(0,0,0,0.06))" vertical={false} />
                 <rechartsModules.XAxis
                   dataKey="name"
-                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tick={{ fill: 'var(--muted, #6B7C80)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #F6F4EE)' }}
                   tickLine={false}
                 />
                 <rechartsModules.YAxis
                   domain={[20, 80]}
                   ticks={[20, 40, 53, 65, 80]}
-                  tick={{ fill: 'var(--muted, #64748b)', fontSize: 11 }}
-                  axisLine={{ stroke: 'var(--divider, #e2e8f0)' }}
+                  tick={{ fill: 'var(--muted, #6B7C80)', fontSize: 11 }}
+                  axisLine={{ stroke: 'var(--divider, #F6F4EE)' }}
                   tickLine={false}
                 />
                 <rechartsModules.Tooltip content={<MetProgressTooltip pathData={pathData} viewMode={viewMode} />} />
@@ -464,14 +464,14 @@ export default function MetProgressPathGraph({
 
                 <rechartsModules.ReferenceLine
                   y={53}
-                  stroke="#16a34a"
+                  stroke="#3D8C65"
                   strokeDasharray="4 4"
-                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#16a34a', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#3D8C65', fontSize: 10, fontWeight: 700 }}
                 />
 
-                <rechartsModules.Line type="monotone" dataKey="listening" name="Listening" stroke="#0284c7" strokeWidth={2} dot={{ r: 4 }} />
-                <rechartsModules.Line type="monotone" dataKey="reading" name="Reading" stroke="#10b981" strokeWidth={2} dot={{ r: 4 }} />
-                <rechartsModules.Line type="monotone" dataKey="speaking" name="Speaking" stroke="#f59e0b" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="listening" name="Listening" stroke="#2D7A8C" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="reading" name="Reading" stroke="#3D8C65" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="speaking" name="Speaking" stroke="#E08E45" strokeWidth={2} dot={{ r: 4 }} />
                 <rechartsModules.Line type="monotone" dataKey="writing" name="Writing" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 4 }} />
               </rechartsModules.LineChart>
             )}
@@ -516,7 +516,7 @@ export default function MetProgressPathGraph({
       <div style={{
         marginTop: 18,
         paddingTop: 14,
-        borderTop: '1px solid var(--border, #e2e8f0)',
+        borderTop: '1px solid var(--border, #F6F4EE)',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
@@ -525,7 +525,7 @@ export default function MetProgressPathGraph({
         fontSize: '0.78rem',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontWeight: 600, color: 'var(--text, #0f172a)' }}>Path Milestones:</span>
+          <span style={{ fontWeight: 600, color: 'var(--text, #1A2E35)' }}>Path Milestones:</span>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {pathData.map((pt, idx) => {
               const isCurrent = pt.name === currentPoint.name;
@@ -542,18 +542,18 @@ export default function MetProgressPathGraph({
                     fontSize: '0.72rem',
                     fontWeight: isCurrent ? 700 : 500,
                     background: isCurrent
-                      ? 'var(--primary, #0284c7)'
+                      ? 'var(--primary, #2D7A8C)'
                       : isDone
-                      ? 'var(--bg, #f1f5f9)'
+                      ? 'var(--bg, #FDFCF8)'
                       : 'transparent',
                     color: isCurrent
                       ? '#ffffff'
                       : isDone
-                      ? 'var(--text, #0f172a)'
-                      : 'var(--muted, #94a3b8)',
+                      ? 'var(--text, #1A2E35)'
+                      : 'var(--muted, #6B7C80)',
                     border: isCurrent
-                      ? '1px solid var(--primary, #0284c7)'
-                      : '1px solid var(--border, #e2e8f0)',
+                      ? '1px solid var(--primary, #2D7A8C)'
+                      : '1px solid var(--border, #F6F4EE)',
                   }}
                 >
                   <span>{idx + 1}.</span>
@@ -565,7 +565,7 @@ export default function MetProgressPathGraph({
           </div>
         </div>
 
-        <div style={{ color: 'var(--muted, #64748b)', fontSize: '0.75rem' }}>
+        <div style={{ color: 'var(--muted, #6B7C80)', fontSize: '0.75rem' }}>
           Passing threshold: <strong>53</strong> · Target mastery: <strong>65+</strong>
         </div>
       </div>

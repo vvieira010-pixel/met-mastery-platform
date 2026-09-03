@@ -236,7 +236,7 @@ export default function BaselineDiagnosticModal({
       <div
         style={{
           background: 'var(--surface, #ffffff)',
-          border: '1px solid var(--border, #e2e8f0)',
+          border: '1px solid var(--border, #F6F4EE)',
           borderRadius: 14,
           width: '100%',
           maxWidth: 620,
@@ -259,7 +259,7 @@ export default function BaselineDiagnosticModal({
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            color: 'var(--muted, #64748b)',
+            color: 'var(--muted, #6B7C80)',
             padding: 6,
             borderRadius: 6,
           }}
@@ -276,7 +276,7 @@ export default function BaselineDiagnosticModal({
                 height: 56,
                 borderRadius: '50%',
                 background: 'rgba(22, 163, 74, 0.12)',
-                color: '#16a34a',
+                color: '#3D8C65',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -285,10 +285,10 @@ export default function BaselineDiagnosticModal({
             >
               <Icon.check size={32} />
             </div>
-            <h2 id="baseline-diag-title" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text, #0f172a)', margin: '0 0 6px' }}>
+            <h2 id="baseline-diag-title" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text, #1A2E35)', margin: '0 0 6px' }}>
               Baseline Diagnosis Calibrated!
             </h2>
-            <p style={{ fontSize: '0.85rem', color: 'var(--muted, #64748b)', margin: '0 0 20px' }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--muted, #6B7C80)', margin: '0 0 20px' }}>
               Your answers have been mapped directly to the Michigan English Test (MET) 0–80 scaled score.
             </p>
 
@@ -298,34 +298,34 @@ export default function BaselineDiagnosticModal({
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
                 gap: 10,
-                background: 'var(--bg, #f8fafc)',
+                background: 'var(--bg, #FDFCF8)',
                 padding: 16,
                 borderRadius: 10,
-                border: '1px solid var(--border, #e2e8f0)',
+                border: '1px solid var(--border, #F6F4EE)',
                 marginBottom: 24,
               }}
             >
               <div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #64748b)', textTransform: 'uppercase' }}>Listening</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.listening >= 53 ? '#16a34a' : '#0284c7' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Listening</span>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.listening >= 53 ? '#3D8C65' : '#2D7A8C' }}>
                   {completedResult.listening}
                 </div>
               </div>
               <div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #64748b)', textTransform: 'uppercase' }}>Reading</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.reading >= 53 ? '#16a34a' : '#0284c7' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Reading</span>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.reading >= 53 ? '#3D8C65' : '#2D7A8C' }}>
                   {completedResult.reading}
                 </div>
               </div>
               <div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #64748b)', textTransform: 'uppercase' }}>Writing</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.writing >= 53 ? '#16a34a' : '#0284c7' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Writing</span>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.writing >= 53 ? '#3D8C65' : '#2D7A8C' }}>
                   {completedResult.writing}
                 </div>
               </div>
               <div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #64748b)', textTransform: 'uppercase' }}>Speaking</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.speaking >= 53 ? '#16a34a' : '#0284c7' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Speaking</span>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.speaking >= 53 ? '#3D8C65' : '#2D7A8C' }}>
                   {completedResult.speaking}
                 </div>
               </div>
@@ -333,12 +333,12 @@ export default function BaselineDiagnosticModal({
 
             <div style={{ padding: '12px 16px', background: 'rgba(2, 132, 199, 0.08)', borderRadius: 8, marginBottom: 24, textAlign: 'left' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <strong style={{ fontSize: '0.9rem', color: '#0284c7' }}>Overall Scaled Score: {completedResult.overall} / 80</strong>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? '#16a34a' : '#f59e0b' }}>
+                <strong style={{ fontSize: '0.9rem', color: '#2D7A8C' }}>Overall Scaled Score: {completedResult.overall} / 80</strong>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? '#3D8C65' : '#E08E45' }}>
                   {completedResult.overall >= 53 ? 'B2 Independent' : 'B1 Developing'}
                 </span>
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--muted, #64748b)' }}>
+              <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--muted, #6B7C80)' }}>
                 Target benchmark for Michigan English Test certification is 53+ pts across all sections.
               </p>
             </div>
@@ -349,7 +349,7 @@ export default function BaselineDiagnosticModal({
               style={{
                 width: '100%',
                 padding: '10px 16px',
-                background: 'var(--primary, #0284c7)',
+                background: 'var(--primary, #2D7A8C)',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: 8,
@@ -367,40 +367,40 @@ export default function BaselineDiagnosticModal({
           <div>
             <div style={{ marginBottom: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary, #0284c7)', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary, #2D7A8C)', letterSpacing: '0.05em' }}>
                   Baseline Diagnostic · Step {currentStep + 1} of {BASELINE_QUESTIONS.length}
                 </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
                   Section: {currentQ.section}
                 </span>
               </div>
               {/* Progress Bar */}
-              <div style={{ width: '100%', height: 4, background: 'var(--bg, #f1f5f9)', borderRadius: 999, overflow: 'hidden' }}>
+              <div style={{ width: '100%', height: 4, background: 'var(--bg, #FDFCF8)', borderRadius: 999, overflow: 'hidden' }}>
                 <div
                   style={{
                     width: `${((currentStep + 1) / BASELINE_QUESTIONS.length) * 100}%`,
                     height: '100%',
-                    background: 'var(--primary, #0284c7)',
+                    background: 'var(--primary, #2D7A8C)',
                     transition: 'width 0.3s ease',
                   }}
                 />
               </div>
             </div>
 
-            <h2 id="baseline-diag-title" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)', margin: '0 0 8px' }}>
+            <h2 id="baseline-diag-title" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)', margin: '0 0 8px' }}>
               {currentQ.title}
             </h2>
 
             <div
               style={{
-                background: 'var(--bg, #f8fafc)',
-                border: '1px solid var(--border, #e2e8f0)',
+                background: 'var(--bg, #FDFCF8)',
+                border: '1px solid var(--border, #F6F4EE)',
                 borderRadius: 8,
                 padding: '12px 14px',
                 marginBottom: 16,
                 fontSize: '0.84rem',
                 lineHeight: 1.5,
-                color: 'var(--text, #1e293b)',
+                color: 'var(--text, #2B454E)',
               }}
             >
               {currentQ.prompt}
@@ -408,7 +408,7 @@ export default function BaselineDiagnosticModal({
 
             {/* Question Text */}
             {currentQ.question && (
-              <p style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text, #0f172a)', marginBottom: 12 }}>
+              <p style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text, #1A2E35)', marginBottom: 12 }}>
                 {currentQ.question}
               </p>
             )}
@@ -427,9 +427,9 @@ export default function BaselineDiagnosticModal({
                         textAlign: 'left',
                         padding: '10px 14px',
                         borderRadius: 8,
-                        border: isSelected ? '2px solid var(--primary, #0284c7)' : '1px solid var(--border, #e2e8f0)',
+                        border: isSelected ? '2px solid var(--primary, #2D7A8C)' : '1px solid var(--border, #F6F4EE)',
                         background: isSelected ? 'rgba(2, 132, 199, 0.06)' : 'var(--surface, #ffffff)',
-                        color: 'var(--text, #0f172a)',
+                        color: 'var(--text, #1A2E35)',
                         fontSize: '0.82rem',
                         cursor: 'pointer',
                         display: 'flex',
@@ -443,7 +443,7 @@ export default function BaselineDiagnosticModal({
                           width: 18,
                           height: 18,
                           borderRadius: '50%',
-                          border: isSelected ? '5px solid var(--primary, #0284c7)' : '2px solid var(--border, #cbd5e1)',
+                          border: isSelected ? '5px solid var(--primary, #2D7A8C)' : '2px solid var(--border, #E8E5DF)',
                           display: 'inline-block',
                           flexShrink: 0,
                         }}
@@ -467,16 +467,16 @@ export default function BaselineDiagnosticModal({
                     width: '100%',
                     padding: '10px 12px',
                     borderRadius: 8,
-                    border: '1px solid var(--border, #cbd5e1)',
+                    border: '1px solid var(--border, #E8E5DF)',
                     fontSize: '0.84rem',
                     lineHeight: 1.5,
                     fontFamily: 'inherit',
-                    color: 'var(--text, #0f172a)',
+                    color: 'var(--text, #1A2E35)',
                     resize: 'vertical',
                   }}
                   data-testid="baseline-writing-input"
                 />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--muted, #64748b)', marginTop: 4 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--muted, #6B7C80)', marginTop: 4 }}>
                   <span>Word count: {answers.writingText.trim().split(/\s+/).filter(Boolean).length}</span>
                   <span>Minimum recommendation: 25–40 words</span>
                 </div>
@@ -486,7 +486,7 @@ export default function BaselineDiagnosticModal({
             {/* Speaking Rubric Checklist */}
             {currentQ.isSpeakingSelfCheck && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
-                <p style={{ fontSize: '0.78rem', color: 'var(--muted, #64748b)', margin: '0 0 6px' }}>
+                <p style={{ fontSize: '0.78rem', color: 'var(--muted, #6B7C80)', margin: '0 0 6px' }}>
                   Evaluate your spoken performance against B2 criteria:
                 </p>
                 {currentQ.rubricCriteria.map(crit => {
@@ -499,8 +499,8 @@ export default function BaselineDiagnosticModal({
                         alignItems: 'flex-start',
                         gap: 10,
                         padding: '10px 12px',
-                        background: isChecked ? 'rgba(22, 163, 74, 0.06)' : 'var(--bg, #f8fafc)',
-                        border: isChecked ? '1px solid #16a34a' : '1px solid var(--border, #e2e8f0)',
+                        background: isChecked ? 'rgba(22, 163, 74, 0.06)' : 'var(--bg, #FDFCF8)',
+                        border: isChecked ? '1px solid #3D8C65' : '1px solid var(--border, #F6F4EE)',
                         borderRadius: 8,
                         cursor: 'pointer',
                         fontSize: '0.8rem',
@@ -512,19 +512,19 @@ export default function BaselineDiagnosticModal({
                         onChange={() => handleToggleChecklist(crit.id)}
                         style={{ marginTop: 3 }}
                       />
-                      <span style={{ color: 'var(--text, #0f172a)' }}>{crit.label}</span>
+                      <span style={{ color: 'var(--text, #1A2E35)' }}>{crit.label}</span>
                     </label>
                   );
                 })}
               </div>
             )}
 
-            <div style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)', marginBottom: 20, fontStyle: 'italic' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)', marginBottom: 20, fontStyle: 'italic' }}>
               💡 {currentQ.benchmarkNote}
             </div>
 
             {/* Navigation & Submit Buttons */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, borderTop: '1px solid var(--border, #e2e8f0)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, borderTop: '1px solid var(--border, #F6F4EE)' }}>
               <button
                 type="button"
                 onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
@@ -532,13 +532,13 @@ export default function BaselineDiagnosticModal({
                 style={{
                   padding: '8px 14px',
                   background: 'none',
-                  border: '1px solid var(--border, #e2e8f0)',
+                  border: '1px solid var(--border, #F6F4EE)',
                   borderRadius: 6,
                   fontSize: '0.8rem',
                   fontWeight: 600,
                   cursor: currentStep === 0 ? 'not-allowed' : 'pointer',
                   opacity: currentStep === 0 ? 0.4 : 1,
-                  color: 'var(--text, #0f172a)',
+                  color: 'var(--text, #1A2E35)',
                 }}
               >
                 Back
@@ -550,7 +550,7 @@ export default function BaselineDiagnosticModal({
                   onClick={() => setCurrentStep(prev => prev + 1)}
                   style={{
                     padding: '8px 18px',
-                    background: 'var(--primary, #0284c7)',
+                    background: 'var(--primary, #2D7A8C)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 6,
@@ -569,7 +569,7 @@ export default function BaselineDiagnosticModal({
                   disabled={submitting}
                   style={{
                     padding: '8px 18px',
-                    background: '#16a34a',
+                    background: '#3D8C65',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 6,

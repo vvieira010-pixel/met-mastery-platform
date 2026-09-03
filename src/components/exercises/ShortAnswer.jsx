@@ -145,7 +145,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
             )}
             {taskConfig.trap && (
               <div style={{ padding: '8px 12px', background: 'var(--ex-wrong-bg)', border: '1px solid var(--ex-wrong-border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#DC2626', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#A34E48', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
                 <span style={{ fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{taskConfig.trap}</span>
               </div>
             )}
@@ -178,7 +178,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '11px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
-              background: '#DC2626', color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
+              background: '#A34E48', color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
             }}
           >
             <span style={{ width: 10, height: 10, background: '#fff', display: 'inline-block', borderRadius: 2 }} />
@@ -186,7 +186,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF4D4D', display: 'inline-block', animation: 'pulse 1s infinite' }} />
-            <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: '#DC2626', fontVariantNumeric: 'tabular-nums' }}>{fmt(seconds)}</span>
+            <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: '#A34E48', fontVariantNumeric: 'tabular-nums' }}>{fmt(seconds)}</span>
           </div>
         </div>
       )}
@@ -337,7 +337,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
 
             {taskConfig.trap && (
               <div style={{ padding: '8px 12px', background: 'var(--ex-wrong-bg)', border: '1px solid var(--ex-wrong-border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#DC2626', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#A34E48', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
                 <span style={{ fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{taskConfig.trap}</span>
               </div>
             )}

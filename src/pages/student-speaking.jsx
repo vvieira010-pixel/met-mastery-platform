@@ -46,7 +46,7 @@ function LiveTranscript({ lines }) {
                 className="rounded"
                 style={seg.highlight ? {
                   background: seg.highlight === 'good' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 171, 123, 0.2)',
-                  borderBottom: `2px solid ${seg.highlight === 'good' ? '#22c55e' : '#FF7A31'}`,
+                  borderBottom: `2px solid ${seg.highlight === 'good' ? '#3D8C65' : '#FF7A31'}`,
                   padding: '0 4px',
                 } : {}}
                 title={seg.tip}
@@ -58,7 +58,7 @@ function LiveTranscript({ lines }) {
         ))}
       </div>
       <div className="flex gap-4 mt-3" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
-        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full" style={{ background: '#22c55e' }} /> Excellent</div>
+        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full" style={{ background: '#3D8C65' }} /> Excellent</div>
         <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full" style={{ background: '#FF7A31' }} /> Needs Vocab Upgrade</div>
       </div>
     </div>

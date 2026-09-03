@@ -270,7 +270,7 @@ export default function ActionOrientedEvidenceCards({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 'var(--radius-lg, 12px)',
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05))',
@@ -289,34 +289,34 @@ export default function ActionOrientedEvidenceCards({
                 padding: '2px 8px',
                 borderRadius: 4,
                 background: 'rgba(2, 132, 199, 0.1)',
-                color: 'var(--primary, #0284c7)',
+                color: 'var(--primary, #2D7A8C)',
               }}
             >
               Action-Oriented Evidence Cards
             </span>
             {nextClass && (
-              <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+              <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
                 for Class on {nextClass.date || 'Next Session'}
               </span>
             )}
           </div>
-          <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
             Submit Practice Samples Directly to Teacher Review Queue
           </h3>
-          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
             Short recordings or writing notes submitted here are routed straight into your teacher's grading workspace.
           </p>
         </div>
 
         {/* Skill Type Switcher */}
-        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #f1f5f9)', padding: 3, borderRadius: 8 }}>
+        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #FDFCF8)', padding: 3, borderRadius: 8 }}>
           <button
             type="button"
             onClick={() => setActiveTab('speaking')}
             style={{
               border: 'none',
               background: activeTab === 'speaking' ? 'var(--surface, #ffffff)' : 'transparent',
-              color: activeTab === 'speaking' ? 'var(--text, #0f172a)' : 'var(--muted, #64748b)',
+              color: activeTab === 'speaking' ? 'var(--text, #1A2E35)' : 'var(--muted, #6B7C80)',
               fontWeight: activeTab === 'speaking' ? 700 : 500,
               fontSize: '0.78rem',
               padding: '5px 12px',
@@ -336,7 +336,7 @@ export default function ActionOrientedEvidenceCards({
             style={{
               border: 'none',
               background: activeTab === 'writing' ? 'var(--surface, #ffffff)' : 'transparent',
-              color: activeTab === 'writing' ? 'var(--text, #0f172a)' : 'var(--muted, #64748b)',
+              color: activeTab === 'writing' ? 'var(--text, #1A2E35)' : 'var(--muted, #6B7C80)',
               fontWeight: activeTab === 'writing' ? 700 : 500,
               fontSize: '0.78rem',
               padding: '5px 12px',
@@ -357,8 +357,8 @@ export default function ActionOrientedEvidenceCards({
       {activeTab === 'speaking' && (
         <div
           style={{
-            background: 'var(--bg, #f8fafc)',
-            border: '1px solid var(--border, #e2e8f0)',
+            background: 'var(--bg, #FDFCF8)',
+            border: '1px solid var(--border, #F6F4EE)',
             borderRadius: 10,
             padding: 16,
           }}
@@ -367,14 +367,14 @@ export default function ActionOrientedEvidenceCards({
           {/* Authentic MET Prompt Box */}
           <div style={{ marginBottom: 14 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-              <strong style={{ fontSize: '0.85rem', color: 'var(--text, #0f172a)' }}>
+              <strong style={{ fontSize: '0.85rem', color: 'var(--text, #1A2E35)' }}>
                 Target Task: 45-Second Oral Response with One Concrete Example
               </strong>
-              <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '1px 6px', borderRadius: 4 }}>
+              <span style={{ fontSize: '0.7rem', color: '#3D8C65', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '1px 6px', borderRadius: 4 }}>
                 MET Stage 3–5
               </span>
             </div>
-            <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-2, #334155)', lineHeight: 1.5 }}>
+            <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-2, #2B454E)', lineHeight: 1.5 }}>
               <em>"Describe a challenging decision you faced recently. Explain the situation, what choice you made, and what the final outcome was. Aim for continuous flow with clear discourse linkers."</em>
             </p>
           </div>
@@ -388,7 +388,7 @@ export default function ActionOrientedEvidenceCards({
               gap: 12,
               padding: '12px 14px',
               background: 'var(--surface, #ffffff)',
-              border: '1px solid var(--border, #e2e8f0)',
+              border: '1px solid var(--border, #F6F4EE)',
               borderRadius: 8,
               marginBottom: 12,
             }}
@@ -401,7 +401,7 @@ export default function ActionOrientedEvidenceCards({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  background: '#ef4444',
+                  background: '#A34E48',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 6,
@@ -422,7 +422,7 @@ export default function ActionOrientedEvidenceCards({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  background: '#1e293b',
+                  background: '#2B454E',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 6,
@@ -439,7 +439,7 @@ export default function ActionOrientedEvidenceCards({
             )}
 
             {/* Timer Display */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 700, color: isRecording ? '#ef4444' : 'var(--text, #0f172a)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 700, color: isRecording ? '#A34E48' : 'var(--text, #1A2E35)' }}>
               <Icon.clock size={15} />
               <span>{Math.floor(recordingTime / 60)}:{String(recordingTime % 60).padStart(2, '0')} / 0:45</span>
             </div>
@@ -452,7 +452,7 @@ export default function ActionOrientedEvidenceCards({
                   type="button"
                   onClick={() => { setAudioBlobUrl(null); setAudioFile(null); }}
                   title="Clear recording"
-                  style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 4 }}
+                  style={{ background: 'none', border: 'none', color: '#6B7C80', cursor: 'pointer', padding: 4 }}
                 >
                   <Icon.trash size={15} />
                 </button>
@@ -469,7 +469,7 @@ export default function ActionOrientedEvidenceCards({
           {/* Alternative File Upload or Speaking Notes */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                 Or Upload Recorded Audio (.mp3, .wav, .m4a):
               </label>
               <input
@@ -480,14 +480,14 @@ export default function ActionOrientedEvidenceCards({
                 data-testid="upload-audio-input"
               />
               {audioFile && (
-                <span style={{ fontSize: '0.72rem', color: '#16a34a', display: 'block', marginTop: 2 }}>
+                <span style={{ fontSize: '0.72rem', color: '#3D8C65', display: 'block', marginTop: 2 }}>
                   Selected: {audioFile.name}
                 </span>
               )}
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #64748b)', marginBottom: 4 }}>
+              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted, #6B7C80)', marginBottom: 4 }}>
                 Speaking Outline or Transcript Notes:
               </label>
               <input
@@ -499,7 +499,7 @@ export default function ActionOrientedEvidenceCards({
                   width: '100%',
                   padding: '6px 10px',
                   borderRadius: 6,
-                  border: '1px solid var(--border, #cbd5e1)',
+                  border: '1px solid var(--border, #E8E5DF)',
                   fontSize: '0.8rem',
                 }}
               />
@@ -516,7 +516,7 @@ export default function ActionOrientedEvidenceCards({
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                background: 'var(--primary, #0284c7)',
+                background: 'var(--primary, #2D7A8C)',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: 6,
@@ -538,18 +538,18 @@ export default function ActionOrientedEvidenceCards({
       {activeTab === 'writing' && (
         <div
           style={{
-            background: 'var(--bg, #f8fafc)',
-            border: '1px solid var(--border, #e2e8f0)',
+            background: 'var(--bg, #FDFCF8)',
+            border: '1px solid var(--border, #F6F4EE)',
             borderRadius: 10,
             padding: 16,
           }}
           data-testid="writing-evidence-card"
         >
           <div style={{ marginBottom: 12 }}>
-            <strong style={{ fontSize: '0.85rem', color: 'var(--text, #0f172a)' }}>
+            <strong style={{ fontSize: '0.85rem', color: 'var(--text, #1A2E35)' }}>
               Target Task: Short Academic Argument / Response
             </strong>
-            <p style={{ margin: '3px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+            <p style={{ margin: '3px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
               Type your draft below or upload your text/document file for pre-class teacher review.
             </p>
           </div>
@@ -563,7 +563,7 @@ export default function ActionOrientedEvidenceCards({
               width: '100%',
               padding: '10px 12px',
               borderRadius: 8,
-              border: '1px solid var(--border, #cbd5e1)',
+              border: '1px solid var(--border, #E8E5DF)',
               fontSize: '0.82rem',
               lineHeight: 1.5,
               fontFamily: 'inherit',
@@ -574,7 +574,7 @@ export default function ActionOrientedEvidenceCards({
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
             <div>
-              <label style={{ fontSize: '0.74rem', color: 'var(--muted, #64748b)', marginRight: 6 }}>
+              <label style={{ fontSize: '0.74rem', color: 'var(--muted, #6B7C80)', marginRight: 6 }}>
                 Or attach file (.txt, .pdf, .docx):
               </label>
               <input
@@ -584,7 +584,7 @@ export default function ActionOrientedEvidenceCards({
                 style={{ fontSize: '0.76rem' }}
               />
               {writingFile && (
-                <span style={{ fontSize: '0.72rem', color: '#16a34a', display: 'block', marginTop: 2 }}>
+                <span style={{ fontSize: '0.72rem', color: '#3D8C65', display: 'block', marginTop: 2 }}>
                   Attached: {writingFile.name}
                 </span>
               )}
@@ -598,7 +598,7 @@ export default function ActionOrientedEvidenceCards({
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                background: 'var(--primary, #0284c7)',
+                background: 'var(--primary, #2D7A8C)',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: 6,
@@ -618,9 +618,9 @@ export default function ActionOrientedEvidenceCards({
 
       {/* Submitted Queue Status List */}
       {submittedHistory.length > 0 && (
-        <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border, #e2e8f0)' }}>
+        <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border, #F6F4EE)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted, #64748b)', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>
               Your Submissions in Review Queue ({submittedHistory.length})
             </span>
           </div>
@@ -633,17 +633,17 @@ export default function ActionOrientedEvidenceCards({
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '8px 12px',
-                  background: 'var(--bg, #f8fafc)',
+                  background: 'var(--bg, #FDFCF8)',
                   borderRadius: 6,
                   fontSize: '0.78rem',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: '#f59e0b' }} /> : <Icon.write size={14} style={{ color: '#8b5cf6' }} />}
-                  <span style={{ fontWeight: 600, color: 'var(--text, #0f172a)' }}>{item.title}</span>
+                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: '#E08E45' }} /> : <Icon.write size={14} style={{ color: '#8b5cf6' }} />}
+                  <span style={{ fontWeight: 600, color: 'var(--text, #1A2E35)' }}>{item.title}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
                     {new Date(item.submittedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
                   </span>
                   <span
@@ -653,7 +653,7 @@ export default function ActionOrientedEvidenceCards({
                       padding: '2px 6px',
                       borderRadius: 4,
                       background: 'rgba(2, 132, 199, 0.1)',
-                      color: 'var(--primary, #0284c7)',
+                      color: 'var(--primary, #2D7A8C)',
                     }}
                   >
                     In Review Queue

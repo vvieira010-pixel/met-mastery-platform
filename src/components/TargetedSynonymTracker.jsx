@@ -177,7 +177,7 @@ export default function TargetedSynonymTracker({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 'var(--radius-lg, 12px)',
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05))',
@@ -201,14 +201,14 @@ export default function TargetedSynonymTracker({
             >
               Vocabulary & Logistics Integration
             </span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
               JSON-Driven Academic Lexicon
             </span>
           </div>
-          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
             Targeted Synonym Tracker: B1 → B2
           </h3>
-          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
             Tracks your active vocabulary upgrade from colloquial B1 phrasing to high-yield B2 equivalents based on your recent homework.
           </p>
         </div>
@@ -216,11 +216,11 @@ export default function TargetedSynonymTracker({
         {/* Progress Metric Badges */}
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <div style={{ padding: '6px 12px', background: 'rgba(22, 163, 74, 0.1)', borderRadius: 8, textAlign: 'center' }}>
-            <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700, display: 'block' }}>Adopted</span>
+            <span style={{ fontSize: '0.7rem', color: '#3D8C65', fontWeight: 700, display: 'block' }}>Adopted</span>
             <strong style={{ fontSize: '1.05rem', color: '#15803d' }}>{adoptedCount} / {processedList.length}</strong>
           </div>
           <div style={{ padding: '6px 12px', background: 'rgba(2, 132, 199, 0.1)', borderRadius: 8, textAlign: 'center' }}>
-            <span style={{ fontSize: '0.7rem', color: '#0284c7', fontWeight: 700, display: 'block' }}>Practicing</span>
+            <span style={{ fontSize: '0.7rem', color: '#2D7A8C', fontWeight: 700, display: 'block' }}>Practicing</span>
             <strong style={{ fontSize: '1.05rem', color: '#0369a1' }}>{inProgressCount}</strong>
           </div>
         </div>
@@ -239,20 +239,20 @@ export default function TargetedSynonymTracker({
               width: '100%',
               padding: '8px 12px 8px 32px',
               borderRadius: 8,
-              border: '1px solid var(--border, #cbd5e1)',
+              border: '1px solid var(--border, #E8E5DF)',
               fontSize: '0.8rem',
-              background: 'var(--bg, #f8fafc)',
+              background: 'var(--bg, #FDFCF8)',
             }}
             data-testid="synonym-search-input"
           />
-          <span style={{ position: 'absolute', left: 10, top: 9, color: 'var(--muted, #64748b)' }}>
+          <span style={{ position: 'absolute', left: 10, top: 9, color: 'var(--muted, #6B7C80)' }}>
             <Icon.search size={14} />
           </span>
           {searchTerm && (
             <button
               type="button"
               onClick={() => setSearchTerm('')}
-              style={{ position: 'absolute', right: 10, top: 9, background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+              style={{ position: 'absolute', right: 10, top: 9, background: 'none', border: 'none', color: '#6B7C80', cursor: 'pointer' }}
             >
               <Icon.close size={14} />
             </button>
@@ -260,7 +260,7 @@ export default function TargetedSynonymTracker({
         </div>
 
         {/* Status Filters */}
-        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #f1f5f9)', padding: 3, borderRadius: 8 }}>
+        <div style={{ display: 'flex', gap: 4, background: 'var(--bg, #FDFCF8)', padding: 3, borderRadius: 8 }}>
           {[
             { id: 'all', label: 'All (10)' },
             { id: 'adopted', label: 'Adopted' },
@@ -274,7 +274,7 @@ export default function TargetedSynonymTracker({
               style={{
                 border: 'none',
                 background: filterStatus === f.id ? 'var(--surface, #ffffff)' : 'transparent',
-                color: filterStatus === f.id ? 'var(--text, #0f172a)' : 'var(--muted, #64748b)',
+                color: filterStatus === f.id ? 'var(--text, #1A2E35)' : 'var(--muted, #6B7C80)',
                 fontWeight: filterStatus === f.id ? 700 : 500,
                 fontSize: '0.74rem',
                 padding: '5px 10px',
@@ -301,8 +301,8 @@ export default function TargetedSynonymTracker({
                 gap: 12,
                 padding: '12px 14px',
                 borderRadius: 8,
-                background: isAdopted ? 'rgba(22, 163, 74, 0.04)' : 'var(--bg, #f8fafc)',
-                border: `1px solid ${isAdopted ? 'rgba(22, 163, 74, 0.3)' : 'var(--border, #e2e8f0)'}`,
+                background: isAdopted ? 'rgba(22, 163, 74, 0.04)' : 'var(--bg, #FDFCF8)',
+                border: `1px solid ${isAdopted ? 'rgba(22, 163, 74, 0.3)' : 'var(--border, #F6F4EE)'}`,
                 transition: 'all 0.15s ease',
               }}
               data-testid={`synonym-item-${item.id}`}
@@ -313,7 +313,7 @@ export default function TargetedSynonymTracker({
                   width: 26,
                   height: 26,
                   borderRadius: '50%',
-                  background: isAdopted ? '#16a34a' : 'var(--border, #cbd5e1)',
+                  background: isAdopted ? '#3D8C65' : 'var(--border, #E8E5DF)',
                   color: '#ffffff',
                   fontSize: '0.75rem',
                   fontWeight: 800,
@@ -335,7 +335,7 @@ export default function TargetedSynonymTracker({
                     style={{
                       fontSize: '0.85rem',
                       fontWeight: 600,
-                      color: '#ef4444',
+                      color: '#A34E48',
                       background: 'rgba(239, 68, 68, 0.1)',
                       padding: '2px 8px',
                       borderRadius: 4,
@@ -345,7 +345,7 @@ export default function TargetedSynonymTracker({
                     B1: {item.b1Word}
                   </span>
 
-                  <span style={{ color: 'var(--muted, #64748b)', fontSize: '0.8rem' }}>→</span>
+                  <span style={{ color: 'var(--muted, #6B7C80)', fontSize: '0.8rem' }}>→</span>
 
                   {/* B2 Equivalents */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
@@ -355,7 +355,7 @@ export default function TargetedSynonymTracker({
                         style={{
                           fontSize: '0.85rem',
                           fontWeight: 700,
-                          color: '#16a34a',
+                          color: '#3D8C65',
                           background: 'rgba(22, 163, 74, 0.12)',
                           padding: '2px 8px',
                           borderRadius: 4,
@@ -367,15 +367,15 @@ export default function TargetedSynonymTracker({
                   </div>
 
                   {/* Context Badge */}
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--muted, #64748b)' }}>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--muted, #6B7C80)' }}>
                     From: <em>{item.homeworkSource}</em>
                   </span>
                 </div>
 
                 {/* Example Comparison Sentence */}
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-2, #334155)', lineHeight: 1.45, marginTop: 4 }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-2, #2B454E)', lineHeight: 1.45, marginTop: 4 }}>
                   <div style={{ fontStyle: 'italic', marginBottom: 2 }}>
-                    <span style={{ color: '#059669', fontWeight: 600 }}>Upgraded In Context:</span> {item.exampleB2}
+                    <span style={{ color: '#3D8C65', fontWeight: 600 }}>Upgraded In Context:</span> {item.exampleB2}
                   </div>
                 </div>
               </div>
@@ -389,8 +389,8 @@ export default function TargetedSynonymTracker({
                   padding: '6px 12px',
                   borderRadius: 6,
                   border: 'none',
-                  background: isAdopted ? '#16a34a' : 'rgba(2, 132, 199, 0.1)',
-                  color: isAdopted ? '#ffffff' : 'var(--primary, #0284c7)',
+                  background: isAdopted ? '#3D8C65' : 'rgba(2, 132, 199, 0.1)',
+                  color: isAdopted ? '#ffffff' : 'var(--primary, #2D7A8C)',
                   fontSize: '0.74rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -415,7 +415,7 @@ export default function TargetedSynonymTracker({
         })}
 
         {filtered.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '24px 12px', color: 'var(--muted, #64748b)', fontSize: '0.82rem' }}>
+          <div style={{ textAlign: 'center', padding: '24px 12px', color: 'var(--muted, #6B7C80)', fontSize: '0.82rem' }}>
             No matching synonym transitions found for "{searchTerm}".
           </div>
         )}

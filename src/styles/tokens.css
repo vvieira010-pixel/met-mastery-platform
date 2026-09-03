@@ -114,7 +114,7 @@
   --surface-tint: rgba(var(--primary-rgb), 0.055);
   --shadow-float: 0 18px 45px rgba(var(--ink-rgb), 0.08);
   --focus-ring: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
-  --gradient-brand: linear-gradient(135deg, var(--primary) 0%, #3D8C65 52%, var(--ink) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--primary) 0%, var(--accent) 52%, var(--ink) 100%);
 
   --text-2xs: 0.625rem;
   --text-2sm: 0.6875rem;
@@ -134,7 +134,7 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-space-mono: 'Space Mono', monospace;

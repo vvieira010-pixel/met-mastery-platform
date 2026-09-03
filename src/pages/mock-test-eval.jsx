@@ -117,15 +117,15 @@ function TypeBadge({ type, level }) {
       {type && (
         <span style={{
           fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
-          padding: '1px 7px', borderRadius: 99, background: `${typeColors[type] || '#888'}1a`,
-          color: typeColors[type] || '#888', border: `1px solid ${typeColors[type] || '#888'}33`,
+          padding: '1px 7px', borderRadius: 99, background: `${typeColors[type] || '#6B7C80'}1a`,
+          color: typeColors[type] || '#6B7C80', border: `1px solid ${typeColors[type] || '#6B7C80'}33`,
         }}>{type}</span>
       )}
       {level && (
         <span style={{
           fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
-          padding: '1px 7px', borderRadius: 99, background: `${levelColors[level] || '#888'}1a`,
-          color: levelColors[level] || '#888', border: `1px solid ${levelColors[level] || '#888'}33`,
+          padding: '1px 7px', borderRadius: 99, background: `${levelColors[level] || '#6B7C80'}1a`,
+          color: levelColors[level] || '#6B7C80', border: `1px solid ${levelColors[level] || '#6B7C80'}33`,
         }}>{level}</span>
       )}
     </span>

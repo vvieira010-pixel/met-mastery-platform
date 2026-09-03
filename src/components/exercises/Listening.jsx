@@ -219,7 +219,7 @@ const [playCount, setPlayCount] = useState(0);
         ? { ...base, borderColor: TEAL, background: 'var(--primary-light)', color: NAVY }
         : { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
     }
-    if (i === correct) return { ...base, borderColor: '#059669', background: '#ECFDF5', color: '#065F46' };
+    if (i === correct) return { ...base, borderColor: '#3D8C65', background: '#ECFDF5', color: '#065F46' };
     if (i === selected && !isCorrect) return { ...base, borderColor: 'var(--danger)', background: '#FEF2F2', color: '#991B1B' };
     return { ...base, borderColor: 'var(--divider)', background: 'var(--surface)', color: 'var(--muted)', opacity: 0.6 };
   }
@@ -271,7 +271,7 @@ const [playCount, setPlayCount] = useState(0);
             aria-label={isFetchingAudio ? 'Loading audio...' : playing ? 'Pause audio' : 'Play audio'}
             style={{
               width: 64, height: 64, borderRadius: '50%', border: 'none',
-              background: isFetchingAudio ? 'var(--border)' : playing ? '#EF4444' : TEAL,
+              background: isFetchingAudio ? 'var(--border)' : playing ? '#A34E48' : TEAL,
               color: '#fff',
               cursor: (isFetchingAudio || !(audioText || audioSrc || isDialogue) || !canPlay) ? 'not-allowed' : 'pointer',
               fontSize: 24, display: 'grid', placeItems: 'center',
@@ -325,7 +325,7 @@ const [playCount, setPlayCount] = useState(0);
                   display: 'grid', placeItems: 'center',
                   fontSize: 13, fontWeight: 700, flexShrink: 0,
                   background: submitted && i === correct
-                    ? '#059669'
+                    ? '#3D8C65'
                     : submitted && i === selected && !isCorrect
                       ? 'var(--danger)'
                       : 'transparent',

@@ -2,33 +2,33 @@
 name: MET Mastery
 description: Calm, clinical MET prep platform for nurses and healthcare professionals — teacher-run diagnostic → homework → feedback loop.
 colors:
-  primary: "#006877"
-  primary-hover: "#004E5A"
-  primary-light: "#BFE6EF"
-  accent: "#DA8847"
-  accent-hover: "#904D0E"
-  accent-light: "#FFDCC5"
-  accent-text: "#532800"
-  orange-text: "#532800"
-  bg: "#E5F0F0"
-  surface: "#F6FAFB"
-  ink: "#171C1D"
-  ink-muted: "#3D494B"
-  border: "#C6D5D4"
+  primary: "#2D7A8C"
+  primary-hover: "#1F5A67"
+  primary-light: "#E2F0F3"
+  accent: "#E08E45"
+  accent-hover: "#C67833"
+  accent-light: "#FBF0E4"
+  accent-text: "#E08E45"
+  orange-text: "#804E1E"
+  bg: "#FDFCF8"
+  surface: "#FFFFFF"
+  ink: "#1A2E35"
+  ink-muted: "#6B7C80"
+  border: "#E8E5DF"
   on-dark: "#FFFFFF"
   on-dark-muted: "rgba(255,255,255,0.7)"
   hero-deep: "#0f2e33"
   hero-orb: "rgba(205,238,242,0.14)"
-  brand-mark-accent: "#DA8847"
-  shadow-ink: "rgba(54,84,90,0.12)"
-  shadow-soft: "rgba(54,84,90,0.04)"
-  success: "#006877"
-  warning: "#B27A3E"
-  error: "#8C5149"
-  info: "#709BA1"
-  section-reading: "#006877"
-  section-listening: "#0996AB"
-  section-speaking: "#904D0E"
+  brand-mark-accent: "#E08E45"
+  shadow-ink: "rgba(26,46,53,0.12)"
+  shadow-soft: "rgba(26,46,53,0.04)"
+  success: "#3D8C65"
+  warning: "#C9803C"
+  error: "#A34E48"
+  info: "#2D7A8C"
+  section-reading: "#2D7A8C"
+  section-listening: "#3D8C65"
+  section-speaking: "#E08E45"
   overlay: "#0F1B2D"
   scrim: "rgba(0,0,0,0.3)"
   /* Stitch redesign overlay palette (loaded last via stitch-theme.css).
@@ -122,45 +122,45 @@ components:
 
 MET Mastery is a teacher-run MET (Michigan English Test) prep platform for nurses and healthcare professionals. The interface should feel like a calm, competent clinical environment: low visual noise, high information density where the workflow needs it, and a single deep-teal accent that signals action without shouting. Every screen serves the diagnose → assign → review → feedback loop; the teacher owns the workflow and the student sees concrete progress.
 
-The system is intentionally restrained. Teal carries structure and primary action; a warm amber/orange carries highlights, active states, and the "human" warmth of feedback. Success is teal (not green) so the palette stays mono-hue and the accent keeps its rarity. Surfaces are soft and paper-like; depth comes from faint teal-tinted shadows, not heavy borders.
+The system is intentionally restrained. Teal carries structure and primary action; a warm amber/orange carries highlights, active states, and the "human" warmth of feedback. The brand palette is restrained to two voice colors — teal for action, amber for warmth — while semantic status colors (success/warning/error/info) use conventional hues. Surfaces are soft and paper-like; depth comes from faint teal-tinted shadows, not heavy borders.
 
 **Key Characteristics:**
-- Deep teal (`#006877`) as the only brand action color; amber (`#DA8847`) as a rare companion.
-- Soft, slightly cool paper surfaces (`#F6FAFB` on `#E5F0F0`), not pure white.
+- Deep teal (`#2D7A8C`) as the brand action color; warm amber (`#E08E45`) as its companion.
+- Soft, warm off-white surfaces (`#FFFFFF` on `#FDFCF8`), close to white by design.
 - DM Sans for UI, Cormorant Garamond for display/serif moments, Space Mono for data/code.
 - 8–20px radius scale; 44px minimum touch targets on every interactive control.
 - Light and dark themes are both composed from one token set — dark mode is a real dark surface, not an inverted light theme.
 
 ## Colors
 
-A near-monochrome teal system with one warm accent. Restraint is the point: the primary accent appears on ≤10% of any screen so its rarity reads as authority.
+A warm-clinical palette: teal carries brand action and structure, warm amber carries highlights and human warmth, and semantic status colors (success/warning/error/info) use conventional, instantly-readable hues. Restraint is the point: the saturated teal appears on ≤10% of any screen so its rarity reads as authority.
 
 ### Primary
-- **Deep Teal** (`#006877`): primary action, active navigation, links, focus rings, progress fills, section coding for reading/writing. Hover `#004E5A`, tint `#BFE6EF`.
-- **Amber** (`#DA8847`): highlights, active states, speaking-section coding, warm feedback moments. Used sparingly; never as a background for body text. Hover `#904D0E`, tint `#FFDCC5`.
+- **Deep Teal** (`#2D7A8C`): primary action, active navigation, links, focus rings, progress fills, section coding for reading/writing. Hover `#1F5A67`, tint `#E2F0F3`.
+- **Amber** (`#E08E45`): highlights, active states, speaking-section coding, warm feedback moments. Used sparingly; never as a background for body text. Hover `#C67833`, tint `#FBF0E4`.
 
 ### Neutral
-- **Page** (`#E5F0F0`): app page background — a faint clinical teal, not white.
-- **Surface** (`#F6FAFB`): cards, panels, inputs; the raised paper layer.
-- **Ink** (`#171C1D`): primary text and icons.
-- **Ink Muted** (`#3D494B`): secondary text, captions, meta.
-- **Border** (`#C6D5D4`): hairline structure and input strokes.
+- **Page** (`#FDFCF8`): app page background — a warm off-white, not pure white.
+- **Surface** (`#FFFFFF`): cards, panels, inputs; the raised paper layer.
+- **Ink** (`#1A2E35`): primary text and icons.
+- **Ink Muted** (`#6B7C80`): secondary text, captions, meta.
+- **Border** (`#E8E5DF`): hairline structure and input strokes.
 
 ### Semantic
-- **Success** (`#006877`): teal, not green — confirms completion within the mono-hue system.
-- **Warning** (`#B27A3E`): amber-brown for cautions; text `#785027` on `#FBF1E4`.
-- **Error** (`#8C5149`): muted clay for destructive/incorrect; text on `#F7ECE8`.
-- **Info** (`#709BA1`): cooler teal for neutral notices.
+- **Success** (`#3D8C65`): conventional green — confirms completion and correct answers. Background `#EDF7F1`.
+- **Warning** (`#C9803C`): amber-brown for cautions and due dates; text `#804E1E` on `#FAF2E8`.
+- **Error** (`#A34E48`): muted clay-red for destructive/incorrect; text on `#FAECEB`.
+- **Info** (`#2D7A8C`): shares the brand teal for neutral notices; background `#E2F0F3`.
 
 ### Section coding (diagnostic → homework → feedback)
-- Reading / Writing → Deep Teal (`#006877`)
-- Listening → Bright Teal (`#0996AB`)
-- Speaking → Amber (`#904D0E`)
+- Reading / Writing → Deep Teal (`#2D7A8C`)
+- Listening → Green (`#3D8C65`)
+- Speaking → Amber (`#E08E45`)
 
 ### Named Rules
-**The One Voice Rule.** The primary teal owns primary action and active state only. Decorative teal (tints, shadows) is desaturated; the saturated `#006877` is rare and therefore authoritative.
+**The One Voice Rule.** The primary teal owns primary action and active state only. Decorative teal (tints, shadows) is desaturated; the saturated `#2D7A8C` is rare and therefore authoritative.
 
-**The Warm Companion Rule.** Amber is the only second hue. It encodes speaking sections, highlights, and human feedback — never error or success.
+**The Warm Companion Rule.** Amber is the brand companion — it encodes speaking sections, highlights, and human feedback. Semantic status colors (success-green, error-red, warning-amber, info-teal) are permitted only as *status*, never as brand surfaces or primary actions.
 
 ## Typography
 
@@ -190,9 +190,9 @@ A centered content column (`min(100% - 2rem, 1120px)`, teacher) / app shell with
 Depth is conveyed by faint, cool teal-tinted shadows on a paper surface — not by borders. Surfaces are flat at rest; shadow appears on hover, elevation, and focus. Dark mode shifts shadows darker and softer.
 
 ### Shadow Vocabulary
-- **Card** (`0 1px 4px rgba(54,84,90,0.04)`): resting surface.
-- **Modal** (`0 12px 36px rgba(54,84,90,0.14)`): overlay elevation.
-- **Float** (`0 18px 45px rgba(23,28,29,0.12)`): sticky/topbar and popovers.
+- **Card** (`0 1px 4px rgba(26,46,53,0.04)`): resting surface.
+- **Modal** (`0 12px 36px rgba(26,46,53,0.14)`): overlay elevation.
+- **Float** (`0 18px 45px rgba(26,46,53,0.08)`): sticky/topbar and popovers.
 
 ### Named Rules
 **The Flat-By-Default Rule.** Surfaces are flat at rest. Shadow is a response to state (hover, focus, elevation), never a constant.
@@ -205,21 +205,21 @@ Gently rounded rectangles. Radius scale: 8px (controls, inputs, chips), 12px (ca
 
 ### Buttons
 - **Shape:** 8px radius, 44px min height.
-- **Primary:** background `#006877`, white text; hover `#004E5A`.
-- **Secondary / Ghost:** transparent background, `#004E5A` text, teal border; used for lower-emphasis actions.
-- **Focus:** 3px ring `rgba(0,104,119,0.2)` (light) / `rgba(95,184,196,0.35)` (dark). Icon-only buttons MUST carry an `aria-label`.
+- **Primary:** background `#2D7A8C`, white text; hover `#1F5A67`.
+- **Secondary / Ghost:** transparent background, `#1F5A67` text, teal border; used for lower-emphasis actions.
+- **Focus:** 3px ring `rgba(45,122,140,0.2)` (light) / `rgba(95,184,196,0.35)` (dark). Icon-only buttons MUST carry an `aria-label`.
 
 ### Cards / Containers
-- **Corner:** 12px. **Background:** `#F6FAFB`. **Border:** none at rest; 1px `#C6D5D4` on hover/selection. **Padding:** 1.5rem. **Shadow:** card vocabulary.
+- **Corner:** 12px. **Background:** `#FFFFFF`. **Border:** none at rest; 1px `#E8E5DF` on hover/selection. **Padding:** 1.5rem. **Shadow:** card vocabulary.
 
 ### Inputs / Fields
-- **Style:** 1px `#C6D5D4` stroke, `#F6FAFB` fill, 8px radius.
-- **Focus:** border `#006877` + focus ring, outline 0.
-- **Error:** clay border `#8C5149` + `role="alert"` message in `#785027`/`#8C5149`.
-- **Label:** uppercase DM Sans 0.72rem, `#3D494B`.
+- **Style:** 1px `#E8E5DF` stroke, `#FFFFFF` fill, 8px radius.
+- **Focus:** border `#2D7A8C` + focus ring, outline 0.
+- **Error:** clay border `#A34E48` + `role="alert"` message in `#804E1E`/`#A34E48`.
+- **Label:** uppercase DM Sans 0.72rem, `#6B7C80`.
 
 ### Navigation
-- **Desktop:** fixed left sidebar; active item gets `#BFE6EF` tint + `#004E5A` text + teal indicator.
+- **Desktop:** fixed left sidebar; active item gets `#E2F0F3` tint + `#1F5A67` text + teal indicator.
 - **Mobile:** fixed bottom bar, 48px targets, five daily destinations; secondary items in a "More" popover.
 
 ### Chips / Pills / Tabs
@@ -230,14 +230,14 @@ Gently rounded rectangles. Radius scale: 8px (controls, inputs, chips), 12px (ca
 
 ### Do:
 - Do keep the saturated primary teal rare — reserve it for action and active state.
-- Do use `#E5F0F0` page / `#F6FAFB` surface; avoid pure white backgrounds.
+- Do use `#FDFCF8` page / `#FFFFFF` surface; the system is intentionally warm and near-white.
 - Do give every interactive control a 44px minimum touch target.
 - Do label icon-only buttons and inputs with `aria-label`.
 - Do flip the full token set in dark mode (already composed in `dark.css`).
 
 ### Don't:
-- Don't introduce a third hue — amber is the only companion to teal.
-- Don't use pure green for success; success is teal in this system.
+- Don't introduce a third *brand* hue — teal is the action color and amber is its only companion. Semantic status colors (success-green, error-red, warning-amber, info-teal) are allowed only as status, never as brand surfaces or primary actions.
+- Don't use green for brand action or primary buttons; green is reserved for success status only.
 - Don't rely on color alone for state (error/success need text or icon).
 - Don't hard-code hex in components; consume tokens from `tokens.css` (the single source of truth).
 - Don't edit the root-level duplicate `components.css` / `redesign.css` / `tokens.css` — they are dead copies of `src/styles/*`.

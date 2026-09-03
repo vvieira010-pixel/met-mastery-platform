@@ -104,10 +104,10 @@ export default function StudentProgress({ student, "data-testid": testId }) {
   const skills = sorted.reduce((acc, d) => {
     if (acc.length > 0) return acc;
     const snap = asArray(d?.content?.section_snapshot);
-    return snap.filter(s => s.evaluated || Number(s.score_0_80) > 0);
-  }, []);
+    return snap.filter(s => s.evaluated || (Number(s.score_0_80) || 0) > 0);
+  }, []) || [];
   const lowestSkill = skills.length > 1
-    ? [...skills].sort((a, b) => (Number(a.score_0_80) || 80) - (Number(b.score_0_80) || 80))[0]
+    ? [...skills].sort((a, b) => (Number(a.score_0_80) || 0) - (Number(b.score_0_80) || 0))[0]
     : null;
 
   const handleExpand = (section) => {
@@ -153,7 +153,7 @@ export default function StudentProgress({ student, "data-testid": testId }) {
             className="student-empty-card"
             style={{
               padding: 24,
-              border: '2px dashed var(--primary, #0284c7)',
+              border: '2px dashed var(--primary, #2D7A8C)',
               background: 'linear-gradient(180deg, rgba(2, 132, 199, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
               borderRadius: 12,
             }}
@@ -170,21 +170,21 @@ export default function StudentProgress({ student, "data-testid": testId }) {
                     padding: '3px 8px',
                     borderRadius: 4,
                     background: 'rgba(2, 132, 199, 0.12)',
-                    color: 'var(--primary, #0284c7)',
+                    color: 'var(--primary, #2D7A8C)',
                   }}
                 >
                   Baseline Diagnostic Trigger
                 </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>
                   Immediate Baseline Data Collection
                 </span>
               </div>
 
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 6px', color: 'var(--text, #0f172a)' }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 6px', color: 'var(--text, #1A2E35)' }}>
                   Begin Your Structured Class Baseline Diagnosis
                 </h2>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-2, #334155)', lineHeight: 1.6 }}>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-2, #2B454E)', lineHeight: 1.6 }}>
                   No approved diagnosis is ready yet. Take the structured 4-section assessment (Listening, Reading, Writing, and Speaking) to collect immediate baseline data and map your abilities directly onto the 0–80 scaled score framework.
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default function StudentProgress({ student, "data-testid": testId }) {
                   type="button"
                   onClick={() => setBaselineModalOpen(true)}
                   style={{
-                    background: 'var(--primary, #0284c7)',
+                    background: 'var(--primary, #2D7A8C)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 8,
@@ -277,7 +277,7 @@ export default function StudentProgress({ student, "data-testid": testId }) {
                 style={{
                   border: 'none',
                   background: 'rgba(2, 132, 199, 0.1)',
-                  color: 'var(--primary, #0284c7)',
+                  color: 'var(--primary, #2D7A8C)',
                   fontSize: '0.75rem',
                   fontWeight: 700,
                   padding: '4px 10px',

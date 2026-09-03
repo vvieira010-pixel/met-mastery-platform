@@ -55,7 +55,7 @@ export default function CefrSkillGapFlags({
     return {
       ...item,
       tier,
-      color: tier.isB2 ? '#10b981' : '#0284c7', // emerald green vs simple blue
+      color: tier.isB2 ? '#3D8C65' : '#2D7A8C', // emerald green vs simple blue
       colorName: tier.isB2 ? 'emerald' : 'blue',
       badgeBg: tier.isB2 ? 'rgba(16, 185, 129, 0.12)' : 'rgba(2, 132, 199, 0.12)',
     };
@@ -79,7 +79,7 @@ export default function CefrSkillGapFlags({
       data-testid={testId}
       style={{
         background: 'var(--surface, #ffffff)',
-        border: '1px solid var(--border, #e2e8f0)',
+        border: '1px solid var(--border, #F6F4EE)',
         borderRadius: 'var(--radius-lg, 12px)',
         padding: '20px',
         boxShadow: 'var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05))',
@@ -98,19 +98,19 @@ export default function CefrSkillGapFlags({
                 padding: '2px 8px',
                 borderRadius: 4,
                 background: 'rgba(2, 132, 199, 0.1)',
-                color: 'var(--primary, #0284c7)',
+                color: 'var(--primary, #2D7A8C)',
               }}
             >
               CEFR Skill Gap Flags
             </span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
               MET 4-Section Comparative Mapping
             </span>
           </div>
-          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
             Skill Profile & Focus Allocation
           </h3>
-          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #64748b)' }}>
+          <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'var(--muted, #6B7C80)' }}>
             Emerald green denotes MET B2 passing standard (53+); simple blue flags B1 developing sections needing focused effort.
           </p>
         </div>
@@ -118,12 +118,12 @@ export default function CefrSkillGapFlags({
         {/* Color Legend */}
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', fontSize: '0.74rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-            <strong style={{ color: '#059669' }}>B2 Passing (≥ 53)</strong>
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#3D8C65', display: 'inline-block' }} />
+            <strong style={{ color: '#3D8C65' }}>B2 Passing (≥ 53)</strong>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#0284c7', display: 'inline-block' }} />
-            <strong style={{ color: '#0284c7' }}>B1 Developing (&lt; 53)</strong>
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#2D7A8C', display: 'inline-block' }} />
+            <strong style={{ color: '#2D7A8C' }}>B1 Developing (&lt; 53)</strong>
           </div>
         </div>
       </div>
@@ -133,7 +133,7 @@ export default function CefrSkillGapFlags({
         <div
           style={{
             background: 'rgba(245, 158, 11, 0.08)',
-            borderLeft: '4px solid #f59e0b',
+            borderLeft: '4px solid #E08E45',
             borderRadius: 8,
             padding: '12px 14px',
             marginBottom: 18,
@@ -143,7 +143,7 @@ export default function CefrSkillGapFlags({
           }}
           data-testid="skill-gap-alert"
         >
-          <div style={{ color: '#d97706', marginTop: 2, flexShrink: 0 }}>
+          <div style={{ color: '#C9803C', marginTop: 2, flexShrink: 0 }}>
             <Icon.alert size={20} />
           </div>
           <div>
@@ -164,7 +164,7 @@ export default function CefrSkillGapFlags({
         <div
           style={{
             background: 'rgba(16, 185, 129, 0.08)',
-            borderLeft: '4px solid #10b981',
+            borderLeft: '4px solid #3D8C65',
             borderRadius: 8,
             padding: '10px 14px',
             marginBottom: 18,
@@ -173,7 +173,7 @@ export default function CefrSkillGapFlags({
             gap: 10,
           }}
         >
-          <Icon.check size={18} style={{ color: '#10b981' }} />
+          <Icon.check size={18} style={{ color: '#3D8C65' }} />
           <span style={{ fontSize: '0.8rem', color: '#065f46' }}>
             <strong>Balanced Skill Profile:</strong> All sections are progressing evenly across the CEFR spectrum.
           </span>
@@ -190,7 +190,7 @@ export default function CefrSkillGapFlags({
             <div
               key={item.section}
               style={{
-                background: 'var(--bg, #f8fafc)',
+                background: 'var(--bg, #FDFCF8)',
                 border: `1px solid ${isEmerald ? 'rgba(16, 185, 129, 0.3)' : 'rgba(2, 132, 199, 0.3)'}`,
                 borderRadius: 10,
                 padding: '14px',
@@ -199,7 +199,7 @@ export default function CefrSkillGapFlags({
             >
               {/* Card Top */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text, #0f172a)' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text, #1A2E35)' }}>
                   {item.label}
                 </span>
                 <span
@@ -221,14 +221,14 @@ export default function CefrSkillGapFlags({
                 <span style={{ fontSize: '1.4rem', fontWeight: 800, color: item.color }}>
                   {item.score}
                 </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--muted, #64748b)' }}>/ 80 scaled</span>
-                <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--muted, #64748b)' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--muted, #6B7C80)' }}>/ 80 scaled</span>
+                <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--muted, #6B7C80)' }}>
                   {item.score >= 53 ? 'Passing Standard Met' : `${53 - item.score} pts to B2`}
                 </span>
               </div>
 
               {/* Progress Bar with Benchmark Line */}
-              <div style={{ position: 'relative', width: '100%', height: 8, background: 'var(--border, #e2e8f0)', borderRadius: 999, overflow: 'hidden', marginBottom: 8 }}>
+              <div style={{ position: 'relative', width: '100%', height: 8, background: 'var(--border, #F6F4EE)', borderRadius: 999, overflow: 'hidden', marginBottom: 8 }}>
                 <div
                   style={{
                     width: `${percent}%`,
@@ -241,9 +241,9 @@ export default function CefrSkillGapFlags({
               </div>
 
               {/* B2 Benchmark Reference Marker */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', color: 'var(--muted, #64748b)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', color: 'var(--muted, #6B7C80)' }}>
                 <span>0</span>
-                <span style={{ color: '#059669', fontWeight: 700 }}>53 (B2 Pass)</span>
+                <span style={{ color: '#3D8C65', fontWeight: 700 }}>53 (B2 Pass)</span>
                 <span>80</span>
               </div>
             </div>
