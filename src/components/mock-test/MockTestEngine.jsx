@@ -193,6 +193,166 @@ export default function MockTestEngine({ student, onBack, testId = 'mock-test-1'
 
   return (
     <div className="mte">
+      <style>{`
+        .mte-home {
+          max-width: 880px;
+          margin: 0 auto;
+          padding: var(--space-7) var(--space-5);
+        }
+        .mte-home__header {
+          margin-bottom: var(--space-7);
+        }
+        .mte-home__back {
+          margin-bottom: var(--space-4);
+        }
+        .mte-home__title {
+          margin: 0 0 var(--space-2);
+          font-size: var(--text-3xl);
+          font-weight: 700;
+          color: var(--primary);
+          letter-spacing: -0.01em;
+        }
+        .mte-home__sub {
+          margin: 0;
+          color: var(--text-2);
+          font-size: var(--text-base);
+          line-height: 1.6;
+          max-width: 540px;
+        }
+        .mte-home__grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: var(--space-4);
+        }
+        .mte-home__card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: var(--space-2);
+          padding: var(--space-7) var(--space-4);
+          background: var(--surface);
+          border: 1.5px solid var(--border);
+          border-radius: var(--radius-lg);
+          color: var(--text);
+          cursor: pointer;
+          font-family: inherit;
+          font-size: inherit;
+          text-align: center;
+          transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+          min-height: 44px;
+          position: relative;
+        }
+        .mte-home__card:hover:not(:disabled):not(.mte-home__card--done) {
+          border-color: var(--accent);
+          box-shadow: var(--shadow-md);
+          transform: translateY(-2px);
+        }
+        .mte-home__card:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 2px;
+          border-color: var(--accent);
+        }
+        .mte-home__card--done {
+          cursor: default;
+          opacity: 0.7;
+          background: var(--bg);
+          border-style: dashed;
+        }
+        .mte-home__card-icon {
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: var(--accent-subtle);
+          color: var(--accent);
+          flex-shrink: 0;
+        }
+        .mte-home__card--done .mte-home__card-icon {
+          background: var(--success-subtle);
+          color: var(--success);
+        }
+        .mte-home__card-name {
+          font-size: var(--text-base);
+          font-weight: 600;
+          color: var(--text);
+        }
+        .mte-home__card-time {
+          font-size: var(--text-xs);
+          color: var(--muted);
+          font-weight: 500;
+        }
+        .mte-home__card-check {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: var(--success);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .mte-loading,
+        .mte-error {
+          max-width: 420px;
+          margin: var(--space-12) auto;
+          padding: var(--space-7) var(--space-5);
+          text-align: center;
+        }
+        .mte-error {
+          color: var(--text-2);
+        }
+        .mte-error__icon {
+          color: var(--danger);
+          margin-bottom: var(--space-4);
+          display: flex;
+          justify-content: center;
+        }
+        .mte-error__title {
+          margin: 0 0 var(--space-2);
+          font-size: var(--text-xl);
+          font-weight: 700;
+          color: var(--primary);
+        }
+        .mte-error__message {
+          margin: 0 0 var(--space-5);
+          line-height: 1.6;
+          font-size: var(--text-sm);
+        }
+        .mte-loading__text {
+          margin-top: var(--space-4);
+          color: var(--muted);
+          font-size: var(--text-sm);
+        }
+        @media (max-width: 640px) {
+          .mte-home {
+            padding: var(--space-5) var(--space-4);
+          }
+          .mte-home__title {
+            font-size: var(--text-2xl);
+          }
+          .mte-home__grid {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+          }
+          .mte-home__card {
+            padding: var(--space-5) var(--space-3);
+          }
+          .mte-home__card-name {
+            font-size: var(--text-sm);
+          }
+        }
+        @media (max-width: 380px) {
+          .mte-home__grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <AnimatePresence mode="wait">
         {phase === 'home' && !session.isAllDone() && (
           <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

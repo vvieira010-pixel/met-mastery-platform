@@ -128,9 +128,32 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
 
   return (
     <div className="page-shell-lg">
+      <style>{`
+        @media (max-width: 640px) {
+          .sp-header-card .card-row {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .sp-header-card .sp-actions {
+            width: 100%;
+            flex-wrap: wrap;
+          }
+          .sp-header-card .sp-actions > * {
+            flex: 1 1 auto;
+          }
+          .sp-pillnav {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+          }
+          .sp-stat-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
       <Breadcrumb crumbs={[{ label: 'Students', onClick: () => onNavigate('students') }, { label: 'Profile' }]} />
 
-      <Card style={{ padding: 'var(--space-5)', marginBottom: 'var(--space-5)' }}>
+      <Card className="sp-header-card" style={{ padding: 'var(--space-5)', marginBottom: 'var(--space-5)' }}>
         <div className="card-row" style={{ gap: 'var(--space-4)' }}>
           <Avatar name={student.name} size={52} />
           <div className="card-row-body">
@@ -145,7 +168,7 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
               </p>
             )}
           </div>
-          <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+          <div className="sp-actions" style={{ display: 'flex', gap: 'var(--space-2)' }}>
             <Button variant="primary" size="sm" onClick={() => onNavigate('diagnostics:create', { studentId })}>
               <Icon.diagnose size={13} /> New Diagnosis
             </Button>
@@ -159,7 +182,9 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
         </div>
       </Card>
 
-      <PillNav tabs={TABS} active={tab} onChange={setTab} />
+      <div className="sp-pillnav">
+        <PillNav tabs={TABS} active={tab} onChange={setTab} />
+      </div>
 
       <div style={{ marginTop: 'var(--space-5)' }}>
         {tab === 'overview' && <OverviewTab student={student} profiles={profiles} diagnoses={diagnoses} errors={errors} classes={classes} homework={homework} onNavigate={onNavigate} onRefresh={load} />}

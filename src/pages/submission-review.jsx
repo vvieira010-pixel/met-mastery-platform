@@ -366,6 +366,44 @@ Return JSON:
 
   return (
     <div>
+      <style>{`
+        @media (max-width: 640px) {
+          .sr-sticky-bar > div {
+            height: auto !important;
+            min-height: 54px;
+            padding: 8px 14px !important;
+            flex-wrap: wrap;
+          }
+          .sr-sticky-bar .flex.items-center.gap-2 {
+            width: 100%;
+            justify-content: flex-end;
+          }
+          .sr-q-row {
+            flex-wrap: wrap;
+          }
+          .sr-q-row .sr-q-ai-btn {
+            margin-left: 0 !important;
+          }
+          .sr-errors-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .sr-correction-row {
+            flex-wrap: wrap;
+          }
+          .sr-correction-row > .input {
+            min-width: 120px;
+          }
+          .sr-student-name {
+            max-width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .sr-page-shell {
+            padding-left: var(--space-3) !important;
+            padding-right: var(--space-3) !important;
+          }
+        }
+      `}</style>
       {/* ── Preview modal ─────────────────────────────────────── */}
       <Modal open={showPreview} onClose={() => setShowPreview(false)} kicker="Preview, student will see" title={`Homework Review: ${homework?.title || 'Homework'}`} maxWidth={560}>
         {form.overallNote && (
@@ -443,7 +481,7 @@ Return JSON:
           {student && (
             <>
               <Avatar name={student.name} size={26} />
-              <span className="font-bold text-sm" style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{student.name}</span>
+              <span className="font-bold text-sm sr-student-name" style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{student.name}</span>
             </>
           )}
           {homework && (
@@ -465,7 +503,7 @@ Return JSON:
       </div>
 
       {/* ── Page body ─────────────────────────────────────────────── */}
-      <div className="page-shell-lg" style={{ paddingBottom: 'var(--space-12)' }}>
+      <div className="page-shell-lg sr-page-shell" style={{ paddingBottom: 'var(--space-12)' }}>
         <div className="grid-auto-fit-lg">
 
           {/* ── Left: submission + context ───────────────────────── */}
@@ -499,16 +537,17 @@ Return JSON:
                    return (
 
                     <Card key={entry.id} className="card-p-4">
-                      <div className="flex-row-gap2 mb-2">
+                      <div className="flex-row-gap2 mb-2 sr-q-row">
                         <span className="text-xs font-bold text-muted">Q{idx + 1}</span>
                         <span className="sr-tag">
                           {skill}
                         </span>
                         {activity.objective && (
-                          <span className="text-xs text-muted flex-1">{activity.objective}</span>
+                          <span className="text-xs text-muted flex-1" style={{ minWidth: 0 }}>{activity.objective}</span>
                         )}
                         <Button variant="ghost" size="sm" disabled={qe.aiRunning}
                           onClick={() => evaluateQuestion(entry.id)}
+                          className="sr-q-ai-btn"
                           style={{ marginLeft: 'auto', flexShrink: 0 }}>
                           <Icon.spark size={12} /> {qe.aiRunning ? 'Evaluating…' : 'AI Evaluate'}
                         </Button>
@@ -591,8 +630,8 @@ Return JSON:
                         <div className="flex-col-gap2">
                           <span className="section-label">Corrections</span>
                           {(qe.corrections || []).map((c, ci) => (
-                            <div key={c.id || ci} style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                              <input className="input" value={c.original} placeholder="Original" style={{ flex: 1, fontSize: 'var(--text-xs)' }}
+                            <div key={c.id || ci} className="sr-correction-row" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                              <input className="input" value={c.original} placeholder="Original" style={{ flex: 1, fontSize: 'var(--text-xs)', minWidth: 100 }}
                                 onChange={e => setQuestionEvals(q => {
                                   const cs = [...(q[entry.id]?.corrections || [])];
                                   cs[ci] = { ...cs[ci], original: e.target.value };
@@ -742,7 +781,7 @@ Return JSON:
                     placeholder="Evidence of improvement from this submission…" />
                 </Field>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }} className="sr-errors-grid">
                   <Field label="Errors still active">
                     <textarea className="input" rows={4} value={form.activeErrors}
                       onChange={e => setForm(f => ({ ...f, activeErrors: e.target.value }))}
@@ -772,8 +811,8 @@ Return JSON:
                   <div className="flex-col-gap2">
                     {form.corrections.map((c, i) => (
                       <div key={c.id} style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '10px 12px', background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                          <input className="input" placeholder="Original error" value={c.original} style={{ flex: 1, fontSize: 'var(--text-sm)' }}
+                        <div className="sr-correction-row" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                          <input className="input" placeholder="Original error" value={c.original} style={{ flex: 1, fontSize: 'var(--text-sm)', minWidth: 100 }}
                             onChange={e => updateCorrection(i, 'original', e.target.value)} />
                           <span style={{ color: 'var(--muted)', fontSize: 'var(--text-sm)', flexShrink: 0 }}>→</span>
                           <input className="input" placeholder="Correction" value={c.improved} style={{ flex: 1, fontSize: 'var(--text-sm)' }}

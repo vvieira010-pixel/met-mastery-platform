@@ -20,7 +20,7 @@ This codebase is **better than the median codebase its size**. Several things te
 
 **Remediation status (same day):** of the 26 findings, the two 🔴 Criticals (C1 infinite loop, C2 form labels) were **already resolved in the tree** before this pass (ref-based sync + `cloneElement` id graft). A further **P0 runtime crash** was discovered during fixing (landing page rendered `setTourOpen` that was never declared → ReferenceError). This pass fixed: the P0 crash, H2 (realtime stale closure), H5 (toast context), H6 (TTS auth guard), M9 (validation `useMemo`), and cleared the entire lint gate (23 → 0 warnings) by removing dead code and splitting a fast-refresh export. `npm run build` still passes.
 
-Still open (need design decisions, not done this pass): H1 (recharts eager-load, 146 KB), H3 (dark-mode token split), H4 (responsive on 11 pages), the M-series CSS architecture work, and the Low-severity debt items.
+Still open (need design decisions, not done this pass): H3 (dark-mode token split), the M-series CSS architecture work (12 items), and Low-severity debt items (legacy auth module refactor, npm `qs` transitive vuln, minified landing CSS).
 
 | Severity | Count | Theme |
 |---|---|---|
@@ -359,3 +359,22 @@ Worth preserving deliberately as you refactor:
 - Browser-verified (Playwright) screenshots at 360 / 768 / 1920 — **could not run**; the sandbox intercepts `localhost` and 4173/3000 returned 502. Static analysis only; visual diff pending Playwright run from a non-sandboxed shell.
 
 **Verification:** `eslint src/components/mock-test/ --max-warnings 0` → 0 problems. `vite build` → passes in 25.39 s.
+
+### Remediation update — H4 finish batch (MockTestEngine intro + 5 remaining pages)
+
+This closes out H4 across the remaining 5 pages, plus adds a missing top-level layout primitive that affected **every** `card-row` usage in the codebase.
+
+| File | Change |
+|---|---|
+| `src/styles/components.css` | **Bug fix beyond H4:** the `.card-row` class had no CSS rule anywhere despite being used in 7+ places (student-profile + others). Added: `display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; min-width: 0;` immediately above the existing `.card-row-body` rule. Body, title, meta variants were already defined; the parent was the missing piece. |
+| `src/components/mock-test/MockTestEngine.jsx` | Same "unstyled component" finding as ReadingSection/ListeningSection — the `.mte-home*`, `.mte-loading*`, `.mte-error*` classes had **zero CSS rules** anywhere on disk. Added a single inline `<style>{...}</style>` block in the root return covering `.mte-home`, `.mte-home__header`, `.mte-home__back`, `.mte-home__title`, `.mte-home__sub`, `.mte-home__grid`, `.mte-home__card` (+ `--done`, `:hover`, `:focus-visible`), `.mte-home__card-icon`, `.mte-home__card-name`, `.mte-home__card-time`, `.mte-home__card-check`, `.mte-loading`, `.mte-error`, `.mte-error__icon/title/message`, `.mte-loading__text`. Includes `@media (max-width: 640px)` (2-col cards, smaller title, tighter padding) and `@media (max-width: 380px)` (cards stack to 1-col). |
+| `src/pages/student-profile.jsx` | Wrapped action button group in `.sp-actions` class. Added inline `<style>` block: `(max-width: 640px)` — header `card-row` goes vertical (avatar+text on top, action buttons below, each flex-grow); `.sp-pillnav` becomes horizontally scrollable to handle the 10-tab PillNav on narrow phones; stat-grid collapses to 1-col. The PillNav (10 tabs: Overview · Classes · Diagnostics · Homework · Submissions · Errors · Vocab · Progress · Transcript · Payments) previously broke across 3 lines on a 360-wide phone. |
+| `src/pages/submission-review.jsx` | Added inline `<style>`: `(max-width: 640px)` — sticky bar `flex-wrap`s (pills/buttons drop to next line, breadcrumb stays first); per-question top row wraps (Q + tag + objective + AI button); per-question correction inputs force-wrap; main form's `1fr 1fr` errors grid collapses to 1-col; student name gets ellipsis at 140px to keep the sticky bar readable. |
+| `src/pages/settings.jsx` | No changes needed — page is a `page-shell-narrow` (max-width 640px), every Section is a vertical `Card` stack, Field inputs are full-width below their labels, and the skill-toggle rows use `display:flex; justify-content: space-between` with intrinsic-sized description text. Already responsive by construction. |
+| `src/pages/quick-practice.jsx` | No changes needed — `.quick-practice-grid` uses `repeat(auto-fit, minmax(280px, 1fr))` which collapses 4-col → 2-col → 1-col as viewport shrinks. `.student-page-header` already has `flex-wrap: wrap`. Already responsive by construction. |
+
+**H4 final status:** 11/11 pages covered. Verified static-analysis: `npx eslint src/ api/ --max-warnings 0` → 0 problems. `npx vite build` → passes in 29.14 s. Visual diff via Playwright still blocked by sandbox-502 on localhost (verify from non-sandboxed shell when convenient).
+
+**Bonus finding uncovered in this pass:** `.card-row` was truly unstyled globally. Affects every page using it (student-profile lines 134/261/289/313/339/362/388), not just the 5 H4 pages. The CSS fix is one place, but the layout was visually broken (no flex) in desktop too — not just mobile.
+
+**Still open after this pass:** H3 (dark-mode token split), the M-series CSS architecture work (12 items), and Low-severity debt (legacy auth module, npm `qs` transitive vuln, minified landing CSS) — module-level refactors / dependency updates / tooling out of scope for static-analysis-only session.
