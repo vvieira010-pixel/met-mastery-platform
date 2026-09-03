@@ -1,7 +1,7 @@
 {
   "skill": "speaking",
   "topic": "healthcare",
-  "totalExercises": 1,
+  "totalExercises": 5,
   "exercises": [
     {
       "id": "vt_health_speak1",
@@ -9,6 +9,38 @@
       "level": "B2",
       "skill": "Speaking",
       "prompt": "Describe a time you or someone you know needed medical care. What happened?"
+    },
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time you or someone you know had to visit a doctor or hospital.",
+      "topic": "Healthcare",
+      "setId": 11
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer large hospitals, while others prefer smaller local clinics. Which do you prefer, and why?",
+      "topic": "Healthcare",
+      "setId": 11
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A government is considering making healthcare free for all citizens, funded by taxes. What are the advantages and disadvantages?",
+      "topic": "Healthcare",
+      "setId": 11
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering closing a small local hospital to concentrate resources in a larger central hospital. I am a member of the health department. Tell me what you think and convince me to agree with you.",
+      "topic": "Healthcare",
+      "setId": 11
     }
   ]
 }

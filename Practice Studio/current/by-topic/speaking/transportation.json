@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "transportation",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you used public transportation.",
+      "topic": "Transportation",
+      "setId": 13
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer public transportation, while others prefer to drive their own cars. Which do you prefer, and why?",
+      "topic": "Transportation",
+      "setId": 13
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering making all public transportation free, funded by higher taxes. What are the advantages and disadvantages?",
+      "topic": "Transportation",
+      "setId": 13
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is proposing to remove bus routes in low-traffic areas to save money. I am a member of the transportation committee. Tell me what you think and convince me to agree with you.",
+      "topic": "Transportation",
+      "setId": 13
+    }
+  ]
+}

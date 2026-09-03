@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "online-learning",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time you learned something online.",
+      "topic": "Online Learning",
+      "setId": 24
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some students prefer online classes, while others prefer face-to-face classes. Which do you prefer, and why?",
+      "topic": "Online Learning",
+      "setId": 24
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A university is considering offering all degree programs completely online. What are the advantages and disadvantages?",
+      "topic": "Online Learning",
+      "setId": 24
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your school is considering requiring students to bring their own laptops or tablets to every class. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Online Learning",
+      "setId": 24
+    }
+  ]
+}

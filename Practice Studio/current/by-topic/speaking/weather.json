@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "weather",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time when bad weather affected your plans.",
+      "topic": "Weather",
+      "setId": 19
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer hot weather, while others prefer cold weather. Which do you prefer, and why?",
+      "topic": "Weather",
+      "setId": 19
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering spending a large amount of money on new systems to prevent flooding during heavy rain. What are the advantages and disadvantages?",
+      "topic": "Weather",
+      "setId": 19
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering banning cars from the downtown area on days with very high air pollution. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Weather",
+      "setId": 19
+    }
+  ]
+}

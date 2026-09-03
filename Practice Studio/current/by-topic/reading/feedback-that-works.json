@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "feedback-that-works",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-feedback-that-works",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Beyond 'Good Job'\n\nMost students have received feedback that says little more than 'good job' or 'needs improvement.' These comments feel safe, but they give the learner almost nothing to act on. Effective feedback looks different: it points to one specific part of the work, explains what worked or failed there, and suggests a concrete next step.\n\nTiming matters as much as content. A comment on an essay returned three weeks later arrives when the student has already forgotten the thinking behind it. Short feedback given within a day or two — even two sentences — usually changes the next piece of work more than a long report delivered late.\n\nStudents also need a chance to use the advice. Teachers who build ten minutes of revision time into the next lesson let learners apply the comment immediately, turning feedback from a final judgment into part of the learning process itself.",
+      "questions": [
+        {
+          "correct": 0,
+          "explanation": "The first paragraph says vague comments give the learner almost nothing to act on.",
+          "id": "r10-feedback-that-works-q1",
+          "options": [
+            "They give learners almost nothing specific to act on.",
+            "They are too long for students to read.",
+            "They always contain incorrect information.",
+            "They are never positive enough."
+          ],
+          "question": "What is the problem with comments like 'good job'?"
+        },
+        {
+          "correct": 3,
+          "explanation": "The passage states that late feedback arrives after the student has forgotten their thinking.",
+          "id": "r10-feedback-that-works-q2",
+          "options": [
+            "It is always too positive.",
+            "It focuses only on grammar.",
+            "It is written too quickly.",
+            "It arrives after students forget their thinking."
+          ],
+          "question": "Why is late feedback less useful?"
+        },
+        {
+          "correct": 1,
+          "explanation": "The final paragraph says revision time lets learners apply the comment immediately.",
+          "id": "r10-feedback-that-works-q3",
+          "options": [
+            "It shortens every lesson.",
+            "It lets students apply advice right away.",
+            "It removes the need for teachers.",
+            "It replaces all homework."
+          ],
+          "question": "What is the purpose of revision time in the next lesson?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "education",
+      "type": "read"
+    }
+  ]
+}

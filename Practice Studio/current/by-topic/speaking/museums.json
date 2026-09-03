@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "museums",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you visited a museum or historical site.",
+      "topic": "Museums",
+      "setId": 12
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to learn history through books, while others prefer museums and historical sites. Which do you prefer, and why?",
+      "topic": "Museums",
+      "setId": 12
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering making entry to all public museums free for residents. What are the advantages and disadvantages?",
+      "topic": "Museums",
+      "setId": 12
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your local museum is proposing to sell some of its less famous artworks to raise money for new exhibits. I am a member of the museum board. Tell me what you think and convince me to agree with you.",
+      "topic": "Museums",
+      "setId": 12
+    }
+  ]
+}

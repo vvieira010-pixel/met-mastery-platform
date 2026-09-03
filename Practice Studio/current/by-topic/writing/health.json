@@ -1,0 +1,87 @@
+{
+  "skill": "writing",
+  "topic": "Health",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "T1_5",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe your typical daily routine related to health. What do you eat, how much do you exercise, and how do you manage stress?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E5",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some people believe that governments should ban all advertising for unhealthy food and drinks. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_15",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Tell us about a time when you or someone close to you had a health problem. What happened, and what did you learn from it?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E15",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some hospitals are using robots to assist with surgeries. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_25",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe a healthy habit that you have tried to develop. How have you tried to build this habit, and how successful have you been?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E25",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some people argue that all citizens should receive free healthcare funded by taxes. Others believe that people should pay for their own healthcare. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_35",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Talk about your opinion on fast food and processed food. How often do you consume these products, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_45",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe your ideal approach to a healthy lifestyle. What would your diet, exercise, and rest look like, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

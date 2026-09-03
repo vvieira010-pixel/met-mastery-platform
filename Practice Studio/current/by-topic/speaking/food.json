@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "food",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you ate at a restaurant.",
+      "topic": "Food",
+      "setId": 4
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to eat at home, while others prefer to eat at restaurants. Which do you prefer, and why?",
+      "topic": "Food",
+      "setId": 4
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is thinking about opening a small restaurant in your neighborhood. What are the advantages and disadvantages of this idea?",
+      "topic": "Food",
+      "setId": 4
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "The city is considering banning fast-food restaurants within 500 meters of schools to improve children's health. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Food",
+      "setId": 4
+    }
+  ]
+}

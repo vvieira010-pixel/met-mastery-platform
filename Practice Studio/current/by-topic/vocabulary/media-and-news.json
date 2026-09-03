@@ -1,7 +1,7 @@
 {
   "skill": "vocabulary",
   "topic": "media-and-news",
-  "totalExercises": 5,
+  "totalExercises": 6,
   "exercises": [
     {
       "id": "michigan_vocab_54",
@@ -72,6 +72,20 @@
       "blanks": [
         "check"
       ]
+    },
+    {
+      "id": "V48",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The _______ of the new policy was immediate.</i>",
+      "options": [
+        "affection",
+        "effective",
+        "affect",
+        "effect"
+      ],
+      "correct": "effect",
+      "explanation": "The correct word here is 'effect'."
     }
   ]
 }

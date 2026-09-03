@@ -1,0 +1,120 @@
+{
+  "title": "definition_match",
+  "level": "B2",
+  "type": "definition_match",
+  "total_questions": 8,
+  "questions": [
+    {
+      "id": "V17",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **inevitable**.",
+      "options": [
+        "easy to change",
+        "certain to happen; unavoidable",
+        "happening rarely",
+        "very surprising"
+      ],
+      "correct": "certain to happen; unavoidable",
+      "explanation": "'inevitable' means: certain to happen; unavoidable."
+    },
+    {
+      "id": "V18",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **comprehensive**.",
+      "options": [
+        "difficult to understand",
+        "very simple",
+        "partially complete",
+        "including all or nearly all elements or aspects"
+      ],
+      "correct": "including all or nearly all elements or aspects",
+      "explanation": "'comprehensive' means: including all or nearly all elements or aspects."
+    },
+    {
+      "id": "V19",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **deteriorate**.",
+      "options": [
+        "to stay the same",
+        "to become worse over time",
+        "to become stronger",
+        "to improve quickly"
+      ],
+      "correct": "to become worse over time",
+      "explanation": "'deteriorate' means: to become worse over time."
+    },
+    {
+      "id": "V20",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **ambiguous**.",
+      "options": [
+        "very clear",
+        "perfectly normal",
+        "extremely loud",
+        "having more than one possible meaning"
+      ],
+      "correct": "having more than one possible meaning",
+      "explanation": "'ambiguous' means: having more than one possible meaning."
+    },
+    {
+      "id": "V21",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **substantial**.",
+      "options": [
+        "large in amount, value, or importance",
+        "very small",
+        "almost empty",
+        "not important"
+      ],
+      "correct": "large in amount, value, or importance",
+      "explanation": "'substantial' means: large in amount, value, or importance."
+    },
+    {
+      "id": "V22",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **coherent**.",
+      "options": [
+        "partly true",
+        "logical and clearly organized",
+        "short and simple",
+        "confusing and messy"
+      ],
+      "correct": "logical and clearly organized",
+      "explanation": "'coherent' means: logical and clearly organized."
+    },
+    {
+      "id": "V23",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **reluctant**.",
+      "options": [
+        "unwilling or hesitant to do something",
+        "very eager",
+        "extremely happy",
+        "completely ready"
+      ],
+      "correct": "unwilling or hesitant to do something",
+      "explanation": "'reluctant' means: unwilling or hesitant to do something."
+    },
+    {
+      "id": "V24",
+      "type": "definition_match",
+      "level": "B2",
+      "question": "Choose the correct definition of: **significant**.",
+      "options": [
+        "important or worthy of attention",
+        "slightly different",
+        "very common",
+        "not interesting"
+      ],
+      "correct": "important or worthy of attention",
+      "explanation": "'significant' means: important or worthy of attention."
+    }
+  ]
+}

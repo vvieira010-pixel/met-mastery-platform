@@ -1,7 +1,7 @@
 {
   "skill": "speaking",
   "topic": "family",
-  "totalExercises": 1,
+  "totalExercises": 5,
   "exercises": [
     {
       "id": "vt_fam_speak1",
@@ -9,6 +9,38 @@
       "level": "B2",
       "skill": "Speaking",
       "prompt": "Describe a family tradition that is important to you and why."
+    },
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you spent a relaxing evening with your family.",
+      "topic": "Family",
+      "setId": 14
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some families prefer to spend free time together at home, while others prefer to go out. Which do you prefer, and why?",
+      "topic": "Family",
+      "setId": 14
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is considering moving back in with their parents after university to save money. What are the advantages and disadvantages?",
+      "topic": "Family",
+      "setId": 14
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your neighborhood association is proposing that all residents attend a monthly community meeting. I am a member of the association. Tell me what you think and convince me to agree with you.",
+      "topic": "Family",
+      "setId": 14
     }
   ]
 }

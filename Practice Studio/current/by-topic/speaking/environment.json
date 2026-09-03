@@ -1,7 +1,7 @@
 {
   "skill": "speaking",
   "topic": "environment",
-  "totalExercises": 1,
+  "totalExercises": 5,
   "exercises": [
     {
       "id": "vt_env_speak1",
@@ -9,6 +9,38 @@
       "level": "B2",
       "skill": "Speaking",
       "prompt": "Talk about one action you take in daily life to protect the environment."
+    },
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you recycled something or tried to reduce waste.",
+      "topic": "Environment",
+      "setId": 21
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to buy new products, while others prefer to repair or reuse old products. Which do you prefer, and why?",
+      "topic": "Environment",
+      "setId": 21
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering charging residents for every bag of garbage they throw away. What are the advantages and disadvantages?",
+      "topic": "Environment",
+      "setId": 21
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering banning plastic bags in all stores. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Environment",
+      "setId": 21
     }
   ]
 }

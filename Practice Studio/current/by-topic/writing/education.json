@@ -1,7 +1,7 @@
 {
   "skill": "writing",
   "topic": "education",
-  "totalExercises": 2,
+  "totalExercises": 10,
   "exercises": [
     {
       "id": "write_05",
@@ -19,6 +19,86 @@
       "skill": "Writing",
       "prompt": "Write about a study method that helps you learn new information effectively.",
       "rubric": "Should name a method and explain how it improves retention."
+    },
+    {
+      "id": "T1_1",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe your current level of education or your most recent studies. What are or were your main subjects, and why did you choose them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E1",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Some people believe that schools should focus more on teaching practical life skills, such as managing money and cooking, rather than traditional academic subjects. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_11",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Tell us about a teacher who had a strong influence on you. What made this teacher special, and how did they help you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E11",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Many schools are introducing online learning as a regular part of the curriculum. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_21",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe a time when you had to study hard for an important exam or project. How did you prepare, and what was the result?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E21",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Some people argue that university education should be free for all students. Others believe that students should pay for their own studies. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_31",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Talk about a subject you found difficult at school or university. What challenges did you face, and how did you overcome them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_41",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe your ideal school or university. What facilities, teachers, and methods would it have, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
     }
   ]
 }

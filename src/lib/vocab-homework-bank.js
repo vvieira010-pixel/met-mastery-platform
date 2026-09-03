@@ -39,6 +39,7 @@ export function getTopicList(mode) {
     { id: 'money_consumer', title: 'Money, Consumer Choices, and Advertising' },
     { id: 'family_relationships', title: 'Family, Relationships, and Social Life' },
     { id: 'media_news', title: 'Media, News, and Communication' },
+    { id: 'general', title: 'General Vocabulary' },
   ];
 }
 

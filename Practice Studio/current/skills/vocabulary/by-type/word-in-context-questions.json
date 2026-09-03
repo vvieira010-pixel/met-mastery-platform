@@ -1,0 +1,92 @@
+{
+  "title": "word_in_context",
+  "level": "B2",
+  "type": "word_in_context",
+  "total_questions": 6,
+  "questions": [
+    {
+      "id": "V37",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The company experienced a significant increase in sales.</i>",
+      "options": [
+        "very small",
+        "completely expected",
+        "important and noticeable",
+        "slightly negative"
+      ],
+      "correct": "important and noticeable",
+      "explanation": "In this context, the bold word/phrase means: important and noticeable."
+    },
+    {
+      "id": "V38",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>His explanation was ambiguous, so we were not sure what to do.</i>",
+      "options": [
+        "extremely short",
+        "perfectly logical",
+        "unclear and open to more than one interpretation",
+        "very detailed"
+      ],
+      "correct": "unclear and open to more than one interpretation",
+      "explanation": "In this context, the bold word/phrase means: unclear and open to more than one interpretation."
+    },
+    {
+      "id": "V39",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The condition of the building has deteriorated over the years.</i>",
+      "options": [
+        "been repaired",
+        "stayed the same",
+        "become worse",
+        "become better"
+      ],
+      "correct": "become worse",
+      "explanation": "In this context, the bold word/phrase means: become worse."
+    },
+    {
+      "id": "V40",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The report provides a comprehensive overview of the project.</i>",
+      "options": [
+        "partially finished",
+        "difficult to read",
+        "very short",
+        "complete and including all important parts"
+      ],
+      "correct": "complete and including all important parts",
+      "explanation": "In this context, the bold word/phrase means: complete and including all important parts."
+    },
+    {
+      "id": "V41",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>She was reluctant to accept the job offer.</i>",
+      "options": [
+        "extremely happy",
+        "very excited",
+        "unwilling or hesitant",
+        "completely ready"
+      ],
+      "correct": "unwilling or hesitant",
+      "explanation": "In this context, the bold word/phrase means: unwilling or hesitant."
+    },
+    {
+      "id": "V42",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The two theories are not coherent; they contradict each other.</i>",
+      "options": [
+        "extremely complex",
+        "logically consistent and clear",
+        "very popular",
+        "partially true"
+      ],
+      "correct": "logically consistent and clear",
+      "explanation": "In this context, the bold word/phrase means: logically consistent and clear."
+    }
+  ]
+}

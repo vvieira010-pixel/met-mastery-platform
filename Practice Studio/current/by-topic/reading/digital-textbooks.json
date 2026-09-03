@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "digital-textbooks",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-digital-textbooks",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Heavy Bags, Light Screens?\n\nMany schools are replacing printed textbooks with digital versions on tablets and laptops. One clear benefit is cost and weight: a single device can hold every book a student needs for the year, and updates can be added without printing thousands of new copies. For schools with limited budgets, this difference matters.\n\nHowever, teachers report mixed results. Some students read faster on paper and remember more of what which they read, possibly because physical pages make it easier to return to a difficult paragraph. Screens also bring distractions — messages, games, and videos are only one tap away — and long reading sessions can cause tired eyes.\n\nThe most successful schools do not treat the choice as all or nothing. They use digital books for subjects that change often, such as technology and current events, while keeping printed books for long novels and exam preparation. The device is a tool, and like any tool, its value depends on how carefully it is used.",
+      "questions": [
+        {
+          "correct": 3,
+          "explanation": "The first paragraph names cost, weight, and easy updates as the benefits of digital books.",
+          "id": "r10-digital-textbooks-q1",
+          "options": [
+            "Digital books improve eyesight.",
+            "Digital books remove all distractions.",
+            "Digital books are always cheaper for families.",
+            "Digital books save weight and are easy to update."
+          ],
+          "question": "What is one benefit of digital textbooks mentioned in the passage?"
+        },
+        {
+          "correct": 1,
+          "explanation": "The passage says physical pages may help because students can easily return to a difficult paragraph.",
+          "id": "r10-digital-textbooks-q2",
+          "options": [
+            "Paper books are always free.",
+            "Paper pages make it easier to revisit hard sections.",
+            "Paper books update themselves automatically.",
+            "Paper books prevent all tiredness."
+          ],
+          "question": "Why might some students remember more when reading on paper?"
+        },
+        {
+          "correct": 2,
+          "explanation": "The final paragraph recommends digital for fast-changing subjects and print for novels and exams.",
+          "id": "r10-digital-textbooks-q3",
+          "options": [
+            "Ban all devices from schools.",
+            "Give every subject only digital books.",
+            "Mix formats depending on the subject.",
+            "Stop buying books of any kind."
+          ],
+          "question": "What approach does the writer recommend?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "education",
+      "type": "read"
+    }
+  ]
+}

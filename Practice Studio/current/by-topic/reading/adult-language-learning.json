@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "adult-language-learning",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-adult-language-learning",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "It Is Not Too Late\n\nAdults who start learning a language often apologize for their age before the first lesson. Research offers encouragement: while children may master pronunciation more easily, adults learn grammar rules faster and bring stronger study habits. Motivation, not age, is usually the deciding factor.\n\nThe most common mistake is waiting too long to speak. Learners who spend months only on apps and word lists arrive at their first conversation unable to build a sentence under pressure. Short, regular speaking practice — even ten minutes describing your day aloud — trains the mouth and the memory together.\n\nConsistency beats intensity. Thirty focused minutes every day builds more lasting skill than a single exhausting weekend session. A learner who accepts small daily progress, forgives missed days, and keeps speaking from the start will usually surprise themselves within a year.",
+      "questions": [
+        {
+          "correct": 1,
+          "explanation": "The first paragraph says adults learn grammar faster and have stronger study habits.",
+          "id": "r10-adult-language-learning-q1",
+          "options": [
+            "Adults memorize faster than children in every area.",
+            "Adults learn grammar faster and study more effectively.",
+            "Adults never need to practise speaking.",
+            "Adults should only learn with textbooks."
+          ],
+          "question": "What advantage do adult learners have?"
+        },
+        {
+          "correct": 2,
+          "explanation": "The passage says learners who delay speaking cannot build sentences under pressure.",
+          "id": "r10-adult-language-learning-q2",
+          "options": [
+            "Using language apps every day.",
+            "Studying grammar rules first.",
+            "Delaying speaking practice for months.",
+            "Describing your day aloud."
+          ],
+          "question": "What mistake does the writer warn against?"
+        },
+        {
+          "correct": 0,
+          "explanation": "The final paragraph states that daily focused minutes beat one exhausting weekend session.",
+          "id": "r10-adult-language-learning-q3",
+          "options": [
+            "Daily focused practice beats occasional long sessions.",
+            "Weekend study is the only method that works.",
+            "Missing one day ruins all progress.",
+            "Speaking practice should be avoided."
+          ],
+          "question": "What does the writer recommend about study habits?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "education",
+      "type": "read"
+    }
+  ]
+}

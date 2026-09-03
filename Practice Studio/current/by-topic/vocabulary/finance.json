@@ -1,7 +1,7 @@
 {
   "skill": "vocabulary",
   "topic": "finance",
-  "totalExercises": 4,
+  "totalExercises": 5,
   "exercises": [
     {
       "id": "michigan_vocab_7",
@@ -57,6 +57,20 @@
       "blanks": [
         "save"
       ]
+    },
+    {
+      "id": "V49",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>Prices have _______ sharply this year.</i>",
+      "options": [
+        "risen",
+        "risen up",
+        "raised up",
+        "raised"
+      ],
+      "correct": "risen",
+      "explanation": "The correct word here is 'risen'."
     }
   ]
 }

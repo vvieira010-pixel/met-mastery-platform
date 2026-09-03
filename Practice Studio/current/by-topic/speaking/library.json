@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "library",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you studied in a library or another quiet place.",
+      "topic": "Library",
+      "setId": 10
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some students prefer digital resources, such as e-books and websites. Others prefer printed books. Which do you prefer, and why?",
+      "topic": "Library",
+      "setId": 10
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A university is considering making all textbooks available only in digital format to reduce costs. What are the advantages and disadvantages?",
+      "topic": "Library",
+      "setId": 10
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your local library is proposing to reduce its opening hours to save money. I am a member of the library board. Tell me what you think and convince me to agree with you.",
+      "topic": "Library",
+      "setId": 10
+    }
+  ]
+}

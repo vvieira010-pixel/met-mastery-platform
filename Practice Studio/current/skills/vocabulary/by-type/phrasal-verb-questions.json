@@ -1,0 +1,92 @@
+{
+  "title": "phrasal_verb",
+  "level": "B2",
+  "type": "phrasal_verb",
+  "total_questions": 6,
+  "questions": [
+    {
+      "id": "V31",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **give up**.",
+      "options": [
+        "to increase",
+        "to forgive",
+        "to stop trying or quit",
+        "to celebrate"
+      ],
+      "correct": "to stop trying or quit",
+      "explanation": "'give up' means: to stop trying or quit."
+    },
+    {
+      "id": "V32",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **look into**.",
+      "options": [
+        "to investigate or examine",
+        "to ignore",
+        "to visit",
+        "to decorate"
+      ],
+      "correct": "to investigate or examine",
+      "explanation": "'look into' means: to investigate or examine."
+    },
+    {
+      "id": "V33",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **carry out**.",
+      "options": [
+        "to delay",
+        "to perform or conduct (a task/experiment)",
+        "to cancel",
+        "to forget"
+      ],
+      "correct": "to perform or conduct (a task/experiment)",
+      "explanation": "'carry out' means: to perform or conduct (a task/experiment)."
+    },
+    {
+      "id": "V34",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **run out of**.",
+      "options": [
+        "to save a lot",
+        "to buy more",
+        "to find extra",
+        "to have none left"
+      ],
+      "correct": "to have none left",
+      "explanation": "'run out of' means: to have none left."
+    },
+    {
+      "id": "V35",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **put off**.",
+      "options": [
+        "to encourage",
+        "to postpone or delay",
+        "to finish quickly",
+        "to start early"
+      ],
+      "correct": "to postpone or delay",
+      "explanation": "'put off' means: to postpone or delay."
+    },
+    {
+      "id": "V36",
+      "type": "phrasal_verb",
+      "level": "B2",
+      "question": "Choose the correct meaning of the phrasal verb: **turn down**.",
+      "options": [
+        "to refuse or reject",
+        "to invite",
+        "to accept",
+        "to increase volume"
+      ],
+      "correct": "to refuse or reject",
+      "explanation": "'turn down' means: to refuse or reject."
+    }
+  ]
+}

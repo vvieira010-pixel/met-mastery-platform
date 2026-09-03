@@ -15,21 +15,36 @@
             {
               "id": "read_01_q1",
               "question": "What is the main advantage of remote work for employees?",
-              "options": ["Higher salaries", "Better equipment", "Greater job satisfaction", "More vacation days"],
+              "options": [
+                "Higher salaries",
+                "Better equipment",
+                "Greater job satisfaction",
+                "More vacation days"
+              ],
               "correct": 2,
               "explanation": "The passage states employees 'report higher job satisfaction and lower stress levels'."
             },
             {
               "id": "read_01_q2",
               "question": "What concern do some managers have about remote work?",
-              "options": ["Increased costs", "Legal issues", "Team cohesion and productivity", "Customer complaints"],
+              "options": [
+                "Increased costs",
+                "Legal issues",
+                "Team cohesion and productivity",
+                "Customer complaints"
+              ],
               "correct": 2,
               "explanation": "The passage mentions managers 'worry about maintaining team cohesion and productivity'."
             },
             {
               "id": "read_01_q3",
               "question": "According to the passage, what may be the ideal arrangement?",
-              "options": ["Fully remote work", "Full-time office work", "Hybrid models", "Freelance contracts"],
+              "options": [
+                "Fully remote work",
+                "Full-time office work",
+                "Hybrid models",
+                "Freelance contracts"
+              ],
               "correct": 2,
               "explanation": "The passage states 'hybrid models... may offer the best of both worlds'."
             }
@@ -44,21 +59,36 @@
             {
               "id": "read_02_q1",
               "question": "What does the passage say about modern libraries?",
-              "options": ["They only lend books.", "They offer a wide range of services.", "They have closed due to budget cuts.", "They charge fees for computer use."],
+              "options": [
+                "They only lend books.",
+                "They offer a wide range of services.",
+                "They have closed due to budget cuts.",
+                "They charge fees for computer use."
+              ],
               "correct": 1,
               "explanation": "The passage describes libraries offering 'free internet access, computer classes, language courses' and more."
             },
             {
               "id": "read_02_q2",
               "question": "Why are libraries described as 'equalizers'?",
-              "options": ["They charge the same fee to everyone.", "They provide resources regardless of income.", "They are located in equal numbers across cities.", "They employ staff from diverse backgrounds."],
+              "options": [
+                "They charge the same fee to everyone.",
+                "They provide resources regardless of income.",
+                "They are located in equal numbers across cities.",
+                "They employ staff from diverse backgrounds."
+              ],
               "correct": 1,
               "explanation": "Libraries 'provide resources to people regardless of their income or background'."
             },
             {
               "id": "read_02_q3",
               "question": "What trend in library usage is mentioned?",
-              "options": ["Usage has declined significantly.", "Only elderly people use libraries.", "Usage has increased in many areas.", "Libraries are only used in rural areas."],
+              "options": [
+                "Usage has declined significantly.",
+                "Only elderly people use libraries.",
+                "Usage has increased in many areas.",
+                "Libraries are only used in rural areas."
+              ],
               "correct": 2,
               "explanation": "The passage states 'library usage has actually increased in many areas'."
             }
@@ -73,23 +103,517 @@
             {
               "id": "read_03_q1",
               "question": "What was the main finding of the UK trial?",
-              "options": ["Productivity decreased significantly.", "Most companies maintained or improved productivity.", "Employee turnover doubled.", "Customer satisfaction dropped."],
+              "options": [
+                "Productivity decreased significantly.",
+                "Most companies maintained or improved productivity.",
+                "Employee turnover doubled.",
+                "Customer satisfaction dropped."
+              ],
               "correct": 1,
               "explanation": "The passage states 'most maintained or improved productivity while reducing employee stress'."
             },
             {
               "id": "read_03_q2",
               "question": "What is one concern about the four-day work week?",
-              "options": ["Employees want more hours.", "It only works in small companies.", "Some industries need continuous coverage.", "It increases training costs."],
+              "options": [
+                "Employees want more hours.",
+                "It only works in small companies.",
+                "Some industries need continuous coverage.",
+                "It increases training costs."
+              ],
               "correct": 2,
               "explanation": "Critics argue it may not work in 'healthcare, retail, and hospitality, where continuous coverage is essential'."
             },
             {
               "id": "read_03_q3",
               "question": "What does the passage suggest about the debate?",
-              "options": ["It has been settled in favor of the four-day week.", "More evidence is needed.", "The model will replace traditional schedules.", "Only large corporations support it."],
+              "options": [
+                "It has been settled in favor of the four-day week.",
+                "More evidence is needed.",
+                "The model will replace traditional schedules.",
+                "Only large corporations support it."
+              ],
               "correct": 1,
               "explanation": "The passage ends with 'The debate continues as more organizations consider' the model."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r10_reading_pack",
+      "moduleType": "reading_set",
+      "title": "Reading Pack R10 — Education & Work",
+      "skill": "reading",
+      "levelRange": "B2",
+      "items": [
+        {
+          "id": "r10-apprenticeships",
+          "type": "read",
+          "passage": "Learn While You Earn\n\nFor many school-leavers, university feels like the only path to a good career. Apprenticeships offer a different route: young people work for a real employer while studying toward a recognized qualification. Instead of paying tuition fees, apprentices earn a salary from the first month, and the employer usually covers the training costs.\n\nThe model works best when the classroom learning connects directly to daily tasks. An apprentice electrician, for example, may study circuit theory in the morning and install wiring in the afternoon. This combination helps knowledge stick, because every new idea is tested in practice the same week it is taught.\n\nApprenticeships are not an easy option. The workload is heavy, combining a full job with evening study, and some programs pay modest wages at the start. Still, for students who prefer doing over memorizing, the mix of income, experience, and a qualification without debt can be difficult to beat.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-apprenticeships-q1",
+              "stem": "What is one financial advantage of an apprenticeship mentioned in the passage?",
+              "question": "What is one financial advantage of an apprenticeship mentioned in the passage?",
+              "options": [
+                "Apprentices receive no pay during training.",
+                "Apprentices earn money while their training is usually paid for.",
+                "Apprentices study full-time before starting work.",
+                "Apprentices must pay their own tuition fees."
+              ],
+              "correct": 1,
+              "explanation": "The first paragraph contrasts apprenticeships with university: apprentices earn a salary while employers cover training."
+            },
+            {
+              "id": "r10-apprenticeships-q2",
+              "stem": "According to the passage, why does the combination of study and work help learning?",
+              "question": "According to the passage, why does the combination of study and work help learning?",
+              "options": [
+                "Trainees repeat the same task every day.",
+                "Classroom study happens only after two years of work.",
+                "New ideas from class are quickly tested in real tasks.",
+                "Theory exams replace all practical work."
+              ],
+              "correct": 2,
+              "explanation": "The electrician example shows morning theory applied to afternoon wiring work in the same week."
+            },
+            {
+              "id": "r10-apprenticeships-q3",
+              "stem": "What can be inferred about the writer's attitude toward apprenticeships?",
+              "question": "What can be inferred about the writer's attitude toward apprenticeships?",
+              "options": [
+                "It admits real difficulties alongside the benefits.",
+                "It claims every apprentice becomes wealthy quickly.",
+                "It argues university is always the better choice.",
+                "It ignores any negative side of apprenticeships."
+              ],
+              "correct": 0,
+              "explanation": "The final paragraph lists heavy workload and modest starting wages as real difficulties, so the writer's view is balanced."
+            }
+          ]
+        },
+        {
+          "id": "r10-digital-textbooks",
+          "type": "read",
+          "passage": "Heavy Bags, Light Screens?\n\nMany schools are replacing printed textbooks with digital versions on tablets and laptops. One clear benefit is cost and weight: a single device can hold every book a student needs for the year, and updates can be added without printing thousands of new copies. For schools with limited budgets, this difference matters.\n\nHowever, teachers report mixed results. Some students read faster on paper and remember more of what which they read, possibly because physical pages make it easier to return to a difficult paragraph. Screens also bring distractions — messages, games, and videos are only one tap away — and long reading sessions can cause tired eyes.\n\nThe most successful schools do not treat the choice as all or nothing. They use digital books for subjects that change often, such as technology and current events, while keeping printed books for long novels and exam preparation. The device is a tool, and like any tool, its value depends on how carefully it is used.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-digital-textbooks-q1",
+              "stem": "What is one benefit of digital textbooks mentioned in the passage?",
+              "question": "What is one benefit of digital textbooks mentioned in the passage?",
+              "options": [
+                "Digital books improve eyesight.",
+                "Digital books remove all distractions.",
+                "Digital books are always cheaper for families.",
+                "Digital books save weight and are easy to update."
+              ],
+              "correct": 3,
+              "explanation": "The first paragraph names cost, weight, and easy updates as the benefits of digital books."
+            },
+            {
+              "id": "r10-digital-textbooks-q2",
+              "stem": "Why might some students remember more when reading on paper?",
+              "question": "Why might some students remember more when reading on paper?",
+              "options": [
+                "Paper books are always free.",
+                "Paper pages make it easier to revisit hard sections.",
+                "Paper books update themselves automatically.",
+                "Paper books prevent all tiredness."
+              ],
+              "correct": 1,
+              "explanation": "The passage says physical pages may help because students can easily return to a difficult paragraph."
+            },
+            {
+              "id": "r10-digital-textbooks-q3",
+              "stem": "What approach does the writer recommend?",
+              "question": "What approach does the writer recommend?",
+              "options": [
+                "Ban all devices from schools.",
+                "Give every subject only digital books.",
+                "Mix formats depending on the subject.",
+                "Stop buying books of any kind."
+              ],
+              "correct": 2,
+              "explanation": "The final paragraph recommends digital for fast-changing subjects and print for novels and exams."
+            }
+          ]
+        },
+        {
+          "id": "r10-feedback-that-works",
+          "type": "read",
+          "passage": "Beyond 'Good Job'\n\nMost students have received feedback that says little more than 'good job' or 'needs improvement.' These comments feel safe, but they give the learner almost nothing to act on. Effective feedback looks different: it points to one specific part of the work, explains what worked or failed there, and suggests a concrete next step.\n\nTiming matters as much as content. A comment on an essay returned three weeks later arrives when the student has already forgotten the thinking behind it. Short feedback given within a day or two — even two sentences — usually changes the next piece of work more than a long report delivered late.\n\nStudents also need a chance to use the advice. Teachers who build ten minutes of revision time into the next lesson let learners apply the comment immediately, turning feedback from a final judgment into part of the learning process itself.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-feedback-that-works-q1",
+              "stem": "What is the problem with comments like 'good job'?",
+              "question": "What is the problem with comments like 'good job'?",
+              "options": [
+                "They give learners almost nothing specific to act on.",
+                "They are too long for students to read.",
+                "They always contain incorrect information.",
+                "They are never positive enough."
+              ],
+              "correct": 0,
+              "explanation": "The first paragraph says vague comments give the learner almost nothing to act on."
+            },
+            {
+              "id": "r10-feedback-that-works-q2",
+              "stem": "Why is late feedback less useful?",
+              "question": "Why is late feedback less useful?",
+              "options": [
+                "It is always too positive.",
+                "It focuses only on grammar.",
+                "It is written too quickly.",
+                "It arrives after students forget their thinking."
+              ],
+              "correct": 3,
+              "explanation": "The passage states that late feedback arrives after the student has forgotten their thinking."
+            },
+            {
+              "id": "r10-feedback-that-works-q3",
+              "stem": "What is the purpose of revision time in the next lesson?",
+              "question": "What is the purpose of revision time in the next lesson?",
+              "options": [
+                "It shortens every lesson.",
+                "It lets students apply advice right away.",
+                "It removes the need for teachers.",
+                "It replaces all homework."
+              ],
+              "correct": 1,
+              "explanation": "The final paragraph says revision time lets learners apply the comment immediately."
+            }
+          ]
+        },
+        {
+          "id": "r10-teen-sleep",
+          "type": "read",
+          "passage": "Let Teenagers Sleep\n\nAsking a sixteen-year-old to solve algebra at half past seven in the morning ignores biology. During puberty, the body clock shifts later: teenagers naturally feel sleepy later at night and need to sleep later in the morning. A schedule that suited a ten-year-old can leave an older student permanently short of rest.\n\nThe effects go beyond yawning in class. Studies link short sleep in teenagers to weaker concentration, lower mood, and more frequent illness. Some school districts that moved start times later by even one hour reported better attendance and calmer morning lessons within a single term.\n\nChange is not simple. Bus timetables, parents' working hours, and after-school sports all depend on the current schedule. Still, the evidence points in one direction: when schools treat sleep as part of learning rather than an obstacle to it, students arrive more ready to learn.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-teen-sleep-q1",
+              "stem": "Why do early starts particularly affect teenagers?",
+              "question": "Why do early starts particularly affect teenagers?",
+              "options": [
+                "Teenagers dislike all school subjects.",
+                "Teenagers need less sleep than adults.",
+                "Teenagers' body clocks naturally shift later.",
+                "Teenagers prefer studying at dawn."
+              ],
+              "correct": 2,
+              "explanation": "The first paragraph explains that puberty shifts the body clock later."
+            },
+            {
+              "id": "r10-teen-sleep-q2",
+              "stem": "What effects of short sleep are mentioned?",
+              "question": "What effects of short sleep are mentioned?",
+              "options": [
+                "Weaker concentration and more illness.",
+                "Stronger memory and better vision.",
+                "Faster growth and more energy.",
+                "Improved appetite and hearing."
+              ],
+              "correct": 0,
+              "explanation": "The second paragraph links short sleep to concentration, mood, and illness."
+            },
+            {
+              "id": "r10-teen-sleep-q3",
+              "stem": "What makes changing school start times difficult?",
+              "question": "What makes changing school start times difficult?",
+              "options": [
+                "Students refuse to sleep earlier.",
+                "Teachers dislike morning lessons.",
+                "Sleep has no effect on learning.",
+                "Transport and family routines depend on school times."
+              ],
+              "correct": 3,
+              "explanation": "The final paragraph says buses, parents' hours, and sports all depend on current schedules."
+            }
+          ]
+        },
+        {
+          "id": "r10-adult-language-learning",
+          "type": "read",
+          "passage": "It Is Not Too Late\n\nAdults who start learning a language often apologize for their age before the first lesson. Research offers encouragement: while children may master pronunciation more easily, adults learn grammar rules faster and bring stronger study habits. Motivation, not age, is usually the deciding factor.\n\nThe most common mistake is waiting too long to speak. Learners who spend months only on apps and word lists arrive at their first conversation unable to build a sentence under pressure. Short, regular speaking practice — even ten minutes describing your day aloud — trains the mouth and the memory together.\n\nConsistency beats intensity. Thirty focused minutes every day builds more lasting skill than a single exhausting weekend session. A learner who accepts small daily progress, forgives missed days, and keeps speaking from the start will usually surprise themselves within a year.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-adult-language-learning-q1",
+              "stem": "What advantage do adult learners have?",
+              "question": "What advantage do adult learners have?",
+              "options": [
+                "Adults memorize faster than children in every area.",
+                "Adults learn grammar faster and study more effectively.",
+                "Adults never need to practise speaking.",
+                "Adults should only learn with textbooks."
+              ],
+              "correct": 1,
+              "explanation": "The first paragraph says adults learn grammar faster and have stronger study habits."
+            },
+            {
+              "id": "r10-adult-language-learning-q2",
+              "stem": "What mistake does the writer warn against?",
+              "question": "What mistake does the writer warn against?",
+              "options": [
+                "Using language apps every day.",
+                "Studying grammar rules first.",
+                "Delaying speaking practice for months.",
+                "Describing your day aloud."
+              ],
+              "correct": 2,
+              "explanation": "The passage says learners who delay speaking cannot build sentences under pressure."
+            },
+            {
+              "id": "r10-adult-language-learning-q3",
+              "stem": "What does the writer recommend about study habits?",
+              "question": "What does the writer recommend about study habits?",
+              "options": [
+                "Daily focused practice beats occasional long sessions.",
+                "Weekend study is the only method that works.",
+                "Missing one day ruins all progress.",
+                "Speaking practice should be avoided."
+              ],
+              "correct": 0,
+              "explanation": "The final paragraph states that daily focused minutes beat one exhausting weekend session."
+            }
+          ]
+        },
+        {
+          "id": "r10-four-day-week",
+          "type": "read",
+          "passage": "Four Days, Same Pay?\n\nSeveral large trials have tested a four-day working week with no cut in salary. The results surprised many managers: revenue stayed steady or rose, sick days fell, and most employees said they would not return to five days. With one extra day for rest and errands, people arrived on Monday with more energy.\n\nThe model demands discipline. Meetings are shorter, coffee breaks are fewer, and low-value tasks are simply dropped. Companies that failed usually failed here — they removed a working day without changing how the remaining four were used, and the same workload was squeezed into less time.\n\nA four-day week is not possible everywhere. Hospitals, restaurants, and emergency services must cover every day, so they experiment instead with shorter shifts or flexible rotas. The broader lesson still applies: many organizations discover they can achieve the same results in less time once they measure output instead of hours.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-four-day-week-q1",
+              "stem": "What did the trials generally find?",
+              "question": "What did the trials generally find?",
+              "options": [
+                "Revenue always collapsed.",
+                "Employees demanded a return to five days.",
+                "Sick days increased sharply.",
+                "Revenue held steady while wellbeing improved."
+              ],
+              "correct": 3,
+              "explanation": "The first paragraph reports steady or rising revenue, fewer sick days, and higher energy."
+            },
+            {
+              "id": "r10-four-day-week-q2",
+              "stem": "Why did some companies fail with the model?",
+              "question": "Why did some companies fail with the model?",
+              "options": [
+                "They paid employees too much.",
+                "They kept old work habits in fewer days.",
+                "They hired too many new managers.",
+                "They refused to hold any meetings."
+              ],
+              "correct": 1,
+              "explanation": "The passage says failing companies removed a day without changing how the other four were used."
+            },
+            {
+              "id": "r10-four-day-week-q3",
+              "stem": "How do hospitals and restaurants handle the idea?",
+              "question": "How do hospitals and restaurants handle the idea?",
+              "options": [
+                "They already work only three days.",
+                "Their employees dislike short weeks.",
+                "They must stay open daily, so they adapt differently.",
+                "They are banned from any experiments."
+              ],
+              "correct": 2,
+              "explanation": "Hospitals and restaurants must cover every day, so they try shorter shifts or flexible rotas instead."
+            }
+          ]
+        },
+        {
+          "id": "r10-first-internship",
+          "type": "read",
+          "passage": "The First Step In\n\nA first internship can feel disappointingly ordinary: answering emails, organizing files, and watching experienced colleagues do the interesting work. Yet these small tasks serve a purpose. They teach the unspoken rules of professional life — how meetings run, how deadlines are tracked, and how colleagues ask for help — that no classroom fully explains.\n\nThe difference between a useful internship and a wasted summer is usually mentoring. Interns who meet weekly with a supervisor to review progress learn far more than those left alone with repetitive tasks. A good mentor explains not just what to do but why it matters to the team.\n\nPay remains controversial. Unpaid positions exclude students who cannot afford to work for free, while paid programs attract stronger applicants and treat interns as real contributors. Whatever the salary, the true test of an internship is simple: does the intern leave with skills and contacts they did not have before?",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-first-internship-q1",
+              "stem": "What value do routine tasks have for interns?",
+              "question": "What value do routine tasks have for interns?",
+              "options": [
+                "Small tasks teach the unspoken rules of work.",
+                "Emails are the most important skill in any job.",
+                "Interns should avoid watching colleagues.",
+                "Filing is more valuable than mentoring."
+              ],
+              "correct": 0,
+              "explanation": "The first paragraph says small tasks teach the unspoken rules of professional life."
+            },
+            {
+              "id": "r10-first-internship-q2",
+              "stem": "What makes an internship useful rather than wasted?",
+              "question": "What makes an internship useful rather than wasted?",
+              "options": [
+                "Working completely alone.",
+                "Avoiding all feedback.",
+                "Regular mentoring and progress reviews.",
+                "Doing only the most exciting tasks."
+              ],
+              "correct": 2,
+              "explanation": "Weekly supervisor meetings to review progress separate useful internships from wasted ones."
+            },
+            {
+              "id": "r10-first-internship-q3",
+              "stem": "What is the true test of an internship?",
+              "question": "What is the true test of an internship?",
+              "options": [
+                "The size of the company.",
+                "The length of the lunch break.",
+                "The number of emails answered.",
+                "New skills and contacts gained."
+              ],
+              "correct": 3,
+              "explanation": "The final paragraph asks whether the intern leaves with new skills and contacts."
+            }
+          ]
+        },
+        {
+          "id": "r10-job-interviews",
+          "type": "read",
+          "passage": "The Interview Is a Conversation\n\nMany candidates treat job interviews as exams with right and wrong answers. Stronger candidates treat them as professional conversations. Researching the company beforehand — its products, customers, and recent news — allows an applicant to connect their own experience to real problems the team faces.\n\nStories beat adjectives. Saying 'I am a great team player' convinces nobody, but describing a disagreement you helped resolve shows teamwork in action. The best interview stories follow a simple shape: the situation, the action you took, and the result. One clear example usually impresses more than five vague claims.\n\nGood interviews run both ways. Candidates who ask thoughtful questions — about training, daily work, or how success is measured — learn whether the job truly fits them. An interview that feels like a real discussion is often a sign of a workplace where communication works.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-job-interviews-q1",
+              "stem": "Why should candidates research the company?",
+              "question": "Why should candidates research the company?",
+              "options": [
+                "Memorizing the company's founding date.",
+                "Connecting your experience to the team's real problems.",
+                "Flattering every interviewer personally.",
+                "Asking for the highest possible salary first."
+              ],
+              "correct": 1,
+              "explanation": "Researching products, customers, and news lets applicants connect experience to real problems."
+            },
+            {
+              "id": "r10-job-interviews-q2",
+              "stem": "What does the writer say about interview stories?",
+              "question": "What does the writer say about interview stories?",
+              "options": [
+                "One clear example beats several vague claims.",
+                "Longer answers are always better.",
+                "Adjectives convince more than stories.",
+                "Results should never be mentioned."
+              ],
+              "correct": 0,
+              "explanation": "The passage says one clear situation-action-result example beats five vague claims."
+            },
+            {
+              "id": "r10-job-interviews-q3",
+              "stem": "Why should candidates ask their own questions?",
+              "question": "Why should candidates ask their own questions?",
+              "options": [
+                "It guarantees a job offer.",
+                "It shows the candidate is desperate.",
+                "It reveals whether the job truly fits.",
+                "It shortens the interview unfairly."
+              ],
+              "correct": 2,
+              "explanation": "Asking about training, daily work, and success measures shows whether the job fits."
+            }
+          ]
+        },
+        {
+          "id": "r10-workplace-mentoring",
+          "type": "read",
+          "passage": "Someone Who Has Been There\n\nStarting a first job can feel like arriving in a country where you do not speak the language. A workplace mentor — an experienced colleague assigned to guide newcomers — shortens this difficult period. Mentors explain procedures, introduce key people, and warn beginners about common mistakes before they happen.\n\nThe relationship benefits both sides. New employees settle faster and make fewer expensive errors, while mentors often report that explaining their work forces them to organize their own knowledge more clearly. Some even discover leadership ability they had not suspected in themselves.\n\nEffective mentoring needs structure. Pairs who meet regularly with a simple agenda achieve more than those who only talk when problems appear. A short monthly conversation about goals, difficulties, and next steps keeps the relationship useful long after the nervous first weeks are over.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-workplace-mentoring-q1",
+              "stem": "What does a workplace mentor do?",
+              "question": "What does a workplace mentor do?",
+              "options": [
+                "They set salaries for newcomers.",
+                "They replace all formal training.",
+                "They evaluate beginners for dismissal.",
+                "They guide newcomers and warn about mistakes early."
+              ],
+              "correct": 3,
+              "explanation": "Mentors explain procedures, introduce people, and warn about mistakes in advance."
+            },
+            {
+              "id": "r10-workplace-mentoring-q2",
+              "stem": "How do mentors benefit?",
+              "question": "How do mentors benefit?",
+              "options": [
+                "Mentors receive automatic promotions.",
+                "Mentors clarify their own knowledge by explaining it.",
+                "Mentors no longer need to do their jobs.",
+                "Mentors avoid all responsibility for errors."
+              ],
+              "correct": 1,
+              "explanation": "Explaining their work forces mentors to organize their own knowledge more clearly."
+            },
+            {
+              "id": "r10-workplace-mentoring-q3",
+              "stem": "What makes mentoring effective?",
+              "question": "What makes mentoring effective?",
+              "options": [
+                "Regular meetings with a simple agenda.",
+                "Talking only when problems appear.",
+                "Ending contact after the first week.",
+                "Meeting without any plan or goals."
+              ],
+              "correct": 0,
+              "explanation": "Regular meetings with a simple agenda beat only talking when problems appear."
+            }
+          ]
+        },
+        {
+          "id": "r10-career-change",
+          "type": "read",
+          "passage": "Starting Over at Thirty-Five\n\nChanging careers in your thirties can feel like throwing away a decade of effort. In practice, little is wasted: a teacher who becomes a trainer, or a nurse who moves into health technology, carries across communication skills, patience, and professional contacts. Experience transfers more often than people expect.\n\nThe practical barriers are real, however. Retraining usually means evening courses after full working days, and an entry-level salary in a new field may be lower than the old one. Successful changers plan for this gap by saving several months of expenses before resigning and by testing the new field first — through freelance projects, volunteering, or shadowing a professional for a week.\n\nThe deepest obstacle is often psychological. Admitting that a chosen path no longer fits can feel like failure, when it is really information. People who treat the move as an experiment — reversible, time-limited, and full of learning — adapt faster than those who demand a guarantee before the first step.",
+          "source": "Platform practice pack R10",
+          "questions": [
+            {
+              "id": "r10-career-change-q1",
+              "stem": "What does the passage say about past experience?",
+              "question": "What does the passage say about past experience?",
+              "options": [
+                "Previous experience is always completely useless.",
+                "Only young people can learn new skills.",
+                "Skills and contacts often transfer to the new field.",
+                "Employers never hire career changers."
+              ],
+              "correct": 2,
+              "explanation": "The teacher and nurse examples show communication skills and contacts carrying across."
+            },
+            {
+              "id": "r10-career-change-q2",
+              "stem": "How should career changers handle the practical barriers?",
+              "question": "How should career changers handle the practical barriers?",
+              "options": [
+                "Save money in advance and test the new field first.",
+                "Resign immediately without any plan.",
+                "Refuse all freelance or volunteer work.",
+                "Avoid talking to professionals in the field."
+              ],
+              "correct": 0,
+              "explanation": "The passage recommends saving months of expenses and testing the field first."
+            },
+            {
+              "id": "r10-career-change-q3",
+              "stem": "What mindset helps most?",
+              "question": "What mindset helps most?",
+              "options": [
+                "Wait for a guarantee before acting.",
+                "Treat the move as a reversible experiment.",
+                "Keep the decision secret from everyone.",
+                "Change fields every few months."
+              ],
+              "correct": 1,
+              "explanation": "Treating the move as a reversible, time-limited experiment helps people adapt faster."
             }
           ]
         }

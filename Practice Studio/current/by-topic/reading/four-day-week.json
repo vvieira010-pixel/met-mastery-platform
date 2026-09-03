@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "four-day-week",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-four-day-week",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Four Days, Same Pay?\n\nSeveral large trials have tested a four-day working week with no cut in salary. The results surprised many managers: revenue stayed steady or rose, sick days fell, and most employees said they would not return to five days. With one extra day for rest and errands, people arrived on Monday with more energy.\n\nThe model demands discipline. Meetings are shorter, coffee breaks are fewer, and low-value tasks are simply dropped. Companies that failed usually failed here — they removed a working day without changing how the remaining four were used, and the same workload was squeezed into less time.\n\nA four-day week is not possible everywhere. Hospitals, restaurants, and emergency services must cover every day, so they experiment instead with shorter shifts or flexible rotas. The broader lesson still applies: many organizations discover they can achieve the same results in less time once they measure output instead of hours.",
+      "questions": [
+        {
+          "correct": 3,
+          "explanation": "The first paragraph reports steady or rising revenue, fewer sick days, and higher energy.",
+          "id": "r10-four-day-week-q1",
+          "options": [
+            "Revenue always collapsed.",
+            "Employees demanded a return to five days.",
+            "Sick days increased sharply.",
+            "Revenue held steady while wellbeing improved."
+          ],
+          "question": "What did the trials generally find?"
+        },
+        {
+          "correct": 1,
+          "explanation": "The passage says failing companies removed a day without changing how the other four were used.",
+          "id": "r10-four-day-week-q2",
+          "options": [
+            "They paid employees too much.",
+            "They kept old work habits in fewer days.",
+            "They hired too many new managers.",
+            "They refused to hold any meetings."
+          ],
+          "question": "Why did some companies fail with the model?"
+        },
+        {
+          "correct": 2,
+          "explanation": "Hospitals and restaurants must cover every day, so they try shorter shifts or flexible rotas instead.",
+          "id": "r10-four-day-week-q3",
+          "options": [
+            "They already work only three days.",
+            "Their employees dislike short weeks.",
+            "They must stay open daily, so they adapt differently.",
+            "They are banned from any experiments."
+          ],
+          "question": "How do hospitals and restaurants handle the idea?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "work_career",
+      "type": "read"
+    }
+  ]
+}

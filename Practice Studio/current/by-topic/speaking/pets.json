@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "pets",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a pet you have had or would like to have.",
+      "topic": "Pets",
+      "setId": 18
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer dogs as pets, while others prefer cats. Which do you prefer, and why?",
+      "topic": "Pets",
+      "setId": 18
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is considering adopting a small monkey as a pet. What are the advantages and disadvantages of this idea?",
+      "topic": "Pets",
+      "setId": 18
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering banning the sale of dogs and cats in pet stores, allowing adoption only from shelters. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Pets",
+      "setId": 18
+    }
+  ]
+}

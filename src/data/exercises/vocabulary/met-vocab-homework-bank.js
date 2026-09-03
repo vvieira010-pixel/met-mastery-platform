@@ -170,4 +170,11 @@ export const vocabTopics = [
       },
     ],
   },
+  {
+    id: 'general',
+    title: 'General Vocabulary',
+    exercises: [],
+  },
 ];
+
+export { grammarMCQs } from '../grammar/grammar-92.js';

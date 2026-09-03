@@ -1,11 +1,19 @@
 {
   "community-and-relationships": 2,
-  "education": 2,
-  "environment": 1,
+  "culture": 8,
+  "education": 10,
+  "environment": 9,
   "grammar-practice": 1,
+  "health": 8,
   "healthcare": 2,
+  "housing": 7,
   "life-and-finance": 2,
   "media-and-technology": 2,
+  "science": 7,
+  "social-media": 7,
+  "technology": 8,
+  "transportation": 7,
   "travel-and-culture": 2,
-  "work-and-career": 2
+  "work-and-career": 2,
+  "work": 8
 }

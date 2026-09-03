@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "teen-sleep",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-teen-sleep",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Let Teenagers Sleep\n\nAsking a sixteen-year-old to solve algebra at half past seven in the morning ignores biology. During puberty, the body clock shifts later: teenagers naturally feel sleepy later at night and need to sleep later in the morning. A schedule that suited a ten-year-old can leave an older student permanently short of rest.\n\nThe effects go beyond yawning in class. Studies link short sleep in teenagers to weaker concentration, lower mood, and more frequent illness. Some school districts that moved start times later by even one hour reported better attendance and calmer morning lessons within a single term.\n\nChange is not simple. Bus timetables, parents' working hours, and after-school sports all depend on the current schedule. Still, the evidence points in one direction: when schools treat sleep as part of learning rather than an obstacle to it, students arrive more ready to learn.",
+      "questions": [
+        {
+          "correct": 2,
+          "explanation": "The first paragraph explains that puberty shifts the body clock later.",
+          "id": "r10-teen-sleep-q1",
+          "options": [
+            "Teenagers dislike all school subjects.",
+            "Teenagers need less sleep than adults.",
+            "Teenagers' body clocks naturally shift later.",
+            "Teenagers prefer studying at dawn."
+          ],
+          "question": "Why do early starts particularly affect teenagers?"
+        },
+        {
+          "correct": 0,
+          "explanation": "The second paragraph links short sleep to concentration, mood, and illness.",
+          "id": "r10-teen-sleep-q2",
+          "options": [
+            "Weaker concentration and more illness.",
+            "Stronger memory and better vision.",
+            "Faster growth and more energy.",
+            "Improved appetite and hearing."
+          ],
+          "question": "What effects of short sleep are mentioned?"
+        },
+        {
+          "correct": 3,
+          "explanation": "The final paragraph says buses, parents' hours, and sports all depend on current schedules.",
+          "id": "r10-teen-sleep-q3",
+          "options": [
+            "Students refuse to sleep earlier.",
+            "Teachers dislike morning lessons.",
+            "Sleep has no effect on learning.",
+            "Transport and family routines depend on school times."
+          ],
+          "question": "What makes changing school start times difficult?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "education",
+      "type": "read"
+    }
+  ]
+}

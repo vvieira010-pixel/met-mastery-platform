@@ -1,7 +1,7 @@
 {
   "skill": "speaking",
   "topic": "community",
-  "totalExercises": 1,
+  "totalExercises": 5,
   "exercises": [
     {
       "id": "vt_comm_speak1",
@@ -9,6 +9,38 @@
       "level": "B2",
       "skill": "Speaking",
       "prompt": "Describe a community event you have attended and what you liked about it."
+    },
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you helped someone or took part in a community activity.",
+      "topic": "Community",
+      "setId": 20
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to volunteer in their community, while others prefer to donate money to charities. Which do you prefer, and why?",
+      "topic": "Community",
+      "setId": 20
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A company is considering giving employees one paid day each month to volunteer in their community. What are the advantages and disadvantages?",
+      "topic": "Community",
+      "setId": 20
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your neighborhood is proposing a rule that every household must pay a monthly fee to support local community projects. I am a member of the neighborhood association. Tell me what you think and convince me to agree with you.",
+      "topic": "Community",
+      "setId": 20
     }
   ]
 }

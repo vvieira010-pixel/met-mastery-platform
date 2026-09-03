@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "first-internship",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-first-internship",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "The First Step In\n\nA first internship can feel disappointingly ordinary: answering emails, organizing files, and watching experienced colleagues do the interesting work. Yet these small tasks serve a purpose. They teach the unspoken rules of professional life — how meetings run, how deadlines are tracked, and how colleagues ask for help — that no classroom fully explains.\n\nThe difference between a useful internship and a wasted summer is usually mentoring. Interns who meet weekly with a supervisor to review progress learn far more than those left alone with repetitive tasks. A good mentor explains not just what to do but why it matters to the team.\n\nPay remains controversial. Unpaid positions exclude students who cannot afford to work for free, while paid programs attract stronger applicants and treat interns as real contributors. Whatever the salary, the true test of an internship is simple: does the intern leave with skills and contacts they did not have before?",
+      "questions": [
+        {
+          "correct": 0,
+          "explanation": "The first paragraph says small tasks teach the unspoken rules of professional life.",
+          "id": "r10-first-internship-q1",
+          "options": [
+            "Small tasks teach the unspoken rules of work.",
+            "Emails are the most important skill in any job.",
+            "Interns should avoid watching colleagues.",
+            "Filing is more valuable than mentoring."
+          ],
+          "question": "What value do routine tasks have for interns?"
+        },
+        {
+          "correct": 2,
+          "explanation": "Weekly supervisor meetings to review progress separate useful internships from wasted ones.",
+          "id": "r10-first-internship-q2",
+          "options": [
+            "Working completely alone.",
+            "Avoiding all feedback.",
+            "Regular mentoring and progress reviews.",
+            "Doing only the most exciting tasks."
+          ],
+          "question": "What makes an internship useful rather than wasted?"
+        },
+        {
+          "correct": 3,
+          "explanation": "The final paragraph asks whether the intern leaves with new skills and contacts.",
+          "id": "r10-first-internship-q3",
+          "options": [
+            "The size of the company.",
+            "The length of the lunch break.",
+            "The number of emails answered.",
+            "New skills and contacts gained."
+          ],
+          "question": "What is the true test of an internship?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "work_career",
+      "type": "read"
+    }
+  ]
+}

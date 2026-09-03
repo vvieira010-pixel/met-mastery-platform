@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "social-media",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you used social media to communicate with someone.",
+      "topic": "Social Media",
+      "setId": 29
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to share their personal lives on social media, while others prefer to keep their lives private. Which do you prefer, and why?",
+      "topic": "Social Media",
+      "setId": 29
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A company is considering allowing employees to use social media freely during work hours. What are the advantages and disadvantages?",
+      "topic": "Social Media",
+      "setId": 29
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your school is considering teaching a compulsory course about social media safety and digital responsibility. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Social Media",
+      "setId": 29
+    }
+  ]
+}

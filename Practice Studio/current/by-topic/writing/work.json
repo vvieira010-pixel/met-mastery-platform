@@ -1,0 +1,87 @@
+{
+  "skill": "writing",
+  "topic": "Work",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "T1_3",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe your current job or your dream job. What are your main responsibilities, and why do you like or dislike them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E3",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "Some people believe that remote work is better for employees than working in an office. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_13",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Tell us about a time when you had to work as part of a team. What was your role, and what did you learn from the experience?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E13",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "More and more people are choosing to work as freelancers instead of having a traditional job. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_23",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe a difficult situation you faced at work or during an internship. How did you handle it, and what was the outcome?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E23",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "Some people think that companies should require employees to retire at a certain age. Others believe that people should be able to work as long as they want. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_33",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Talk about a skill that is important in your profession. How did you develop this skill, and why is it valuable?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_43",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe your ideal work environment. What would your workplace, schedule, and colleagues be like, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

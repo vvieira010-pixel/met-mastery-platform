@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "apprenticeships",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-apprenticeships",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Learn While You Earn\n\nFor many school-leavers, university feels like the only path to a good career. Apprenticeships offer a different route: young people work for a real employer while studying toward a recognized qualification. Instead of paying tuition fees, apprentices earn a salary from the first month, and the employer usually covers the training costs.\n\nThe model works best when the classroom learning connects directly to daily tasks. An apprentice electrician, for example, may study circuit theory in the morning and install wiring in the afternoon. This combination helps knowledge stick, because every new idea is tested in practice the same week it is taught.\n\nApprenticeships are not an easy option. The workload is heavy, combining a full job with evening study, and some programs pay modest wages at the start. Still, for students who prefer doing over memorizing, the mix of income, experience, and a qualification without debt can be difficult to beat.",
+      "questions": [
+        {
+          "correct": 1,
+          "explanation": "The first paragraph contrasts apprenticeships with university: apprentices earn a salary while employers cover training.",
+          "id": "r10-apprenticeships-q1",
+          "options": [
+            "Apprentices receive no pay during training.",
+            "Apprentices earn money while their training is usually paid for.",
+            "Apprentices study full-time before starting work.",
+            "Apprentices must pay their own tuition fees."
+          ],
+          "question": "What is one financial advantage of an apprenticeship mentioned in the passage?"
+        },
+        {
+          "correct": 2,
+          "explanation": "The electrician example shows morning theory applied to afternoon wiring work in the same week.",
+          "id": "r10-apprenticeships-q2",
+          "options": [
+            "Trainees repeat the same task every day.",
+            "Classroom study happens only after two years of work.",
+            "New ideas from class are quickly tested in real tasks.",
+            "Theory exams replace all practical work."
+          ],
+          "question": "According to the passage, why does the combination of study and work help learning?"
+        },
+        {
+          "correct": 0,
+          "explanation": "The final paragraph lists heavy workload and modest starting wages as real difficulties, so the writer's view is balanced.",
+          "id": "r10-apprenticeships-q3",
+          "options": [
+            "It admits real difficulties alongside the benefits.",
+            "It claims every apprentice becomes wealthy quickly.",
+            "It argues university is always the better choice.",
+            "It ignores any negative side of apprenticeships."
+          ],
+          "question": "What can be inferred about the writer's attitude toward apprenticeships?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "education",
+      "type": "read"
+    }
+  ]
+}

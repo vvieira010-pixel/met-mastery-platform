@@ -1,0 +1,78 @@
+{
+  "title": "confusables",
+  "level": "B2",
+  "type": "confusables",
+  "total_questions": 5,
+  "questions": [
+    {
+      "id": "V47",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The new law will _______ all citizens.</i>",
+      "options": [
+        "affect",
+        "effective",
+        "affection",
+        "effect"
+      ],
+      "correct": "affect",
+      "explanation": "The correct word here is 'affect'."
+    },
+    {
+      "id": "V48",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The _______ of the new policy was immediate.</i>",
+      "options": [
+        "affection",
+        "effective",
+        "affect",
+        "effect"
+      ],
+      "correct": "effect",
+      "explanation": "The correct word here is 'effect'."
+    },
+    {
+      "id": "V49",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>Prices have _______ sharply this year.</i>",
+      "options": [
+        "risen",
+        "risen up",
+        "raised up",
+        "raised"
+      ],
+      "correct": "risen",
+      "explanation": "The correct word here is 'risen'."
+    },
+    {
+      "id": "V50",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The company _______ its prices last month.</i>",
+      "options": [
+        "raised up",
+        "risen",
+        "raised",
+        "rose"
+      ],
+      "correct": "raised",
+      "explanation": "The correct word here is 'raised'."
+    },
+    {
+      "id": "V51",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>Please _______ the report to the manager.</i>",
+      "options": [
+        "submission",
+        "submissive",
+        "submit",
+        "submitt"
+      ],
+      "correct": "submit",
+      "explanation": "The correct word here is 'submit'."
+    }
+  ]
+}

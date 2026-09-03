@@ -1,0 +1,39 @@
+{
+  "skill": "speaking",
+  "topic": "jobs",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time you applied for a job, course, or important opportunity.",
+      "topic": "Jobs",
+      "setId": 23
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer a job with a high salary, while others prefer a job they find interesting. Which do you prefer, and why?",
+      "topic": "Jobs",
+      "setId": 23
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A young person is considering taking a gap year to work before starting university. What are the advantages and disadvantages?",
+      "topic": "Jobs",
+      "setId": 23
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your local government is considering giving financial support to companies that hire young people with no work experience. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Jobs",
+      "setId": 23
+    }
+  ]
+}

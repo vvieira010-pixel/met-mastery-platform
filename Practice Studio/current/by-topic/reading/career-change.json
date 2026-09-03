@@ -1,0 +1,55 @@
+{
+  "skill": "reading",
+  "topic": "career-change",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "r10-career-change",
+      "instruction": "Read the passage and answer the questions.",
+      "level": "B2",
+      "passage": "Starting Over at Thirty-Five\n\nChanging careers in your thirties can feel like throwing away a decade of effort. In practice, little is wasted: a teacher who becomes a trainer, or a nurse who moves into health technology, carries across communication skills, patience, and professional contacts. Experience transfers more often than people expect.\n\nThe practical barriers are real, however. Retraining usually means evening courses after full working days, and an entry-level salary in a new field may be lower than the old one. Successful changers plan for this gap by saving several months of expenses before resigning and by testing the new field first — through freelance projects, volunteering, or shadowing a professional for a week.\n\nThe deepest obstacle is often psychological. Admitting that a chosen path no longer fits can feel like failure, when it is really information. People who treat the move as an experiment — reversible, time-limited, and full of learning — adapt faster than those who demand a guarantee before the first step.",
+      "questions": [
+        {
+          "correct": 2,
+          "explanation": "The teacher and nurse examples show communication skills and contacts carrying across.",
+          "id": "r10-career-change-q1",
+          "options": [
+            "Previous experience is always completely useless.",
+            "Only young people can learn new skills.",
+            "Skills and contacts often transfer to the new field.",
+            "Employers never hire career changers."
+          ],
+          "question": "What does the passage say about past experience?"
+        },
+        {
+          "correct": 0,
+          "explanation": "The passage recommends saving months of expenses and testing the field first.",
+          "id": "r10-career-change-q2",
+          "options": [
+            "Save money in advance and test the new field first.",
+            "Resign immediately without any plan.",
+            "Refuse all freelance or volunteer work.",
+            "Avoid talking to professionals in the field."
+          ],
+          "question": "How should career changers handle the practical barriers?"
+        },
+        {
+          "correct": 1,
+          "explanation": "Treating the move as a reversible, time-limited experiment helps people adapt faster.",
+          "id": "r10-career-change-q3",
+          "options": [
+            "Wait for a guarantee before acting.",
+            "Treat the move as a reversible experiment.",
+            "Keep the decision secret from everyone.",
+            "Change fields every few months."
+          ],
+          "question": "What mindset helps most?"
+        }
+      ],
+      "skill": "Reading",
+      "source": "Platform practice pack R10",
+      "topicId": "work_career",
+      "type": "read"
+    }
+  ]
+}
