@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Cleft Sentences - Emphasis (B2+)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G2",
+      "number": 2,
+      "category": "Cleft Sentences - Emphasis (B2+)",
+      "level": "B2+",
+      "question": "Choose the sentence that correctly emphasizes the time of the meeting.",
+      "options": {
+        "A": "It was on Monday when we had the meeting.",
+        "B": "It was Monday that we had the meeting.",
+        "C": "What we had the meeting was Monday.",
+        "D": "Monday was what we had the meeting."
+      },
+      "correct_answer": "B",
+      "correct_option": "It was Monday that we had the meeting.",
+      "explanation": "The cleft pattern is 'It was + focus + that + clause': 'It was Monday that we had the meeting.'",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "Technology",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time technology helped you solve a problem.",
+      "topic": "Technology",
+      "setId": 17
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer communicating by messages and social media, while others prefer face-to-face conversations. Which do you prefer, and why?",
+      "topic": "Technology",
+      "setId": 17
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A school is considering replacing all paper exams with computer-based exams. What are the advantages and disadvantages?",
+      "topic": "Technology",
+      "setId": 17
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your school is proposing to ban mobile phones during the entire school day. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Technology",
+      "setId": 17
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "Shopping",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you went shopping.",
+      "topic": "Shopping",
+      "setId": 1
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people like to shop at large chain stores that sell thousands of products. Others prefer smaller local specialty shops. Which do you prefer, and why?",
+      "topic": "Shopping",
+      "setId": 1
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend has won $20,000 in the lottery and plans to invest all the money. What are the advantages and disadvantages of this idea?",
+      "topic": "Shopping",
+      "setId": 1
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your child's school is considering eliminating all physical education classes to focus more on academics. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Shopping",
+      "setId": 1
+    }
+  ]
+}

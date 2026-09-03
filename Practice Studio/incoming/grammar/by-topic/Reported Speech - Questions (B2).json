@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Reported Speech - Questions (B2)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G82",
+      "number": 82,
+      "category": "Reported Speech - Questions (B2)",
+      "level": "B2",
+      "question": "She asked me where I ________ from.",
+      "options": {
+        "A": "am",
+        "B": "was",
+        "C": "were",
+        "D": "have been"
+      },
+      "correct_answer": "B",
+      "correct_option": "was",
+      "explanation": "In reported questions, backshift present simple to past simple: 'Where are you from?' → asked where I was from.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

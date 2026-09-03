@@ -1,0 +1,120 @@
+{
+  "title": "B2 Vocabulary Practice — 55 Questions - antonym_choice",
+  "level": "B2 (Upper-Intermediate)",
+  "type": "antonym_choice",
+  "total_questions": 8,
+  "questions": [
+    {
+      "id": "V9",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **generous**.",
+      "options": [
+        "kind",
+        "wealthy",
+        "selfish",
+        "polite"
+      ],
+      "correct": "selfish",
+      "explanation": "The opposite of 'generous' is 'selfish'."
+    },
+    {
+      "id": "V10",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **optimistic**.",
+      "options": [
+        "positive",
+        "pessimistic",
+        "hopeful",
+        "confident"
+      ],
+      "correct": "pessimistic",
+      "explanation": "The opposite of 'optimistic' is 'pessimistic'."
+    },
+    {
+      "id": "V11",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **ancient**.",
+      "options": [
+        "modern",
+        "historic",
+        "old",
+        "traditional"
+      ],
+      "correct": "modern",
+      "explanation": "The opposite of 'ancient' is 'modern'."
+    },
+    {
+      "id": "V12",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **expand**.",
+      "options": [
+        "develop",
+        "increase",
+        "grow",
+        "shrink"
+      ],
+      "correct": "shrink",
+      "explanation": "The opposite of 'expand' is 'shrink'."
+    },
+    {
+      "id": "V13",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **voluntary**.",
+      "options": [
+        "personal",
+        "optional",
+        "compulsory",
+        "free"
+      ],
+      "correct": "compulsory",
+      "explanation": "The opposite of 'voluntary' is 'compulsory'."
+    },
+    {
+      "id": "V14",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **accurate**.",
+      "options": [
+        "exact",
+        "correct",
+        "inaccurate",
+        "precise"
+      ],
+      "correct": "inaccurate",
+      "explanation": "The opposite of 'accurate' is 'inaccurate'."
+    },
+    {
+      "id": "V15",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **permanent**.",
+      "options": [
+        "temporary",
+        "lasting",
+        "fixed",
+        "stable"
+      ],
+      "correct": "temporary",
+      "explanation": "The opposite of 'permanent' is 'temporary'."
+    },
+    {
+      "id": "V16",
+      "type": "antonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is opposite in meaning to: **reveal**.",
+      "options": [
+        "show",
+        "display",
+        "conceal",
+        "expose"
+      ],
+      "correct": "conceal",
+      "explanation": "The opposite of 'reveal' is 'conceal'."
+    }
+  ]
+}

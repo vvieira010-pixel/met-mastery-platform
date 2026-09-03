@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "First Conditional (B1)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G17",
+      "number": 17,
+      "category": "First Conditional (B1)",
+      "level": "B1",
+      "question": "If you ________ hard, you will pass the exam.",
+      "options": {
+        "A": "study",
+        "B": "will study",
+        "C": "studied",
+        "D": "would study"
+      },
+      "correct_answer": "A",
+      "correct_option": "study",
+      "explanation": "In the if-clause of a first conditional, use present simple, not 'will'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

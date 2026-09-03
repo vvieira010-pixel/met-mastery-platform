@@ -1,0 +1,38 @@
+{
+  "topic": "Travel",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you traveled by plane.",
+      "topic": "Travel",
+      "setId": 5
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to travel alone, while others prefer to travel with friends or family. Which do you prefer, and why?",
+      "topic": "Travel",
+      "setId": 5
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A university is considering requiring all students to study abroad for one semester before graduating. What are the advantages and disadvantages of this idea?",
+      "topic": "Travel",
+      "setId": 5
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your local airport is proposing a new runway. It would increase the number of flights but create more noise for nearby residents. I am a member of the airport board. Tell me what you think and convince me to agree with you.",
+      "topic": "Travel",
+      "setId": 5
+    }
+  ]
+}

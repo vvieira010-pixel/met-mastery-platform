@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Past Perfect (B2)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G65",
+      "number": 65,
+      "category": "Past Perfect (B2)",
+      "level": "B2",
+      "question": "When we got to the cinema, the film ________.",
+      "options": {
+        "A": "already started",
+        "B": "had already started",
+        "C": "has already started",
+        "D": "was already starting"
+      },
+      "correct_answer": "B",
+      "correct_option": "had already started",
+      "explanation": "Use past perfect for the earlier of two past actions.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

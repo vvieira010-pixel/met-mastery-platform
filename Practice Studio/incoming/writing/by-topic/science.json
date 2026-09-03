@@ -1,0 +1,76 @@
+{
+  "topic": "Science",
+  "totalExercises": 7,
+  "exercises": [
+    {
+      "id": "T1_10",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Describe your experience with science at school or university. Which areas interested you most, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E10",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some people think that space exploration is a waste of money and that governments should spend this money on solving problems on Earth. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_20",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Tell us about a scientific discovery or invention that you find impressive. What is it, and why do you think it is important?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E20",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some researchers are developing genetically modified crops to increase food production. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_30",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Describe a time when you used scientific knowledge in your daily life. What situation was it, and how did science help you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E30",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some people think that scientific research should be completely open and free for everyone. Others believe that some research should be kept secret for security reasons. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_40",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Talk about your opinion on space exploration. Are you interested in this topic, and do you think it is valuable?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

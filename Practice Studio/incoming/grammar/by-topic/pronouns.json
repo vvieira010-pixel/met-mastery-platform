@@ -1,0 +1,79 @@
+{
+  "skill": "grammar",
+  "topic": "pronouns",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "id": "G72",
+      "number": 72,
+      "category": "pronouns",
+      "level": "B2",
+      "question": "Each of the students brought ________ own laptop.",
+      "options": {
+        "A": "their",
+        "B": "his or her",
+        "C": "they",
+        "D": "them"
+      },
+      "correct_answer": "B",
+      "correct_option": "his or her",
+      "explanation": "In formal grammar exercises, 'each' is singular, so 'his or her' agrees grammatically.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G73",
+      "number": 73,
+      "category": "pronouns",
+      "level": "B1",
+      "question": "The two sisters often help ________ with their homework.",
+      "options": {
+        "A": "themselves",
+        "B": "each other",
+        "C": "one",
+        "D": "them"
+      },
+      "correct_answer": "B",
+      "correct_option": "each other",
+      "explanation": "Use 'each other' for a reciprocal action between two people.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G74",
+      "number": 74,
+      "category": "pronouns",
+      "level": "B2",
+      "question": "This is the colleague ________ I told you about.",
+      "options": {
+        "A": "who",
+        "B": "whom",
+        "C": "whose",
+        "D": "which"
+      },
+      "correct_answer": "B",
+      "correct_option": "whom",
+      "explanation": "In formal English, use 'whom' as the object of 'about'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G75",
+      "number": 75,
+      "category": "pronouns",
+      "level": "B2",
+      "question": "I bought two jackets, but ________ of them fit properly.",
+      "options": {
+        "A": "neither",
+        "B": "either",
+        "C": "both",
+        "D": "all"
+      },
+      "correct_answer": "A",
+      "correct_option": "neither",
+      "explanation": "Use 'neither of' for not one and not the other of two items.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

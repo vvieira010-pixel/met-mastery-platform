@@ -1,0 +1,14 @@
+{
+  "skill": "listening",
+  "topics": {
+    "community": 2,
+    "education": 5,
+    "food-and-dining": 1,
+    "general-academic": 3,
+    "healthcare": 1,
+    "science-and-research": 5,
+    "travel-and-transport": 6,
+    "work-and-career": 2
+  },
+  "totalExercises": 25
+}

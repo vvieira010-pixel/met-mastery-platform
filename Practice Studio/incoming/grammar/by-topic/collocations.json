@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "collocations",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G3",
+      "number": 3,
+      "category": "collocations",
+      "level": "B2",
+      "question": "The manager asked everyone to ________ attention to the safety rules.",
+      "options": {
+        "A": "give",
+        "B": "make",
+        "C": "pay",
+        "D": "do"
+      },
+      "correct_answer": "C",
+      "correct_option": "pay",
+      "explanation": "The fixed collocation is 'pay attention to.'",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

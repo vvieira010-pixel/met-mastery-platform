@@ -1,0 +1,92 @@
+{
+  "skill": "listening",
+  "topic": "science-and-research",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "listening-88",
+      "level": "B2",
+      "title": "A Project Update",
+      "focus": "main idea",
+      "audioFile": "listening-88-project-update.mp3",
+      "script": "The project is progressing more slowly than planned, but the main research stage is now complete. The team is waiting for permission to access the final set of records. Once that approval arrives, the analysis can continue.",
+      "question": "What is currently delaying the project?",
+      "options": [
+        "The research stage has not started.",
+        "The team lacks a final report.",
+        "The team is waiting for access permission.",
+        "The analysis has been rejected."
+      ],
+      "correctOption": "C",
+      "explanation": "The team is waiting for permission to access the final records."
+    },
+    {
+      "id": "listening-89",
+      "level": "B2+",
+      "title": "A Cautious Forecast",
+      "focus": "qualification",
+      "audioFile": "listening-89-cautious-forecast.mp3",
+      "script": "The early figures point to a modest increase in participation. However, registrations remain open for another month, so it would be premature to predict the final total. The current trend is encouraging, but not conclusive.",
+      "question": "How does the speaker view the current figures?",
+      "options": [
+        "They are conclusive.",
+        "They are encouraging but not final.",
+        "They show a definite decline.",
+        "They should be ignored completely."
+      ],
+      "correctOption": "B",
+      "explanation": "The speaker describes the trend as encouraging but says it is too early for a final prediction."
+    },
+    {
+      "id": "listening-94",
+      "level": "B2+",
+      "title": "A Nuanced Evaluation",
+      "focus": "attitude",
+      "audioFile": "listening-94-nuanced-evaluation.mp3",
+      "script": "The pilot has not solved every problem, but it has revealed which parts of the process require attention. I would hesitate to call it a failure; its value may lie in the information it has provided for the next stage.",
+      "question": "How does the speaker evaluate the pilot?",
+      "options": [
+        "As completely successful",
+        "As useless and unsuccessful",
+        "As imperfect but informative",
+        "As too expensive to discuss"
+      ],
+      "correctOption": "C",
+      "explanation": "The speaker acknowledges problems while emphasizing the useful information gained."
+    },
+    {
+      "id": "listening-96",
+      "level": "B2+",
+      "title": "A Corrected Figure",
+      "focus": "self-correction",
+      "audioFile": "listening-96-corrected-figure.mp3",
+      "script": "The survey included 480 responses. Actually, I need to correct that figure: there were 408 completed responses, plus 72 incomplete forms that were excluded from the analysis.",
+      "question": "How many responses were analyzed?",
+      "options": [
+        "72",
+        "408",
+        "480",
+        "552"
+      ],
+      "correctOption": "B",
+      "explanation": "The corrected figure is 408 completed responses; the incomplete forms were excluded."
+    },
+    {
+      "id": "listening-98",
+      "level": "B2+",
+      "title": "A Meeting Summary",
+      "focus": "synthesis and sequence",
+      "audioFile": "listening-98-meeting-summary.mp3",
+      "script": "The group agreed to keep the current deadline but to reduce the first phase of the project. They also asked the research team to clarify two assumptions before the next meeting. If the assumptions change the cost estimate, the deadline will be reconsidered.",
+      "question": "What could lead to a change in the deadline?",
+      "options": [
+        "A shorter first phase",
+        "A new meeting date",
+        "Changes to the cost estimate",
+        "The current deadline itself"
+      ],
+      "correctOption": "C",
+      "explanation": "The deadline may be reconsidered if clarified assumptions change the cost estimate."
+    }
+  ]
+}

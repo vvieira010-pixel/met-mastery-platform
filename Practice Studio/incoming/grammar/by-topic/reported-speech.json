@@ -1,0 +1,43 @@
+{
+  "skill": "grammar",
+  "topic": "reported-speech",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "G83",
+      "number": 83,
+      "category": "reported-speech",
+      "level": "B2",
+      "question": "\"I will call you tomorrow,\" he said. He said that he ________ me the following day.",
+      "options": {
+        "A": "will call",
+        "B": "would call",
+        "C": "calls",
+        "D": "called"
+      },
+      "correct_answer": "B",
+      "correct_option": "would call",
+      "explanation": "In reported speech, 'will' usually changes to 'would' and 'tomorrow' changes to 'the following day'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G84",
+      "number": 84,
+      "category": "reported-speech",
+      "level": "B2",
+      "question": "\"Do you like coffee?\" she asked. She asked me if I ________ coffee.",
+      "options": {
+        "A": "like",
+        "B": "liked",
+        "C": "had liked",
+        "D": "would like"
+      },
+      "correct_answer": "B",
+      "correct_option": "liked",
+      "explanation": "Reported yes/no questions use if/whether and normally backshift 'like' to 'liked'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

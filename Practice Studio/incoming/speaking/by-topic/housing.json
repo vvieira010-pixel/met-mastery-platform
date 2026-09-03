@@ -1,0 +1,38 @@
+{
+  "topic": "Housing",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you moved house or helped someone move.",
+      "topic": "Housing",
+      "setId": 25
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer living in apartments, while others prefer living in houses. Which do you prefer, and why?",
+      "topic": "Housing",
+      "setId": 25
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering building high-rise apartment buildings in a quiet residential area. What are the advantages and disadvantages?",
+      "topic": "Housing",
+      "setId": 25
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your neighborhood is considering limiting the number of short-term rental apartments to reduce noise and protect long-term residents. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Housing",
+      "setId": 25
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Inversion for Emphasis (B2+)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G40",
+      "number": 40,
+      "category": "Inversion for Emphasis (B2+)",
+      "level": "B2+",
+      "question": "Choose the correct inverted sentence.",
+      "options": {
+        "A": "Rarely I have seen such a beautiful view.",
+        "B": "Rarely have I seen such a beautiful view.",
+        "C": "Rarely I saw such a beautiful view.",
+        "D": "Rarely did I have seen such a beautiful view."
+      },
+      "correct_answer": "B",
+      "correct_option": "Rarely have I seen such a beautiful view.",
+      "explanation": "After a negative/limiting adverb at the beginning, invert auxiliary and subject: Rarely have I seen.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

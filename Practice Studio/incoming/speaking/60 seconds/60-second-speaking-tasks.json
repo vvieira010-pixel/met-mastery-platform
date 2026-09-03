@@ -1,0 +1,531 @@
+{
+  "title": "MET Speaking Practice — 29 Prompt Sets - 60 seconds",
+  "skill": "Speaking",
+  "seconds": 60,
+  "totalSets": 29,
+  "totalTasks": 58,
+  "prompts": [
+    {
+      "setId": 1,
+      "topic": "Shopping",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you went shopping."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people like to shop at large chain stores that sell thousands of products. Others prefer smaller local specialty shops. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 2,
+      "topic": "Parks",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you went to a park."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "What do you prefer to do in a park: relax (reading, having a picnic) or exercise (running, playing sports)? Why?"
+        }
+      ]
+    },
+    {
+      "setId": 3,
+      "topic": "Work",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time you had to wait for someone at work or school."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to work in offices. Others prefer to work outdoors. What kind of work environment do you prefer? Give reasons."
+        }
+      ]
+    },
+    {
+      "setId": 4,
+      "topic": "Food",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you ate at a restaurant."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to eat at home, while others prefer to eat at restaurants. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 5,
+      "topic": "Travel",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you traveled by plane."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to travel alone, while others prefer to travel with friends or family. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 6,
+      "topic": "Education",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a teacher you had who was particularly good or particularly bad."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some students prefer to study in groups, while others prefer to study alone. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 7,
+      "topic": "Health and Fitness",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you exercised or played a sport."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to exercise at a gym. Others prefer to exercise at home or outdoors. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 8,
+      "topic": "Music",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you went to a concert or live performance."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to listen to music alone with headphones, while others prefer live music or listening with friends. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 9,
+      "topic": "Vacation",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you went to the beach or took a vacation."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer active vacations, such as hiking or playing sports. Others prefer relaxing vacations, such as going to the beach. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 10,
+      "topic": "Library",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you studied in a library or another quiet place."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some students prefer digital resources, such as e-books and websites. Others prefer printed books. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 11,
+      "topic": "Healthcare",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time you or someone you know had to visit a doctor or hospital."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer large hospitals, while others prefer smaller local clinics. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 12,
+      "topic": "Museums",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you visited a museum or historical site."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to learn history through books, while others prefer museums and historical sites. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 13,
+      "topic": "Transportation",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you used public transportation."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer public transportation, while others prefer to drive their own cars. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 14,
+      "topic": "Family",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you spent a relaxing evening with your family."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some families prefer to spend free time together at home, while others prefer to go out. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 15,
+      "topic": "Sports",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you watched a live sports event."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to watch sports on television, while others prefer to watch them live at a stadium. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 16,
+      "topic": "Cafés",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you met a friend at a café or restaurant."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to meet friends in cafés or restaurants, while others prefer to meet at home. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 17,
+      "topic": "Technology",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time technology helped you solve a problem."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer communicating by messages and social media, while others prefer face-to-face conversations. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 18,
+      "topic": "Pets",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a pet you have had or would like to have."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer dogs as pets, while others prefer cats. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 19,
+      "topic": "Weather",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time when bad weather affected your plans."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer hot weather, while others prefer cold weather. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 20,
+      "topic": "Community",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you helped someone or took part in a community activity."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to volunteer in their community, while others prefer to donate money to charities. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 21,
+      "topic": "Environment",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you recycled something or tried to reduce waste."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to buy new products, while others prefer to repair or reuse old products. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 22,
+      "topic": "Books",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last book, article, or story you read."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer reading fiction, while others prefer reading nonfiction. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 23,
+      "topic": "Jobs",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time you applied for a job, course, or important opportunity."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer a job with a high salary, while others prefer a job they find interesting. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 24,
+      "topic": "Online Learning",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time you learned something online."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some students prefer online classes, while others prefer face-to-face classes. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 25,
+      "topic": "Housing",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you moved house or helped someone move."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer living in apartments, while others prefer living in houses. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 26,
+      "topic": "Science",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a science lesson, experiment, or discovery that interested you."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some students prefer learning through practical experiments, while others prefer learning from textbooks and lectures. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 27,
+      "topic": "Movies",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last movie or series you watched."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer watching movies at home, while others prefer going to the cinema. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 28,
+      "topic": "Public Safety",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about a time you saw or experienced a dangerous traffic situation."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to walk or cycle for short trips, while others prefer to use a car. Which do you prefer, and why?"
+        }
+      ]
+    },
+    {
+      "setId": 29,
+      "topic": "Social Media",
+      "tasks": [
+        {
+          "number": 2,
+          "seconds": 60,
+          "type": "personal question",
+          "prompt": "Tell us about the last time you used social media to communicate with someone."
+        },
+        {
+          "number": 3,
+          "seconds": 60,
+          "type": "preference",
+          "prompt": "Some people prefer to share their personal lives on social media, while others prefer to keep their lives private. Which do you prefer, and why?"
+        }
+      ]
+    }
+  ]
+}

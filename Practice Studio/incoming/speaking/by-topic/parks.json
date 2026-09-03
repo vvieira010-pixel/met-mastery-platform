@@ -1,0 +1,38 @@
+{
+  "topic": "Parks",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you went to a park.",
+      "topic": "Parks",
+      "setId": 2
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "What do you prefer to do in a park: relax (reading, having a picnic) or exercise (running, playing sports)? Why?",
+      "topic": "Parks",
+      "setId": 2
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "Your city is considering building a new shopping mall in a large public park. What are the advantages and disadvantages of this idea?",
+      "topic": "Parks",
+      "setId": 2
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your neighborhood association is proposing to close the local park after 8 p.m. for safety reasons. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Parks",
+      "setId": 2
+    }
+  ]
+}

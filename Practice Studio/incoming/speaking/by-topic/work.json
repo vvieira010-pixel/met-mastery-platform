@@ -1,0 +1,38 @@
+{
+  "topic": "Work",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time you had to wait for someone at work or school.",
+      "topic": "Work",
+      "setId": 3
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to work in offices. Others prefer to work outdoors. What kind of work environment do you prefer? Give reasons.",
+      "topic": "Work",
+      "setId": 3
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A company is thinking about requiring all employees to return to the office full-time, including employees who have worked from home successfully. What are the advantages and disadvantages?",
+      "topic": "Work",
+      "setId": 3
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your child's school is considering replacing experienced teachers with cheaper, less experienced teachers to save money. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Work",
+      "setId": 3
+    }
+  ]
+}

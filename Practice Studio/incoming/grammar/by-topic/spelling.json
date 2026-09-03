@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "spelling",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G85",
+      "number": 85,
+      "category": "spelling",
+      "level": "B2",
+      "question": "Choose the correctly spelled word.",
+      "options": {
+        "A": "accomodation",
+        "B": "accommodation",
+        "C": "acommodation",
+        "D": "accomadation"
+      },
+      "correct_answer": "B",
+      "correct_option": "accommodation",
+      "explanation": "The correct spelling is 'accommodation' (double c, double m).",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

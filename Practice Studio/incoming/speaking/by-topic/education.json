@@ -1,0 +1,38 @@
+{
+  "topic": "Education",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a teacher you had who was particularly good or particularly bad.",
+      "topic": "Education",
+      "setId": 6
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some students prefer to study in groups, while others prefer to study alone. Which do you prefer, and why?",
+      "topic": "Education",
+      "setId": 6
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A school is considering eliminating homework completely and assigning work only during class time. What are the advantages and disadvantages?",
+      "topic": "Education",
+      "setId": 6
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your child's school is considering starting at 7:00 a.m. instead of 8:00 a.m. so students can finish earlier. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Education",
+      "setId": 6
+    }
+  ]
+}

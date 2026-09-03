@@ -1,0 +1,223 @@
+{
+  "skill": "grammar",
+  "topic": "general-grammar",
+  "totalExercises": 12,
+  "exercises": [
+    {
+      "id": "G20",
+      "number": 20,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "Neither the teacher nor the students ________ ready for the test.",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "is",
+        "D": "has"
+      },
+      "correct_answer": "B",
+      "correct_option": "were",
+      "explanation": "With 'neither...nor', the verb usually agrees with the noun closest to it: students → were.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G21",
+      "number": 21,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "I wish I ________ speak French more confidently.",
+      "options": {
+        "A": "can",
+        "B": "could",
+        "C": "will",
+        "D": "would"
+      },
+      "correct_answer": "B",
+      "correct_option": "could",
+      "explanation": "Use 'wish + could' to express a present ability you do not have.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G22",
+      "number": 22,
+      "category": "general-grammar",
+      "level": "B2+",
+      "question": "It is essential that every applicant ________ the form before Friday.",
+      "options": {
+        "A": "submits",
+        "B": "submit",
+        "C": "submitted",
+        "D": "will submit"
+      },
+      "correct_answer": "B",
+      "correct_option": "submit",
+      "explanation": "After 'It is essential that...', formal English uses the subjunctive base form: submit.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G23",
+      "number": 23,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "She is used to ________ early every morning.",
+      "options": {
+        "A": "get up",
+        "B": "getting up",
+        "C": "got up",
+        "D": "have got up"
+      },
+      "correct_answer": "B",
+      "correct_option": "getting up",
+      "explanation": "'Be used to' is followed by a noun or gerund (-ing form).",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G24",
+      "number": 24,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "The more you practise, the ________ you become.",
+      "options": {
+        "A": "good",
+        "B": "better",
+        "C": "best",
+        "D": "well"
+      },
+      "correct_answer": "B",
+      "correct_option": "better",
+      "explanation": "Use a comparative adjective in the second half of a double comparative: the better.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G25",
+      "number": 25,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "He suggested ________ a taxi because it was late.",
+      "options": {
+        "A": "take",
+        "B": "to take",
+        "C": "taking",
+        "D": "taken"
+      },
+      "correct_answer": "C",
+      "correct_option": "taking",
+      "explanation": "'Suggest' is followed by a gerund when making a suggestion: suggest taking.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G26",
+      "number": 26,
+      "category": "general-grammar",
+      "level": "B2+",
+      "question": "I would rather you ________ me before making a decision.",
+      "options": {
+        "A": "tell",
+        "B": "told",
+        "C": "will tell",
+        "D": "have told"
+      },
+      "correct_answer": "B",
+      "correct_option": "told",
+      "explanation": "After 'would rather + person', use past simple for a present/future preference.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G27",
+      "number": 27,
+      "category": "general-grammar",
+      "level": "B2+",
+      "question": "No sooner had we sat down ________ the lights went out.",
+      "options": {
+        "A": "when",
+        "B": "than",
+        "C": "then",
+        "D": "that"
+      },
+      "correct_answer": "B",
+      "correct_option": "than",
+      "explanation": "The fixed structure is 'No sooner ... than ...'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G28",
+      "number": 28,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "The report needs ________ before we send it to the client.",
+      "options": {
+        "A": "check",
+        "B": "to check",
+        "C": "checking",
+        "D": "checked"
+      },
+      "correct_answer": "C",
+      "correct_option": "checking",
+      "explanation": "'Need + gerund' has a passive meaning: needs checking = needs to be checked.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G29",
+      "number": 29,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "It was ________ difficult task that nobody finished it on time.",
+      "options": {
+        "A": "so",
+        "B": "such",
+        "C": "such a",
+        "D": "too"
+      },
+      "correct_answer": "C",
+      "correct_option": "such a",
+      "explanation": "Use 'such a + adjective + singular countable noun': such a difficult task.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G30",
+      "number": 30,
+      "category": "general-grammar",
+      "level": "B2+",
+      "question": "Hardly had I arrived ________ my phone rang.",
+      "options": {
+        "A": "than",
+        "B": "when",
+        "C": "that",
+        "D": "while"
+      },
+      "correct_answer": "B",
+      "correct_option": "when",
+      "explanation": "The fixed structure is 'Hardly ... when ...'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G31",
+      "number": 31,
+      "category": "general-grammar",
+      "level": "B2",
+      "question": "I regret ________ you that your application was unsuccessful.",
+      "options": {
+        "A": "tell",
+        "B": "to tell",
+        "C": "telling",
+        "D": "told"
+      },
+      "correct_answer": "B",
+      "correct_option": "to tell",
+      "explanation": "Use 'regret + to infinitive' when giving bad news now.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

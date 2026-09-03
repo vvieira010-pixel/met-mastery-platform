@@ -1,0 +1,120 @@
+{
+  "title": "B2 Vocabulary Practice — 55 Questions - synonym_choice",
+  "level": "B2 (Upper-Intermediate)",
+  "type": "synonym_choice",
+  "total_questions": 8,
+  "questions": [
+    {
+      "id": "V1",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **significant**.",
+      "options": [
+        "important",
+        "modern",
+        "tiny",
+        "unusual"
+      ],
+      "correct": "important",
+      "explanation": "'significant' means 'important'."
+    },
+    {
+      "id": "V2",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **reluctant**.",
+      "options": [
+        "eager",
+        "ready",
+        "happy",
+        "unwilling"
+      ],
+      "correct": "unwilling",
+      "explanation": "'reluctant' means 'unwilling'."
+    },
+    {
+      "id": "V3",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **substantial**.",
+      "options": [
+        "weak",
+        "small",
+        "thin",
+        "considerable"
+      ],
+      "correct": "considerable",
+      "explanation": "'substantial' means 'considerable'."
+    },
+    {
+      "id": "V4",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **inevitable**.",
+      "options": [
+        "unavoidable",
+        "doubtful",
+        "optional",
+        "rare"
+      ],
+      "correct": "unavoidable",
+      "explanation": "'inevitable' means 'unavoidable'."
+    },
+    {
+      "id": "V5",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **comprehensive**.",
+      "options": [
+        "partial",
+        "narrow",
+        "complete",
+        "simple"
+      ],
+      "correct": "complete",
+      "explanation": "'comprehensive' means 'complete'."
+    },
+    {
+      "id": "V6",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **deteriorate**.",
+      "options": [
+        "recover",
+        "strengthen",
+        "worsen",
+        "improve"
+      ],
+      "correct": "worsen",
+      "explanation": "'deteriorate' means 'worsen'."
+    },
+    {
+      "id": "V7",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **ambiguous**.",
+      "options": [
+        "obvious",
+        "certain",
+        "precise",
+        "unclear"
+      ],
+      "correct": "unclear",
+      "explanation": "'ambiguous' means 'unclear'."
+    },
+    {
+      "id": "V8",
+      "type": "synonym_choice",
+      "level": "B2",
+      "question": "Choose the word that is closest in meaning to: **coherent**.",
+      "options": [
+        "logical",
+        "confusing",
+        "weak",
+        "random"
+      ],
+      "correct": "logical",
+      "explanation": "'coherent' means 'logical'."
+    }
+  ]
+}

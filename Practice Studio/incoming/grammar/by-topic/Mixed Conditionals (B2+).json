@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Mixed Conditionals (B2+)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G47",
+      "number": 47,
+      "category": "Mixed Conditionals (B2+)",
+      "level": "B2+",
+      "question": "If he had accepted the job in London, he ________ there now.",
+      "options": {
+        "A": "lives",
+        "B": "would live",
+        "C": "would have lived",
+        "D": "will live"
+      },
+      "correct_answer": "B",
+      "correct_option": "would live",
+      "explanation": "This mixed conditional links a past decision to a present result: if + past perfect, would + base verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

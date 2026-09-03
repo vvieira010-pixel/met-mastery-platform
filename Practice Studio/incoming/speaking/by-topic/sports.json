@@ -1,0 +1,38 @@
+{
+  "topic": "Sports",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you watched a live sports event.",
+      "topic": "Sports",
+      "setId": 15
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to watch sports on television, while others prefer to watch them live at a stadium. Which do you prefer, and why?",
+      "topic": "Sports",
+      "setId": 15
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A school is considering spending a large amount of money on a new sports stadium instead of improving classrooms. What are the advantages and disadvantages?",
+      "topic": "Sports",
+      "setId": 15
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is proposing to ban advertising for betting companies during sports broadcasts to protect young people. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Sports",
+      "setId": 15
+    }
+  ]
+}

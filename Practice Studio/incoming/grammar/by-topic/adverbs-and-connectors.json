@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "adverbs-and-connectors",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G1",
+      "number": 1,
+      "category": "adverbs-and-connectors",
+      "level": "B2",
+      "question": "The instructions were clear; ________, several students made the same mistake.",
+      "options": {
+        "A": "therefore",
+        "B": "however",
+        "C": "because",
+        "D": "although"
+      },
+      "correct_answer": "B",
+      "correct_option": "however",
+      "explanation": "Use 'however' to introduce a contrast: the instructions were clear, but mistakes still happened.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

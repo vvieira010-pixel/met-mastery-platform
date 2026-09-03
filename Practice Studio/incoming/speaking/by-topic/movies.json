@@ -1,0 +1,38 @@
+{
+  "topic": "Movies",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last movie or series you watched.",
+      "topic": "Movies",
+      "setId": 27
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer watching movies at home, while others prefer going to the cinema. Which do you prefer, and why?",
+      "topic": "Movies",
+      "setId": 27
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering turning an old theater into a modern movie complex. What are the advantages and disadvantages?",
+      "topic": "Movies",
+      "setId": 27
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your school is considering using movies instead of textbooks in some history classes. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Movies",
+      "setId": 27
+    }
+  ]
+}

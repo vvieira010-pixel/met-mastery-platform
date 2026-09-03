@@ -1,0 +1,319 @@
+{
+  "title": "MET Writing Practice — 76 Prompts (Task 1 elaborated + Task 2 essays) - 45 minutes",
+  "structure": {
+    "total_items": 76,
+    "task1_elaborated": 46,
+    "task2_essays": 30,
+    "essay_kinds": {
+      "opinion": 10,
+      "advantages_disadvantages": 10,
+      "for_against": 10
+    },
+    "ordering": "Task 1 and Task 2 prompts alternate as much as possible; remaining Task 1 items are placed at the end."
+  },
+  "skill": "Writing",
+  "time_minutes": 45,
+  "totalPrompts": 30,
+  "prompts": [
+    {
+      "id": "E1",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Some people believe that schools should focus more on teaching practical life skills, such as managing money and cooking, rather than traditional academic subjects. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E2",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Some people think that artificial intelligence will do more harm than good to society. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E3",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "Some people believe that remote work is better for employees than working in an office. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E4",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Environment",
+      "task": 2,
+      "prompt": "Some people think that individuals cannot make a real difference in protecting the environment and that only governments and large companies can solve environmental problems. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E5",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some people believe that governments should ban all advertising for unhealthy food and drinks. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E6",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Some people think that learning a foreign language is more important than learning about one's own culture. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E7",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Transportation",
+      "task": 2,
+      "prompt": "Some people believe that cities should ban private cars from the center and allow only public transportation, bicycles, and walking. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E8",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Some people think that social media has improved communication between people. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E9",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Housing",
+      "task": 2,
+      "prompt": "Some people believe that it is better to rent a home than to buy one. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E10",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some people think that space exploration is a waste of money and that governments should spend this money on solving problems on Earth. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "E11",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Many schools are introducing online learning as a regular part of the curriculum. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E12",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Many companies are replacing human customer service with automated chatbots. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E13",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "More and more people are choosing to work as freelancers instead of having a traditional job. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E14",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Environment",
+      "task": 2,
+      "prompt": "Some cities are introducing car-free zones in the center. Discuss the advantages and disadvantages of this policy.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E15",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some hospitals are using robots to assist with surgeries. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E16",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Many museums now offer virtual tours that allow people to explore exhibitions from home. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E17",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Transportation",
+      "task": 2,
+      "prompt": "Some governments are investing heavily in high-speed trains instead of expanding airports. Discuss the advantages and disadvantages of this approach.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E18",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Many schools are considering allowing students to use smartphones during lessons for research. Discuss the advantages and disadvantages of this idea.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E19",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Housing",
+      "task": 2,
+      "prompt": "Some cities are encouraging the construction of very tall apartment buildings to solve housing shortages. Discuss the advantages and disadvantages of this strategy.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E20",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some researchers are developing genetically modified crops to increase food production. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "E21",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Education",
+      "task": 2,
+      "prompt": "Some people argue that university education should be free for all students. Others believe that students should pay for their own studies. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E22",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Some people believe that children should not use smartphones before the age of 12. Others think that smartphones can be useful educational tools for children. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E23",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Work",
+      "task": 2,
+      "prompt": "Some people think that companies should require employees to retire at a certain age. Others believe that people should be able to work as long as they want. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E24",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Environment",
+      "task": 2,
+      "prompt": "Some people think that environmental protection should be the responsibility of individuals. Others believe it should be the responsibility of governments and large companies. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E25",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Health",
+      "task": 2,
+      "prompt": "Some people argue that all citizens should receive free healthcare funded by taxes. Others believe that people should pay for their own healthcare. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E26",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Some people think that governments should support traditional arts, such as folk music and dance. Others believe that public money should be spent on modern art and technology. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E27",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Transportation",
+      "task": 2,
+      "prompt": "Some people believe that public transportation should be free for everyone. Others think that people should pay for using buses and trains. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E28",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Some people think that social media platforms should be legally responsible for the content posted by their users. Others believe that users should be responsible for their own posts. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E29",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Housing",
+      "task": 2,
+      "prompt": "Some people argue that landlords should not be allowed to increase rent by more than a certain percentage each year. Others believe that landlords should be free to set their own prices. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "E30",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Science",
+      "task": 2,
+      "prompt": "Some people think that scientific research should be completely open and free for everyone. Others believe that some research should be kept secret for security reasons. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    }
+  ]
+}

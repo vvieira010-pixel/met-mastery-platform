@@ -1,0 +1,92 @@
+{
+  "title": "B2 Vocabulary Practice — 55 Questions - collocation",
+  "level": "B2 (Upper-Intermediate)",
+  "type": "collocation",
+  "total_questions": 6,
+  "questions": [
+    {
+      "id": "V25",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **make ______**.",
+      "options": [
+        "a decision",
+        "do",
+        "have",
+        "take"
+      ],
+      "correct": "a decision",
+      "explanation": "Native speakers typically say 'make a decision'."
+    },
+    {
+      "id": "V26",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **heavy ______**.",
+      "options": [
+        "big",
+        "rain",
+        "strong",
+        "thick"
+      ],
+      "correct": "rain",
+      "explanation": "Native speakers typically say 'heavy rain'."
+    },
+    {
+      "id": "V27",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **strong ______**.",
+      "options": [
+        "coffee",
+        "intense",
+        "heavy",
+        "powerful"
+      ],
+      "correct": "coffee",
+      "explanation": "Native speakers typically say 'strong coffee'."
+    },
+    {
+      "id": "V28",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **commit ______**.",
+      "options": [
+        "make",
+        "a crime",
+        "perform",
+        "do"
+      ],
+      "correct": "a crime",
+      "explanation": "Native speakers typically say 'commit a crime'."
+    },
+    {
+      "id": "V29",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **highly ______**.",
+      "options": [
+        "largely",
+        "strongly",
+        "recommended",
+        "greatly"
+      ],
+      "correct": "recommended",
+      "explanation": "Native speakers typically say 'highly recommended'."
+    },
+    {
+      "id": "V30",
+      "type": "collocation",
+      "level": "B2",
+      "question": "Choose the word or phrase that most naturally completes the collocation: **deeply ______**.",
+      "options": [
+        "heavily",
+        "highly",
+        "strongly",
+        "concerned"
+      ],
+      "correct": "concerned",
+      "explanation": "Native speakers typically say 'deeply concerned'."
+    }
+  ]
+}

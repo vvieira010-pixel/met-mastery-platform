@@ -1,0 +1,92 @@
+{
+  "skill": "listening",
+  "topic": "education",
+  "totalExercises": 5,
+  "exercises": [
+    {
+      "id": "listening-76",
+      "level": "B2",
+      "title": "A Room Change",
+      "focus": "detail",
+      "audioFile": "listening-76-room-change.mp3",
+      "script": "The evening class will meet in Room 204 tonight because the heating system is being repaired in the usual classroom. The start time remains seven o’clock, and students should bring their course books as usual.",
+      "question": "Why has the class been moved?",
+      "options": [
+        "The teacher is absent.",
+        "The heating system is being repaired.",
+        "The room is too small.",
+        "The class starts later."
+      ],
+      "correctOption": "B",
+      "explanation": "The announcement says the heating system is being repaired in the usual room."
+    },
+    {
+      "id": "listening-78",
+      "level": "B2",
+      "title": "A Library Book Renewal",
+      "focus": "procedure",
+      "audioFile": "listening-78-library-renewal.mp3",
+      "script": "You can renew most library books online twice, provided nobody else has requested them. If another reader places a request, the book must be returned by its original due date.",
+      "question": "When can a book not be renewed?",
+      "options": [
+        "When it is borrowed for the first time",
+        "When another reader has requested it",
+        "When the renewal is done online",
+        "When it has been renewed twice"
+      ],
+      "correctOption": "B",
+      "explanation": "A request from another reader prevents renewal."
+    },
+    {
+      "id": "listening-81",
+      "level": "B2",
+      "title": "A Course Deadline",
+      "focus": "time reference",
+      "audioFile": "listening-81-course-deadline.mp3",
+      "script": "The first assignment is due next Wednesday, not this Wednesday as some students seem to believe. You may submit it any time before midnight, but late work will receive reduced feedback.",
+      "question": "When is the assignment due?",
+      "options": [
+        "This Wednesday morning",
+        "Next Wednesday before midnight",
+        "Next Thursday at noon",
+        "At the end of the month"
+      ],
+      "correctOption": "B",
+      "explanation": "The assignment is due next Wednesday and may be submitted before midnight."
+    },
+    {
+      "id": "listening-95",
+      "level": "B2+",
+      "title": "An Academic Qualification",
+      "focus": "claim and evidence",
+      "audioFile": "listening-95-academic-qualification.mp3",
+      "script": "The findings are consistent with the hypothesis, but consistency alone does not establish causation. Further experiments would be needed to determine whether the observed relationship is genuinely responsible for the outcome.",
+      "question": "What does the speaker say is still needed?",
+      "options": [
+        "A new hypothesis with no evidence",
+        "Further experiments",
+        "A shorter report",
+        "A different outcome"
+      ],
+      "correctOption": "B",
+      "explanation": "The speaker says further experiments are needed to establish causation."
+    },
+    {
+      "id": "listening-100",
+      "level": "B2+",
+      "title": "Integrated Listening Review",
+      "focus": "main idea, detail, and inference",
+      "audioFile": "listening-100-integrated-review.mp3",
+      "script": "The university is introducing a shared bicycle program for students and staff. The first phase will include 120 bicycles at four locations near the main campus. Users will need to register online, and the first thirty minutes of each trip will be free. The university plans to evaluate the program after six months before deciding whether to expand it to the residential campus.",
+      "question": "What will the university do after six months?",
+      "options": [
+        "End the program automatically",
+        "Evaluate the program before deciding about expansion",
+        "Move all bicycles to the residential campus",
+        "Charge for every first trip"
+      ],
+      "correctOption": "B",
+      "explanation": "The university will evaluate the first phase before deciding whether to expand the program."
+    }
+  ]
+}

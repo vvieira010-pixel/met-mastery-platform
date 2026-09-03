@@ -1,0 +1,58 @@
+{
+  "skill": "listening",
+  "topic": "general-academic",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "listening-83",
+      "level": "B2",
+      "title": "A Package Collection",
+      "focus": "specific information",
+      "audioFile": "listening-83-package-collection.mp3",
+      "script": "Your package has arrived at the service desk. Please bring photo identification when you collect it. The desk closes at six, but packages can be collected tomorrow morning from eight-thirty.",
+      "question": "What must the customer bring?",
+      "options": [
+        "A payment receipt",
+        "Photo identification",
+        "A delivery truck",
+        "A letter from the sender"
+      ],
+      "correctOption": "B",
+      "explanation": "The customer must bring photo identification."
+    },
+    {
+      "id": "listening-84",
+      "level": "B2",
+      "title": "A Team Update",
+      "focus": "sequence",
+      "audioFile": "listening-84-team-update.mp3",
+      "script": "We have completed the survey and organized the responses. Next, we will prepare a short summary for the director. After receiving comments, we will revise the report and share the final version with the whole team.",
+      "question": "What will happen after the summary is prepared?",
+      "options": [
+        "The survey will begin.",
+        "The team will organize the responses.",
+        "The director will provide comments.",
+        "The final version will be shared immediately."
+      ],
+      "correctOption": "C",
+      "explanation": "The team will receive comments after preparing the summary, then revise the report."
+    },
+    {
+      "id": "listening-92",
+      "level": "B2+",
+      "title": "A Revised Recommendation",
+      "focus": "change of position",
+      "audioFile": "listening-92-revised-recommendation.mp3",
+      "script": "At first, I supported opening the facility every evening. After reviewing the staffing data, I think a three-evening schedule would be more realistic. It would still improve access without placing excessive pressure on the team.",
+      "question": "What position does the speaker finally support?",
+      "options": [
+        "Opening every evening",
+        "Closing the facility permanently",
+        "Opening three evenings a week",
+        "Reducing the staff team"
+      ],
+      "correctOption": "C",
+      "explanation": "The speaker changes from every evening to a more realistic three-evening schedule."
+    }
+  ]
+}

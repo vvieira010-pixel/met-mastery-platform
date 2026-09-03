@@ -1,0 +1,61 @@
+{
+  "skill": "grammar",
+  "topic": "word-order",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "G90",
+      "number": 90,
+      "category": "word-order",
+      "level": "B2",
+      "question": "Choose the correctly ordered sentence.",
+      "options": {
+        "A": "Always I have enjoyed learning languages.",
+        "B": "I have always enjoyed learning languages.",
+        "C": "I always have enjoyed learning languages.",
+        "D": "I have enjoyed always learning languages."
+      },
+      "correct_answer": "B",
+      "correct_option": "I have always enjoyed learning languages.",
+      "explanation": "With present perfect, an adverb of frequency such as 'always' goes between have/has and the past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G91",
+      "number": 91,
+      "category": "word-order",
+      "level": "B1",
+      "question": "Choose the correctly ordered question.",
+      "options": {
+        "A": "Where you did put my keys?",
+        "B": "Where did you put my keys?",
+        "C": "Where put you did my keys?",
+        "D": "Where you put did my keys?"
+      },
+      "correct_answer": "B",
+      "correct_option": "Where did you put my keys?",
+      "explanation": "In a past-simple question: question word + did + subject + base verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G92",
+      "number": 92,
+      "category": "word-order",
+      "level": "B2",
+      "question": "Choose the correctly ordered sentence.",
+      "options": {
+        "A": "She told me that was tired.",
+        "B": "She told that me she was tired.",
+        "C": "She told me that she was tired.",
+        "D": "She told me she was that tired."
+      },
+      "correct_answer": "C",
+      "correct_option": "She told me that she was tired.",
+      "explanation": "The correct order is subject + told + object + that-clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

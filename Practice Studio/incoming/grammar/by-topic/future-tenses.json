@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "future-tenses",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G19",
+      "number": 19,
+      "category": "future-tenses",
+      "level": "B2",
+      "question": "Look at those clouds! It ________ soon.",
+      "options": {
+        "A": "rains",
+        "B": "is going to rain",
+        "C": "will be raining",
+        "D": "has rained"
+      },
+      "correct_answer": "B",
+      "correct_option": "is going to rain",
+      "explanation": "Use 'be going to' for a prediction based on present evidence.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

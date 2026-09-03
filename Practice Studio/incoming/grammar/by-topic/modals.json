@@ -1,0 +1,61 @@
+{
+  "skill": "grammar",
+  "topic": "modals",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "G49",
+      "number": 49,
+      "category": "modals",
+      "level": "B1",
+      "question": "You ________ wear a seat belt while driving; it is the law.",
+      "options": {
+        "A": "should",
+        "B": "must",
+        "C": "could",
+        "D": "might"
+      },
+      "correct_answer": "B",
+      "correct_option": "must",
+      "explanation": "Use 'must' for a strong obligation or rule.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G50",
+      "number": 50,
+      "category": "modals",
+      "level": "B2",
+      "question": "You ________ have told me earlier; now it is too late to change anything.",
+      "options": {
+        "A": "should",
+        "B": "should have",
+        "C": "must",
+        "D": "must have"
+      },
+      "correct_answer": "B",
+      "correct_option": "should have",
+      "explanation": "'Should have + past participle' expresses criticism about a past action.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G51",
+      "number": 51,
+      "category": "modals",
+      "level": "B2",
+      "question": "She ________ be at home; her car is not outside.",
+      "options": {
+        "A": "must",
+        "B": "can't",
+        "C": "should",
+        "D": "would"
+      },
+      "correct_answer": "B",
+      "correct_option": "can't",
+      "explanation": "Use 'can't' for a logical conclusion that something is impossible.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

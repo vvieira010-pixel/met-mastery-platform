@@ -1,0 +1,479 @@
+{
+  "title": "MET Writing Practice — 76 Prompts (Task 1 elaborated + Task 2 essays) - 10 minutes",
+  "structure": {
+    "total_items": 76,
+    "task1_elaborated": 46,
+    "task2_essays": 30,
+    "essay_kinds": {
+      "opinion": 10,
+      "advantages_disadvantages": 10,
+      "for_against": 10
+    },
+    "ordering": "Task 1 and Task 2 prompts alternate as much as possible; remaining Task 1 items are placed at the end."
+  },
+  "skill": "Writing",
+  "time_minutes": 10,
+  "totalPrompts": 46,
+  "prompts": [
+    {
+      "id": "T1_1",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe your current level of education or your most recent studies. What are or were your main subjects, and why did you choose them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_2",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe how you use technology in your daily life. Which devices or apps do you use most, and for what purposes?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_3",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe your current job or your dream job. What are your main responsibilities, and why do you like or dislike them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_4",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Environment",
+      "task": 1,
+      "prompt": "Describe how you try to protect the environment in your daily life. What habits or choices do you make, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_5",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe your typical daily routine related to health. What do you eat, how much do you exercise, and how do you manage stress?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_6",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe a tradition or celebration that is important in your family or country. What happens during this event, and why is it meaningful?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_7",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Transportation",
+      "task": 1,
+      "prompt": "Describe how you usually travel around your city. What means of transportation do you use, and why do you prefer them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_8",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Describe how you use social media in your daily life. Which platforms do you use, and for what purposes?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_9",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Housing",
+      "task": 1,
+      "prompt": "Describe the place where you currently live. What type of home is it, and what do you like or dislike about it?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_10",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Describe your experience with science at school or university. Which areas interested you most, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_11",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Tell us about a teacher who had a strong influence on you. What made this teacher special, and how did they help you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_12",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Tell us about a time when technology caused you a problem. What happened, and how did you solve it?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_13",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Tell us about a time when you had to work as part of a team. What was your role, and what did you learn from the experience?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_14",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Environment",
+      "task": 1,
+      "prompt": "Tell us about a place in nature that is special to you. What is it like, and why do you enjoy spending time there?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_15",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Tell us about a time when you or someone close to you had a health problem. What happened, and what did you learn from it?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_16",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Tell us about a book, film, or piece of music that has influenced you. What is it about, and why did it affect you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_17",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Transportation",
+      "task": 1,
+      "prompt": "Tell us about a long journey you have taken. Where did you go, how did you travel, and what was memorable about the trip?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_18",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Tell us about a time when social media helped you connect with someone. Who was it, and how did this connection happen?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_19",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Housing",
+      "task": 1,
+      "prompt": "Tell us about a time when you moved to a new home. What was the process like, and how did you feel about the change?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_20",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Tell us about a scientific discovery or invention that you find impressive. What is it, and why do you think it is important?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_21",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe a time when you had to study hard for an important exam or project. How did you prepare, and what was the result?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_22",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe a piece of technology that you think has improved your life. How has it changed your routine or habits?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_23",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe a difficult situation you faced at work or during an internship. How did you handle it, and what was the outcome?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_24",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Environment",
+      "task": 1,
+      "prompt": "Describe a time when you saw environmental problems in your city or neighborhood. What did you observe, and how did it make you feel?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_25",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe a healthy habit that you have tried to develop. How have you tried to build this habit, and how successful have you been?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_26",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe a time when you experienced a culture different from your own. What did you notice, and how did you feel?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_27",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Transportation",
+      "task": 1,
+      "prompt": "Describe a problem you have experienced with public transportation. What happened, and how did it affect your day?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_28",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Describe a negative experience you have had or heard about related to social media. What happened, and what was the impact?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_29",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Housing",
+      "task": 1,
+      "prompt": "Describe your ideal home. What size, location, and features would it have, and why are these important to you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_30",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Describe a time when you used scientific knowledge in your daily life. What situation was it, and how did science help you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_31",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Talk about a subject you found difficult at school or university. What challenges did you face, and how did you overcome them?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_32",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Talk about a time when you had to learn to use a new app, program, or device. How did you learn, and how comfortable do you feel using it now?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_33",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Talk about a skill that is important in your profession. How did you develop this skill, and why is it valuable?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_34",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Environment",
+      "task": 1,
+      "prompt": "Talk about a project or campaign in your community that helps the environment. What does it do, and how effective do you think it is?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_35",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Talk about your opinion on fast food and processed food. How often do you consume these products, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_36",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Talk about a museum, gallery, or historical site you have visited. What did you see there, and what did you learn?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_37",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Transportation",
+      "task": 1,
+      "prompt": "Talk about your opinion on bicycles in cities. Do you use or would you use a bicycle regularly? Why or why not?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_38",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Talk about how social media has changed the way you communicate with friends and family. In what ways is it better or worse than before?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_39",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Housing",
+      "task": 1,
+      "prompt": "Talk about your experience with neighbors or roommates. What has been positive or challenging about living with other people?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_40",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Science",
+      "task": 1,
+      "prompt": "Talk about your opinion on space exploration. Are you interested in this topic, and do you think it is valuable?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_41",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Education",
+      "task": 1,
+      "prompt": "Describe your ideal school or university. What facilities, teachers, and methods would it have, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_42",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe your vision of technology in the future. How do you think it will change the way people live and work?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_43",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Work",
+      "task": 1,
+      "prompt": "Describe your ideal work environment. What would your workplace, schedule, and colleagues be like, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_44",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Environment",
+      "task": 1,
+      "prompt": "Describe your vision of an environmentally friendly city. What features would it have, and how would people live there?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_45",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Health",
+      "task": 1,
+      "prompt": "Describe your ideal approach to a healthy lifestyle. What would your diet, exercise, and rest look like, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_46",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe how you would introduce your culture to a foreign visitor. What places, foods, and activities would you show them, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

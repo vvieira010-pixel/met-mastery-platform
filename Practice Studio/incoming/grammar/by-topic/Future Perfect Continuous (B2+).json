@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Future Perfect Continuous (B2+)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G18",
+      "number": 18,
+      "category": "Future Perfect Continuous (B2+)",
+      "level": "B2+",
+      "question": "By next June, I ________ at this company for ten years.",
+      "options": {
+        "A": "will work",
+        "B": "will have worked",
+        "C": "will have been working",
+        "D": "am working"
+      },
+      "correct_answer": "C",
+      "correct_option": "will have been working",
+      "explanation": "Future perfect continuous = will have been + -ing. It emphasizes duration up to a future time.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

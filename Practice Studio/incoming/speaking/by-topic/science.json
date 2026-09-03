@@ -1,0 +1,38 @@
+{
+  "topic": "Science",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a science lesson, experiment, or discovery that interested you.",
+      "topic": "Science",
+      "setId": 26
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some students prefer learning through practical experiments, while others prefer learning from textbooks and lectures. Which do you prefer, and why?",
+      "topic": "Science",
+      "setId": 26
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A school is considering spending more money on science laboratories and less money on arts programs. What are the advantages and disadvantages?",
+      "topic": "Science",
+      "setId": 26
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your local government is considering building a new research center, but it would reduce the space available for public housing. I am a member of the planning committee. Tell me what you think and convince me to agree with you.",
+      "topic": "Science",
+      "setId": 26
+    }
+  ]
+}

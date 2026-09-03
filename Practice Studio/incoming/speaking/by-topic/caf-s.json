@@ -1,0 +1,38 @@
+{
+  "topic": "Cafés",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you met a friend at a café or restaurant.",
+      "topic": "Cafés",
+      "setId": 16
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to meet friends in cafés or restaurants, while others prefer to meet at home. Which do you prefer, and why?",
+      "topic": "Cafés",
+      "setId": 16
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is thinking about opening a café that allows customers to work on laptops for many hours without buying much food or drink. What are the advantages and disadvantages?",
+      "topic": "Cafés",
+      "setId": 16
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering banning cafés from placing tables on sidewalks because they block pedestrians. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Cafés",
+      "setId": 16
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "word-forms",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G89",
+      "number": 89,
+      "category": "word-forms",
+      "level": "B2",
+      "question": "The new policy is likely to have a positive ________ on local businesses.",
+      "options": {
+        "A": "affect",
+        "B": "effective",
+        "C": "effect",
+        "D": "affection"
+      },
+      "correct_answer": "C",
+      "correct_option": "effect",
+      "explanation": "After 'a positive', use a noun: effect. 'Affect' is usually a verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "Health and Fitness",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you exercised or played a sport.",
+      "topic": "Health and Fitness",
+      "setId": 7
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to exercise at a gym. Others prefer to exercise at home or outdoors. Which do you prefer, and why?",
+      "topic": "Health and Fitness",
+      "setId": 7
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is considering joining an expensive gym with many facilities, even though there is a cheaper gym nearby. What are the advantages and disadvantages?",
+      "topic": "Health and Fitness",
+      "setId": 7
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering building a new public sports center, but this would require higher local taxes. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Health and Fitness",
+      "setId": 7
+    }
+  ]
+}

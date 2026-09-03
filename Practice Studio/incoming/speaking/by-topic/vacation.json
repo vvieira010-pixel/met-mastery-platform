@@ -1,0 +1,38 @@
+{
+  "topic": "Vacation",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last time you went to the beach or took a vacation.",
+      "topic": "Vacation",
+      "setId": 9
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer active vacations, such as hiking or playing sports. Others prefer relaxing vacations, such as going to the beach. Which do you prefer, and why?",
+      "topic": "Vacation",
+      "setId": 9
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A friend is thinking about quitting their job to travel around the world for one year. What are the advantages and disadvantages?",
+      "topic": "Vacation",
+      "setId": 9
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is considering allowing hotels to be built in a protected beach area to attract tourists. I am a member of the city planning committee. Tell me what you think and convince me to agree with you.",
+      "topic": "Vacation",
+      "setId": 9
+    }
+  ]
+}

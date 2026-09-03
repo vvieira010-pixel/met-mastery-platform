@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Comparative Adjectives (B1)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G4",
+      "number": 4,
+      "category": "Comparative Adjectives (B1)",
+      "level": "B1",
+      "question": "This exercise is ________ than the previous one.",
+      "options": {
+        "A": "more easy",
+        "B": "easier",
+        "C": "easiest",
+        "D": "the easier"
+      },
+      "correct_answer": "B",
+      "correct_option": "easier",
+      "explanation": "For short adjectives ending in -y, change y to i and add -er: easy → easier.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

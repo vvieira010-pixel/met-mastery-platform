@@ -1,0 +1,64 @@
+{
+  "title": "B2 Vocabulary Practice — 55 Questions - mixed_vocabulary",
+  "level": "B2 (Upper-Intermediate)",
+  "type": "mixed_vocabulary",
+  "total_questions": 4,
+  "questions": [
+    {
+      "id": "V52",
+      "type": "mixed_vocabulary",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The government announced a new _______ to reduce unemployment.</i>",
+      "options": [
+        "politics",
+        "policeman",
+        "policy",
+        "police"
+      ],
+      "correct": "policy",
+      "explanation": "The correct word here is 'policy'."
+    },
+    {
+      "id": "V53",
+      "type": "mixed_vocabulary",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>There is a growing _______ that climate change is accelerating.</i>",
+      "options": [
+        "consequence",
+        "consensus",
+        "consent",
+        "conservation"
+      ],
+      "correct": "consensus",
+      "explanation": "The correct word here is 'consensus'."
+    },
+    {
+      "id": "V54",
+      "type": "mixed_vocabulary",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The study provides _______ evidence that the treatment is effective.</i>",
+      "options": [
+        "convincing",
+        "conviction",
+        "convinced",
+        "convince"
+      ],
+      "correct": "convincing",
+      "explanation": "The correct word here is 'convincing'."
+    },
+    {
+      "id": "V55",
+      "type": "mixed_vocabulary",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The company's _______ growth surprised investors.</i>",
+      "options": [
+        "rapid",
+        "rapt",
+        "fastly",
+        "rapidity"
+      ],
+      "correct": "rapid",
+      "explanation": "The correct word here is 'rapid'."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "skill": "writing",
+  "topics": {
+    "culture": 8,
+    "education": 8,
+    "environment": 8,
+    "health": 8,
+    "housing": 7,
+    "science": 7,
+    "social-media": 7,
+    "technology": 8,
+    "transportation": 7,
+    "work": 8
+  },
+  "totalExercises": 76
+}

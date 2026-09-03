@@ -1,0 +1,41 @@
+{
+  "skill": "listening",
+  "topic": "community",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "listening-87",
+      "level": "B2",
+      "title": "A Volunteer Task",
+      "focus": "instruction",
+      "audioFile": "listening-87-volunteer-task.mp3",
+      "script": "Before the visitors arrive, please place the information cards on each table and check that the water dispenser is full. You do not need to arrange the chairs; the events team has already done that.",
+      "question": "What should the volunteer do?",
+      "options": [
+        "Arrange the chairs",
+        "Place cards and check the water dispenser",
+        "Welcome visitors outside",
+        "Move the tables"
+      ],
+      "correctOption": "B",
+      "explanation": "The volunteer should place the cards and check the water dispenser."
+    },
+    {
+      "id": "listening-99",
+      "level": "B2+",
+      "title": "A Public Response",
+      "focus": "intention and register",
+      "audioFile": "listening-99-public-response.mp3",
+      "script": "We recognize that residents are disappointed by the temporary closure. Nevertheless, the repairs are necessary to prevent a more serious disruption later. The center will publish weekly updates and announce the reopening date as soon as it is confirmed.",
+      "question": "What is the purpose of the statement?",
+      "options": [
+        "To deny that repairs are needed",
+        "To acknowledge concerns and explain the closure",
+        "To announce that the center has reopened",
+        "To ask residents to cancel repairs"
+      ],
+      "correctOption": "B",
+      "explanation": "The statement acknowledges disappointment and explains why the closure is necessary."
+    }
+  ]
+}

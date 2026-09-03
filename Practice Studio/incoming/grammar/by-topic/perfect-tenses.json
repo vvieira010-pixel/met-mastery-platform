@@ -1,0 +1,61 @@
+{
+  "skill": "grammar",
+  "topic": "perfect-tenses",
+  "totalExercises": 3,
+  "exercises": [
+    {
+      "id": "G66",
+      "number": 66,
+      "category": "perfect-tenses",
+      "level": "B1",
+      "question": "I ________ this book three times already.",
+      "options": {
+        "A": "read",
+        "B": "have read",
+        "C": "had read",
+        "D": "am reading"
+      },
+      "correct_answer": "B",
+      "correct_option": "have read",
+      "explanation": "Use present perfect with 'already' for an unfinished time period up to now.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G67",
+      "number": 67,
+      "category": "perfect-tenses",
+      "level": "B2",
+      "question": "By the end of this month, she ________ her training course.",
+      "options": {
+        "A": "will finish",
+        "B": "will have finished",
+        "C": "has finished",
+        "D": "had finished"
+      },
+      "correct_answer": "B",
+      "correct_option": "will have finished",
+      "explanation": "Future perfect: will have + past participle for completion before a future point.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G68",
+      "number": 68,
+      "category": "perfect-tenses",
+      "level": "B2",
+      "question": "They ________ for two hours when the bus finally arrived.",
+      "options": {
+        "A": "waited",
+        "B": "have waited",
+        "C": "had been waiting",
+        "D": "were waiting"
+      },
+      "correct_answer": "C",
+      "correct_option": "had been waiting",
+      "explanation": "Past perfect continuous shows duration before another past event.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

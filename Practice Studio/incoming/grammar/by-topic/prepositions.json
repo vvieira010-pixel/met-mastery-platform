@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "prepositions",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G70",
+      "number": 70,
+      "category": "prepositions",
+      "level": "B2",
+      "question": "She is responsible ________ organizing the event.",
+      "options": {
+        "A": "of",
+        "B": "for",
+        "C": "to",
+        "D": "with"
+      },
+      "correct_answer": "B",
+      "correct_option": "for",
+      "explanation": "The fixed pattern is 'responsible for + noun/gerund'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

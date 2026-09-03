@@ -1,0 +1,86 @@
+{
+  "topic": "Technology",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "T1_2",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe how you use technology in your daily life. Which devices or apps do you use most, and for what purposes?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E2",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Some people think that artificial intelligence will do more harm than good to society. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_12",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Tell us about a time when technology caused you a problem. What happened, and how did you solve it?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E12",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Many companies are replacing human customer service with automated chatbots. Discuss the advantages and disadvantages of this development.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_22",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe a piece of technology that you think has improved your life. How has it changed your routine or habits?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E22",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Technology",
+      "task": 2,
+      "prompt": "Some people believe that children should not use smartphones before the age of 12. Others think that smartphones can be useful educational tools for children. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_32",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Talk about a time when you had to learn to use a new app, program, or device. How did you learn, and how comfortable do you feel using it now?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_42",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Technology",
+      "task": 1,
+      "prompt": "Describe your vision of technology in the future. How do you think it will change the way people live and work?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

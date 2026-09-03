@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Modals of Obligation - Lack of Obligation (B1)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G48",
+      "number": 48,
+      "category": "Modals of Obligation - Lack of Obligation (B1)",
+      "level": "B1",
+      "question": "You ________ bring any food; dinner will be provided.",
+      "options": {
+        "A": "mustn't",
+        "B": "don't have to",
+        "C": "shouldn't",
+        "D": "can't"
+      },
+      "correct_answer": "B",
+      "correct_option": "don't have to",
+      "explanation": "'Don't have to' means there is no obligation. 'Mustn't' means it is prohibited.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

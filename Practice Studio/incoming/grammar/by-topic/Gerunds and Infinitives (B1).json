@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Gerunds and Infinitives (B1)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G32",
+      "number": 32,
+      "category": "Gerunds and Infinitives (B1)",
+      "level": "B1",
+      "question": "I enjoy ________ English podcasts on my way to work.",
+      "options": {
+        "A": "listen",
+        "B": "to listen",
+        "C": "listening to",
+        "D": "listened"
+      },
+      "correct_answer": "C",
+      "correct_option": "listening to",
+      "explanation": "'Enjoy' is followed by a gerund: enjoy listening to.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "B2 Vocabulary Practice — 55 Questions - register",
+  "level": "B2 (Upper-Intermediate)",
+  "type": "register",
+  "total_questions": 4,
+  "questions": [
+    {
+      "id": "V43",
+      "type": "register",
+      "level": "B2",
+      "question": "Choose the more **formal** synonym for: **kids**.",
+      "options": [
+        "adults",
+        "children",
+        "teenagers"
+      ],
+      "correct": "children",
+      "explanation": "'children' is more formal than 'kids'."
+    },
+    {
+      "id": "V44",
+      "type": "register",
+      "level": "B2",
+      "question": "Choose the more **formal** synonym for: **buy**.",
+      "options": [
+        "sell",
+        "purchase",
+        "rent"
+      ],
+      "correct": "purchase",
+      "explanation": "'purchase' is more formal than 'buy'."
+    },
+    {
+      "id": "V45",
+      "type": "register",
+      "level": "B2",
+      "question": "Choose the more **formal** synonym for: **ask**.",
+      "options": [
+        "refuse",
+        "answer",
+        "inquire"
+      ],
+      "correct": "inquire",
+      "explanation": "'inquire' is more formal than 'ask'."
+    },
+    {
+      "id": "V46",
+      "type": "register",
+      "level": "B2",
+      "question": "Choose the more **formal** synonym for: **start**.",
+      "options": [
+        "commence",
+        "continue",
+        "finish"
+      ],
+      "correct": "commence",
+      "explanation": "'commence' is more formal than 'start'."
+    }
+  ]
+}

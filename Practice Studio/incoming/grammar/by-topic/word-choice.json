@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "word-choice",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G88",
+      "number": 88,
+      "category": "word-choice",
+      "level": "B2",
+      "question": "The manager gave us some useful ________ about the new project.",
+      "options": {
+        "A": "advices",
+        "B": "advice",
+        "C": "advise",
+        "D": "advising"
+      },
+      "correct_answer": "B",
+      "correct_option": "advice",
+      "explanation": "'Advice' is an uncountable noun. 'Advise' is the verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

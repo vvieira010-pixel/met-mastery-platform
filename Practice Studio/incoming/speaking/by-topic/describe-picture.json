@@ -1,0 +1,126 @@
+{
+  "topic": "Describe the Picture",
+  "totalExercises": 15,
+  "exercises": [
+    {
+      "id": "describe-picture-01-ski-resort",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_01_ski_resort.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_01_ski_resort.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-02-airport-check-in",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_02_airport_check_in.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_02_airport_check_in.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-03-beach-cleanup",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_03_beach_cleanup.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_03_beach_cleanup.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-04-city-cafe",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_04_city_cafe.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_04_city_cafe.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-bus-interior",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "bus_interior_isometric_grayscale.png",
+      "imageSrc": "bus_interior_isometric_grayscale.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-concert",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "concert_isometric_grayscale.png",
+      "imageSrc": "concert_isometric_grayscale.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-library",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "library_isometric_grayscale.png",
+      "imageSrc": "library_isometric_grayscale.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-museum",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "museum_isometric_grayscale.png",
+      "imageSrc": "museum_isometric_grayscale.png",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-01",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_2n3tbd2n3tbd2n3t.jpg",
+      "imageSrc": "Gemini_Generated_Image_2n3tbd2n3tbd2n3t.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-02",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_fig1ivfig1ivfig1.jpg",
+      "imageSrc": "Gemini_Generated_Image_fig1ivfig1ivfig1.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-03",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_g7g7png7g7png7g7.jpg",
+      "imageSrc": "Gemini_Generated_Image_g7g7png7g7png7g7.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-04",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_l2g8y5l2g8y5l2g8.jpg",
+      "imageSrc": "Gemini_Generated_Image_l2g8y5l2g8y5l2g8.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-05",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_p7a0lzp7a0lzp7a0.jpg",
+      "imageSrc": "Gemini_Generated_Image_p7a0lzp7a0lzp7a0.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-06",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_tqnf8ktqnf8ktqnf.jpg",
+      "imageSrc": "Gemini_Generated_Image_tqnf8ktqnf8ktqnf.jpg",
+      "seconds": 60
+    },
+    {
+      "id": "describe-picture-generated-07",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "Gemini_Generated_Image_yf6s8uyf6s8uyf6s.jpg",
+      "imageSrc": "Gemini_Generated_Image_yf6s8uyf6s8uyf6s.jpg",
+      "seconds": 60
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Present Perfect vs. Other Tenses (B1)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G71",
+      "number": 71,
+      "category": "Present Perfect vs. Other Tenses (B1)",
+      "level": "B1",
+      "question": "I ________ my keys yesterday, so I could not get into the house.",
+      "options": {
+        "A": "have lost",
+        "B": "lost",
+        "C": "had lost",
+        "D": "lose"
+      },
+      "correct_answer": "B",
+      "correct_option": "lost",
+      "explanation": "Use past simple with a finished past-time expression: yesterday.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

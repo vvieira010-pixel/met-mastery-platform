@@ -1,0 +1,41 @@
+{
+  "skill": "listening",
+  "topic": "work-and-career",
+  "totalExercises": 2,
+  "exercises": [
+    {
+      "id": "listening-80",
+      "level": "B2",
+      "title": "A Workplace Reminder",
+      "focus": "main point",
+      "audioFile": "listening-80-workplace-reminder.mp3",
+      "script": "Please label all shared equipment before placing it in the storage room. Unlabeled items may be moved to the temporary shelf, which will be cleared at the end of each month. If you are unsure where something belongs, ask the facilities team.",
+      "question": "What should employees do?",
+      "options": [
+        "Remove all shared equipment",
+        "Label equipment before storage",
+        "Clear the temporary shelf daily",
+        "Contact facilities about every item"
+      ],
+      "correctOption": "B",
+      "explanation": "The reminder asks employees to label shared equipment before storing it."
+    },
+    {
+      "id": "listening-93",
+      "level": "B2+",
+      "title": "A Policy Condition",
+      "focus": "condition and consequence",
+      "audioFile": "listening-93-policy-condition.mp3",
+      "script": "The committee is willing to approve the proposal, provided that the organizers submit a revised budget by Friday. Without that document, the application will remain on hold until the next meeting.",
+      "question": "What must the organizers do for approval to proceed?",
+      "options": [
+        "Cancel the next meeting",
+        "Submit a revised budget by Friday",
+        "Recruit a new committee",
+        "Reduce the proposal to one page"
+      ],
+      "correctOption": "B",
+      "explanation": "Approval depends on submitting the revised budget by Friday."
+    }
+  ]
+}

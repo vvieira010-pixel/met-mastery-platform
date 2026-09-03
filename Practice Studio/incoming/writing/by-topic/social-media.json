@@ -1,0 +1,76 @@
+{
+  "topic": "Social Media",
+  "totalExercises": 7,
+  "exercises": [
+    {
+      "id": "T1_8",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Describe how you use social media in your daily life. Which platforms do you use, and for what purposes?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E8",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Some people think that social media has improved communication between people. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_18",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Tell us about a time when social media helped you connect with someone. Who was it, and how did this connection happen?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E18",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Many schools are considering allowing students to use smartphones during lessons for research. Discuss the advantages and disadvantages of this idea.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_28",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Describe a negative experience you have had or heard about related to social media. What happened, and what was the impact?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E28",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Social Media",
+      "task": 2,
+      "prompt": "Some people think that social media platforms should be legally responsible for the content posted by their users. Others believe that users should be responsible for their own posts. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_38",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Social Media",
+      "task": 1,
+      "prompt": "Talk about how social media has changed the way you communicate with friends and family. In what ways is it better or worse than before?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "Books",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about the last book, article, or story you read.",
+      "topic": "Books",
+      "setId": 22
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer reading fiction, while others prefer reading nonfiction. Which do you prefer, and why?",
+      "topic": "Books",
+      "setId": 22
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A school is considering replacing its library with a digital learning center. What are the advantages and disadvantages?",
+      "topic": "Books",
+      "setId": 22
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your school is considering requiring every student to read one complete book per month outside class. I am the school principal. Tell me what you think and convince me to agree with you.",
+      "topic": "Books",
+      "setId": 22
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Relative Clauses (B2)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G76",
+      "number": 76,
+      "category": "Relative Clauses (B2)",
+      "level": "B2",
+      "question": "The woman ________ lives next door is a doctor.",
+      "options": {
+        "A": "which",
+        "B": "whose",
+        "C": "who",
+        "D": "whom"
+      },
+      "correct_answer": "C",
+      "correct_option": "who",
+      "explanation": "Use 'who' for a person who is the subject of the relative clause.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "skill": "grammar",
+  "topic": "conditionals",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "G9",
+      "number": 9,
+      "category": "conditionals",
+      "level": "B2",
+      "question": "If I ________ more free time, I would learn another language.",
+      "options": {
+        "A": "have",
+        "B": "had",
+        "C": "will have",
+        "D": "would have"
+      },
+      "correct_answer": "B",
+      "correct_option": "had",
+      "explanation": "Second conditional: If + past simple, would + base verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G10",
+      "number": 10,
+      "category": "conditionals",
+      "level": "B2",
+      "question": "If she had left earlier, she ________ the train.",
+      "options": {
+        "A": "would catch",
+        "B": "would have caught",
+        "C": "will catch",
+        "D": "had caught"
+      },
+      "correct_answer": "B",
+      "correct_option": "would have caught",
+      "explanation": "Third conditional: If + past perfect, would have + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G11",
+      "number": 11,
+      "category": "conditionals",
+      "level": "B2",
+      "question": "If you ________ water to 100°C, it boils.",
+      "options": {
+        "A": "will heat",
+        "B": "heated",
+        "C": "heat",
+        "D": "would heat"
+      },
+      "correct_answer": "C",
+      "correct_option": "heat",
+      "explanation": "Zero conditional uses present simple in both clauses for general facts.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G12",
+      "number": 12,
+      "category": "conditionals",
+      "level": "B2",
+      "question": "Unless we ________ now, we will miss the beginning of the film.",
+      "options": {
+        "A": "leave",
+        "B": "will leave",
+        "C": "left",
+        "D": "would leave"
+      },
+      "correct_answer": "A",
+      "correct_option": "leave",
+      "explanation": "'Unless' means 'if not' and is followed by present simple for future meaning.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G13",
+      "number": 13,
+      "category": "conditionals",
+      "level": "B2+",
+      "question": "I would not be so tired now if I ________ to bed earlier last night.",
+      "options": {
+        "A": "went",
+        "B": "had gone",
+        "C": "would go",
+        "D": "have gone"
+      },
+      "correct_answer": "B",
+      "correct_option": "had gone",
+      "explanation": "Mixed conditional: a past cause (had gone) has a present result (would not be tired).",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G14",
+      "number": 14,
+      "category": "conditionals",
+      "level": "B2",
+      "question": "If I ________ you, I would accept the offer.",
+      "options": {
+        "A": "am",
+        "B": "were",
+        "C": "had been",
+        "D": "will be"
+      },
+      "correct_answer": "B",
+      "correct_option": "were",
+      "explanation": "Use 'were' in the fixed second-conditional expression 'If I were you'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G15",
+      "number": 15,
+      "category": "conditionals",
+      "level": "B1",
+      "question": "If the weather improves tomorrow, we ________ for a walk.",
+      "options": {
+        "A": "go",
+        "B": "went",
+        "C": "will go",
+        "D": "would go"
+      },
+      "correct_answer": "C",
+      "correct_option": "will go",
+      "explanation": "First conditional: If + present simple, will + base verb.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G16",
+      "number": 16,
+      "category": "conditionals",
+      "level": "B2+",
+      "question": "Had they known about the traffic, they ________ a different route.",
+      "options": {
+        "A": "would take",
+        "B": "would have taken",
+        "C": "will take",
+        "D": "had taken"
+      },
+      "correct_answer": "B",
+      "correct_option": "would have taken",
+      "explanation": "This is an inverted third conditional: 'Had they known...' = 'If they had known...'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

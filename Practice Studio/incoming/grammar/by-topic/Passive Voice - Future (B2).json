@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Passive Voice - Future (B2)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G58",
+      "number": 58,
+      "category": "Passive Voice - Future (B2)",
+      "level": "B2",
+      "question": "The new bridge ________ by the end of next year.",
+      "options": {
+        "A": "will complete",
+        "B": "will be completed",
+        "C": "is completing",
+        "D": "has completed"
+      },
+      "correct_answer": "B",
+      "correct_option": "will be completed",
+      "explanation": "Future passive: will be + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

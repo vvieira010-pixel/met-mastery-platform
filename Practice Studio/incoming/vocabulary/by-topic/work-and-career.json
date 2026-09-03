@@ -1,0 +1,91 @@
+{
+  "skill": "vocabulary",
+  "topic": "work-and-career",
+  "totalExercises": 6,
+  "exercises": [
+    {
+      "id": "V37",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The company experienced a significant increase in sales.</i>",
+      "options": [
+        "very small",
+        "completely expected",
+        "important and noticeable",
+        "slightly negative"
+      ],
+      "correct": "important and noticeable",
+      "explanation": "In this context, the bold word/phrase means: important and noticeable."
+    },
+    {
+      "id": "V40",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>The report provides a comprehensive overview of the project.</i>",
+      "options": [
+        "partially finished",
+        "difficult to read",
+        "very short",
+        "complete and including all important parts"
+      ],
+      "correct": "complete and including all important parts",
+      "explanation": "In this context, the bold word/phrase means: complete and including all important parts."
+    },
+    {
+      "id": "V41",
+      "type": "word_in_context",
+      "level": "B2",
+      "question": "In the following sentence, what is the meaning of the bold word/phrase? <br><i>She was reluctant to accept the job offer.</i>",
+      "options": [
+        "extremely happy",
+        "very excited",
+        "unwilling or hesitant",
+        "completely ready"
+      ],
+      "correct": "unwilling or hesitant",
+      "explanation": "In this context, the bold word/phrase means: unwilling or hesitant."
+    },
+    {
+      "id": "V50",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The company _______ its prices last month.</i>",
+      "options": [
+        "raised up",
+        "risen",
+        "raised",
+        "rose"
+      ],
+      "correct": "raised",
+      "explanation": "The correct word here is 'raised'."
+    },
+    {
+      "id": "V51",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>Please _______ the report to the manager.</i>",
+      "options": [
+        "submission",
+        "submissive",
+        "submit",
+        "submitt"
+      ],
+      "correct": "submit",
+      "explanation": "The correct word here is 'submit'."
+    },
+    {
+      "id": "V55",
+      "type": "mixed_vocabulary",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The company's _______ growth surprised investors.</i>",
+      "options": [
+        "rapid",
+        "rapt",
+        "fastly",
+        "rapidity"
+      ],
+      "correct": "rapid",
+      "explanation": "The correct word here is 'rapid'."
+    }
+  ]
+}

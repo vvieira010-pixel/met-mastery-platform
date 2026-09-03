@@ -1,0 +1,133 @@
+{
+  "skill": "grammar",
+  "topic": "gerunds-and-infinitives",
+  "totalExercises": 7,
+  "exercises": [
+    {
+      "id": "G33",
+      "number": 33,
+      "category": "gerunds-and-infinitives",
+      "level": "B1",
+      "question": "She decided ________ a new course next semester.",
+      "options": {
+        "A": "take",
+        "B": "taking",
+        "C": "to take",
+        "D": "taken"
+      },
+      "correct_answer": "C",
+      "correct_option": "to take",
+      "explanation": "'Decide' is followed by to + infinitive.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G34",
+      "number": 34,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "I can't afford ________ a new phone right now.",
+      "options": {
+        "A": "buy",
+        "B": "buying",
+        "C": "to buy",
+        "D": "bought"
+      },
+      "correct_answer": "C",
+      "correct_option": "to buy",
+      "explanation": "'Afford' is followed by to + infinitive.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G35",
+      "number": 35,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "They avoided ________ about the problem.",
+      "options": {
+        "A": "talk",
+        "B": "to talk",
+        "C": "talking",
+        "D": "talked"
+      },
+      "correct_answer": "C",
+      "correct_option": "talking",
+      "explanation": "'Avoid' is followed by a gerund (-ing form).",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G36",
+      "number": 36,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "Please remember ________ the door when you leave.",
+      "options": {
+        "A": "lock",
+        "B": "locking",
+        "C": "to lock",
+        "D": "locked"
+      },
+      "correct_answer": "C",
+      "correct_option": "to lock",
+      "explanation": "'Remember to do' means not to forget a future action.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G37",
+      "number": 37,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "I remember ________ that film when I was a child.",
+      "options": {
+        "A": "see",
+        "B": "to see",
+        "C": "seeing",
+        "D": "saw"
+      },
+      "correct_answer": "C",
+      "correct_option": "seeing",
+      "explanation": "'Remember doing' refers to a memory of a completed past action.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G38",
+      "number": 38,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "The teacher made the students ________ the exercise again.",
+      "options": {
+        "A": "to do",
+        "B": "doing",
+        "C": "do",
+        "D": "done"
+      },
+      "correct_answer": "C",
+      "correct_option": "do",
+      "explanation": "After 'make + object', use the bare infinitive: made students do.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G39",
+      "number": 39,
+      "category": "gerunds-and-infinitives",
+      "level": "B2",
+      "question": "It took me a long time to get used to ________ on the left.",
+      "options": {
+        "A": "drive",
+        "B": "driving",
+        "C": "to drive",
+        "D": "drove"
+      },
+      "correct_answer": "B",
+      "correct_option": "driving",
+      "explanation": "'Get used to' is followed by a noun or gerund: driving.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

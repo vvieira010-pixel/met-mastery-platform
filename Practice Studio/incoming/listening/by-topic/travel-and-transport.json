@@ -1,0 +1,109 @@
+{
+  "skill": "listening",
+  "topic": "travel-and-transport",
+  "totalExercises": 6,
+  "exercises": [
+    {
+      "id": "listening-77",
+      "level": "B2",
+      "title": "A Travel Suggestion",
+      "focus": "intention",
+      "audioFile": "listening-77-travel-suggestion.mp3",
+      "script": "Woman: The highway is usually crowded on Friday afternoons. Man: In that case, why don’t we take the train? It’s slightly more expensive, but we would avoid the traffic and arrive before dinner.",
+      "question": "What does the man suggest?",
+      "options": [
+        "Leaving on Saturday morning",
+        "Driving on the highway",
+        "Taking the train",
+        "Cancelling dinner"
+      ],
+      "correctOption": "C",
+      "explanation": "He suggests taking the train to avoid traffic."
+    },
+    {
+      "id": "listening-82",
+      "level": "B2",
+      "title": "A Neighborhood Notice",
+      "focus": "inference",
+      "audioFile": "listening-82-neighborhood-notice.mp3",
+      "script": "Because the street will be repaved, residents should move their cars before eight tomorrow morning. The work is expected to last two days, although access for emergency vehicles will be maintained.",
+      "question": "What can be inferred?",
+      "options": [
+        "Residents will not be able to leave the neighborhood for two days.",
+        "Cars left on the street may interfere with the work.",
+        "Emergency vehicles will use a different neighborhood.",
+        "The work has already finished."
+      ],
+      "correctOption": "B",
+      "explanation": "Residents are asked to move cars so paving work can proceed."
+    },
+    {
+      "id": "listening-86",
+      "level": "B2",
+      "title": "A Weather-Related Delay",
+      "focus": "cause and effect",
+      "audioFile": "listening-86-weather-delay.mp3",
+      "script": "The ferry service is running approximately twenty minutes late because strong winds have reduced visibility near the harbor. Passengers should remain in the waiting area and listen for further announcements.",
+      "question": "Why is the ferry delayed?",
+      "options": [
+        "The harbor is closed for construction.",
+        "Strong winds have reduced visibility.",
+        "Passengers arrived late.",
+        "The waiting area is full."
+      ],
+      "correctOption": "B",
+      "explanation": "The delay is caused by strong winds and reduced visibility."
+    },
+    {
+      "id": "listening-90",
+      "level": "B2+",
+      "title": "An Implied Objection",
+      "focus": "inference and stance",
+      "audioFile": "listening-90-implied-objection.mp3",
+      "script": "Speaker A: We can reduce the training period to one day. Speaker B: That may be possible for experienced staff, although new employees might need more time to practice the procedures.",
+      "question": "What concern does Speaker B imply?",
+      "options": [
+        "Experienced staff should receive no training.",
+        "New employees may not be ready after one day.",
+        "The procedures are unnecessary.",
+        "The training period has already been extended."
+      ],
+      "correctOption": "B",
+      "explanation": "The contrast with experienced staff implies that new employees may need longer training."
+    },
+    {
+      "id": "listening-91",
+      "level": "B2+",
+      "title": "A Source Comparison",
+      "focus": "synthesis",
+      "audioFile": "listening-91-source-comparison.mp3",
+      "script": "The two reports agree that public transport use has increased. They differ, however, in their explanations: the first emphasizes lower fares, while the second attributes the change mainly to reduced parking availability.",
+      "question": "How do the reports differ?",
+      "options": [
+        "They report opposite changes in transport use.",
+        "They offer different explanations for the increase.",
+        "Only one report discusses public transport.",
+        "They disagree about the price of parking only."
+      ],
+      "correctOption": "B",
+      "explanation": "Both reports identify an increase but explain it differently."
+    },
+    {
+      "id": "listening-97",
+      "level": "B2+",
+      "title": "A Strategic Trade-Off",
+      "focus": "comparison and implication",
+      "audioFile": "listening-97-strategic-tradeoff.mp3",
+      "script": "Moving the service online would lower operating costs, whereas keeping a physical location would preserve access for people with limited internet connectivity. The decision therefore depends on whether efficiency or inclusion is the immediate priority.",
+      "question": "What trade-off does the speaker identify?",
+      "options": [
+        "Cost efficiency versus wider physical access",
+        "Speed versus employee training",
+        "Online security versus office size",
+        "Advertising versus transportation"
+      ],
+      "correctOption": "A",
+      "explanation": "The speaker contrasts lower costs with maintaining access for people with limited connectivity."
+    }
+  ]
+}

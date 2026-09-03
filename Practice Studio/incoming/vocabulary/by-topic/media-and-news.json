@@ -1,0 +1,21 @@
+{
+  "skill": "vocabulary",
+  "topic": "media-and-news",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "V48",
+      "type": "confusables",
+      "level": "B2",
+      "question": "Choose the correct word to complete the sentence: <i>The _______ of the new policy was immediate.</i>",
+      "options": [
+        "affection",
+        "effective",
+        "affect",
+        "effect"
+      ],
+      "correct": "effect",
+      "explanation": "The correct word here is 'effect'."
+    }
+  ]
+}

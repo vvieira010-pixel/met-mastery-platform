@@ -1,0 +1,38 @@
+{
+  "topic": "Public Safety",
+  "totalExercises": 4,
+  "exercises": [
+    {
+      "number": 2,
+      "seconds": 60,
+      "type": "personal question",
+      "prompt": "Tell us about a time you saw or experienced a dangerous traffic situation.",
+      "topic": "Public Safety",
+      "setId": 28
+    },
+    {
+      "number": 3,
+      "seconds": 60,
+      "type": "preference",
+      "prompt": "Some people prefer to walk or cycle for short trips, while others prefer to use a car. Which do you prefer, and why?",
+      "topic": "Public Safety",
+      "setId": 28
+    },
+    {
+      "number": 4,
+      "seconds": 90,
+      "type": "advantages and disadvantages",
+      "prompt": "A city is considering installing more security cameras in public spaces. What are the advantages and disadvantages?",
+      "topic": "Public Safety",
+      "setId": 28
+    },
+    {
+      "number": 5,
+      "seconds": 90,
+      "type": "roleplay / persuasion",
+      "prompt": "Your city is proposing to lower the speed limit on all residential streets to improve safety. I am a member of the city council. Tell me what you think and convince me to agree with you.",
+      "topic": "Public Safety",
+      "setId": 28
+    }
+  ]
+}

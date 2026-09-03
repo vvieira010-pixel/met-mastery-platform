@@ -1,0 +1,35 @@
+{
+  "title": "Describe the Picture",
+  "skill": "Speaking",
+  "type": "speak",
+  "exercises": [
+    {
+      "id": "describe-picture-01-ski-resort",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_01_ski_resort.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_01_ski_resort.png"
+    },
+    {
+      "id": "describe-picture-02-airport-check-in",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_02_airport_check_in.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_02_airport_check_in.png"
+    },
+    {
+      "id": "describe-picture-03-beach-cleanup",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_03_beach_cleanup.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_03_beach_cleanup.png"
+    },
+    {
+      "id": "describe-picture-04-city-cafe",
+      "question": "Describe the Picture",
+      "prompt": "Describe the Picture",
+      "image": "speaking_picture_04_city_cafe.png",
+      "imageSrc": "/exercises/speaking/speaking_picture_04_city_cafe.png"
+    }
+  ]
+}

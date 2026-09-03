@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "verb-patterns",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G87",
+      "number": 87,
+      "category": "verb-patterns",
+      "level": "B2",
+      "question": "The coach encouraged the players ________ confident.",
+      "options": {
+        "A": "feel",
+        "B": "feeling",
+        "C": "to feel",
+        "D": "felt"
+      },
+      "correct_answer": "C",
+      "correct_option": "to feel",
+      "explanation": "The pattern is 'encourage + object + to infinitive'.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "grammar",
+  "topic": "Phrasal Verbs (B2)",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "G69",
+      "number": 69,
+      "category": "Phrasal Verbs (B2)",
+      "level": "B2",
+      "question": "The manager promised to ________ the complaint and contact us soon.",
+      "options": {
+        "A": "look into",
+        "B": "look after",
+        "C": "look up",
+        "D": "look down"
+      },
+      "correct_answer": "A",
+      "correct_option": "look into",
+      "explanation": "'Look into' means investigate or examine.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

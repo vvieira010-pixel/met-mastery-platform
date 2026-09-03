@@ -1,0 +1,24 @@
+{
+  "skill": "listening",
+  "topic": "healthcare",
+  "totalExercises": 1,
+  "exercises": [
+    {
+      "id": "listening-85",
+      "level": "B2",
+      "title": "A Health Workshop",
+      "focus": "purpose",
+      "audioFile": "listening-85-health-workshop.mp3",
+      "script": "This free workshop will introduce simple ways to make daily meals more balanced. It is not a medical consultation, and participants should speak to a healthcare professional about personal concerns. Recipes and a shopping guide will be provided at the end.",
+      "question": "What will participants receive?",
+      "options": [
+        "Individual medical treatment",
+        "A free gym membership",
+        "Recipes and a shopping guide",
+        "A week of prepared meals"
+      ],
+      "correctOption": "C",
+      "explanation": "The speaker says recipes and a shopping guide will be provided."
+    }
+  ]
+}

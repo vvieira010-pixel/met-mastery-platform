@@ -1,0 +1,115 @@
+{
+  "skill": "grammar",
+  "topic": "passive-voice",
+  "totalExercises": 6,
+  "exercises": [
+    {
+      "id": "G59",
+      "number": 59,
+      "category": "passive-voice",
+      "level": "B1",
+      "question": "The results ________ tomorrow morning.",
+      "options": {
+        "A": "will announce",
+        "B": "will be announced",
+        "C": "are announcing",
+        "D": "announce"
+      },
+      "correct_answer": "B",
+      "correct_option": "will be announced",
+      "explanation": "Use the passive because the results receive the action: will be announced.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G60",
+      "number": 60,
+      "category": "passive-voice",
+      "level": "B1",
+      "question": "The building ________ in 1890.",
+      "options": {
+        "A": "built",
+        "B": "was built",
+        "C": "has built",
+        "D": "was building"
+      },
+      "correct_answer": "B",
+      "correct_option": "was built",
+      "explanation": "Past simple passive: was/were + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G61",
+      "number": 61,
+      "category": "passive-voice",
+      "level": "B1",
+      "question": "English ________ in many countries around the world.",
+      "options": {
+        "A": "speaks",
+        "B": "is spoken",
+        "C": "is speaking",
+        "D": "has spoken"
+      },
+      "correct_answer": "B",
+      "correct_option": "is spoken",
+      "explanation": "Present simple passive: is/are + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G62",
+      "number": 62,
+      "category": "passive-voice",
+      "level": "B1",
+      "question": "The suspect ________ by the police yesterday.",
+      "options": {
+        "A": "arrested",
+        "B": "was arrested",
+        "C": "has arrested",
+        "D": "was arresting"
+      },
+      "correct_answer": "B",
+      "correct_option": "was arrested",
+      "explanation": "The suspect receives the action, so use past passive: was arrested.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G63",
+      "number": 63,
+      "category": "passive-voice",
+      "level": "B2",
+      "question": "By the time we arrived, the room ________ already ________.",
+      "options": {
+        "A": "had / cleaned",
+        "B": "had been / cleaned",
+        "C": "was / cleaning",
+        "D": "has / cleaned"
+      },
+      "correct_answer": "B",
+      "correct_option": "had been / cleaned",
+      "explanation": "Past perfect passive: had been + past participle.",
+      "type": "mcq",
+      "skill": "Grammar"
+    },
+    {
+      "id": "G64",
+      "number": 64,
+      "category": "passive-voice",
+      "level": "B2",
+      "question": "This problem needs ________ as soon as possible.",
+      "options": {
+        "A": "to solve",
+        "B": "solving",
+        "C": "solve",
+        "D": "solved"
+      },
+      "correct_answer": "B",
+      "correct_option": "solving",
+      "explanation": "'Needs solving' is a passive-like gerund structure: the problem needs to be solved.",
+      "type": "mcq",
+      "skill": "Grammar"
+    }
+  ]
+}

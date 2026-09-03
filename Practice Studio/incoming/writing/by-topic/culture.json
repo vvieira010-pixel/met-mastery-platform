@@ -1,0 +1,86 @@
+{
+  "topic": "Culture",
+  "totalExercises": 8,
+  "exercises": [
+    {
+      "id": "T1_6",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe a tradition or celebration that is important in your family or country. What happens during this event, and why is it meaningful?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E6",
+      "type": "essay",
+      "kind": "opinion",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Some people think that learning a foreign language is more important than learning about one's own culture. To what extent do you agree or disagree?",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. State your opinion clearly and support it with reasons and examples."
+    },
+    {
+      "id": "T1_16",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Tell us about a book, film, or piece of music that has influenced you. What is it about, and why did it affect you?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E16",
+      "type": "essay",
+      "kind": "advantages_disadvantages",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Many museums now offer virtual tours that allow people to explore exhibitions from home. Discuss the advantages and disadvantages of this trend.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both the advantages and disadvantages. Do not give your personal opinion."
+    },
+    {
+      "id": "T1_26",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe a time when you experienced a culture different from your own. What did you notice, and how did you feel?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "E26",
+      "type": "essay",
+      "kind": "for_against",
+      "topic": "Culture",
+      "task": 2,
+      "prompt": "Some people think that governments should support traditional arts, such as folk music and dance. Others believe that public money should be spent on modern art and technology. Discuss both views and give your own opinion.",
+      "time_minutes": 45,
+      "instructions": "Write a formal, multi-paragraph essay. Discuss both sides of the argument and clearly state your own opinion."
+    },
+    {
+      "id": "T1_36",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Talk about a museum, gallery, or historical site you have visited. What did you see there, and what did you learn?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    },
+    {
+      "id": "T1_46",
+      "type": "task1_elaborated",
+      "kind": "personal_experience",
+      "topic": "Culture",
+      "task": 1,
+      "prompt": "Describe how you would introduce your culture to a foreign visitor. What places, foods, and activities would you show them, and why?",
+      "time_minutes": 10,
+      "instructions": "Write a few well-developed sentences (about 80–120 words). Answer the question directly, give specific details or examples, and explain your ideas clearly."
+    }
+  ]
+}
