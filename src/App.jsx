@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import LoginScreen from './pages/login.jsx';
-import LandingPage from './pages/landing-complete.jsx';
 import StudentDashboard from './pages/student-dashboard.jsx';
 import ErrorBoundary from './components/error-boundary.jsx';
 import { logError } from './lib/error-logger.js';
@@ -63,7 +62,6 @@ export default function App() {
   // reads the current role instead of the value captured on first render.
   const authRef = useRef(auth);
   useEffect(() => { authRef.current = auth; }, [auth]);
-  const [showLogin, setShowLogin] = useState(false);
 
   // Global error handler — catches unhandled rejections and window.onerror
   useEffect(() => {
@@ -433,7 +431,6 @@ export default function App() {
     clearStoredSupabaseSession();
     setSessionRole('');
     setAuth(null);
-    setShowLogin(false);
     setView('dashboard');
     setViewParams({});
   };
@@ -446,9 +443,7 @@ export default function App() {
   }, [auth]);
 
   if (!auth) {
-    return showLogin
-      ? <LoginScreen onSignIn={handleSignIn} onBack={() => setShowLogin(false)} />
-      : <LandingPage onMemberSignIn={() => setShowLogin(true)} onDemoAccess={handleSignIn} data-testid="met-mastery-landing" />;
+    return <LoginScreen onSignIn={handleSignIn} onBack={() => {}} />;
   }
 
   if (auth.role === 'student') {
