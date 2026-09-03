@@ -29,6 +29,9 @@ deno.lock
 .agents/
 .workbuddy-ai/
 
+# Transient audit / build cache artifacts
+.tmp/
+
 # Source material not served by the app (199 MB audio/source)
 Mock Tests/
 
