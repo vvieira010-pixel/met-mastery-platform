@@ -4,7 +4,6 @@ import { asArray, getProgressStage, getSkillTrend, PROGRESS_STAGES, STAGE_DESCRI
 import { Icon } from '../components/shared.jsx';
 import MetProgressPathGraph from '../components/MetProgressPathGraph.jsx';
 import BaselineDiagnosticModal from '../components/BaselineDiagnosticModal.jsx';
-import ActionOrientedEvidenceCards from '../components/ActionOrientedEvidenceCards.jsx';
 import CefrSkillGapFlags from '../components/CefrSkillGapFlags.jsx';
 import TargetedSynonymTracker from '../components/TargetedSynonymTracker.jsx';
 
@@ -216,12 +215,6 @@ export default function StudentProgress({ student, "data-testid": testId }) {
             </div>
           </div>
 
-          {/* Action-Oriented Evidence Cards */}
-          <ActionOrientedEvidenceCards
-            student={student}
-            onEvidenceSubmitted={refreshDiagnoses}
-          />
-
           {/* Targeted Synonym Tracker */}
           <TargetedSynonymTracker />
         </div>
@@ -254,13 +247,6 @@ export default function StudentProgress({ student, "data-testid": testId }) {
 
           {/* CEFR Skill Gap Flags: Visual blue & emerald green progress indicators */}
           <CefrSkillGapFlags snapshot={skills} diagnoses={diagnoses} className="mb-5" />
-
-          {/* Action-Oriented Evidence Cards */}
-          <ActionOrientedEvidenceCards
-            student={student}
-            onEvidenceSubmitted={refreshDiagnoses}
-            className="mb-5"
-          />
 
           {/* Targeted Synonym Tracker */}
           <TargetedSynonymTracker className="mb-5" />

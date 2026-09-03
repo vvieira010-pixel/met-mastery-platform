@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Icon } from '../components/shared.jsx';
 import { READING_SUBJECT } from '../data/subjects/reading.js';
 import { SPEAKING_SUBJECT } from '../data/subjects/speaking.js';
@@ -64,6 +65,54 @@ const SUBJECTS = [
 ];
 
 export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }) {
+  const [selectedSubjectId, setSelectedSubjectId] = useState(null);
+  const [view, setView] = useState('topics');
+  const selectedSubject = SUBJECTS.find(subject => subject.id === selectedSubjectId);
+
+  if (selectedSubject) {
+    const SubjectIcon = selectedSubject.icon;
+    return (
+      <div className="student-page student-subjects-page" data-testid={testId}>
+        <button type="button" className="student-reading-back" onClick={() => setSelectedSubjectId(null)}><Icon.arrowL size={15} /> Back to Subjects</button>
+        <header className="student-page-header student-reading-header">
+          <span className="student-panel-kicker">MET subject</span>
+          <h1><SubjectIcon size={22} /> {selectedSubject.name}</h1>
+          <p>{selectedSubject.description}</p>
+        </header>
+        <nav className="tabs-line" aria-label={`${selectedSubject.name} content`}>
+          {['topics', 'explanations'].map(tab => (
+            <button key={tab} type="button" className={`tab-line${view === tab ? ' active' : ''}`} onClick={() => setView(tab)}>
+              {tab === 'topics' ? 'Topics' : 'Explanations'}
+            </button>
+          ))}
+        </nav>
+        {view === 'topics' ? (
+          <section className="student-reading-unit-list" aria-label={`${selectedSubject.name} topics`}>
+            {selectedSubject.units.map(unit => (
+              <button key={unit.unit} type="button" className="student-reading-unit" onClick={() => setView('explanations')}>
+                <span className="student-reading-unit-number">{String(unit.unit).padStart(2, '0')}</span>
+                <span className="student-reading-unit-title">{unit.title}</span>
+                <Icon.arrowR size={16} />
+              </button>
+            ))}
+          </section>
+        ) : (
+          <section className="student-reading-unit-list" aria-label={`${selectedSubject.name} explanations`}>
+            {selectedSubject.units.map(unit => (
+              <article key={unit.unit} className="student-reading-unit" style={{ padding: '16px 18px' }}>
+                <h2 style={{ margin: '0 0 10px', fontSize: 'var(--text-md)' }}>{unit.title}</h2>
+                <div className="student-reading-unit-content">
+                  <div><strong>What it is</strong><p>{unit.whatItIs}</p></div>
+                  <div><strong>How to apply it</strong><p>{unit.howToApplyIt}</p></div>
+                </div>
+              </article>
+            ))}
+          </section>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="student-page student-subjects-page" data-testid={testId}>
       <header className="student-page-header">
@@ -103,7 +152,15 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
               <div className="student-subject-card-icon" aria-hidden="true"><SubjectIcon size={22} /></div>
               <div>
                 {subject.units ? (
-                  <button type="button" className="student-subject-card-link" onClick={() => onOpenSubject?.(subject.pageId || subject.id)}>
+                  <button
+                    type="button"
+                    className="student-subject-card-link"
+                    onClick={() => {
+                      setSelectedSubjectId(subject.id);
+                      setView('topics');
+                      onOpenSubject?.(subject.pageId || subject.id);
+                    }}
+                  >
                     <h2>{subject.name}</h2><Icon.arrowR size={16} aria-hidden="true" />
                   </button>
                 ) : <h2>{subject.name}</h2>}
@@ -112,7 +169,7 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
                   <strong>Focus</strong>
                   <span>{subject.focus}</span>
                 </div>
-                {subject.units && <span className="student-subject-card-units-link">{subject.units.length} {subject.name} units · Open subject page</span>}
+                {subject.units && <span className="student-subject-card-units-link">{subject.units.length} {subject.name} topics · Open subject</span>}
               </div>
             </article>
           );

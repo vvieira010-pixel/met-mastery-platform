@@ -565,27 +565,6 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
               />
             </div>
 
-            <Card bezel as="div" className="home-bento-cell home-bento-cell--orange" onClick={() => setQpOpen(true)} ariaLabel="Open Quick Practice">
-              <div className="student-panel-head">
-                <div>
-                  <span className="student-panel-kicker">Weekly rotation</span>
-                  <h2>Quick Practice</h2>
-                </div>
-                <Icon.bolt size={16} style={{ color: 'var(--orange)' }} />
-              </div>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', margin: '0 0 8px', lineHeight: 1.5 }}>
-                10 exercises per skill that refresh every week. Pick a skill and practice now.
-              </p>
-              {getQpCompletedCount() > 0 && (
-                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--primary)', fontWeight: 600 }}>
-                  {getQpCompletedCount()}/6 skills done this week
-                </div>
-              )}
-              <div className="student-wide-action" style={{ marginTop: 8 }}>
-                Open practice <Icon.arrowR size={14} />
-              </div>
-            </Card>
-
             <Card bezel className="referral-card">
               <div className="referral-card-inner">
                 <div className="referral-card-icon">

@@ -14,10 +14,12 @@ const StudentFeedback = lazy(() => import('./student-feedback.jsx'));
 const StudentProgress = lazy(() => import('./student-progress.jsx'));
 const StudentResources = lazy(() => import('../components/StudentResources.jsx'));
 const PracticeStudio = lazy(() => import('./practice-studio.jsx'));
+const StudentSubjects = lazy(() => import('./student-subjects.jsx'));
 
 const PRIMARY_TABS = [
   { id: 'home',           label: 'Home',          icon: <Icon.home size={16} /> },
   { id: 'practice-studio', label: 'Practice',     icon: <Icon.spark size={16} /> },
+  { id: 'subjects',        label: 'Subjects',     icon: <Icon.book size={16} /> },
   { id: 'homework',       label: 'Homework',      icon: <Icon.homework size={16} /> },
   { id: 'feedback',       label: 'Feedback',      icon: <Icon.inbox size={16} />, dotKey: 'feedback' },
   { id: 'progress',       label: 'Progress',      icon: <Icon.progress size={16} />, dotKey: 'progress' },
@@ -33,6 +35,7 @@ const MORE_TABS = [
 const BOTTOM_NAV_TABS = [
   { id: 'home',       label: 'Home',          icon: <Icon.home size={18} /> },
   { id: 'practice-studio', label: 'Practice', icon: <Icon.spark size={18} /> },
+  { id: 'subjects',        label: 'Subjects', icon: <Icon.book size={18} /> },
   { id: 'homework',   label: 'Homework',      icon: <Icon.homework size={18} /> },
   { id: 'feedback',   label: 'Feedback',      icon: <Icon.inbox size={18} /> },
   { id: 'progress',   label: 'Progress',      icon: <Icon.progress size={18} /> },
@@ -202,6 +205,7 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
             {tab === 'home' && <StudentHome student={student} onTab={handleTabChange} />}
             <Suspense fallback={<div className="student-suspense-fallback">Loading…</div>}>
                {tab === 'practice-studio' && <PracticeStudio studentId={student.id} onBack={() => handleTabChange('home')} />}
+               {tab === 'subjects' && <StudentSubjects />}
                {tab === 'homework' && <StudentHomework student={student} />}
                {tab === 'mock-test' && <MockTestPage student={student} />}
                {tab === 'feedback' && <StudentFeedback student={student} onTab={handleTabChange} />}
