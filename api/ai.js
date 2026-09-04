@@ -87,11 +87,11 @@ const GROQ_DEFAULT_MODELS = [
 const NVIDIA_DEFAULT_MODELS = [
   // Hosted NVIDIA NIM text models. Keep this list provider-specific so
   // NVIDIA can carry diagnostics even when the other providers are unavailable.
-  'deepseek-ai/deepseek-v4-flash',
-  'moonshotai/kimi-k3',
+  'nvidia/nemotron-3-super-120b-a12b',
   'nvidia/nemotron-3.5-lightning-30b-a3b',
-  'meta/muse-glimmer-30b',
-  'google/gemma-4-31b-it',
+  'moonshotai/kimi-k2-instruct',
+  'mistralai/mixtral-8x22b-instruct',
+  'qwen/qwen3-next-80b-a3b-instruct',
   'meta/llama-3.3-70b-instruct',
   'meta/llama-3.1-70b-instruct',
   'meta/llama-3.1-8b-instruct',
@@ -230,16 +230,18 @@ export default async function handler(req, res) {
   // instead of treating every request as the same generic chat completion.
   const isEvidenceHeavy = (prompt.length + sys.length) > 16_000 || max_tokens > 3_500;
   const NVIDIA_EVIDENCE_MODELS = [
-    'deepseek-ai/deepseek-v4-flash',
-    'moonshotai/kimi-k3',
+    'nvidia/nemotron-3-super-120b-a12b',
     'nvidia/nemotron-3.5-lightning-30b-a3b',
-    'meta/muse-glimmer-30b',
-    'google/gemma-4-31b-it',
+    'moonshotai/kimi-k2-instruct',
+    'mistralai/mixtral-8x22b-instruct',
+    'qwen/qwen3-next-80b-a3b-instruct',
     'meta/llama-3.3-70b-instruct',
     'meta/llama-3.1-70b-instruct',
   ];
   const NVIDIA_FAST_MODELS = [
     'nvidia/nemotron-3.5-lightning-30b-a3b',
+    'nvidia/nemotron-3-nano-30b-a3b',
+    'moonshotai/kimi-k2-instruct',
     'meta/llama-3.3-70b-instruct',
     'google/gemma-4-31b-it',
     'meta/llama-3.1-8b-instruct',
