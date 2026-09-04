@@ -38,7 +38,7 @@ export function getTopicList(mode) {
   }
   if (mode === 'speaking') {
     return [
-      { id: 'describe_image', title: 'Visual Description Tasks' },
+      { id: 'describe_image', title: 'Describe the Image' },
       { id: 'speaking_full_bank', title: 'Complete Speaking Collection (254 Tasks)' },
       { id: 'work_career', title: 'Professional Life & Employment' },
       { id: 'healthcare', title: 'Healthcare Communication & Patient Care' },
