@@ -1,0 +1,133 @@
+/* The public experience shares the product palette without changing its layout. */
+.landing-preview {
+  background: #FFFFFF;
+  color: #1F2041;
+}
+
+.site-header,
+.hero,
+.learning-loop,
+footer,
+.workspace-nav {
+  background: #1F2041;
+}
+
+.hero .eyebrow,
+.hero h1 span,
+.hero-copy > p:not(.eyebrow),
+.hero-copy ul,
+.learning-loop .eyebrow,
+.loop-lead,
+.loop-steps p,
+.audience-cards article:last-child > p:not(.eyebrow),
+.site-header nav a,
+.signin-link,
+footer {
+  color: #119DA4;
+}
+
+.header-cta,
+.hero-primary,
+.final-cta a,
+.primary-button,
+.next-button,
+.task-action button {
+  background: #119DA4;
+}
+
+.header-cta:hover,
+.hero-primary:hover,
+.final-cta a:hover,
+.primary-button:hover,
+.next-button:hover,
+.task-action button:hover {
+  background: #19647E;
+}
+
+.audience-picker,
+.method-section,
+.audience-cards,
+.landing-preview .product-proof {
+  background: #FFFFFF;
+}
+
+.final-cta {
+  background: #119DA4;
+}
+
+.workspace-frame,
+.diagnosis-card,
+.next-task,
+.upcoming-list article,
+.question-area label,
+.method-grid article,
+.audience-cards article,
+.audience-picker button {
+  border-color: rgba(17, 157, 164, 0.30);
+}
+
+.next-task.started,
+.question-area .selected-answer,
+.audience-picker button.selected {
+  border-color: #FFC857;
+  box-shadow: 0 0 0 3px rgba(255, 200, 87, 0.22);
+}
+
+.next-task.started,
+.question-area .selected-answer,
+.task-symbol,
+.writing-dot,
+.hero-dashboard > p span {
+  background: #FFC857;
+}
+
+.landing-preview a:focus-visible,
+.landing-preview button:focus-visible,
+.landing-preview input:focus-visible,
+.landing-preview [tabindex]:focus-visible {
+  outline-color: #FFC857;
+}
+
+/* Coolors palette: #1F2041 #4B3F72 #FFC857 #119DA4 #19647E */
+.landing-preview .site-header,
+.landing-preview .hero,
+.landing-preview .learning-loop,
+.landing-preview footer,
+.landing-preview .audience-cards article:last-child {
+  background-color: #1F2041;
+}
+.landing-preview .hero {
+  background-image: radial-gradient(circle at 78% 18%, rgb(17 157 164 / 24%), transparent 30%), linear-gradient(135deg, #1F2041 0%, #19647E 100%);
+}
+.landing-preview .header-cta,
+.landing-preview .hero-primary,
+.landing-preview .final-cta a,
+.landing-preview .audience-cards a {
+  background: #119DA4;
+}
+.landing-preview .header-cta:hover,
+.landing-preview .hero-primary:hover,
+.landing-preview .final-cta a:hover,
+.landing-preview .audience-cards a:hover {
+  background: #19647E;
+}
+.landing-preview .hero .eyebrow,
+.landing-preview .hero h1 span,
+.landing-preview .hero-copy > p:not(.eyebrow),
+.landing-preview .hero-copy ul,
+.landing-preview .hero-copy li::before,
+.landing-preview .learning-loop,
+.landing-preview .loop-lead,
+.landing-preview footer {
+  color: #D9F0F1;
+}
+.landing-preview .audience-picker,
+.landing-preview .method-section {
+  background: #FFF8E7;
+}
+.landing-preview .final-cta {
+  background: #4B3F72;
+}
+.landing-preview .final-cta > p:not(.eyebrow) {
+  color: #FFF8E7;
+}

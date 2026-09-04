@@ -1,36 +1,37 @@
 :root {
-  --ink: #022B3A;
-  --ink-rgb: 2, 43, 58;
-  --ink-muted: #1F7A8C;
-  --ink-muted-rgb: 31, 122, 140;
-  --ink-2: #022B3A;
+  --ink: #1F2041;
+  --ink-rgb: 31, 32, 65;
+  /* Purple carries secondary copy while navy keeps primary text high-contrast. */
+  --ink-muted: #4B3F72;
+  --ink-muted-rgb: 75, 63, 114;
+  --ink-2: #1F2041;
 
   --surface: #FFFFFF;
   --surface-rgb: 255, 255, 255;
   --surface-glass: rgba(255, 255, 255, 0.85);
-  --surface-hover: #E1E5F2;
-  --hover-bg: #E1E5F2;
+  --surface-hover: #FFFFFF;
+  --hover-bg: #FFFFFF;
 
   --bg: #FFFFFF;
   --bg-rgb: 255, 255, 255;
-  --bg-deep: #E1E5F2;
+  --bg-deep: #119DA4;
 
-  --border: #E1E5F2;
-  --border-rgb: 225, 229, 242;
-  --border-strong: rgba(2, 43, 58, 0.18);
-  --divider: rgba(2, 43, 58, 0.08);
+  --border: rgba(25, 100, 126, 0.26);
+  --border-rgb: 17, 157, 164;
+  --border-strong: rgba(31, 32, 65, 0.22);
+  --divider: rgba(31, 32, 65, 0.10);
 
-  --ink-light: rgba(2, 43, 58, 0.06);
-  --ink-faint: rgba(2, 43, 58, 0.08);
-  --ink-soft: rgba(2, 43, 58, 0.12);
+  --ink-light: rgba(31, 32, 65, 0.06);
+  --ink-faint: rgba(31, 32, 65, 0.08);
+  --ink-soft: rgba(31, 32, 65, 0.12);
 
-  --shadow-sm: 0 1px 2px rgba(2, 43, 58, 0.04);
-  --shadow-md: 0 4px 12px rgba(2, 43, 58, 0.05), 0 1px 3px rgba(2, 43, 58, 0.03);
-  --shadow-card: 0 1px 4px rgba(2, 43, 58, 0.04);
-  --shadow-lg: 0 12px 28px rgba(2, 43, 58, 0.06);
+  --shadow-sm: 0 1px 2px rgba(31, 32, 65, 0.04);
+  --shadow-md: 0 4px 12px rgba(31, 32, 65, 0.05), 0 1px 3px rgba(31, 32, 65, 0.03);
+  --shadow-card: 0 1px 4px rgba(31, 32, 65, 0.04);
+  --shadow-lg: 0 12px 28px rgba(31, 32, 65, 0.07);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.04);
-  --shadow-toast: 0 4px 16px rgba(2, 43, 58, 0.10);
-  --shadow-modal: 0 12px 36px rgba(2, 43, 58, 0.14);
+  --shadow-toast: 0 4px 16px rgba(31, 32, 65, 0.10);
+  --shadow-modal: 0 12px 36px rgba(31, 32, 65, 0.14);
 
   --text: var(--ink);
   --text-rgb: var(--ink-rgb);
@@ -41,15 +42,15 @@
   --on-dark-rgb: 255, 255, 255;
   --on-dark-muted: rgba(255, 255, 255, 0.7);
 
-  --primary: #1F7A8C;
-  --primary-rgb: 31, 122, 140;
-  --primary-hover: #022B3A;
-  --primary-light: #BFDBF7;
+  --primary: #119DA4;
+  --primary-rgb: 17, 157, 164;
+  --primary-hover: #19647E;
+  --primary-light: #D9F0F1;
 
-  --accent: #022B3A;
-  --accent-rgb: 2, 43, 58;
-  --accent-hover: #1F7A8C;
-  --accent-light: #E1E5F2;
+  --accent: #FFC857;
+  --accent-rgb: 255, 200, 87;
+  --accent-hover: #19647E;
+  --accent-light: #FFF8E7;
   --accent-subtle: rgba(var(--accent-rgb), 0.08);
   --accent-soft: rgba(var(--accent-rgb), 0.15);
   --accent-text: var(--ink);
@@ -68,37 +69,37 @@
   --warning-text: #804E1E;
   --warning-soft: #E6C5A2;
 
-  --error: #A34E48;
-  --error-rgb: 163, 78, 72;
-  --error-bg: #FAECEB;
-  --error-bg-rgb: 250, 236, 235;
-  --error-soft: #E0ADA9;
+  --error: #FFC857;
+  --error-rgb: 255, 200, 87;
+  --error-bg: #FFF8E7;
+  --error-bg-rgb: 252, 232, 234;
+  --error-soft: #F3A9AF;
   --danger: var(--error);
   --danger-bg: var(--error-bg);
   --danger-soft: var(--error-soft);
 
-  --info: #1F7A8C;
-  --info-rgb: 31, 122, 140;
-  --info-bg: #BFDBF7;
-  --info-bg-rgb: 191, 219, 247;
-  --info-soft: #BFDBF7;
+  --info: #19647E;
+  --info-rgb: 25, 100, 126;
+  --info-bg: #D9F0F1;
+  --info-bg-rgb: 217, 240, 241;
+  --info-soft: #119DA4;
 
-  --orange: #022B3A;
-  --orange-rgb: 2, 43, 58;
-  --orange-light: #E1E5F2;
-  --orange-light-rgb: 225, 229, 242;
-  --orange-text: #022B3A;
+  --orange: #FFC857;
+  --orange-rgb: 255, 200, 87;
+  --orange-light: #FFF8E7;
+  --orange-light-rgb: 255, 248, 231;
+  --orange-text: #1F2041;
   --orange-soft: rgba(var(--orange-rgb), 0.16);
   --orange-subtle: rgba(var(--orange-rgb), 0.08);
 
-  --section-reading: #1F7A8C;
-  --section-listening: #022B3A;
-  --section-speaking: #1F7A8C;
-  --section-writing: #022B3A;
-  --type-grammar: #1F7A8C;
-  --type-main-idea: #022B3A;
-  --level-b1: #1F7A8C;
-  --level-b2: #022B3A;
+  --section-reading: #119DA4;
+  --section-listening: #1F2041;
+  --section-speaking: #19647E;
+  --section-writing: #4B3F72;
+  --type-grammar: #119DA4;
+  --type-main-idea: #1F2041;
+  --level-b1: #19647E;
+  --level-b2: #4B3F72;
 
   --radius: 4px;
   --radius-sm: 8px;
@@ -114,7 +115,7 @@
   --surface-tint: rgba(var(--primary-rgb), 0.055);
   --shadow-float: 0 18px 45px rgba(var(--ink-rgb), 0.08);
   --focus-ring: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
-  --gradient-brand: linear-gradient(135deg, var(--primary) 0%, var(--accent) 52%, var(--ink) 100%);
+  --gradient-brand: linear-gradient(135deg, #119DA4 0%, #1F2041 58%, #FFC857 100%);
 
   --text-2xs: 0.625rem;
   --text-2sm: 0.6875rem;
@@ -158,14 +159,14 @@
   --transition-fast: 0.25s var(--ease-spring);
   --transition-smooth: 0.55s var(--ease-spring);
 
-  --muted: #1F7A8C;
-  --faint: #E1E5F2;
+  --muted: #4B3F72;
+  --faint: #FFFFFF;
   --max-width: 1320px;
-  --teal-soft: rgba(31, 122, 140, 0.08);
+  --teal-soft: rgba(17, 157, 164, 0.08);
 
   /* ── Modern motion + craft layer (added 2026-09-03) ── */
-  /* Premium display typeface for headlines/numbers (loaded in index.html). */
-  --font-display: 'Clash Display', 'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Display typeface for headlines/numbers — matches design-tokens.json fontFamily.serif. */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
 
   /* Spring / expo easings — replace stiff linear/ease-in-out motion. */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
