@@ -52,7 +52,7 @@
   --accent-light: #E1E5F2;
   --accent-subtle: rgba(var(--accent-rgb), 0.08);
   --accent-soft: rgba(var(--accent-rgb), 0.15);
-  --accent-text: #FFFFFF;
+  --accent-text: var(--ink);
 
   --success: #3A845F;
   --success-rgb: 58, 132, 95;
