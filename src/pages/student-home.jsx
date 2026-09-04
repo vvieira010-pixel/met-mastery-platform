@@ -278,11 +278,6 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
     return `${now.getFullYear()}-W${week}`;
   }
 
-  function getQpCompletedCount() {
-    const wk = getWeekKey();
-    return Object.keys(qpProgress[wk] || {}).length;
-  }
-
   function handleQpSkillClick(skillId) {
     import('../pages/quick-practice.jsx').then(mod => {
       const extractors = mod.EXTRACTORS || {};
@@ -369,7 +364,7 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
 
   const heroAction = pendingHw.length > 0
     ? { label: 'Open homework', tab: 'homework', icon: <Icon.homework size={15} /> }
-    : { label: 'View progress', tab: 'progress', icon: <Icon.progress size={15} /> };
+    : { label: 'Start recommended practice', tab: 'practice-studio', icon: <Icon.spark size={15} /> };
 
   const learningLoopStage = latestReview
     ? 'review'

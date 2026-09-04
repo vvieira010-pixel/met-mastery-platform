@@ -8,10 +8,11 @@ import {
   getGrammarExercises,
   getTopicList,
   getVocabExercises,
-  getSpeakingExercises,
+  getPracticeStudioSpeakingExercises,
+  getPracticeStudioSpeakingTopics,
   getWritingExercises,
-  getListeningExercises,
-  getListeningAudioGroups,
+  getPracticeStudioListeningExercises,
+  getPracticeStudioListeningGroups,
   getMetB2MultipleChoiceExercises,
 } from '../lib/vocab-homework-bank.js';
 import { savePracticeSession } from '../lib/workflow.js';
@@ -78,8 +79,10 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
   useEffect(() => {
     async function loadTopics() {
       if (selectedKind === 'listening') {
-        const listeningTopics = await getListeningAudioGroups();
+        const listeningTopics = await getPracticeStudioListeningGroups();
         setTopics(listeningTopics);
+      } else if (selectedKind === 'speaking') {
+        setTopics([...getPracticeStudioSpeakingTopics(), ...getTopicList(selectedKind)]);
       } else {
         setTopics(getTopicList(selectedKind));
       }
@@ -105,11 +108,11 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
         } else if (selectedKind === 'vocab' && selectedTopic) {
           ex = await getVocabExercises(selectedTopic);
         } else if (selectedKind === 'speaking' && selectedTopic) {
-          ex = await getSpeakingExercises(selectedTopic);
+          ex = await getPracticeStudioSpeakingExercises(selectedTopic);
         } else if (selectedKind === 'writing' && selectedTopic) {
           ex = await getWritingExercises(selectedTopic);
         } else if (selectedKind === 'listening') {
-          ex = await getListeningExercises(selectedTopic);
+          ex = await getPracticeStudioListeningExercises(selectedTopic);
         } else if (selectedKind === 'b2_mcq' && selectedTopic) {
           ex = await getMetB2MultipleChoiceExercises(selectedTopic);
         }

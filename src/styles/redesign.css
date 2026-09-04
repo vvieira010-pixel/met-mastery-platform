@@ -764,11 +764,11 @@ body {
 
 /* ── Variation 8 Design System ────────────────────────────── */
 .v8-landing {
-  --bg: #FDFCF8;
-  --ink: #1A2E35;
-  --primary: #2D7A8C;
-  --accent: #E08E45;
-  --ink-faint: rgba(26, 46, 53, 0.08);
+  --bg: #FFFFFF;
+  --ink: #022B3A;
+  --primary: #1F7A8C;
+  --accent: #022B3A;
+  --ink-faint: rgba(2, 43, 58, 0.08);
   --surface: #ffffff;
   --radius: 4px;
   background-color: var(--bg);
@@ -807,7 +807,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 4vw;
-  background: rgba(253, 252, 248, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 100;
@@ -862,7 +862,7 @@ body {
   color: #ffffff !important;
 }
 .v8-btn-primary:hover {
-  background: #1F5A67;
+  background: #022B3A;
   transform: translateY(-2px);
   color: #ffffff !important;
 }

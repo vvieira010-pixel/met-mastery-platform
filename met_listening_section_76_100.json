@@ -526,6 +526,258 @@
       "correct": 1,
       "explanation": "The university will evaluate the first phase before deciding whether to expand the program.",
       "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-89b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-89-cautious-forecast.mp3",
+      "audioTitle": "89 · A Cautious Forecast",
+      "audioSrc": "/exercises/audio/listening/listening-89-cautious-forecast.mp3",
+      "audioText": "The early figures point to a modest increase in participation. However, registrations remain open for another month, so it would be premature to predict the final total. The current trend is encouraging, but not conclusive.",
+      "question": "What is still to happen over the next month?",
+      "options": [
+        "Registrations will remain open for another month",
+        "The figures will be ignored completely",
+        "The final total will be announced today",
+        "Participation is now closed"
+      ],
+      "correct": 0,
+      "explanation": "The speaker says registrations remain open for another month.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-90b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-90-implied-objection.mp3",
+      "audioTitle": "90 · An Implied Objection",
+      "audioSrc": "/exercises/audio/listening/listening-90-implied-objection.mp3",
+      "audioText": "Speaker A: We can reduce the training period to one day. Speaker B: That may be possible for experienced staff, although new employees might need more time to practice the procedures.",
+      "question": "What does Speaker B suggest about experienced staff?",
+      "options": [
+        "They oppose all training",
+        "They may manage with a one-day training period",
+        "They should receive no training at all",
+        "They must train the new employees themselves"
+      ],
+      "correct": 1,
+      "explanation": "Speaker B says one day 'may be possible for experienced staff'.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-91b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-91-source-comparison.mp3",
+      "audioTitle": "91 · A Source Comparison",
+      "audioSrc": "/exercises/audio/listening/listening-91-source-comparison.mp3",
+      "audioText": "The two reports agree that public transport use has increased. They differ, however, in their explanations: the first emphasizes lower fares, while the second attributes the change mainly to reduced parking availability.",
+      "question": "What do both reports agree on?",
+      "options": [
+        "Parking in the city is free",
+        "Transport use has declined sharply",
+        "Public transport use has increased",
+        "Fares are too high for most people"
+      ],
+      "correct": 2,
+      "explanation": "Both reports agree that public transport use has increased.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-92b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-92-revised-recommendation.mp3",
+      "audioTitle": "92 · A Revised Recommendation",
+      "audioSrc": "/exercises/audio/listening/listening-92-revised-recommendation.mp3",
+      "audioText": "At first, I supported opening the facility every evening. After reviewing the staffing data, I think a three-evening schedule would be more realistic. It would still improve access without placing excessive pressure on the team.",
+      "question": "Why did the speaker change the recommendation?",
+      "options": [
+        "The public demanded full closure",
+        "The budget for the facility doubled",
+        "No reason is given",
+        "The staffing data made every evening unrealistic"
+      ],
+      "correct": 3,
+      "explanation": "After reviewing staffing data, every evening looked unrealistic and pressured the team.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-93b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-93-policy-condition.mp3",
+      "audioTitle": "93 · A Policy Condition",
+      "audioSrc": "/exercises/audio/listening/listening-93-policy-condition.mp3",
+      "audioText": "The committee is willing to approve the proposal, provided that the organizers submit a revised budget by Friday. Without that document, the application will remain on hold until the next meeting.",
+      "question": "What happens without the revised budget?",
+      "options": [
+        "The application remains on hold until the next meeting",
+        "The proposal is approved automatically",
+        "The proposal is cancelled permanently",
+        "The committee decides the same day"
+      ],
+      "correct": 0,
+      "explanation": "Without that document, the application stays on hold until the next meeting.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-94b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-94-nuanced-evaluation.mp3",
+      "audioTitle": "94 · A Nuanced Evaluation",
+      "audioSrc": "/exercises/audio/listening/listening-94-nuanced-evaluation.mp3",
+      "audioText": "The pilot has not solved every problem, but it has revealed which parts of the process require attention. I would hesitate to call it a failure; its value may lie in the information it has provided for the next stage.",
+      "question": "Where does the speaker see value in the pilot?",
+      "options": [
+        "There is no value at all",
+        "In the information it provided for the next stage",
+        "In solving every problem completely",
+        "In the money it saved"
+      ],
+      "correct": 1,
+      "explanation": "Its value 'may lie in the information it has provided for the next stage'.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-95b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-95-academic-qualification.mp3",
+      "audioTitle": "95 · An Academic Qualification",
+      "audioSrc": "/exercises/audio/listening/listening-95-academic-qualification.mp3",
+      "audioText": "The findings are consistent with the hypothesis, but consistency alone does not establish causation. Further experiments would be needed to determine whether the observed relationship is genuinely responsible for the outcome.",
+      "question": "What does consistency alone NOT do?",
+      "options": [
+        "Require a written report",
+        "Prove nothing whatsoever",
+        "Establish causation",
+        "Support the hypothesis in part"
+      ],
+      "correct": 2,
+      "explanation": "The speaker says consistency alone does not establish causation.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-96b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-96-corrected-figure.mp3",
+      "audioTitle": "96 · A Corrected Figure",
+      "audioSrc": "/exercises/audio/listening/listening-96-corrected-figure.mp3",
+      "audioText": "The survey included 480 responses. Actually, I need to correct that figure: there were 408 completed responses, plus 72 incomplete forms that were excluded from the analysis.",
+      "question": "What were the 72 excluded forms?",
+      "options": [
+        "Extra valid responses added later",
+        "Duplicate entries counted twice",
+        "Late arrivals included as valid",
+        "Incomplete forms left out of the analysis"
+      ],
+      "correct": 3,
+      "explanation": "There were 72 incomplete forms excluded from the analysis.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-97b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-97-strategic-tradeoff.mp3",
+      "audioTitle": "97 · A Strategic Trade-Off",
+      "audioSrc": "/exercises/audio/listening/listening-97-strategic-tradeoff.mp3",
+      "audioText": "Moving the service online would lower operating costs, whereas keeping a physical location would preserve access for people with limited internet connectivity. The decision therefore depends on whether efficiency or inclusion is the immediate priority.",
+      "question": "What does the final decision depend on?",
+      "options": [
+        "Whether efficiency or inclusion is the priority",
+        "How high staff salaries are",
+        "The size of the office",
+        "Nothing — it is already decided"
+      ],
+      "correct": 0,
+      "explanation": "The decision depends on whether efficiency or inclusion is the immediate priority.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-98b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-98-meeting-summary.mp3",
+      "audioTitle": "98 · A Meeting Summary",
+      "audioSrc": "/exercises/audio/listening/listening-98-meeting-summary.mp3",
+      "audioText": "The group agreed to keep the current deadline but to reduce the first phase of the project. They also asked the research team to clarify two assumptions before the next meeting. If the assumptions change the cost estimate, the deadline will be reconsidered.",
+      "question": "What did the group agree to do now?",
+      "options": [
+        "Skip the research stage",
+        "Keep the deadline but reduce the first phase",
+        "Extend the deadline immediately",
+        "Cancel the project entirely"
+      ],
+      "correct": 1,
+      "explanation": "The group agreed to keep the deadline but reduce the first phase of the project.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-99b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-99-public-response.mp3",
+      "audioTitle": "99 · A Public Response",
+      "audioSrc": "/exercises/audio/listening/listening-99-public-response.mp3",
+      "audioText": "We recognize that residents are disappointed by the temporary closure. Nevertheless, the repairs are necessary to prevent a more serious disruption later. The center will publish weekly updates and announce the reopening date as soon as it is confirmed.",
+      "question": "What will the center do during the closure?",
+      "options": [
+        "Deny that any repairs are needed",
+        "Close the center permanently",
+        "Publish weekly updates and announce reopening when confirmed",
+        "Reopen the center tomorrow"
+      ],
+      "correct": 2,
+      "explanation": "The center will publish weekly updates and announce the reopening date once confirmed.",
+      "listeningFormat": "multiple_choice"
+    },
+    {
+      "id": "listening-100b",
+      "type": "listen",
+      "level": "B2+",
+      "skill": "Listening",
+      "plays": 2,
+      "audioGroupId": "listening-100-integrated-review.mp3",
+      "audioTitle": "100 · Integrated Listening Review",
+      "audioSrc": "/exercises/audio/listening/listening-100-integrated-review.mp3",
+      "audioText": "The university is introducing a shared bicycle program for students and staff. The first phase will include 120 bicycles at four locations near the main campus. Users will need to register online, and the first thirty minutes of each trip will be free. The university plans to evaluate the program after six months before deciding whether to expand it to the residential campus.",
+      "question": "How much of each trip is free?",
+      "options": [
+        "The whole day",
+        "One full hour",
+        "Nothing is free",
+        "The first thirty minutes"
+      ],
+      "correct": 3,
+      "explanation": "The first thirty minutes of each trip will be free.",
+      "listeningFormat": "multiple_choice"
     }
   ]
 }

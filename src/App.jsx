@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import LoginScreen from './pages/login.jsx';
+import LandingComplete from './pages/landing-complete.jsx';
 import StudentDashboard from './pages/student-dashboard.jsx';
 import ErrorBoundary from './components/error-boundary.jsx';
 import { logError } from './lib/error-logger.js';
@@ -58,6 +59,7 @@ const SocialStudio = lazyWithRetry(() => import('./pages/social-studio.jsx'));
 
 export default function App() {
   const [auth, setAuth] = useState(null);
+  const [publicView, setPublicView] = useState('landing');
   // Keep a live ref to auth so the once-mounted realtime subscription below
   // reads the current role instead of the value captured on first render.
   const authRef = useRef(auth);
@@ -423,7 +425,12 @@ export default function App() {
   }, [auth]);
 
   if (!auth) {
-    return <LoginScreen onSignIn={handleSignIn} onBack={() => {}} />;
+    if (publicView === 'landing') {
+      return <LandingComplete
+        onMemberSignIn={() => setPublicView('login')}
+      />;
+    }
+    return <LoginScreen onSignIn={handleSignIn} onBack={() => setPublicView('landing')} />;
   }
 
   if (auth.role === 'student') {

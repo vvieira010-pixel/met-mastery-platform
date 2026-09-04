@@ -1,0 +1,146 @@
+{
+  "version": "1.0",
+  "title": "Practice Studio Speaking — audio prompts + quiz pack",
+  "exercises": [
+    {
+      "id": "spk-audio-01",
+      "type": "speak",
+      "topic": "spk_audio_prompts",
+      "title": "Audio Prompt 1 · Photo Description",
+      "level": "B2",
+      "prompt": "Describe the photo. Talk about what you see, the people, the setting, and what might be happening.",
+      "instruction": "Listen to the prompt audio. 15 seconds to prepare, 60 seconds to speak.",
+      "audioSrc": "/audio/speaking/speaking_prompt01.mp3",
+      "transcript": "Describe the photo. Talk about what you see, the people, the setting, and what might be happening. You have 15 seconds to prepare and 60 seconds to speak.",
+      "seconds": 60,
+      "metTaskType": null
+    },
+    {
+      "id": "spk-audio-02",
+      "type": "speak",
+      "topic": "spk_audio_prompts",
+      "title": "Audio Prompt 2 · Difficult Decision",
+      "level": "B2",
+      "prompt": "Talk about a time when you had to make a difficult decision. What was the situation? What did you decide? How did it turn out?",
+      "instruction": "Listen to the prompt audio. 15 seconds to prepare, 60 seconds to speak.",
+      "audioSrc": "/audio/speaking/speaking_prompt02.mp3",
+      "transcript": "Talk about a time when you had to make a difficult decision. What was the situation? What did you decide? How did it turn out? You have 15 seconds to prepare and 60 seconds to speak.",
+      "seconds": 60,
+      "metTaskType": null
+    },
+    {
+      "id": "spk-audio-03",
+      "type": "speak",
+      "topic": "spk_audio_prompts",
+      "title": "Audio Prompt 3 · Free University",
+      "level": "B2",
+      "prompt": "Some people believe that university education should be free for all students. Others think students should pay tuition fees. Which view do you support? Explain why you have 15 seconds to prepare and 60 seconds to speak.",
+      "instruction": "Listen to the prompt audio. 15 seconds to prepare, 60 seconds to speak.",
+      "audioSrc": "/audio/speaking/speaking_prompt03.mp3",
+      "transcript": "Some people believe that university education should be free for all students. Others think students should pay tuition fees. Which view do you support? Explain why you have 15 seconds to prepare and 60 seconds to speak.",
+      "seconds": 60,
+      "metTaskType": null
+    },
+    {
+      "id": "spk-audio-04",
+      "type": "speak",
+      "topic": "spk_audio_prompts",
+      "title": "Audio Prompt 4 · Car Ban",
+      "level": "B2",
+      "prompt": "Our city is planning to ban private cars from the city center to reduce pollution and traffic. What are the advantages and disadvantages of this plan?",
+      "instruction": "Listen to the prompt audio. 20 seconds to prepare, 90 seconds to speak.",
+      "audioSrc": "/audio/speaking/speaking_prompt04.mp3",
+      "transcript": "Our city is planning to ban private cars from the city center to reduce pollution and traffic. What are the advantages and disadvantages of this plan? You have 20 seconds to prepare and 90 seconds to speak.",
+      "seconds": 90,
+      "metTaskType": null
+    },
+    {
+      "id": "spk-audio-05",
+      "type": "speak",
+      "topic": "spk_audio_prompts",
+      "title": "Audio Prompt 5 · Tablets at School",
+      "level": "B2",
+      "prompt": "Your school is considering replacing traditional textbooks with tablets and digital materials entirely. I am the school principal. Convince me that this is or is not a good idea for our students.",
+      "instruction": "Listen to the prompt audio. 20 seconds to prepare, 90 seconds to speak.",
+      "audioSrc": "/audio/speaking/speaking_prompt05.mp3",
+      "transcript": "Your school is considering replacing traditional textbooks with tablets and digital materials entirely. I am the school principal. Convince me that this is or is not a good idea for our students. You have 20 seconds to prepare and 90 seconds to speak.",
+      "seconds": 90,
+      "metTaskType": null
+    },
+    {
+      "id": "spk-quiz-01",
+      "type": "speak",
+      "topic": "spk_quiz",
+      "title": "Quiz 1 · Picture Description",
+      "level": "B2",
+      "prompt": "Describe the picture. Talk about the people, the place, and what they are doing.",
+      "instruction": "60 seconds to speak. Record, then compare with the sample answer.",
+      "sampleAnswer": "This picture shows a busy city park on a sunny afternoon. In the foreground, several children are playing football on the grass, while their parents are sitting on nearby benches and watching them. On the left, a woman is jogging along the path with her dog. In the background, I can see tall trees and a small café where two friends are drinking coffee at an outdoor table. Everyone looks relaxed and happy. The atmosphere is lively but peaceful. I think it might be a weekend, because the park is quite crowded and nobody seems to be in a hurry.",
+      "followUps": [
+        "What do you usually do on weekends?",
+        "Describe a place you like to visit."
+      ],
+      "seconds": 60
+    },
+    {
+      "id": "spk-quiz-02",
+      "type": "speak",
+      "topic": "spk_quiz",
+      "title": "Quiz 2 · Team Project",
+      "level": "B2",
+      "prompt": "Tell me about a time when you worked on a project with other people. What was the project, and how did you contribute?",
+      "instruction": "60 seconds to speak. Record, then compare with the sample answer.",
+      "sampleAnswer": "Last year I worked with three classmates on a science project about clean water in our town. We divided the tasks: one student collected water samples, another did the research, and I prepared the presentation slides and spoke during the final talk. At first we disagreed about the design, but we met twice a week and made decisions together. My main contribution was organizing our ideas into a clear story the audience could follow. We received the highest grade in the class, and I learned that listening carefully is just as important as sharing your own ideas.",
+      "followUps": [
+        "Do you prefer working alone or in a team? Why?",
+        "What makes someone a good team member?"
+      ],
+      "seconds": 60
+    },
+    {
+      "id": "spk-quiz-03",
+      "type": "speak",
+      "topic": "spk_quiz",
+      "title": "Quiz 3 · Study Habits",
+      "level": "B2",
+      "prompt": "Some people prefer studying alone, while others prefer studying with a group. Which do you prefer? Give your opinion and reasons to support it.",
+      "instruction": "60 seconds to speak. Record, then compare with the sample answer.",
+      "sampleAnswer": "I prefer studying with a group, for two main reasons. First, when I explain an idea to someone else, I understand it much better myself. If I can teach it, I really know it. Second, a group keeps me motivated. When I study alone, I often check my phone or lose focus, but with friends I stay on schedule because we all depend on each other. I agree that studying alone is quieter and better for memorizing facts. Still, for difficult subjects, discussing questions together helps me more than working by myself.",
+      "followUps": [
+        "Should schools encourage group study more?",
+        "What helps you concentrate when you study?"
+      ],
+      "seconds": 60
+    },
+    {
+      "id": "spk-quiz-04",
+      "type": "speak",
+      "topic": "spk_quiz",
+      "title": "Quiz 4 · Job Move",
+      "level": "B2",
+      "prompt": "Your friend has been offered a job in another city, but they are unsure whether to accept it because they would have to leave their family and friends. What are the advantages and disadvantages of accepting the job?",
+      "instruction": "90 seconds to speak. Record, then compare with the sample answer.",
+      "sampleAnswer": "This is a difficult decision with real advantages on both sides. The main advantage of accepting the job is career growth. A new position in another city often means a higher salary, new skills, and valuable experience that can open doors later. It can also build independence and confidence. On the other hand, the disadvantages are personal. Moving away from family and close friends can feel lonely, especially at the beginning, and the cost of living might be higher there. Daily support from loved ones is hard to replace. If I were advising my friend, I would suggest making a list: compare the salary and career benefits against the personal costs, visit the city first, and ask whether remote work is possible. There is no perfect answer, but a clear comparison makes the choice easier.",
+      "followUps": [
+        "Would you move to another city for a good job?",
+        "What matters most to you when choosing a job?"
+      ],
+      "seconds": 90
+    },
+    {
+      "id": "spk-quiz-05",
+      "type": "speak",
+      "topic": "spk_quiz",
+      "title": "Quiz 5 · Coffee Shop Debate",
+      "level": "B2",
+      "prompt": "A local community center plans to replace its quiet study area with a larger coffee shop. Some residents support the idea, but others disagree. You are the manager of the community center. Tell me what you think and try to convince me to agree with you.",
+      "instruction": "90 seconds to speak. Record, then compare with the sample answer.",
+      "sampleAnswer": "As the manager, I believe we should keep the quiet study area, and I would like to convince you with a compromise that serves everyone. First, consider who uses that room every day: students preparing for exams and older residents who need a calm place to read. They have no alternative nearby, while coffee is already available on almost every street. Removing their only quiet space would be unfair. Second, a full-size coffee shop would bring noise, crowds, and higher costs for the center. My proposal is different: keep most of the study area and add a small coffee corner with a few tables near the entrance. This way, visitors who want coffee can enjoy it, and students keep the silence they need. We gain income without losing our mission. I hope you agree this balanced solution respects the whole community.",
+      "followUps": [
+        "Should public spaces serve everyone or focus on one group?",
+        "Is compromise usually better than choosing one side?"
+      ],
+      "seconds": 90
+    }
+  ]
+}

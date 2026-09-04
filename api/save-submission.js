@@ -73,14 +73,13 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      const errText = await response.text().catch(() => '');
-      console.error('Supabase insert failed:', response.status, errText);
-      return res.status(502).json({ error: 'Failed to save submission', detail: errText });
+      console.error('Supabase insert failed:', response.status);
+      return res.status(502).json({ error: 'Failed to save submission' });
     }
 
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error('save-submission error:', e);
-    return res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }

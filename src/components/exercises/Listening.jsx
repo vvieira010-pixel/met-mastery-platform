@@ -18,6 +18,8 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 const TEAL = '#0D9488';
 const NAVY = '#0B1F3A';
+// Theme-aware text color (NAVY is near-invisible in dark mode).
+const TEXT = 'var(--text)';
 
 /* Map speaker IDs to voice preferences */
 function getVoiceForSpeaker(speaker, voices) {
@@ -63,6 +65,7 @@ const [playCount, setPlayCount] = useState(0);
   const [gapAnswers, setGapAnswers] = useState({});
   const [orderAnswer, setOrderAnswer] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(false);
   const [audioUrl, setAudioUrl]   = useState(audioSrc || null);
   const [isFetchingAudio, setIsFetchingAudio] = useState(false);
   const [voices, setVoices] = useState([]);
@@ -111,7 +114,7 @@ const [playCount, setPlayCount] = useState(0);
       if (!isPlayingScriptRef.current) break;
       const line = script[i];
       const voice = getVoiceForSpeaker(line.speaker, voices);
-      const text = `${line.speaker === 'A' ? 'Woman' : 'Man'}: ${line.text}`;
+      const text = line.text;
       await speakLine(text, voice);
       await new Promise(r => setTimeout(r, 300));
     }
@@ -216,7 +219,7 @@ const [playCount, setPlayCount] = useState(0);
     };
     if (!submitted) {
       return selected === i
-        ? { ...base, borderColor: TEAL, background: 'var(--primary-light)', color: NAVY }
+        ? { ...base, borderColor: TEAL, background: 'var(--primary-light)', color: TEXT }
         : { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
     }
     if (i === correct) return { ...base, borderColor: '#3D8C65', background: '#ECFDF5', color: '#065F46' };
@@ -301,16 +304,43 @@ const [playCount, setPlayCount] = useState(0);
         </div>
       </div>
 
+      {audioText && (
+        <div style={{ marginBottom: 16 }}>
+          <button
+            onClick={() => setShowTranscript(v => !v)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              padding: '6px 12px', borderRadius: 8, border: '1px solid var(--border)',
+              background: showTranscript ? 'var(--accent-subtle)' : 'var(--surface)',
+              color: showTranscript ? 'var(--primary)' : 'var(--muted)',
+              fontSize: 12.5, fontWeight: 600, cursor: 'pointer',
+              transition: 'all 0.15s',
+            }}
+          >
+            {showTranscript ? '▾ Hide transcript' : '▸ Show transcript'}
+          </button>
+          {showTranscript && (
+            <div style={{
+              marginTop: 8, padding: '10px 14px', borderRadius: 8,
+              background: 'var(--surface)', border: '1px solid var(--border)',
+              fontSize: 13.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-line',
+            }}>
+              {audioText}
+            </div>
+          )}
+        </div>
+      )}
+
       {playCount > 0 && (
         <div>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0E5F6B', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{listeningFormat.replace(/_/g, ' ')}</div>
-          {sourceSentence && listeningFormat === 'paraphrase' && <div style={{ padding: '10px 12px', marginBottom: 12, borderLeft: '3px solid #0E5F6B', background: 'var(--accent-subtle)', color: NAVY, fontStyle: 'italic' }}>“{sourceSentence}”</div>}
-          <p style={{ fontSize: 15.5, fontWeight: 600, color: NAVY, marginBottom: 16, lineHeight: 1.6 }}>{question || (listeningFormat === 'gap_fill' ? 'Complete the missing words.' : listeningFormat === 'ordering' ? 'Put the events in the order you hear them.' : 'Choose the best answer.')}</p>
+          {sourceSentence && listeningFormat === 'paraphrase' && <div style={{ padding: '10px 12px', marginBottom: 12, borderLeft: '3px solid #0E5F6B', background: 'var(--accent-subtle)', color: TEXT, fontStyle: 'italic' }}>“{sourceSentence}”</div>}
+          <p style={{ fontSize: 15.5, fontWeight: 600, color: TEXT, marginBottom: 16, lineHeight: 1.6 }}>{question || (listeningFormat === 'gap_fill' ? 'Complete the missing words.' : listeningFormat === 'ordering' ? 'Put the events in the order you hear them.' : 'Choose the best answer.')}</p>
 
           {listeningFormat === 'gap_fill' ? (
-            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{gaps.map((gap, i) => <label key={gap.id || i} style={{ display: 'grid', gap: 5, fontSize: 13, color: NAVY }}>{gap.prompt || `Blank ${i + 1}`}<input value={gapAnswers[gap.id || i] || ''} disabled={submitted} onChange={e => setGapAnswers(prev => ({ ...prev, [gap.id || i]: e.target.value }))} placeholder="Type what you hear" style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }} /></label>)}</div>
+            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{gaps.map((gap, i) => <label key={gap.id || i} style={{ display: 'grid', gap: 5, fontSize: 13, color: TEXT }}>{gap.prompt || `Blank ${i + 1}`}<input value={gapAnswers[gap.id || i] || ''} disabled={submitted} onChange={e => setGapAnswers(prev => ({ ...prev, [gap.id || i]: e.target.value }))} placeholder="Type what you hear" style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }} /></label>)}</div>
           ) : listeningFormat === 'ordering' ? (
-            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{sequenceItems.map((_, i) => <label key={i} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 8, alignItems: 'center', fontSize: 13, color: NAVY }}><span>{i + 1}.</span><select value={orderAnswer[i] ?? ''} disabled={submitted} onChange={e => setOrderAnswer(prev => { const next = [...prev]; next[i] = e.target.value; return next; })} style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }}><option value="">Choose an event</option>{sequenceItems.map((item, optionIndex) => <option key={optionIndex} value={optionIndex}>{item || `Event ${optionIndex + 1}`}</option>)}</select></label>)}</div>
+            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{sequenceItems.map((_, i) => <label key={i} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 8, alignItems: 'center', fontSize: 13, color: TEXT }}><span>{i + 1}.</span><select value={orderAnswer[i] ?? ''} disabled={submitted} onChange={e => setOrderAnswer(prev => { const next = [...prev]; next[i] = e.target.value; return next; })} style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }}><option value="">Choose an event</option>{sequenceItems.map((item, optionIndex) => <option key={optionIndex} value={optionIndex}>{item || `Event ${optionIndex + 1}`}</option>)}</select></label>)}</div>
           ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
             {options.map((opt, i) => (
@@ -376,6 +406,16 @@ const [playCount, setPlayCount] = useState(0);
                 <div style={{ color: '#374151', fontWeight: 400, fontSize: 13.5, lineHeight: 1.65 }}>
                   {explanation}
                 </div>
+              )}
+              {audioText && (
+                <details style={{ marginTop: 10, borderTop: '1px solid var(--divider)', paddingTop: 8 }}>
+                  <summary style={{ cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#0E5F6B' }}>
+                    Show transcript
+                  </summary>
+                  <div style={{ marginTop: 6, fontSize: 13.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-line' }}>
+                    {audioText}
+                  </div>
+                </details>
               )}
             </div>
           )}

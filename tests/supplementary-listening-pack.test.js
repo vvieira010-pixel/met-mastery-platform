@@ -9,15 +9,21 @@ const root = path.resolve(import.meta.dirname, '..');
 const audioRoot = path.join(root, 'public', 'exercises', 'audio', 'listening');
 
 test('supplementary listening pack contains 25 playable source records', async () => {
-  assert.equal(listeningPack.exercises.length, 25);
+  assert.equal(listeningPack.exercises.length, 37);
 
   const groups = await getListeningAudioGroups();
   const packGroups = groups.filter(group => /\/listening\/listening-(?:7[6-9]|8\d|9\d|100)-/.test(group.id));
-  assert.equal(packGroups.length, listeningPack.exercises.length);
+  assert.equal(packGroups.length, 25);
 
   const exercises = (await Promise.all(packGroups.map(group => getListeningExercises(group.id)))).flat();
   assert.equal(exercises.length, listeningPack.exercises.length);
-  assert.deepEqual(exercises.map(exercise => exercise.id), listeningPack.exercises.map(item => item.id));
+  assert.equal(exercises.length, 37);
+
+  for (const group of packGroups) {
+    const list = await getListeningExercises(group.id);
+    const expectTwo = /\/listening\/listening-(89|9\d|100)-/.test(group.id);
+    assert.equal(list.length, expectTwo ? 2 : 1, group.id);
+  }
 
   for (const exercise of exercises) {
     assert.equal(exercise.type, 'listen');

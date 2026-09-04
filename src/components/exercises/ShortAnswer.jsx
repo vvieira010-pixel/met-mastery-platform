@@ -23,7 +23,7 @@ const DEFAULT_CHECKS = [
 ];
 
 function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }) {
-  const { prompt, context, instruction, imageUrl, imageAlt, imageDescription } = exercise;
+  const { prompt, context, instruction, imageUrl, imageAlt, imageDescription, audioSrc, sampleAnswer, followUps } = exercise;
   const [status, setStatus] = useState('idle'); // idle | recording | done
   const [seconds, setSeconds] = useState(0);
   const [playbackUrl, setPlaybackUrl] = useState(null);
@@ -155,6 +155,14 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
 
       <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: NAVY, marginBottom: 16, lineHeight: 1.6 }}>{prompt}</p>
 
+      {/* Prompt audio (speaking pack) */}
+      {audioSrc && status !== 'recording' && (
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Listen to the prompt</div>
+          <audio controls src={audioSrc} style={{ width: '100%', height: 40 }} preload="none" />
+        </div>
+      )}
+
       {/* Record controls */}
       {status === 'idle' && (
         <button
@@ -210,6 +218,26 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           >
             ↺ Record again
           </button>
+
+          {/* Sample answer + follow-ups (speaking pack) */}
+          {sampleAnswer && (
+            <details style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+              <summary style={{ cursor: 'pointer', fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY }}>
+                Compare with a sample answer
+              </summary>
+              <p style={{ margin: '10px 0 0', fontSize: 'var(--text-sm)', color: 'var(--text)', lineHeight: 1.7 }}>{sampleAnswer}</p>
+              {Array.isArray(followUps) && followUps.length > 0 && (
+                <div style={{ marginTop: 10 }}>
+                  <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Keep going — answer these next</div>
+                  <ul style={{ margin: 0, padding: '0 0 0 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    {followUps.map((q, i) => (
+                      <li key={i} style={{ fontSize: 'var(--text-sm)', color: 'var(--text)', lineHeight: 1.6 }}>{q}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </details>
+          )}
 
           {taskConfig && (
             <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>

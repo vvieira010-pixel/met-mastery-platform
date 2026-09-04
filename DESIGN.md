@@ -13,7 +13,7 @@ colors:
   bg: "#FDFCF8"
   surface: "#FFFFFF"
   ink: "#1A2E35"
-  ink-muted: "#6B7C80"
+  ink-muted: "#67777B"
   border: "#E8E5DF"
   on-dark: "#FFFFFF"
   on-dark-muted: "rgba(255,255,255,0.7)"
@@ -143,7 +143,7 @@ A warm-clinical palette: teal carries brand action and structure, warm amber car
 - **Page** (`#FDFCF8`): app page background — a warm off-white, not pure white.
 - **Surface** (`#FFFFFF`): cards, panels, inputs; the raised paper layer.
 - **Ink** (`#1A2E35`): primary text and icons.
-- **Ink Muted** (`#6B7C80`): secondary text, captions, meta.
+- **Ink Muted** (`#67777B`): secondary text, captions, meta.
 - **Border** (`#E8E5DF`): hairline structure and input strokes.
 
 ### Semantic
@@ -216,7 +216,7 @@ Gently rounded rectangles. Radius scale: 8px (controls, inputs, chips), 12px (ca
 - **Style:** 1px `#E8E5DF` stroke, `#FFFFFF` fill, 8px radius.
 - **Focus:** border `#2D7A8C` + focus ring, outline 0.
 - **Error:** clay border `#A34E48` + `role="alert"` message in `#804E1E`/`#A34E48`.
-- **Label:** uppercase DM Sans 0.72rem, `#6B7C80`.
+- **Label:** uppercase DM Sans 0.72rem, `#67777B`.
 
 ### Navigation
 - **Desktop:** fixed left sidebar; active item gets `#E2F0F3` tint + `#1F5A67` text + teal indicator.

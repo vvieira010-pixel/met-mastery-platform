@@ -735,10 +735,12 @@ export default function StudentDashboard({
                     }}>
                       <div style={{
                         height: '100%',
-                        width: `${sk.percent}%`,
+                        width: '100%',
                         background: sk.score >= 53 ? 'var(--success)' : 'var(--primary)',
                         borderRadius: 999,
-                        transition: 'width .4s ease',
+                        transform: `scaleX(${sk.percent / 100})`,
+                        transformOrigin: 'left center',
+                        transition: 'transform .4s ease',
                       }} />
                     </div>
                   </div>

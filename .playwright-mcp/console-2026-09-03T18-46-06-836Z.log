@@ -1,0 +1,8 @@
+[    1302ms] [ERROR] Loading the stylesheet 'https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap' violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/:20
+[    3377ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/.vite-cache-v2/deps/react-dom_client.js?v=1be822bb:5
+[    4185ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[    4188ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[    4190ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[    4193ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[    4194ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[    4194ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20

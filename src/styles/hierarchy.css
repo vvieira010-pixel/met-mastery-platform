@@ -84,7 +84,16 @@
   line-height: 1.6 !important;
 }
 
-/* Practice Studio — same card system as Subjects/Resources */
+/* Practice Studio — hero, grid, layout, cards */
+.practice-studio-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-10) var(--space-6) var(--space-8);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
 .practice-studio-hero h1,
 .practice-studio-hero .student-page-title {
   font-family: var(--font-serif) !important;
@@ -94,13 +103,83 @@
   line-height: 1.1 !important;
   color: var(--ink) !important;
 }
-.practice-studio-eyebrow {
-  font-family: var(--font-sans) !important;
-  font-size: var(--kicker-size) !important;
-  font-weight: 700 !important;
-  letter-spacing: var(--kicker-tracking) !important;
-  text-transform: uppercase !important;
-  color: var(--primary) !important;
+.practice-studio-hero .hero-kicker {
+  font-family: var(--font-sans);
+  font-size: var(--kicker-size);
+  font-weight: 700;
+  letter-spacing: var(--kicker-tracking);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--space-3);
+}
+.practice-studio-hero .hero-sub {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  max-width: 520px;
+  line-height: 1.55;
+  margin-top: var(--space-2);
+}
+.practice-studio-hero .hero-cta {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+.practice-studio-hero .badge-warning {
+  margin-top: var(--space-4);
+}
+.practice-studio-cta-row {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+.practice-studio-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  align-items: center;
+}
+.practice-studio-exercise-shell {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.practice-studio-listening-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+.practice-studio-completion {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+}
+.practice-studio-completion h2 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 var(--space-2);
+}
+.practice-studio-completion p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-1);
+}
+.practice-studio-completion .score-line {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--primary);
+  margin: var(--space-3) 0;
+}
+.practice-studio-completion .fading-note {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin: var(--space-2) 0 var(--space-5);
 }
 .practice-studio-card {
   border-radius: var(--radius-lg) !important;
@@ -383,6 +462,360 @@
   }
 }
 
+/* ── Structural layout ───────────────────────────────────────────
+   Hierarchy.css delivers typography, color, and polish. The grid
+   and container rules below give the page a real layout at every
+   breakpoint so the polish above has something to sit on. */
+
+.student-subjects-page {
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-4) var(--space-8);
+}
+.student-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block: var(--space-3) var(--space-5);
+}
+.student-page-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.student-page-header h1 {
+  margin: 0;
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+}
+
+/* Study Tips block */
+.student-study-tips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+}
+.student-study-tips-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.student-study-tips-header h2 {
+  margin: 0;
+  font-size: var(--text-2xl);
+}
+.student-study-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+.student-study-tip-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--surface);
+}
+.student-study-tip-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.student-study-tip-card-head h3 {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.student-study-tip-time {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+.student-study-tip-what,
+.student-study-tip-how {
+  margin: 0;
+  line-height: 1.55;
+  font-size: var(--text-sm);
+}
+.student-study-tip-level {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Subjects grid */
+.student-subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+}
+.student-subject-card {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: var(--space-3);
+  row-gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--surface);
+}
+.student-subject-card-icon {
+  grid-row: 1 / span 2;
+  align-self: start;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.student-subject-card h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.student-subject-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+.student-subject-card-focus {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+.student-subject-card-focus strong {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+.student-subject-card-focus span {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.student-subject-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+.student-subject-card-link:hover { color: var(--primary); }
+.student-subject-card-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.student-subject-card-units-link {
+  grid-column: 2;
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+/* Topic grid (practice-studio topic picker) */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+.topic-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  text-align: left;
+}
+.topic-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.topic-card-title {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+.topic-card:hover .topic-card-title {
+  color: var(--accent);
+}
+.topic-card-desc {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Tabs (Topics / Explanations) */
+.tabs-line {
+  display: flex;
+  gap: var(--space-1);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-4);
+}
+.tab-line {
+  padding: var(--space-2) var(--space-3);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 600;
+}
+.tab-line:hover { color: var(--text); }
+.tab-line.active { color: var(--text); border-bottom-color: var(--primary); }
+.tab-line:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+/* Subject detail (Reading/Listening/etc. topics view) */
+.student-reading-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  padding: var(--space-2) 0;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.student-reading-back:hover { color: var(--text); }
+.student-reading-back:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.student-reading-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block: var(--space-3) var(--space-4);
+}
+.student-reading-header h1 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+}
+.student-reading-header p {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+.student-reading-unit-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.student-reading-unit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+}
+button.student-reading-unit {
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+button.student-reading-unit:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+button.student-reading-unit:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.student-reading-unit-number {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+.student-reading-unit-title {
+  font-weight: 600;
+  font-size: var(--text-base);
+}
+.student-reading-unit-content {
+  display: grid;
+  gap: var(--space-3);
+  width: 100%;
+}
+.student-reading-unit-content > div strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+.student-reading-unit-content > div p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+  .student-subjects-grid { grid-template-columns: 1fr; }
+  .student-study-tips-grid { grid-template-columns: 1fr; }
+  .student-subjects-page { padding-inline: var(--space-3); }
+}
+
 @media (max-width: 767px) {
   .dash-body {
     padding-block-end: calc(5.5rem + env(safe-area-inset-bottom)) !important;
@@ -395,10 +828,8 @@
     padding-block-end: calc(5.5rem + env(safe-area-inset-bottom));
   }
   .practice-studio-hero {
+    padding: var(--space-6) var(--space-4) var(--space-5);
     gap: var(--space-4);
-  }
-  .practice-studio-hero-note {
-    width: 100%;
   }
   .practice-studio-card {
     padding: var(--space-4) !important;

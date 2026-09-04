@@ -259,11 +259,11 @@ label { color: var(--mm-copy); font-weight: 600; font-size: 12px; }
 
   --primary-hover: #1F5A67;
 
-  --accent: #E08E45;        /* Stitch rust instead of orange */
-  --accent-hover: #C67833;
-  --accent-text: #804E1E;
-  --accent-subtle: rgba(224, 142, 69, .10);
-  --accent-soft: rgba(224, 142, 69, .16);
+  --accent: #A46833;        /* WCAG AA compliant accent */
+  --accent-hover: #8B562A;
+  --accent-text: #FFFFFF;
+  --accent-subtle: rgba(164, 104, 51, .10);
+  --accent-soft: rgba(164, 104, 51, .16);
 
   --success-bg: #EDF7F1;
 
@@ -369,11 +369,11 @@ label { color: var(--mm-copy); font-weight: 600; font-size: 12px; }
   --border-strong: rgba(255, 255, 255, .12);
   --divider: rgba(255, 255, 255, .06);
   --primary-hover: #7fc9d2;
-  --accent: #a95325;
-  --accent-hover: #c16c39;
-  --accent-text: #ffd6b7;
-  --accent-subtle: rgba(169, 83, 37, .2);
-  --accent-soft: rgba(169, 83, 37, .28);
+  --accent: #A46833;
+  --accent-hover: #8B562A;
+  --accent-text: #FFFFFF;
+  --accent-subtle: rgba(164, 104, 51, .2);
+  --accent-soft: rgba(164, 104, 51, .28);
 
   /* Override colored shadows to neutral in dark mode */
   --mm-shadow: 0 20px 55px rgba(0, 0, 0, .35);

@@ -39,9 +39,10 @@ export default async function handler(req, res) {
       if (pred?.bytesBase64Encoded) return res.status(200).json({ base64: pred.bytesBase64Encoded, mimeType: pred.mimeType || 'image/png' });
     }
 
-    const errText = await r.text().catch(() => '');
-    return res.status(502).json({ error: `Imagen 3 failed (${r.status}): ${errText}` });
+    console.error('Imagen 3 failed:', r.status);
+    return res.status(502).json({ error: 'Image generation failed. Please try again.' });
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error('generate-image error:', e);
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }

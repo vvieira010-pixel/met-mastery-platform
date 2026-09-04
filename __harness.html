@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet" />
+    <script>
+      window.__theme = 'light';
+      document.documentElement.setAttribute('data-theme', 'light');
+    </script>
+    <title>Harness</title>
+    <style>
+      .__harness-bar { position: fixed; z-index: 9999; bottom: 0; left: 0; right: 0; display: flex; gap: 8px; padding: 8px 12px; background: #111; }
+      .__harness-bar button { color: #fff; background: #333; border: 1px solid #555; border-radius: 999px; padding: 6px 14px; font: 600 12px system-ui; cursor: pointer; }
+      .__harness-bar button[aria-pressed="true"] { background: #fff; color: #111; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/__harness.jsx"></script>
+  </body>
+</html>

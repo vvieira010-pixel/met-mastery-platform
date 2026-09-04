@@ -53,8 +53,8 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      const errText = await response.text().catch(() => '');
-      return res.status(502).json({ error: 'Failed to fetch submissions', detail: errText });
+      console.error('Supabase fetch failed:', response.status);
+      return res.status(502).json({ error: 'Failed to fetch submissions' });
     }
 
     const data = await response.json();
@@ -77,6 +77,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ submissions, stats });
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error('get-submissions error:', e);
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }

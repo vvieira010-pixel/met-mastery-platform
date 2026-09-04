@@ -545,7 +545,7 @@
 .lp-method-logo img {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
 }
 
 .lp-method-logo-text {
@@ -683,8 +683,8 @@
   inset: 0;
   z-index: 0;
   opacity: 0.7;
-  background-image: radial-gradient(rgba(var(--primary-rgb), .13) 1px, transparent 0), linear-gradient(135deg, rgba(var(--primary-rgb), .04), transparent 50%);
-  background-size: 32px 32px, 100% 100%;
+  background-image: radial-gradient(rgba(var(--primary-rgb), .13) 1px, transparent 0);
+  background-size: 32px 32px;
   pointer-events: none;
 }
 
@@ -698,7 +698,7 @@
   gap: 3rem;
   align-items: center;
   background: var(--surface);
-  border-radius: 24px;
+  border-radius: var(--radius-xl);
   padding: 3rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border);
@@ -789,7 +789,7 @@
 .form-section {
   background: var(--bg);
   padding: 2.5rem;
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -828,7 +828,7 @@
   padding: 0.8rem 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 1rem;
   color: var(--ink);
   outline: none;
@@ -915,7 +915,7 @@
   color: white;
   border: none;
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
@@ -1207,8 +1207,6 @@
   cursor: pointer;
   background: rgba(255, 255, 255, 0.5);
   color: var(--muted);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
   transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
 
@@ -1500,7 +1498,7 @@
 .lp-signin-logo-mark {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }
 
 .lp-signin-logo {
@@ -1610,7 +1608,7 @@
   font-size: var(--text-xs);
   color: var(--faint);
   background: var(--bg);
-  border-radius: 99px;
+  border-radius: var(--radius-pill);
   padding: 1px 7px;
   border: 1px solid var(--divider);
 }
@@ -1660,7 +1658,7 @@
   cursor: pointer;
   padding: 2px;
   color: var(--muted);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 .search-clear:hover {
   color: var(--text-1);
@@ -3230,8 +3228,7 @@
 }
 
 .student-panel--primary {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fbfb 100%);
-  border: 1px solid rgba(var(--primary-rgb),0.14);
+  background: var(--primary-light);
   border: 1px solid var(--border);
 }
 
@@ -3654,7 +3651,7 @@
 
 .practice-pills-grid--highlight {
   border-color: var(--primary);
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 40%);
+  background: var(--primary-light);
   box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.08);
 }
 
@@ -6708,7 +6705,7 @@ textarea:focus, .textarea:focus {
   --text-muted: #8ba3bc;
   --text-2: #c4d6e8;
   --muted: #6d8fa8;
-  --accent-text: #5bbcb8;  /* lightened for WCAG AA on dark bg (was #0a6e74) */
+  --accent-text: #FCD34D;  /* light amber for WCAG AA on dark bg */
 
   --accent-subtle: rgba(var(--primary-rgb),0.18);
   --accent-light: rgba(200,236,234,0.14);

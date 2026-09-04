@@ -3,10 +3,10 @@
    ══════════════════════════════════════════════════════════════════ */
 
 [data-theme="dark"] {
-  --orange-light: rgba(217, 119, 6, 0.15);
+  --orange-light: rgba(164, 104, 51, 0.15);
   --orange-text: #FCD34D;
-  --orange-soft: rgba(217, 119, 6, 0.18);
-  --orange-subtle: rgba(217, 119, 6, 0.08);
+  --orange-soft: rgba(164, 104, 51, 0.18);
+  --orange-subtle: rgba(164, 104, 51, 0.08);
 }
 
 /* ── Dark mode: --primary used as a FOREGROUND color ──────────────
@@ -469,7 +469,7 @@
 
 [data-theme="dark"] .practice-pills-grid--highlight {
   border-color: var(--primary);
-  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.12) 0%, var(--surface) 45%);
+  background: rgba(var(--primary-rgb), 0.12);
 }
 
 [data-theme="dark"] .student-wide-action {

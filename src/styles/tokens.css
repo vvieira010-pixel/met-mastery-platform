@@ -1,36 +1,36 @@
 :root {
-  --ink: #1A2E35;
-  --ink-rgb: 26, 46, 53;
-  --ink-muted: #6B7C80;
-  --ink-muted-rgb: 107, 124, 128;
-  --ink-2: #2B454E;
+  --ink: #022B3A;
+  --ink-rgb: 2, 43, 58;
+  --ink-muted: #1F7A8C;
+  --ink-muted-rgb: 31, 122, 140;
+  --ink-2: #022B3A;
 
   --surface: #FFFFFF;
   --surface-rgb: 255, 255, 255;
   --surface-glass: rgba(255, 255, 255, 0.85);
-  --surface-hover: #F6F4EE;
-  --hover-bg: #F6F4EE;
+  --surface-hover: #E1E5F2;
+  --hover-bg: #E1E5F2;
 
-  --bg: #FDFCF8;
-  --bg-rgb: 253, 252, 248;
-  --bg-deep: #F3EFE6;
+  --bg: #FFFFFF;
+  --bg-rgb: 255, 255, 255;
+  --bg-deep: #E1E5F2;
 
-  --border: #E8E5DF;
-  --border-rgb: 232, 229, 223;
-  --border-strong: rgba(26, 46, 53, 0.12);
-  --divider: rgba(26, 46, 53, 0.05);
+  --border: #E1E5F2;
+  --border-rgb: 225, 229, 242;
+  --border-strong: rgba(2, 43, 58, 0.18);
+  --divider: rgba(2, 43, 58, 0.08);
 
-  --ink-light: rgba(26, 46, 53, 0.06);
-  --ink-faint: rgba(26, 46, 53, 0.08);
-  --ink-soft: rgba(26, 46, 53, 0.12);
+  --ink-light: rgba(2, 43, 58, 0.06);
+  --ink-faint: rgba(2, 43, 58, 0.08);
+  --ink-soft: rgba(2, 43, 58, 0.12);
 
-  --shadow-sm: 0 1px 2px rgba(26, 46, 53, 0.04);
-  --shadow-md: 0 4px 12px rgba(26, 46, 53, 0.05), 0 1px 3px rgba(26, 46, 53, 0.03);
-  --shadow-card: 0 1px 4px rgba(26, 46, 53, 0.04);
-  --shadow-lg: 0 12px 28px rgba(26, 46, 53, 0.06);
+  --shadow-sm: 0 1px 2px rgba(2, 43, 58, 0.04);
+  --shadow-md: 0 4px 12px rgba(2, 43, 58, 0.05), 0 1px 3px rgba(2, 43, 58, 0.03);
+  --shadow-card: 0 1px 4px rgba(2, 43, 58, 0.04);
+  --shadow-lg: 0 12px 28px rgba(2, 43, 58, 0.06);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.04);
-  --shadow-toast: 0 4px 16px rgba(26, 46, 53, 0.10);
-  --shadow-modal: 0 12px 36px rgba(26, 46, 53, 0.14);
+  --shadow-toast: 0 4px 16px rgba(2, 43, 58, 0.10);
+  --shadow-modal: 0 12px 36px rgba(2, 43, 58, 0.14);
 
   --text: var(--ink);
   --text-rgb: var(--ink-rgb);
@@ -41,28 +41,28 @@
   --on-dark-rgb: 255, 255, 255;
   --on-dark-muted: rgba(255, 255, 255, 0.7);
 
-  --primary: #2D7A8C;
-  --primary-rgb: 45, 122, 140;
-  --primary-hover: #1F5A67;
-  --primary-light: #E2F0F3;
+  --primary: #1F7A8C;
+  --primary-rgb: 31, 122, 140;
+  --primary-hover: #022B3A;
+  --primary-light: #BFDBF7;
 
-  --accent: #E08E45;
-  --accent-rgb: 224, 142, 69;
-  --accent-hover: #C67833;
-  --accent-light: #FBF0E4;
+  --accent: #022B3A;
+  --accent-rgb: 2, 43, 58;
+  --accent-hover: #1F7A8C;
+  --accent-light: #E1E5F2;
   --accent-subtle: rgba(var(--accent-rgb), 0.08);
   --accent-soft: rgba(var(--accent-rgb), 0.15);
-  --accent-text: var(--accent);
+  --accent-text: #FFFFFF;
 
-  --success: #3D8C65;
-  --success-rgb: 61, 140, 101;
+  --success: #3A845F;
+  --success-rgb: 58, 132, 95;
   --success-bg: #EDF7F1;
   --success-bg-rgb: 237, 247, 241;
   --success-soft: #A7DCBE;
   --success-light: #E2F4EA;
 
-  --warning: #C9803C;
-  --warning-rgb: 201, 128, 60;
+  --warning: #A56931;
+  --warning-rgb: 165, 105, 49;
   --warning-bg: #FAF2E8;
   --warning-bg-rgb: 250, 242, 232;
   --warning-text: #804E1E;
@@ -77,28 +77,28 @@
   --danger-bg: var(--error-bg);
   --danger-soft: var(--error-soft);
 
-  --info: #2D7A8C;
-  --info-rgb: 45, 122, 140;
-  --info-bg: #E2F0F3;
-  --info-bg-rgb: 226, 240, 243;
-  --info-soft: #9EC7D0;
+  --info: #1F7A8C;
+  --info-rgb: 31, 122, 140;
+  --info-bg: #BFDBF7;
+  --info-bg-rgb: 191, 219, 247;
+  --info-soft: #BFDBF7;
 
-  --orange: #E08E45;
-  --orange-rgb: 224, 142, 69;
-  --orange-light: #FBF0E4;
-  --orange-light-rgb: 251, 240, 228;
-  --orange-text: #804E1E;
-  --orange-soft: rgba(224, 142, 69, 0.16);
-  --orange-subtle: rgba(224, 142, 69, 0.08);
+  --orange: #022B3A;
+  --orange-rgb: 2, 43, 58;
+  --orange-light: #E1E5F2;
+  --orange-light-rgb: 225, 229, 242;
+  --orange-text: #022B3A;
+  --orange-soft: rgba(var(--orange-rgb), 0.16);
+  --orange-subtle: rgba(var(--orange-rgb), 0.08);
 
-  --section-reading: #2D7A8C;
-  --section-listening: #3D8C65;
-  --section-speaking: #E08E45;
-  --section-writing: #2D7A8C;
-  --type-grammar: #2D7A8C;
-  --type-main-idea: #3D8C65;
-  --level-b1: #2D7A8C;
-  --level-b2: #E08E45;
+  --section-reading: #1F7A8C;
+  --section-listening: #022B3A;
+  --section-speaking: #1F7A8C;
+  --section-writing: #022B3A;
+  --type-grammar: #1F7A8C;
+  --type-main-idea: #022B3A;
+  --level-b1: #1F7A8C;
+  --level-b2: #022B3A;
 
   --radius: 4px;
   --radius-sm: 8px;
@@ -134,8 +134,7 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  --font-sans: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-inter: 'Inter', sans-serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-space-mono: 'Space Mono', monospace;
   --font-mono: 'Space Mono', 'SF Mono', 'JetBrains Mono', monospace;
@@ -159,10 +158,10 @@
   --transition-fast: 0.25s var(--ease-spring);
   --transition-smooth: 0.55s var(--ease-spring);
 
-  --muted: #5D787D;
-  --faint: #E8F1F1;
+  --muted: #1F7A8C;
+  --faint: #E1E5F2;
   --max-width: 1320px;
-  --teal-soft: rgba(85, 125, 132, 0.08);
+  --teal-soft: rgba(31, 122, 140, 0.08);
 
   /* ── Modern motion + craft layer (added 2026-09-03) ── */
   /* Premium display typeface for headlines/numbers (loaded in index.html). */

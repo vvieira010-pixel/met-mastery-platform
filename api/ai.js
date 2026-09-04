@@ -92,6 +92,11 @@ const GROQ_DEFAULT_MODELS = [
   'llama-4-scout-17b-16e-instruct',
 ];
 
+const NVIDIA_DEFAULT_MODELS = [
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+];
+
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
 
 const GEMINI_MODELS = parseList(env('GEMINI_MODELS')).length
@@ -150,11 +155,12 @@ export default async function handler(req, res) {
   const geminiKeys = multiKeys('GEMINI_API_KEY');
   const openrouterKeys = multiKeys('OPENROUTER_API_KEY');
   const groqKeys = multiKeys('GROQ_API_KEY');
+  const nvidiaKeys = multiKeys('NVIDIA_API_KEY');
   const anthropicKeys = multiKeys('ANTHROPIC_API_KEY');
   const openaiKeys = multiKeys('OPENAI_API_KEY');
 
   if (!geminiKeys.length && !openrouterKeys.length && !groqKeys.length &&
-      !anthropicKeys.length && !openaiKeys.length) {
+      !anthropicKeys.length && !openaiKeys.length && !nvidiaKeys.length) {
     return res.status(503).json({ error: { message: 'No AI provider keys configured on the server.' } });
   }
 
@@ -176,14 +182,14 @@ export default async function handler(req, res) {
         if (text) return { content: [{ text }] };
         errors.push(`Gemini/${model}: empty (${data?.candidates?.[0]?.finishReason || 'no candidates'})`);
       } else {
-        const e = await r.json().catch(() => ({}));
-        errors.push(`Gemini/${model}: ${e.error?.message || r.status}`);
+        errors.push(`Gemini/${model}: HTTP ${r.status}`);
       }
     } catch (e) { errors.push(`Gemini/${model}: ${e.message}`); }
     return null;
   }
 
-  async function tryOpenAICompat(url, key, model, extraHeaders = {}) {
+  async function tryOpenAICompat(url, key, model, extraHeaders = {}, label) {
+    const tag = `${label || 'provider'}/${model}`;
     try {
       const r = await fetchT(url, {
         method: 'POST',
@@ -194,12 +200,11 @@ export default async function handler(req, res) {
         const data = await r.json();
         const text = data?.choices?.[0]?.message?.content || '';
         if (text) return { content: [{ text }] };
-        errors.push(`${model}: empty response`);
+        errors.push(`${tag}: empty response`);
       } else {
-        const e = await r.json().catch(() => ({}));
-        errors.push(`${model}: ${e.error?.message || r.status}`);
+        errors.push(`${tag}: HTTP ${r.status}`);
       }
-    } catch (e) { errors.push(`${model}: ${e.message}`); }
+    } catch (e) { errors.push(`${tag}: ${e.message}`); }
     return null;
   }
 
@@ -211,8 +216,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({ model: model || 'claude-sonnet-4-6', max_tokens, temperature, system: sys, messages: [{ role: 'user', content: prompt }] }),
       });
       if (r.ok) return r.json();
-      const e = await r.json().catch(() => ({}));
-      errors.push(`Anthropic/${model}: ${e.error?.message || r.status}`);
+      errors.push(`Anthropic/${model}: HTTP ${r.status}`);
     } catch (e) { errors.push(`Anthropic/${model}: ${e.message}`); }
     return null;
   }
@@ -241,6 +245,9 @@ export default async function handler(req, res) {
     ['mistralai/mistral-small-3.1-24b-instruct:free','openrouter'],
     ['nvidia/nemotron-3-nano-30b-a3b:free',         'openrouter'],
     ['openrouter/free',                             'openrouter'],
+    // ── NVIDIA: fast open models ──
+    ['openai/gpt-oss-120b',                         'nvidia'],
+    ['openai/gpt-oss-20b',                          'nvidia'],
     // ── Groq: speed-focused backup ──
     ['llama-3.3-70b-versatile',                     'groq'],
     ['qwen3-32b',                                   'groq'],
@@ -259,14 +266,17 @@ export default async function handler(req, res) {
     ['claude-3-haiku-20240307',                     'anthropic'],
   ];
 
-  const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, anthropic: anthropicKeys, openai: openaiKeys };
-  const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), anthropic: new Set(ANTHROPIC_MODELS), openai: new Set(OPENAI_MODELS) };
+  const NVIDIA_MODELS = parseList(env('NVIDIA_MODELS')).length
+    ? parseList(env('NVIDIA_MODELS')) : NVIDIA_DEFAULT_MODELS;
+  const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, anthropic: anthropicKeys, openai: openaiKeys, nvidia: nvidiaKeys };
+  const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), anthropic: new Set(ANTHROPIC_MODELS), openai: new Set(OPENAI_MODELS), nvidia: new Set(NVIDIA_MODELS) };
   const providerRunner = {
     gemini: (k, m) => ({ id: 'gemini', run: () => tryGemini(k, m) }),
-    groq: (k, m) => ({ id: 'groq', run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m) }),
-    openrouter: (k, m) => ({ id: 'openrouter', run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }) }),
+    groq: (k, m) => ({ id: 'groq', run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m, {}, 'Groq') }),
+    openrouter: (k, m) => ({ id: 'openrouter', run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }, 'OpenRouter') }),
     anthropic: (k, m) => ({ id: 'anthropic', run: () => tryAnthropic(k, m) }),
-    openai: (k, m) => ({ id: 'openai', run: () => tryOpenAICompat('https://api.openai.com/v1/chat/completions', k, m) }),
+    openai: (k, m) => ({ id: 'openai', run: () => tryOpenAICompat('https://api.openai.com/v1/chat/completions', k, m, {}, 'OpenAI') }),
+    nvidia: (k, m) => ({ id: 'nvidia', run: () => tryOpenAICompat('https://integrate.api.nvidia.com/v1/chat/completions', k, m, {}, 'Nvidia') }),
   };
 
   const attempts = [];

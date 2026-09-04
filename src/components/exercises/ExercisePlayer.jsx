@@ -211,9 +211,41 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
             </span>
           )}
         </div>
-        <span style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 500 }}>
-          {index + 1} / {total}
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button
+            onClick={onBack}
+            disabled={index === 0}
+            aria-label="Previous exercise"
+            style={{
+              width: 28, height: 28, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
+              border: '1px solid var(--border, #e5e7eb)', background: 'var(--surface)',
+              color: index === 0 ? 'var(--faint, #d1d5db)' : 'var(--text-2, var(--ex-panel-text))',
+              cursor: index === 0 ? 'not-allowed' : 'pointer',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 14, fontWeight: 700, lineHeight: 1,
+            }}
+          >
+            ←
+          </button>
+          <span style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 500, minWidth: 42, textAlign: 'center' }}>
+            {index + 1} / {total}
+          </span>
+          <button
+            onClick={done ? onNext : onSkip}
+            disabled={index === total - 1 && !done}
+            aria-label={done ? 'Next exercise' : 'Skip exercise'}
+            style={{
+              width: 28, height: 28, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
+              border: '1px solid var(--border, #e5e7eb)', background: 'var(--surface)',
+              color: (index === total - 1 && !done) ? 'var(--faint, #d1d5db)' : 'var(--text-2, var(--ex-panel-text))',
+              cursor: (index === total - 1 && !done) ? 'not-allowed' : 'pointer',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 14, fontWeight: 700, lineHeight: 1,
+            }}
+          >
+            →
+          </button>
+        </div>
       </div>
 
       {/* Exercise body */}
@@ -289,6 +321,23 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
               {index < total - 1 ? 'Next exercise →' : 'Finish session →'}
             </button>
           )}
+          {!done && (
+            <button
+              onClick={onNext}
+              disabled={index >= total - 1}
+              style={{
+                padding: '8px 16px', borderRadius: 'var(--radius-sm, 6px)',
+                border: '1px solid var(--border, #e5e7eb)', background: 'none',
+                color: index >= total - 1 ? 'var(--faint, #d1d5db)' : 'var(--text-2)',
+                fontSize: 13, fontWeight: 500,
+                cursor: index >= total - 1 ? 'not-allowed' : 'pointer',
+                fontFamily: 'var(--font-sans)',
+                opacity: index >= total - 1 ? 0.5 : 1,
+              }}
+            >
+              {index < total - 1 ? 'Next →' : 'Finish →'}
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -305,7 +354,7 @@ function ProgressBar({ current, total }) {
       </div>
       <div style={{ height: 6, borderRadius: 99, background: 'var(--border)', overflow: 'hidden' }}>
         <div style={{
-          height: '100%', borderRadius: 99, background: `linear-gradient(90deg, ${TEAL}, ${NAVY})`,
+          height: '100%', borderRadius: 99, background: TEAL,
           width: '100%',
           transform: `scaleX(${pct / 100})`,
           transformOrigin: 'left',

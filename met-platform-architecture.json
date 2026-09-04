@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "MET English Proficiency Platform — Architecture",
+    "quality_profile": "standard",
+    "views": [
+      { "id": "student-path", "label": "Student speaking path", "focus": ["webclient", "eval", "providers", "supabase"], "note": "A student records a speaking task; audio is stored, transcribed, scored, and returned." },
+      { "id": "content-path", "label": "Teacher content path", "focus": ["webclient", "gateway", "ai", "image", "tts", "providers"], "note": "Teachers generate exercises, illustrations, and audio via the multi-vendor AI cascade." },
+      { "id": "invite-path", "label": "Class invite path", "focus": ["webclient", "gateway", "submissions", "supabase", "resend"], "note": "A teacher sends a calendar invite email through Resend." }
+    ]
+  },
+  "components": [
+    { "id": "webclient", "type": "frontend", "label": "MET Web Client", "sublabel": "React 19 SPA · Students & Teachers", "pos": [40, 210], "size": [150, 66] },
+    { "id": "gateway", "type": "backend", "label": "API Server", "sublabel": "Express (server.ts) · 7 routes", "pos": [300, 218], "size": [180, 56] },
+    { "id": "ai", "type": "backend", "label": "AI Orchestration", "sublabel": "/api/ai", "pos": [560, 40], "size": [150, 52] },
+    { "id": "tts", "type": "backend", "label": "Text-to-Speech", "sublabel": "/api/tts", "pos": [560, 108], "size": [150, 52] },
+    { "id": "eval", "type": "backend", "label": "Speaking Evaluation", "sublabel": "/api/evaluate-speaking", "pos": [560, 176], "size": [150, 52] },
+    { "id": "image", "type": "backend", "label": "Image Generation", "sublabel": "/api/generate-image", "pos": [560, 244], "size": [150, 52] },
+    { "id": "submissions", "type": "backend", "label": "Submissions & Invites", "sublabel": "/api/save·get·send-invite", "pos": [560, 312], "size": [150, 52] },
+    { "id": "supabase", "type": "database", "label": "Supabase", "sublabel": "Auth · Postgres · Storage", "pos": [900, 300], "size": [160, 56] },
+    { "id": "providers", "type": "external", "label": "AI & Speech Providers", "sublabel": "LLM + TTS + STT vendors", "pos": [900, 50], "size": [180, 70] },
+    { "id": "resend", "type": "external", "label": "Resend", "sublabel": "Transactional email", "pos": [900, 392], "size": [150, 48] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Backend API · Express / Vercel serverless — server-only secrets", "wraps": ["gateway", "ai", "tts", "eval", "image", "submissions"], "pad": 14 }
+  ],
+  "connections": [
+    { "id": "w-gw", "from": "webclient", "to": "gateway", "label": "/api/* · 7 routes", "fromSide": "right", "toSide": "left", "variant": "emphasis", "labelAt": [245, 250] },
+    { "id": "gw-ai", "from": "gateway", "to": "ai", "fromSide": "right", "toSide": "left" },
+    { "id": "gw-tts", "from": "gateway", "to": "tts", "fromSide": "right", "toSide": "left" },
+    { "id": "gw-eval", "from": "gateway", "to": "eval", "fromSide": "right", "toSide": "left" },
+    { "id": "gw-image", "from": "gateway", "to": "image", "fromSide": "right", "toSide": "left" },
+    { "id": "gw-sub", "from": "gateway", "to": "submissions", "fromSide": "right", "toSide": "left" },
+    { "id": "ai-prov", "from": "ai", "to": "providers", "label": "LLM cascade (5 vendors)", "fromSide": "right", "toSide": "left", "labelAt": [800, 80] },
+    { "id": "tts-prov", "from": "tts", "to": "providers", "label": "TTS cascade (4 vendors)", "fromSide": "right", "toSide": "left", "labelAt": [800, 140] },
+    { "id": "eval-prov", "from": "eval", "to": "providers", "label": "transcribe + score", "fromSide": "right", "toSide": "left", "labelAt": [800, 210] },
+    { "id": "img-prov", "from": "image", "to": "providers", "label": "Imagen 3", "fromSide": "right", "toSide": "left", "labelAt": [800, 280] },
+    { "id": "sub-sb", "from": "submissions", "to": "supabase", "label": "submissions + users", "fromSide": "right", "toSide": "left", "labelAt": [800, 365] },
+    { "id": "eval-sb", "from": "eval", "to": "supabase", "label": "verify session · audio", "fromSide": "right", "toSide": "left", "labelAt": [800, 330] },
+    { "id": "sub-resend", "from": "submissions", "to": "resend", "label": "email + .ics", "fromSide": "right", "toSide": "left", "labelAt": [800, 420] }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Client", "items": ["React 19 SPA (Vite + Tailwind), served as static dist/", "Students & teachers sign in via Supabase JWT"] },
+    { "dot": "emerald", "title": "Backend API", "items": ["Express (server.ts) · 7 Vercel serverless routes", "Provider keys server-side, fail closed if missing"] },
+    { "dot": "violet", "title": "AI & Speech providers", "items": ["Gemini: LLM + Imagen 3 + TTS", "OpenAI · Anthropic · Groq · OpenRouter · Deepgram · ElevenLabs"] },
+    { "dot": "amber", "title": "Data & delivery", "items": ["Supabase: Auth, Postgres, Storage for speaking audio", "Resend sends invites with .ics + Zoom link"] }
+  ]
+}

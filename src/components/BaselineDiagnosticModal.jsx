@@ -378,10 +378,12 @@ export default function BaselineDiagnosticModal({
               <div style={{ width: '100%', height: 4, background: 'var(--bg, #FDFCF8)', borderRadius: 999, overflow: 'hidden' }}>
                 <div
                   style={{
-                    width: `${((currentStep + 1) / BASELINE_QUESTIONS.length) * 100}%`,
+                    width: '100%',
                     height: '100%',
                     background: 'var(--primary, #2D7A8C)',
-                    transition: 'width 0.3s ease',
+                    transform: `scaleX(${(currentStep + 1) / BASELINE_QUESTIONS.length})`,
+                    transformOrigin: 'left center',
+                    transition: 'transform 0.3s ease',
                   }}
                 />
               </div>

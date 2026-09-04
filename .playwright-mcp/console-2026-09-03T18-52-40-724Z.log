@@ -1,0 +1,7 @@
+[     213ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/.vite-cache-v2/deps/react-dom_client.js?v=1be822bb:5
+[     332ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[     333ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[     333ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[     334ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[     334ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20
+[     334ms] [WARNING] [supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example). @ http://localhost:3000/src/lib/supabase-storage.js:20

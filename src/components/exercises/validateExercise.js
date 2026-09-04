@@ -75,6 +75,14 @@ export function validateExercise(ex) {
       if (ex.correct == null || ex.correct < 0 || ex.correct >= ex.options.length) return { valid: false, reason: 'Listening exercise "correct" must be a valid option index.' };
       return { valid: true };
 
+    case 'read':
+      if (!ex.passage) return { valid: false, reason: 'Reading exercise is missing "passage".' };
+      if (!Array.isArray(ex.questions) || ex.questions.length === 0) return { valid: false, reason: 'Reading exercise needs at least 1 question.' };
+      return { valid: true };
+
+    case 'embed':
+      return { valid: true };
+
     default:
       return { valid: false, reason: `Unknown exercise type: "${ex.type}".` };
   }

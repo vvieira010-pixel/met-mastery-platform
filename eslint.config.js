@@ -156,7 +156,6 @@ export default [
       'src/pages/student-home.jsx',
       'src/pages/student-homework.jsx',
       'src/pages/student-profile.jsx',
-      'src/pages/student-progress.jsx',
       'src/pages/students.jsx',
       'src/pages/student-settings.jsx',
       'src/pages/submission-review.jsx',
@@ -165,6 +164,11 @@ export default [
       'src/pages/writing-practice.jsx',
       'src/tools/tool-homework.jsx',
       'src/tools/tool-perspective-designer.jsx',
+      // Dev-only manual-QA entry point (pairs with root `__harness.html`). It is an
+      // app entry, so it intentionally defines a component without exporting it,
+      // which the react-refresh rule flags. Not a production module — excluded here
+      // rather than restructured. Remove both files if the harness is retired.
+      'src/__harness.jsx',
     ],
   },
 ];

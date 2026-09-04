@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getDiagnoses } from '../lib/workflow.js';
-import { asArray, getProgressStage, getSkillTrend, PROGRESS_STAGES, STAGE_DESCRIPTIONS, TrendChip, SkillRow } from './student-helpers.jsx';
+import { asArray, getProgressStage, getSkillTrend, PROGRESS_STAGES, STAGE_DESCRIPTIONS, SkillRow } from './student-helpers.jsx';
 import { Icon } from '../components/shared.jsx';
 import MetProgressPathGraph from '../components/MetProgressPathGraph.jsx';
 import BaselineDiagnosticModal from '../components/BaselineDiagnosticModal.jsx';
@@ -78,7 +78,7 @@ function SubskillRadar({ sectionData, 'data-testid': testId = 'subskill-radar' }
   );
 }
 
-export default function StudentProgress({ student, "data-testid": testId }) {
+export default function StudentProgress({ student, "data-testid": testId = 'student-progress' }) {
   const [diagnoses, setDiagnoses] = useState([]);
   const [legendOpen, setLegendOpen] = useState(false);
   const [expandedSkill, setExpandedSkill] = useState(null);
@@ -317,7 +317,6 @@ export default function StudentProgress({ student, "data-testid": testId }) {
           </section>
 
           {lowestSkill && lowestSkill.score_0_80 > 0 && (() => {
-            const lowScore = Number(lowestSkill.score_0_80) || 0;
             return (
               <section className="sp-section-callout student-panel student-panel--clickable cursor-default">
                 <div className="student-panel-head">

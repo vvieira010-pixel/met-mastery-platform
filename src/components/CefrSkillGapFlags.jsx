@@ -231,11 +231,13 @@ export default function CefrSkillGapFlags({
               <div style={{ position: 'relative', width: '100%', height: 8, background: 'var(--border, #F6F4EE)', borderRadius: 999, overflow: 'hidden', marginBottom: 8 }}>
                 <div
                   style={{
-                    width: `${percent}%`,
+                    width: '100%',
                     height: '100%',
                     background: item.color,
                     borderRadius: 999,
-                    transition: 'width 0.4s ease',
+                    transform: `scaleX(${percent / 100})`,
+                    transformOrigin: 'left center',
+                    transition: 'transform 0.4s ease',
                   }}
                 />
               </div>
