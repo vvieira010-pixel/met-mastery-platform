@@ -823,6 +823,26 @@ button.student-reading-unit:focus-visible {
   color: var(--text-muted);
   line-height: 1.55;
 }
+.student-reading-unit-content > div ol {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.35rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.student-reading-unit-content > div li {
+  padding-left: var(--space-1);
+}
+.student-reading-example {
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-subtle);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.student-reading-example p {
+  font-style: italic;
+}
 .student-reading-unit--explanation {
   display: block;
   padding: var(--space-5);
@@ -918,5 +938,50 @@ button.student-reading-unit:focus-visible {
   }
   .practice-studio-card {
     padding: var(--space-4) !important;
+  }
+}
+
+/* Platform-wide card rhythm: use the same generous spacing in learner and teacher workspaces. */
+.dash .rounded-xl.p-6,
+.dash .rounded-2xl.p-6,
+.teacher-dashboard-stack .td-card-section {
+  padding: var(--space-7) !important;
+}
+.dash .practice-studio-grid,
+.dash .practice-studio-recent .grid-square,
+.dash .student-resource-list,
+.teacher-dashboard-stack {
+  gap: var(--space-8) !important;
+}
+@media (max-width: 767px) {
+  .dash .rounded-xl.p-6,
+  .dash .rounded-2xl.p-6,
+  .teacher-dashboard-stack .td-card-section {
+    padding: var(--space-6) !important;
+  }
+  .dash .practice-studio-grid,
+  .dash .practice-studio-recent .grid-square,
+  .dash .student-resource-list,
+  .teacher-dashboard-stack {
+    gap: var(--space-6) !important;
+  }
+}
+
+/* Subjects cards: give each choice more breathing room without widening the page. */
+.student-subjects-page .student-subjects-grid {
+  gap: var(--space-8) !important;
+  padding-block: var(--space-7);
+}
+.student-subjects-page .student-subject-card {
+  padding: var(--space-7) !important;
+  row-gap: var(--space-3);
+}
+@media (max-width: 600px) {
+  .student-subjects-page .student-subjects-grid {
+    gap: var(--space-6) !important;
+    padding-block: var(--space-6);
+  }
+  .student-subjects-page .student-subject-card {
+    padding: var(--space-6) !important;
   }
 }
