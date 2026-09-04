@@ -175,7 +175,7 @@ export default function StudentFeedback({ student, onTab, "data-testid": testId 
                      {(feedbackReplies[latest?.id] || []).length > 0 && (
                        <div style={{ marginBottom: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
                          {(feedbackReplies[latest?.id] || []).map(msg => (
-                           <div key={msg.id} style={{ padding: '8px 12px', borderRadius: 'var(--radius-sm)', background: 'var(--accent-subtle)', border: '1px solid var(--accent-soft)', fontSize: 'var(--text-sm)', lineHeight: 1.5 }}>
+                           <div key={msg.id} style={{ padding: '8px 12px', borderRadius: 'var(--radius-sm)', background: 'var(--primary-light)', border: '1px solid var(--border)', fontSize: 'var(--text-sm)', lineHeight: 1.5 }}>
                              <div style={{ color: 'var(--text-2)', marginBottom: 2 }}>{msg.body}</div>
                              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)' }}>{new Date(msg.createdAt).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</div>
                            </div>

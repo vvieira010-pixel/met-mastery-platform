@@ -36,7 +36,7 @@ export function StudentFeedbackView({ feedback }) {
           <div style={{ ...cardTitle, color: 'var(--accent-text)' }}><Icon.check size={13} /> What's working</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {wins.map((w, i) => (
-              <div key={i} style={{ padding: 12, background: 'var(--accent-subtle)', borderRadius: 'var(--radius-sm)' }}>
+              <div key={i} style={{ padding: 12, background: 'var(--primary-light)', borderRadius: 'var(--radius-sm)' }}>
                 {w.strength && <div style={{ fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{w.strength}</div>}
                 {w.explanation && <p style={{ fontSize: 'var(--text-base)', lineHeight: 1.7, margin: 0, color: 'var(--text)' }}>{w.explanation}</p>}
                 {w.example && <p style={{ fontSize: 'var(--text-base)', lineHeight: 1.7, margin: '4px 0 0', color: 'var(--text-2)', fontStyle: 'italic' }}>"{w.example}"</p>}

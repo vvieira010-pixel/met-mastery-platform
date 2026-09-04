@@ -110,8 +110,8 @@ export default function ImprovementMatrix({
                 letterSpacing: '0.06em',
                 padding: '2px 8px',
                 borderRadius: 4,
-                background: 'rgba(22, 163, 74, 0.1)',
-                color: '#3D8C65',
+                background: 'var(--primary-light)',
+                color: 'var(--primary)',
               }}
             >
               Constructive Evaluation UI
@@ -164,8 +164,8 @@ export default function ImprovementMatrix({
       {/* Encouraging Affirmation Banner */}
       <div
         style={{
-          background: 'linear-gradient(90deg, rgba(22, 163, 74, 0.08) 0%, rgba(2, 132, 199, 0.08) 100%)',
-          borderLeft: '4px solid #3D8C65',
+          background: 'var(--bg, #FDFCF8)',
+          borderLeft: '3px solid var(--primary)',
           borderRadius: 6,
           padding: '10px 14px',
           marginBottom: 16,
@@ -174,7 +174,7 @@ export default function ImprovementMatrix({
           gap: 10,
         }}
       >
-        <span style={{ fontSize: '1.1rem' }}>🌟</span>
+        <span style={{ fontSize: '0.9rem', color: 'var(--primary)' }} aria-hidden="true">●</span>
         <div style={{ fontSize: '0.8rem', color: 'var(--text, #2B454E)', lineHeight: 1.45 }}>
           <strong>Constructive growth mindset:</strong> These targets are stepping stones to sharpen your Michigan English Test score. You are demonstrating solid foundations—applying these specific upgrades will noticeably strengthen your fluency!
         </div>
@@ -207,7 +207,6 @@ export default function ImprovementMatrix({
           <tbody>
             {filtered.map((row, idx) => {
               const isEven = idx % 2 === 0;
-              const isSpeaking = row.skill === 'speaking';
               return (
                 <tr
                   key={row.id || idx}
@@ -226,8 +225,8 @@ export default function ImprovementMatrix({
                           fontWeight: 700,
                           padding: '2px 6px',
                           borderRadius: 4,
-                          background: isSpeaking ? 'rgba(245, 158, 11, 0.12)' : 'rgba(139, 92, 246, 0.12)',
-                          color: isSpeaking ? '#C9803C' : '#7c3aed',
+                          background: 'var(--primary-light)',
+                          color: 'var(--primary)',
                           textTransform: 'capitalize',
                         }}
                       >
@@ -242,8 +241,8 @@ export default function ImprovementMatrix({
                     <div
                       style={{
                         padding: '8px 10px',
-                        background: 'rgba(239, 68, 68, 0.05)',
-                        borderLeft: '3px solid #f87171',
+                        background: 'var(--bg, #FDFCF8)',
+                        borderLeft: '3px solid var(--border-strong)',
                         borderRadius: 4,
                         fontStyle: 'italic',
                         color: 'var(--text-2, #2B454E)',
@@ -271,8 +270,8 @@ export default function ImprovementMatrix({
                     <div
                       style={{
                         padding: '10px 12px',
-                        background: 'rgba(22, 163, 74, 0.06)',
-                        borderLeft: '3px solid #3D8C65',
+                        background: 'var(--primary-light)',
+                        borderLeft: '3px solid var(--primary)',
                         borderRadius: 6,
                       }}
                     >
@@ -283,8 +282,8 @@ export default function ImprovementMatrix({
                             fontWeight: 700,
                             padding: '1px 6px',
                             borderRadius: 4,
-                            background: 'rgba(22, 163, 74, 0.15)',
-                            color: '#15803d',
+                            background: 'var(--surface, #ffffff)',
+                            color: 'var(--primary)',
                           }}
                         >
                           {row.encouragement || 'B2 Upgrade'}
