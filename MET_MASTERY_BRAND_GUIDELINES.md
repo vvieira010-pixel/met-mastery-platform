@@ -159,24 +159,24 @@ Example:
 
 ### Colour
 
-Use the existing design tokens. Do not add arbitrary colours for a new screen or campaign.
+Use the existing design tokens (`src/styles/tokens.css` — the single source of truth, mirrored by `design-tokens.json`). Do not add arbitrary colours for a new screen or campaign. The live palette is navy (`#1D3557`) + steel blue (`#457B9D`) on a mint (`#F1FAEE`) canvas, with red (`#E63946`) reserved for errors. Reconciled to the shipped product on 2026-09-04; the previous teal/ochre values are retired.
 
 | Role | Token / value | Use |
 | --- | --- | --- |
-| Deep teal | `--primary` / `#557D84` | Main actions, links, active states, and structural emphasis. |
-| Primary hover | `--primary-hover` / `#41666D` | Hover and pressed primary actions. |
-| Teal ink | `--ink` / `#36545A` | Headlines, dark brand panels, and strong contrast. |
-| Warm surface | `--surface` / `#F9F8F4` | Cards and calm content areas. |
-| Pale aqua background | `--bg` / `#E5F0F0` | Page backgrounds and quiet layout structure. |
-| Soft blue-green | `--primary-light` / `#D7E8E8` | Selected states, soft highlights, low-intensity emphasis. |
-| Ochre accent | `--accent` / `#F2AC55` | Small moments of emphasis, key numbers, and visual warmth. |
-| Success | `--success` / `#557D84` | Completed work and confirmed success only. |
-| Warning | `--warning` / `#B27A3E` | Attention needed without panic. |
-| Error | `--error` / `#8C5149` | Failed, blocked, or destructive states. |
+| Steel blue (primary) | `--primary` / `#457B9D` | Main actions, links, active states, and progress. |
+| Primary hover | `--primary-hover` / `#1D3557` | Hover and pressed primary actions. |
+| Navy ink | `--ink` / `#1D3557` | Headlines, dark brand panels, and strong contrast. |
+| Surface | `--surface` / `#FFFFFF` | Cards and content areas. |
+| Mint background | `--bg` / `#F1FAEE` | Page backgrounds and quiet layout structure. |
+| Soft highlight | `--primary-light` / `#A8DADC` | Selected states, soft highlights, low-intensity emphasis. |
+| Navy accent (CTA) | `--accent` / `#1D3557` | CTA buttons and important actions; text on accent is white (`--accent-text`). |
+| Success | `--success` / `#3A845F` | Completed work and confirmed success only. |
+| Warning | `--warning` / `#A56931` | Attention needed without panic. |
+| Error | `--error` / `#E63946` | Failed, blocked, or destructive states. |
 
 Rules:
 
-- Teal signals direction or action; it is not decoration everywhere.
+- Steel blue signals direction or action; it is not decoration everywhere.
 - Keep strong colour areas purposeful. Most screens should remain warm, open, and readable.
 - Do not use success green to represent a score unless it is genuinely a completed/success state.
 - Never rely on colour alone: pair statuses with plain-language labels and appropriate icons.

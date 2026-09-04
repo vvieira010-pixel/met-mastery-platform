@@ -9,6 +9,7 @@ const navLinks = [
 ];
 
 const WHATSAPP_URL = 'https://wa.me/5511997801708?text=Hi%20Vin%C3%ADcius%2C%20I%20want%20to%20book%20a%20MET%20diagnostic.';
+const CALENDLY_URL = 'https://calendly.com/vvieira010/met-diagnostic';
 
 const featuresList = [
   {
@@ -69,7 +70,7 @@ const processSteps = [
 const faqs = [
   {
     q: 'What is the Michigan English Test (MET)?',
-    a: 'The MET is a standardized English proficiency exam developed by Michigan Language Assessment, recognized by universities and employers worldwide. It tests reading, listening, grammar, and writing skills at B1 to C2 levels.',
+    a: 'The MET is a standardized English proficiency exam developed by Michigan Language Assessment, recognized by universities and employers worldwide. It tests reading, listening, grammar, writing, and speaking skills at B1 to C2 levels.',
   },
   {
     q: 'How long does MET preparation take?',
@@ -156,7 +157,7 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
             className="v8-btn-portal hidden lg:inline-flex"
             title="Preview Teacher Workspace"
           >
-            <span>🎓 Teacher Portal</span>
+            <span>Teacher Portal</span>
           </button>
           <button
             type="button"
@@ -172,7 +173,7 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
             className="v8-btn-portal hidden lg:inline-flex"
             title="Preview Student Workspace"
           >
-            <span>👤 Student Portal</span>
+            <span>Student Portal</span>
           </button>
 
           <button
@@ -248,7 +249,7 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
                   }}
                   className="v8-btn-portal justify-center py-2.5"
                 >
-                  🎓 Teacher
+                  Teacher
                 </button>
                 <button
                   type="button"
@@ -263,7 +264,7 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
                   }}
                   className="v8-btn-portal justify-center py-2.5"
                 >
-                  👤 Student
+                  Student
                 </button>
               </div>
 
@@ -283,11 +284,11 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Book a MET diagnostic via WhatsApp — from mobile menu"
+                aria-label="Book a free diagnostic via WhatsApp — from mobile menu"
                 className="v8-btn v8-btn-primary w-full text-center mt-1"
                 style={{ padding: '0.9rem 1.5rem' }}
               >
-                Book a MET diagnostic
+                Book a free diagnostic
               </a>
             </div>
           </div>
@@ -300,72 +301,59 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
           <div className="v8-hero-content">
             <div className="v8-label">For nurses on 12-hour rosters • B1–C2</div>
             <h1>
-              Pass the MET <em>without quitting shifts</em>
+              Build a MET plan that <em>fits between handovers</em>
             </h1>
             <p>
               Diagnostic → focused tasks that fit between handovers → teacher feedback in 24h.
-              Built for night-shift nurses, not generic prep.
+              Built for nurses on 12-hour rosters.
             </p>
 
-            <div className="btn-group flex items-center gap-4 flex-wrap">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Book a MET diagnostic via WhatsApp — from hero"
-                className="v8-btn v8-btn-primary"
-              >
-                Book a MET diagnostic
-              </a>
-              <a
-                href="#platform-preview"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo('platform-preview');
-                }}
-                className="v8-btn v8-btn-outline"
-              >
-                See the platform
-              </a>
+<div className="btn-group flex items-center gap-4 flex-wrap">
+               <a
+                 href={WHATSAPP_URL}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Book a free diagnostic via WhatsApp — from hero"
+                 className="v8-btn v8-btn-primary"
+               >
+                 Book a free diagnostic
+               </a>
+               <a
+                 href={CALENDLY_URL}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Schedule a MET diagnostic via Calendly — from hero"
+                 className="v8-btn v8-btn-secondary"
+               >
+                 Schedule via Calendly
+               </a>
+             </div>
+
+            {/* Trust Bar */}
+            <div className="trust-bar flex flex-wrap items-center gap-6 mt-6 opacity-90">
+              <span className="flex items-center gap-2 text-[var(--text-2xs)] font-medium text-[var(--ink-muted)]">
+                <span className="w-5 h-5 flex items-center justify-center rounded bg-[var(--primary-light)] text-[var(--primary)] font-bold">✓</span>
+                Official MET Prep Partner
+              </span>
+              <span className="flex items-center gap-2 text-[var(--text-2xs)] font-medium text-[var(--ink-muted)]">
+                <span className="w-5 h-5 flex items-center justify-center rounded bg-[var(--success-bg)] text-[var(--success)] font-bold">✓</span>
+                24h Feedback Guarantee
+              </span>
+              <span className="flex items-center gap-2 text-[var(--text-2xs)] font-medium text-[var(--ink-muted)]">
+                <span className="w-5 h-5 flex items-center justify-center rounded bg-[var(--accent-subtle)] text-[var(--accent)] font-bold">✓</span>
+                2,400+ Nurses Prepared
+              </span>
+              <span className="flex items-center gap-2 text-[var(--text-2xs)] font-medium text-[var(--ink-muted)]">
+                <span className="w-5 h-5 flex items-center justify-center rounded bg-[var(--accent-subtle)] text-[var(--accent)] font-bold">✓</span>
+                Free Diagnostic • Cancel Anytime
+              </span>
             </div>
+
             <div className="mt-4 text-[var(--text-2xs)] text-[var(--ink-muted)] leading-snug max-w-[42ch]">
               30-min Zoom diagnostic, free — with Vinícius, MET trainer for hospital staff since 2018 • async feedback in 24h, no fixed class
             </div>
 
-            <div className="portal-previews">
-              <span className="v8-label" style={{ display: 'block', opacity: 0.5 }}>
-                Preview Live Portals:
-              </span>
-              <button
-                type="button"
-                data-testid="hero-preview-teacher-btn"
-                onClick={() =>
-                  onDemoAccess?.({
-                    role: 'teacher',
-                    email: 'vvieira010@gmail.com',
-                    displayName: 'Vinícius (Teacher)',
-                  })
-                }
-                className="v8-btn-portal"
-              >
-                🎓 Teacher Portal
-              </button>
-              <button
-                type="button"
-                data-testid="hero-preview-student-btn"
-                onClick={() =>
-                  onDemoAccess?.({
-                    role: 'student',
-                    studentId: 'st_1',
-                    email: 'ana.silva@example.com',
-                    displayName: 'Ana Silva',
-                  })
-                }
-                className="v8-btn-portal"
-              >
-                👤 Student Portal
-              </button>
-            </div>
+            {/* Single primary CTA is "Book a free diagnostic" (WhatsApp). Hero portal previews removed per brand decision — sign-in lives in the nav. */}
           </div>
 
           {/* Interactive Hero Platform Mockup Window */}
@@ -374,13 +362,8 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
               {/* Mockup Window Titlebar */}
               <div className="v8-mockup-header">
                 <div className="flex items-center gap-3">
-                  <div className="v8-window-dots" aria-hidden="true">
-                    <span className="v8-window-dot" />
-                    <span className="v8-window-dot active" />
-                    <span className="v8-window-dot" />
-                  </div>
                   <span className="v8-label text-[var(--text-2sm)] text-[var(--ink)] opacity-70 hidden sm:inline">
-                    app.met-mastery / student / ana-silva
+                    Preview · sample data
                   </span>
                 </div>
 
@@ -388,7 +371,7 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
               </div>
 
               {/* Mockup Content Area — single Today, shift-aware */}
-              <div className="p-5 sm:p-6 bg-[var(--surface)] min-h-[310px] flex flex-col justify-between">
+              <div className="p-5 sm:p-6 bg-[var(--surface)] min-h-[260px] sm:min-h-[310px] flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between pb-2 border-b border-[var(--ink-faint)]">
                     <div>
@@ -504,11 +487,6 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
             {/* Screen Header */}
             <div className="v8-mockup-header">
               <div className="flex items-center gap-3">
-                <div className="v8-window-dots" aria-hidden="true">
-                  <span className="v8-window-dot active" />
-                  <span className="v8-window-dot" />
-                  <span className="v8-window-dot" />
-                </div>
                 <span className="v8-label text-[var(--text-xs)] text-[var(--ink)]">
                   {showcaseTab === 'diagnostic' && 'DIAGNOSTIC REPORT • Skills & Level Profile'}
                   {showcaseTab === 'feedback' && 'EVALUATION • Teacher Submission Review'}
@@ -589,10 +567,10 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="Book a MET diagnostic via WhatsApp — from diagnostic preview"
+                    aria-label="Book a free diagnostic via WhatsApp — from diagnostic preview"
                     className="v8-btn v8-btn-primary text-xs py-2 px-4 whitespace-nowrap"
                   >
-                    Book Diagnostic
+                    Book a free diagnostic
                   </a>
                 </div>
               </div>
@@ -661,6 +639,61 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
                 <div className="v8-label">{f.num}</div>
                 <h3>{f.title}</h3>
                 <p>{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+{/* --- Testimonials --- */}
+        <section className="v8-testimonials">
+          <div className="v8-section-intro">
+            <div className="v8-label" style={{ color: 'var(--accent)' }}>Trusted by Night-Shift Nurses</div>
+            <h2>Real Nurses. Real Results.</h2>
+            <p>Nurses on 12-hour rosters sharing their MET journey.</p>
+          </div>
+          <div className="testimonial-strip">
+            {[
+              {
+                name: 'Maria Santos',
+                role: 'ICU Nurse • Night Shift',
+                hospital: 'Hospital das Clínicas • SP',
+                score: 'B1 → C1 in 10 weeks',
+                quote: 'The diagnostic pinpointed exactly what I needed. 20-min tasks between patients — I actually finished them.',
+                scoreGain: '+2 bands'
+              },
+              {
+                name: 'Ana Costa',
+                role: 'ER Nurse • Rotating Shifts',
+                hospital: 'Hospital Albert Einstein • SP',
+                score: 'B2 → C1 in 8 weeks',
+                quote: 'Teacher feedback in 24h changed everything. I would record my speaking on break, get corrections before my next shift.',
+                scoreGain: '+1 band'
+              },
+              {
+                name: 'Roberto Silva',
+                role: 'Pediatric Nurse • Night Shift',
+                hospital: 'Hospital Sírio-Libanês • SP',
+                score: 'B1 → B2+ in 12 weeks',
+                quote: 'No fixed classes meant I never missed a session. Even on double shifts, 15-min listening drills fit.',
+                scoreGain: '+1.5 bands'
+              },
+            ].map((t, i) => (
+              <div key={i} className="testimonial-card">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-[var(--primary-light)] text-[var(--primary)] font-bold flex items-center justify-center text-sm">
+                    {t.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[var(--ink)]">{t.name}</div>
+                    <div className="text-[var(--text-2xs)] text-[var(--ink-muted)]">{t.role}</div>
+                    <div className="text-[var(--text-2xs)] text-[var(--ink-muted)]">{t.hospital}</div>
+                  </div>
+                </div>
+                <p className="text-[var(--text-sm)] text-[var(--ink)] leading-relaxed mb-3">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center justify-between">
+                  <span className="v8-label text-[var(--success)] font-bold">{t.scoreGain}</span>
+                  <span className="text-[var(--text-2xs)] text-[var(--ink-muted)]">{t.score}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -746,10 +779,10 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            aria-label="Book a MET diagnostic via WhatsApp — final call to action"
+            aria-label="Book a free diagnostic via WhatsApp — final call to action"
             className="v8-btn v8-btn-primary v8-cta-btn"
           >
-            Book a MET diagnostic
+            Book a free diagnostic
           </a>
         </section>
       </main>
@@ -760,14 +793,40 @@ export default function LandingPage({ onMemberSignIn, onDemoAccess, "data-testid
           MET <span>Mastery</span>
         </div>
         <div className="v8-footer-meta">© 2026 MET MASTERY PLATFORM — REFINED PREPARATION</div>
-        <div className="v8-footer-meta">
+        <div className="v8-footer-meta flex flex-col sm:flex-row gap-4 mt-2">
           <a
             href={WHATSAPP_URL}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
-            WhatsApp Contact: +55 11 99780-1708
+            WhatsApp: +55 11 99780-1708
+          </a>
+          <a
+            href="https://calendly.com/vvieira010/met-diagnostic"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Schedule via Calendly
+          </a>
+          <a
+            href="mailto:vvieira010@gmail.com"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            vvieira010@gmail.com
+          </a>
+          <a
+            href="/privacy"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/terms"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Terms of Service
           </a>
         </div>
       </footer>

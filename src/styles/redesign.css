@@ -1106,22 +1106,6 @@ body {
   gap: 1rem;
 }
 
-.v8-window-dots {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-.v8-window-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--ink-faint);
-}
-.v8-window-dot.active {
-  background: var(--primary);
-  opacity: 0.7;
-}
-
 .v8-tab-btn {
   font-family: 'Space Mono', monospace;
   font-size: var(--text-xs);
