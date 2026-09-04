@@ -23,7 +23,7 @@ footer,
 .site-header nav a,
 .signin-link,
 footer {
-  color: #119DA4;
+  color: #D9F0F1;
 }
 
 .header-cta,
@@ -32,7 +32,7 @@ footer {
 .primary-button,
 .next-button,
 .task-action button {
-  background: #119DA4;
+  background: #19647E;
 }
 
 .header-cta:hover,
@@ -41,7 +41,7 @@ footer {
 .primary-button:hover,
 .next-button:hover,
 .task-action button:hover {
-  background: #19647E;
+  background: #0F4C61;
 }
 
 .audience-picker,
@@ -52,7 +52,7 @@ footer {
 }
 
 .final-cta {
-  background: #119DA4;
+  background: #19647E;
 }
 
 .workspace-frame,
@@ -103,13 +103,13 @@ footer {
 .landing-preview .hero-primary,
 .landing-preview .final-cta a,
 .landing-preview .audience-cards a {
-  background: #119DA4;
+  background: #19647E;
 }
 .landing-preview .header-cta:hover,
 .landing-preview .hero-primary:hover,
 .landing-preview .final-cta a:hover,
 .landing-preview .audience-cards a:hover {
-  background: #19647E;
+  background: #0F4C61;
 }
 .landing-preview .hero .eyebrow,
 .landing-preview .hero h1 span,

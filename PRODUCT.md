@@ -58,7 +58,7 @@ The only MET prep tool built around a **single teacher's diagnosticâ€“homeworkâ€
 - **Name:** MET Mastery (from index.html title)
 - **Logo:** MET logo at `/dist/images/met-logo.png` and favicon.svg
 - **Fonts:** DM Sans (UI), Cormorant Garamond (display/serif), Space Mono (code/mono)
-- **Primary color:** Deep teal `#2D7A8C` (--primary, see `src/styles/tokens.css`)
+- **Primary color:** Deep teal `#19647E` (--primary, see `src/styles/tokens.css`)
 - **Voice:** Professional, clinical precision, encouraging but not playful
 
 ## Evidence on Hand
