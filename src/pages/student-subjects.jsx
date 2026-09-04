@@ -64,16 +64,27 @@ const SUBJECTS = [
   },
 ];
 
+const TOTAL_TOPICS = SUBJECTS.reduce((total, subject) => total + subject.units.length, 0);
+
 export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }) {
   const [selectedSubjectId, setSelectedSubjectId] = useState(null);
   const [view, setView] = useState('topics');
+  const [selectedUnitNumber, setSelectedUnitNumber] = useState(null);
   const selectedSubject = SUBJECTS.find(subject => subject.id === selectedSubjectId);
+  const selectedUnit = selectedSubject?.units.find(unit => unit.unit === selectedUnitNumber);
+
+  const openSubject = subject => {
+    setSelectedSubjectId(subject.id);
+    setSelectedUnitNumber(null);
+    setView('topics');
+    onOpenSubject?.(subject.pageId || subject.id);
+  };
 
   if (selectedSubject) {
     const SubjectIcon = selectedSubject.icon;
     return (
       <div className="student-page student-subjects-page" data-testid={testId}>
-        <button type="button" className="student-reading-back" onClick={() => setSelectedSubjectId(null)}><Icon.arrowL size={15} /> Back to Subjects</button>
+        <button type="button" className="student-reading-back" onClick={() => { setSelectedSubjectId(null); setSelectedUnitNumber(null); }}><Icon.arrowL size={15} /> Back to Subjects</button>
         <header className="student-page-header student-reading-header">
           <span className="student-panel-kicker">MET subject</span>
           <h1><SubjectIcon size={22} /> {selectedSubject.name}</h1>
@@ -81,7 +92,15 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
         </header>
         <nav className="tabs-line" aria-label={`${selectedSubject.name} content`}>
           {['topics', 'explanations'].map(tab => (
-            <button key={tab} type="button" className={`tab-line${view === tab ? ' active' : ''}`} onClick={() => setView(tab)}>
+            <button
+              key={tab}
+              type="button"
+              className={`tab-line${view === tab ? ' active' : ''}`}
+              onClick={() => {
+                setView(tab);
+                setSelectedUnitNumber(null);
+              }}
+            >
               {tab === 'topics' ? 'Topics' : 'Explanations'}
             </button>
           ))}
@@ -89,7 +108,15 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
         {view === 'topics' ? (
           <section className="student-reading-unit-list" aria-label={`${selectedSubject.name} topics`}>
             {selectedSubject.units.map(unit => (
-              <button key={unit.unit} type="button" className="student-reading-unit" onClick={() => setView('explanations')}>
+              <button
+                key={unit.unit}
+                type="button"
+                className="student-reading-unit"
+                onClick={() => {
+                  setSelectedUnitNumber(unit.unit);
+                  setView('explanations');
+                }}
+              >
                 <span className="student-reading-unit-number">{String(unit.unit).padStart(2, '0')}</span>
                 <span className="student-reading-unit-title">{unit.title}</span>
                 <Icon.arrowR size={16} />
@@ -98,9 +125,23 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
           </section>
         ) : (
           <section className="student-reading-unit-list" aria-label={`${selectedSubject.name} explanations`}>
-            {selectedSubject.units.map(unit => (
-              <article key={unit.unit} className="student-reading-unit" style={{ padding: '16px 18px' }}>
-                <h2 style={{ margin: '0 0 10px', fontSize: 'var(--text-md)' }}>{unit.title}</h2>
+            {selectedUnit ? (
+              <>
+                <article className="student-reading-unit student-reading-unit--explanation">
+                  <div className="student-reading-unit-content">
+                    <span className="student-panel-kicker">Topic {String(selectedUnit.unit).padStart(2, '0')}</span>
+                    <h2>{selectedUnit.title}</h2>
+                    <div><strong>What it is</strong><p>{selectedUnit.whatItIs}</p></div>
+                    <div><strong>How to apply it</strong><p>{selectedUnit.howToApplyIt}</p></div>
+                  </div>
+                </article>
+                <button type="button" className="student-subject-all-explanations" onClick={() => setSelectedUnitNumber(null)}>
+                  View all {selectedSubject.units.length} topic explanations
+                </button>
+              </>
+            ) : selectedSubject.units.map(unit => (
+              <article key={unit.unit} className="student-reading-unit student-reading-unit--explanation">
+                <h2>{unit.title}</h2>
                 <div className="student-reading-unit-content">
                   <div><strong>What it is</strong><p>{unit.whatItIs}</p></div>
                   <div><strong>How to apply it</strong><p>{unit.howToApplyIt}</p></div>
@@ -115,13 +156,61 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
 
   return (
     <div className="student-page student-subjects-page" data-testid={testId}>
-      <header className="student-page-header">
-        <div>
+      <header className="student-page-header student-subjects-hero">
+        <div className="student-subjects-hero-copy">
           <span className="student-panel-kicker">MET skills</span>
-          <h1>Subjects</h1>
-          <p>See what each subject asks you to do and where to focus your practice.</p>
+          <h1>Build your MET map.</h1>
+          <p>Use Subjects to understand each skill, learn the strategies behind it, and choose a focused place to practise next.</p>
+          <div className="student-subjects-hero-actions" aria-label="Subjects overview">
+            <span><strong>{SUBJECTS.length}</strong> MET skills</span>
+            <span><strong>{TOTAL_TOPICS}</strong> topic explanations</span>
+            <span><strong>B1–B2</strong> study tips</span>
+          </div>
         </div>
+        <aside className="student-subjects-guide" aria-labelledby="subjects-guide-heading">
+          <span className="student-panel-kicker">A simple way to use this page</span>
+          <h2 id="subjects-guide-heading">Learn → notice → practise</h2>
+          <ol>
+            <li><strong>Choose a skill</strong><span>Start with the area you want to understand better.</span></li>
+            <li><strong>Open a topic</strong><span>Read what it is and how to apply it on the MET.</span></li>
+            <li><strong>Take it to Practice</strong><span>Use a focused exercise when you are ready to try.</span></li>
+          </ol>
+        </aside>
       </header>
+
+      <div className="student-subjects-section-heading">
+        <div>
+          <span className="student-panel-kicker">Choose a skill</span>
+          <h2>What do you want to work on?</h2>
+        </div>
+        <p>Each subject includes explanations and topic-by-topic guidance. You can return here whenever you need to refresh a strategy.</p>
+      </div>
+
+      <div className="student-subjects-grid">
+        {SUBJECTS.map(subject => {
+          const SubjectIcon = subject.icon;
+          const firstTopic = subject.units[0]?.title;
+          return (
+            <article key={subject.id} className="student-subject-card">
+              <button type="button" className="student-subject-card-action" aria-label={`Open ${subject.name} topics`} onClick={() => openSubject(subject)} />
+              <div className="student-subject-card-icon" aria-hidden="true"><SubjectIcon size={22} /></div>
+              <div>
+                <div className="student-subject-card-link"><h2>{subject.name}</h2><Icon.arrowR size={16} aria-hidden="true" /></div>
+                <p>{subject.description}</p>
+                <div className="student-subject-card-focus">
+                  <strong>Focus</strong>
+                  <span>{subject.focus}</span>
+                </div>
+                <div className="student-subject-card-meta">
+                  <span>{subject.units.length} topics</span>
+                  <span>Starts with: {firstTopic}</span>
+                </div>
+                <span className="student-subject-card-units-link">Open {subject.name} reference →</span>
+              </div>
+            </article>
+          );
+        })}
+      </div>
 
       <section className="student-study-tips" aria-labelledby="study-tips-heading">
         <div className="student-study-tips-header">
@@ -143,38 +232,6 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
           ))}
         </div>
       </section>
-
-      <div className="student-subjects-grid">
-        {SUBJECTS.map(subject => {
-          const SubjectIcon = subject.icon;
-          return (
-            <article key={subject.id} className={`student-subject-card${subject.units ? ' is-clickable' : ''}`}>
-              <div className="student-subject-card-icon" aria-hidden="true"><SubjectIcon size={22} /></div>
-              <div>
-                {subject.units ? (
-                  <button
-                    type="button"
-                    className="student-subject-card-link"
-                    onClick={() => {
-                      setSelectedSubjectId(subject.id);
-                      setView('topics');
-                      onOpenSubject?.(subject.pageId || subject.id);
-                    }}
-                  >
-                    <h2>{subject.name}</h2><Icon.arrowR size={16} aria-hidden="true" />
-                  </button>
-                ) : <h2>{subject.name}</h2>}
-                <p>{subject.description}</p>
-                <div className="student-subject-card-focus">
-                  <strong>Focus</strong>
-                  <span>{subject.focus}</span>
-                </div>
-                {subject.units && <span className="student-subject-card-units-link">{subject.units.length} {subject.name} topics · Open subject</span>}
-              </div>
-            </article>
-          );
-        })}
-      </div>
     </div>
   );
 }
