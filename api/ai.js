@@ -14,8 +14,13 @@
  *   GEMINI_API_KEY / GROQ_API_KEY / OPENROUTER_API_KEY / NVIDIA_API_KEY
  *   (comma- or newline-separated for multiple keys)
  *
- * Optional model overrides (comma-separated, best-first priority):
- *   GEMINI_MODELS, OPENROUTER_MODELS, GROQ_MODELS, NVIDIA_MODELS
+ * Optional model overrides, resolved in this precedence order:
+ *   1. SINGULAR one-model override — GEMINI_MODEL / NVIDIA_MODEL /
+ *      OPENROUTER_MODEL / GROQ_MODEL (highest priority, tried first).
+ *   2. PLURAL best-first list — GEMINI_MODELS / NVIDIA_MODELS /
+ *      OPENROUTER_MODELS / GROQ_MODELS (comma-separated).
+ *   3. Curated defaults — used only when BOTH 1 and 2 are unset.
+ * For NVIDIA the singular is NVIDIA_MODEL; openai/ models stay excluded.
  * Cascade is globally ordered by MODEL_PRIORITY — best models across all providers
  * first. Each model is skipped if not in its provider's configured model list.
  */
@@ -43,11 +48,17 @@ function checkRateLimit(ip, max = 30, windowMs = 60_000) {
   return e.n <= max;
 }
 function allowedOrigin(req) {
-  const origin = req.headers['origin'] || '';
-  if (!origin) return true; // server-to-server — no Origin header
+  const origin = (req.headers['origin'] || '').toLowerCase();
+  // Local development (browser on the same machine) is always permitted.
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
+  // Server-to-server / internal calls carry no Origin header.
+  if (!origin) return true;
+  // Any other (foreign) origin is only allowed if it exactly matches the
+  // configured APP_ORIGIN. Fail closed when APP_ORIGIN is not set so the
+  // paid AI proxy cannot be abused from arbitrary websites.
   const allowed = env('APP_ORIGIN');
-  if (allowed) return origin === allowed || /^https?:\/\/localhost(:\d+)?$/.test(origin);
-  return true; // open until APP_ORIGIN is configured
+  if (!allowed) return false;
+  return origin === allowed.toLowerCase();
 }
 
 const GEMINI_DEFAULT_MODELS = [
@@ -101,12 +112,21 @@ const NVIDIA_DEFAULT_MODELS = [
 
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
 
-const GEMINI_MODELS = parseList(env('GEMINI_MODELS')).length
-  ? parseList(env('GEMINI_MODELS')) : GEMINI_DEFAULT_MODELS;
-const OPENROUTER_MODELS = parseList(env('OPENROUTER_MODELS')).length
-  ? parseList(env('OPENROUTER_MODELS')) : OPENROUTER_DEFAULT_MODELS;
-const GROQ_MODELS = parseList(env('GROQ_MODELS')).length
-  ? parseList(env('GROQ_MODELS')) : GROQ_DEFAULT_MODELS;
+// A provider's models can be configured two ways: the singular env var
+// (e.g. GEMINI_MODEL — one model, highest priority) or the plural env var
+// (e.g. GEMINI_MODELS — comma-separated priority list). The singular override
+// is tried FIRST so a dashboard one-model override takes effect even when the
+// plural var already exists. Curated defaults are only used when NEITHER is
+// set, so an explicit config is never polluted with the fallback models.
+const resolveModels = (singularEnv, pluralEnv, defaults) => {
+  const single = env(singularEnv);
+  const list = parseList(env(pluralEnv));
+  if (!single && !list.length) return defaults;
+  return [...new Set([...(single ? [single] : []), ...list])];
+};
+const GEMINI_MODELS = resolveModels('GEMINI_MODEL', 'GEMINI_MODELS', GEMINI_DEFAULT_MODELS);
+const OPENROUTER_MODELS = resolveModels('OPENROUTER_MODEL', 'OPENROUTER_MODELS', OPENROUTER_DEFAULT_MODELS);
+const GROQ_MODELS = resolveModels('GROQ_MODEL', 'GROQ_MODELS', GROQ_DEFAULT_MODELS);
 /** fetch with an abort-backed timeout so a hung provider can't stall the function. */
 async function fetchT(url, init, ms = 12000) {
   const ctrl = new AbortController();
@@ -141,7 +161,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: { message: 'Missing "prompt"' } });
   }
   if (prompt.length > MAX_AI_PROMPT_CHARS) {
-    return res.status(400).json({ error: { message: `Prompt too long (max ${MAX_AI_PROMPT_CHARS.toLocaleString()} characters).` } });
+    return res.status(400).json({ error: { message: `Prompt too long (max ${MAX_AI_PROMPT_CHARS.toLocaleString('en-US')} characters).` } });
   }
   if (system && typeof system !== 'string') {
     return res.status(400).json({ error: { message: '"system" must be a string' } });
@@ -155,7 +175,10 @@ export default async function handler(req, res) {
   };
   const errors = [];
 
-  const geminiKeys = multiKeys('GEMINI_API_KEY');
+  // GEMINI_API_KEY_2 (and any _2/_3 suffixed key) is honored as a fallback so a
+  // rate-limited or exhausted primary key does not force the diagnostic to fall
+  // back to other providers.
+  const geminiKeys = [...new Set([...multiKeys('GEMINI_API_KEY'), ...multiKeys('GEMINI_API_KEY_2')])];
   const openrouterKeys = multiKeys('OPENROUTER_API_KEY');
   const groqKeys = multiKeys('GROQ_API_KEY');
   const nvidiaKeys = multiKeys('NVIDIA_API_KEY');
@@ -250,8 +273,13 @@ export default async function handler(req, res) {
   ];
   const configuredNvidiaModels = parseList(env('NVIDIA_MODELS'))
     .filter((model) => !/^openai\//i.test(model));
+  if (!configuredNvidiaModels.length && env('NVIDIA_MODEL')) configuredNvidiaModels.push(env('NVIDIA_MODEL'));
   const NVIDIA_MODELS = [...new Set([...configuredNvidiaModels, ...NVIDIA_DEFAULT_MODELS])];
+  // Respect the operator's explicit NVIDIA model order first (so a configured
+  // diagnostic-capable model is tried before the curated defaults), then the
+  // evidence/fast-curated defaults, then the full configured+default set.
   const nvidiaPriority = [...new Set([
+    ...configuredNvidiaModels,
     ...(isEvidenceHeavy ? NVIDIA_EVIDENCE_MODELS : NVIDIA_FAST_MODELS),
     ...NVIDIA_MODELS,
   ])];
@@ -286,7 +314,7 @@ export default async function handler(req, res) {
     ['llama-4-scout-17b-16e-instruct',              'groq'],
   ];
   const MODEL_PRIORITY = [
-    ['gemini-2.5-flash', 'gemini'],
+    [GEMINI_MODELS[0], 'gemini'],
     ...nvidiaPriority.map((model) => [model, 'nvidia']),
     ...geminiFallback.map((model) => [model, 'gemini']),
     ...openRouterFallback.map((model) => [model, 'openrouter']),
