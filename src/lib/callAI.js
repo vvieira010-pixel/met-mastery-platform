@@ -21,6 +21,10 @@ export async function callAI(prompt, { max_tokens = 2048, system, temperature = 
   }
 
   let r;
+  // Diagnostic and exercise prompts explicitly request JSON. Tell compatible
+  // providers that they must return an object, while leaving free-form
+  // transcript summaries untouched.
+  const wantsJson = /(?:return|respond|output)\s+(?:only\s+)?(?:valid\s+)?json\b/i.test(prompt);
   try {
     r = await fetch('/api/ai', {
       method: 'POST',
@@ -31,6 +35,7 @@ export async function callAI(prompt, { max_tokens = 2048, system, temperature = 
         max_tokens,
         temperature,
         preferredProvider,
+        ...(wantsJson ? { response_format: { type: 'json_object' } } : {}),
       }),
     });
   } catch (netErr) {

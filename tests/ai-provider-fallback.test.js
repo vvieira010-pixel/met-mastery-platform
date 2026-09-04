@@ -7,11 +7,11 @@ process.env.NVIDIA_API_KEY = 'test-nvidia-key';
 process.env.GROQ_API_KEY = 'test-groq-key';
 process.env.GEMINI_MODELS = 'gemini-2.5-flash';
 process.env.OPENROUTER_MODELS = 'openrouter/free';
-process.env.NVIDIA_MODELS = 'openai/gpt-oss-120b';
+process.env.NVIDIA_MODELS = 'deepseek-ai/deepseek-v4-flash,meta/llama-3.3-70b-instruct';
 process.env.GROQ_MODELS = 'llama-3.3-70b-versatile';
 process.env.APP_ORIGIN = 'https://app.example.test';
 
-const { default: handler } = await import('../api/ai.js');
+const { default: handler, MAX_AI_PROMPT_CHARS } = await import('../api/ai.js');
 
 function response(status, body) {
   const jsonBody = typeof body === 'string' ? body : JSON.stringify(body);
@@ -92,7 +92,56 @@ test('falls through provider failures and returns the first successful response'
   await handler(request('fallback-test'), res);
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.content[0].text, 'Groq fallback OK');
-  assert.deepEqual(calls, ['gemini', 'openrouter', 'nvidia', 'groq']);
+  assert.equal(calls[0], 'gemini');
+  assert.equal(calls[1], 'nvidia');
+  assert.ok(calls.slice(1, -2).every((provider) => provider === 'nvidia'));
+  assert.deepEqual(calls.slice(-2), ['openrouter', 'groq']);
+});
+
+test('puts NVIDIA second and uses its evidence model for a large diagnostic request', async () => {
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    const provider = providerFor(url);
+    const body = JSON.parse(init.body);
+    calls.push({ provider, model: body.model || null });
+    if (provider === 'gemini') return response(503, { error: { message: 'temporarily unavailable' } });
+    if (provider === 'nvidia') return response(200, { choices: [{ message: { content: 'NVIDIA diagnostic OK' } }] });
+    return response(503, { error: { message: 'should not be reached' } });
+  };
+
+  const res = result();
+  await handler(request('nvidia-evidence-priority', { prompt: 'evidence '.repeat(3_000), max_tokens: 6_000 }), res);
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.content[0].text, 'NVIDIA diagnostic OK');
+  assert.deepEqual(calls, [
+    { provider: 'gemini', model: null },
+    { provider: 'nvidia', model: 'deepseek-ai/deepseek-v4-flash' },
+  ]);
+});
+
+test('rejects malformed JSON and continues to the next model in the cascade', async () => {
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    const provider = providerFor(url);
+    const body = JSON.parse(init.body);
+    calls.push({ provider, body });
+    if (provider === 'gemini') {
+      assert.equal(body.generationConfig.responseMimeType, 'application/json');
+      return response(200, { candidates: [{ content: { parts: [{ text: 'I cannot format this.' }] } }] });
+    }
+    if (provider === 'nvidia') {
+      assert.deepEqual(body.response_format, { type: 'json_object' });
+      return response(200, { choices: [{ message: { content: '{"skillDiagnosis":"ok"}' } }] });
+    }
+    return response(503, {});
+  };
+
+  const res = result();
+  await handler(request('json-fallback-test', { prompt: 'Return only valid JSON with the diagnosis.' }), res);
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.content[0].text, '{"skillDiagnosis":"ok"}');
+  assert.equal(calls[0].provider, 'gemini');
+  assert.equal(calls[1].provider, 'nvidia');
 });
 
 test('does not return upstream provider error bodies', async () => {
@@ -102,4 +151,24 @@ test('does not return upstream provider error bodies', async () => {
   assert.equal(res.statusCode, 502);
   assert.match(res.body.error.message, /Groq\/llama-3\.3-70b-versatile: HTTP 401/);
   assert.doesNotMatch(res.body.error.message, /secret test-groq-key|account detail/);
+});
+
+test('accepts long diagnostic prompts and retains a bounded request guard', async () => {
+  const receivedPrompts = [];
+  globalThis.fetch = async (_url, init) => {
+    receivedPrompts.push(JSON.parse(init.body).contents?.[0]?.parts?.[0]?.text || '');
+    return response(200, { candidates: [{ content: { parts: [{ text: 'Long diagnostic OK' }] } }] });
+  };
+
+  const longDiagnosticPrompt = 'student evidence '.repeat(1_500); // 25,500 characters
+  const accepted = result();
+  await handler(request('long-diagnostic-test', { prompt: longDiagnosticPrompt, preferredProvider: 'gemini' }), accepted);
+  assert.equal(accepted.statusCode, 200);
+  assert.equal(accepted.body.content[0].text, 'Long diagnostic OK');
+  assert.equal(receivedPrompts[0], longDiagnosticPrompt);
+
+  const tooLong = result();
+  await handler(request('too-long-diagnostic-test', { prompt: 'x'.repeat(MAX_AI_PROMPT_CHARS + 1) }), tooLong);
+  assert.equal(tooLong.statusCode, 400);
+  assert.match(tooLong.body.error.message, /120,000 characters/);
 });

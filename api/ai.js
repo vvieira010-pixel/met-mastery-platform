@@ -11,11 +11,11 @@
  * runtime regardless of prefix), but you should drop the VITE_ prefix in the
  * Vercel dashboard so the keys stop being inlined into the client build.
  *
- *   GEMINI_API_KEY / GROQ_API_KEY / OPENROUTER_API_KEY / OPENAI_API_KEY /
- *   ANTHROPIC_API_KEY   (comma- or newline-separated for multiple keys)
+ *   GEMINI_API_KEY / GROQ_API_KEY / OPENROUTER_API_KEY / NVIDIA_API_KEY
+ *   (comma- or newline-separated for multiple keys)
  *
  * Optional model overrides (comma-separated, best-first priority):
- *   OPENAI_MODELS, ANTHROPIC_MODELS, GEMINI_MODELS, OPENROUTER_MODELS, GROQ_MODELS
+ *   GEMINI_MODELS, OPENROUTER_MODELS, GROQ_MODELS, NVIDIA_MODELS
  * Cascade is globally ordered by MODEL_PRIORITY — best models across all providers
  * first. Each model is skipped if not in its provider's configured model list.
  */
@@ -24,6 +24,12 @@ const env = (name) => process.env[name] || '';
 const multiKeys = (name) =>
   String(env(name) || '').split(/[,\n]/).map((s) => s.trim()).filter(Boolean)
     .filter((k, i, a) => a.indexOf(k) === i);
+
+// Diagnostics can include a full class transcript plus detailed teacher notes.
+// 8,000 characters prevented that normal workflow from ever reaching a model.
+// This is intentionally well below the 5 MB HTTP body guard, but comfortably
+// supports long, evidence-based diagnostic prompts (roughly 30,000 English tokens).
+export const MAX_AI_PROMPT_CHARS = 120_000;
 
 // ── Rate limit (best-effort per warm instance; set APP_ORIGIN in Vercel dashboard) ──
 const _rl = new Map();
@@ -55,20 +61,6 @@ const GEMINI_DEFAULT_MODELS = [
   'gemma-4-26b-a4b-it',
 ];
 
-const OPENAI_DEFAULT_MODELS = [
-  'gpt-4.1',
-  'gpt-4.1-mini',
-  'gpt-4o',
-  'gpt-4o-mini',
-  'gpt-4.1-nano',
-];
-
-const ANTHROPIC_DEFAULT_MODELS = [
-  'claude-sonnet-4-6',
-  'claude-3-5-haiku-latest',
-  'claude-3-haiku-20240307',
-];
-
 const OPENROUTER_DEFAULT_MODELS = [
   'openrouter/free',
   'deepseek/deepseek-chat-v3-0324:free',
@@ -93,8 +85,18 @@ const GROQ_DEFAULT_MODELS = [
 ];
 
 const NVIDIA_DEFAULT_MODELS = [
-  'openai/gpt-oss-120b',
-  'openai/gpt-oss-20b',
+  // Hosted NVIDIA NIM text models. Keep this list provider-specific so
+  // NVIDIA can carry diagnostics even when the other providers are unavailable.
+  'deepseek-ai/deepseek-v4-flash',
+  'moonshotai/kimi-k3',
+  'nvidia/nemotron-3.5-lightning-30b-a3b',
+  'meta/muse-glimmer-30b',
+  'google/gemma-4-31b-it',
+  'meta/llama-3.3-70b-instruct',
+  'meta/llama-3.1-70b-instruct',
+  'meta/llama-3.1-8b-instruct',
+  'meta/llama-3.2-3b-instruct',
+  'meta/llama-3.2-1b-instruct',
 ];
 
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
@@ -105,13 +107,8 @@ const OPENROUTER_MODELS = parseList(env('OPENROUTER_MODELS')).length
   ? parseList(env('OPENROUTER_MODELS')) : OPENROUTER_DEFAULT_MODELS;
 const GROQ_MODELS = parseList(env('GROQ_MODELS')).length
   ? parseList(env('GROQ_MODELS')) : GROQ_DEFAULT_MODELS;
-const ANTHROPIC_MODELS = parseList(env('ANTHROPIC_MODELS')).length
-  ? parseList(env('ANTHROPIC_MODELS')) : ANTHROPIC_DEFAULT_MODELS;
-const OPENAI_MODELS = parseList(env('OPENAI_MODELS')).length
-  ? parseList(env('OPENAI_MODELS')) : OPENAI_DEFAULT_MODELS;
-
 /** fetch with an abort-backed timeout so a hung provider can't stall the function. */
-async function fetchT(url, init, ms = 8000) {
+async function fetchT(url, init, ms = 12000) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try {
@@ -138,29 +135,32 @@ export default async function handler(req, res) {
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
   const {
     prompt, system, max_tokens = 2048, temperature = 0.3, preferredProvider = null,
+    response_format = null,
   } = body || {};
   if (!prompt || typeof prompt !== 'string') {
     return res.status(400).json({ error: { message: 'Missing "prompt"' } });
   }
-  if (prompt.length > 8000) {
-    return res.status(400).json({ error: { message: 'Prompt too long (max 8000 chars).' } });
+  if (prompt.length > MAX_AI_PROMPT_CHARS) {
+    return res.status(400).json({ error: { message: `Prompt too long (max ${MAX_AI_PROMPT_CHARS.toLocaleString()} characters).` } });
   }
   if (system && typeof system !== 'string') {
     return res.status(400).json({ error: { message: '"system" must be a string' } });
   }
 
   const sys = system || 'You are a helpful MET English teaching assistant.';
+  const expectsJson = Boolean(response_format) || /(?:return|respond|output)\s+(?:only\s+)?(?:valid\s+)?json\b/i.test(`${sys}\n${prompt}`);
+  const isJsonLike = (text) => {
+    const s = String(text || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+    return (s.startsWith('{') && s.includes('}')) || (s.startsWith('[') && s.includes(']')) || (s.includes('{') && s.includes('}'));
+  };
   const errors = [];
 
   const geminiKeys = multiKeys('GEMINI_API_KEY');
   const openrouterKeys = multiKeys('OPENROUTER_API_KEY');
   const groqKeys = multiKeys('GROQ_API_KEY');
   const nvidiaKeys = multiKeys('NVIDIA_API_KEY');
-  const anthropicKeys = multiKeys('ANTHROPIC_API_KEY');
-  const openaiKeys = multiKeys('OPENAI_API_KEY');
-
   if (!geminiKeys.length && !openrouterKeys.length && !groqKeys.length &&
-      !anthropicKeys.length && !openaiKeys.length && !nvidiaKeys.length) {
+      !nvidiaKeys.length) {
     return res.status(503).json({ error: { message: 'No AI provider keys configured on the server.' } });
   }
 
@@ -168,6 +168,7 @@ export default async function handler(req, res) {
     try {
       const isGemma = /^gemma/i.test(model);
       const gen = { temperature, maxOutputTokens: max_tokens };
+      if (expectsJson) gen.responseMimeType = 'application/json';
       if (/2\.5/.test(model) && /flash/i.test(model)) gen.thinkingConfig = { thinkingBudget: 0 };
       const reqBody = isGemma
         ? { contents: [{ parts: [{ text: `${sys}\n\n${prompt}` }] }], generationConfig: gen }
@@ -179,7 +180,8 @@ export default async function handler(req, res) {
       if (r.ok) {
         const data = await r.json();
         const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-        if (text) return { content: [{ text }] };
+        if (text && (!expectsJson || isJsonLike(text))) return { content: [{ text }] };
+        if (text && expectsJson) errors.push(`Gemini/${model}: non-JSON response`);
         errors.push(`Gemini/${model}: empty (${data?.candidates?.[0]?.finishReason || 'no candidates'})`);
       } else {
         errors.push(`Gemini/${model}: HTTP ${r.status}`);
@@ -191,15 +193,29 @@ export default async function handler(req, res) {
   async function tryOpenAICompat(url, key, model, extraHeaders = {}, label) {
     const tag = `${label || 'provider'}/${model}`;
     try {
-      const r = await fetchT(url, {
+      const requestBody = { model, temperature, max_tokens, messages: [{ role: 'system', content: sys }, { role: 'user', content: prompt }] };
+      if (expectsJson) requestBody.response_format = { type: 'json_object' };
+      let r = await fetchT(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}`, ...extraHeaders },
-        body: JSON.stringify({ model, temperature, max_tokens, messages: [{ role: 'system', content: sys }, { role: 'user', content: prompt }] }),
+        body: JSON.stringify(requestBody),
       });
+      // Some older OpenAI-compatible gateways reject response_format. Retry
+      // that same model once without the hint before moving to the next model.
+      if (!r.ok && expectsJson && (r.status === 400 || r.status === 422)) {
+        const fallbackBody = { ...requestBody };
+        delete fallbackBody.response_format;
+        r = await fetchT(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}`, ...extraHeaders },
+          body: JSON.stringify(fallbackBody),
+        });
+      }
       if (r.ok) {
         const data = await r.json();
         const text = data?.choices?.[0]?.message?.content || '';
-        if (text) return { content: [{ text }] };
+        if (text && (!expectsJson || isJsonLike(text))) return { content: [{ text }] };
+        if (text && expectsJson) errors.push(`${tag}: non-JSON response`);
         errors.push(`${tag}: empty response`);
       } else {
         errors.push(`${tag}: HTTP ${r.status}`);
@@ -208,74 +224,79 @@ export default async function handler(req, res) {
     return null;
   }
 
-  async function tryAnthropic(key, model) {
-    try {
-      const r = await fetchT('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({ model: model || 'claude-sonnet-4-6', max_tokens, temperature, system: sys, messages: [{ role: 'user', content: prompt }] }),
-      });
-      if (r.ok) return r.json();
-      errors.push(`Anthropic/${model}: HTTP ${r.status}`);
-    } catch (e) { errors.push(`Anthropic/${model}: ${e.message}`); }
-    return null;
-  }
-
-  // Global model priority: Gemini first (fast & built-in), then OpenRouter, Groq, OpenAI, Anthropic
-  const MODEL_PRIORITY = [
-    // ── Gemini: fast, reliable, low-latency ──
-    ['gemini-2.5-flash',                            'gemini'],
-    ['gemini-2.5-flash-lite',                       'gemini'],
-    ['gemini-2.5-pro',                              'gemini'],
-    ['gemini-2.0-flash',                            'gemini'],
-    ['gemini-2.0-flash-lite',                       'gemini'],
-    ['gemini-flash-latest',                         'gemini'],
-    ['gemma-4-31b-it',                              'gemini'],
-    ['gemma-4-26b-a4b-it',                          'gemini'],
-    // ── OpenRouter ──
-    ['deepseek/deepseek-r1-0528:free',              'openrouter'],
-    ['deepseek/deepseek-chat-v3-0324:free',         'openrouter'],
-    ['nvidia/nemotron-3-ultra-550b-a55b:free',      'openrouter'],
-    ['meta-llama/llama-3.3-70b-instruct:free',      'openrouter'],
-    ['qwen/qwen3-235b-a22b:free',                   'openrouter'],
-    ['meta-llama/llama-4-scout:free',               'openrouter'],
-    ['qwen/qwen-2.5-72b-instruct:free',             'openrouter'],
-    ['google/gemma-3-27b-it:free',                  'openrouter'],
-    ['nvidia/llama-3.1-nemotron-70b-instruct:free', 'openrouter'],
-    ['mistralai/mistral-small-3.1-24b-instruct:free','openrouter'],
-    ['nvidia/nemotron-3-nano-30b-a3b:free',         'openrouter'],
-    ['openrouter/free',                             'openrouter'],
-    // ── NVIDIA: fast open models ──
-    ['openai/gpt-oss-120b',                         'nvidia'],
-    ['openai/gpt-oss-20b',                          'nvidia'],
-    // ── Groq: speed-focused backup ──
+  // The diagnostic's first stage carries the long transcript and returns the
+  // core assessment. Its later feedback/homework stages are much smaller.
+  // Put NVIDIA immediately after Gemini and select its models for the job,
+  // instead of treating every request as the same generic chat completion.
+  const isEvidenceHeavy = (prompt.length + sys.length) > 16_000 || max_tokens > 3_500;
+  const NVIDIA_EVIDENCE_MODELS = [
+    'deepseek-ai/deepseek-v4-flash',
+    'moonshotai/kimi-k3',
+    'nvidia/nemotron-3.5-lightning-30b-a3b',
+    'meta/muse-glimmer-30b',
+    'google/gemma-4-31b-it',
+    'meta/llama-3.3-70b-instruct',
+    'meta/llama-3.1-70b-instruct',
+  ];
+  const NVIDIA_FAST_MODELS = [
+    'nvidia/nemotron-3.5-lightning-30b-a3b',
+    'meta/llama-3.3-70b-instruct',
+    'google/gemma-4-31b-it',
+    'meta/llama-3.1-8b-instruct',
+    'meta/llama-3.2-3b-instruct',
+    'meta/llama-3.2-1b-instruct',
+  ];
+  const configuredNvidiaModels = parseList(env('NVIDIA_MODELS'))
+    .filter((model) => !/^openai\//i.test(model));
+  const NVIDIA_MODELS = [...new Set([...configuredNvidiaModels, ...NVIDIA_DEFAULT_MODELS])];
+  const nvidiaPriority = [...new Set([
+    ...(isEvidenceHeavy ? NVIDIA_EVIDENCE_MODELS : NVIDIA_FAST_MODELS),
+    ...NVIDIA_MODELS,
+  ])];
+  const geminiFallback = [
+    'gemini-2.5-pro',
+    'gemini-2.5-flash-lite',
+    'gemini-2.0-flash',
+    'gemini-2.0-flash-lite',
+    'gemini-flash-latest',
+    'gemma-4-31b-it',
+    'gemma-4-26b-a4b-it',
+  ];
+  const openRouterFallback = [
+    'deepseek/deepseek-r1-0528:free',
+    'deepseek/deepseek-chat-v3-0324:free',
+    'nvidia/nemotron-3-ultra-550b-a55b:free',
+    'meta-llama/llama-3.3-70b-instruct:free',
+    'qwen/qwen3-235b-a22b:free',
+    'meta-llama/llama-4-scout:free',
+    'qwen/qwen-2.5-72b-instruct:free',
+    'google/gemma-3-27b-it:free',
+    'nvidia/llama-3.1-nemotron-70b-instruct:free',
+    'mistralai/mistral-small-3.1-24b-instruct:free',
+    'nvidia/nemotron-3-nano-30b-a3b:free',
+    'openrouter/free',
+  ];
+  const groqFallback = [
     ['llama-3.3-70b-versatile',                     'groq'],
     ['qwen3-32b',                                   'groq'],
     ['deepseek-r1-distill-70b',                     'groq'],
     ['llama-3.1-8b-instant',                        'groq'],
     ['llama-4-scout-17b-16e-instruct',              'groq'],
-    // ── OpenAI: fallback ──
-    ['gpt-4.1',                                     'openai'],
-    ['gpt-4.1-mini',                                'openai'],
-    ['gpt-4o',                                      'openai'],
-    ['gpt-4o-mini',                                 'openai'],
-    ['gpt-4.1-nano',                                'openai'],
-    // ── Anthropic: last resort ──
-    ['claude-sonnet-4-6',                           'anthropic'],
-    ['claude-3-5-haiku-latest',                     'anthropic'],
-    ['claude-3-haiku-20240307',                     'anthropic'],
+  ];
+  const MODEL_PRIORITY = [
+    ['gemini-2.5-flash', 'gemini'],
+    ...nvidiaPriority.map((model) => [model, 'nvidia']),
+    ...geminiFallback.map((model) => [model, 'gemini']),
+    ...openRouterFallback.map((model) => [model, 'openrouter']),
+    ...groqFallback,
   ];
 
-  const NVIDIA_MODELS = parseList(env('NVIDIA_MODELS')).length
-    ? parseList(env('NVIDIA_MODELS')) : NVIDIA_DEFAULT_MODELS;
-  const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, anthropic: anthropicKeys, openai: openaiKeys, nvidia: nvidiaKeys };
-  const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), anthropic: new Set(ANTHROPIC_MODELS), openai: new Set(OPENAI_MODELS), nvidia: new Set(NVIDIA_MODELS) };
+  const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, nvidia: nvidiaKeys };
+  const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), nvidia: new Set(NVIDIA_MODELS) };
   const providerRunner = {
     gemini: (k, m) => ({ id: 'gemini', run: () => tryGemini(k, m) }),
     groq: (k, m) => ({ id: 'groq', run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m, {}, 'Groq') }),
     openrouter: (k, m) => ({ id: 'openrouter', run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }, 'OpenRouter') }),
-    anthropic: (k, m) => ({ id: 'anthropic', run: () => tryAnthropic(k, m) }),
-    openai: (k, m) => ({ id: 'openai', run: () => tryOpenAICompat('https://api.openai.com/v1/chat/completions', k, m, {}, 'OpenAI') }),
     nvidia: (k, m) => ({ id: 'nvidia', run: () => tryOpenAICompat('https://integrate.api.nvidia.com/v1/chat/completions', k, m, {}, 'Nvidia') }),
   };
 
@@ -296,7 +317,7 @@ export default async function handler(req, res) {
 
   // Stop starting new attempts once an overall budget is used up
   // so the function finishes inside serverless time limits.
-  const deadline = Date.now() + 20_000;
+  const deadline = Date.now() + 30_000;
   for (const a of ordered) {
     if (Date.now() > deadline) break;
     const result = await a.run();
