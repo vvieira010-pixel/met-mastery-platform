@@ -1,133 +1,140 @@
-/* The public experience shares the product palette without changing its layout. */
+/* Warm clinical editorial palette — visual-only overrides for the public landing page. */
 .landing-preview {
-  background: #FFFFFF;
-  color: #1F2041;
+  --landing-ink: #173842;
+  --landing-ink-deep: #102E37;
+  --landing-teal: #287C78;
+  --landing-teal-hover: #1F6865;
+  --landing-paper: #F7F5EF;
+  --landing-mist: #DFECE8;
+  --landing-amber: #E5A84A;
+  --landing-body: #43575B;
+  background: var(--landing-paper);
+  color: var(--landing-ink);
 }
 
-.site-header,
-.hero,
-.learning-loop,
-footer,
-.workspace-nav {
-  background: #1F2041;
-}
-
-.hero .eyebrow,
-.hero h1 span,
-.hero-copy > p:not(.eyebrow),
-.hero-copy ul,
-.learning-loop .eyebrow,
-.loop-lead,
-.loop-steps p,
-.audience-cards article:last-child > p:not(.eyebrow),
-.site-header nav a,
-.signin-link,
-footer {
-  color: #D9F0F1;
-}
-
-.header-cta,
-.hero-primary,
-.final-cta a,
-.primary-button,
-.next-button,
-.task-action button {
-  background: #19647E;
-}
-
-.header-cta:hover,
-.hero-primary:hover,
-.final-cta a:hover,
-.primary-button:hover,
-.next-button:hover,
-.task-action button:hover {
-  background: #0F4C61;
-}
-
-.audience-picker,
-.method-section,
-.audience-cards,
-.landing-preview .product-proof {
-  background: #FFFFFF;
-}
-
-.final-cta {
-  background: #19647E;
-}
-
-.workspace-frame,
-.diagnosis-card,
-.next-task,
-.upcoming-list article,
-.question-area label,
-.method-grid article,
-.audience-cards article,
-.audience-picker button {
-  border-color: rgba(17, 157, 164, 0.30);
-}
-
-.next-task.started,
-.question-area .selected-answer,
-.audience-picker button.selected {
-  border-color: #FFC857;
-  box-shadow: 0 0 0 3px rgba(255, 200, 87, 0.22);
-}
-
-.next-task.started,
-.question-area .selected-answer,
-.task-symbol,
-.writing-dot,
-.hero-dashboard > p span {
-  background: #FFC857;
-}
-
-.landing-preview a:focus-visible,
-.landing-preview button:focus-visible,
-.landing-preview input:focus-visible,
-.landing-preview [tabindex]:focus-visible {
-  outline-color: #FFC857;
-}
-
-/* Coolors palette: #1F2041 #4B3F72 #FFC857 #119DA4 #19647E */
+/* One quiet, authoritative dark field; the previous blue-on-blue gradient
+   made the hero read as a dashboard rather than a coaching invitation. */
 .landing-preview .site-header,
 .landing-preview .hero,
 .landing-preview .learning-loop,
 .landing-preview footer,
+.landing-preview .workspace-nav,
 .landing-preview .audience-cards article:last-child {
-  background-color: #1F2041;
+  background-color: var(--landing-ink);
 }
+
 .landing-preview .hero {
-  background-image: radial-gradient(circle at 78% 18%, rgb(17 157 164 / 24%), transparent 30%), linear-gradient(135deg, #1F2041 0%, #19647E 100%);
+  background-image:
+    radial-gradient(circle at 8% 0%, rgb(229 168 74 / 11%), transparent 30%),
+    radial-gradient(circle at 88% 14%, rgb(104 191 177 / 10%), transparent 28%);
 }
-.landing-preview .header-cta,
-.landing-preview .hero-primary,
-.landing-preview .final-cta a,
-.landing-preview .audience-cards a {
-  background: #19647E;
+
+.landing-preview .hero h1,
+.landing-preview .learning-loop h2,
+.landing-preview .learning-loop h3,
+.landing-preview .audience-cards article:last-child h2 {
+  color: #FFFFFF;
 }
-.landing-preview .header-cta:hover,
-.landing-preview .hero-primary:hover,
-.landing-preview .final-cta a:hover,
-.landing-preview .audience-cards a:hover {
-  background: #0F4C61;
+
+.landing-preview .hero h1 span { color: #F2C36A; }
+
+/* The three-step loop sits on the darkest surface.  These direct rules keep
+   its labels, headings, and supporting copy readable if earlier component
+   styles become more specific. */
+.landing-preview .learning-loop .loop-steps small {
+  color: #9BD9CF !important;
 }
+
+.landing-preview .learning-loop .loop-steps h3 {
+  color: #FFFFFF !important;
+}
+
+.landing-preview .learning-loop .loop-steps p {
+  color: #D7E6E1 !important;
+}
+
 .landing-preview .hero .eyebrow,
-.landing-preview .hero h1 span,
 .landing-preview .hero-copy > p:not(.eyebrow),
 .landing-preview .hero-copy ul,
 .landing-preview .hero-copy li::before,
 .landing-preview .learning-loop,
 .landing-preview .loop-lead,
-.landing-preview footer {
-  color: #D9F0F1;
+.landing-preview .loop-steps p,
+.landing-preview .site-header nav a,
+.landing-preview .signin-link,
+.landing-preview footer,
+.landing-preview .audience-cards article:last-child > p:not(.eyebrow) {
+  color: #D7E6E1;
 }
+
+.landing-preview .hero-proof-pills { background: rgb(255 255 255 / 9%); color: #CDE7DF; }
+
+.landing-preview .header-cta,
+.landing-preview .hero-primary,
+.landing-preview .final-cta a,
+.landing-preview .primary-button,
+.landing-preview .next-button,
+.landing-preview .task-action button,
+.landing-preview .audience-cards a {
+  background: var(--landing-teal);
+  color: #FFFFFF;
+}
+
+.landing-preview .header-cta:hover,
+.landing-preview .hero-primary:hover,
+.landing-preview .final-cta a:hover,
+.landing-preview .primary-button:hover,
+.landing-preview .next-button:hover,
+.landing-preview .task-action button:hover,
+.landing-preview .audience-cards a:hover { background: var(--landing-teal-hover); }
+
+.landing-preview .hero-secondary { border-color: rgb(215 230 225 / 48%); color: #FFFFFF; }
+
 .landing-preview .audience-picker,
-.landing-preview .method-section {
-  background: #FFF8E7;
+.landing-preview .method-section { background: var(--landing-paper); }
+
+.landing-preview .skills-strip,
+.landing-preview .product-proof,
+.landing-preview .audience-cards { background: #FFFFFF; }
+
+.landing-preview .method-intro > p:not(.eyebrow),
+.landing-preview .method-grid p,
+.landing-preview .educator-section > div:last-child > p:not(.eyebrow),
+.landing-preview .policy-grid p { color: var(--landing-body); }
+
+.landing-preview .method-grid small,
+.landing-preview .loop-steps small,
+.landing-preview .eyebrow,
+.landing-preview .proof-intro h2 span,
+.landing-preview .educator-points span:first-letter { color: var(--landing-teal); }
+
+.landing-preview .workspace-frame,
+.landing-preview .diagnosis-card,
+.landing-preview .next-task,
+.landing-preview .upcoming-list article,
+.landing-preview .question-area label,
+.landing-preview .method-grid article,
+.landing-preview .audience-cards article,
+.landing-preview .audience-picker button { border-color: rgb(40 124 120 / 22%); }
+
+/* Amber is a small signal, not a second brand color. */
+.landing-preview .next-task.started,
+.landing-preview .question-area .selected-answer,
+.landing-preview .audience-picker button.selected {
+  border-color: var(--landing-amber);
+  box-shadow: 0 0 0 3px rgb(229 168 74 / 19%);
 }
-.landing-preview .final-cta {
-  background: #4B3F72;
-}
-.landing-preview .final-cta > p:not(.eyebrow) {
-  color: #FFF8E7;
-}
+
+.landing-preview .next-task.started,
+.landing-preview .question-area .selected-answer,
+.landing-preview .task-symbol,
+.landing-preview .writing-dot,
+.landing-preview .hero-dashboard > p span { background: #F7E3BA; }
+
+.landing-preview .final-cta { background: var(--landing-ink-deep); }
+.landing-preview .final-cta > p:not(.eyebrow) { color: #D7E6E1; }
+
+.landing-preview a:focus-visible,
+.landing-preview button:focus-visible,
+.landing-preview input:focus-visible,
+.landing-preview [tabindex]:focus-visible { outline-color: var(--landing-amber); }
