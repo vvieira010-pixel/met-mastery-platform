@@ -53,3 +53,8 @@
 .landing-preview .footer-contact{display:flex;align-items:center;gap:18px;margin-left:auto;margin-right:24px}.landing-preview .footer-contact a{display:inline-flex;align-items:center;gap:7px;color:#BFDBF7;text-decoration:none;font-size:11px}.landing-preview .footer-contact a:hover{color:#fff}.landing-preview .footer-contact svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.landing-preview .footer-contact .icon-fill{fill:currentColor;stroke:none}@media(max-width:850px){.landing-preview .footer-contact{margin:0;flex-wrap:wrap;gap:12px}}
 .landing-preview .callout{color:#314F56;font-weight:500}.landing-preview .callout b{color:#022B3A;font-weight:800}.landing-preview .callout-task,.landing-preview .callout-feedback{color:#314F56}.landing-preview .callout::after,.landing-preview .callout::before{background:#087887}
 .landing-preview *{border-radius:0!important}
+
+/* Keep account access available before a visitor opens the mobile menu. */
+@media (max-width:850px){
+  .site-header .signin-link{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;color:#fff;font-weight:700}
+}

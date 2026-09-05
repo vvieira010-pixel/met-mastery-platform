@@ -1275,3 +1275,16 @@ body {
 .lp-root .lp-submit:hover:not(:disabled) { background: #20A7B3; }
 .lp-root [style*="color: 'rgba(255, 255, 255, 0.65)'"] { color: #D5E3E7!important; }
 .lp-root * { border-radius: 0!important; }
+
+/* The sign-in form needs usable field width on a narrow phone. */
+@media (max-width: 520px) {
+  .lp-root { align-items: flex-start; padding: 0; overflow-y: auto; }
+  .lp-root .main-wrapper {
+    min-height: 100dvh;
+    max-width: none;
+    padding: 1.25rem;
+    border: 0;
+    box-shadow: none;
+  }
+  .lp-root .form-section { padding: 1.5rem; }
+}

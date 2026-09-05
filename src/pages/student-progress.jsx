@@ -330,47 +330,6 @@ export default function StudentProgress({ student, "data-testid": testId = 'stud
             );
           })()}
 
-          {sorted.length > 1 && (
-            <section className="student-panel cursor-default">
-              <div className="student-panel-head">
-                <div><span className="student-panel-kicker">Compare by date</span><h2>Progress history</h2></div>
-              </div>
-              <div className="student-history-list">
-                {sorted.map(dx => {
-                  const snap = asArray(dx?.content?.section_snapshot).filter(s => s.evaluated || Number(s.score_0_80) > 0);
-                  if (snap.length === 0) return null;
-                  return (
-                    <div key={dx.id} className="student-history-item items-start gap-4">
-                      <span className="text-xs text-muted shrink-0" style={{ minWidth: 80, paddingTop: 3 }}>
-                        {new Date(dx.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                      </span>
-                      <div className="flex-col-gap2 flex-1">
-                        {snap.map(s => {
-                          const stage = getProgressStage(s.score_0_80);
-                          return (
-                            <div key={s.section} className="flex-row-gap3">
-                              <span className="text-xs text-muted capitalize" style={{ minWidth: 88 }}>
-                                {s.section.replace(/_/g, ' ')}
-                              </span>
-                              <span className="text-xs font-semibold" style={{ color: 'var(--text)', minWidth: 148 }}>
-                                {stage.label}
-                              </span>
-                              <div className="flex gap-1" aria-label={`${stage.order} of 5 stages`}>
-                                {PROGRESS_STAGES.map(st => (
-                                  <div key={st.label} className="progress-dot"
-                                    style={{ background: st.order <= stage.order ? 'var(--accent)' : 'var(--border)' }} />
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
         </>
       )}
 
