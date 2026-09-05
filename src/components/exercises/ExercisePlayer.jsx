@@ -162,7 +162,8 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
       case 'blank':      return <FillBlank {...props} />;
       case 'short_answer':
       case 'short':
-      case 'speak':      return <ShortAnswer {...props} />;
+      case 'speak':
+      case 'speaking':   return <ShortAnswer {...props} />;
       case 'order_sentences':
       case 'ordering_sequencing':
       case 'order':      return <OrderSentences {...props} />;

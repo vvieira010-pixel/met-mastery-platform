@@ -206,8 +206,114 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       const studentGoal = await getStudentGoal(selectedStudent.id);
       const promptData = { student: selectedStudent, classEvent, classEvidence: normalizedEvidence, targetProfile, studentGoal };
       const getContent = (res) => (res?.content?.map(b => b.text || '').join('') || '');
+      const FAILED = { content: 'Not generated. Click Regen to retry.', approved: false, hidden: false, edited: false };
+      const feedbackPending = { content: 'Personalized student feedback is ready to generate. Click Regen if it does not appear.', approved: false, hidden: false, edited: false };
+      const fallbackDiagnosis = normalizeDiagnosisJson({}, normalizedEvidence);
+      let draftId = diagnosisId ? savedDiagnosis?.id : undefined;
+      const createSections = ({ diagnosis, feedback = feedbackPending, errorBank, homework = FAILED } = {}) => ({
+        skillDiagnosis:           { content: diagnosis.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
+        studentFeedback:          feedback,
+        homeworkRecommendation:   homework,
+        errorBankSuggestions:     { content: errorBank?.errorBankSuggestions ?? [],                                              approved: false, hidden: false, edited: false },
+        vocabGrammarTargets:      { content: errorBank?.vocabGrammarTargets ?? { vocabularyTargets: [], grammarTargets: [] },    approved: false, hidden: false, edited: false },
+        readinessCheck:           { content: { targetProfileSelected: !!targetProfile, evaluatedSkills, notEvaluatedSkills: [], diagnosisAllowed: true }, approved: true, hidden: false, edited: false },
+        classSummary:             { content: diagnosis.classSummary || '',                                                        approved: false, hidden: false, edited: false },
+        targetScoreRelevance:     { content: diagnosis.targetScoreRelevance || {},                                                approved: false, hidden: false, edited: false },
+        estimatedOverallScore:    { content: diagnosis.estimatedOverallScore || {},                                               approved: false, hidden: false, edited: false },
+        priorityDiagnosis:        { content: diagnosis.priorityDiagnosis || [],                                                   approved: false, hidden: false, edited: false },
+        nextClassFocus:           { content: diagnosis.nextClassFocus || {},                                                      approved: false, hidden: false, edited: false },
+        profileUpdateSuggestions: { content: diagnosis.profileUpdateSuggestions || {},                                            approved: false, hidden: false, edited: false },
+      });
+      const saveDraft = async (sectionsToSave, diagnosisToSave, errorBank = {}) => saveDiagnosis({
+        id: draftId,
+        studentId: selectedStudentId || studentId,
+        classEventId: selectedClassEventId || classEventId,
+        targetProfileId: targetProfile?.id,
+        evaluatedSkills: Object.fromEntries(evaluatedSkills.map(k => [k, true])),
+        evidenceCounts: {
+          speaking: normalizedEvidence?.speakingEvidenceCount || 0,
+          writing: normalizedEvidence?.writingEvidenceCount || 0,
+          reading: normalizedEvidence?.readingEvidenceCount || 0,
+          listening: normalizedEvidence?.listeningEvidenceCount || 0,
+          grammar: normalizedEvidence?.grammarEvidenceCount || 0,
+          vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
+          testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
+        },
+        sections: sectionsToSave,
+        aiRaw: diagnosisToSave,
+        status: 'draft',
+        cycleStage: 'needs-diagnosis',
+        classSummary: typeof diagnosisToSave.classSummary === 'string' ? diagnosisToSave.classSummary : '',
+        isBaseline: false,
+        interventionNote: '',
+        inquiryHypothesis: '',
+        cambridgeSelfEval: {},
+        content: {
+          overall_result: typeof diagnosisToSave.classSummary === 'string' ? diagnosisToSave.classSummary : '',
+          priorities: diagnosisToSave.priorityDiagnosis || [],
+          error_bank: errorBank.errorBankSuggestions || [],
+        },
+      });
 
-      setGeneratingStatus('Step 1/4: Generating skill diagnosis…');
+      // Preserve the teacher's evidence before a provider timeout or outage can interrupt the workflow.
+      const initialSections = createSections({ diagnosis: fallbackDiagnosis });
+      setAiResult(fallbackDiagnosis);
+      setSections(initialSections);
+      setGeneratingStatus('Saving evidence-based draft…');
+      try {
+        const draft = await saveDraft(initialSections, fallbackDiagnosis);
+        if (draft) {
+          draftId = draft.id;
+          setSavedDiagnosis(draft);
+        }
+      } catch (autoSaveErr) {
+        console.warn('Initial diagnostic draft save failed:', autoSaveErr);
+        window.toast?.('The evidence is ready, but the draft could not be saved yet.', 'warn');
+      }
+
+      setGeneratingStatus('Step 1/4: Writing personalized student feedback…');
+      let feedbackRaw;
+      let parsedFeedback;
+      try {
+        feedbackRaw = await callAI(
+          buildStudentFeedbackPrompt({ ...promptData, diagnosis: fallbackDiagnosis }),
+          await withSkills('feedback', { max_tokens: 1400 }),
+        );
+        parsedFeedback = parseAiJson(getContent(feedbackRaw));
+      } catch {
+        const feedbackFailed = {
+          content: 'Personalized student feedback could not be generated. Click Regen to retry, or edit this section to write it yourself.',
+          approved: false,
+          hidden: false,
+          edited: false,
+        };
+        const failedSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackFailed });
+        setSections(failedSections);
+        try {
+          const draft = await saveDraft(failedSections, fallbackDiagnosis);
+          if (draft) setSavedDiagnosis(draft);
+        } catch (autoSaveErr) {
+          console.warn('Feedback failure state save failed:', autoSaveErr);
+        }
+        window.toast?.('The diagnostic draft was saved, but personalized feedback needs a retry or teacher edit.', 'warn');
+        setStep('review');
+        return;
+      }
+
+      const feedbackSection = { content: parsedFeedback, approved: false, hidden: false, edited: false };
+      const feedbackSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackSection });
+      setSections(feedbackSections);
+      try {
+        const draft = await saveDraft(feedbackSections, fallbackDiagnosis);
+        if (draft) {
+          draftId = draft.id;
+          setSavedDiagnosis(draft);
+        }
+      } catch (autoSaveErr) {
+        console.warn('Feedback draft save failed:', autoSaveErr);
+      }
+
+      setGeneratingStatus('Step 2/4: Generating skill diagnosis…');
       const diagnosisResult = await generateDiagnosisJson(promptData, (status) => setGeneratingStatus(status));
       const diagnosisRaw = diagnosisResult.raw;
       const parsedDiagnosis = diagnosisResult.parsed;
@@ -220,13 +326,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         ),
       };
 
-      setGeneratingStatus('Step 2/4: Analysing errors and vocabulary targets…');
+      setGeneratingStatus('Step 3/4: Analysing errors and vocabulary targets…');
       const errorBankRaw = await callAI(buildErrorBankPrompt({ ...promptData, diagnosis: evaluatedOnlyDx }), await withSkills('diagnosis', { max_tokens: 2500 })).catch(() => null);
       const parsedErrorBank = normalizeErrorTargets(errorBankRaw ? parseAiJson(getContent(errorBankRaw)) : {});
-
-      setGeneratingStatus('Step 3/4: Writing student feedback…');
-      const feedbackRaw = await callAI(buildStudentFeedbackPrompt({ ...promptData, diagnosis: evaluatedOnlyDx }), await withSkills('feedback', { max_tokens: 2500 })).catch(() => null);
-      const parsedFeedback = feedbackRaw ? parseAiJson(getContent(feedbackRaw)) : {};
 
       setGeneratingStatus('Step 4/4: Building homework recommendation…');
       const homeworkRaw = await callAI(buildHomeworkPrompt({
@@ -239,63 +341,25 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
       setGeneratingStatus('Structuring results…');
 
-      const FAILED = { content: 'Failed to generate. Click Regen to retry.', approved: false, hidden: false, edited: false };
-      const initSections = {
-        skillDiagnosis:           diagnosisRaw ? { content: parsedDiagnosis.skillDiagnosis ?? null,                                              approved: false, hidden: false, edited: false } : FAILED,
-        studentFeedback:          feedbackRaw  ? { content: parsedFeedback,                                                                      approved: false, hidden: false, edited: false } : FAILED,
-        homeworkRecommendation:   homeworkRaw  ? { content: parsedHomework,                                                                      approved: false, hidden: false, edited: false } : FAILED,
-        errorBankSuggestions:                  { content: parsedErrorBank.errorBankSuggestions ?? [],                                            approved: false, hidden: false, edited: false },
-        vocabGrammarTargets:                   { content: parsedErrorBank.vocabGrammarTargets ?? { vocabularyTargets: [], grammarTargets: [] },   approved: false, hidden: false, edited: false },
-        readinessCheck:                        { content: { targetProfileSelected: !!targetProfile, evaluatedSkills, notEvaluatedSkills: [], diagnosisAllowed: true }, approved: true, hidden: false, edited: false },
-        classSummary:                          { content: parsedDiagnosis.classSummary || '',                                                    approved: false, hidden: false, edited: false },
-        targetScoreRelevance:                  { content: parsedDiagnosis.targetScoreRelevance || {},                                            approved: false, hidden: false, edited: false },
-        estimatedOverallScore:                 { content: parsedDiagnosis.estimatedOverallScore || {},                                           approved: false, hidden: false, edited: false },
-        priorityDiagnosis:                     { content: parsedDiagnosis.priorityDiagnosis || [],                                               approved: false, hidden: false, edited: false },
-        nextClassFocus:                        { content: parsedDiagnosis.nextClassFocus || {},                                                  approved: false, hidden: false, edited: false },
-        profileUpdateSuggestions:              { content: parsedDiagnosis.profileUpdateSuggestions || {},                                        approved: false, hidden: false, edited: false },
-      };
+      const initSections = createSections({
+        diagnosis: parsedDiagnosis,
+        feedback: feedbackSection,
+        errorBank: parsedErrorBank,
+        homework: homeworkRaw ? { content: parsedHomework, approved: false, hidden: false, edited: false } : FAILED,
+      });
 
       setAiResult(parsedDiagnosis);
       setSections(initSections);
 
-      // Auto-save draft immediately
+      // Persist the enriched draft. The initial evidence draft and feedback were already saved.
       try {
-        const draft = await saveDiagnosis({
-          id: diagnosisId ? savedDiagnosis?.id : undefined,
-          studentId: selectedStudentId || studentId,
-          classEventId: selectedClassEventId || classEventId,
-          targetProfileId: targetProfile?.id,
-          evaluatedSkills: Object.fromEntries(evaluatedSkills.map(k => [k, true])),
-          evidenceCounts: {
-            speaking: normalizedEvidence?.speakingEvidenceCount || 0,
-            writing: normalizedEvidence?.writingEvidenceCount || 0,
-            reading: normalizedEvidence?.readingEvidenceCount || 0,
-            listening: normalizedEvidence?.listeningEvidenceCount || 0,
-            grammar: normalizedEvidence?.grammarEvidenceCount || 0,
-            vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
-            testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
-          },
-          sections: initSections,
-          aiRaw: parsedDiagnosis,
-          status: 'draft',
-          cycleStage: 'needs-diagnosis',
-          classSummary: typeof parsedDiagnosis.classSummary === 'string' ? parsedDiagnosis.classSummary : '',
-          isBaseline: false,
-          interventionNote: '',
-          inquiryHypothesis: '',
-          cambridgeSelfEval: {},
-          content: {
-            overall_result: typeof parsedDiagnosis.classSummary === 'string' ? parsedDiagnosis.classSummary : '',
-            priorities: parsedDiagnosis.priorityDiagnosis || [],
-            error_bank: parsedErrorBank.errorBankSuggestions || [],
-          },
-        });
+        const draft = await saveDraft(initSections, parsedDiagnosis, parsedErrorBank);
         if (draft) setSavedDiagnosis(draft);
       } catch (autoSaveErr) {
         console.warn('Auto-save draft failed:', autoSaveErr);
       }
 
-      if (!diagnosisRaw || !errorBankRaw || !feedbackRaw || !homeworkRaw) {
+      if (!diagnosisRaw || !errorBankRaw || !homeworkRaw) {
         window.toast?.('Some sections failed to generate. Please Regen them.', 'warn');
       }
 
@@ -328,7 +392,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       }
 
       const SECTION_BUDGETS = {
-        studentFeedback: 3000, homeworkRecommendation: 3000, skillDiagnosis: 6000,
+        studentFeedback: 1400, homeworkRecommendation: 3000, skillDiagnosis: 6000,
         priorityDiagnosis: 6000, classSummary: 6000, targetScoreRelevance: 6000,
         nextClassFocus: 6000, profileUpdateSuggestions: 6000, errorBankSuggestions: 2200,
       };

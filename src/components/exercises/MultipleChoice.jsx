@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { TEAL, NAVY, optionBaseStyle, MET_SECTION_STYLES } from './shared.js';
+import { TEAL, optionBaseStyle, MET_SECTION_STYLES } from './shared.js';
+
+// `--accent-text` is white in the Stitch overlay because it is intended for
+// text on the accent-colored controls. Exercise content sits on a light card,
+// so it must use the semantic foreground token instead.
+const CONTENT_TEXT = 'var(--text)';
+const ACTION_GRADIENT_END = 'var(--accent-hover)';
 
 const MET_SECTION_CONFIG = {
   grammar: { ...MET_SECTION_STYLES.grammar,
@@ -51,7 +57,7 @@ export default function MultipleChoice({ exercise, onComplete }) {
   function getOptionStyle(i) {
     const base = { ...optionBaseStyle(), cursor: submitted ? 'default' : 'pointer' };
     if (!submitted) {
-      if (selected === i) return { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: NAVY };
+      if (selected === i) return { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: CONTENT_TEXT };
       return { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
     }
     if (i === correct) return { ...base, borderColor: 'var(--ex-panel-border)', background: 'var(--ex-panel-bg)', color: 'var(--text)' };
@@ -105,7 +111,7 @@ export default function MultipleChoice({ exercise, onComplete }) {
         </div>
       )}
 
-      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: NAVY, marginBottom: 16, lineHeight: 1.6 }}>{question}</p>
+      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: CONTENT_TEXT, marginBottom: 16, lineHeight: 1.6 }}>{question}</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
         {options.map((opt, i) => (
@@ -139,7 +145,7 @@ export default function MultipleChoice({ exercise, onComplete }) {
           style={{
             padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
             cursor: selected == null ? 'not-allowed' : 'pointer',
-            background: selected == null ? 'var(--border)' : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
+            background: selected == null ? 'var(--border)' : `linear-gradient(120deg, ${TEAL} 0%, ${ACTION_GRADIENT_END} 100%)`,
             color: '#fff', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
              opacity: selected == null ? 0.5 : 1, transition: 'opacity 0.15s',
           }}
@@ -174,7 +180,7 @@ export default function MultipleChoice({ exercise, onComplete }) {
               padding: '11px 14px', background: 'var(--ex-panel-bg)', borderRadius: 'var(--radius-sm, 6px)',
               border: '1px solid var(--ex-panel-border)',
             }}>
-              <span style={{ fontWeight: 700, color: NAVY }}>Why: </span>
+              <span style={{ fontWeight: 700, color: CONTENT_TEXT }}>Why: </span>
               {exercise.explanation}
             </div>
           )}

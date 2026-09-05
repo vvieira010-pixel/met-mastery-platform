@@ -9,14 +9,32 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
   <style>
-    /* ---- Page / dashboard shell (context only) ---- */
+    /* ---- MET Mastery design tokens (mirrors DESIGN.md) ---- */
     :root {
-      --card-bg: #ffffff;
+      --page: #FDFCF8;
+      --card-bg: #FFFFFF;
       --card-radius: 16px;
       --card-padding: 22px;
-      --ink: #1f2a3d;          /* deep navy text */
-      --ink-soft: #6b7891;     /* muted slate label */
-      --hairline: #eef1f6;     /* faint divider */
+      --ink: #1A2E35;
+      --ink-soft: #67777B;
+      --hairline: #E8E5DF;
+      --shadow-card: 0 1px 4px rgba(26, 46, 53, 0.04);
+      --shadow-float: 0 18px 45px rgba(26, 46, 53, 0.08);
+
+      /* Brand section-coding (matches MetProgressPathGraph.jsx) */
+      --reading: #2D7A8C;    /* teal */
+      --listening: #3D8C65;  /* green */
+      --speaking: #E08E45;   /* amber */
+    }
+
+    [data-theme="dark"] {
+      --page: #0F1B2D;
+      --card-bg: #16263a;
+      --ink: #F4F7F8;
+      --ink-soft: #9FB0B6;
+      --hairline: rgba(255, 255, 255, 0.12);
+      --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.3);
+      --shadow-float: 0 18px 45px rgba(0, 0, 0, 0.45);
     }
 
     * { box-sizing: border-box; }
@@ -24,9 +42,10 @@
     body {
       margin: 0;
       padding: 32px;
-      background: #f6f8fb;
-      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--page);
+      font-family: "DM Sans", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
       color: var(--ink);
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .dashboard {
@@ -41,8 +60,8 @@
       background: var(--card-bg);
       border-radius: var(--card-radius);
       padding: var(--card-padding);
-      box-shadow: 0 1px 2px rgba(31, 42, 61, 0.04),
-                  0 6px 18px rgba(31, 42, 61, 0.06);
+      box-shadow: var(--shadow-card), var(--shadow-float);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card__head {
@@ -69,10 +88,10 @@
     .chart-wrap {
       position: relative;
       width: 100%;
-      height: 320px;   /* fixed height; width follows the card */
+      height: clamp(220px, 34vw, 320px); /* scales with viewport, capped for large screens */
     }
 
-    /* ---- Minimalist legend (replaces old legend block) ---- */
+    /* ---- Minimalist legend (brand section-coding) ---- */
     .legend {
       display: flex;
       flex-wrap: wrap;
@@ -96,6 +115,13 @@
       border-radius: 50%;
       flex: 0 0 auto;
     }
+
+    /* ---- Small-screen tightening ---- */
+    @media (max-width: 420px) {
+      body { padding: 16px; }
+      .card { padding: 16px; }
+      .chart-wrap { height: 240px; }
+    }
   </style>
 </head>
 <body>
@@ -103,7 +129,6 @@
 
     <!-- ============================================================
          ACADEMIC PROGRESS WIDGET
-         Replace the previous legend + raw-data block with this markup.
          ============================================================ -->
     <section class="card" aria-label="Academic Progress">
       <div class="card__head">
@@ -116,11 +141,11 @@
         <canvas id="academicProgressChart"></canvas>
       </div>
 
-      <!-- Minimalist legend (blue & emerald palette) -->
+      <!-- Minimalist legend (brand section-coding) -->
       <div class="legend">
-        <span class="legend__item"><span class="legend__dot" style="background:#1b2a4a"></span>Reading</span>
-        <span class="legend__item"><span class="legend__dot" style="background:#7d9cc4"></span>Listening</span>
-        <span class="legend__item"><span class="legend__dot" style="background:#10b981"></span>Speaking</span>
+        <span class="legend__item"><span class="legend__dot" style="background:var(--reading)"></span>Reading</span>
+        <span class="legend__item"><span class="legend__dot" style="background:var(--listening)"></span>Listening</span>
+        <span class="legend__item"><span class="legend__dot" style="background:var(--speaking)"></span>Speaking</span>
       </div>
     </section>
 
@@ -130,15 +155,20 @@
     (function () {
       const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+      const cssVar = (name, fallback) => {
+        const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        return v || fallback;
+      };
+
       const data = {
         labels,
         datasets: [
           {
             label: "Reading",
             data: [72, 78, 75, 82, 80, 85, 88],
-            borderColor: "#1b2a4a",        // deep navy
-            backgroundColor: "rgba(27, 42, 74, 0.08)",
-            pointBackgroundColor: "#1b2a4a",
+            borderColor: cssVar("--reading", "#2D7A8C"),
+            backgroundColor: "rgba(45, 122, 140, 0.10)",
+            pointBackgroundColor: cssVar("--reading", "#2D7A8C"),
             pointBorderColor: "#ffffff",
             pointRadius: 3,
             pointHoverRadius: 5,
@@ -149,9 +179,9 @@
           {
             label: "Listening",
             data: [65, 70, 68, 72, 75, 73, 79],
-            borderColor: "#7d9cc4",        // soft slate blue
-            backgroundColor: "rgba(125, 156, 196, 0.07)",
-            pointBackgroundColor: "#7d9cc4",
+            borderColor: cssVar("--listening", "#3D8C65"),
+            backgroundColor: "rgba(61, 140, 101, 0.10)",
+            pointBackgroundColor: cssVar("--listening", "#3D8C65"),
             pointBorderColor: "#ffffff",
             pointRadius: 3,
             pointHoverRadius: 5,
@@ -162,9 +192,9 @@
           {
             label: "Speaking",
             data: [58, 62, 67, 64, 70, 74, 76],
-            borderColor: "#10b981",        // emerald green
-            backgroundColor: "rgba(16, 185, 129, 0.08)",
-            pointBackgroundColor: "#10b981",
+            borderColor: cssVar("--speaking", "#E08E45"),
+            backgroundColor: "rgba(224, 142, 69, 0.10)",
+            pointBackgroundColor: cssVar("--speaking", "#E08E45"),
             pointBorderColor: "#ffffff",
             pointRadius: 3,
             pointHoverRadius: 5,
@@ -180,14 +210,14 @@
         data,
         options: {
           responsive: true,
-          maintainAspectRatio: false,     // canvas fills .chart-wrap height
+          maintainAspectRatio: false,
           interaction: { mode: "index", intersect: false },
           plugins: {
-            legend: { display: false },   // using custom HTML legend above
+            legend: { display: false },
             tooltip: {
-              backgroundColor: "#1f2a3d",
-              titleColor: "#ffffff",
-              bodyColor: "#eef1f6",
+              backgroundColor: cssVar("--ink", "#1A2E35"),
+              titleColor: cssVar("--on-dark", "#FFFFFF"),
+              bodyColor: cssVar("--on-dark", "#FFFFFF"),
               padding: 10,
               cornerRadius: 8,
               displayColors: true,
@@ -200,17 +230,17 @@
           },
           scales: {
             x: {
-              grid: { display: false },    // no vertical grid lines
-              border: { display: false },  // subtle, no axis line
-              ticks: { color: "#6b7891", font: { size: 12 } }
+              grid: { display: false },
+              border: { display: false },
+              ticks: { color: cssVar("--ink-soft", "#67777B"), font: { size: 12 } }
             },
             y: {
               min: 0,
               max: 100,
-              grid: { display: false },    // remove heavy background grid
-              border: { display: false },  // subtle, no axis line
+              grid: { display: false },
+              border: { display: false },
               ticks: {
-                color: "#6b7891",
+                color: cssVar("--ink-soft", "#67777B"),
                 font: { size: 12 },
                 stepSize: 20,
                 callback: function (value) { return value + "%"; }
@@ -220,7 +250,19 @@
         }
       };
 
-      new Chart(document.getElementById("academicProgressChart"), config);
+      const chart = new Chart(document.getElementById("academicProgressChart"), config);
+
+      // Recolour axis/tooltip text when the theme flips.
+      const observer = new MutationObserver(() => {
+        const tick = cssVar("--ink-soft", "#67777B");
+        chart.options.scales.x.ticks.color = tick;
+        chart.options.scales.y.ticks.color = tick;
+        chart.options.plugins.tooltip.backgroundColor = cssVar("--ink", "#1A2E35");
+        chart.options.plugins.tooltip.titleColor = cssVar("--on-dark", "#FFFFFF");
+        chart.options.plugins.tooltip.bodyColor = cssVar("--on-dark", "#FFFFFF");
+        chart.update("none");
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "class"] });
     })();
   </script>
 </body>

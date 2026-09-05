@@ -11,7 +11,12 @@ process.env.NVIDIA_MODELS = 'deepseek-ai/deepseek-v4-flash,meta/llama-3.3-70b-in
 process.env.GROQ_MODELS = 'llama-3.3-70b-versatile';
 process.env.APP_ORIGIN = 'https://app.example.test';
 
-const { default: handler, MAX_AI_PROMPT_CHARS } = await import('../api/ai.js');
+const {
+  default: handler,
+  AI_ATTEMPT_TIMEOUT_MS,
+  AI_REQUEST_TIMEOUT_MS,
+  MAX_AI_PROMPT_CHARS,
+} = await import('../api/ai.js');
 
 function response(status, body) {
   const jsonBody = typeof body === 'string' ? body : JSON.stringify(body);
@@ -52,6 +57,12 @@ function providerFor(url) {
   if (url.includes('api.groq.com')) return 'groq';
   return 'unknown';
 }
+
+test('gives a provider enough time without letting fallback attempts exceed the request budget', () => {
+  assert.equal(AI_ATTEMPT_TIMEOUT_MS, 18_000);
+  assert.equal(AI_REQUEST_TIMEOUT_MS, 30_000);
+  assert.ok(AI_ATTEMPT_TIMEOUT_MS < AI_REQUEST_TIMEOUT_MS);
+});
 
 test('uses each configured provider through the server proxy', async () => {
   const calls = [];

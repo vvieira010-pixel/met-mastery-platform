@@ -52,6 +52,7 @@ export function validateExercise(ex) {
       return { valid: true };
 
     case 'speak':
+    case 'speaking':
       if (!ex.prompt) return { valid: false, reason: 'Speaking prompt is missing "prompt".' };
       return { valid: true };
 

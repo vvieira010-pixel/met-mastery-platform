@@ -1,0 +1,280 @@
+- generic [ref=f4e3]:
+  - link "Skip to content" [ref=f4e4] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f4e5]:
+    - link "M MET Mastery" [ref=f4e6] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f4e7]: M
+      - generic [ref=f4e8]: MET Mastery
+    - navigation [ref=f4e9]:
+      - link "The learning loop" [ref=f4e10] [cursor=pointer]:
+        - /url: "#how"
+      - link "How it works" [ref=f4e11] [cursor=pointer]:
+        - /url: "#method"
+      - link "For teachers" [ref=f4e12] [cursor=pointer]:
+        - /url: "#teachers"
+    - button "Sign in" [ref=f4e13] [cursor=pointer]
+    - button "Sign in to explore" [ref=f4e14] [cursor=pointer]
+    - link "Find my starting point" [ref=f4e15] [cursor=pointer]:
+      - /url: "#start"
+      - text: Find my starting point →
+  - main [ref=f4e16]:
+    - generic [ref=f4e17]:
+      - generic [ref=f4e18]:
+        - paragraph [ref=f4e19]: CLEAR PRACTICE. BETTER FEEDBACK. REAL PROGRESS.
+        - heading "Stop guessing. Start with a plan." [level=1] [ref=f4e20]: Stop guessing.Start with a plan.
+        - paragraph [ref=f4e21]: Take one diagnostic, see which skills need your time, and practise with a teacher-supported plan built around your target score.
+        - generic [ref=f4e22]:
+          - link "Find my starting point →" [ref=f4e23] [cursor=pointer]:
+            - /url: "#start"
+          - link "See how it works ↓" [ref=f4e24] [cursor=pointer]:
+            - /url: "#how"
+        - list [ref=f4e25]:
+          - listitem [ref=f4e26]: ✓All six MET skills
+          - listitem [ref=f4e27]: ✓Provisional, honest scoring
+          - listitem [ref=f4e28]: ✓Teacher review when it counts
+      - img "A dashboard preview" [ref=f4e29]:
+        - paragraph [ref=f4e30]:
+          - text: YOUR NEXT BEST STEP
+          - generic [ref=f4e31]: In progress
+        - heading "Week 2 · Keep building" [level=2] [ref=f4e32]
+        - generic [ref=f4e33]:
+          - strong [ref=f4e34]: B2
+          - generic [ref=f4e35]:
+            - generic [ref=f4e36]: Provisional level
+            - generic [ref=f4e37]: Based on your latest diagnostic · 12 May
+        - generic [ref=f4e38]:
+          - generic [ref=f4e39]: Reading
+          - emphasis [ref=f4e42]: 78%
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]: Listening
+          - emphasis [ref=f4e47]: 54%
+        - generic [ref=f4e48]:
+          - generic [ref=f4e49]: Writing
+          - emphasis [ref=f4e52]: 66%
+        - generic [ref=f4e53]:
+          - generic [ref=f4e54]: Speaking
+          - emphasis [ref=f4e57]: 71%
+        - generic [ref=f4e58]: "Next up: Listening · distinguishing main ideas"
+    - region "Choose your pathway" [ref=f4e59]:
+      - paragraph [ref=f4e60]: CHOOSE YOUR NEXT STEP
+      - generic [ref=f4e61]:
+        - button "I’m preparing for the MET Find my level and build a focused practice plan. Start as a student →" [ref=f4e62] [cursor=pointer]:
+          - generic [ref=f4e63]: I’m preparing for the MET
+          - generic [ref=f4e64]: Find my level and build a focused practice plan.
+          - generic [ref=f4e65]: Start as a student →
+        - button "I support MET learners Give students a clearer path and useful review context. Explore teacher tools →" [ref=f4e66] [cursor=pointer]:
+          - generic [ref=f4e67]: I support MET learners
+          - generic [ref=f4e68]: Give students a clearer path and useful review context.
+          - generic [ref=f4e69]: Explore teacher tools →
+    - generic [ref=f4e70]:
+      - paragraph [ref=f4e71]: ONE WORKSPACE
+      - generic [ref=f4e72]: Built around the six skills the MET actually measures.
+      - generic [ref=f4e73]: Reading
+      - generic [ref=f4e74]: Listening
+      - generic [ref=f4e75]: Writing
+      - generic [ref=f4e76]: Speaking
+      - generic [ref=f4e77]: Grammar
+      - generic [ref=f4e78]: Vocabulary
+    - region [ref=f4e79]:
+      - generic [ref=f4e80]:
+        - paragraph [ref=f4e81]: YOUR PLAN. MADE PERSONAL.
+        - heading "A closer look at your study plan." [level=2] [ref=f4e82]
+        - paragraph [ref=f4e83]: Your plan adapts to your MET diagnostic and focuses your practice where it will make the biggest impact.
+        - button "Take the platform tour" [ref=f4e84] [cursor=pointer]: Take the platform tour →
+      - paragraph [ref=f4e85]: Illustrative learner workspace — sample data. Start a diagnostic to see your own plan.
+      - generic [ref=f4e86]:
+        - complementary [ref=f4e87]:
+          - generic [ref=f4e88]:
+            - generic [ref=f4e89]: M
+            - generic [ref=f4e90]: MET Mastery
+          - navigation "Student workspace" [ref=f4e91]:
+            - link "My plan" [ref=f4e92] [cursor=pointer]:
+              - /url: "#plan"
+            - link "Practice" [ref=f4e93] [cursor=pointer]:
+              - /url: "#practice"
+            - link "Review" [ref=f4e94] [cursor=pointer]:
+              - /url: "#review"
+            - link "Progress" [ref=f4e95] [cursor=pointer]:
+              - /url: "#plan"
+          - generic [ref=f4e96]: Need help?Message your teacher
+          - button "SC S. Carter ⌄" [ref=f4e97] [cursor=pointer]:
+            - text: SC S. Carter
+            - generic [ref=f4e98]: ⌄
+        - generic [ref=f4e99]:
+          - generic [ref=f4e100]:
+            - generic [ref=f4e101]:
+              - generic [ref=f4e102]:
+                - heading "Welcome back, Sam." [level=2] [ref=f4e103]
+                - paragraph [ref=f4e104]: You’re on track for your goal.
+              - button "B2 Goal ⌄" [ref=f4e105] [cursor=pointer]
+            - article [ref=f4e106]:
+              - generic [ref=f4e107]:
+                - text: Your MET diagnosis
+                - strong [ref=f4e108]: B2
+                - paragraph [ref=f4e109]: Good work. You’re building the skills you need for the next level.
+                - link "View full results →" [ref=f4e110] [cursor=pointer]:
+                  - /url: "#plan"
+              - generic [ref=f4e111]:
+                - generic [ref=f4e112]:
+                  - generic [ref=f4e113]: Reading
+                  - emphasis [ref=f4e116]: 78%
+                - generic [ref=f4e117]:
+                  - generic [ref=f4e118]: Listening
+                  - emphasis [ref=f4e121]: 54%
+                - generic [ref=f4e122]:
+                  - generic [ref=f4e123]: Writing
+                  - emphasis [ref=f4e126]: 66%
+                - generic [ref=f4e127]:
+                  - generic [ref=f4e128]: Speaking
+                  - emphasis [ref=f4e131]: 71%
+                - generic [ref=f4e132]:
+                  - generic [ref=f4e133]: Grammar
+                  - emphasis [ref=f4e136]: 64%
+                - generic [ref=f4e137]:
+                  - generic [ref=f4e138]: Vocabulary
+                  - emphasis [ref=f4e141]: 69%
+            - heading "Your next best task" [level=3] [ref=f4e142]
+            - article [ref=f4e143]:
+              - generic [aria-hidden] [ref=f4e144]: ◉
+              - generic [ref=f4e145]:
+                - text: LISTENING PRACTICE
+                - heading "Main idea and details" [level=3] [ref=f4e146]
+                - paragraph [ref=f4e147]: Build the skill of identifying the main idea and key supporting details.
+              - generic [ref=f4e148]:
+                - generic [ref=f4e149]: Estimated time18 min
+                - button "Start task" [ref=f4e150] [cursor=pointer]
+            - heading "Upcoming" [level=3] [ref=f4e151]
+            - generic [ref=f4e152]:
+              - article [ref=f4e153]:
+                - generic [ref=f4e155]:
+                  - text: WRITING PRACTICE
+                  - generic [ref=f4e156]: Develop a clear argument
+                - emphasis [ref=f4e157]: 20 min
+              - article [ref=f4e158]:
+                - generic [ref=f4e160]:
+                  - text: SPEAKING PRACTICE
+                  - generic [ref=f4e161]: Express and support an opinion
+                - emphasis [ref=f4e162]: 15 min
+          - region [ref=f4e163]:
+            - generic [ref=f4e164]:
+              - heading "Listening practice • Main idea and details" [level=2] [ref=f4e165]
+              - button "Close ×" [ref=f4e166] [cursor=pointer]
+            - generic [ref=f4e167]:
+              - generic [ref=f4e168]:
+                - generic [ref=f4e169]: Question 2 of 12
+                - generic [ref=f4e170]: 14:32
+                - button "Hide timer" [ref=f4e171] [cursor=pointer]
+              - paragraph [ref=f4e174]: Listen to the audio passage. Then answer the question.
+              - generic [ref=f4e175]:
+                - button "Play audio" [ref=f4e176] [cursor=pointer]: ▶
+                - generic [ref=f4e177]: 0:00 / 1:42
+                - button "Audio settings" [ref=f4e179] [cursor=pointer]: ⋮
+              - group "What is the main idea of the passage?" [ref=f4e181]:
+                - generic [ref=f4e183]:
+                  - radio "A The impact of urban gardens on local communities" [checked] [ref=f4e184]
+                  - generic [ref=f4e185]: A
+                  - text: The impact of urban gardens on local communities
+                - generic [ref=f4e186]:
+                  - radio "B The history of community gardening in Detroit" [ref=f4e187]
+                  - generic [ref=f4e188]: B
+                  - text: The history of community gardening in Detroit
+                - generic [ref=f4e189]:
+                  - radio "C The benefits of healthy eating in urban areas" [ref=f4e190]
+                  - generic [ref=f4e191]: C
+                  - text: The benefits of healthy eating in urban areas
+                - generic [ref=f4e192]:
+                  - radio "D The challenges of maintaining public parks" [ref=f4e193]
+                  - generic [ref=f4e194]: D
+                  - text: The challenges of maintaining public parks
+              - generic [ref=f4e195]:
+                - button "Clear answer" [ref=f4e196] [cursor=pointer]
+                - button "Next question →" [ref=f4e197] [cursor=pointer]
+            - article [ref=f4e198]:
+              - paragraph [ref=f4e199]:
+                - strong [ref=f4e200]: TEACHER FEEDBACK
+                - text: Reviewed
+              - heading "Great job selecting the main idea." [level=3] [ref=f4e201]
+              - paragraph [ref=f4e202]: The passage focuses on how community gardens improve health and bring people together. The other options are details that support this idea.
+              - link "Keep your response tightly focused on the main idea." [ref=f4e203] [cursor=pointer]:
+                - /url: "#review"
+              - generic [ref=f4e204]: Reviewed by Ms. Johnson • May 12, 2026
+    - generic [ref=f4e205]:
+      - generic [ref=f4e206]:
+        - paragraph [ref=f4e207]: LESS NOISE. BETTER PRACTICE.
+        - heading "A plan that changes as you learn." [level=2] [ref=f4e208]
+        - paragraph [ref=f4e209]: "Good preparation is not a pile of random questions. It is a loop: find the gap, work on it, get useful feedback, and try again."
+      - generic [ref=f4e210]:
+        - article [ref=f4e211]:
+          - generic [ref=f4e212]: 01 / 06
+          - heading "Diagnose first" [level=3] [ref=f4e213]
+          - paragraph [ref=f4e214]: See your starting point before you spend time practising what you already know.
+        - article [ref=f4e215]:
+          - generic [ref=f4e216]: 02 / 06
+          - heading "Target the gap" [level=3] [ref=f4e217]
+          - paragraph [ref=f4e218]: Get MET-style tasks matched to the skill and question type that needs attention.
+        - article [ref=f4e219]:
+          - generic [ref=f4e220]: 03 / 06
+          - heading "Build exam rhythm" [level=3] [ref=f4e221]
+          - paragraph [ref=f4e222]: Use timed practice to make good decisions when the clock is running.
+        - article [ref=f4e223]:
+          - generic [ref=f4e224]: 04 / 06
+          - heading "Remember the lesson" [level=3] [ref=f4e225]
+          - paragraph [ref=f4e226]: Save vocabulary and grammar points from each session for deliberate review.
+        - article [ref=f4e227]:
+          - generic [ref=f4e228]: 05 / 06
+          - heading "Read clear feedback" [level=3] [ref=f4e229]
+          - paragraph [ref=f4e230]: Know what worked, what needs attention, and the single best next move.
+        - article [ref=f4e231]:
+          - generic [ref=f4e232]: 06 / 06
+          - heading "Ask your teacher" [level=3] [ref=f4e233]
+          - paragraph [ref=f4e234]: Bring writing and speaking work to a human when nuance matters most.
+    - generic [ref=f4e235]:
+      - paragraph [ref=f4e236]: THE LEARNING LOOP
+      - heading "From “I’m not sure” to “I know what to do.”" [level=2] [ref=f4e237]
+      - paragraph [ref=f4e238]: Every part of the workspace points back to a practical next step, so progress feels concrete, not abstract.
+      - generic [ref=f4e239]:
+        - article [ref=f4e240]:
+          - text: 01 — FIND YOUR START
+          - heading "Take a diagnostic." [level=3] [ref=f4e241]
+          - paragraph [ref=f4e242]: Get a useful, provisional picture of your six MET skills and the question types behind it.
+        - article [ref=f4e243]:
+          - text: 02 — PRACTISE WITH PURPOSE
+          - heading "Follow the signal." [level=3] [ref=f4e244]
+          - paragraph [ref=f4e245]: Your practice queue puts the work that matters next in front of you, with timed and untimed options.
+        - article [ref=f4e246]:
+          - text: 03 — CLOSE THE LOOP
+          - heading "Review, then repeat." [level=3] [ref=f4e247]
+          - paragraph [ref=f4e248]: Use feedback and saved review points to make the next attempt a little stronger.
+    - generic [ref=f4e249]:
+      - article [ref=f4e250]:
+        - paragraph [ref=f4e251]: FOR LEARNERS
+        - heading "Make every study session count." [level=2] [ref=f4e252]
+        - paragraph [ref=f4e253]: See your gaps, practise the right task types, and know what to do next.
+        - link "Start a diagnostic →" [ref=f4e254] [cursor=pointer]:
+          - /url: "#start"
+      - article [ref=f4e255]:
+        - paragraph [ref=f4e256]: FOR TEACHERS
+        - heading "Keep the human part visible." [level=2] [ref=f4e257]
+        - paragraph [ref=f4e258]: Give learners structure while keeping writing and speaking feedback in your hands.
+        - link "Explore teacher tools →" [ref=f4e259] [cursor=pointer]:
+          - /url: "#start"
+    - generic [ref=f4e260]:
+      - paragraph [ref=f4e261]: YOUR NEXT STEP
+      - heading "Start with a clearer picture." [level=2] [ref=f4e262]
+      - paragraph [ref=f4e263]: Take a diagnostic, see your current level, and leave with a practical place to begin.
+      - link "Start a diagnostic →" [ref=f4e264] [cursor=pointer]:
+        - /url: "#start"
+  - contentinfo [ref=f4e265]:
+    - link "M MET Mastery" [ref=f4e266] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f4e267]: M
+      - generic [ref=f4e268]: MET Mastery
+    - navigation [ref=f4e269]:
+      - link "What you get" [ref=f4e270] [cursor=pointer]:
+        - /url: "#how"
+      - link "How it works" [ref=f4e271] [cursor=pointer]:
+        - /url: "#method"
+      - link "Get started" [ref=f4e272] [cursor=pointer]:
+        - /url: "#start"
+    - generic [ref=f4e273]: © 2026 MET Mastery

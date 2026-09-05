@@ -5,7 +5,6 @@ import { Icon } from '../components/shared.jsx';
 import MetProgressPathGraph from '../components/MetProgressPathGraph.jsx';
 import BaselineDiagnosticModal from '../components/BaselineDiagnosticModal.jsx';
 import CefrSkillGapFlags from '../components/CefrSkillGapFlags.jsx';
-import TargetedSynonymTracker from '../components/TargetedSynonymTracker.jsx';
 
 function sectionToLabel(section) {
   if (!section) return '';
@@ -214,9 +213,6 @@ export default function StudentProgress({ student, "data-testid": testId = 'stud
               </div>
             </div>
           </div>
-
-          {/* Targeted Synonym Tracker */}
-          <TargetedSynonymTracker />
         </div>
       ) : (
         <>
@@ -247,9 +243,6 @@ export default function StudentProgress({ student, "data-testid": testId = 'stud
 
           {/* CEFR Skill Gap Flags: Visual blue & emerald green progress indicators */}
           <CefrSkillGapFlags snapshot={skills} diagnoses={diagnoses} className="mb-5" />
-
-          {/* Targeted Synonym Tracker */}
-          <TargetedSynonymTracker className="mb-5" />
 
           <section className="student-panel cursor-default mb-5">
             <div className="student-panel-head">

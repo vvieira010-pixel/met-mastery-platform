@@ -35,6 +35,8 @@ const multiKeys = (name) =>
 // This is intentionally well below the 5 MB HTTP body guard, but comfortably
 // supports long, evidence-based diagnostic prompts (roughly 30,000 English tokens).
 export const MAX_AI_PROMPT_CHARS = 120_000;
+export const AI_REQUEST_TIMEOUT_MS = 30_000;
+export const AI_ATTEMPT_TIMEOUT_MS = 18_000;
 
 // ── Rate limit (best-effort per warm instance; set APP_ORIGIN in Vercel dashboard) ──
 const _rl = new Map();
@@ -128,7 +130,7 @@ const GEMINI_MODELS = resolveModels('GEMINI_MODEL', 'GEMINI_MODELS', GEMINI_DEFA
 const OPENROUTER_MODELS = resolveModels('OPENROUTER_MODEL', 'OPENROUTER_MODELS', OPENROUTER_DEFAULT_MODELS);
 const GROQ_MODELS = resolveModels('GROQ_MODEL', 'GROQ_MODELS', GROQ_DEFAULT_MODELS);
 /** fetch with an abort-backed timeout so a hung provider can't stall the function. */
-async function fetchT(url, init, ms = 12000) {
+async function fetchT(url, init, ms = AI_ATTEMPT_TIMEOUT_MS) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try {
@@ -174,6 +176,12 @@ export default async function handler(req, res) {
     return (s.startsWith('{') && s.includes('}')) || (s.startsWith('[') && s.includes(']')) || (s.includes('{') && s.includes('}'));
   };
   const errors = [];
+  const deadline = Date.now() + AI_REQUEST_TIMEOUT_MS;
+  const attemptTimeout = () => Math.max(1, Math.min(AI_ATTEMPT_TIMEOUT_MS, deadline - Date.now()));
+  const logAttempt = (provider, model, outcome, startedAt) => {
+    // Do not log prompts, responses, or provider errors: they can contain student data or secrets.
+    console.info(JSON.stringify({ event: 'ai_attempt', provider, model, outcome, durationMs: Date.now() - startedAt }));
+  };
 
   // GEMINI_API_KEY_2 (and any _2/_3 suffixed key) is honored as a fallback so a
   // rate-limited or exhausted primary key does not force the diagnostic to fall
@@ -188,6 +196,8 @@ export default async function handler(req, res) {
   }
 
   async function tryGemini(key, model) {
+    const startedAt = Date.now();
+    let outcome = 'failed';
     try {
       const isGemma = /^gemma/i.test(model);
       const gen = { temperature, maxOutputTokens: max_tokens };
@@ -199,22 +209,36 @@ export default async function handler(req, res) {
       const r = await fetchT(
         `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
         { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reqBody) },
+        attemptTimeout(),
       );
       if (r.ok) {
         const data = await r.json();
         const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-        if (text && (!expectsJson || isJsonLike(text))) return { content: [{ text }] };
+        if (text && (!expectsJson || isJsonLike(text))) {
+          outcome = 'success';
+          return { content: [{ text }] };
+        }
+        outcome = text && expectsJson ? 'non_json' : 'empty';
         if (text && expectsJson) errors.push(`Gemini/${model}: non-JSON response`);
         errors.push(`Gemini/${model}: empty (${data?.candidates?.[0]?.finishReason || 'no candidates'})`);
       } else {
+        outcome = `http_${r.status}`;
         errors.push(`Gemini/${model}: HTTP ${r.status}`);
       }
-    } catch (e) { errors.push(`Gemini/${model}: ${e.message}`); }
+    } catch (e) {
+      outcome = e.name === 'AbortError' ? 'timeout' : 'error';
+      errors.push(`Gemini/${model}: ${e.message}`);
+    } finally {
+      logAttempt('gemini', model, outcome, startedAt);
+    }
     return null;
   }
 
   async function tryOpenAICompat(url, key, model, extraHeaders = {}, label) {
     const tag = `${label || 'provider'}/${model}`;
+    const provider = String(label || 'provider').toLowerCase();
+    const startedAt = Date.now();
+    let outcome = 'failed';
     try {
       const requestBody = { model, temperature, max_tokens, messages: [{ role: 'system', content: sys }, { role: 'user', content: prompt }] };
       if (expectsJson) requestBody.response_format = { type: 'json_object' };
@@ -222,7 +246,7 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}`, ...extraHeaders },
         body: JSON.stringify(requestBody),
-      });
+      }, attemptTimeout());
       // Some older OpenAI-compatible gateways reject response_format. Retry
       // that same model once without the hint before moving to the next model.
       if (!r.ok && expectsJson && (r.status === 400 || r.status === 422)) {
@@ -232,18 +256,28 @@ export default async function handler(req, res) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}`, ...extraHeaders },
           body: JSON.stringify(fallbackBody),
-        });
+        }, attemptTimeout());
       }
       if (r.ok) {
         const data = await r.json();
         const text = data?.choices?.[0]?.message?.content || '';
-        if (text && (!expectsJson || isJsonLike(text))) return { content: [{ text }] };
+        if (text && (!expectsJson || isJsonLike(text))) {
+          outcome = 'success';
+          return { content: [{ text }] };
+        }
+        outcome = text && expectsJson ? 'non_json' : 'empty';
         if (text && expectsJson) errors.push(`${tag}: non-JSON response`);
         errors.push(`${tag}: empty response`);
       } else {
+        outcome = `http_${r.status}`;
         errors.push(`${tag}: HTTP ${r.status}`);
       }
-    } catch (e) { errors.push(`${tag}: ${e.message}`); }
+    } catch (e) {
+      outcome = e.name === 'AbortError' ? 'timeout' : 'error';
+      errors.push(`${tag}: ${e.message}`);
+    } finally {
+      logAttempt(provider, model, outcome, startedAt);
+    }
     return null;
   }
 
@@ -347,7 +381,6 @@ export default async function handler(req, res) {
 
   // Stop starting new attempts once an overall budget is used up
   // so the function finishes inside serverless time limits.
-  const deadline = Date.now() + 30_000;
   for (const a of ordered) {
     if (Date.now() > deadline) break;
     const result = await a.run();

@@ -64,6 +64,25 @@ const SUBJECTS = [
   },
 ];
 
+function ApplicationSteps({ text, className }) {
+  const steps = text.split(/\s+(?=\d+\.\s)/).map(step => step.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
+  if (steps.length < 2) return <p className={className}>{text}</p>;
+  return <ol className={className}>{steps.map((step, index) => <li key={`${index}-${step.slice(0, 12)}`}>{step}</li>)}</ol>;
+}
+
+function ExplanationCopy({ unit }) {
+  const exampleMatch = unit.whatItIs.match(/(?:For example|Example\s*:\s*|e\.g\.,?\s+)[^.?!]+[.?!]/i);
+  const example = exampleMatch?.[0]?.trim();
+  const overview = example ? unit.whatItIs.replace(exampleMatch[0], '').replace(/\s{2,}/g, ' ').trim() : unit.whatItIs;
+  return (
+    <div className="student-reading-unit-content">
+      <div><strong>What it is</strong><p>{overview}</p></div>
+      {example && <div className="student-reading-example"><strong>Example</strong><p>{example}</p></div>}
+      <div><strong>How to apply it</strong><ApplicationSteps text={unit.howToApplyIt} /></div>
+    </div>
+  );
+}
+
 const TOTAL_TOPICS = SUBJECTS.reduce((total, subject) => total + subject.units.length, 0);
 
 export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }) {
@@ -128,12 +147,9 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
             {selectedUnit ? (
               <>
                 <article className="student-reading-unit student-reading-unit--explanation">
-                  <div className="student-reading-unit-content">
-                    <span className="student-panel-kicker">Topic {String(selectedUnit.unit).padStart(2, '0')}</span>
-                    <h2>{selectedUnit.title}</h2>
-                    <div><strong>What it is</strong><p>{selectedUnit.whatItIs}</p></div>
-                    <div><strong>How to apply it</strong><p>{selectedUnit.howToApplyIt}</p></div>
-                  </div>
+                  <span className="student-panel-kicker">Topic {String(selectedUnit.unit).padStart(2, '0')}</span>
+                  <h2>{selectedUnit.title}</h2>
+                  <ExplanationCopy unit={selectedUnit} />
                 </article>
                 <button type="button" className="student-subject-all-explanations" onClick={() => setSelectedUnitNumber(null)}>
                   View all {selectedSubject.units.length} topic explanations
@@ -142,10 +158,7 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
             ) : selectedSubject.units.map(unit => (
               <article key={unit.unit} className="student-reading-unit student-reading-unit--explanation">
                 <h2>{unit.title}</h2>
-                <div className="student-reading-unit-content">
-                  <div><strong>What it is</strong><p>{unit.whatItIs}</p></div>
-                  <div><strong>How to apply it</strong><p>{unit.howToApplyIt}</p></div>
-                </div>
+                <ExplanationCopy unit={unit} />
               </article>
             ))}
           </section>

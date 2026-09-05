@@ -29,6 +29,23 @@ window.addEventListener('load', () => {
   void clearLegacyPwaCache();
 }, { once: true });
 
+// Storage keys retired together with the feature that owned them (the Targeted
+// Synonym Tracker component was removed). Purged once per browser so returning
+// students don't carry dead state. Bump the version marker when adding keys.
+const RETIRED_STORAGE_PURGE_KEY = 'met-mastery:retired-storage-purge-v1';
+const RETIRED_STORAGE_KEYS = ['vv_synonym_tracker_status'];
+
+function purgeRetiredStorageKeys() {
+  try {
+    if (window.localStorage.getItem(RETIRED_STORAGE_PURGE_KEY)) return;
+    RETIRED_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
+    window.localStorage.setItem(RETIRED_STORAGE_PURGE_KEY, 'complete');
+  } catch (error) {
+    console.warn('[storage] Could not purge retired storage keys.', error);
+  }
+}
+
+purgeRetiredStorageKeys();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { MET_TASK_CONFIG } from '../../lib/met-task-spec.js';
 import { getDbContext, uploadSubmissionAudio } from '../../lib/supabase-db.js';
 
@@ -24,6 +24,7 @@ const DEFAULT_CHECKS = [
 
 function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }) {
   const { prompt, context, instruction, imageUrl, imageAlt, imageDescription, audioSrc, sampleAnswer, followUps } = exercise;
+  const target = exercise.targetSeconds || exercise.seconds || null;
   const [status, setStatus] = useState('idle'); // idle | recording | done
   const [seconds, setSeconds] = useState(0);
   const [playbackUrl, setPlaybackUrl] = useState(null);
@@ -32,6 +33,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   const mediaRef = useRef(null);
   const chunksRef = useRef([]);
   const timerRef = useRef(null);
+  const remainingRef = useRef(target);
 
   useEffect(() => () => {
     clearInterval(timerRef.current);
@@ -39,6 +41,11 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   }, []);
 
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+
+  const stopRecording = useCallback(() => {
+    clearInterval(timerRef.current);
+    mediaRef.current?.stop();
+  }, []);
 
   async function startRecording() {
     try {
@@ -76,16 +83,24 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
       };
       mediaRef.current.start();
       setStatus('recording');
-      setSeconds(0);
-      timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
+      if (target) {
+        remainingRef.current = target;
+        setSeconds(target);
+        timerRef.current = setInterval(() => {
+          remainingRef.current -= 1;
+          setSeconds(remainingRef.current);
+          if (remainingRef.current <= 0) {
+            clearInterval(timerRef.current);
+            mediaRef.current?.stop();
+          }
+        }, 1000);
+      } else {
+        setSeconds(0);
+        timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
+      }
     } catch {
       window.toast?.('Microphone access denied. Check browser permissions.', 'warn');
     }
-  }
-
-  function stopRecording() {
-    clearInterval(timerRef.current);
-    mediaRef.current?.stop();
   }
 
   function reset() {
@@ -194,7 +209,14 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF4D4D', display: 'inline-block', animation: 'pulse 1s infinite' }} />
-            <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: '#A34E48', fontVariantNumeric: 'tabular-nums' }}>{fmt(seconds)}</span>
+            <span style={{
+              fontSize: 'var(--text-sm)', fontWeight: 700,
+              color: target && seconds <= 10 ? '#FF4D4D' : '#A34E48',
+              fontVariantNumeric: 'tabular-nums',
+            }}>
+              {target ? fmt(seconds) : fmt(seconds)}
+              {target && seconds <= 10 && ' — almost done!'}
+            </span>
           </div>
         </div>
       )}

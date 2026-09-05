@@ -12,6 +12,7 @@
  * submissions through Supabase directly (RLS-protected), not via this route.
  */
 import { getSupabaseUrl, requireServiceKey, allowedTeacherEmails, isSameOrigin } from './_config.js';
+import { verifySupabaseSession } from './_supabase-auth.js';
 
 const cap = (v, n) => (typeof v === 'string' ? v.slice(0, n) : v);
 
@@ -34,11 +35,19 @@ export default async function handler(req, res) {
   }
   body = body || {};
 
-  // (2) Teacher must be an authorized teacher.
-  const teacherEmail = (body.teacherEmail || '').toLowerCase();
+  // (2) Resolve the teacher identity. Prefer a verified Supabase session
+  // (the React SPA sends one); fall back to the legacy allowlist ONLY for the
+  // static client that cannot authenticate. Never trust a session-less
+  // request to claim an arbitrary teacher email — that allowed forged-result
+  // poisoning when the allowlist was client-exposed.
+  const sessionUser = await verifySupabaseSession(req).catch(() => null);
   const teachers = allowedTeacherEmails();
-  if (teachers.length && !teachers.includes(teacherEmail)) {
-    return res.status(403).json({ error: 'Forbidden — unknown teacher.' });
+  const claimedEmail = (body.teacherEmail || '').toLowerCase();
+  const teacherId = sessionUser && sessionUser.email
+    ? sessionUser.email.toLowerCase()
+    : (teachers.length && teachers.includes(claimedEmail) ? claimedEmail : null);
+  if (!teacherId) {
+    return res.status(403).json({ error: 'Forbidden — unknown or unauthorized teacher.' });
   }
 
   if (!body.studentName && !body.studentEmail) {
@@ -57,7 +66,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         student_id: cap(body.studentEmail, 200),
-        teacher_id: teacherEmail || null,
+        teacher_id: teacherId,
         content: {
           studentName: cap(body.studentName, 200),
           studentEmail: cap(body.studentEmail, 200),

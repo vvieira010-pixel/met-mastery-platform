@@ -1,0 +1,31 @@
+=== Speaking Exercise Countdown Timer Diagnostic ===
+
+Files checked:
+  ✅ src/data/exercises/speaking/b2-speaking-50-more.json (51 exercises)
+  ✅ src/data/exercises/speaking/practice-studio-speaking.json (10 exercises)
+  ✅ src/data/exercises/vocabulary/speaking-29.js (116 exercises)
+  ❓ src/data/exercises/speaking/image-description.js (1 exercise - instruction only)
+  ❌ src/data/exercises/speaking/b2-speaking.json (empty array [])
+
+Countdown timer coverage:
+  Total speaking exercises found: 178
+  With countdown timer (seconds/targetSeconds field): 177
+  Without timer field: 1 (image-description.js - uses instruction only)
+
+  Breakdown by source:
+    b2-speaking-50-more.json: 51 exercises with "seconds" field (60 or 90s)
+    practice-studio-speaking.json: 10 exercises with "seconds" field (60 or 90s)
+    speaking-29.js: 116 exercises with "targetSeconds" field (60 or 90s)
+    image-description.js: 1 exercise - no time field, falls back to count-up
+
+Implementation status:
+  ✅ validateExercise.js - speaking type added (now validates instead of failing)
+  ✅ ExercisePlayer.jsx - speaking type routed to ShortAnswer component
+  ✅ ShortAnswer.jsx - SpeakingRecorder counts down from targetSeconds/seconds
+  ✅ Auto-stop when timer reaches 0
+  ✅ Warning ("almost done!") at <=10 seconds remaining (turns text red)
+  ✅ Fallback to count-up mode when no time field present (preserves original behavior)
+
+Build status: PASS (verified with npm run build - 1322 modules transformed)
+
+=== END OF DIAGNOSTIC ===

@@ -7,7 +7,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { SkeletonCard } from '../components/ui/Skeleton.jsx';
 import { getStudents, saveStudent, deleteStudent, getDiagnoses, getHomework, getAllSubmissions, getClassEvents } from '../lib/workflow.js';
-import { sendMagicLink, resetPasswordForEmail } from '../lib/supabase-storage.js';
+import { resetPasswordForEmail } from '../lib/supabase-storage.js';
 import { getDbContext } from '../lib/supabase-db.js';
 
 export default function StudentsPage({ onNavigate, "data-testid": testId }) {
@@ -15,11 +15,11 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
   const [showForm, setShowForm] = useState(false);
   const [editStudent, setEditStudent] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
+  const [sendAccessEmail, setSendAccessEmail] = useState(true);
   const [search, setSearch] = useState('');
   const [cohortFilter, setCohortFilter] = useState('');
   const [saving, setSaving] = useState(false);
   const [studentActions, setStudentActions] = useState({});
-  const [inviteStatus, setInviteStatus] = useState({});
   const [setup, setSetup] = useState(null); // { id, pwd, busy, result }
   const [loading, setLoading] = useState(true);
 
@@ -48,11 +48,13 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
   function openAdd() {
     setEditStudent(null);
     setForm(EMPTY_FORM);
+    setSendAccessEmail(true);
     setShowForm(true);
   }
 
   function openEdit(student) {
     setEditStudent(student);
+    setSendAccessEmail(false);
     setForm({
       name: student.name || '',
       email: student.email || '',
@@ -70,29 +72,57 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
   async function handleSave() {
     if (!form.name.trim()) { window.toast?.('Name is required.', 'warn'); return; }
     if (!form.email.trim()) { window.toast?.('Student email is required for login.', 'warn'); return; }
+    const isNewStudent = !editStudent;
     setSaving(true);
-    await saveStudent({ ...form, id: editStudent?.id, session: editStudent?.session || 1 });
-    await load();
-    window.dispatchEvent(new CustomEvent('vv:students-updated'));
-    setSaving(false);
-    setShowForm(false);
-    window.toast?.(editStudent ? 'Student updated. Invite email is ready.' : 'Student added. Invite email is ready.', 'ok');
+    try {
+      const student = await saveStudent({ ...form, id: editStudent?.id, session: editStudent?.session || 1 });
+      let invitation = null;
+      let emailError = null;
+
+      if (isNewStudent && sendAccessEmail) {
+        try {
+          invitation = await createStudentAccount(student);
+        } catch (error) {
+          emailError = error;
+        }
+      }
+
+      await load();
+      window.dispatchEvent(new CustomEvent('vv:students-updated'));
+      setShowForm(false);
+
+      if (emailError) {
+        window.toast?.(`Student added, but the access email could not be sent: ${emailError.message}`, 'warn');
+      } else if (invitation?.emailSent) {
+        window.toast?.(`Student added and access email sent to ${student.email}.`, 'ok');
+      } else if (isNewStudent && sendAccessEmail) {
+        setSetup({ id: student.id, pwd: '', busy: false, result: { ok: true, email: student.email, password: invitation?.password, emailSent: false } });
+        window.toast?.('Student added. Their account details are ready below, but no access email was sent.', 'warn');
+      } else {
+        window.toast?.(isNewStudent ? 'Student added.' : 'Student updated.', 'ok');
+      }
+    } catch (error) {
+      window.toast?.(`Could not save student: ${error.message}`, 'error');
+    } finally {
+      setSaving(false);
+    }
   }
 
-  async function handleInvite(student) {
-    if (!student.email) { window.toast?.('Add the student\'s email first.', 'warn'); return; }
-    setInviteStatus(s => ({ ...s, [student.id]: 'sending' }));
-    try {
-      const redirectTo = window.location.origin + window.location.pathname;
-      await sendMagicLink(student.email.trim(), redirectTo, { createUser: true });
-      setInviteStatus(s => ({ ...s, [student.id]: 'sent' }));
-      window.toast?.(`Login link sent to ${student.email}`, 'ok');
-      setTimeout(() => setInviteStatus(s => ({ ...s, [student.id]: null })), 8000);
-    } catch (err) {
-      setInviteStatus(s => ({ ...s, [student.id]: 'error' }));
-      window.toast?.(`Could not send invite: ${err.message}`, 'error');
-      setTimeout(() => setInviteStatus(s => ({ ...s, [student.id]: null })), 5000);
-    }
+  async function createStudentAccount(student) {
+    const ctx = getDbContext();
+    if (!ctx) throw new Error('Sign in as teacher first.');
+    const res = await fetch(`${ctx.url}/functions/v1/invite-student`, {
+      method: 'POST',
+      headers: {
+        apikey: ctx.anonKey,
+        Authorization: `Bearer ${ctx.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: student.email.trim(), name: student.name, firstName: student.firstName }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.error) throw new Error(data.error || `Error ${res.status}`);
+    return data;
   }
 
   function openSetup(student) {
@@ -103,19 +133,7 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
     if (!setup) return;
     setSetup(s => ({ ...s, busy: true, result: null }));
     try {
-      const ctx = getDbContext();
-      if (!ctx) throw new Error('Sign in as teacher first.');
-      const res = await fetch(`${ctx.url}/functions/v1/invite-student`, {
-        method: 'POST',
-        headers: {
-          apikey: ctx.anonKey,
-          Authorization: `Bearer ${ctx.token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: student.email.trim(), name: student.name, firstName: student.firstName }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.error) throw new Error(data.error || `Error ${res.status}`);
+      const data = await createStudentAccount(student);
       setSetup(s => ({ ...s, busy: false, result: { ok: true, email: student.email, password: data.password, emailSent: data.emailSent } }));
       window.toast?.(`Account created for ${student.name}${data.emailSent ? ' — email sent!' : ''}`, 'ok');
     } catch (err) {
@@ -203,6 +221,22 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
               <textarea className="input" rows={2} value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} placeholder="Any additional notes..." />
             </Field>
           </div>
+          {!editStudent && (
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', marginTop: 'var(--space-4)', color: 'var(--text)', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={sendAccessEmail}
+                onChange={e => setSendAccessEmail(e.target.checked)}
+                style={{ marginTop: 3, accentColor: 'var(--primary)' }}
+              />
+              <span>
+                <strong style={{ display: 'block', fontSize: 'var(--text-sm)' }}>Send access email after adding this student</strong>
+                <small style={{ color: 'var(--text-muted)', display: 'block', marginTop: 2 }}>
+                  Creates their account and sends their login details to the email above.
+                </small>
+              </span>
+            </label>
+          )}
           <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
             <Button variant="primary" onClick={handleSave} disabled={saving}>{saving ? 'Saving…' : (editStudent ? 'Save Changes' : 'Add Student')}</Button>
             <Button variant="ghost" onClick={() => setShowForm(false)}>Cancel</Button>
@@ -232,12 +266,10 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
                key={student.id}
                student={student}
                nextAction={studentActions[student.id]}
-               inviteStatus={inviteStatus[student.id]}
                setupState={setup?.id === student.id ? setup : null}
                onProfile={() => onNavigate('students:profile', { studentId: student.id })}
                onEdit={() => openEdit(student)}
                onDelete={() => handleDelete(student)}
-               onInvite={() => handleInvite(student)}
                onOpenSetup={() => openSetup(student)}
                onCloseSetup={() => setSetup(null)}
                onSetupPwd={pwd => setSetup(s => ({ ...s, pwd, result: null }))}
@@ -266,10 +298,8 @@ function copyText(text) {
   });
 }
 
-function StudentRow({ student, nextAction, inviteStatus, setupState, onProfile, onEdit, onDelete, onInvite, onOpenSetup, onCloseSetup, onSetupPwd, onCreateAccount, onResetPassword }) {
+function StudentRow({ student, nextAction, setupState, onProfile, onEdit, onDelete, onOpenSetup, onCloseSetup, onSetupPwd, onCreateAccount, onResetPassword }) {
   const action = nextAction || { label: 'Ready for next class', tone: 'success' };
-  const isSending = inviteStatus === 'sending';
-  const isSent = inviteStatus === 'sent';
   const isSetupOpen = Boolean(setupState);
   const result = setupState?.result;
 

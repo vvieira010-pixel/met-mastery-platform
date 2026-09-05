@@ -13,7 +13,6 @@ import { asArray, exerciseSearchText } from './student-helpers.jsx';
 import { TopicContentRenderer } from '../components/topic-explanations.jsx';
 import { Icon } from '../components/shared.jsx';
 import { getStudentSetting, setStudentSetting } from '../lib/supabase-db.js';
-import TargetedSynonymTracker from '../components/TargetedSynonymTracker.jsx';
 
 function CorrectionNote({ c }) {
   return (
@@ -585,11 +584,6 @@ export default function StudentHomework({ student, "data-testid": testId }) {
         );
       })}
       </section>
-
-      {/* Vocabulary & Logistics: Targeted Synonym Tracker */}
-      <div style={{ marginTop: 28 }}>
-        <TargetedSynonymTracker />
-      </div>
     </div>
   );
 }

@@ -54,8 +54,12 @@ export function allowedTeacherEmails() {
  */
 export function isSameOrigin(req) {
   const allowed = (process.env.APP_ORIGIN || '').toLowerCase();
-  if (!allowed) return true;
   const origin = (req.headers.origin || '').toLowerCase();
   const referer = (req.headers.referer || '').toLowerCase();
+  // Local development (browser on the same machine) is always permitted.
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
+  // Fail closed: without a configured APP_ORIGIN, reject any foreign request
+  // so cross-origin abuse of the TTS / submission endpoints is impossible.
+  if (!allowed) return false;
   return origin === allowed || referer.startsWith(allowed);
 }

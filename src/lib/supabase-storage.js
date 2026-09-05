@@ -16,8 +16,11 @@ const _supabaseConfig = resolveSupabaseConfig();
 const SUPABASE_URL = _supabaseConfig.url;
 const SUPABASE_ANON_KEY = _supabaseConfig.anonKey;
 
+let _warnedMissingSupabaseEnv = false;
+
 export function getSupabaseConfig() {
-  if (!_supabaseConfig.isConfigured) {
+  if (!_supabaseConfig.isConfigured && !_warnedMissingSupabaseEnv) {
+    _warnedMissingSupabaseEnv = true;
     console.warn('[supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — add them to .env.local (see .env.example).');
   }
   return {

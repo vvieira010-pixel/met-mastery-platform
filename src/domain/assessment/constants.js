@@ -13,7 +13,9 @@ export const SECTION_KEYS = [
   { key: 'profileUpdateSuggestions',label: 'Profile Update Suggestions',    studentFacing: false },
 ];
 
-export const REQUIRED_APPROVAL_KEYS = ['skillDiagnosis', 'studentFeedback', 'homeworkRecommendation', 'nextClassFocus'];
+// Publishing exposes only student-facing feedback. Keep that review gate strict,
+// while allowing teachers to save an evidence-based diagnosis during an AI outage.
+export const REQUIRED_APPROVAL_KEYS = ['studentFeedback'];
 
 export const SECTION_LABELS = Object.fromEntries(SECTION_KEYS.map(s => [s.key, s.label]));
 

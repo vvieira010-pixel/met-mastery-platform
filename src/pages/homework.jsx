@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Icon, SectionHeader, Pill, Avatar } from '../components/shared.jsx';
+import { Icon, SectionHeader, Pill, Avatar, Modal } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
-import { getHomework, deleteHomework } from '../lib/workflow.js';
+import { getHomework, getSubmissions, deleteHomework } from '../lib/workflow.js';
 
 const STATUS_TONE = { 'not-started': 'muted', 'in-progress': 'info', submitted: 'warning', corrected: 'success', reviewed: 'success', completed: 'success' };
 const KIND_ORDER = ['grammar', 'vocabulary', 'reading', 'listening', 'speaking', ''];
@@ -29,19 +29,50 @@ function rankValue(value, order) {
   return idx >= 0 ? idx : order.length;
 }
 
+function formatDate(value) {
+  if (!value || Number.isNaN(new Date(value).getTime())) return null;
+  return new Date(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function statusLabel(status) {
+  return status === 'not-started' ? 'Not started'
+    : status === 'in-progress' ? 'In progress'
+      : status ? status.charAt(0).toUpperCase() + status.slice(1) : 'Not started';
+}
+
+function activityLabel(activity, index) {
+  if (typeof activity === 'string') return activity;
+  return activity?.title || activity?.instruction || activity?.prompt || activity?.question || `Exercise ${index + 1}`;
+}
+
 export default function HomeworkPage({ students, onNavigate, "data-testid": testId }) {
   const [homework, setHomework] = useState([]);
   const [filterStudent, setFilterStudent] = useState('');
   const [filterKind, setFilterKind] = useState('');
   const [filterLevel, setFilterLevel] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
+  const [submissions, setSubmissions] = useState([]);
+  const [selectedHomework, setSelectedHomework] = useState(null);
 
-  useEffect(() => { (async () => { setHomework((await getHomework()) || []); })(); }, []);
+  useEffect(() => {
+    let active = true;
+    Promise.all([getHomework(), getSubmissions()]).then(([assignments, savedSubmissions]) => {
+      if (!active) return;
+      setHomework(assignments || []);
+      setSubmissions(savedSubmissions || []);
+    }).catch(error => {
+      if (active) window.toast?.(`Could not load homework: ${error.message}`, 'error');
+    });
+    return () => { active = false; };
+  }, []);
+
   async function handleDelete(id) {
     if (!confirm('Delete this homework assignment?')) return;
     try {
       await deleteHomework(id);
       setHomework(prev => prev.filter(h => h.id !== id));
+      setSubmissions(prev => prev.filter(s => s.homeworkId !== id));
+      setSelectedHomework(current => current?.id === id ? null : current);
       window.toast?.('Homework deleted.', 'ok');
     } catch (e) {
       window.toast?.(`Delete failed: ${e.message}`, 'error');
@@ -65,6 +96,13 @@ export default function HomeworkPage({ students, onNavigate, "data-testid": test
     if (filterStatus && h.status !== filterStatus) return false;
     return true;
   });
+
+  const selectedStudent = selectedHomework ? students.find(s => s.id === selectedHomework.studentId) : null;
+  const selectedSubmission = selectedHomework ? submissions.find(s => s.homeworkId === selectedHomework.id) : null;
+  const selectedActivities = Array.isArray(selectedHomework?.activities) ? selectedHomework.activities
+    : Array.isArray(selectedHomework?.tasks) ? selectedHomework.tasks
+      : Array.isArray(selectedHomework?.exercises) ? selectedHomework.exercises : [];
+  const selectedAttachments = Array.isArray(selectedHomework?.attachments) ? selectedHomework.attachments : [];
 
   return (
     <div className="page-shell" data-testid={testId}>
@@ -103,6 +141,7 @@ export default function HomeworkPage({ students, onNavigate, "data-testid": test
             const student = students.find(s => s.id === h.studentId);
             const kind = normalizeKind(h.kind || h.skillType || h.type);
             const level = normalizeLevel(h.level || h.currentLevel);
+            const submission = submissions.find(s => s.homeworkId === h.id);
             return (
               <Card key={h.id} className="square-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', marginBottom: 8 }}>
@@ -116,12 +155,17 @@ export default function HomeworkPage({ students, onNavigate, "data-testid": test
                   {kind} · {level}
                 </div>
                 <Pill tone={STATUS_TONE[h.status] || 'muted'} style={{ marginBottom: 12 }}>
-                  {h.status === 'not-started' ? 'Not started' : h.status === 'in-progress' ? 'In progress' : h.status === 'submitted' ? 'Submitted' : h.status === 'reviewed' ? 'Reviewed' : h.status}
+                  {statusLabel(h.status)}
                 </Pill>
                 <div style={{ marginTop: 'auto', width: '100%', display: 'flex', gap: 4, justifyContent: 'center' }}>
-                  <Button variant="primary" size="sm" onClick={() => onNavigate('submissions:review', { submissionId: h.submissionId })}>
-                    {h.status === 'submitted' ? 'Review' : 'View'}
+                  <Button variant="primary" size="sm" onClick={() => setSelectedHomework(h)}>
+                    View
                   </Button>
+                  {submission && (
+                    <Button variant="secondary" size="sm" onClick={() => onNavigate('submissions:review', { submissionId: submission.id })}>
+                      Review
+                    </Button>
+                  )}
                   <Button variant="ghost" size="sm" onClick={() => handleDelete(h.id)} style={{ color: 'var(--danger)' }}>
                     <Icon.trash size={13} />
                   </Button>
@@ -131,6 +175,88 @@ export default function HomeworkPage({ students, onNavigate, "data-testid": test
           })}
         </div>
       )}
+
+      <Modal
+        open={Boolean(selectedHomework)}
+        onClose={() => setSelectedHomework(null)}
+        kicker="Assigned homework"
+        title={selectedHomework?.title || 'Untitled Homework'}
+        subtitle={selectedStudent?.name || selectedHomework?.studentName || 'Student'}
+      >
+        {selectedHomework && (
+          <div className="stack-list">
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+              <Pill tone={STATUS_TONE[selectedHomework.status] || 'muted'}>{statusLabel(selectedHomework.status)}</Pill>
+              {normalizeKind(selectedHomework.kind || selectedHomework.skillType || selectedHomework.type) && (
+                <Pill tone="info">{normalizeKind(selectedHomework.kind || selectedHomework.skillType || selectedHomework.type)}</Pill>
+              )}
+              {normalizeLevel(selectedHomework.level || selectedHomework.currentLevel) && (
+                <Pill tone="info">{normalizeLevel(selectedHomework.level || selectedHomework.currentLevel)}</Pill>
+              )}
+            </div>
+
+            <div className="card-row-meta">
+              {formatDate(selectedHomework.assignedAt || selectedHomework.createdAt) && <div>Assigned {formatDate(selectedHomework.assignedAt || selectedHomework.createdAt)}</div>}
+              {formatDate(selectedHomework.dueDate) && <div>Due {formatDate(selectedHomework.dueDate)}</div>}
+            </div>
+
+            {selectedHomework.objective && (
+              <section>
+                <strong>Goal</strong>
+                <p style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap' }}>{selectedHomework.objective}</p>
+              </section>
+            )}
+            {selectedHomework.description && (
+              <section>
+                <strong>Instructions</strong>
+                <p style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap' }}>{selectedHomework.description}</p>
+              </section>
+            )}
+            {selectedHomework.teacherNotes && (
+              <section>
+                <strong>Teacher notes</strong>
+                <p style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap' }}>{selectedHomework.teacherNotes}</p>
+              </section>
+            )}
+
+            <section>
+              <strong>Exercises ({selectedActivities.length})</strong>
+              {selectedActivities.length === 0 ? (
+                <p className="card-row-meta" style={{ marginTop: 6 }}>No saved exercises for this assignment.</p>
+              ) : (
+                <ol style={{ margin: '8px 0 0', paddingLeft: 22 }}>
+                  {selectedActivities.map((activity, index) => <li key={activity?.id || index} style={{ marginBottom: 6 }}>{activityLabel(activity, index)}</li>)}
+                </ol>
+              )}
+            </section>
+
+            {selectedAttachments.length > 0 && (
+              <section>
+                <strong>Resources</strong>
+                <div className="stack-list" style={{ marginTop: 8 }}>
+                  {selectedAttachments.map((attachment, index) => (
+                    <a key={`${attachment}-${index}`} href={attachment} target="_blank" rel="noreferrer" style={{ overflowWrap: 'anywhere' }}>
+                      {attachment}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, paddingTop: 4 }}>
+              {selectedSubmission && (
+                <Button variant="primary" onClick={() => {
+                  setSelectedHomework(null);
+                  onNavigate('submissions:review', { submissionId: selectedSubmission.id });
+                }}>
+                  Review submission
+                </Button>
+              )}
+              <Button variant="secondary" onClick={() => setSelectedHomework(null)}>Close</Button>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
