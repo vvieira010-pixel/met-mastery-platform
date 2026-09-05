@@ -1,3 +1,15 @@
+import supplementaryListeningData from '../../met_listening_section_76_100.json' with { type: 'json' };
+import met26ConversationsData from '../../met_26_conversations.json' with { type: 'json' };
+import practiceStudioListeningData from '../data/exercises/listening/practice-studio-listening.json' with { type: 'json' };
+import practiceStudioSpeakingData from '../data/exercises/speaking/practice-studio-speaking.json' with { type: 'json' };
+import b2VocabMoreData from '../data/exercises/vocabulary/b2-vocab-50-more.json' with { type: 'json' };
+import b2SpeakingMoreData from '../data/exercises/speaking/b2-speaking-50-more.json' with { type: 'json' };
+import b2WritingMoreData from '../data/exercises/writing/b2-writing-50-more.json' with { type: 'json' };
+import b2ReadingData from '../data/exercises/reading/b2-reading.json' with { type: 'json' };
+import b2ReadingMoreData from '../data/exercises/reading/b2-reading-50-more.json' with { type: 'json' };
+import readingTreesData from '../data/exercises/reading/reading-23-trees-77.json' with { type: 'json' };
+import readingSubjectsData from '../data/exercises/reading/reading-23-met-subjects-77.json' with { type: 'json' };
+
 let fullDataPromise = null;
 function getFullData() {
   if (!fullDataPromise) {
@@ -39,7 +51,7 @@ export function getTopicList(mode) {
   if (mode === 'speaking') {
     return [
       { id: 'describe_image', title: 'Describe the Image' },
-      { id: 'speaking_full_bank', title: 'Complete Speaking Collection (254 Tasks)' },
+      { id: 'speaking_full_bank', title: 'Speaking Practice' },
       { id: 'work_career', title: 'Professional Life & Employment' },
       { id: 'healthcare', title: 'Healthcare Communication & Patient Care' },
       { id: 'education', title: 'Education, Teaching & Learning' },
@@ -50,7 +62,6 @@ export function getTopicList(mode) {
       { id: 'money_consumer', title: 'Consumer Life, Money & Advertising' },
       { id: 'family_relationships', title: 'Family, Relationships & Social Interaction' },
       { id: 'media_news', title: 'Media, News & Digital Communication' },
-      { id: 'general', title: 'General & Academic Vocabulary' },
     ];
   }
   if (mode === 'grammar') {
@@ -116,14 +127,9 @@ export function getTopicList(mode) {
 let supplementaryListeningPromise = null;
 async function getSupplementaryListening() {
   if (!supplementaryListeningPromise) {
-    supplementaryListeningPromise = (async () => {
-      try {
-        const mod = await import('../../met_listening_section_76_100.json', { with: { type: 'json' } });
-        return mod.default?.exercises || mod.exercises || [];
-      } catch {
-        return [];
-      }
-    })();
+    supplementaryListeningPromise = Promise.resolve(
+      supplementaryListeningData.exercises || [],
+    );
   }
   return supplementaryListeningPromise;
 }
@@ -131,14 +137,9 @@ async function getSupplementaryListening() {
 let practiceStudioListeningPromise = null;
 async function getPracticeStudioListening() {
   if (!practiceStudioListeningPromise) {
-    practiceStudioListeningPromise = (async () => {
-      try {
-        const mod = await import('../data/exercises/listening/practice-studio-listening.json', { with: { type: 'json' } });
-        return mod.default?.exercises || mod.exercises || [];
-      } catch {
-        return [];
-      }
-    })();
+    practiceStudioListeningPromise = Promise.resolve(
+      practiceStudioListeningData.exercises || [],
+    );
   }
   return practiceStudioListeningPromise;
 }
@@ -149,9 +150,9 @@ async function getPracticeStudioListening() {
 const LISTENING_TITLE_OVERRIDES = {
   'Conversation 01': 'Academic Discussion — Missing a Lecture',
   'Conversation 02': 'Workplace Dialogue — Checking a Report',
-  'Conversation 03': 'Campus Life — Finding a Study Room',
-  'Conversation 04': 'Daily Routine — Grocery Shopping Plans',
-  'Conversation 05': 'Travel Plans — Booking a Flight',
+  'Conversation 03': 'Everyday Banking — Withdrawing Cash',
+  'Conversation 04': 'Study Time — Finishing a Chapter',
+  'Conversation 05': 'Daily Life — Finding Lost Sunglasses',
   'Conversation 06': 'University Life — Choosing Electives',
   'Conversation 07': 'Work Meeting — Project Update',
   'L15 · Museum Closure': 'Museum Closure — Visitor Information',
@@ -212,38 +213,138 @@ const LISTENING_TITLE_OVERRIDES = {
   '100 · Integrated Listening Review': 'Review — Integrated Listening Practice',
 };
 
-export async function getPracticeStudioListeningGroups() {
+const LISTENING_PARTS = [
+  { id: 'listening_part_1', title: 'Part 1 — Short conversations', subtitle: 'MET-style practice: listen for the key detail in a short exchange.' },
+  { id: 'listening_part_2', title: 'Part 2 — Longer conversations', subtitle: 'MET-style practice: follow a fuller conversation and its important details.' },
+  { id: 'listening_part_3', title: 'Part 3 — Talks and announcements', subtitle: 'MET-style practice: follow one speaker’s main idea, details, and purpose.' },
+];
+
+const PART_1_AUDIO_FILES = new Set([
+  'conversation_01.wav', 'conversation_02.wav', 'conversation_03.wav', 'conversation_04.wav',
+  'conversation_05.wav', 'conversation_06.wav', 'conversation_07.wav',
+]);
+
+const PART_2_AUDIO_FILES = new Set([
+  'listening-1min-01-gym-freeze.mp3', 'listening-1min-02-dentist-reschedule.mp3',
+  'listening-1min-04-job-interview.mp3', 'listening-1min-05-car-rental.mp3',
+  'listening-1min-06-pharmacy-pickup.mp3', 'listening-1min-08-it-helpdesk.mp3',
+  'listening-1min-09-farmers-market.mp3', 'listening-1min-11-cafe-interview.mp3',
+  'listening-1min-13-doctors-checkin.mp3', 'listening-1min-14-noise-complaint.mp3',
+  'listening-1min-16-online-order.mp3', 'listening-1min-17-cooking-class.mp3',
+  'listening-1min-19-printer-handouts.mp3', 'listening-1min-20-walking-podcast.mp3',
+  'listening-90-implied-objection.mp3',
+]);
+
+const LISTENING_TOPIC_RULES = [
+  { id: 'health', title: 'Health and wellbeing', match: /health|doctor|dentist|pharmacy|gym|stress|sleep/i },
+  { id: 'education', title: 'Education and learning', match: /lecture|university|library|course|class|academic|school|student|printing press/i },
+  { id: 'work', title: 'Work and professional life', match: /work|office|job|employee|team|printer|project|policy|meeting|professional|strategic|qualification|report|sales|interview/i },
+  { id: 'travel', title: 'Travel and transport', match: /travel|airport|train|car rental|walking|weather|room change|bicycle|bike/i },
+  { id: 'community', title: 'Community and daily life', match: /community|volunteer|neighbou?r|parks|public|urban garden|museum|cooking|restaurant|farmers|food|consumer|package|apartment|lunch|sunglasses|bank|online order/i },
+  { id: 'science', title: 'Science, culture, and society', match: /science|bird|environment|source comparison|forecast|history|opinion|review|evaluation|figure/i },
+];
+
+function getAudioFile(audioId = '') {
+  return String(audioId).split('/').pop() || '';
+}
+
+function getListeningPartId(audioId) {
+  const file = getAudioFile(audioId);
+  if (PART_1_AUDIO_FILES.has(file)) return 'listening_part_1';
+  if (PART_2_AUDIO_FILES.has(file)) return 'listening_part_2';
+  return 'listening_part_3';
+}
+
+function getListeningTopic(title = '') {
+  return LISTENING_TOPIC_RULES.find(topic => topic.match.test(title))
+    || { id: 'general', title: 'General communication' };
+}
+
+function getListeningGroupTitle(exercise) {
+  const raw = exercise.audioTitle || exercise.title || 'Listening practice';
+  return LISTENING_TITLE_OVERRIDES[raw] || raw;
+}
+
+function withListeningMetadata(exercise) {
+  const audioId = exercise.audioSrc || exercise.url || `embed-${exercise.id}`;
+  const partId = getListeningPartId(audioId);
+  const topic = getListeningTopic(getListeningGroupTitle(exercise));
+  return {
+    ...exercise,
+    listeningFormat: exercise.listeningFormat || 'multiple_choice',
+    listeningPart: partId,
+    listeningTopic: topic.id,
+    listeningTopicTitle: topic.title,
+  };
+}
+
+async function getAllPracticeStudioListeningExercises() {
   const own = await getPracticeStudioListening();
   const supplementary = await getSupplementaryListening();
+  return [...own, ...supplementary].map(withListeningMetadata);
+}
+
+export async function getPracticeStudioListeningGroups() {
+  const exercises = await getAllPracticeStudioListeningExercises();
   const groups = new Map();
-  [...own, ...supplementary].forEach(ex => {
+  exercises.forEach(ex => {
     const audioId = ex.audioSrc || `embed-${ex.id}`;
     if (!audioId) return;
-    const raw = ex.audioTitle || ex.title || 'Special Exercise';
-    groups.set(audioId, LISTENING_TITLE_OVERRIDES[raw] || raw);
+    groups.set(audioId, getListeningGroupTitle(ex));
   });
   return Array.from(groups.entries()).map(([id, title]) => ({ id, title }));
 }
 
-export async function getPracticeStudioListeningExercises(audioId) {
-  const own = await getPracticeStudioListening();
-  const supplementary = await getSupplementaryListening();
-  return [...own, ...supplementary]
-    .filter(e => (e.audioSrc || e.url || `embed-${e.id}`) === audioId)
-    .map(e => ({ ...e, listeningFormat: e.listeningFormat || 'multiple_choice' }));
+export async function getPracticeStudioListeningParts() {
+  const exercises = await getAllPracticeStudioListeningExercises();
+  const groupIds = new Set(exercises.map(exercise => exercise.audioSrc || exercise.url || `embed-${exercise.id}`));
+  return LISTENING_PARTS.map(part => ({
+    ...part,
+    clipCount: new Set(
+      exercises
+        .filter(exercise => exercise.listeningPart === part.id)
+        .map(exercise => exercise.audioSrc || exercise.url || `embed-${exercise.id}`),
+    ).size,
+  })).filter(part => groupIds.size > 0 && part.clipCount > 0);
+}
+
+export async function getPracticeStudioListeningTopics(partId) {
+  const exercises = await getAllPracticeStudioListeningExercises();
+  const topics = new Map();
+
+  exercises
+    .filter(exercise => exercise.listeningPart === partId)
+    .forEach(exercise => {
+      const id = `${partId}::${exercise.listeningTopic}`;
+      const current = topics.get(id) || {
+        id,
+        title: exercise.listeningTopicTitle,
+        clipIds: new Set(),
+      };
+      current.clipIds.add(exercise.audioSrc || exercise.url || `embed-${exercise.id}`);
+      topics.set(id, current);
+    });
+
+  return Array.from(topics.values())
+    .map(({ id, title, clipIds }) => ({ id, title, subtitle: `${clipIds.size} clip${clipIds.size === 1 ? '' : 's'}` }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+}
+
+export async function getPracticeStudioListeningExercises(selectionId) {
+  const exercises = await getAllPracticeStudioListeningExercises();
+  const [partId, topicId] = String(selectionId || '').split('::');
+
+  if (topicId) {
+    return exercises.filter(exercise => exercise.listeningPart === partId && exercise.listeningTopic === topicId);
+  }
+
+  return exercises.filter(exercise => (exercise.audioSrc || exercise.url || `embed-${exercise.id}`) === selectionId);
 }
 
 let met26Promise = null;
 async function getMet26Conversations() {
   if (!met26Promise) {
-    met26Promise = (async () => {
-      try {
-        const mod = await import('../../met_26_conversations.json', { with: { type: 'json' } });
-        return mod.default?.exercises || mod.exercises || [];
-      } catch {
-        return [];
-      }
-    })();
+    met26Promise = Promise.resolve(met26ConversationsData.exercises || []);
   }
   return met26Promise;
 }
@@ -294,27 +395,22 @@ export async function getListeningAudioGroups() {
 let practiceSpeakingPromise = null;
 async function getPracticeStudioSpeaking() {
   if (!practiceSpeakingPromise) {
-    practiceSpeakingPromise = (async () => {
-      try {
-        const mod = await import('../data/exercises/speaking/practice-studio-speaking.json', { with: { type: 'json' } });
-        return mod.default?.exercises || mod.exercises || [];
-      } catch {
-        return [];
-      }
-    })();
+    practiceSpeakingPromise = Promise.resolve(
+      practiceStudioSpeakingData.exercises || [],
+    );
   }
   return practiceSpeakingPromise;
 }
 
-// Practice Studio speaking pack topics (prepended to the standard topic list).
+// Practice Studio speaking topics (prepended to the standard topic list).
 export function getPracticeStudioSpeakingTopics() {
   return [
-    { id: 'spk_audio_prompts', title: 'Audio Prompts ×5', subtitle: 'Listen · 15–20s prep · 60–90s speak' },
-    { id: 'spk_quiz', title: 'Quiz Prompts ×5 + samples', subtitle: 'Record · compare with sample answer' },
+    { id: 'spk_audio_prompts', title: 'Listen and Speak', subtitle: 'Listen · prepare · speak' },
+    { id: 'spk_quiz', title: 'Speak and Compare', subtitle: 'Record · compare with a sample answer' },
   ];
 }
 
-// Serves pack topics from the speaking pack; anything else falls through
+// Serves Practice Studio topics from the speaking bank; anything else falls through
 // to the standard speaking bank so existing content keeps working.
 export async function getPracticeStudioSpeakingExercises(topicId) {
   const pack = await getPracticeStudioSpeaking();
@@ -346,7 +442,7 @@ export async function getVocabExercises(topicId) {
   const { vocabTopics } = await getFullData();
   if (topicId === 'vocab_full_bank') {
     const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
-    const extras = await import('../data/exercises/vocabulary/b2-vocab-50-more.json', { with: { type: 'json' } }).then(m => (m.default?.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ));
+    const extras = (b2VocabMoreData.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ);
     return [...vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'mcq' || e.type === 'blank')), ...getMetB2MultipleChoice('vocabulary'), ...extras];
   }
   const topic = vocabTopics.find(t => t.id === topicId);
@@ -356,7 +452,7 @@ export async function getVocabExercises(topicId) {
   const b2All = getMetB2MultipleChoice('vocabulary');
   // B2 vocab is not topic-specific — mix in as general practice
   const extras = topicId === 'general'
-    ? await import('../data/exercises/vocabulary/b2-vocab-50-more.json', { with: { type: 'json' } }).then(m => (m.default?.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ))
+    ? (b2VocabMoreData.modules || []).flatMap(mod => mod.items || []).map(normalizeBankMCQ)
     : [];
   return [...base, ...b2All, ...extras];
 }
@@ -367,17 +463,42 @@ export async function getSpeakingExercises(topicId) {
     return imageDescriptionExercises;
   }
   const { vocabTopics } = await getFullData();
-  if (topicId === 'speaking_full_bank') topicId = 'general';
+  const isFullBank = topicId === 'speaking_full_bank';
   const topic = vocabTopics.find(t => t.id === topicId);
-  if (!topic) return [];
-  const base = topicId === 'general'
-    ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'speak' || e.type === 'short'))
-    : topic.exercises.filter(e => e.type === 'speak' || e.type === 'short');
-  const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
-  const b2 = getMetB2MultipleChoice('speaking');
-  const { default: extended } = await import('../data/exercises/speaking/b2-speaking-50-more.json', { with: { type: 'json' } });
-  const more = (extended?.modules || []).flatMap(mod => mod.exercises || []).map(ex => ({ ...ex, type: 'speak' }));
-  return [...base, ...b2, ...more];
+  if (!isFullBank && !topic) return [];
+
+  // Speaking Mirror must contain prompts that can actually be recorded. The
+  // shared vocabulary bank also includes `short` writing tasks and speaking
+  // strategy MCQs; those belong in Writing/strategy practice, not here.
+  const base = isFullBank
+    ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'speak'))
+    : topic.exercises.filter(e => e.type === 'speak');
+
+  const more = (b2SpeakingMoreData.modules || [])
+    .flatMap(mod => mod.exercises || [])
+    .map(exercise => {
+      const destination = classifyAdditionalSpeakingTopic(exercise.topic);
+      return { ...exercise, type: 'speak', sourceTopic: exercise.topic, topic: destination };
+    })
+    .filter(exercise => isFullBank || exercise.topic === topicId);
+
+  return [...base, ...more];
+}
+
+function classifyAdditionalSpeakingTopic(topic) {
+  const destinations = {
+    'Farmers Market': 'money_consumer',
+    'Birthday Party': 'family_relationships',
+    Dentist: 'healthcare',
+    Camping: 'travel_culture',
+    Gardening: 'environment',
+    Zoo: 'environment',
+    'Barber Shop': 'money_consumer',
+    'Board Games': 'family_relationships',
+    'Street Food': 'travel_culture',
+    Wedding: 'family_relationships',
+  };
+  return destinations[topic] || 'community';
 }
 
 export async function getWritingExercises(topicId) {
@@ -390,8 +511,7 @@ export async function getWritingExercises(topicId) {
     : topic.exercises.filter(e => e.type === 'short');
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('writing');
-  const { default: extended } = await import('../data/exercises/writing/b2-writing-50-more.json', { with: { type: 'json' } });
-  const more = (extended?.modules || []).flatMap(mod => mod.exercises || []);
+  const more = (b2WritingMoreData.modules || []).flatMap(mod => mod.exercises || []);
   return [...base, ...b2, ...more];
 }
 
@@ -419,14 +539,14 @@ function normalizeBankMCQ(item) {
 let extendedReadingPromise = null;
 async function loadExtendedReadingExercises() {
   if (!extendedReadingPromise) {
-    extendedReadingPromise = Promise.all([
-      import('../data/exercises/reading/b2-reading.json', { with: { type: 'json' } }),
-      import('../data/exercises/reading/b2-reading-50-more.json', { with: { type: 'json' } }),
-      import('../data/exercises/reading/reading-23-trees-77.json', { with: { type: 'json' } }),
-      import('../data/exercises/reading/reading-23-met-subjects-77.json', { with: { type: 'json' } }),
+    extendedReadingPromise = Promise.resolve([
+      b2ReadingData,
+      b2ReadingMoreData,
+      readingTreesData,
+      readingSubjectsData,
     ]).then(modules => {
       const exercises = [];
-      for (const { default: data } of modules) {
+      for (const data of modules) {
         const source = data.modules || [];
         for (const mod of source) {
           for (const item of (mod.items || [])) {

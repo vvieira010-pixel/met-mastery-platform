@@ -8,6 +8,7 @@ import StudentSettings from './student-settings.jsx';
 import MockTestPage from './mock-test.jsx';
 import { StudentInbox, MessageTeacherDock } from '../components/message-center.jsx';
 import StudentOnboardingTour from '../components/StudentOnboardingTour.jsx';
+import { useWebMcpPracticeTour } from '../lib/webmcp-practice-tour.js';
 
 const StudentHomework = lazy(() => import('./student-homework.jsx'));
 const StudentFeedback = lazy(() => import('./student-feedback.jsx'));
@@ -99,18 +100,48 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
     setStudentSetting(student.id, 'last_visited', next).catch(() => {});
   }
 
+  const tab = activeTab;
+  const activeTabLabel = [...PRIMARY_TABS, ...MORE_TABS].find(item => item.id === tab)?.label || 'Student dashboard';
+  const tourRevision = [...PRIMARY_TABS, ...MORE_TABS].findIndex(item => item.id === tab) + 1;
+  const { highlight: practiceTourHighlight, dismissHighlight: dismissPracticeTourHighlight } = useWebMcpPracticeTour({
+    state: {
+      revision: tourRevision,
+      activeTab: tab,
+      practice: { screen: tab === 'practice-studio' ? 'skill-picker' : 'not-visible' },
+    },
+  });
+
   if (!student) {
     return <div className="student-loading" data-testid={testId}><p>Loading your dashboard…</p></div>;
   }
-
-  const tab = activeTab;
-  const activeTabLabel = [...PRIMARY_TABS, ...MORE_TABS].find(item => item.id === tab)?.label || 'Student dashboard';
 
     const firstName = student.firstName || student.name?.split(' ')[0] || 'there';
 
     return (
       <div className="dash">
         <StudentOnboardingTour />
+        {practiceTourHighlight && (
+          <div
+            role="status"
+            style={{
+              position: 'fixed', zIndex: 80, right: 20, bottom: 20, maxWidth: 340,
+              padding: '14px 16px', borderRadius: 'var(--radius-md)', background: 'var(--surface)',
+              border: '1px solid var(--accent)', boxShadow: '0 12px 30px rgba(11, 31, 58, .18)',
+            }}
+          >
+            <strong style={{ display: 'block', color: 'var(--text)', marginBottom: 4 }}>{practiceTourHighlight.label}</strong>
+            <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: 'var(--text-sm)', lineHeight: 1.5 }}>
+              {practiceTourHighlight.visible ? practiceTourHighlight.description : 'This target is not visible yet.'}
+            </p>
+            <button
+              type="button"
+              onClick={dismissPracticeTourHighlight}
+              style={{ marginTop: 10, border: 0, background: 'none', color: 'var(--accent)', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+            >
+              Dismiss highlight
+            </button>
+          </div>
+        )}
         <header className="dash-topbar" id="student-main" tabIndex={-1}>
           <button type="button" className="dash-brand" onClick={() => handleTabChange('home')} aria-label="MET Mastery student home">
             <span className="dash-brand-mark" aria-hidden="true">M</span>

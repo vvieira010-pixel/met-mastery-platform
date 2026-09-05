@@ -2,6 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  // Node's unit suite lives beside the browser tests. Keep it out of the
+  // Playwright runner so `npm run test` and `npm run test:e2e` stay separate.
+  testMatch: /.*\.(spec|test)\.ts/,
   timeout: 30000,
   expect: {
     timeout: 5000,

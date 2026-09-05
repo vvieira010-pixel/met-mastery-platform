@@ -28,6 +28,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   const [status, setStatus] = useState('idle'); // idle | recording | done
   const [seconds, setSeconds] = useState(0);
   const [playbackUrl, setPlaybackUrl] = useState(null);
+  const [recordingError, setRecordingError] = useState('');
   const [selfScore, setSelfScore] = useState(null);
   const [checks, setChecks] = useState(Array(reflectionChecks.length).fill(false));
   const mediaRef = useRef(null);
@@ -48,8 +49,14 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   }, []);
 
   async function startRecording() {
+    setRecordingError('');
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+      setRecordingError('This browser cannot record audio. Please use an up-to-date Chrome, Edge, Firefox, or Safari browser.');
+      return;
+    }
+    let stream;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaRef.current = new MediaRecorder(stream);
       chunksRef.current = [];
       mediaRef.current.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
@@ -99,6 +106,8 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
       }
     } catch {
+      stream?.getTracks().forEach(track => track.stop());
+      setRecordingError('We could not start the microphone. Allow microphone access in your browser, then try again.');
       window.toast?.('Microphone access denied. Check browser permissions.', 'warn');
     }
   }
@@ -108,6 +117,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
     setSeconds(0);
     setStatus('idle');
     setPlaybackUrl(null);
+    setRecordingError('');
     setSelfScore(null);
     setChecks(Array(reflectionChecks.length).fill(false));
   }
@@ -175,6 +185,12 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         <div style={{ marginBottom: 16 }}>
           <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Listen to the prompt</div>
           <audio controls src={audioSrc} style={{ width: '100%', height: 40 }} preload="none" />
+        </div>
+      )}
+
+      {recordingError && (
+        <div role="alert" style={{ marginBottom: 14, padding: '10px 12px', background: 'var(--ex-wrong-bg)', border: '1px solid var(--ex-wrong-border)', borderRadius: 'var(--radius-sm, 6px)', color: 'var(--ex-wrong-text)', fontSize: 'var(--text-sm)', lineHeight: 1.5 }}>
+          {recordingError}
         </div>
       )}
 

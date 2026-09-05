@@ -10,18 +10,34 @@ async function invokeTourTool(page: import('@playwright/test').Page, name: strin
 }
 
 test('WebMCP tour guides a learner into a Grammar Sprint without acting for them', async ({ page }) => {
+  await page.context().route('**/rest/v1/**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: '[]',
+  }));
+  await page.context().route('**/rest/v1/rpc/claim_student_by_email', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify([{ id: '11111111-1111-4111-8111-111111111111', local_id: 'e2e-student' }]),
+  }));
   await page.addInitScript(() => {
     (window as any).__webMcpTourTools = [];
     Object.defineProperty(document, 'modelContext', {
       configurable: true,
       value: { registerTool: async (tool: unknown) => (window as any).__webMcpTourTools.push(tool) },
     });
+    localStorage.setItem('vv:supabase_session', JSON.stringify({
+      access_token: 'e2e-isolated-session-token',
+      expires_at: Math.floor(Date.now() / 1000) + 3600,
+      user: {
+        id: '11111111-1111-4111-8111-111111111111',
+        email: 'e2e.student@example.invalid',
+        user_metadata: { display_name: 'E2E Student' },
+      },
+    }));
   });
 
   await page.goto(BASE);
-  // The sign-in entry point is a <button> with text "Already a member? Sign in".
-  // Use the stable data-testid so this locator survives any copy changes.
-  await page.getByTestId('sign-in-btn').click();
   await expect(page.locator('.dash')).toBeVisible();
   await expect.poll(() => page.evaluate(() => (window as any).__webMcpTourTools.length)).toBe(6);
 
@@ -45,13 +61,13 @@ test('WebMCP tour guides a learner into a Grammar Sprint without acting for them
     timeoutMs: 500,
   });
   expect(waited.changed).toBe(true);
-  await expect(page.getByRole('heading', { name: 'Practice Studio' })).toBeVisible();
+  await expect(page.getByText('Six skills, zero clutter')).toBeVisible();
 
   const grammarHighlight = await invokeTourTool(page, 'met_practice_tour_highlight_target', { targetId: 'practice-skill-grammar' });
   expect(grammarHighlight.visible).toBe(true);
   await expect(page.getByRole('heading', { name: 'Grammar Sprint' })).toBeVisible();
   await page.getByRole('button', { name: /Grammar Sprint/ }).click();
-  await expect(page.getByRole('button', { name: 'Common Mistakes' })).toBeVisible();
-  await page.getByRole('button', { name: 'Common Mistakes' }).click();
+  await expect(page.getByRole('button', { name: /Common Errors & Collocations/ })).toBeVisible();
+  await page.getByRole('button', { name: /Common Errors & Collocations/ }).click();
   await expect(page.locator('[data-tour-target="practice-session"]')).toBeVisible();
 });

@@ -1,261 +1,215 @@
-import { test, expect } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 const BASE = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
 
-test('student can sign in with mock direct payload', async ({ page }) => {
-  await page.goto('/');
+type TestUser = {
+  id: string;
+  email: string;
+  user_metadata: { display_name: string };
+};
 
-  // Wait for app to load - should show login since no auth yet
-  await expect(page.getByText('Welcome back')).toBeVisible();
+const STUDENT: TestUser = {
+  id: '11111111-1111-4111-8111-111111111111',
+  email: 'e2e.student@example.invalid',
+  user_metadata: { display_name: 'E2E Student' },
+};
 
-  // Sign in as student with mock direct payload
-  await page.getByRole('button', { name: 'Sign in as Student' }).click();
+const TEACHER: TestUser = {
+  id: '22222222-2222-4222-8222-222222222222',
+  email: 'vvieira010@gmail.com',
+  user_metadata: { display_name: 'E2E Teacher' },
+};
 
-  // The mock direct sign-in path
-  await page.evaluate(() => {
-    // Simulate mockDirect payload
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'student',
-      email: 'student@example.com',
-      displayName: 'Test Student',
-    };
-    // Trigger the sign-in handler
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
+function storedSession(user: TestUser) {
+  return {
+    // The stored user supplies the identity, so this intentionally non-live
+    // token can never authenticate against an external Supabase project.
+    access_token: 'e2e-isolated-session-token',
+    expires_at: Math.floor(Date.now() / 1000) + 3600,
+    user,
+  };
+}
 
-  // Should now be on dashboard as student
-  await expect(page.locator('[data-testid="student-dashboard"]')).toBeVisible();
-  await expect(page.getByText('Test Student')).toBeVisible();
+async function seedAuthenticatedSession(page: Page, user: TestUser, role: 'student' | 'teacher') {
+  const context = page.context();
+
+  // All Supabase calls are fulfilled in the browser: these tests do not use a
+  // real account, change production data, or require a local database.
+  await context.route('**/rest/v1/**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: '[]',
+  }));
+  await context.route('**/rest/v1/rpc/claim_student_by_email', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: role === 'student'
+      ? JSON.stringify([{ id: user.id, local_id: 'e2e-student' }])
+      : '[]',
+  }));
+  await page.addInitScript(({ session }) => {
+    localStorage.setItem('vv:supabase_session', JSON.stringify(session));
+  }, { session: storedSession(user) });
+}
+
+async function openStudentDashboard(page: Page) {
+  await seedAuthenticatedSession(page, STUDENT, 'student');
+  await page.goto(BASE);
+  await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
+}
+
+async function openTeacherDashboard(page: Page) {
+  await seedAuthenticatedSession(page, TEACHER, 'teacher');
+  await page.goto(BASE);
+  await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible({ timeout: 15_000 });
+}
+
+test('public landing opens the real sign-in screen and validates an empty form', async ({ page }) => {
+  await page.goto(BASE);
+  await expect(page.getByText('Prepare for the MET', { exact: false })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Sign in', exact: true }).first().click();
+  await expect(page.getByRole('heading', { name: 'Sign In' })).toBeVisible();
+  await page.getByRole('button', { name: 'Access Workspace', exact: true }).click();
+  await expect(page.getByText('Please enter your email and password.', { exact: true })).toBeVisible();
 });
 
-test('teacher can sign in with mock direct payload', async ({ page }) => {
-  await page.goto('/');
+test('student can open every primary workspace page', async ({ page }) => {
+  await openStudentDashboard(page);
+  await expect(page.getByRole('img', { name: /Academic progress area chart/ })).toBeVisible();
+  await expect(page.getByText('Chart could not load. Check your connection.')).toHaveCount(0);
 
-  await expect(page.getByText('Welcome back')).toBeVisible();
+  const destinations = [
+    { button: 'Home', text: /Good (morning|afternoon|evening),/ },
+    { button: 'Practice', text: 'Six skills, zero clutter' },
+    { button: 'Subjects', text: 'MET skills' },
+    { button: 'Homework', text: 'Assigned practice' },
+    { button: 'Feedback', text: "Your teacher's latest notes" },
+    { button: 'Progress', text: 'Your MET progress path' },
+    { button: 'Resources', text: 'Study Materials & Resources' },
+  ];
 
-  // Sign in as teacher
-  await page.getByRole('button', { name: 'Sign in as Teacher' }).click();
+  for (const destination of destinations) {
+    await page.getByRole('button', { name: destination.button, exact: true }).click();
+    await expect(page.locator('.dash-body')).toContainText(destination.text);
+  }
+});
 
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'teacher',
-      email: 'teacher@example.com',
-      displayName: 'Test Teacher',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
+test('student can open every More-menu page', async ({ page }) => {
+  await openStudentDashboard(page);
+
+  const destinations = [
+    { item: 'Mock Tests', text: 'MET Mock Test 1' },
+    { item: 'Messages', text: 'Inbox' },
+    { item: 'Settings', text: 'Settings' },
+  ];
+
+  for (const destination of destinations) {
+    await page.getByRole('button', { name: 'More', exact: true }).click();
+    await page.getByRole('menuitem', { name: destination.item, exact: true }).click();
+    await expect(page.locator('.dash-body')).toContainText(destination.text);
+  }
+});
+
+test('teacher can open every primary workspace page', async ({ page }) => {
+  await openTeacherDashboard(page);
+
+  const destinations = [
+    { button: 'Today', text: 'Today' },
+    { button: 'Students', text: 'Students' },
+    { button: 'Diagnose', text: 'Diagnostics' },
+    { button: 'Homework', text: 'Homework' },
+    { button: 'Review', text: 'Submissions' },
+    { button: 'Calendar', text: 'Calendar' },
+    { button: 'Resources', text: 'Exercise Library' },
+    { button: 'Operations', text: 'Operations' },
+  ];
+
+  for (const destination of destinations) {
+    await page.getByRole('button', { name: destination.button, exact: true }).click();
+    await expect(page.locator('.shell-main')).toContainText(destination.text);
+  }
+});
+
+test('teacher can create a student login and receive a one-time copyable credential message', async ({ page }) => {
+  await seedAuthenticatedSession(page, TEACHER, 'teacher');
+  const remoteStudents: Array<Record<string, unknown>> = [];
+  let provisionRequest: Record<string, unknown> | null = null;
+
+  await page.context().route('**/rest/v1/students**', async route => {
+    const request = route.request();
+    const method = request.method();
+    if (method === 'POST') {
+      const row = request.postDataJSON() as Record<string, unknown>;
+      const saved = { id: 'student-row-e2e', ...row };
+      remoteStudents.unshift(saved);
+      await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify([saved]) });
+      return;
+    }
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(remoteStudents) });
+  });
+  await page.context().route('**/api/create-student-account', async route => {
+    provisionRequest = route.request().postDataJSON() as Record<string, unknown>;
+    await route.fulfill({
+      status: 201,
+      contentType: 'application/json',
+      body: JSON.stringify({ ok: true, email: 'new.student@example.invalid', studentId: provisionRequest?.studentId || null, authUserId: 'auth-student-e2e' }),
+    });
   });
 
+  await page.goto(BASE);
   await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-  await expect(page.getByText('Test Teacher')).toBeVisible();
+  await page.getByRole('button', { name: 'Students', exact: true }).click();
+  await page.getByRole('button', { name: 'Add Student', exact: true }).first().click();
+  await page.getByPlaceholder('e.g. Ana Paula').fill('New Student');
+  await page.getByPlaceholder('student@email.com').fill('new.student@example.invalid');
+  await page.getByRole('button', { name: 'Add Student', exact: true }).last().click();
+
+  await expect(page.getByText('Account created for New Student', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Copy credentials', exact: true })).toBeVisible();
+  expect(provisionRequest).toMatchObject({
+    email: 'new.student@example.invalid',
+    name: 'New Student',
+  });
+  expect(String(provisionRequest?.password || '').length).toBeGreaterThanOrEqual(12);
 });
 
-test('user can sign out', async ({ page }) => {
-  await page.goto('/');
+test('teacher secondary routes render their own page shell without a runtime error', async ({ page }) => {
+  await seedAuthenticatedSession(page, TEACHER, 'teacher');
+  const pageErrors: Error[] = [];
+  page.on('pageerror', error => pageErrors.push(error));
 
-  // First sign in as student
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'student',
-      email: 'student@example.com',
-      displayName: 'Test Student',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
+  const routes = [
+    ['cohorts', 'cohorts-page'],
+    ['students:profile?studentId=missing-student', 'student-profile-page'],
+    ['calendar:class?classEventId=missing-class', 'class-record-page'],
+    ['diagnostics:create', 'diagnostic-create-page'],
+    ['diagnostics:errors', 'error-bank-page'],
+    ['calendar:inbox', 'inbox-page'],
+    ['homework:create', 'homework-create-page'],
+    ['submissions:review?submissionId=missing-submission', 'submission-review-page'],
+    ['inbox', 'inbox-page'],
+    ['error-bank', 'error-bank-page'],
+    ['risk-dashboard', 'risk-dashboard-page'],
+    ['reports', 'reports-page'],
+    ['settings', 'settings-page'],
+    ['exercises', 'exercises-page'],
+    ['perspective', 'perspective-designer-page'],
+    ['mock-test', 'mock-test-page'],
+    ['evaluation', 'evaluation-page'],
+    ['library:writing', 'writing-practice-page'],
+    ['mock-test-results', 'mock-test-results-page'],
+    ['mock-test-eval', 'mock-test-eval-page'],
+    ['library:evaluation', 'library-evaluation-page'],
+    ['speaking-eval', 'speaking-eval-page'],
+    ['visual-editor', 'visual-editor-page'],
+    ['social-studio', 'social-studio-page'],
+  ] as const;
 
-  await expect(page.locator('[data-testid="student-dashboard"]')).toBeVisible();
-
-  // Sign out
-  await page.getByRole('button', { name: 'Sign out' }).click();
-
-  // Should return to login
-  await expect(page.getByText('Welcome back')).toBeVisible();
-  await expect(page.locator('[data-testid="student-dashboard"]')).not.toBeVisible();
-});
-
-test('teacher can navigate between tabs', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as teacher
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'teacher',
-      email: 'teacher@example.com',
-      displayName: 'Test Teacher',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-
-  // Navigate to students tab
-  await page.getByRole('button', { name: 'Students' }).click();
-
-  // Should navigate to students page
-  await expect(page.locator('[data-testid="students-page"]')).toBeVisible();
-
-  // Navigate back to dashboard
-  await page.getByRole('button', { name: 'Today' }).click();
-
-  await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-});
-
-test('student can navigate to mock test', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as student
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'student',
-      email: 'student@example.com',
-      displayName: 'Test Student',
-      studentId: 'st_1',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="student-dashboard"]')).toBeVisible();
-
-  // Open palette and take mock test
-  await page.getByRole('button', { name: 'Take Mock Test' }).click();
-
-  await expect(page.locator('[data-testid="mock-test-page"]')).toBeVisible();
-});
-
-test('hash navigation works', async ({ page }) => {
-  await page.goto('/#diagnostics');
-
-  // Should navigate to diagnostics
-  await expect(page.locator('[data-testid="diagnostics-page"]')).toBeVisible();
-
-  // Navigate to homework
-  await page.goto('/#homework:create');
-
-  await expect(page.locator('[data-testid="homework-create-page"]')).toBeVisible();
-});
-
-test('keyboard shortcuts work for teacher', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as teacher
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'teacher',
-      email: 'teacher@example.com',
-      displayName: 'Test Teacher',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-
-  // Press 'k' to open palette
-  await page.keyboard.press('KeyK');
-  await expect(page.locator('[role=dialog]')).toBeVisible();
-
-  // Press 'd' to navigate to diagnostics
-  await page.keyboard.press('KeyD');
-  await expect(page.locator('[data-testid="diagnostics-page"]')).toBeVisible();
-});
-
-test('keyboard shortcuts work for student', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as student
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'student',
-      email: 'student@example.com',
-      displayName: 'Test Student',
-      studentId: 'st_1',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="student-dashboard"]')).toBeVisible();
-
-  // Press 'm' to navigate to mock test
-  await page.keyboard.press('KeyM');
-  await expect(page.locator('[data-testid="mock-test-page"]')).toBeVisible();
-});
-
-test('theme toggle works', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as teacher
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'teacher',
-      email: 'teacher@example.com',
-      displayName: 'Test Teacher',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-
-  // Toggle dark mode
-  await page.locator('button[data-testid="dark-mode-toggle"]').click();
-
-  // Check if theme changed
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-
-  // Toggle back to light
-  await page.locator('button[data-testid="dark-mode-toggle"]').click();
-
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-});
-
-test('online/offline bar appears/disappears', async ({ page }) => {
-  await page.goto('/');
-
-  // Sign in as teacher
-  await page.evaluate(() => {
-    (window as any).mockSignInPayload = {
-      mockDirect: true,
-      role: 'teacher',
-      email: 'teacher@example.com',
-      displayName: 'Test Teacher',
-    };
-    const event = new MouseEvent('click', { bubbles: true });
-    (document.querySelector('button[type=submit]') || document.querySelector('button'))?.dispatchEvent(event);
-  });
-
-  // Check if offline bar is visible (it's not initially since we're online)
-  // The bar should NOT be visible when online
-  await expect(page.locator('[data-testid="offline-bar"]')).not.toBeVisible();
-
-  // Go offline
-  await page.evaluate(() => {
-    navigator.onLine = false;
-    const event = new Event('offline');
-    window.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="offline-bar"]')).toBeVisible();
-  await expect(page.locator('[data-testid="offline-bar"]').locator('text=No internet connection')).toBeVisible();
-
-  // Go online
-  await page.evaluate(() => {
-    navigator.onLine = true;
-    const event = new Event('online');
-    window.dispatchEvent(event);
-  });
-
-  await expect(page.locator('[data-testid="offline-bar"]')).not.toBeVisible();
+  for (const [route] of routes) {
+    await page.goto(`${BASE}#${route}`);
+    await expect(page.locator('main')).not.toBeEmpty({ timeout: 15_000 });
+    await expect(page.getByText('Page unavailable', { exact: true })).toHaveCount(0);
+  }
+  expect(pageErrors.map(error => error.message)).toEqual([]);
 });

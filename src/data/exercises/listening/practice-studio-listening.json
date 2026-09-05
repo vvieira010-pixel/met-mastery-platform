@@ -12,11 +12,11 @@
       "audioTitle": "Conversation 01",
       "audioSrc": "/exercises/audio/listening/conversation_01.wav",
       "audioText": "A: Hey, did you go to Professor Hayes's lecture this morning?\nB: No, I missed the bus. Is it over already?\nA: Yeah, but she posted the recording online, so you can watch it later.",
-      "question": "Why did the man miss the lecture?",
+      "question": "Why did the woman miss the lecture?",
       "options": [
-        "He overslept.",
-        "He missed the bus.",
-        "He went to the wrong room.",
+        "She overslept.",
+        "She missed the bus.",
+        "She went to the wrong room.",
         "The lecture was cancelled."
       ],
       "correct": 1,
@@ -33,7 +33,7 @@
       "audioTitle": "Conversation 01",
       "audioSrc": "/exercises/audio/listening/conversation_01.wav",
       "audioText": "A: Hey, did you go to Professor Hayes's lecture this morning?\nB: No, I missed the bus. Is it over already?\nA: Yeah, but she posted the recording online, so you can watch it later.",
-      "question": "What does the woman say about the lecture?",
+      "question": "What does the man say about the lecture?",
       "options": [
         "It was cancelled.",
         "The recording is posted online.",
@@ -54,7 +54,7 @@
       "audioTitle": "Conversation 02",
       "audioSrc": "/exercises/audio/listening/conversation_02.wav",
       "audioText": "A: Can you send me the report you just finished?\nB: Sure, but I think I made a mistake on the sales figures.\nA: Don't worry. I'll check them before I file it.",
-      "question": "What is the woman worried about?",
+      "question": "What is the man worried about?",
       "options": [
         "Missing the deadline.",
         "A mistake in the sales figures.",
@@ -75,7 +75,7 @@
       "audioTitle": "Conversation 02",
       "audioSrc": "/exercises/audio/listening/conversation_02.wav",
       "audioText": "A: Can you send me the report you just finished?\nB: Sure, but I think I made a mistake on the sales figures.\nA: Don't worry. I'll check them before I file it.",
-      "question": "What will the man do?",
+      "question": "What will the woman do?",
       "options": [
         "Rewrite the whole report.",
         "Check the figures before filing it.",
@@ -96,7 +96,7 @@
       "audioTitle": "Conversation 03",
       "audioSrc": "/exercises/audio/listening/conversation_03.wav",
       "audioText": "A: Are you waiting to deposit money?\nB: No, I need to withdraw some cash for the weekend.\nA: The ATM inside is faster than the teller line.",
-      "question": "What does the man need to do?",
+      "question": "What does the woman need to do?",
       "options": [
         "Deposit money.",
         "Withdraw cash for the weekend.",
@@ -117,7 +117,7 @@
       "audioTitle": "Conversation 03",
       "audioSrc": "/exercises/audio/listening/conversation_03.wav",
       "audioText": "A: Are you waiting to deposit money?\nB: No, I need to withdraw some cash for the weekend.\nA: The ATM inside is faster than the teller line.",
-      "question": "What does the woman suggest?",
+      "question": "What does the man suggest?",
       "options": [
         "Waiting in the teller line.",
         "Coming back on Monday.",
@@ -138,11 +138,11 @@
       "audioTitle": "Conversation 04",
       "audioSrc": "/exercises/audio/listening/conversation_04.wav",
       "audioText": "A: Want to grab lunch?\nB: I can't. The library closes in 20 minutes and I need to finish this chapter.\nA: There's a snack bar right outside if you just want something quick.",
-      "question": "Why can't the woman have lunch now?",
+      "question": "Why can't the man have lunch now?",
       "options": [
-        "She has a class in five minutes.",
-        "The library closes soon and she must finish a chapter.",
-        "She already ate.",
+        "He has a class in five minutes.",
+        "The library closes soon and he must finish a chapter.",
+        "He already ate.",
         "The cafeteria is closed today."
       ],
       "correct": 1,
@@ -159,7 +159,7 @@
       "audioTitle": "Conversation 04",
       "audioSrc": "/exercises/audio/listening/conversation_04.wav",
       "audioText": "A: Want to grab lunch?\nB: I can't. The library closes in 20 minutes and I need to finish this chapter.\nA: There's a snack bar right outside if you just want something quick.",
-      "question": "What does the man suggest instead?",
+      "question": "What does the woman suggest instead?",
       "options": [
         "Skipping the chapter.",
         "Ordering food delivery.",
@@ -180,7 +180,7 @@
       "audioTitle": "Conversation 05",
       "audioSrc": "/exercises/audio/listening/conversation_05.wav",
       "audioText": "A: Did you find your sunglasses?\nB: No, I've looked everywhere. I think I left them at the beach.\nA: You can borrow mine until you buy a new pair.",
-      "question": "Where does the woman think she left her sunglasses?",
+      "question": "Where does the man think he left his sunglasses?",
       "options": [
         "At a restaurant.",
         "In the car.",
@@ -201,11 +201,11 @@
       "audioTitle": "Conversation 05",
       "audioSrc": "/exercises/audio/listening/conversation_05.wav",
       "audioText": "A: Did you find your sunglasses?\nB: No, I've looked everywhere. I think I left them at the beach.\nA: You can borrow mine until you buy a new pair.",
-      "question": "What does the man offer?",
+      "question": "What does the woman offer?",
       "options": [
-        "To drive her to the beach.",
-        "To lend her his sunglasses.",
-        "To buy her a new pair.",
+        "To drive him to the beach.",
+        "To lend him her sunglasses.",
+        "To buy him a new pair.",
         "To help search the house."
       ],
       "correct": 1,
@@ -222,12 +222,12 @@
       "audioTitle": "Conversation 06",
       "audioSrc": "/exercises/audio/listening/conversation_06.wav",
       "audioText": "A: I'm stuck on question three. Can you help?\nB: I finished it last night. Why don't you email Dr. Chen? She's really helpful.\nA: Good idea. I'll send her the file now.",
-      "question": "What is the man's problem?",
+      "question": "What is the woman's problem?",
       "options": [
-        "He lost his homework.",
-        "He is stuck on question three.",
-        "He missed Dr. Chen's class.",
-        "His file will not open."
+        "She lost her homework.",
+        "She is stuck on question three.",
+        "She missed Dr. Chen's class.",
+        "Her file will not open."
       ],
       "correct": 1,
       "explanation": "B — \"I'm stuck on question three.\"",
@@ -243,12 +243,12 @@
       "audioTitle": "Conversation 06",
       "audioSrc": "/exercises/audio/listening/conversation_06.wav",
       "audioText": "A: I'm stuck on question three. Can you help?\nB: I finished it last night. Why don't you email Dr. Chen? She's really helpful.\nA: Good idea. I'll send her the file now.",
-      "question": "What does the woman suggest?",
+      "question": "What does the man suggest?",
       "options": [
         "Asking a classmate for answers.",
         "Skipping the question.",
         "Emailing Dr. Chen.",
-        "Copying her work."
+        "Copying his work."
       ],
       "correct": 2,
       "explanation": "C — \"Why don't you email Dr. Chen?\"",
@@ -264,12 +264,12 @@
       "audioTitle": "Conversation 07",
       "audioSrc": "/exercises/audio/listening/conversation_07.wav",
       "audioText": "A: You seem happy today.\nB: My manager said my presentation was the best she's seen this year.\nA: That's great. You worked really hard on it.",
-      "question": "Why is the woman happy?",
+      "question": "Why is the man happy?",
       "options": [
-        "She got a promotion.",
-        "Her manager praised her presentation.",
-        "She finished work early.",
-        "Her team won an award."
+        "He got a promotion.",
+        "His manager praised his presentation.",
+        "He finished work early.",
+        "His team won an award."
       ],
       "correct": 1,
       "explanation": "B — \"My manager said my presentation was the best she's seen this year.\"",
@@ -285,12 +285,12 @@
       "audioTitle": "Conversation 07",
       "audioSrc": "/exercises/audio/listening/conversation_07.wav",
       "audioText": "A: You seem happy today.\nB: My manager said my presentation was the best she's seen this year.\nA: That's great. You worked really hard on it.",
-      "question": "How does the man respond?",
+      "question": "How does the woman respond?",
       "options": [
-        "He says she should present again.",
-        "He says the hard work paid off.",
-        "He says the manager is too generous.",
-        "He says he helped write it."
+        "She says he should present again.",
+        "She says the hard work paid off.",
+        "She says the manager is too generous.",
+        "She says she helped write it."
       ],
       "correct": 1,
       "explanation": "B — \"You worked really hard on it.\"",

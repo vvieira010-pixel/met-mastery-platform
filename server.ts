@@ -9,6 +9,7 @@ import getSubmissionsHandler from './api/get-submissions.js';
 import saveSubmissionHandler from './api/save-submission.js';
 import sendInviteHandler from './api/send-invite.js';
 import evaluateSpeakingHandler from './api/evaluate-speaking.js';
+import createStudentAccountHandler from './api/create-student-account.js';
 
 dotenv.config();
 // Vite automatically loads .env.local for the browser bundle. Load it here as
@@ -85,6 +86,7 @@ async function startServer() {
   app.all('/api/save-submission', wrap(saveSubmissionHandler));
   app.all('/api/send-invite', wrap(sendInviteHandler));
   app.all('/api/evaluate-speaking', wrap(evaluateSpeakingHandler));
+  app.all('/api/create-student-account', wrap(createStudentAccountHandler));
 
   if (process.env.NODE_ENV !== 'production') {
     const { createServer: createViteServer } = await import('vite');

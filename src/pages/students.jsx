@@ -15,7 +15,7 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
   const [showForm, setShowForm] = useState(false);
   const [editStudent, setEditStudent] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
-  const [sendAccessEmail, setSendAccessEmail] = useState(true);
+  const [createLoginOnSave, setCreateLoginOnSave] = useState(true);
   const [search, setSearch] = useState('');
   const [cohortFilter, setCohortFilter] = useState('');
   const [saving, setSaving] = useState(false);
@@ -48,13 +48,13 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
   function openAdd() {
     setEditStudent(null);
     setForm(EMPTY_FORM);
-    setSendAccessEmail(true);
+    setCreateLoginOnSave(true);
     setShowForm(true);
   }
 
   function openEdit(student) {
     setEditStudent(student);
-    setSendAccessEmail(false);
+    setCreateLoginOnSave(false);
     setForm({
       name: student.name || '',
       email: student.email || '',
@@ -76,14 +76,16 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
     setSaving(true);
     try {
       const student = await saveStudent({ ...form, id: editStudent?.id, session: editStudent?.session || 1 });
-      let invitation = null;
-      let emailError = null;
+      let account = null;
+      let accountError = null;
 
-      if (isNewStudent && sendAccessEmail) {
+      if (isNewStudent && createLoginOnSave) {
         try {
-          invitation = await createStudentAccount(student);
+          const password = genPassword();
+          await createStudentAccount(student, password);
+          account = { password };
         } catch (error) {
-          emailError = error;
+          accountError = error;
         }
       }
 
@@ -91,13 +93,11 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
       window.dispatchEvent(new CustomEvent('vv:students-updated'));
       setShowForm(false);
 
-      if (emailError) {
-        window.toast?.(`Student added, but the access email could not be sent: ${emailError.message}`, 'warn');
-      } else if (invitation?.emailSent) {
-        window.toast?.(`Student added and access email sent to ${student.email}.`, 'ok');
-      } else if (isNewStudent && sendAccessEmail) {
-        setSetup({ id: student.id, pwd: '', busy: false, result: { ok: true, email: student.email, password: invitation?.password, emailSent: false } });
-        window.toast?.('Student added. Their account details are ready below, but no access email was sent.', 'warn');
+      if (accountError) {
+        window.toast?.(`Student added, but their login was not created: ${accountError.message}`, 'warn');
+      } else if (account) {
+        setSetup({ id: student.id, pwd: '', busy: false, result: { ok: true, email: student.email, password: account.password } });
+        window.toast?.('Student added and login created. Copy the details below to send to them.', 'ok');
       } else {
         window.toast?.(isNewStudent ? 'Student added.' : 'Student updated.', 'ok');
       }
@@ -108,17 +108,16 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
     }
   }
 
-  async function createStudentAccount(student) {
+  async function createStudentAccount(student, password) {
     const ctx = getDbContext();
     if (!ctx) throw new Error('Sign in as teacher first.');
-    const res = await fetch(`${ctx.url}/functions/v1/invite-student`, {
+    const res = await fetch('/api/create-student-account', {
       method: 'POST',
       headers: {
-        apikey: ctx.anonKey,
         Authorization: `Bearer ${ctx.token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: student.email.trim(), name: student.name, firstName: student.firstName }),
+      body: JSON.stringify({ studentId: student.id, email: student.email.trim(), name: student.name, password }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || data.error) throw new Error(data.error || `Error ${res.status}`);
@@ -131,11 +130,15 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
 
   async function handleCreateAccount(student) {
     if (!setup) return;
+    if (setup.pwd.length < 12) {
+      setSetup(s => ({ ...s, result: { ok: false, error: 'Use a password with at least 12 characters.' } }));
+      return;
+    }
     setSetup(s => ({ ...s, busy: true, result: null }));
     try {
-      const data = await createStudentAccount(student);
-      setSetup(s => ({ ...s, busy: false, result: { ok: true, email: student.email, password: data.password, emailSent: data.emailSent } }));
-      window.toast?.(`Account created for ${student.name}${data.emailSent ? ' — email sent!' : ''}`, 'ok');
+      await createStudentAccount(student, setup.pwd);
+      setSetup(s => ({ ...s, busy: false, result: { ok: true, email: student.email, password: setup.pwd } }));
+      window.toast?.(`Account created for ${student.name}. Copy their details before closing this panel.`, 'ok');
     } catch (err) {
       setSetup(s => ({ ...s, busy: false, result: { ok: false, error: err.message } }));
     }
@@ -225,14 +228,14 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
             <label style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-2)', marginTop: 'var(--space-4)', color: 'var(--text)', cursor: 'pointer' }}>
               <input
                 type="checkbox"
-                checked={sendAccessEmail}
-                onChange={e => setSendAccessEmail(e.target.checked)}
+            checked={createLoginOnSave}
+            onChange={e => setCreateLoginOnSave(e.target.checked)}
                 style={{ marginTop: 3, accentColor: 'var(--primary)' }}
               />
               <span>
-                <strong style={{ display: 'block', fontSize: 'var(--text-sm)' }}>Send access email after adding this student</strong>
+                <strong style={{ display: 'block', fontSize: 'var(--text-sm)' }}>Create the student’s login now</strong>
                 <small style={{ color: 'var(--text-muted)', display: 'block', marginTop: 2 }}>
-                  Creates their account and sends their login details to the email above.
+                  I’ll show a one-time, copyable message with their email and password for you to send yourself.
                 </small>
               </span>
             </label>
@@ -286,8 +289,10 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
 
 function genPassword() {
   const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+  const values = new Uint32Array(12);
+  crypto.getRandomValues(values);
   let p = 'Met-';
-  for (let i = 0; i < 6; i++) p += chars[Math.floor(Math.random() * chars.length)];
+  for (const value of values) p += chars[value % chars.length];
   return p;
 }
 
@@ -336,7 +341,7 @@ function StudentRow({ student, nextAction, setupState, onProfile, onEdit, onDele
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
                 <p style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--success)', margin: 0 }}>
                   ✓ Account created for {student.name}
-                  {result.emailSent && ' — login email sent to their inbox!'}
+                  — ready for you to send
                 </p>
                 <div style={{ background: 'var(--bg)', border: '1.5px solid var(--border)', borderRadius: 'var(--radius-md)', padding: 'var(--space-3) var(--space-4)', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', lineHeight: 2 }}>
                   <div><strong>Login (email):</strong> {result.email}</div>
@@ -370,7 +375,7 @@ function StudentRow({ student, nextAction, setupState, onProfile, onEdit, onDele
                      style={{ maxWidth: 240 }}
                      value={setupState.pwd}
                      onChange={e => onSetupPwd(e.target.value)}
-                     placeholder="New password"
+                     placeholder="New password (12+ characters)"
                    />
                    <Button variant="primary" size="sm" onClick={onCreateAccount} disabled={setupState.busy}>
                      {setupState.busy ? 'Creating…' : 'Create'}
@@ -379,6 +384,11 @@ function StudentRow({ student, nextAction, setupState, onProfile, onEdit, onDele
                      Reset Password
                    </Button>
                  </div>
+                 {result?.error && (
+                   <p role="alert" style={{ color: 'var(--danger)', fontSize: 'var(--text-sm)', margin: 0 }}>
+                     {result.error}
+                   </p>
+                 )}
 
               </div>
             )
