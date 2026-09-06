@@ -7068,8 +7068,61 @@ textarea:focus, .textarea:focus {
 .skill-diagnosis-text {
   color: var(--muted);
   font-size: var(--text-xs);
-  font-style: italic;
   margin: 0;
+  line-height: 1.6;
+}
+.skill-evidence-note {
+  color: var(--text-2);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+.skill-explanation {
+  padding: 10px;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+.skill-detail-label {
+  color: var(--muted);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.skill-subskills {
+  color: var(--text-2);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+.skill-rating-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider);
+}
+.skill-rating-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.8fr) auto minmax(0, 2fr);
+  gap: 8px;
+  align-items: baseline;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+.skill-rating-name {
+  color: var(--text-2);
+  font-weight: 600;
+}
+.skill-rating-score {
+  color: var(--accent-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.skill-rating-notes {
+  color: var(--muted);
 }
 .skill-item-list {
   display: flex;
@@ -7101,6 +7154,15 @@ textarea:focus, .textarea:focus {
   font-size: var(--text-xs);
   color: var(--accent);
   margin-top: 2px;
+  line-height: 1.6;
+}
+
+.section-value-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.section-value-list li + li {
+  margin-top: 4px;
 }
 
 /* HomeworkRecommendation */

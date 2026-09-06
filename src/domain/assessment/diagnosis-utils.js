@@ -86,6 +86,7 @@ export function normalizeDiagnosisJson(parsed, evidence = {}) {
     const existing = skillDiagnosis[skill] && typeof skillDiagnosis[skill] === 'object' ? skillDiagnosis[skill] : {};
     const evaluated = Boolean(existing.evaluated ?? evidence?.[flagKey]);
     const evidenceCount = Number(existing.evidenceCount ?? evidence?.[countKey] ?? 0) || 0;
+    const skillLabel = skill === 'testStrategy' ? 'test strategy' : skill;
     normalizedSkills[skill] = {
       evaluated,
       evidenceCount,
@@ -95,12 +96,18 @@ export function normalizeDiagnosisJson(parsed, evidence = {}) {
         : 'Not evaluated enough',
       scoreProvisional: existing.scoreProvisional ?? evaluated,
       transcriptOnly: existing.transcriptOnly ?? (skill === 'speaking'),
+      diagnosis: existing.diagnosis || (evaluated
+        ? `The available evidence gives a working picture of ${skillLabel}, but it should be confirmed with another sample.`
+        : `Not evaluated — no evidence was marked for ${skillLabel} in this class.`),
+      evidenceNote: existing.evidenceNote || (evaluated
+        ? `Based on ${evidenceCount || 1} recorded evidence item${evidenceCount === 1 ? '' : 's'}; the estimate is provisional.`
+        : `No evidence was provided for ${skillLabel}.`),
       strengths: Array.isArray(existing.strengths) ? existing.strengths : [],
       weaknesses: Array.isArray(existing.weaknesses) ? existing.weaknesses : (Array.isArray(existing.mainIssues) ? existing.mainIssues : []),
       mainIssues: Array.isArray(existing.mainIssues) ? existing.mainIssues : [],
       subskillsAssessed: Array.isArray(existing.subskillsAssessed) ? existing.subskillsAssessed : [],
-      readinessTowardTarget: existing.readinessTowardTarget || (evaluated ? 'Limited evidence gathered.' : 'Not evaluated yet.'),
-      whatToImproveNext: existing.whatToImproveNext || (evaluated ? 'Review the evidence and add a targeted practice step.' : 'Collect more evidence before assigning a focus.'),
+      readinessTowardTarget: existing.readinessTowardTarget || (evaluated ? 'Limited evidence gathered; compare this working estimate with the target after another sample.' : 'Not evaluated yet.'),
+      whatToImproveNext: existing.whatToImproveNext || (evaluated ? 'Use the evidence above to choose one targeted practice step, then collect another sample.' : 'Collect more evidence before assigning a focus.'),
       ratingBreakdown: existing.ratingBreakdown,
     };
   });

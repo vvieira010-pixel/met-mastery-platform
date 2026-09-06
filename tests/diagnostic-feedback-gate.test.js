@@ -35,3 +35,13 @@ test('feedback draft uses supplied evidence and clearly requires teacher review'
   assert.match(draft.whatYouDidWell[0].example, /night shift/);
   assert.match(draft.finalNote, /editable first draft/);
 });
+
+test('regeneration restores saved session evidence and rejects empty AI responses', async () => {
+  const source = await readFile(new URL('../src/pages/diagnostic-create.jsx', import.meta.url), 'utf8');
+
+  assert.match(source, /await loadClassData\(dx\.classEventId\)/);
+  assert.match(source, /targetProfileId\);/);
+  assert.doesNotMatch(source, /diagnosticEvidence: normalizedEvidence/);
+  assert.match(source, /AI returned an empty response\. Try Regen again\./);
+  assert.match(source, /Section regenerated\. Review it, then save the diagnosis\./);
+});

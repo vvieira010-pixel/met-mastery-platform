@@ -31,7 +31,7 @@ export const DIAGNOSIS_DERIVED_KEYS = new Set([
 
 export const SECTION_GROUPS = [
   {
-    zone: 'teacher', title: 'Teacher Analysis', studentFacing: false,
+    zone: 'teacher', title: '2. Supporting Analysis & Plan', studentFacing: false,
     groups: [
       { title: 'Readiness Check',    keys: ['readinessCheck'] },
       { title: 'Overview',           keys: ['classSummary', 'targetScoreRelevance', 'estimatedOverallScore'] },
@@ -42,8 +42,8 @@ export const SECTION_GROUPS = [
     ],
   },
   {
-    zone: 'student', title: 'Student-Facing', studentFacing: true,
-    caption: 'This is exactly what your student will see.',
+    zone: 'student', title: '1. Student Feedback First', studentFacing: true,
+    caption: 'Start here: review the clear, student-facing message before the supporting analysis below.',
     groups: [
       { title: 'Personalized Student Feedback', keys: ['studentFeedback'] },
       { title: 'Homework Recommendation',        keys: ['homeworkRecommendation'] },

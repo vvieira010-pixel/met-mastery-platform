@@ -50,6 +50,37 @@ function KeyValueCards({ content }) {
   );
 }
 
+function RatingBreakdown({ ratingBreakdown }) {
+  if (!ratingBreakdown || typeof ratingBreakdown !== 'object') return null;
+  const entries = Object.entries(ratingBreakdown).filter(([, rating]) => rating && typeof rating === 'object');
+  if (!entries.length) return null;
+
+  return (
+    <div className="skill-rating-breakdown">
+      <div className="skill-detail-label">Rubric breakdown</div>
+      {entries.map(([key, rating]) => (
+        <div key={key} className="skill-rating-row">
+          <span className="skill-rating-name">{camelToLabel(key)}</span>
+          {rating.score0to4 != null && <span className="skill-rating-score">{rating.score0to4}/4</span>}
+          {rating.notes && <span className="skill-rating-notes">{rating.notes}</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ListValue({ value }) {
+  if (Array.isArray(value)) {
+    if (!value.length) return <span className="text-muted text-italic">None identified</span>;
+    return (
+      <ul className="section-value-list">
+        {value.map((item, index) => <li key={index}>{typeof item === 'object' && item !== null ? Object.values(item).join(' — ') : String(item)}</li>)}
+      </ul>
+    );
+  }
+  return <span>{String(value ?? '')}</span>;
+}
+
 export function SectionContent({ sectionKey, content }) {
   if (!content) return <EmptySectionNote message="Not generated — click Regen to retry this section." />;
 
@@ -107,7 +138,7 @@ export function SectionContent({ sectionKey, content }) {
               <strong className="text-sm">{p.area}</strong>
             </div>
             {p.evidence && <div className="priority-item-evidence">Evidence: {p.evidence}</div>}
-            <div className="priority-item-what-to-improve">{p.whatToImprove}</div>
+            {p.whatToImprove && <div className="priority-item-what-to-improve"><strong>What to improve:</strong> {p.whatToImprove}</div>}
             {p.howToImprove && <div className="priority-item-how-to-improve">How: {p.howToImprove}</div>}
           </div>
         ))}
@@ -121,7 +152,7 @@ export function SectionContent({ sectionKey, content }) {
         {Object.entries(content).map(([skill, data]) => (
           <div key={skill} className="skill-item-card">
             <div className="skill-item-header">
-              <span className="skill-item-name">{skill}</span>
+              <span className="skill-item-name">{camelToLabel(skill)}</span>
               {data?.evaluated === false ? (
                 <Pill tone="muted">Not evaluated</Pill>
               ) : (
@@ -136,9 +167,22 @@ export function SectionContent({ sectionKey, content }) {
               )}
             </div>
             {data?.evaluated === false ? (
-              <p className="skill-diagnosis-text">{data.diagnosis || 'Not evaluated — no evidence.'}</p>
+              <div className="skill-diagnosis-text">
+                <div>{data.diagnosis || 'Not evaluated — no evidence was marked for this skill.'}</div>
+                {data.evidenceNote && <div className="skill-evidence-note">Evidence: {data.evidenceNote}</div>}
+              </div>
             ) : (
               <div className="skill-item-list">
+                {(data?.diagnosis || data?.readinessTowardTarget) && (
+                  <div className="skill-explanation">
+                    <div className="skill-detail-label">What this evidence suggests</div>
+                    <div>{data.diagnosis || data.readinessTowardTarget}</div>
+                  </div>
+                )}
+                {data?.evidenceNote && <div className="skill-evidence-note"><strong>Evidence used:</strong> {data.evidenceNote}</div>}
+                {data?.subskillsAssessed?.length > 0 && (
+                  <div className="skill-subskills"><strong>Assessed:</strong> {data.subskillsAssessed.join(' · ')}</div>
+                )}
                 {data?.strengths?.length > 0 && data.strengths.map((s, j) => (
                   <div key={j} className="skill-strength-item"><Icon.check size={12} /> {s}</div>
                 ))}
@@ -148,7 +192,8 @@ export function SectionContent({ sectionKey, content }) {
                 {data?.mainIssues?.length > 0 && data.mainIssues.map((iss, j) => (
                   <div key={j} className="skill-issue-item"><Icon.close size={12} /> {iss}</div>
                 ))}
-                {data?.whatToImproveNext && <div className="skill-next-improvement">Next: {data.whatToImproveNext}</div>}
+                <RatingBreakdown ratingBreakdown={data?.ratingBreakdown} />
+                {data?.whatToImproveNext && <div className="skill-next-improvement"><strong>Next practice step:</strong> {data.whatToImproveNext}</div>}
               </div>
             )}
           </div>
@@ -191,9 +236,9 @@ export function SectionContent({ sectionKey, content }) {
     return (
       <div className="next-class-stack">
         {Object.entries(content).map(([k, v]) => (
-          <div key={k} className="next-class-item">
-            <div className="next-class-label">{camelToLabel(k)}</div>
-            <div className="next-class-value">{String(v)}</div>
+            <div key={k} className="next-class-item">
+              <div className="next-class-label">{camelToLabel(k)}</div>
+              <div className="next-class-value"><ListValue value={v} /></div>
           </div>
         ))}
       </div>
@@ -291,7 +336,7 @@ export function SectionContent({ sectionKey, content }) {
           <div key={k} className="relevance-item">
             <div className="relevance-label">{camelToLabel(k)}</div>
             <div className="relevance-value">
-              {Array.isArray(v) ? v.map((item, j) => <div key={j}>• {typeof item === 'object' ? JSON.stringify(item) : String(item)}</div>) : String(v)}
+              <ListValue value={v} />
             </div>
           </div>
         ))}

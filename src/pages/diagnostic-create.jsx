@@ -111,11 +111,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     else setStep('prereq');
   }, [diagnosisId]);
 
-  async function loadStudent(sid) {
+  async function loadStudent(sid, preferredProfileId = null) {
     const [s, tp] = await Promise.all([getStudent(sid), getTargetProfiles(sid)]);
     setStudent(s || allStudents.find(x => x.id === sid));
     setProfiles(tp);
-    setTargetProfile(tp.find(p => p.isActive) || tp[0] || null);
+    setTargetProfile(tp.find(p => p.id === preferredProfileId) || tp.find(p => p.isActive) || tp[0] || null);
   }
 
   async function loadClassData(ceid) {
@@ -131,7 +131,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       setSavedDiagnosis(dx);
       if (dx.studentId) {
         setSelectedStudentId(dx.studentId);
-        loadStudent(dx.studentId);
+        await loadStudent(dx.studentId, dx.targetProfileId);
+      }
+      if (dx.classEventId) {
+        setSelectedClassEventId(dx.classEventId);
+        await loadClassData(dx.classEventId);
       }
       if (dx.sections) {
         setSections(dx.sections);
@@ -285,7 +289,14 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     try {
       const existingSections = Object.fromEntries(Object.entries(sections).filter(([k]) => k !== key));
       let prompt;
-      const promptData = { student: selectedStudent, classEvent, classEvidence: normalizedEvidence, targetProfile, existingSections };
+      const promptData = {
+        student: selectedStudent,
+        classEvent,
+        classEvidence: normalizedEvidence,
+        targetProfile,
+        diagnosis: aiResult,
+        existingSections,
+      };
 
       switch (key) {
         case 'skillDiagnosis':       prompt = buildSkillDiagnosisPrompt(promptData);    break;
@@ -309,16 +320,21 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         max_tokens: DIAGNOSIS_DERIVED_KEYS.has(key) ? Math.min(SECTION_BUDGETS[key] || 2500, 3000) : SECTION_BUDGETS[key] || 2000,
       }));
       const raw = data.content?.map(b => b.text || '').join('') || '';
+      if (!raw.trim()) throw new Error('AI returned an empty response. Try Regen again.');
       const parsed = DIAGNOSIS_DERIVED_KEYS.has(key)
         ? normalizeDiagnosisJson(parseAiJson(raw), normalizedEvidence)
         : parseAiJson(raw);
+      if (!parsed || (typeof parsed === 'object' && Object.keys(parsed).length === 0)) {
+        throw new Error('AI returned content that could not be read. Try Regen again.');
+      }
       const content = parsed[key] ?? parsed;
-      setSections(s => ({ ...s, [key]: { ...s[key], content, approved: false } }));
-      window.toast?.('Section regenerated.', 'ok');
+      setSections(s => ({ ...s, [key]: { ...(s[key] || {}), content, approved: false } }));
+      window.toast?.('Section regenerated. Review it, then save the diagnosis.', 'ok');
     } catch (e) {
       window.toast?.(`Regeneration failed: ${e.message}`, 'warn');
+    } finally {
+      setRegenerating(null);
     }
-    setRegenerating(null);
   }
 
   // ── Save diagnosis ──
@@ -830,7 +846,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
               <div>
                 <div className="card-row-title">Feedback is ready first</div>
                 <p className="card-row-meta mt-1">
-                  This editable student-facing draft was saved before optional AI analysis. Review it, add the specific teaching note, and approve it. Use Regen on any deeper section only when you need it.
+                  This editable student-facing draft is the first result. Review it, add the specific teaching note, and approve it before using the supporting analysis below. Use Regen on any deeper section when you need more detail.
                 </p>
               </div>
             </div>
