@@ -388,12 +388,13 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
   const lowestSkill = evaluatedSkills.length > 1
     ? [...evaluatedSkills].sort((a, b) => (Number(a.score_0_80) || 80) - (Number(b.score_0_80) || 80))[0]
     : null;
+  const greetingName = student.firstName || student.name?.trim().split(/\s+/)[0] || 'there';
 
   return (
     <div className="student-home">
       <section className="student-hero dashboard-overview bg-grain fade-up" style={{ '--delay': '0s' }}>
         <div>
-          <h1>Good {timeOfDay()}, {student.firstName}.</h1>
+          <h1>Good {timeOfDay()}, {greetingName}.</h1>
           <p>{student.currentLevel || student.band || 'Current level'} to {student.targetLevel || student.bandTarget || 'target level'} · Session {student.session || 1}/{student.totalSessions || 24} · <span className="student-pill">{getExamModeLabel(examMode)}</span></p>
         </div>
          <button className="student-hero-action" onClick={() => onTab(heroAction.tab)}>

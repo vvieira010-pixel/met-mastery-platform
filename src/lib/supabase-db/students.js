@@ -17,6 +17,9 @@ export const studentsCrud = {
     };
   },
   fromRow(row) {
-    return { ...(row.metadata || {}), id: row.local_id || row.id, email: row.email, name: row.name };
+    const metadata = row.metadata || {};
+    const name = row.name || metadata.name || '';
+    const firstName = row.first_name || metadata.firstName || name.trim().split(/\s+/)[0] || '';
+    return { ...metadata, id: row.local_id || row.id, email: row.email, name, firstName };
   },
 };
