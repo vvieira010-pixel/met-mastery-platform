@@ -1,18 +1,18 @@
 /**
- * diagnostic-create.jsx — Multi-step diagnosis: prereqs → AI → preview/approve → save
+ * diagnostic-create.jsx — Short diagnosis flow: prereqs → feedback first → review/save
  *
  * The most important page. Teacher must:
  * 1. Select target score profile (blocker)
  * 2. Confirm evaluated skills (blocker)
- * 3. Run AI diagnosis
- * 4. Preview and approve each section
- * 5. Save approved diagnosis
+ * 3. Create an honest feedback draft immediately
+ * 4. Preview, edit, and approve the student-facing feedback
+ * 5. Optionally regenerate deeper AI sections one at a time
  *
  * Business logic lives in src/domain/assessment/:
  *   constants.js, diagnosis-utils.js, hooks/useSectionApproval.js, components/SectionContent.jsx
  */
 import { useState, useEffect } from 'react';
-import { Icon, SectionHeader, Pill, Avatar, Breadcrumb } from '../components/shared.jsx';
+import { Icon, SectionHeader, Pill, Breadcrumb } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { callAI } from '../components/shared.jsx';
@@ -27,9 +27,8 @@ import {
   buildSectionRegenPrompt,
 } from '../lib/prompts.js';
 import { TARGET_PROFILE_PRESETS } from '../lib/workflow.js';
-import { STUDENT_ERROR_PROFILES, buildErrorProfileContext } from '../lib/error-bank-profiles.js';
 import {
-  getStudent, getStudents, getStudentGoal,
+  getStudent, getStudents,
   getTargetProfiles, saveTargetProfile, setActiveTargetProfile,
   getClassEvent, getClassEvidence,
   getDiagnosis, saveDiagnosis, updateClassEventStatus,
@@ -37,17 +36,18 @@ import {
 } from '../lib/workflow.js';
 
 import {
-  SECTION_KEYS, REQUIRED_APPROVAL_KEYS, SECTION_LABELS,
+  SECTION_KEYS, SECTION_LABELS,
   DIAGNOSIS_DERIVED_KEYS, SECTION_GROUPS, SKILL_KEYS,
   CAMBRIDGE_FRAMEWORK_CATEGORIES,
 } from '../domain/assessment/constants.js';
 import {
-  friendlyAiError, aiText,
-  generateDiagnosisJson, normalizeDiagnosisJson,
-  normalizeErrorTargets, normalizeEvidenceCounts, buildSnapshot,
+  friendlyAiError,
+  normalizeDiagnosisJson,
+  normalizeEvidenceCounts, buildSnapshot,
 } from '../domain/assessment/diagnosis-utils.js';
+import { buildFeedbackDraft } from '../domain/assessment/feedback-draft.js';
 import { useSectionApproval } from '../domain/assessment/hooks/useSectionApproval.js';
-import { SectionContent, PrereqIcon, camelToLabel, PrereqRow } from '../domain/assessment/components/SectionContent.jsx';
+import { SectionContent, PrereqIcon, PrereqRow } from '../domain/assessment/components/SectionContent.jsx';
 import { DiagnosisStepBar, DiagnosisGeneratingProgress, DiagnosisSavedActions } from '../domain/assessment/components/DiagnosisStepBar.jsx';
 
 
@@ -189,11 +189,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     : evaluatedSkills.length > 0;
 
   const prereqOk = selectedStudent && targetProfile && inlineReady;
-  const prereqWarning = evaluatedSkills.some(sk => {
-    const countKey = sk + 'EvidenceCount';
-    return normalizedEvidence && (normalizedEvidence[countKey] === 0 || normalizedEvidence[countKey] === undefined);
-  });
-
   // ── Run AI diagnosis ──
   async function handleGenerate() {
     if (!prereqOk) return;
@@ -203,14 +198,16 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     if (!diagnosisId) setSavedDiagnosis(null);
 
     try {
-      const studentGoal = await getStudentGoal(selectedStudent.id);
-      const promptData = { student: selectedStudent, classEvent, classEvidence: normalizedEvidence, targetProfile, studentGoal };
-      const getContent = (res) => (res?.content?.map(b => b.text || '').join('') || '');
       const FAILED = { content: 'Not generated. Click Regen to retry.', approved: false, hidden: false, edited: false };
-      const feedbackPending = { content: 'Personalized student feedback is ready to generate. Click Regen if it does not appear.', approved: false, hidden: false, edited: false };
       const fallbackDiagnosis = normalizeDiagnosisJson({}, normalizedEvidence);
+      const feedbackDraft = buildFeedbackDraft({
+        student: selectedStudent,
+        classEvent,
+        classEvidence: normalizedEvidence,
+        evaluatedSkills,
+      });
       let draftId = diagnosisId ? savedDiagnosis?.id : undefined;
-      const createSections = ({ diagnosis, feedback = feedbackPending, errorBank, homework = FAILED } = {}) => ({
+      const createSections = ({ diagnosis, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank, homework = FAILED } = {}) => ({
         skillDiagnosis:           { content: diagnosis.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
         studentFeedback:          feedback,
         homeworkRecommendation:   homework,
@@ -255,54 +252,13 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         },
       });
 
-      // Preserve the teacher's evidence before a provider timeout or outage can interrupt the workflow.
-      const initialSections = createSections({ diagnosis: fallbackDiagnosis });
-      setAiResult(fallbackDiagnosis);
-      setSections(initialSections);
-      setGeneratingStatus('Saving evidence-based draft…');
-      try {
-        const draft = await saveDraft(initialSections, fallbackDiagnosis);
-        if (draft) {
-          draftId = draft.id;
-          setSavedDiagnosis(draft);
-        }
-      } catch (autoSaveErr) {
-        console.warn('Initial diagnostic draft save failed:', autoSaveErr);
-        window.toast?.('The evidence is ready, but the draft could not be saved yet.', 'warn');
-      }
-
-      setGeneratingStatus('Step 1/4: Writing personalized student feedback…');
-      let feedbackRaw;
-      let parsedFeedback;
-      try {
-        feedbackRaw = await callAI(
-          buildStudentFeedbackPrompt({ ...promptData, diagnosis: fallbackDiagnosis }),
-          await withSkills('feedback', { max_tokens: 1400 }),
-        );
-        parsedFeedback = parseAiJson(getContent(feedbackRaw));
-      } catch {
-        const feedbackFailed = {
-          content: 'Personalized student feedback could not be generated. Click Regen to retry, or edit this section to write it yourself.',
-          approved: false,
-          hidden: false,
-          edited: false,
-        };
-        const failedSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackFailed });
-        setSections(failedSections);
-        try {
-          const draft = await saveDraft(failedSections, fallbackDiagnosis);
-          if (draft) setSavedDiagnosis(draft);
-        } catch (autoSaveErr) {
-          console.warn('Feedback failure state save failed:', autoSaveErr);
-        }
-        window.toast?.('The diagnostic draft was saved, but personalized feedback needs a retry or teacher edit.', 'warn');
-        setStep('review');
-        return;
-      }
-
-      const feedbackSection = { content: parsedFeedback, approved: false, hidden: false, edited: false };
+      // Feedback is the critical path. Create and persist an honest editable
+      // draft now; the expensive provider cascade is deliberately optional.
+      const feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
       const feedbackSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackSection });
+      setAiResult(fallbackDiagnosis);
       setSections(feedbackSections);
+      setGeneratingStatus('Saving feedback draft…');
       try {
         const draft = await saveDraft(feedbackSections, fallbackDiagnosis);
         if (draft) {
@@ -310,60 +266,12 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           setSavedDiagnosis(draft);
         }
       } catch (autoSaveErr) {
-        console.warn('Feedback draft save failed:', autoSaveErr);
+        console.warn('Feedback-first draft save failed:', autoSaveErr);
+        window.toast?.('The feedback draft could not be saved yet. You can still edit it and retry Save Draft.', 'warn');
       }
 
-      setGeneratingStatus('Step 2/4: Generating skill diagnosis…');
-      const diagnosisResult = await generateDiagnosisJson(promptData, (status) => setGeneratingStatus(status));
-      const diagnosisRaw = diagnosisResult.raw;
-      const parsedDiagnosis = diagnosisResult.parsed;
-
-      // Strip unevaluated skills from diagnosis before passing to downstream prompts to prevent cascade amplification
-      const evaluatedOnlyDx = {
-        ...parsedDiagnosis,
-        skillDiagnosis: Object.fromEntries(
-          Object.entries(parsedDiagnosis.skillDiagnosis || {}).filter(([, v]) => v?.evaluated === true)
-        ),
-      };
-
-      setGeneratingStatus('Step 3/4: Analysing errors and vocabulary targets…');
-      const errorBankRaw = await callAI(buildErrorBankPrompt({ ...promptData, diagnosis: evaluatedOnlyDx }), await withSkills('diagnosis', { max_tokens: 2500 })).catch(() => null);
-      const parsedErrorBank = normalizeErrorTargets(errorBankRaw ? parseAiJson(getContent(errorBankRaw)) : {});
-
-      setGeneratingStatus('Step 4/4: Building homework recommendation…');
-      const homeworkRaw = await callAI(buildHomeworkPrompt({
-        ...promptData,
-        diagnosis: evaluatedOnlyDx,
-        errorBank: parsedErrorBank.errorBankSuggestions,
-        vocabTargets: parsedErrorBank.vocabGrammarTargets,
-      }), await withSkills('homework', { max_tokens: 3000 })).catch(() => null);
-      const parsedHomework = homeworkRaw ? parseAiJson(getContent(homeworkRaw)) : {};
-
-      setGeneratingStatus('Structuring results…');
-
-      const initSections = createSections({
-        diagnosis: parsedDiagnosis,
-        feedback: feedbackSection,
-        errorBank: parsedErrorBank,
-        homework: homeworkRaw ? { content: parsedHomework, approved: false, hidden: false, edited: false } : FAILED,
-      });
-
-      setAiResult(parsedDiagnosis);
-      setSections(initSections);
-
-      // Persist the enriched draft. The initial evidence draft and feedback were already saved.
-      try {
-        const draft = await saveDraft(initSections, parsedDiagnosis, parsedErrorBank);
-        if (draft) setSavedDiagnosis(draft);
-      } catch (autoSaveErr) {
-        console.warn('Auto-save draft failed:', autoSaveErr);
-      }
-
-      if (!diagnosisRaw || !errorBankRaw || !homeworkRaw) {
-        window.toast?.('Some sections failed to generate. Please Regen them.', 'warn');
-      }
-
-      setStep('write');
+      window.toast?.('Feedback draft created first. Edit and approve it now; other sections are optional.', 'ok');
+      setStep('review');
     } catch (e) {
       console.error(e);
       setError(friendlyAiError(e));
@@ -759,7 +667,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
           <div>
             <Button variant="primary" className="text-base" style={{ padding: '12px 24px' }} onClick={handleGenerate} disabled={!prereqOk}>
-              <Icon.diagnose size={16} /> Run AI Diagnosis
+              <Icon.diagnose size={16} /> Create Feedback Draft
             </Button>
             {!prereqOk && (
               <p className="card-row-meta mt-2">
@@ -915,6 +823,19 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       {/* ── STEP: REVIEW ── */}
       {step === 'review' && (
         <div className="mt-5">
+          {/* Feedback-first recovery path */}
+          <Card className="card-p-4 mb-4" style={{ border: '1px solid var(--accent)', background: 'var(--accent-soft)' }}>
+            <div className="flex-row-gap3">
+              <Icon.chat size={18} color="var(--accent-text)" />
+              <div>
+                <div className="card-row-title">Feedback is ready first</div>
+                <p className="card-row-meta mt-1">
+                  This editable student-facing draft was saved before optional AI analysis. Review it, add the specific teaching note, and approve it. Use Regen on any deeper section only when you need it.
+                </p>
+              </div>
+            </div>
+          </Card>
+
           {/* Approval status bar */}
           <div className="approval-bar">
             <div className="flex-1">
@@ -1000,28 +921,32 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
               );
             };
 
-            return SECTION_GROUPS.map(zone => {
-              const groups = zone.groups.filter(g => g.keys.some(k => sections[k]));
-              if (!groups.length) return null;
-              return (
-                <div key={zone.zone} className="stack-list" style={{ gap: 'var(--space-4)', marginTop: zone.zone === 'student' ? 'var(--space-2)' : 0 }}>
-                  <div>
-                    <div className="zone-header" style={{ color: zone.studentFacing ? 'var(--accent-text)' : undefined }}>{zone.title}</div>
-                    {zone.caption && <div className="zone-caption">{zone.caption}</div>}
+            // Put the student-facing result first: feedback is the useful
+            // outcome even when optional teacher analysis is unavailable.
+            return [...SECTION_GROUPS]
+              .sort((a, b) => Number(b.studentFacing) - Number(a.studentFacing))
+              .map(zone => {
+                const groups = zone.groups.filter(g => g.keys.some(k => sections[k]));
+                if (!groups.length) return null;
+                return (
+                  <div key={zone.zone} className="stack-list" style={{ gap: 'var(--space-4)', marginTop: zone.zone === 'student' ? 'var(--space-2)' : 0 }}>
+                    <div>
+                      <div className="zone-header" style={{ color: zone.studentFacing ? 'var(--accent-text)' : undefined }}>{zone.title}</div>
+                      {zone.caption && <div className="zone-caption">{zone.caption}</div>}
+                    </div>
+                    {groups.map(group => {
+                      const keys = group.keys.filter(k => sections[k]);
+                      if (keys.length === 1) return renderSection(keys[0], zone.studentFacing, false);
+                      return (
+                        <Card key={group.title} style={{ padding: 0, overflow: 'hidden', border: '1px solid var(--border)' }}>
+                          <div className="zone-header" style={{ padding: 'var(--space-3) var(--space-4)', background: 'var(--surface)', letterSpacing: '0.04em', color: 'var(--text-2)' }}>{group.title}</div>
+                          {keys.map(k => renderSection(k, zone.studentFacing, true))}
+                        </Card>
+                      );
+                    })}
                   </div>
-                  {groups.map(group => {
-                    const keys = group.keys.filter(k => sections[k]);
-                    if (keys.length === 1) return renderSection(keys[0], zone.studentFacing, false);
-                    return (
-                      <Card key={group.title} style={{ padding: 0, overflow: 'hidden', border: '1px solid var(--border)' }}>
-                        <div className="zone-header" style={{ padding: 'var(--space-3) var(--space-4)', background: 'var(--surface)', letterSpacing: '0.04em', color: 'var(--text-2)' }}>{group.title}</div>
-                        {keys.map(k => renderSection(k, zone.studentFacing, true))}
-                      </Card>
-                    );
-                  })}
-                </div>
-              );
-            });
+                );
+              });
           })()}
 
           {/* Bottom actions */}

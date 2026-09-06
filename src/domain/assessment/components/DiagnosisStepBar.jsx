@@ -4,9 +4,8 @@ import { Button } from '../../../components/ui/Button.jsx';
 
 const DIAGNOSIS_STEPS = [
   { id: 'prereq',     label: 'Set up' },
-  { id: 'generating', label: 'Analyzing' },
-  { id: 'write',      label: 'Write' },
-  { id: 'review',     label: 'Review' },
+  { id: 'generating', label: 'Save feedback' },
+  { id: 'review',     label: 'Review feedback' },
   { id: 'saved',      label: 'Done' },
 ];
 const STEP_ORDER = DIAGNOSIS_STEPS.map(s => s.id);
@@ -36,9 +35,8 @@ export function DiagnosisStepBar({ step }) {
 }
 
 export function DiagnosisGeneratingProgress({ generatingStatus }) {
-  const substepMatch = generatingStatus.match(/Step (\d+)\/4/);
-  const currentSubstep = substepMatch ? parseInt(substepMatch[1]) : 0;
-  const substeps = ['Skill diagnosis', 'Error & vocab analysis', 'Student feedback', 'Homework recommendation'];
+  const currentSubstep = /Saving feedback/i.test(generatingStatus) ? 1 : 0;
+  const substeps = ['Save feedback draft'];
 
   return (
     <div className="page-empty-state" style={{ minHeight: 320 }}>
@@ -53,7 +51,7 @@ export function DiagnosisGeneratingProgress({ generatingStatus }) {
                 {done ? <Icon.check size={12} color="#fff" /> : active ? <div className="diagnosis-gen-dot-inner" /> : null}
               </div>
               <span className="diagnosis-gen-step-label">{label}</span>
-              {n < 4 && <div className={`diagnosis-gen-connector${done ? ' done' : ''}`} />}
+              {n < substeps.length && <div className={`diagnosis-gen-connector${done ? ' done' : ''}`} />}
             </div>
           );
         })}
