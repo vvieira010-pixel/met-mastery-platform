@@ -14,6 +14,10 @@
 export const MET_TASK_CONFIG = {
   Q1: {
     label: 'Speaking Q1 — Describe a Picture (60s)',
+    // Practice Studio gives students a short, visible planning window before
+    // it opens the microphone. The response timing itself remains MET timing.
+    preparationSeconds: 15,
+    responseSeconds: 60,
     structure: 'General scene → people/actions → details → possible inference',
     executionFormula: 'General situation (who, where, what) → key details (actions, objects, relationships) → logical inferences',
     stages: [
@@ -32,6 +36,8 @@ export const MET_TASK_CONFIG = {
   },
   Q2: {
     label: 'Speaking Q2 — Personal Experience (60s)',
+    preparationSeconds: 15,
+    responseSeconds: 60,
     structure: 'When/where → what happened → result/feeling',
     executionFormula: 'Situation → Problem/Main Event → Action Taken → Result → Reflection/Lesson',
     stages: [
@@ -52,6 +58,8 @@ export const MET_TASK_CONFIG = {
   },
   Q3: {
     label: 'Speaking Q3 — Personal Opinion (60s)',
+    preparationSeconds: 15,
+    responseSeconds: 60,
     structure: 'Opinion → reason 1 → reason 2/example → final comment',
     executionFormula: 'Opinion → Reason 1 → Example → Reason 2 → Conclusion',
     stages: [
@@ -72,6 +80,8 @@ export const MET_TASK_CONFIG = {
   },
   Q4: {
     label: 'Speaking Q4 — Advantages & Disadvantages (90s)',
+    preparationSeconds: 20,
+    responseSeconds: 90,
     structure: 'Introduction → advantages → disadvantages → balanced conclusion',
     executionFormula: 'Introduce both sides → advantage with support → drawback with support → balanced concluding synthesis',
     stages: [
@@ -91,6 +101,8 @@ export const MET_TASK_CONFIG = {
   },
   Q5: {
     label: 'Speaking Q5 — Persuade an Authority (90s)',
+    preparationSeconds: 20,
+    responseSeconds: 90,
     structure: 'Recommendation → reasons → benefits → respectful closing',
     executionFormula: 'Address authority → State problem → Present reasons → Offer practical solution → Formal request',
     stages: [

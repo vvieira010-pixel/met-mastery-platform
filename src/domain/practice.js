@@ -84,6 +84,94 @@ export async function savePracticeSession(studentId, data) {
   return record;
 }
 
+/* ─── PRACTICE STUDIO FINAL SUBMISSIONS ──────────────────────── */
+
+/**
+ * A student gets exactly one final submission for a Practice Studio topic.
+ * The key deliberately excludes browser state and timestamps, so refreshing,
+ * changing device, or reopening the topic cannot create another attempt.
+ */
+export function createPracticeStudioSessionKey({ mode, topicId, listeningPart, speakingQuestion }) {
+  return [
+    'practice-studio',
+    String(mode || 'unknown'),
+    String(listeningPart || 'all'),
+    String(speakingQuestion || 'all'),
+    String(topicId || 'all'),
+  ].join(':');
+}
+
+function isFinalStudioSubmission(record, studentId, sessionKey) {
+  return record?.type === 'practice_studio'
+    && record?.studentId === studentId
+    && record?.sessionKey === sessionKey
+    && record?.status === 'submitted';
+}
+
+/**
+ * Read only from Supabase. Practice Studio deliberately does not fall back to
+ * localStorage here: a local-only "submitted" result would not reach the
+ * teacher and would let the same student submit again on another device.
+ */
+export async function getPracticeStudioSubmission(studentId, sessionKey) {
+  if (!studentId || !sessionKey) return null;
+  if (!dbReady('practiceSubmissions')) {
+    throw new Error('Sign in to Supabase before submitting Practice Studio work.');
+  }
+  const records = await dbList('practiceSubmissions', { fresh: true });
+  return records.find(record => isFinalStudioSubmission(record, studentId, sessionKey)) || null;
+}
+
+/**
+ * Save a final Practice Studio attempt exactly once. The matching database
+ * migration adds a unique student/session index; the second lookup below turns
+ * a cross-device race into a normal locked state rather than a second attempt.
+ */
+export async function submitPracticeStudioSession(studentId, data) {
+  const sessionKey = data?.sessionKey;
+  if (!studentId || !sessionKey) throw new Error('Missing Practice Studio submission details.');
+
+  const existing = await getPracticeStudioSubmission(studentId, sessionKey);
+  if (existing) return { record: existing, alreadySubmitted: true };
+
+  const record = {
+    id: uid(),
+    type: 'practice_studio',
+    studentId,
+    sessionKey,
+    mode: data?.mode || null,
+    topicId: data?.topicId || null,
+    topicTitle: data?.topicTitle || null,
+    listeningPart: data?.listeningPart || null,
+    speakingQuestion: data?.speakingQuestion || null,
+    score: data?.score ?? null,
+    exerciseCount: data?.exerciseCount || 0,
+    correctCount: data?.correctCount || 0,
+    maxHintLevel: data?.maxHintLevel || 0,
+    hintUsed: Boolean(data?.hintUsed),
+    quality: data?.quality || null,
+    results: data?.results || [],
+    confidenceBefore: data?.confidenceBefore ?? null,
+    errorCategories: data?.errorCategories || null,
+    submittedAt: data?.submittedAt || new Date().toISOString(),
+    status: 'submitted',
+  };
+
+  try {
+    const saved = await dbUpsert('practiceSubmissions', record);
+    if (!saved) throw new Error('Supabase did not confirm the Practice Studio submission.');
+    return { record: saved, alreadySubmitted: false };
+  } catch (error) {
+    // PostgreSQL duplicate-key error 23505 is the database enforcing the
+    // one-submission rule. Re-read the authoritative row for this student.
+    if (/23505|duplicate key|unique constraint/i.test(String(error?.message || error))) {
+      const duplicate = await getPracticeStudioSubmission(studentId, sessionKey);
+      if (duplicate) return { record: duplicate, alreadySubmitted: true };
+    }
+    throw error;
+  }
+}
+
 /* ─── ERROR BANK ─────────────────────────────────────────────── */
 export async function getErrorBank(studentId) {
   if (dbReady('errorBank')) { try { return (await dbList('errorBank') || []).filter(e => e.studentId === studentId); } catch (e) { console.warn('[workflow] getErrorBank via Supabase failed, using localStorage:', e.message); } }

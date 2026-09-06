@@ -23,10 +23,10 @@ export async function sbFetch(ctx, path, init = {}) {
   return res;
 }
 
-export async function sbSelect(ctx, table, query = '') {
+export async function sbSelect(ctx, table, query = '', { fresh = false } = {}) {
   const cacheKey = `${table}:${query}`;
   const cached = cache.get(cacheKey);
-  if (cached && (Date.now() - cached.timestamp < CACHE_TTL)) {
+  if (!fresh && cached && (Date.now() - cached.timestamp < CACHE_TTL)) {
     return cached.data;
   }
 

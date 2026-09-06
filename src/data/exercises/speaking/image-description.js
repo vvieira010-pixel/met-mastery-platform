@@ -24,10 +24,14 @@ export const IMAGE_DESCRIPTION_EXERCISES = prompts.map(([id, prompt, filename], 
   topic: 'Describe the Image',
   level: 'B1-B2',
   prompt,
-  instruction: 'Look at the image, plan for a few seconds, then describe it for 30–45 seconds. Use the present continuous and location phrases such as in the foreground, on the left, and in the background.',
+  instruction: 'Use the 15-second preparation timer to study the image. Then describe it for 60 seconds. Use the present continuous and location phrases such as in the foreground, on the left, and in the background.',
+  preparationSeconds: 15,
+  seconds: 60,
   imageUrl: `${IMAGE_DIR}/${encodeURIComponent(filename).replace(/%2F/g, '/')}`,
   imageAlt: `Practice image: ${id}`,
-  metTaskType: 'picture_description',
+  // Keep this aligned with the five MET Speaking questions. The image is
+  // required for Question 1, so this bank is intentionally the only Q1 set.
+  metTaskType: 'Q1',
 }));
 
 export default IMAGE_DESCRIPTION_EXERCISES;

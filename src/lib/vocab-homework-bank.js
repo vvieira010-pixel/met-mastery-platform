@@ -9,6 +9,7 @@ import b2ReadingData from '../data/exercises/reading/b2-reading.json' with { typ
 import b2ReadingMoreData from '../data/exercises/reading/b2-reading-50-more.json' with { type: 'json' };
 import readingTreesData from '../data/exercises/reading/reading-23-trees-77.json' with { type: 'json' };
 import readingSubjectsData from '../data/exercises/reading/reading-23-met-subjects-77.json' with { type: 'json' };
+import { MET_TASK_CONFIG } from './met-task-spec.js';
 
 let fullDataPromise = null;
 function getFullData() {
@@ -144,9 +145,9 @@ async function getPracticeStudioListening() {
   return practiceStudioListeningPromise;
 }
 
-// Practice Studio Listening Lab: ONLY the 60 Practice Studio audios —
-// the 35-clip studio bank (conversations 01-07, L15-L22, 1-minute 01-20)
-// plus the 25-clip supplementary pack (76-100).
+// Practice Studio Listening Lab: only the 63 playable audio groups —
+// the studio bank (conversations 01-07, L15-L22, 1-minute 01-20)
+// plus the supplementary pack (76-100).
 const LISTENING_TITLE_OVERRIDES = {
   'Conversation 01': 'Academic Discussion — Missing a Lecture',
   'Conversation 02': 'Workplace Dialogue — Checking a Report',
@@ -402,21 +403,159 @@ async function getPracticeStudioSpeaking() {
   return practiceSpeakingPromise;
 }
 
-// Practice Studio speaking topics (prepended to the standard topic list).
-export function getPracticeStudioSpeakingTopics() {
-  return [
-    { id: 'spk_audio_prompts', title: 'Listen and Speak', subtitle: 'Listen · prepare · speak' },
-    { id: 'spk_quiz', title: 'Speak and Compare', subtitle: 'Record · compare with a sample answer' },
-  ];
+// MET Speaking uses five question formats. Keep this navigation data tied to
+// the task configuration rather than raw package/file names, then group each
+// question by a learner-friendly topic.
+const SPEAKING_QUESTION_META = [
+  { id: 'Q1', number: 1, title: 'Question 1 — Describe a Picture', subtitle: 'Describe a real image · 60 seconds' },
+  { id: 'Q2', number: 2, title: 'Question 2 — Personal Experience', subtitle: 'Tell a specific experience · 60 seconds' },
+  { id: 'Q3', number: 3, title: 'Question 3 — Personal Opinion', subtitle: 'Choose a view and support it · 60 seconds' },
+  { id: 'Q4', number: 4, title: 'Question 4 — Advantages and Disadvantages', subtitle: 'Discuss both sides fairly · 90 seconds' },
+  { id: 'Q5', number: 5, title: 'Question 5 — Persuade an Authority', subtitle: 'Make a respectful recommendation · 90 seconds' },
+];
+
+const SPEAKING_TOPIC_META = {
+  describe_image: { title: 'Everyday scenes', subtitle: 'Picture prompts with real images' },
+  guided_prompts: { title: 'Listen to a prompt', subtitle: 'Listen · prepare · speak' },
+  sample_answer_practice: { title: 'Speak and compare', subtitle: 'Record · compare with a sample answer' },
+  work_career: { title: 'Professional life and employment', subtitle: 'Work, careers, and workplace choices' },
+  healthcare: { title: 'Healthcare and patient care', subtitle: 'Health, wellbeing, and patient communication' },
+  education: { title: 'Education and learning', subtitle: 'School, study, and learning choices' },
+  technology: { title: 'Digital technology and modern life', subtitle: 'Technology, media, and communication' },
+  environment: { title: 'Environment and sustainability', subtitle: 'Nature, travel, and shared spaces' },
+  community: { title: 'Community and public life', subtitle: 'Services, neighbourhoods, and civic choices' },
+  travel_culture: { title: 'Travel, culture, and living abroad', subtitle: 'Travel and everyday cultural experiences' },
+  money_consumer: { title: 'Consumer life and money', subtitle: 'Shopping, food, and spending choices' },
+  family_relationships: { title: 'Family and relationships', subtitle: 'Celebrations, friendships, and social life' },
+  media_news: { title: 'Media, news, and communication', subtitle: 'Information and modern communication' },
+};
+
+const LEGACY_SPEAKING_TOPIC_IDS = {
+  'Work and Career': 'work_career',
+  'Healthcare and Patient Care': 'healthcare',
+  'Education and Learning': 'education',
+  'Technology and Digital Life': 'technology',
+  'Environment and Sustainability': 'environment',
+  'Community and Public Services': 'community',
+  'Travel, Culture, and Moving Abroad': 'travel_culture',
+  'Money, Consumer Choices, and Advertising': 'money_consumer',
+  'Family, Relationships, and Social Life': 'family_relationships',
+  'Media, News, and Communication': 'media_news',
+  spk_audio_prompts: 'guided_prompts',
+  spk_quiz: 'sample_answer_practice',
+  'Describe the Image': 'describe_image',
+};
+
+export function getPracticeStudioSpeakingQuestions() {
+  return SPEAKING_QUESTION_META.map(question => ({ ...question }));
 }
 
-// Serves Practice Studio topics from the speaking bank; anything else falls through
-// to the standard speaking bank so existing content keeps working.
-export async function getPracticeStudioSpeakingExercises(topicId) {
-  const pack = await getPracticeStudioSpeaking();
-  const mine = pack.filter(e => e.topic === topicId);
-  if (mine.length || topicId === 'spk_audio_prompts' || topicId === 'spk_quiz') return mine;
-  return getSpeakingExercises(topicId);
+function normalizeSpeakingTopicId(topic) {
+  return LEGACY_SPEAKING_TOPIC_IDS[topic] || topic || 'community';
+}
+
+function inferSpeakingQuestion(exercise) {
+  const tagged = String(exercise?.metTaskType || '').toUpperCase();
+  if (/^Q[1-5]$/.test(tagged)) return tagged;
+  const taskNumber = Number(exercise?.taskNumber);
+  if (Number.isInteger(taskNumber) && taskNumber >= 1 && taskNumber <= 5) return `Q${taskNumber}`;
+  const promptType = String(exercise?.promptType || '').toLowerCase();
+  if (promptType.includes('picture')) return 'Q1';
+  if (promptType.includes('personal')) return 'Q2';
+  if (promptType.includes('preference') || promptType.includes('opinion')) return 'Q3';
+  if (promptType.includes('advantage')) return 'Q4';
+  if (promptType.includes('persuasion') || promptType.includes('roleplay')) return 'Q5';
+  if (tagged === 'PICTURE_DESCRIPTION' || exercise?.imageUrl || /^describe (?:this |the )?(?:picture|photo|image)/i.test(exercise?.prompt || '')) return 'Q1';
+
+  const idMatch = String(exercise?.id || '').match(/_(?:q)?([2-5])$/i);
+  if (idMatch) return `Q${idMatch[1]}`;
+
+  const prompt = String(exercise?.prompt || '');
+  if (/advantages? and disadvantages?|pros and cons|both sides/i.test(prompt)) return 'Q4';
+  if (/convince|persuade|authority|principal|manager|mayor|council|committee/i.test(prompt)) return 'Q5';
+  if (/tell (?:us|me) about|talk about|describe (?:a time|the last time|an experience)/i.test(prompt)) return 'Q2';
+  return 'Q3';
+}
+
+function withSpeakingMetadata(exercise) {
+  const speakingQuestion = inferSpeakingQuestion(exercise);
+  const speakingTopic = normalizeSpeakingTopicId(exercise?.speakingTopic || exercise?.topic || exercise?.sourceTopic);
+  const timing = MET_TASK_CONFIG[speakingQuestion] || {};
+  return {
+    ...exercise,
+    metTaskType: speakingQuestion,
+    speakingQuestion,
+    speakingTopic,
+    // These fields make the actual Practice Studio prompts self-contained:
+    // Q1–Q3 record for one minute and Q4–Q5 for one minute and thirty
+    // seconds. Individual authoring data may override the practice prep time.
+    preparationSeconds: Number.isFinite(Number(exercise?.preparationSeconds))
+      ? Number(exercise.preparationSeconds)
+      : timing.preparationSeconds,
+    targetSeconds: Number.isFinite(Number(exercise?.targetSeconds))
+      ? Number(exercise.targetSeconds)
+      : Number.isFinite(Number(exercise?.seconds))
+        ? Number(exercise.seconds)
+        : timing.responseSeconds,
+  };
+}
+
+async function getAllPracticeStudioSpeakingExercises() {
+  const [dedicated, images, fullBank] = await Promise.all([
+    getPracticeStudioSpeaking(),
+    getSpeakingExercises('describe_image'),
+    getSpeakingExercises('speaking_full_bank'),
+  ]);
+  return [...dedicated, ...images, ...fullBank].map(withSpeakingMetadata);
+}
+
+/**
+ * With no question selected this returns the five MET question formats. With
+ * Q1–Q5 selected it returns only the topics that have matching recordable
+ * prompts. This gives students Question → Topic → Practice in that order.
+ */
+export async function getPracticeStudioSpeakingTopics(questionId) {
+  if (!questionId) return getPracticeStudioSpeakingQuestions();
+  const exercises = await getAllPracticeStudioSpeakingExercises();
+  const topics = new Map();
+  exercises
+    .filter(exercise => exercise.speakingQuestion === questionId)
+    .forEach(exercise => {
+      const id = `${questionId}::${exercise.speakingTopic}`;
+      const current = topics.get(id) || {
+        id,
+        title: SPEAKING_TOPIC_META[exercise.speakingTopic]?.title || 'General speaking',
+        subtitle: SPEAKING_TOPIC_META[exercise.speakingTopic]?.subtitle || 'MET-style speaking practice',
+        promptCount: 0,
+      };
+      current.promptCount += 1;
+      topics.set(id, current);
+    });
+
+  return Array.from(topics.values())
+    .map(({ id, title, subtitle, promptCount }) => ({
+      id,
+      title,
+      subtitle: `${promptCount} prompt${promptCount === 1 ? '' : 's'} · ${subtitle}`,
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+}
+
+export async function getPracticeStudioSpeakingExercises(selectionId) {
+  const exercises = await getAllPracticeStudioSpeakingExercises();
+  const [questionId, topicId] = String(selectionId || '').split('::');
+
+  if (/^Q[1-5]$/.test(questionId) && topicId) {
+    return exercises.filter(exercise => exercise.speakingQuestion === questionId && exercise.speakingTopic === topicId);
+  }
+  if (/^Q[1-5]$/.test(selectionId)) {
+    return exercises.filter(exercise => exercise.speakingQuestion === selectionId);
+  }
+  // Preserve older callers while moving the learner-facing picker to the
+  // question-first route above.
+  if (selectionId === 'speaking_full_bank') return exercises;
+  const normalizedTopic = normalizeSpeakingTopicId(selectionId);
+  return exercises.filter(exercise => exercise.speakingTopic === normalizedTopic);
 }
 
 export async function getGrammarExercises(topicId) {
@@ -460,7 +599,7 @@ export async function getVocabExercises(topicId) {
 export async function getSpeakingExercises(topicId) {
   if (topicId === 'describe_image') {
     const { default: imageDescriptionExercises } = await import('../data/exercises/speaking/image-description.js');
-    return imageDescriptionExercises;
+    return imageDescriptionExercises.map(withSpeakingMetadata);
   }
   const { vocabTopics } = await getFullData();
   const isFullBank = topicId === 'speaking_full_bank';
@@ -482,7 +621,12 @@ export async function getSpeakingExercises(topicId) {
     })
     .filter(exercise => isFullBank || exercise.topic === topicId);
 
-  return [...base, ...more];
+  // Question 1 is an image-description task. A text-only prompt that merely
+  // says "Describe this picture" is not a valid learner-facing Q1 activity,
+  // so do not leak those legacy prompts back into Speaking Mirror.
+  return [...base, ...more]
+    .map(withSpeakingMetadata)
+    .filter(exercise => exercise.speakingQuestion !== 'Q1' || Boolean(exercise.imageUrl));
 }
 
 function classifyAdditionalSpeakingTopic(topic) {

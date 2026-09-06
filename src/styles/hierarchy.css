@@ -19,7 +19,9 @@
   font-weight: 700 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.1 !important;
-  color: var(--ink) !important;
+  /* Student pages can use a dark workspace theme. Use the active text token
+     rather than the light-page ink token so page titles remain legible. */
+  color: var(--text) !important;
 }
 .student-page-header h1 { font-size: var(--h1-size) !important; }
 .student-page-header h2,

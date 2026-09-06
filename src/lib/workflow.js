@@ -45,6 +45,7 @@ export {
   getPracticeAssignments, savePracticeAssignment, deletePracticeAssignment,
   getPracticeResources, savePracticeResource, deletePracticeResource,
   getPracticeSubmissions, savePracticeSubmission, savePracticeSession,
+  createPracticeStudioSessionKey, getPracticeStudioSubmission, submitPracticeStudioSession,
   getErrorBank, promoteErrorToLongTerm, markErrorPracticed, markErrorSolved,
   incrementErrorAppearance,
   seedErrorBankFromProfile,

@@ -366,7 +366,7 @@ function ProgressBar({ current, total }) {
   );
 }
 
-function ScoreSummary({ results }) {
+function ScoreSummary({ results, waitingForFinalSubmission = false }) {
   const total = results.length;
 
   return (
@@ -375,10 +375,10 @@ function ScoreSummary({ results }) {
       border: `2px solid ${TEAL}`, textAlign: 'center',
     }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-        Session Complete
+          {waitingForFinalSubmission ? 'Ready to submit' : 'Session Complete'}
       </div>
       <div style={{ fontSize: 14, color: 'var(--ex-panel-text)', fontWeight: 500, lineHeight: 1.6 }}>
-        You answered {total} {total === 1 ? 'question' : 'questions'}. Review the answers and explanations above to keep improving.
+        You answered {total} {total === 1 ? 'question' : 'questions'}. {waitingForFinalSubmission ? 'You can review your work or submit this final attempt once.' : 'Review the answers and explanations above to keep improving.'}
       </div>
     </div>
   );
@@ -392,11 +392,15 @@ function ScoreSummary({ results }) {
  *   title — optional session title
  *   onSessionComplete — called with { results, score } when all done
  */
-export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4 }) {
+export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once' }) {
   const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
   const [results, setResults] = useState([]);
   const [done, setDone] = useState(false);
+  const [reviewVersion, setReviewVersion] = useState(0);
+  const [pendingSummary, setPendingSummary] = useState(null);
+  const [submittingFinal, setSubmittingFinal] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
   const [confidenceBefore] = useState(5);
   const currentRef = useRef(current);
   const totalRef = useRef(exercises.length);
@@ -421,20 +425,50 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     });
   }, [setResults]);
 
-  const finishSession = useCallback((completedResults = resultsRef.current) => {
-    setDone(true);
-    const cb = onDoneRef.current;
-    if (!cb) return;
+  const buildSummary = useCallback((completedResults = resultsRef.current) => {
     const live = completedResults.filter(r => r && r.correct !== null && r.correct !== undefined);
     const score = live.length > 0 ? Math.round((live.filter(r => r.correct).length / live.length) * 100) : null;
-    cb({
+    return {
       results: completedResults,
       score,
       maxHintLevel: maxHintLevelRef.current,
       hintUsed: maxHintLevelRef.current > 0,
       confidenceBefore,
-    });
+    };
   }, [confidenceBefore]);
+
+  const finishSession = useCallback((completedResults = resultsRef.current) => {
+    setDone(true);
+    const summary = buildSummary(completedResults);
+    if (requireFinalSubmission) {
+      setPendingSummary(summary);
+      setSubmissionError('');
+      return;
+    }
+    onDoneRef.current?.(summary);
+  }, [buildSummary, requireFinalSubmission]);
+
+  const submitFinalAttempt = useCallback(async () => {
+    const cb = onDoneRef.current;
+    if (!cb || !pendingSummary || submittingFinal) return;
+    setSubmissionError('');
+    setSubmittingFinal(true);
+    try {
+      await cb(pendingSummary);
+    } catch (error) {
+      setSubmissionError(error?.message || 'We could not save your final attempt. Please try again.');
+    } finally {
+      setSubmittingFinal(false);
+    }
+  }, [pendingSummary, submittingFinal]);
+
+  const reviewResponses = useCallback(() => {
+    setDone(false);
+    setPendingSummary(null);
+    setSubmissionError('');
+    setCurrent(0);
+    setReviewVersion(version => version + 1);
+  }, []);
 
   const handleNext = useCallback(() => {
     const idx = currentRef.current;
@@ -495,7 +529,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
 
       {!done ? (
         <motion.div
-          key={current}
+          key={`${current}-${reviewVersion}`}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
@@ -519,23 +553,46 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
         >
-          <ScoreSummary results={results.filter(Boolean)} total={exercises.length} />
-          <button
-            onClick={() => {
-              setCurrent(0);
-              setResults([]);
-              setDone(false);
-              maxHintLevelRef.current = 0;
-            }}
-            style={{
-              marginTop: 16, padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)',
-              border: '1.5px solid var(--border)', background: 'var(--surface)',
-              color: 'var(--text-2)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer',
-              fontFamily: 'var(--font-sans)',
-            }}
-          >
-            Restart exercises
-          </button>
+          <ScoreSummary results={results.filter(Boolean)} total={exercises.length} waitingForFinalSubmission={requireFinalSubmission} />
+          {requireFinalSubmission ? (
+            <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={reviewResponses}
+                disabled={submittingFinal}
+                style={{ padding: '10px 20px', borderRadius: 'var(--radius-sm, 6px)', border: '1.5px solid var(--border)', background: 'var(--surface)', color: 'var(--text-2)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: submittingFinal ? 'wait' : 'pointer', fontFamily: 'var(--font-sans)' }}
+              >
+                Review my responses
+              </button>
+              <button
+                type="button"
+                onClick={submitFinalAttempt}
+                disabled={submittingFinal}
+                data-testid="practice-studio-final-submit"
+                style={{ padding: '10px 20px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: submittingFinal ? 'wait' : 'pointer', fontFamily: 'var(--font-sans)' }}
+              >
+                {submittingFinal ? 'Saving to your teacher record…' : finalSubmissionLabel}
+              </button>
+              {submissionError && <p role="alert" style={{ width: '100%', margin: 0, color: 'var(--ex-wrong-text)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>{submissionError}</p>}
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                setCurrent(0);
+                setResults([]);
+                setDone(false);
+                maxHintLevelRef.current = 0;
+              }}
+              style={{
+                marginTop: 16, padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)',
+                border: '1.5px solid var(--border)', background: 'var(--surface)',
+                color: 'var(--text-2)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer',
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              Restart exercises
+            </button>
+          )}
         </motion.div>
       )}
     </div>

@@ -24,9 +24,11 @@ const DEFAULT_CHECKS = [
 
 function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }) {
   const { prompt, context, instruction, imageUrl, imageAlt, imageDescription, audioSrc, sampleAnswer, followUps } = exercise;
-  const target = exercise.targetSeconds || exercise.seconds || null;
-  const [status, setStatus] = useState('idle'); // idle | recording | done
+  const target = Number(exercise.targetSeconds || exercise.seconds || taskConfig?.responseSeconds) || null;
+  const preparationTarget = Number(exercise.preparationSeconds ?? taskConfig?.preparationSeconds) || 0;
+  const [status, setStatus] = useState('idle'); // idle | preparing | recording | done
   const [seconds, setSeconds] = useState(0);
+  const [preparationSeconds, setPreparationSeconds] = useState(preparationTarget);
   const [playbackUrl, setPlaybackUrl] = useState(null);
   const [recordingError, setRecordingError] = useState('');
   const [selfScore, setSelfScore] = useState(null);
@@ -34,11 +36,15 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   const mediaRef = useRef(null);
   const chunksRef = useRef([]);
   const timerRef = useRef(null);
+  const preparationTimerRef = useRef(null);
+  const streamRef = useRef(null);
   const remainingRef = useRef(target);
+  const preparationRemainingRef = useRef(preparationTarget);
 
   useEffect(() => () => {
     clearInterval(timerRef.current);
-    mediaRef.current?.stream?.getTracks().forEach(t => t.stop());
+    clearInterval(preparationTimerRef.current);
+    streamRef.current?.getTracks().forEach(t => t.stop());
   }, []);
 
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
@@ -48,7 +54,60 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
     mediaRef.current?.stop();
   }, []);
 
-  async function startRecording() {
+  function beginRecording(stream) {
+    const recorder = new MediaRecorder(stream);
+    mediaRef.current = recorder;
+    chunksRef.current = [];
+    recorder.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+    recorder.onstop = async () => {
+      const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+      setPlaybackUrl(URL.createObjectURL(blob));
+      stream.getTracks().forEach(t => t.stop());
+      streamRef.current = null;
+      setStatus('done');
+      const ctx = getDbContext();
+      if (ctx) {
+        const rand = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+        const path = `${ctx.authUid}/${rand}/${exercise.id || 'speaking'}.webm`;
+        try {
+          await uploadSubmissionAudio(blob, path);
+          if (onComplete) onComplete({ submitted: true, correct: null, audioPath: path, audioB64: null });
+        } catch (e) {
+          console.warn('[speak] audio upload failed:', e.message);
+          if (blob.size < 500_000) {
+            const reader = new FileReader();
+            reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result, audioPath: null }); };
+            reader.readAsDataURL(blob);
+          } else {
+            if (onComplete) onComplete({ submitted: true, correct: null, audioB64: null, audioPath: null });
+          }
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result }); };
+        reader.readAsDataURL(blob);
+      }
+    };
+    recorder.start();
+    setStatus('recording');
+    if (target) {
+      remainingRef.current = target;
+      setSeconds(target);
+      timerRef.current = setInterval(() => {
+        remainingRef.current -= 1;
+        setSeconds(remainingRef.current);
+        if (remainingRef.current <= 0) {
+          clearInterval(timerRef.current);
+          mediaRef.current?.stop();
+        }
+      }, 1000);
+    } else {
+      setSeconds(0);
+      timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
+    }
+  }
+
+  async function startPreparation() {
     setRecordingError('');
     if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
       setRecordingError('This browser cannot record audio. Please use an up-to-date Chrome, Edge, Firefox, or Safari browser.');
@@ -57,56 +116,26 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
     let stream;
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRef.current = new MediaRecorder(stream);
-      chunksRef.current = [];
-      mediaRef.current.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
-      mediaRef.current.onstop = async () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
-        setPlaybackUrl(URL.createObjectURL(blob));
-        stream.getTracks().forEach(t => t.stop());
-        setStatus('done');
-        const ctx = getDbContext();
-        if (ctx) {
-          const rand = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
-          const path = `${ctx.authUid}/${rand}/${exercise.id || 'speaking'}.webm`;
-          try {
-            await uploadSubmissionAudio(blob, path);
-            if (onComplete) onComplete({ submitted: true, correct: null, audioPath: path, audioB64: null });
-          } catch (e) {
-            console.warn('[speak] audio upload failed:', e.message);
-            if (blob.size < 500_000) {
-              const reader = new FileReader();
-              reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result, audioPath: null }); };
-              reader.readAsDataURL(blob);
-            } else {
-              if (onComplete) onComplete({ submitted: true, correct: null, audioB64: null, audioPath: null });
-            }
-          }
-        } else {
-          const reader = new FileReader();
-          reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result }); };
-          reader.readAsDataURL(blob);
-        }
-      };
-      mediaRef.current.start();
-      setStatus('recording');
-      if (target) {
-        remainingRef.current = target;
-        setSeconds(target);
-        timerRef.current = setInterval(() => {
-          remainingRef.current -= 1;
-          setSeconds(remainingRef.current);
-          if (remainingRef.current <= 0) {
-            clearInterval(timerRef.current);
-            mediaRef.current?.stop();
-          }
-        }, 1000);
-      } else {
-        setSeconds(0);
-        timerRef.current = setInterval(() => setSeconds(s => s + 1), 1000);
+      streamRef.current = stream;
+      if (!preparationTarget) {
+        beginRecording(stream);
+        return;
       }
+      preparationRemainingRef.current = preparationTarget;
+      setPreparationSeconds(preparationTarget);
+      setStatus('preparing');
+      preparationTimerRef.current = setInterval(() => {
+        preparationRemainingRef.current -= 1;
+        const next = preparationRemainingRef.current;
+        setPreparationSeconds(Math.max(next, 0));
+        if (next <= 0) {
+          clearInterval(preparationTimerRef.current);
+          beginRecording(stream);
+        }
+      }, 1000);
     } catch {
       stream?.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
       setRecordingError('We could not start the microphone. Allow microphone access in your browser, then try again.');
       window.toast?.('Microphone access denied. Check browser permissions.', 'warn');
     }
@@ -114,7 +143,12 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
 
   function reset() {
     clearInterval(timerRef.current);
+    clearInterval(preparationTimerRef.current);
+    streamRef.current?.getTracks().forEach(track => track.stop());
+    streamRef.current = null;
     setSeconds(0);
+    preparationRemainingRef.current = preparationTarget;
+    setPreparationSeconds(preparationTarget);
     setStatus('idle');
     setPlaybackUrl(null);
     setRecordingError('');
@@ -194,24 +228,39 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         </div>
       )}
 
-      {/* Record controls */}
+      {/* Preparation and recording controls */}
       {status === 'idle' && (
-        <button
-          onClick={startRecording}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '11px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
-            background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-            color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
-          }}
-        >
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF4D4D', display: 'inline-block' }} />
-          Start recording
-        </button>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
+          <div style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)', lineHeight: 1.5 }}>
+            {preparationTarget
+              ? `You will have ${preparationTarget} seconds to prepare. Recording starts automatically, then you have ${target ? fmt(target) : 'the full response time'} to speak.`
+              : `Recording starts when you are ready${target ? ` and lasts ${fmt(target)}` : ''}.`}
+          </div>
+          <button
+            onClick={startPreparation}
+            data-testid="speaking-start-preparation"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '11px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
+              background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
+              color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
+            }}
+          >
+            Start preparation
+          </button>
+        </div>
+      )}
+
+      {status === 'preparing' && (
+        <div data-testid="speaking-preparation-countdown" role="status" aria-live="assertive" style={{ padding: '14px 16px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--ex-selected-bg)', border: '1px solid var(--ex-selected-border)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+          <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Preparation time</span>
+          <strong style={{ color: NAVY, fontSize: '1.4rem', fontVariantNumeric: 'tabular-nums' }}>{fmt(preparationSeconds)}</strong>
+          <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}>Plan your answer. Recording starts automatically when this timer reaches zero.</span>
+        </div>
       )}
 
       {status === 'recording' && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div data-testid="speaking-recording" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <button
             onClick={stopRecording}
             style={{

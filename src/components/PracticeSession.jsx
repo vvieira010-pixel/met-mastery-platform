@@ -56,6 +56,7 @@ const KIND_OPTIONS = [
 export default function PracticeSession({ mode, studentId, onClose, onSessionComplete }) {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [selectedKind, setSelectedKind] = useState(mode);
+  const [selectedSpeakingQuestion, setSelectedSpeakingQuestion] = useState(null);
   const [sessionKey, setSessionKey] = useState(0);
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,6 +72,7 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
   useEffect(() => {
     setSelectedKind(mode);
     setSelectedTopic(null);
+    setSelectedSpeakingQuestion(null);
     setSessionKey(k => k + 1);
     setFadingVerdict(null);
     setSessionScore(null);
@@ -82,13 +84,13 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
         const listeningTopics = await getPracticeStudioListeningGroups();
         setTopics(listeningTopics);
       } else if (selectedKind === 'speaking') {
-        setTopics([...getPracticeStudioSpeakingTopics(), ...getTopicList(selectedKind)]);
+        setTopics(await getPracticeStudioSpeakingTopics(selectedSpeakingQuestion));
       } else {
         setTopics(getTopicList(selectedKind));
       }
     }
     loadTopics();
-  }, [selectedKind]);
+  }, [selectedKind, selectedSpeakingQuestion]);
 
   useEffect(() => {
     const level = getScaffoldLevel(selectedKind, selectedTopic, studentId);
@@ -128,7 +130,8 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
     return () => { cancelled = true; };
   }, [selectedKind, selectedTopic, sessionKey]);
 
-  const showTopicPicker = selectedKind !== 'grammar' && !selectedTopic;
+  const showSpeakingQuestionPicker = selectedKind === 'speaking' && !selectedSpeakingQuestion;
+  const showTopicPicker = selectedKind !== 'grammar' && (showSpeakingQuestionPicker || !selectedTopic);
   const selectedTopicTitle = topics.find(t => t.id === selectedTopic)?.title || '';
 
   function handleTryAnother() {
@@ -209,6 +212,7 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
             onClick={() => {
               setSelectedKind(k.id);
               setSelectedTopic(null);
+              setSelectedSpeakingQuestion(null);
               setSessionKey(key => key + 1);
             }}
             style={{
@@ -229,10 +233,11 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
       </div>
 
       {showTopicPicker ? (
-        <TopicPicker
-          topics={topics}
-          mode={selectedKind}
-          onSelect={setSelectedTopic}
+          <TopicPicker
+            topics={topics}
+            mode={selectedKind}
+            questionPicker={showSpeakingQuestionPicker}
+            onSelect={showSpeakingQuestionPicker ? setSelectedSpeakingQuestion : setSelectedTopic}
         />
       ) : loading ? (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--muted)' }}>
@@ -270,7 +275,7 @@ export default function PracticeSession({ mode, studentId, onClose, onSessionCom
   );
 }
 
-function TopicPicker({ topics, mode, onSelect }) {
+function TopicPicker({ topics, mode, questionPicker = false, onSelect }) {
   const descriptions = {
     vocab: 'Vocabulary MCQ + fill-in-the-blank',
     speaking: 'Speaking prompt + writing task',
@@ -287,7 +292,7 @@ function TopicPicker({ topics, mode, onSelect }) {
         marginTop: 0,
         textAlign: 'center'
       }}>
-        Choose a topic to practice: {descriptions[mode] || ''}.
+        {questionPicker ? 'Choose the MET Speaking question first. Then choose a topic.' : `Choose a topic to practice: ${descriptions[mode] || ''}.`}
       </p>
       <div className="grid-square">
         {topics.map(t => (

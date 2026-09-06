@@ -2,75 +2,88 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { getPracticeStudioSpeakingTopics, getPracticeStudioSpeakingExercises, getSpeakingExercises, getTopicList } from '../src/lib/vocab-homework-bank.js';
+import {
+  getPracticeStudioSpeakingQuestions,
+  getPracticeStudioSpeakingTopics,
+  getPracticeStudioSpeakingExercises,
+  getSpeakingExercises,
+} from '../src/lib/vocab-homework-bank.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const audioRoot = path.join(root, 'public', 'audio', 'speaking');
 
-test('practice studio speaking topics come first with student-facing names', () => {
-  const topics = [...getPracticeStudioSpeakingTopics(), ...getTopicList('speaking')];
-  assert.deepEqual(topics.slice(0, 2), [
-    { id: 'spk_audio_prompts', title: 'Listen and Speak', subtitle: 'Listen · prepare · speak' },
-    { id: 'spk_quiz', title: 'Speak and Compare', subtitle: 'Record · compare with a sample answer' },
-  ]);
-  assert.equal(topics.find(topic => topic.id === 'speaking_full_bank').title, 'Speaking Practice');
-  assert.equal(topics.some(topic => topic.id === 'general'), false);
-  assert.ok(topics.length > 2);
+test('Practice Studio presents the five MET Speaking questions before topics', () => {
+  assert.deepEqual(
+    getPracticeStudioSpeakingQuestions().map(({ id, number, title }) => ({ id, number, title })),
+    [
+      { id: 'Q1', number: 1, title: 'Question 1 — Describe a Picture' },
+      { id: 'Q2', number: 2, title: 'Question 2 — Personal Experience' },
+      { id: 'Q3', number: 3, title: 'Question 3 — Personal Opinion' },
+      { id: 'Q4', number: 4, title: 'Question 4 — Advantages and Disadvantages' },
+      { id: 'Q5', number: 5, title: 'Question 5 — Persuade an Authority' },
+    ],
+  );
 });
 
-test('speaking topics contain only playable non-image tasks', async () => {
-  const audio = await getPracticeStudioSpeakingExercises('spk_audio_prompts');
-  const quiz = await getPracticeStudioSpeakingExercises('spk_quiz');
-  assert.equal(audio.length, 4);
-  assert.equal(quiz.length, 4);
+test('each MET Speaking question contains topic categories with matching recordable prompts', async () => {
+  const questions = getPracticeStudioSpeakingQuestions();
+  let allExercises = [];
 
-  for (const ex of audio) {
-    assert.equal(ex.type, 'speak');
-    assert.ok(ex.prompt && ex.prompt.length > 10, ex.id);
-    assert.ok(ex.audioSrc, ex.id);
-    assert.ok(ex.transcript && ex.transcript.length > 20, ex.id);
-    assert.ok(fs.existsSync(path.join(audioRoot, decodeURIComponent(ex.audioSrc.split('/').pop()))), ex.audioSrc);
-  }
-  for (const ex of quiz) {
-    assert.equal(ex.type, 'speak');
-    assert.ok(ex.prompt && ex.prompt.length > 10, ex.id);
-    assert.ok(ex.sampleAnswer && ex.sampleAnswer.length > 50, ex.id);
-    assert.equal(ex.followUps.length, 2, ex.id);
+  for (const question of questions) {
+    const topics = await getPracticeStudioSpeakingTopics(question.id);
+    assert.ok(topics.length > 0, question.id);
+    assert.ok(topics.every(topic => topic.id.startsWith(`${question.id}::`)), question.id);
+
+    const perTopic = await Promise.all(topics.map(topic => getPracticeStudioSpeakingExercises(topic.id)));
+    const exercises = perTopic.flat();
+    assert.ok(exercises.length > 0, question.id);
+    assert.ok(exercises.every(exercise => exercise.type === 'speak'), question.id);
+    assert.ok(exercises.every(exercise => exercise.speakingQuestion === question.id), question.id);
+    assert.ok(exercises.every(exercise => exercise.metTaskType === question.id), question.id);
+    assert.ok(exercises.every(exercise => exercise.prompt && exercise.prompt.length > 10), question.id);
+    allExercises = allExercises.concat(exercises);
   }
 
-  for (const ex of [...audio, ...quiz]) {
-    assert.doesNotMatch(ex.prompt, /describe (?:the )?(?:photo|picture|image)/i, ex.id);
-    assert.ok(!ex.imageUrl, ex.id);
-  }
+  assert.equal(allExercises.length, 179);
 });
 
-test('every Describe the Image exercise includes a real image asset', async () => {
-  const exercises = await getPracticeStudioSpeakingExercises('describe_image');
-  assert.equal(exercises.length, 15);
+test('Question 1 contains real image assets and Questions 2–5 contain recordable non-image prompts', async () => {
+  const pictureTopics = await getPracticeStudioSpeakingTopics('Q1');
+  assert.deepEqual(pictureTopics.map(topic => topic.id), ['Q1::describe_image']);
+  const pictures = (await Promise.all(pictureTopics.map(topic => getPracticeStudioSpeakingExercises(topic.id)))).flat();
+  assert.equal(pictures.length, 15);
 
-  for (const exercise of exercises) {
-    assert.equal(exercise.metTaskType, 'picture_description');
+  for (const exercise of pictures) {
+    assert.equal(exercise.metTaskType, 'Q1');
     assert.ok(exercise.imageUrl, exercise.id);
     const relativeImagePath = decodeURIComponent(exercise.imageUrl.replace(/^\//, ''));
     assert.ok(fs.existsSync(path.join(root, 'public', relativeImagePath)), exercise.imageUrl);
   }
+
+  for (const question of ['Q2', 'Q3', 'Q4', 'Q5']) {
+    const topics = await getPracticeStudioSpeakingTopics(question);
+    const exercises = (await Promise.all(topics.map(topic => getPracticeStudioSpeakingExercises(topic.id)))).flat();
+    assert.ok(exercises.every(exercise => !exercise.imageUrl), question);
+    assert.ok(exercises.every(exercise => exercise.type === 'speak'), question);
+  }
 });
 
-test('every learner-facing Speaking Mirror topic contains recordable prompts only', async () => {
-  const topics = [...getPracticeStudioSpeakingTopics(), ...getTopicList('speaking')];
-  const fullBank = await getPracticeStudioSpeakingExercises('speaking_full_bank');
+test('speaking prompt-audio files remain present for the dedicated practice pack', async () => {
+  const q2Topics = await getPracticeStudioSpeakingTopics('Q2');
+  const q2 = (await Promise.all(q2Topics.map(topic => getPracticeStudioSpeakingExercises(topic.id)))).flat();
+  const audioPrompts = q2.filter(exercise => exercise.audioSrc);
 
-  assert.equal(fullBank.length, 166);
-  assert.ok(fullBank.every(exercise => exercise.type === 'speak'));
-
-  for (const topic of topics) {
-    const exercises = await getPracticeStudioSpeakingExercises(topic.id);
-    assert.ok(exercises.length > 0, topic.id);
-    assert.ok(exercises.every(exercise => exercise.type === 'speak'), topic.id);
-    assert.ok(exercises.every(exercise => exercise.prompt && exercise.prompt.length > 10), topic.id);
+  assert.equal(audioPrompts.length, 1);
+  for (const exercise of audioPrompts) {
+    assert.ok(exercise.transcript && exercise.transcript.length > 20, exercise.id);
+    assert.ok(fs.existsSync(path.join(audioRoot, decodeURIComponent(exercise.audioSrc.split('/').pop()))), exercise.audioSrc);
   }
+});
 
-  const writingTasks = await getSpeakingExercises('work_career');
-  assert.equal(writingTasks.some(exercise => exercise.type === 'short'), false);
-  assert.equal(writingTasks.some(exercise => exercise.type === 'mcq'), false);
+test('the raw speaking bank no longer exposes non-recordable short or MCQ tasks', async () => {
+  const fullBank = await getSpeakingExercises('speaking_full_bank');
+  assert.equal(fullBank.length, 156);
+  assert.ok(fullBank.every(exercise => exercise.type === 'speak'));
+  assert.ok(fullBank.every(exercise => ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'].includes(exercise.metTaskType)));
+  assert.equal(fullBank.some(exercise => exercise.type === 'short' || exercise.type === 'mcq'), false);
 });

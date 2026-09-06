@@ -13,7 +13,7 @@
       "audioSrc": "/audio/speaking/speaking_prompt02.mp3",
       "transcript": "Talk about a time when you had to make a difficult decision. What was the situation? What did you decide? How did it turn out? You have 15 seconds to prepare and 60 seconds to speak.",
       "seconds": 60,
-      "metTaskType": null
+      "metTaskType": "Q2"
     },
     {
       "id": "spk-audio-03",
@@ -26,7 +26,7 @@
       "audioSrc": "/audio/speaking/speaking_prompt03.mp3",
       "transcript": "Some people believe that university education should be free for all students. Others think students should pay tuition fees. Which view do you support? Explain why you have 15 seconds to prepare and 60 seconds to speak.",
       "seconds": 60,
-      "metTaskType": null
+      "metTaskType": "Q3"
     },
     {
       "id": "spk-audio-04",
@@ -39,7 +39,7 @@
       "audioSrc": "/audio/speaking/speaking_prompt04.mp3",
       "transcript": "Our city is planning to ban private cars from the city center to reduce pollution and traffic. What are the advantages and disadvantages of this plan? You have 20 seconds to prepare and 90 seconds to speak.",
       "seconds": 90,
-      "metTaskType": null
+      "metTaskType": "Q4"
     },
     {
       "id": "spk-audio-05",
@@ -52,7 +52,7 @@
       "audioSrc": "/audio/speaking/speaking_prompt05.mp3",
       "transcript": "Your school is considering replacing traditional textbooks with tablets and digital materials entirely. I am the school principal. Convince me that this is or is not a good idea for our students. You have 20 seconds to prepare and 90 seconds to speak.",
       "seconds": 90,
-      "metTaskType": null
+      "metTaskType": "Q5"
     },
     {
       "id": "spk-quiz-02",
@@ -67,7 +67,8 @@
         "Do you prefer working alone or in a team? Why?",
         "What makes someone a good team member?"
       ],
-      "seconds": 60
+      "seconds": 60,
+      "metTaskType": "Q2"
     },
     {
       "id": "spk-quiz-03",
@@ -82,7 +83,8 @@
         "Should schools encourage group study more?",
         "What helps you concentrate when you study?"
       ],
-      "seconds": 60
+      "seconds": 60,
+      "metTaskType": "Q3"
     },
     {
       "id": "spk-quiz-04",
@@ -97,7 +99,8 @@
         "Would you move to another city for a good job?",
         "What matters most to you when choosing a job?"
       ],
-      "seconds": 90
+      "seconds": 90,
+      "metTaskType": "Q4"
     },
     {
       "id": "spk-quiz-05",
@@ -112,7 +115,8 @@
         "Should public spaces serve everyone or focus on one group?",
         "Is compromise usually better than choosing one side?"
       ],
-      "seconds": 90
+      "seconds": 90,
+      "metTaskType": "Q5"
     }
   ]
 }

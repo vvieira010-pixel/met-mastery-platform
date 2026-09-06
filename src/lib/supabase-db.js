@@ -85,12 +85,12 @@ export function dbHasEntity(key) { return Boolean(ENTITIES[key]); }
 
 /* ─── public ops (used by workflow.js) ───────────────────────── */
 
-export async function dbList(entityKey) {
+export async function dbList(entityKey, { fresh = false } = {}) {
   const ctx = getDbContext();
   const cfg = ENTITIES[entityKey];
   if (!ctx || !cfg) return null;
   const refs = await getRefs(ctx);
-  const rows = await sbSelect(ctx, cfg.table, 'select=*&order=created_at.desc');
+  const rows = await sbSelect(ctx, cfg.table, 'select=*&order=created_at.desc', { fresh });
   return rows.map(r => cfg.fromRow(r, refs));
 }
 
@@ -404,7 +404,10 @@ export async function setStudentSetting(studentLocalId, key, value) {
   try {
     const sid = await studentUuid(ctx, studentLocalId);
     if (!sid) return false;
-    await sbFetch(ctx, 'student_settings', {
+    // `resolution=merge-duplicates` needs the matching unique columns in the
+    // PostgREST conflict target. Without it, a second save of the same setting
+    // becomes a 409 instead of updating the student's existing value.
+    await sbFetch(ctx, 'student_settings?on_conflict=student_id%2Ckey', {
       method: 'POST',
       headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
       body: JSON.stringify({ student_id: sid, key, value }),
