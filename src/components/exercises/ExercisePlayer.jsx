@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect, useMemo } from 'react'; // ExercisePlayer
+import { useState, useCallback, useRef, useEffect, useMemo, memo } from 'react'; // ExercisePlayer
 import { motion } from 'motion/react';
 import { Icon } from '../shared.jsx';
 import { loadExercises } from './validateExercise.js';
@@ -103,7 +103,7 @@ function useAIPoweredHints(exercise, scaffoldLevel) {
   return { hints, loading };
 }
 
-function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, scaffoldLevel = 4, onHintLevelChange }) {
+const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, scaffoldLevel = 4, onHintLevelChange }) {
   const label = TYPE_LABELS[exercise.type] || exercise.type;
   const skill = exercise.skill || exercise.focus || null;
   const done = result != null;
@@ -343,7 +343,7 @@ function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBa
       </div>
     </div>
   );
-}
+});
 
 function ProgressBar({ current, total }) {
   const pct = total > 0 ? Math.round((current / total) * 100) : 0;
