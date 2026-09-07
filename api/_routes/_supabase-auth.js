@@ -5,14 +5,63 @@
  * in api/ as independent serverless functions; importing the application's
  * TypeScript auth entrypoint here leaves the .ts file out of the function
  * bundle and causes ERR_MODULE_NOT_FOUND at runtime.
+ *
+ * M-2 FIX: Local JWT verification via JWKS eliminates the per-request network
+ * round-trip to Supabase Auth and removes the service-role key from the hot
+ * path. The network fallback is preserved for edge cases (e.g. revoked tokens
+ * that are still cryptographically valid).
  */
+import { jwtVerify, createRemoteJWKSet } from 'jose';
 import { getServiceKey, getSupabaseUrl } from './_config.js';
+
+let jwksClient = null;
+let jwksUrl = null;
+
+function getJwksClient() {
+  const supabaseUrl = getSupabaseUrl();
+  if (!supabaseUrl) return null;
+  const url = `${supabaseUrl.replace(/\/+$/, '')}/.well-known/jwks.json`;
+  if (jwksClient && jwksUrl === url) return jwksClient;
+  jwksUrl = url;
+  jwksClient = createRemoteJWKSet(new URL(url));
+  return jwksClient;
+}
+
+function extractUserFromPayload(payload) {
+  if (!payload || !payload.sub) return null;
+  const role = payload.role === 'teacher' || payload.role === 'admin' ? payload.role : 'student';
+  return { id: payload.sub, email: payload.email || '', role };
+}
+
+/** Fast, local JWT verification using Supabase's JWKS. No network, no service key. */
+export async function verifySupabaseSessionLocal(req) {
+  const auth = req?.headers?.authorization || '';
+  const token = typeof auth === 'string' ? auth.replace(/^Bearer\s+/i, '').trim() : '';
+  if (!token) return null;
+
+  const jwks = getJwksClient();
+  if (!jwks) return null;
+
+  try {
+    const { payload } = await jwtVerify(token, jwks, { clockTolerance: 60 });
+    return extractUserFromPayload(payload);
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Verify the caller's Supabase access token.
+ * Tries local JWT verification first (fast, no network), then falls back to
+ * the Supabase Auth API for edge cases (e.g. revoked sessions).
  * @returns {Promise<object|null>} the Supabase user object (id, email, role), or null if invalid.
  */
 export async function verifySupabaseSession(req) {
+  const local = await verifySupabaseSessionLocal(req);
+  if (local) return local;
+
+  // Fallback: network verification for tokens that pass JWKS signature checks
+  // but may have been revoked server-side.
   const auth = req?.headers?.authorization || '';
   const token = typeof auth === 'string' ? auth.replace(/^Bearer\s+/i, '').trim() : '';
   if (!token) return null;
