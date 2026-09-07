@@ -548,7 +548,7 @@ function renderTeacherPage(view, params, ctx) {
       return <CohortsPage onNavigate={navigate} data-testid="cohorts-page" />;
 
     case 'students:profile':
-      return <StudentProfile studentId={params.studentId} students={students} onNavigate={navigate} data-testid="student-profile-page" />;
+      return <StudentProfile studentId={params.studentId} onNavigate={navigate} data-testid="student-profile-page" />;
 
     case 'calendar':
       return <CalendarPage students={students} onNavigate={navigate} data-testid="calendar-page" />;

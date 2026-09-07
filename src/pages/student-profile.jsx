@@ -6,12 +6,12 @@ import { Icon, SectionHeader, Pill, Avatar, PillNav, Breadcrumb } from '../compo
 import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import {
-  getStudent, saveStudent,
-  getTargetProfiles, saveTargetProfile, setActiveTargetProfile, deleteTargetProfile, TARGET_PROFILE_PRESETS,
+  getStudent,
+  getTargetProfiles, saveTargetProfile, setActiveTargetProfile, TARGET_PROFILE_PRESETS,
   getClassEvents, getDiagnoses, getHomework, getSubmissions, getReviews,
-  getErrorBank, markErrorPracticed, markErrorSolved,
-  getVocabularyBank, deleteVocabularyEntry, updateVocabularyEntry,
-  getProgressNotes, saveProgressNote, deleteProgressNote,
+  getErrorBank, markErrorSolved,
+  getVocabularyBank, updateVocabularyEntry,
+  getProgressNotes, saveProgressNote,
 } from '../lib/workflow.js';
 import { buildTranscriptTimeline } from '../lib/risk-metrics.js';
 import StudentPayments from './student-payments.jsx';
@@ -29,9 +29,63 @@ const TABS = [
   { id: 'payments', label: 'Payments' },
 ];
 
-export default function StudentProfile({ studentId, students, onNavigate, "data-testid": testId }) {
+// Canonical "done" statuses for homework (mirrors lib/risk-metrics.js and pages/students.jsx).
+const DONE_HOMEWORK_STATUSES = new Set(['submitted', 'reviewed', 'completed', 'corrected']);
+
+const MOBILE_STYLES = `
+  @media (max-width: 640px) {
+    .sp-header-card .card-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .sp-header-card .sp-actions {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+    .sp-header-card .sp-actions > * {
+      flex: 1 1 auto;
+    }
+    .sp-pillnav {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    .stat-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+`;
+
+// Class events store `date` as YYYY-MM-DD, which `new Date()` parses as UTC midnight —
+// that shifts the day backwards in negative-offset timezones, so pin it to noon.
+// Some rows hold a full ISO timestamp or no date at all; tolerate both.
+function formatClassDate(value) {
+  if (!value) return null;
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(value);
+  const parsed = dateOnly ? new Date(`${value}T12:00:00`) : new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+async function fetchStudentBundle(studentId) {
+  return Promise.all([
+    getStudent(studentId),
+    getTargetProfiles(studentId),
+    getClassEvents(studentId),
+    getDiagnoses(studentId),
+    getHomework(studentId),
+    getSubmissions(studentId),
+    getReviews(studentId),
+    getErrorBank(studentId),
+    getVocabularyBank(studentId),
+    getProgressNotes(studentId),
+  ]);
+}
+
+export default function StudentProfile({ studentId, onNavigate, "data-testid": testId }) {
   const [tab, setTab] = useState('overview');
   const [student, setStudent] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [profiles, setProfiles] = useState([]);
   const [classes, setClasses] = useState([]);
   const [diagnoses, setDiagnoses] = useState([]);
@@ -41,24 +95,16 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
   const [errors, setErrors] = useState([]);
   const [vocab, setVocab] = useState([]);
   const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState('');
   const [exporting, setExporting] = useState(false);
 
-  const load = useCallback(async () => {
-    if (!studentId) return;
+  const load = useCallback(async (cancelled = { value: false }) => {
+    if (!studentId) {
+      setLoading(false);
+      return;
+    }
     try {
-      const [s, tp, ev, dx, hw, subs, rv, eb, vb, pn] = await Promise.all([
-        getStudent(studentId),
-        getTargetProfiles(studentId),
-        getClassEvents(studentId),
-        getDiagnoses(studentId),
-        getHomework(studentId),
-        getSubmissions(studentId),
-        getReviews(studentId),
-        getErrorBank(studentId),
-        getVocabularyBank(studentId),
-        getProgressNotes(studentId),
-      ]);
+      const [s, tp, ev, dx, hw, subs, rv, eb, vb, pn] = await fetchStudentBundle(studentId);
+      if (cancelled.value) return;
       setStudent(s);
       setProfiles(tp);
       setClasses(ev);
@@ -71,27 +117,26 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
       setNotes(pn || []);
     } catch (e) {
       window.toast?.(`Failed to load student profile: ${e.message}`, 'warn');
+    } finally {
+      if (!cancelled.value) setLoading(false);
     }
   }, [studentId]);
 
-  useEffect(() => { load(); }, [studentId, load]);
+  useEffect(() => {
+    const cancelled = { value: false };
+    setLoading(true);
+    load(cancelled);
+    return () => { cancelled.value = true; };
+  }, [studentId, load]);
+
+  // Safety net: if the view is ever reused across students (cached route), reset the tab.
+  useEffect(() => { setTab('overview'); }, [studentId]);
 
   async function handleExportStudent() {
     if (!studentId) return;
     setExporting(true);
     try {
-      const [s, tp, ev, dx, hw, subs, rv, eb, vb, pn] = await Promise.all([
-        getStudent(studentId),
-        getTargetProfiles(studentId),
-        getClassEvents(studentId),
-        getDiagnoses(studentId),
-        getHomework(studentId),
-        getSubmissions(studentId),
-        getReviews(studentId),
-        getErrorBank(studentId),
-        getVocabularyBank(studentId),
-        getProgressNotes(studentId),
-      ]);
+      const [s, tp, ev, dx, hw, subs, rv, eb, vb, pn] = await fetchStudentBundle(studentId);
       const payload = {
         student: s,
         targetProfiles: tp,
@@ -122,35 +167,25 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
     }
   }
 
-  if (!student) return <div style={{ padding: 'var(--space-10)', color: 'var(--muted)' }} data-testid={testId}>Student not found.</div>;
+  if (loading) {
+    return (
+      <div className="page-shell-lg skeleton-page" data-testid={testId} role="status" aria-live="polite">
+        <div className="skeleton skeleton-card" />
+        <div className="skeleton skeleton-text skeleton-text--wide" />
+        <div className="skeleton skeleton-text" />
+        <div className="skeleton skeleton-text-short" />
+        <p className="sr-only">Loading student profile…</p>
+      </div>
+    );
+  }
+
+  if (!student) return <div className="page-shell-lg" data-testid={testId}>Student not found.</div>;
 
   const activeProfile = profiles.find(p => p.isActive) || profiles[0];
 
   return (
-    <div className="page-shell-lg">
-      <style>{`
-        @media (max-width: 640px) {
-          .sp-header-card .card-row {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-          .sp-header-card .sp-actions {
-            width: 100%;
-            flex-wrap: wrap;
-          }
-          .sp-header-card .sp-actions > * {
-            flex: 1 1 auto;
-          }
-          .sp-pillnav {
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            -webkit-overflow-scrolling: touch;
-          }
-          .sp-stat-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+    <div className="page-shell-lg" data-testid={testId}>
+      <style>{MOBILE_STYLES}</style>
       <Breadcrumb crumbs={[{ label: 'Students', onClick: () => onNavigate('students') }, { label: 'Profile' }]} />
 
       <Card className="sp-header-card" style={{ padding: 'var(--space-5)', marginBottom: 'var(--space-5)' }}>
@@ -187,14 +222,14 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
       </div>
 
       <div style={{ marginTop: 'var(--space-5)' }}>
-        {tab === 'overview' && <OverviewTab student={student} profiles={profiles} diagnoses={diagnoses} errors={errors} classes={classes} homework={homework} onNavigate={onNavigate} onRefresh={load} />}
-        {tab === 'classes' && <ClassesTab classes={classes} students={[student]} onNavigate={onNavigate} />}
+        {tab === 'overview' && <OverviewTab student={student} activeProfile={activeProfile} profiles={profiles} diagnoses={diagnoses} errors={errors} classes={classes} homework={homework} onNavigate={onNavigate} onRefresh={load} />}
+        {tab === 'classes' && <ClassesTab classes={classes} onNavigate={onNavigate} />}
         {tab === 'diagnostics' && <DiagnosticsTab diagnoses={diagnoses} onNavigate={onNavigate} studentId={studentId} />}
         {tab === 'homework' && <HomeworkTab homework={homework} submissions={submissions} />}
         {tab === 'submissions' && <SubmissionsTab submissions={submissions} homework={homework} onNavigate={onNavigate} />}
         {tab === 'errors' && <ErrorBankTab errors={errors} studentId={studentId} onRefresh={load} />}
-        {tab === 'vocab' && <VocabTab vocab={vocab} studentId={studentId} onRefresh={load} />}
-        {tab === 'progress' && <ProgressTab notes={notes} diagnoses={diagnoses} studentId={studentId} newNote={newNote} setNewNote={setNewNote} onRefresh={load} />}
+        {tab === 'vocab' && <VocabTab vocab={vocab} onRefresh={load} />}
+        {tab === 'progress' && <ProgressTab notes={notes} studentId={studentId} onRefresh={load} />}
         {tab === 'transcript' && <TranscriptTab diagnoses={diagnoses} homework={homework} submissions={submissions} reviews={reviews} errors={errors} studentId={studentId} />}
         {tab === 'payments' && <StudentPayments studentId={studentId} />}
       </div>
@@ -202,12 +237,11 @@ export default function StudentProfile({ studentId, students, onNavigate, "data-
   );
 }
 
-function OverviewTab({ student, profiles, diagnoses, errors, classes, homework, onNavigate, onRefresh }) {
-  const activeProfile = profiles.find(p => p.isActive) || profiles[0];
-  const activeErrors = errors.filter(e => e.status === 'active').length;
+function OverviewTab({ student, activeProfile, profiles, diagnoses, errors, classes, homework, onNavigate, onRefresh }) {
+  const activeErrors = errors.filter(e => e.status !== 'solved').length;
   const latestDx = diagnoses[0];
   const completedClasses = classes.filter(c => c.status === 'completed').length;
-  const completedHw = homework.filter(h => h.status === 'completed' || h.status === 'corrected').length;
+  const completedHw = homework.filter(h => DONE_HOMEWORK_STATUSES.has(h.status)).length;
 
   async function addPreset(key) {
     const preset = TARGET_PROFILE_PRESETS[key];
@@ -277,7 +311,7 @@ function OverviewTab({ student, profiles, diagnoses, errors, classes, homework, 
   );
 }
 
-function ClassesTab({ classes, students, onNavigate }) {
+function ClassesTab({ classes, onNavigate }) {
   return (
     <div className="stack-list">
       {classes.length === 0 && <Card className="page-empty-state"><p className="card-row-meta">No classes yet.</p></Card>}
@@ -287,7 +321,7 @@ function ClassesTab({ classes, students, onNavigate }) {
             <div className="card-row-body">
               <div className="card-row-title">{ev.title}</div>
               <div className="card-row-meta">
-                {new Date(ev.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} · {ev.classFocus || 'No focus set'}
+                {formatClassDate(ev.date) || 'No date'} · {ev.classFocus || 'No focus set'}
               </div>
             </div>
             <Pill tone={ev.status === 'completed' ? 'success' : ev.status === 'canceled' ? 'danger' : 'info'}>{ev.status}</Pill>
@@ -343,7 +377,7 @@ function HomeworkTab({ homework, submissions }) {
                   {h.dueDate ? ` · Due ${new Date(h.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}` : ''}
                 </div>
               </div>
-              <Pill tone={sub ? 'success' : h.status === 'not-started' ? 'muted' : 'warning'}>{sub ? 'Submitted' : h.status}</Pill>
+              <Pill tone={sub || DONE_HOMEWORK_STATUSES.has(h.status) ? 'success' : h.status === 'not-started' ? 'muted' : 'warning'}>{sub ? 'Submitted' : h.status}</Pill>
             </div>
           </Card>
         );
@@ -394,7 +428,10 @@ function ErrorBankTab({ errors, studentId, onRefresh }) {
               <Pill tone="muted">{err.type}</Pill>
               <Pill tone={err.status === 'solved' ? 'success' : err.status === 'practicing' ? 'info' : 'warning'}>{err.status}</Pill>
               {err.status !== 'solved' && (
-                <Button variant="ghost" size="sm" onClick={async () => { await markErrorSolved(studentId, err.id); onRefresh(); }}>Mark solved</Button>
+                <Button variant="ghost" size="sm" onClick={async () => {
+                  try { await markErrorSolved(studentId, err.id); onRefresh(); }
+                  catch (e) { window.toast?.(e.message, 'warn'); }
+                }}>Mark solved</Button>
               )}
             </div>
           </Card>
@@ -404,7 +441,7 @@ function ErrorBankTab({ errors, studentId, onRefresh }) {
   );
 }
 
-function VocabTab({ vocab, studentId, onRefresh }) {
+function VocabTab({ vocab, onRefresh }) {
   return (
     <div>
       {vocab.length === 0 && <Card className="page-empty-state"><p className="card-row-meta">No vocabulary saved yet. Diagnoses will populate this bank.</p></Card>}
@@ -418,7 +455,10 @@ function VocabTab({ vocab, studentId, onRefresh }) {
                 {v.meaning && <div className="card-row-meta">{v.meaning}</div>}
               </div>
               <Pill tone={v.status === 'learned' ? 'success' : v.status === 'reviewing' ? 'info' : 'muted'}>{v.status}</Pill>
-              <Button variant="ghost" size="sm" onClick={async () => { await updateVocabularyEntry(v.id, { status: 'learned' }); onRefresh(); }}>Mark learned</Button>
+              <Button variant="ghost" size="sm" onClick={async () => {
+                try { await updateVocabularyEntry(v.id, { status: 'learned' }); onRefresh(); }
+                catch (e) { window.toast?.(e.message, 'warn'); }
+              }}>Mark learned</Button>
             </div>
           </Card>
         ))}
@@ -466,7 +506,7 @@ function TranscriptTab({ diagnoses, homework, submissions, reviews, errors, stud
                     {ev.date ? new Date(ev.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'No date'}
                   </div>
                 </div>
-                <Pill tone={ev.status === 'approved' || ev.status === 'completed' || ev.status === 'reviewed' ? 'success' : ev.status === 'submitted' ? 'info' : 'warning'}>{ev.status}</Pill>
+                <Pill tone={ev.status === 'approved' || ev.status === 'completed' || ev.status === 'reviewed' || ev.status === 'solved' ? 'success' : ev.status === 'submitted' ? 'info' : 'warning'}>{ev.status}</Pill>
               </div>
               {ev.detail && <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-2)', marginTop: 4, lineHeight: 1.5 }}>{ev.detail}</div>}
             </Card>
@@ -477,7 +517,8 @@ function TranscriptTab({ diagnoses, homework, submissions, reviews, errors, stud
   );
 }
 
-function ProgressTab({ notes, diagnoses, studentId, newNote, setNewNote, onRefresh }) {
+function ProgressTab({ notes, studentId, onRefresh }) {
+  const [newNote, setNewNote] = useState('');
   async function addNote() {
     if (!newNote.trim()) return;
     await saveProgressNote({ studentId, sourceType: 'teacher', note: newNote.trim() });
