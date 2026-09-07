@@ -8,7 +8,7 @@
  * 
  * Updated to use the new auth module (src/lib/auth/index.ts).
  */
-import { verifySupabaseSession } from '../src/lib/auth/index.ts';
+import { verifySupabaseSession } from './_supabase-auth.js';
 import { getSupabaseUrl, getServiceKey } from './_config.js';
 
 export default async function handler(req, res) {

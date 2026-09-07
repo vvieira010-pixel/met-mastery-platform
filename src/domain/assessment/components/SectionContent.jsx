@@ -202,36 +202,6 @@ export function SectionContent({ sectionKey, content }) {
     );
   }
 
-  if (sectionKey === 'homeworkRecommendation' && typeof content === 'object') {
-    return (
-      <div className="homework-stack">
-        <div>
-          <div className="homework-title">{content.title}</div>
-          <div className="homework-objective">{content.objective}</div>
-        </div>
-        {content.instructions && (
-          <div className="homework-instructions">{content.instructions}</div>
-        )}
-        {Array.isArray(content.tasks) && content.tasks.map((t, i) => (
-          <div key={i} className="homework-task-card">
-            <div className="homework-task-header">
-              <span className="homework-task-number">Task {t.taskNumber || i + 1}</span>
-              {t.type && <Pill tone="accent">{t.type}</Pill>}
-            </div>
-            <div className="homework-task-description">{typeof t === 'string' ? t : t.description}</div>
-            {t.content && <div className="homework-task-content">{t.content}</div>}
-            {t.example && <div className="homework-task-example">Example: {t.example}</div>}
-          </div>
-        ))}
-        {content.teacherNotes && (
-          <div className="homework-teacher-notes">
-            <strong>Teacher notes:</strong> {content.teacherNotes}
-          </div>
-        )}
-      </div>
-    );
-  }
-
   if (sectionKey === 'nextClassFocus' && typeof content === 'object') {
     return (
       <div className="next-class-stack">

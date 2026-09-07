@@ -1,6 +1,6 @@
 import type { AuthContext, AuthRequestLike, AuthUser } from './types.ts';
 import { buildContext } from './types.ts';
-import { getServiceKey, getSupabaseUrl } from '../../../api/_config.js';
+import { getServiceKey, getSupabaseUrl } from '../../../api/_routes/_config.js';
 
 function getAuthConfig() {
   return {

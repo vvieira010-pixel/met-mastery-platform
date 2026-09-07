@@ -159,6 +159,13 @@
   --transition-fast: 0.25s var(--ease-spring);
   --transition-smooth: 0.55s var(--ease-spring);
 
+  --ex-wrong-bg: #FAECEB;
+  --ex-wrong-text: #A34E48;
+  --ex-wrong-border: rgba(163, 78, 72, 0.32);
+  --ex-hint-bg: rgba(var(--ink-rgb), 0.04);
+  --ex-panel-text: var(--ink-muted);
+  --ex-selected-bg: var(--surface);
+
   --muted: #4B3F72;
   --faint: #FFFFFF;
   --max-width: 1320px;

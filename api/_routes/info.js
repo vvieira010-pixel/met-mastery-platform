@@ -1,4 +1,4 @@
-import { applyPublicApiHeaders, writeProblem } from '../_problem.js';
+import { applyPublicApiHeaders, writeProblem } from './_problem.js';
 
 const SITE_URL = process.env.PUBLIC_SITE_URL || 'https://met-mastery.vercel.app';
 

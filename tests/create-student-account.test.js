@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import createStudentAccount from '../api/create-student-account.js';
+import createStudentAccount from '../api/_routes/create-student-account.js';
 
 const ENV_KEYS = [
   'SUPABASE_SERVICE_ROLE_KEY',

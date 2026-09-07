@@ -7,11 +7,11 @@ import {
   MET_WRITING_SCALE,
   rubricToScaled,
   buildExaminerPrompt,
-} from '../api/_met-writing-scale.js';
-import { parseLLMJson, extractScores } from '../api/_assemblyai-llm.js';
+} from '../api/_routes/_met-writing-scale.js';
+import { parseLLMJson, extractScores } from '../api/_routes/_assemblyai-llm.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const readApi = (name) => readFileSync(join(here, '..', 'api', name), 'utf8');
+const readApi = (name) => readFileSync(join(here, '..', 'api', '_routes', name), 'utf8');
 
 const CRITERIA = ['grammar', 'vocabulary', 'mechanics', 'organization', 'task'];
 

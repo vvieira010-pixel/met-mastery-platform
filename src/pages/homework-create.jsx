@@ -122,16 +122,15 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
   }, [diagnosisId, studentId]);
 
   function populateFromDiagnosis(dx, s) {
-    const hwRec = dx.sections?.homeworkRecommendation?.content;
     const priority = getPriorityItems(dx)[0];
-    const title = hwRec?.title || (priority ? `${s?.firstName || 'Student'}, ${priority.area}` : 'Homework from Diagnosis');
-    const type = hwRec?.expectedSubmissionType?.split('|')[0] || inferSkillType(getPriorityItems(dx));
+    const title = priority ? `${s?.firstName || 'Student'}, ${priority.area}` : 'Homework from Diagnosis';
+    const type = inferSkillType(getPriorityItems(dx));
     setForm({
       title,
-      objective: hwRec?.objective || (priority ? priority.whatToImprove : ''),
-      description: hwRec?.instructions || '',
-      exercises: buildExercisesFromAiTasks(hwRec?.tasks, []),
-      selfCheck: Array.isArray(hwRec?.selfCheck) ? hwRec.selfCheck : [''],
+      objective: priority ? priority.whatToImprove : '',
+      description: '',
+      exercises: [],
+      selfCheck: [''],
       skillType: type,
       dueDate: '', teacherNotes: '',
     });

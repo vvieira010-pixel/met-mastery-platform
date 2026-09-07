@@ -8,7 +8,6 @@ export const SECTION_KEYS = [
   { key: 'vocabGrammarTargets',     label: 'Vocabulary & Grammar Targets',  studentFacing: false },
   { key: 'priorityDiagnosis',       label: 'Priority Diagnosis (Top 3)',    studentFacing: false },
   { key: 'studentFeedback',         label: 'Personalized Student Feedback', studentFacing: true  },
-  { key: 'homeworkRecommendation',  label: 'Homework Recommendation',       studentFacing: true  },
   { key: 'nextClassFocus',          label: 'Next Class Focus',              studentFacing: false },
   { key: 'profileUpdateSuggestions',label: 'Profile Update Suggestions',    studentFacing: false },
 ];
@@ -46,7 +45,6 @@ export const SECTION_GROUPS = [
     caption: 'Start here: review the clear, student-facing message before the supporting analysis below.',
     groups: [
       { title: 'Personalized Student Feedback', keys: ['studentFeedback'] },
-      { title: 'Homework Recommendation',        keys: ['homeworkRecommendation'] },
     ],
   },
 ];

@@ -23,7 +23,6 @@ import {
   buildSkillDiagnosisPrompt,
   buildCompactSkillDiagnosisPrompt,
   buildStudentFeedbackPrompt,
-  buildHomeworkPrompt,
   buildErrorBankPrompt,
   buildSectionRegenPrompt,
 } from '../lib/prompts.js';
@@ -69,11 +68,6 @@ const DIAGNOSTIC_PHASES = [
     description: 'Extract errors plus vocabulary and grammar targets from the evidence.',
     action: 'Create language targets',
   },
-  {
-    id: 'homework', number: 4, title: 'Homework plan', requires: ['targets'],
-    description: 'Create three student-ready tasks from the saved priorities and targets.',
-    action: 'Create homework plan',
-  },
 ];
 
 function readStudentFeedbackResponse(data, emptyMessage = 'AI returned an empty feedback response. Try again.') {
@@ -93,6 +87,20 @@ function readStudentFeedbackResponse(data, emptyMessage = 'AI returned an empty 
     throw new Error('AI returned feedback without three complete strengths. Try again.');
   }
   return content;
+}
+
+/**
+ * The feedback prompt is quote-anchored: every strength must point at something
+ * the student actually said or wrote. When the linked class evidence has skill
+ * flags but no real text, the model has nothing to quote and silently invents
+ * filler ("even without a specific prompt provided here..."). Block the call
+ * instead and tell the teacher what to add.
+ */
+const NO_EVIDENCE_MESSAGE = 'No class evidence text yet. Add a transcript, the student\'s answer, or teacher notes before generating feedback — otherwise the AI can only write generic filler.';
+function hasUsableEvidenceText(evidence) {
+  if (!evidence || typeof evidence !== 'object') return false;
+  return ['studentTranscript', 'studentAnswer', 'teacherNotes']
+    .some(field => String(evidence[field] || '').trim().length > 0);
 }
 
 
@@ -118,7 +126,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   const [allStudents, setAllStudents] = useState([]);
 
   // Teacher's own words (step 3 — write)
-  const [teacherMeaning, setTeacherMeaning] = useState({ classSummary: '', studentFeedback: '', homeworkRecommendation: '' });
+  const [teacherMeaning, setTeacherMeaning] = useState({ classSummary: '', studentFeedback: '' });
 
   // Inquiry fields (optional, for teacher inquiry cycles)
   const [isBaseline, setIsBaseline] = useState(false);
@@ -195,7 +203,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       setTeacherMeaning({
         classSummary: dx.content?.overall_result || dx.classSummary || '',
         studentFeedback: dx.content?.student_friendly_feedback || dx.sections?.studentFeedback?.content || '',
-        homeworkRecommendation: dx.content?.homework || '',
       });
       setIsBaseline(dx.isBaseline || false);
       setInterventionNote(dx.interventionNote || '');
@@ -293,7 +300,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         overall_result: (typeof nextSections.classSummary?.content === 'string' ? nextSections.classSummary.content : '') || '',
         priorities: nextSections.priorityDiagnosis?.content || [],
         student_friendly_feedback: feedback.content || null,
-        homework: nextSections.homeworkRecommendation?.content?.instructions || '',
         error_bank: nextSections.errorBankSuggestions?.content || [],
         section_snapshot: buildSnapshot(nextSections.skillDiagnosis?.content),
       },
@@ -323,10 +329,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         classEvidence: normalizedEvidence,
         evaluatedSkills,
       });
-      const createSections = ({ diagnosis, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank, homework = FAILED } = {}) => ({
+      const createSections = ({ diagnosis, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank } = {}) => ({
         skillDiagnosis:           { content: diagnosis.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
         studentFeedback:          feedback,
-        homeworkRecommendation:   homework,
         errorBankSuggestions:     { content: errorBank?.errorBankSuggestions ?? [],                                              approved: false, hidden: false, edited: false },
         vocabGrammarTargets:      { content: errorBank?.vocabGrammarTargets ?? { vocabularyTargets: [], grammarTargets: [] },    approved: false, hidden: false, edited: false },
         readinessCheck:           { content: { targetProfileSelected: !!targetProfile, evaluatedSkills, notEvaluatedSkills: [], diagnosisAllowed: true }, approved: true, hidden: false, edited: false },
@@ -344,6 +349,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       let feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
       let feedbackWasAiGenerated = false;
       try {
+        if (!hasUsableEvidenceText(normalizedEvidence)) throw new Error(NO_EVIDENCE_MESSAGE);
         const aiFeedback = await callAI(buildStudentFeedbackPrompt({
           student: selectedStudent,
           classEvent,
@@ -362,7 +368,12 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         // Keep a truthful, editable draft available when an external provider
         // is unavailable; do not present this fallback as AI feedback.
         console.warn('Initial AI feedback generation failed:', feedbackError);
-        window.toast?.('AI feedback was unavailable, so an editable evidence-based draft was created. You can edit it or try Regen later.', 'warn');
+        window.toast?.(
+          feedbackError?.message === NO_EVIDENCE_MESSAGE
+            ? NO_EVIDENCE_MESSAGE
+            : 'AI feedback was unavailable, so an editable evidence-based draft was created. You can edit it or try Regen later.',
+          'warn',
+        );
       }
       const feedbackSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackSection });
       setAiResult(fallbackDiagnosis);
@@ -401,6 +412,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     setRegenerating(key);
     setRegenerationError(null);
     try {
+      if (key === 'studentFeedback' && !hasUsableEvidenceText(normalizedEvidence)) {
+        throw new Error(NO_EVIDENCE_MESSAGE);
+      }
       const existingSections = Object.fromEntries(Object.entries(sections).filter(([k]) => k !== key));
       let prompt;
       const promptData = {
@@ -415,7 +429,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       switch (key) {
         case 'skillDiagnosis':       prompt = buildSkillDiagnosisPrompt(promptData);    break;
         case 'studentFeedback':      prompt = buildStudentFeedbackPrompt(promptData);   break;
-        case 'homeworkRecommendation': prompt = buildHomeworkPrompt(promptData);        break;
         case 'errorBankSuggestions':
         case 'vocabGrammarTargets':  prompt = buildErrorBankPrompt(promptData);         break;
         default:
@@ -425,11 +438,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       }
 
       const SECTION_BUDGETS = {
-        studentFeedback: 1400, homeworkRecommendation: 3000, skillDiagnosis: 6000,
+        studentFeedback: 1400, skillDiagnosis: 6000,
         priorityDiagnosis: 6000, classSummary: 6000, targetScoreRelevance: 6000,
         nextClassFocus: 6000, profileUpdateSuggestions: 6000, errorBankSuggestions: 2200,
       };
-      const skillMap = { skillDiagnosis:'diagnosis', studentFeedback:'feedback', homeworkRecommendation:'homework', errorBankSuggestions:'diagnosis', vocabGrammarTargets:'diagnosis' };
+      const skillMap = { skillDiagnosis:'diagnosis', studentFeedback:'feedback', errorBankSuggestions:'diagnosis', vocabGrammarTargets:'diagnosis' };
       const maxTokens = key === 'studentFeedback'
         ? 2600
         : DIAGNOSIS_DERIVED_KEYS.has(key)
@@ -508,20 +521,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           ...sections,
           errorBankSuggestions: { ...(sections.errorBankSuggestions || {}), content: targets.errorBankSuggestions, approved: false, hidden: false, edited: false },
           vocabGrammarTargets: { ...(sections.vocabGrammarTargets || {}), content: targets.vocabGrammarTargets, approved: false, hidden: false, edited: false },
-        };
-      } else if (phaseId === 'homework') {
-        const data = await callAI(buildHomeworkPrompt(promptData), await withSkills('homework', { max_tokens: 3000 }));
-        const raw = data.content?.map(block => block.text || '').join('') || '';
-        if (!raw.trim()) throw new Error('AI returned an empty response. Try the phase again.');
-        const homework = parseAiJson(raw);
-        if (!homework || (typeof homework === 'object' && Object.keys(homework).length === 0)) {
-          throw new Error('AI returned homework that could not be read. Try the phase again.');
-        }
-        const content = homework.homeworkRecommendation || homework;
-        nextAiResult = { ...(aiResult || {}), homeworkRecommendation: content };
-        nextSections = {
-          ...sections,
-          homeworkRecommendation: { ...(sections.homeworkRecommendation || {}), content, approved: false, hidden: false, edited: false },
         };
       }
 
@@ -908,11 +907,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
                   <label className="field-label">Student Feedback</label>
                   <textarea className="dx-textarea" value={teacherMeaning.studentFeedback} onChange={e => setTeacherMeaning(t => ({ ...t, studentFeedback: e.target.value }))}
                     rows={4} placeholder="What will you tell the student? One strength, one improvement focus, one next step…" />
-                </div>
-                <div>
-                  <label className="field-label">Homework Recommendation</label>
-                  <textarea className="dx-textarea" value={teacherMeaning.homeworkRecommendation} onChange={e => setTeacherMeaning(t => ({ ...t, homeworkRecommendation: e.target.value }))}
-                    rows={2} placeholder="Brief description of what the student should practice next…" />
                 </div>
               </div>
             </div>

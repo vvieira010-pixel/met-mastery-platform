@@ -15,10 +15,10 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { verifySupabaseSession } from '../api/_supabase-auth.js';
-import { requireServiceKey } from '../api/_config.js';
-import getSubmissions from '../api/get-submissions.js';
-import saveSubmission from '../api/save-submission.js';
+import { verifySupabaseSession } from '../api/_routes/_supabase-auth.js';
+import { requireServiceKey } from '../api/_routes/_config.js';
+import getSubmissions from '../api/_routes/get-submissions.js';
+import saveSubmission from '../api/_routes/save-submission.js';
 
 // --- env + fetch mocking --------------------------------------------------
 

@@ -184,17 +184,24 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
     }
   }
 
+  const isCorrect = done && result?.correct === true;
+  const isIncorrect = done && result?.correct === false;
+  const doneBorderColor = isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--border)';
+
   return (
     <div style={{
       background: 'var(--surface)', borderRadius: 'var(--radius-md, 8px)', overflow: 'hidden',
-      border: '1px solid var(--border, #e5e7eb)',
+      border: `1px solid var(--border, #e5e7eb)`,
+      borderLeft: done ? `3px solid ${doneBorderColor}` : '1px solid var(--border, #e5e7eb)',
       boxShadow: '0 4px 20px -8px rgba(14,31,92,0.18), 0 1px 4px rgba(18,40,121,0.06)',
+      transition: 'border-color 0.2s ease',
     }}>
       {/* Card header */}
       <div style={{
         padding: '14px 20px', borderBottom: '1px solid var(--divider)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
-        background: 'var(--accent-subtle, #e3f5f4)',
+        background: isCorrect ? 'var(--success-bg)' : isIncorrect ? 'var(--ex-wrong-bg)' : 'var(--surface)',
+        transition: 'background 0.2s ease',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{
@@ -204,6 +211,16 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
           }}>
             {label}
           </span>
+          {done && (
+            <span style={{
+              padding: '2px 8px', borderRadius: 'var(--radius-sm, 6px)',
+              fontSize: 12, fontWeight: 700,
+              background: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--ink-soft)',
+              color: isCorrect ? '#fff' : isIncorrect ? '#fff' : 'var(--text-muted)',
+            }}>
+              {isCorrect ? '✓ Correct' : isIncorrect ? '✗ Incorrect' : 'Skipped'}
+            </span>
+          )}
           {skill && (
             <span style={{
               padding: '3px 10px', borderRadius: 'var(--radius-sm, 6px)',
@@ -370,21 +387,63 @@ function ProgressBar({ current, total }) {
 
 function ScoreSummary({ results, waitingForFinalSubmission = false }) {
   const total = results.length;
+  const correctCount = results.filter(r => r?.correct === true).length;
+  const incorrectCount = results.filter(r => r?.correct === false).length;
+  const skippedCount = results.filter(r => r?.correct == null).length;
+
+  const pct = total > 0 ? correctCount / total : 0;
+  const tone = pct >= 0.8 ? 'celebratory' : pct >= 0.5 ? 'constructive' : 'supportive';
+  const toneStyles = {
+    celebratory: { border: 'var(--success)', headingColor: 'var(--success)', msg: 'Great work — keep this momentum going.' },
+    constructive: { border: 'var(--primary)', headingColor: 'var(--primary)', msg: 'Solid effort — review the missed ones to tighten up.' },
+    supportive: { border: 'var(--warning)', headingColor: 'var(--warning-text)', msg: 'Every practice round builds skill — review and try again.' },
+  };
+  const { border, headingColor, msg } = toneStyles[tone];
 
   return (
-    <div style={{
-      padding: '24px', borderRadius: 'var(--radius-md, 8px)', background: 'var(--ex-selected-bg)',
-      border: `2px solid ${TEAL}`, textAlign: 'center',
-    }}>
-      <div style={{ fontSize: 13, fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-          {waitingForFinalSubmission ? 'Ready to submit' : 'Session Complete'}
-      </div>
-      <div style={{ fontSize: 14, color: 'var(--ex-panel-text)', fontWeight: 500, lineHeight: 1.6 }}>
-        You answered {total} {total === 1 ? 'question' : 'questions'}. {waitingForFinalSubmission ? 'You can review your work or submit this final attempt once.' : 'Review the answers and explanations above to keep improving.'}
-      </div>
-    </div>
-  );
-}
+    <div
+      role="status"
+      aria-live="polite"
+      style={{
+        padding: '24px', borderRadius: 'var(--radius-md, 8px)', background: 'var(--surface)',
+        border: `2px solid ${border}`, textAlign: 'center',
+      }}
+    >
+      <div style={{ fontSize: 13, fontWeight: 700, color: headingColor, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
+            {waitingForFinalSubmission ? 'Ready to submit' : 'Session Complete'}
+          </div>
+
+          {/* Per-exercise completion indicators */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
+            {results.map((r, i) => {
+              const isCorrect = r?.correct === true;
+              const isIncorrect = r?.correct === false;
+              return (
+                <span
+                  key={i}
+                  aria-label={isCorrect ? `Exercise ${i + 1}: correct` : isIncorrect ? `Exercise ${i + 1}: incorrect` : `Exercise ${i + 1}: skipped`}
+                  style={{
+                    width: 30, height: 30, borderRadius: 'var(--radius-sm, 6px)',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 14, fontWeight: 700, lineHeight: 1,
+                    background: isCorrect ? 'var(--success-bg)' : isIncorrect ? 'var(--ex-wrong-bg)' : 'var(--ink-light)',
+                    color: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--muted)',
+                    border: `1px solid ${isCorrect ? 'var(--success-soft)' : isIncorrect ? 'var(--ex-wrong-border)' : 'var(--border)'}`,
+                  }}
+                >
+                  {isCorrect ? '✓' : isIncorrect ? '✗' : '—'}
+                </span>
+              );
+            })}
+          </div>
+
+          <div style={{ fontSize: 14, color: 'var(--text-muted)', fontWeight: 500, lineHeight: 1.6 }}>
+            {correctCount} correct{incorrectCount > 0 ? ` · ${incorrectCount} incorrect` : ''}{skippedCount > 0 ? ` · ${skippedCount} skipped` : ''}.{' '}
+            {waitingForFinalSubmission ? 'You can review your work or submit this final attempt once.' : msg}
+          </div>
+        </div>
+      );
+    }
 
 /**
  * ExercisePlayer

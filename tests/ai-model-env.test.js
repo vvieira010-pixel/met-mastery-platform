@@ -12,7 +12,7 @@ process.env.GEMINI_MODEL = 'gemini-2.5-pro';
 process.env.GEMINI_MODELS = 'gemini-2.5-flash-lite,gemini-2.0-flash';
 process.env.APP_ORIGIN = 'https://app.example.test';
 
-const { default: handler } = await import('../api/ai.js');
+const { default: handler } = await import('../api/_routes/ai.js');
 
 function request(ip, extra = {}) {
   return { method: 'POST', headers: { 'x-forwarded-for': ip, origin: 'https://app.example.test' }, body: { prompt: 'Reply with OK.', ...extra } };

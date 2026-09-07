@@ -2,16 +2,16 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
-import aiHandler from './api/ai.js';
-import ttsHandler from './api/tts.js';
-import generateImageHandler from './api/generate-image.js';
-import getSubmissionsHandler from './api/get-submissions.js';
-import saveSubmissionHandler from './api/save-submission.js';
-import sendInviteHandler from './api/send-invite.js';
-import evaluateSpeakingHandler from './api/evaluate-speaking.js';
-import createStudentAccountHandler from './api/create-student-account.js';
-import healthHandler from './api/health.js';
-import infoHandler from './api/v1/info.js';
+import aiHandler from './api/_routes/ai.js';
+import ttsHandler from './api/_routes/tts.js';
+import generateImageHandler from './api/_routes/generate-image.js';
+import getSubmissionsHandler from './api/_routes/get-submissions.js';
+import saveSubmissionHandler from './api/_routes/save-submission.js';
+import sendInviteHandler from './api/_routes/send-invite.js';
+import evaluateSpeakingHandler from './api/_routes/evaluate-speaking.js';
+import createStudentAccountHandler from './api/_routes/create-student-account.js';
+import healthHandler from './api/_routes/health.js';
+import infoHandler from './api/_routes/info.js';
 
 dotenv.config();
 // Vite automatically loads .env.local for the browser bundle. Load it here as
@@ -88,7 +88,7 @@ async function startServer() {
   app.all('/api/send-invite', wrap(sendInviteHandler));
   app.all('/api/evaluate-speaking', wrap(evaluateSpeakingHandler));
   app.all('/api/create-student-account', wrap(createStudentAccountHandler));
-  const { default: mcpHandler } = await import('./api/mcp.js');
+  const { default: mcpHandler } = await import('./api/_routes/mcp.js');
   app.all('/mcp', wrap(mcpHandler));
   app.all('/.well-known/mcp', wrap(mcpHandler));
 

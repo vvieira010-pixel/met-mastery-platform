@@ -8,12 +8,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { sha256, subjectRef, inputHash, promptSha } from '../api/_ml/hash.js';
-import { estimateCost } from '../api/_ml/pricing.js';
-import { buildPredictionRecord, compactJson } from '../api/_ml/log.js';
-import { buildEventRecord, isKnownEventType } from '../api/_ml/events.js';
-import { telemetryEnabled } from '../api/_ml/store.js';
-import { getActive, clearRegistryCache } from '../api/_ml/registry.js';
+import { sha256, subjectRef, inputHash, promptSha } from '../api/_routes/_ml/hash.js';
+import { estimateCost } from '../api/_routes/_ml/pricing.js';
+import { buildPredictionRecord, compactJson } from '../api/_routes/_ml/log.js';
+import { buildEventRecord, isKnownEventType } from '../api/_routes/_ml/events.js';
+import { telemetryEnabled } from '../api/_routes/_ml/store.js';
+import { getActive, clearRegistryCache } from '../api/_routes/_ml/registry.js';
 
 test('subjectRef never stores the raw identifier', () => {
   const ref = subjectRef('student@example.com');
@@ -36,9 +36,9 @@ test('subjectRef returns null for empty input', () => {
 test('subjectRef changes when AI_TELEMETRY_SALT changes', async () => {
   const before = process.env.AI_TELEMETRY_SALT;
   process.env.AI_TELEMETRY_SALT = 'salt-a';
-  const modA = await import('../api/_ml/hash.js?salt=a');
+  const modA = await import('../api/_routes/_ml/hash.js?salt=a');
   process.env.AI_TELEMETRY_SALT = 'salt-b';
-  const modB = await import('../api/_ml/hash.js?salt=b');
+  const modB = await import('../api/_routes/_ml/hash.js?salt=b');
   assert.notEqual(modA.subjectRef('x@y.com'), modB.subjectRef('x@y.com'));
   if (before === undefined) delete process.env.AI_TELEMETRY_SALT;
   else process.env.AI_TELEMETRY_SALT = before;

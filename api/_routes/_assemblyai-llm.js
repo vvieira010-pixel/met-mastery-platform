@@ -10,6 +10,19 @@
  * support `response_format`, so callers must parse JSON out of the text
  * (see parseLLMJson) — the gateway also offers built-in json-repair on its side.
  *
+ * UPGRADE PATH (gated by AssemblyAI account access):
+ *   As of 2026-09-07 this account can reach qwen3.5-4b-32k-fast ONLY. Every
+ *   stronger model (gemini-2.5-flash, gpt-5-mini, claude-sonnet-4-5-20250929)
+ *   returns HTTP 400 "Your account does not have access to this LLM Gateway
+ *   model". To upgrade once access is enabled in the AssemblyAI dashboard:
+ *     1. Set ASSEMBLYAI_LLM_MODEL to the target model (env only, no code change).
+ *     2. Verify live:
+ *        ASSEMBLYAI_LLM_MODEL=gemini-2.5-flash bun tests/assemblyai-scoring.selftest.mjs
+ *   The model value is passed through untouched, so the upgrade is a pure env-var
+ *   flip. Stronger models support response_format:json_object — when one is
+ *   active, tighten evaluate-writing.js / evaluate-speaking.js to request strict
+ *   JSON (parseLLMJson still covers the qwen3.5 text-parse path).
+ *
  * Used by both evaluate-writing.js and evaluate-speaking.js so "scoring via
  * AssemblyAI" is the default path for both skills.
  */

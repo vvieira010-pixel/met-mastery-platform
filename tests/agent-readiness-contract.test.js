@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import mcpHandler from '../api/mcp.js';
-import healthHandler from '../api/health.js';
-import infoHandler from '../api/v1/info.js';
-import markdownHomepageHandler from '../api/markdown-homepage.js';
+import mcpHandler from '../api/_routes/mcp.js';
+import healthHandler from '../api/_routes/health.js';
+import infoHandler from '../api/_routes/info.js';
+import markdownHomepageHandler from '../api/_routes/markdown-homepage.js';
 
 const root = new URL('../', import.meta.url);
 

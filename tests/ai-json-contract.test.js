@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { isStrictJsonResponse } from '../api/ai.js';
+import { isStrictJsonResponse } from '../api/_routes/ai.js';
 
 test('AI JSON validation rejects provider prose that merely quotes a JSON example', () => {
   assert.equal(isStrictJsonResponse('Here is my reasoning about {"ok":true}.'), false);

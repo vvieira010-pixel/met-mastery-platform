@@ -6,10 +6,18 @@ const NAVY = 'var(--accent-text)';
 
 function scoreColor(val) {
   if (val == null) return 'var(--muted)';
-  if (val >= 3) return '#16a34a';
+  if (val >= 3) return 'var(--success)';
   if (val >= 2) return TEAL;
-  if (val >= 1) return '#ca8a04';
-  return '#dc2626';
+  if (val >= 1) return 'var(--warning)';
+  return 'var(--error)';
+}
+
+function scoreBg(val) {
+  if (val == null) return 'var(--bg)';
+  if (val >= 3) return 'var(--success-bg)';
+  if (val >= 2) return 'var(--primary-light)';
+  if (val >= 1) return 'var(--warning-bg)';
+  return 'var(--error-bg)';
 }
 
 export default function Writing({ exercise, onComplete }) {
@@ -119,7 +127,7 @@ export default function Writing({ exercise, onComplete }) {
             <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Estimated MET band</span>
             <span style={{ fontSize: '1.2rem', fontWeight: 700, color: NAVY }}>{result.scaledScore ?? '—'}</span>
             <span style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)' }}>/ 80</span>
-            <span style={{ padding: '2px 10px', borderRadius: 99, background: `${TEAL}22`, color: TEAL, fontSize: 'var(--text-xs)', fontWeight: 700 }}>
+            <span style={{ padding: '2px 10px', borderRadius: 99, background: 'var(--primary-light)', color: TEAL, fontSize: 'var(--text-xs)', fontWeight: 700 }}>
               {result.cefrEstimate ?? '—'}
             </span>
           </div>
@@ -138,7 +146,7 @@ export default function Writing({ exercise, onComplete }) {
               return (
                 <div key={key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                   <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>{label}</span>
-                  <span style={{ padding: '2px 10px', borderRadius: 99, background: `${c}22`, color: c, fontSize: 'var(--text-xs)', fontWeight: 700, minWidth: 24, textAlign: 'center' }}>
+                  <span style={{ padding: '2px 10px', borderRadius: 99, background: scoreBg(val), color: c, fontSize: 'var(--text-xs)', fontWeight: 700, minWidth: 24, textAlign: 'center' }}>
                     {val ?? '—'}
                   </span>
                 </div>
@@ -157,9 +165,9 @@ export default function Writing({ exercise, onComplete }) {
               <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Corrections</span>
               {result.corrections.map((c, i) => (
                 <div key={i} style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}>
-                  <span style={{ color: '#dc2626', textDecoration: 'line-through' }}>{c.original}</span>
+                  <span style={{ color: 'var(--error)', textDecoration: 'line-through' }}>{c.original}</span>
                   {' → '}
-                  <span style={{ color: '#16a34a', fontWeight: 600 }}>{c.corrected}</span>
+                  <span style={{ color: 'var(--success)', fontWeight: 600 }}>{c.corrected}</span>
                   {c.explanation && <span style={{ color: 'var(--muted)' }}> — {c.explanation}</span>}
                 </div>
               ))}
@@ -170,7 +178,7 @@ export default function Writing({ exercise, onComplete }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
               {result.strengths?.length > 0 && (
                 <div style={{ flex: 1, minWidth: 180 }}>
-                  <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#16a34a', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Strengths</span>
+                  <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--success)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Strengths</span>
                   <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>
                     {result.strengths.map((s, i) => <li key={i}>{s}</li>)}
                   </ul>
@@ -178,7 +186,7 @@ export default function Writing({ exercise, onComplete }) {
               )}
               {result.weaknesses?.length > 0 && (
                 <div style={{ flex: 1, minWidth: 180 }}>
-                  <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#dc2626', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Weaknesses</span>
+                  <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--error)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Weaknesses</span>
                   <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>
                     {result.weaknesses.map((s, i) => <li key={i}>{s}</li>)}
                   </ul>

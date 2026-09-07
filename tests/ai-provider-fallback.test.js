@@ -16,7 +16,7 @@ const {
   AI_ATTEMPT_TIMEOUT_MS,
   AI_REQUEST_TIMEOUT_MS,
   MAX_AI_PROMPT_CHARS,
-} = await import('../api/ai.js');
+} = await import('../api/_routes/ai.js');
 
 function response(status, body) {
   const jsonBody = typeof body === 'string' ? body : JSON.stringify(body);

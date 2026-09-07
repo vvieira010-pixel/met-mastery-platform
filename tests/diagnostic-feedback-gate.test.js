@@ -71,7 +71,7 @@ test('diagnostic creation saves feedback and then unlocks separate saved phases'
   assert.match(source, /id: 'feedback', number: 1/);
   assert.match(source, /id: 'analysis', number: 2, title: 'Evidence analysis', requires: \['feedback'\]/);
   assert.match(source, /id: 'targets', number: 3, title: 'Language targets', requires: \['analysis'\]/);
-  assert.match(source, /id: 'homework', number: 4, title: 'Homework plan', requires: \['targets'\]/);
+  assert.doesNotMatch(source, /id: 'homework', number: 4/);
   assert.match(source, /completedPhases: nextCompletedPhases/);
   assert.match(source, /Finish and save the earlier phase first\./);
 
