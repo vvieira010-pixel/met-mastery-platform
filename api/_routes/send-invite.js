@@ -19,28 +19,8 @@
 // SECURITY (#5): server-only secrets must NOT fall back to VITE_* (client-exposed) vars.
 const env = (name) => process.env[name] || '';
 
-import { getSupabaseUrl, getServiceKey, allowedTeacherEmails } from './_config.js';
 import { guardRateLimit } from './_rate-limit.js';
-
-/** Verify the caller's Supabase JWT via Supabase and return the user, or null. */
-async function requireTeacherSession(req) {
-  const token = (req.headers['authorization'] || '').replace(/^bearer\s+/i, '').trim();
-  if (!token) return null;
-  const supabaseUrl = getSupabaseUrl();
-  const key = getServiceKey();
-  if (!supabaseUrl || !key) return null;
-  try {
-    const res = await fetch(`${supabaseUrl}/auth/v1/user`, {
-      headers: { apikey: key, Authorization: `Bearer ${token}` },
-    });
-    if (!res.ok) return null;
-    const user = await res.json();
-    if (!user || !user.id || user.role === 'anon') return null;
-    return user;
-  } catch {
-    return null;
-  }
-}
+import { requireTeacher } from './_supabase-auth.js';
 
 /** Minutes the given IANA timezone is ahead of UTC at `date`. */
 function tzOffsetMinutes(timeZone, date) {
@@ -115,15 +95,8 @@ export default async function handler(req, res) {
   }
 
   // Require a valid teacher session — prevents open relay abuse.
-  const user = await requireTeacherSession(req);
-  if (!user) {
-    return res.status(401).json({ error: { message: 'Teacher sign-in required to send invites.' } });
-  }
-  // TEACHER_EMAIL is non-secret config; allow the client-exposed VITE_ form too.
-  const teacherEmails = allowedTeacherEmails();
-  if (teacherEmails.length && !teacherEmails.includes((user.email || '').toLowerCase())) {
-    return res.status(403).json({ error: { message: 'Only teachers can send class invites.' } });
-  }
+  const user = await requireTeacher(req, res);
+  if (!user) return;
 
   // Spend guardrail: protects Resend volume and, more importantly, the sending
   // domain's reputation against a burst of outbound mail.
@@ -239,11 +212,13 @@ export default async function handler(req, res) {
     });
     const data = await r.json().catch(() => ({}));
     if (!r.ok) {
-      return res.status(502).json({ error: { message: data?.message || `Email provider rejected the request (${r.status}).` } });
+      console.error('[send-invite] provider error:', data?.message, 'status:', r.status);
+      return res.status(502).json({ error: { message: 'Email provider rejected the request. Please try again shortly.' } });
     }
     return res.status(200).json({ ok: true, id: data?.id || null });
   } catch (e) {
-    return res.status(502).json({ error: { message: `Failed to send invite: ${e.message}` } });
+    console.error('[send-invite] unhandled error:', e);
+    return res.status(502).json({ error: { message: 'Failed to send invite. Please try again shortly.' } });
   }
 }
 

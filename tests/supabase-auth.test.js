@@ -11,6 +11,7 @@ import { readFileSync } from 'node:fs';
 import {
   verifySupabaseSession,
   verifySupabaseSessionLocal,
+  requireTeacher,
 } from '../api/_routes/_supabase-auth.js';
 
 test('missing authorization header returns null', async () => {
@@ -59,3 +60,18 @@ test('source passes clockTolerance to jwtVerify', () => {
   const source = readFileSync('api/_routes/_supabase-auth.js', 'utf8');
   assert.match(source, /clockTolerance/);
 });
+
+test('requireTeacher rejects anonymous or invalid sessions', async () => {
+  const res = {
+    headersSent: false,
+    statusCode: null,
+    body: null,
+    status(c) { this.statusCode = c; return this; },
+    json(b) { this.body = b; return this; },
+  };
+  const user = await requireTeacher({ headers: {} }, res);
+  assert.equal(user, null);
+  assert.equal(res.statusCode, 401);
+  assert.equal(res.body.error.message, 'Teacher sign-in required.');
+});
+

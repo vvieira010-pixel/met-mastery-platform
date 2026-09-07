@@ -12,7 +12,7 @@
  * that are still cryptographically valid).
  */
 import { jwtVerify, createRemoteJWKSet } from 'jose';
-import { getServiceKey, getSupabaseUrl } from './_config.js';
+import { getServiceKey, getSupabaseUrl, allowedTeacherEmails } from './_config.js';
 
 let jwksClient = null;
 let jwksUrl = null;
@@ -82,4 +82,27 @@ export async function verifySupabaseSession(req) {
   } catch {
     return null;
   }
+}
+
+/**
+ * Verify the caller is a signed-in teacher.
+ * Returns the user object when authorized, or null after writing a 401/403
+ * response (caller must `return` immediately).
+ */
+export async function requireTeacher(req, res) {
+  const user = await verifySupabaseSession(req);
+  if (!user) {
+    if (res && !res.headersSent) {
+      res.status(401).json({ error: { message: 'Teacher sign-in required.' } });
+    }
+    return null;
+  }
+  const emails = allowedTeacherEmails();
+  if (emails.length && !emails.includes((user.email || '').toLowerCase())) {
+    if (res && !res.headersSent) {
+      res.status(403).json({ error: { message: 'Only teachers can access this resource.' } });
+    }
+    return null;
+  }
+  return user;
 }

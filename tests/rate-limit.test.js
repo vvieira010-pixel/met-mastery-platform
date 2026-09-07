@@ -1,3 +1,4 @@
+/* global URL */
 /**
  * tests/rate-limit.test.js — spend-guardrail contracts.
  *
