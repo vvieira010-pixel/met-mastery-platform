@@ -13,7 +13,6 @@ import { getLifestyleModuleExercises } from '../lib/lifestyle-pack.js';
 import { getDeepResearchModuleExercises } from '../lib/met-b2-exercises.js';
 import { getGrammarModules, getGrammarModuleExercises } from '../lib/met-grammar-bank.js';
 import { getDueCount } from '../lib/spaced-repetition.js';
-import { buildExercisesFromAiTasks } from '../lib/exercise-ai-helpers.js';
 import { HomeworkStepThrough } from '../components/exercise-player.jsx';
 import { StepPrebuilt, StepRetrieval, StepBuild } from './homework-create/homework-form.jsx';
 import { useHomeworkAI } from './homework-create/prompt-builders.js';

@@ -321,7 +321,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     if (!diagnosisId) setSavedDiagnosis(null);
 
     try {
-      const FAILED = { content: 'Not generated. Create the matching phase when you are ready.', approved: false, hidden: false, edited: false };
       const fallbackDiagnosis = normalizeDiagnosisJson({}, normalizedEvidence);
       const feedbackDraft = buildFeedbackDraft({
         student: selectedStudent,
