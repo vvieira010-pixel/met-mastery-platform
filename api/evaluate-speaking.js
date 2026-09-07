@@ -2,11 +2,13 @@
  * api/evaluate-speaking.js — Serverless endpoint for evaluating student MET speaking responses.
  *
  * Takes { storagePath, audioUrl, taskPrompt, taskId, transcript }
- * Transcribes audio via Deepgram / OpenAI Whisper / Gemini if audio URL/storagePath is provided,
- * then assesses against the official MET 3-part rubric (0-4 each, total 12):
- * 1. Task Completion & Fluency
- * 2. Linguistic Range & Accuracy (Grammar / Vocab)
- * 3. Delivery / Intelligibility
+ * Transcribes audio via AssemblyAI (word timings + disfluencies) / Deepgram /
+ * OpenAI Whisper if audio storagePath is provided, then assesses against the
+ * official MET Speaking Rating Scale (0.0-4.0 each in 0.5 steps):
+ * 1. Task Completion
+ * 2. Language Resources
+ * 3. Intelligibility / Delivery
+ * Scoring (avg → scaled 0-80 → CEFR) is computed server-side, deterministically.
  */
 
 // SECURITY (#5): server-only secrets must NOT fall back to VITE_* (client-exposed) vars.
@@ -14,9 +16,12 @@ const env = (name) => process.env[name] || '';
 
 import { verifySupabaseSession } from './_supabase-auth.js';
 import { getServiceKey, getSupabaseUrl } from './_config.js';
+import { buildExaminerPrompt, rubricToScaled } from './_met-speaking-scale.js';
 
 const SUPABASE_URL = getSupabaseUrl();
-const MOCK_AUDIO_BUCKET = 'mock-test-audio';
+const DEFAULT_AUDIO_BUCKET = 'mock-test-audio';
+// Practice Studio uploads land in submission-audio; mock tests use mock-test-audio.
+const ALLOWED_AUDIO_BUCKETS = ['mock-test-audio', 'submission-audio'];
 const MAX_AUDIO_BYTES = 15 * 1024 * 1024;
 
 async function fetchWithTimeout(url, init, ms = 25000) {
@@ -37,11 +42,11 @@ function normalizeStoragePath(storagePath) {
   return path;
 }
 
-async function fetchStoredAudio(storagePath) {
+async function fetchStoredAudio(storagePath, bucket) {
   const serviceKey = getServiceKey();
   const encodedPath = storagePath.split('/').map(encodeURIComponent).join('/');
   const audioRes = await fetchWithTimeout(
-    `${SUPABASE_URL}/storage/v1/object/${MOCK_AUDIO_BUCKET}/${encodedPath}`,
+    `${SUPABASE_URL}/storage/v1/object/${bucket}/${encodedPath}`,
     { headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` } },
     10000,
   );
@@ -54,11 +59,84 @@ async function fetchStoredAudio(storagePath) {
   return { audioBuffer, contentType: audioRes.headers.get('content-type') || 'audio/webm' };
 }
 
+async function transcribeWithAssemblyAI(audio) {
+  const key = env('ASSEMBLYAI_API_KEY');
+  if (!key || !audio) return null;
+  try {
+    const upRes = await fetchWithTimeout('https://api.assemblyai.com/v2/upload', {
+      method: 'POST',
+      headers: { Authorization: key, 'Content-Type': 'application/octet-stream' },
+      body: audio.audioBuffer,
+    }, 30000);
+    if (!upRes.ok) return null;
+    const { upload_url } = await upRes.json();
+    if (!upload_url) return null;
+
+    const subRes = await fetchWithTimeout('https://api.assemblyai.com/v2/transcript', {
+      method: 'POST',
+      headers: { Authorization: key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        audio_url: upload_url,
+        disfluencies: true,
+        punctuate: true,
+        format_text: true,
+        language_code: 'en',
+      }),
+    });
+    if (!subRes.ok) return null;
+    const { id } = await subRes.json();
+    if (!id) return null;
+
+    // Bounded poll (~40s) so serverless timeouts fall through to faster providers.
+    for (let i = 0; i < 13; i++) {
+      await new Promise((r) => setTimeout(r, 3000));
+      const poll = await fetchWithTimeout(
+        `https://api.assemblyai.com/v2/transcript/${id}`,
+        { headers: { Authorization: key } },
+      );
+      if (!poll.ok) return null;
+      const t = await poll.json();
+      if (t.status === 'completed') {
+        const text = (t.text || '').trim();
+        if (!text) return null;
+        return { text, words: t.words || [], duration: t.audio_duration ?? null, confidence: t.confidence ?? null };
+      }
+      if (t.status === 'error') return null;
+    }
+    return null;
+  } catch (e) {
+    console.warn('AssemblyAI transcription error:', e.message);
+    return null;
+  }
+}
+
+// Word-gap stats from AssemblyAI word timings → acoustic evidence for Delivery.
+function pauseStats(words, durationSec) {
+  const gaps = [];
+  for (let i = 1; i < (words || []).length; i++) {
+    const gap = words[i].start - words[i - 1].end;
+    if (Number.isFinite(gap) && gap >= 0) gaps.push(gap);
+  }
+  const wordCount = (words || []).length;
+  return {
+    wordCount,
+    durationSec,
+    wpm: durationSec && wordCount ? Math.round(wordCount / (durationSec / 60)) : null,
+    pausesOver500ms: gaps.filter((g) => g >= 500).length,
+    pausesOver1200ms: gaps.filter((g) => g >= 1200).length,
+    longestPausesMs: [...gaps].sort((a, b) => b - a).slice(0, 6),
+  };
+}
+
+// rubricToScaled is imported from ./_met-speaking-scale.js (single source of truth).
+
 async function transcribeAudio(audio) {
   const deepgramKey = env('DEEPGRAM_API_KEY');
   const openaiKey = env('OPENAI_API_KEY');
 
-  // Send stored audio bytes, never a user-controlled URL.
+  // 1. AssemblyAI first — word timings + disfluencies give real Delivery evidence.
+  const aai = await transcribeWithAssemblyAI(audio);
+  if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration) };
   if (deepgramKey && audio) {
     try {
       const dgRes = await fetchWithTimeout('https://api.deepgram.com/v1/listen?model=nova-2&smart_format=true', {
@@ -71,8 +149,13 @@ async function transcribeAudio(audio) {
       });
       if (dgRes.ok) {
         const data = await dgRes.json();
-        const text = data?.results?.channels?.[0]?.alternatives?.[0]?.transcript;
-        if (text && text.trim()) return text.trim();
+        const alt = data?.results?.channels?.[0]?.alternatives?.[0];
+        const text = alt?.transcript;
+        if (text && text.trim()) {
+          const words = alt?.words || [];
+          const duration = data?.metadata?.duration ?? null;
+          return { text: text.trim(), words, duration, confidence: alt?.confidence ?? null, stats: pauseStats(words, duration) };
+        }
       }
     } catch (e) {
       console.warn('Deepgram transcription error:', e.message);
@@ -93,7 +176,9 @@ async function transcribeAudio(audio) {
       });
       if (whisperRes.ok) {
         const data = await whisperRes.json();
-        if (data.text && data.text.trim()) return data.text.trim();
+        if (data.text && data.text.trim()) {
+          return { text: data.text.trim(), words: [], duration: null, confidence: null, stats: pauseStats([], null) };
+        }
       }
     } catch (e) {
       console.warn('Whisper transcription error:', e.message);
@@ -120,15 +205,17 @@ export default async function handler(req, res) {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
 
-  const { storagePath, audioUrl, taskPrompt = 'Speak on the topic.', transcript: userTranscript } = body || {};
+  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript } = body || {};
   if (audioUrl) {
     return res.status(400).json({ error: 'audioUrl is not accepted. Provide a stored recording path.' });
   }
+  const audioBucket = ALLOWED_AUDIO_BUCKETS.includes(bucket) ? bucket : DEFAULT_AUDIO_BUCKET;
   if (typeof taskPrompt !== 'string' || taskPrompt.trim().length > 2000) {
     return res.status(400).json({ error: 'Invalid task prompt.' });
   }
 
   let transcription = typeof userTranscript === 'string' ? userTranscript.trim() : '';
+  let fluency = null; // { stats } from acoustic transcription when audio was processed
   if (transcription.length > 12000) {
     return res.status(400).json({ error: 'Transcript is too long.' });
   }
@@ -138,8 +225,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'A valid stored recording path or transcript is required.' });
     }
     try {
-      const storedAudio = await fetchStoredAudio(normalizedPath);
-      transcription = storedAudio ? await transcribeAudio(storedAudio) : '';
+      const storedAudio = await fetchStoredAudio(normalizedPath, audioBucket);
+      const result = storedAudio ? await transcribeAudio(storedAudio) : null;
+      transcription = result?.text || '';
+      if (result?.stats?.wordCount) fluency = result.stats;
     } catch (e) {
       console.warn('Stored audio retrieval error:', e.message);
     }
@@ -148,58 +237,12 @@ export default async function handler(req, res) {
     return res.status(422).json({ error: 'We could not transcribe this recording. Please retry or provide a transcript.' });
   }
 
-  const prompt = `You are an official MET (Michigan English Test) Speaking Examiner evaluating a candidate's recorded speaking response.
+  const fluencyLine = fluency
+    ? `Acoustic fluency facts (from word timings — use for Delivery, do not re-derive from text): ${fluency.wordCount} words in ${fluency.durationSec ?? '?'}s (~${fluency.wpm ?? '?'} wpm vs ~150 conversational), ${fluency.pausesOver500ms} pauses ≥0.5s, ${fluency.pausesOver1200ms} pauses ≥1.2s, longest gaps ms: [${(fluency.longestPausesMs || []).join(', ')}].`
+    : 'No acoustic timing available (transcript-only input) — rate Delivery conservatively from textual coherence and flag it in rationale.';
 
-Task Prompt:
-${taskPrompt}
+  const prompt = buildExaminerPrompt({ taskPrompt, transcription, fluencyLine });
 
-Candidate's Transcript / Response:
-"${transcription}"
-
-Evaluate against the official MET 3-part Speaking Criteria (Score 0 to 4 for each):
-
-1. Task Completion & Fluency (0–4)
-- 4: fully answers all parts with appropriate elaboration, smooth pacing
-- 3: answers main parts with minor gaps, generally fluid
-- 2: answers partially, limited elaboration, noticeable hesitations
-- 1: minimal response, mostly disjointed
-- 0: off-topic or unintelligible
-
-2. Linguistic Resource / Grammar & Vocabulary (0–4)
-- 4: wide range of MET B2-C1 vocabulary & varied grammatical structures with high accuracy
-- 3: good control of everyday and professional structures, minor errors that do not obscure meaning
-- 2: basic vocabulary, repetitive structures, noticeable grammatical errors
-- 1: severe limitations in vocabulary and grammar
-- 0: insufficient language to evaluate
-
-3. Delivery & Intelligibility (0–4)
-- 4: clear pronunciation, natural intonation and rhythm
-- 3: generally clear with minor accent/intonation interference
-- 2: listener effort required at times
-- 1: difficult to understand
-- 0: not comprehensible
-
-Return ONLY a valid JSON object formatted as:
-{
-  "scores": {
-    "task": 3,
-    "language": 3,
-    "delivery": 3
-  },
-  "overallScore": 9,
-  "cefrEstimate": "B2",
-  "rationale": {
-    "task": "...",
-    "language": "...",
-    "delivery": "..."
-  },
-  "corrections": [
-    { "original": "...", "corrected": "...", "explanation": "..." }
-  ],
-  "feedback": "...",
-  "strengths": ["...", "..."],
-  "weaknesses": ["...", "..."]
-}`;
 
   const geminiKey = env('GEMINI_API_KEY');
   const openaiKey = env('OPENAI_API_KEY');
@@ -297,8 +340,20 @@ Return ONLY a valid JSON object formatted as:
     return res.status(503).json({ error: 'AI evaluation unavailable — no provider responded. Please try again.' });
   }
 
+  // Server-side scoring: average → snap to 0.5 → scaled 0–80 + CEFR (deterministic, not LLM-derived).
+  const s = evaluation.scores || {};
+  const avgRaw = (Number(s.task) + Number(s.language) + Number(s.delivery)) / 3;
+  const conversion = rubricToScaled(Number.isFinite(avgRaw) ? avgRaw : 0);
+  evaluation.rubricAvg = conversion.rubricAvg;
+  evaluation.scaledScore = conversion.scaledScore;
+  evaluation.scaledRange = conversion.scaledRange;
+  // Backward-compatible fields used by mock-test-results.jsx:
+  evaluation.overallScore = Math.round((Number(s.task) + Number(s.language) + Number(s.delivery)) * 10) / 10;
+  evaluation.cefrEstimate = conversion.cefr;
+
   return res.status(200).json({
     transcription,
+    fluency,
     evaluation,
   });
 }

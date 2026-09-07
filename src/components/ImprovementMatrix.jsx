@@ -1,44 +1,37 @@
 import { useState } from 'react';
 import { Icon } from './shared.jsx';
 
-const DEFAULT_IMPROVEMENT_ENTRIES = [
-  {
-    id: 'mat-1',
-    skill: 'writing',
-    category: 'Lexical Precision & Register',
-    currentLanguage: 'I think that this problem is very big and we need to fix it fast.',
-    whatToChange: 'Replace informal colloquial phrases ("very big", "fix it fast") with formal academic collocations.',
-    howToImprove: 'Try: "This pressing issue warrants immediate intervention." Fantastic clarity in your message—elevating the register will instantly secure B2 points!',
-    encouragement: 'High-Yield B2 Upgrade',
-  },
-  {
-    id: 'mat-2',
-    skill: 'speaking',
-    category: 'Discourse Cohesion',
-    currentLanguage: 'And then I went to the manager. And then she said yes. And after that we started.',
-    whatToChange: 'Repetitive coordination ("and then... and after that") restricts sentence variety.',
-    howToImprove: 'Try: "Having consulted the manager, who promptly approved the initiative, we commenced operations." Great storytelling flow—subordination makes your speech sound natural and effortless!',
-    encouragement: 'Fluent Phrasing',
-  },
-  {
-    id: 'mat-3',
-    skill: 'writing',
-    category: 'Complex Sentence Structure',
-    currentLanguage: 'Many people like remote work. It gives them more free time for family.',
-    whatToChange: 'Two isolated simple sentences; combine using concession or causal relative clauses.',
-    howToImprove: 'Try: "Remote work continues to gain popularity, primarily because it affords professionals greater flexibility for personal commitments." Excellent foundational idea!',
-    encouragement: 'Structural Synthesis',
-  },
-  {
-    id: 'mat-4',
-    skill: 'speaking',
-    category: 'Hesitation & Pacing',
-    currentLanguage: 'Um, like, the biggest reason is... um, people want better money.',
-    whatToChange: 'Filler words ("um, like") interrupting lexical search during spontaneous delivery.',
-    howToImprove: 'Try: "Chief among these factors is financial compensation." You have great pronunciation; pausing silently for one second before speaking projects confidence!',
-    encouragement: 'Confidence Booster',
-  },
-];
+const isPlaceholder = (value) => /^(add|identified in recent submission|evidence to review)/i.test(String(value || '').trim());
+
+function buildImprovementEntries(feedback, customEntries) {
+  if (Array.isArray(customEntries) && customEntries.length > 0) return customEntries;
+  if (!feedback || typeof feedback !== 'object') return [];
+
+  return (Array.isArray(feedback.whatToImprove) ? feedback.whatToImprove : [])
+    .flatMap((fix, index) => {
+      if (!fix) return [];
+      const currentLanguage = fix.insteadOf || fix.currentLanguage || fix.example || '';
+      const whatToChange = fix.area || fix.explanation || '';
+      const howToImprove = fix.sayInstead
+        ? `Try: "${fix.sayInstead}". ${fix.howToImprove || ''}`.trim()
+        : (fix.howToImprove || '');
+
+      // Never invent a Writing/Speaking row merely to fill the matrix. The
+      // reference experience is useful only when a teacher can point to a
+      // real phrase or observed behavior from this student's lesson.
+      if (!currentLanguage || !whatToChange || !howToImprove || isPlaceholder(currentLanguage)) return [];
+
+      return [{
+        id: fix.id || `dx-${index}`,
+        skill: String(fix.skill || fix.section || 'language focus').toLowerCase(),
+        category: fix.category || fix.area,
+        currentLanguage,
+        whatToChange,
+        howToImprove,
+        encouragement: fix.encouragement || 'Teacher Action Point',
+      }];
+    });
+}
 
 export default function ImprovementMatrix({
   feedback = null,
@@ -48,43 +41,14 @@ export default function ImprovementMatrix({
 }) {
   const [selectedFilter, setSelectedFilter] = useState('all'); // 'all' | 'writing' | 'speaking'
 
-  // Extract from feedback prop if provided, or use customEntries, or fallback to default high-yield entries
-  const entries = (() => {
-    if (Array.isArray(customEntries) && customEntries.length > 0) return customEntries;
-
-    if (feedback && typeof feedback === 'object') {
-      const extracted = [];
-      const fixes = Array.isArray(feedback.whatToImprove) ? feedback.whatToImprove : [];
-
-      fixes.forEach((f, idx) => {
-        if (!f) return;
-        const currentLang = f.insteadOf || f.currentLanguage || (f.example ? `"${f.example}"` : 'Identified in recent submission');
-        const whatChange = f.area || f.explanation || 'Refine word choice or syntactic structure';
-        const howImp = f.sayInstead
-          ? `Try: "${f.sayInstead}". ${f.howToImprove || 'Solid effort—this phrasing sharpens your academic precision!'}`
-          : (f.howToImprove || 'Practice replacing basic connectors with B2 discourse linkers. Keep up the great momentum!');
-
-        extracted.push({
-          id: `dx-${idx}`,
-          skill: (f.skill || f.section || (idx % 2 === 0 ? 'writing' : 'speaking')).toLowerCase(),
-          category: f.category || f.area || 'Constructive Refinement',
-          currentLanguage: currentLang,
-          whatToChange: whatChange,
-          howToImprove: howImp,
-          encouragement: 'Teacher Action Point',
-        });
-      });
-
-      if (extracted.length > 0) return extracted;
-    }
-
-    return DEFAULT_IMPROVEMENT_ENTRIES;
-  })();
+  const entries = buildImprovementEntries(feedback, customEntries);
 
   const filtered = entries.filter(e => {
     if (selectedFilter === 'all') return true;
     return (e.skill || '').toLowerCase() === selectedFilter;
   });
+
+  if (entries.length === 0) return null;
 
   return (
     <div

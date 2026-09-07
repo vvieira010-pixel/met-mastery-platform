@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Icon } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { getPayments } from '../domain/payments.js';
+import { calculateCourseCredits } from '../domain/course-credits.js';
+import { getClassEvents } from '../lib/workflow.js';
 
 function downloadReceipt(receipt) {
   if (!receipt?.dataUrl) return;
@@ -15,10 +17,24 @@ function downloadReceipt(receipt) {
 
 export default function CourseAdministration({ student, onMessage }) {
   const [payments, setPayments] = useState([]);
+  const [courseCredits, setCourseCredits] = useState(null);
   const [showArrangement, setShowArrangement] = useState(false);
 
   useEffect(() => {
-    getPayments(student?.id).then(setPayments).catch(() => setPayments([]));
+    if (!student?.id) {
+      setPayments([]);
+      setCourseCredits(null);
+      return;
+    }
+    Promise.all([getPayments(student.id), getClassEvents(student.id)])
+      .then(([paymentRecords, classEvents]) => {
+        setPayments(paymentRecords);
+        setCourseCredits(calculateCourseCredits({ payments: paymentRecords, classEvents }));
+      })
+      .catch(() => {
+        setPayments([]);
+        setCourseCredits(null);
+      });
   }, [student?.id]);
 
   const receipts = payments.filter(payment => payment.receipt?.dataUrl);
@@ -36,7 +52,25 @@ export default function CourseAdministration({ student, onMessage }) {
         Your learning progress and feedback are independent from payment records.
       </p>
       <div style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="card-row" style={{ padding: 'var(--space-3) 0', borderBottom: '1px solid var(--border)' }}><Icon.lock size={17} /><div className="card-row-body"><div className="card-row-title">Course access</div></div><span style={{ color: 'var(--success)', fontWeight: 700, fontSize: 'var(--text-sm)' }}>Active</span></div>
+        <div className="card-row" style={{ padding: 'var(--space-3) 0', borderBottom: '1px solid var(--border)' }}>
+          <Icon.lock size={17} />
+          <div className="card-row-body">
+            <div className="card-row-title">Course access</div>
+            {courseCredits?.hasRecordedCredits && (
+              <div className="card-row-meta">
+                <span style={{ fontWeight: 700 }}>Classes remaining</span>
+                {' · '}
+                <span aria-label={`${courseCredits.remainingClasses} classes remaining`}>
+                  {courseCredits.remainingClasses === 0
+                    ? 'No classes remaining'
+                    : `${courseCredits.remainingClasses} ${courseCredits.remainingClasses === 1 ? 'class' : 'classes'} remaining`}
+                </span>
+                {' · '}{courseCredits.completedClasses} of {courseCredits.purchasedClasses} completed
+              </div>
+            )}
+          </div>
+          <span style={{ color: 'var(--success)', fontWeight: 700, fontSize: 'var(--text-sm)' }}>Active</span>
+        </div>
         <div className="card-row" style={{ padding: 'var(--space-3) 0', borderBottom: '1px solid var(--border)' }}><Icon.doc size={17} /><div className="card-row-body"><div className="card-row-title">Payment plan</div></div><span style={{ color: 'var(--muted)', fontSize: 'var(--text-sm)' }}>Private</span><Button variant="ghost" size="sm" onClick={() => setShowArrangement(value => !value)}>{showArrangement ? 'Hide' : 'View arrangements'}</Button></div>
         {showArrangement && <p className="card-row-meta" style={{ margin: 'var(--space-2) 0 var(--space-3)' }}>{arrangement ? 'A flexible course arrangement is in place. Your teacher can help with any questions.' : 'Your course arrangements are private. Contact your teacher if you would like to discuss them.'}</p>}
         <div className="card-row" style={{ padding: 'var(--space-3) 0' }}><Icon.download size={17} /><div className="card-row-body"><div className="card-row-title">Receipts</div></div><span style={{ color: 'var(--muted)', fontSize: 'var(--text-sm)' }}>{receipts.length} available</span></div>

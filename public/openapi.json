@@ -1,0 +1,85 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MET Mastery Public API",
+    "version": "1.0.0",
+    "description": "A small, public, read-only API for agents and integrations that need to understand MET Mastery and its public resources. Private learner and teacher data is excluded."
+  },
+  "servers": [
+    { "url": "https://met-mastery.vercel.app" }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "getServiceHealth",
+        "summary": "Check public service availability",
+        "description": "Returns a minimal read-only health response without exposing credentials or learner data.",
+        "responses": {
+          "200": {
+            "description": "The public service is reachable.",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Health" } } }
+          },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      }
+    },
+    "/api/v1/info": {
+      "get": {
+        "operationId": "getProductInfo",
+        "summary": "Retrieve public product capabilities",
+        "description": "Returns the public MET Mastery audience, capabilities, and canonical agent-facing resources. This operation is read-only and does not require authentication.",
+        "responses": {
+          "200": {
+            "description": "Public product information.",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProductInfo" } } }
+          },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "MethodNotAllowed": {
+        "description": "The HTTP method is not supported.",
+        "headers": { "Allow": { "schema": { "type": "string" } } },
+        "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
+      }
+    },
+    "schemas": {
+      "Health": {
+        "type": "object",
+        "required": ["status", "service", "readOnly"],
+        "properties": {
+          "status": { "type": "string", "const": "ok" },
+          "service": { "type": "string", "const": "met-mastery" },
+          "readOnly": { "type": "boolean" }
+        }
+      },
+      "ProductInfo": {
+        "type": "object",
+        "required": ["name", "description", "url", "readOnly", "capabilities", "publicResources"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "readOnly": { "type": "boolean" },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "publicResources": { "type": "object", "additionalProperties": { "type": "string", "format": "uri" } }
+        }
+      },
+      "Problem": {
+        "type": "object",
+        "required": ["type", "title", "status", "code", "detail", "resolution"],
+        "properties": {
+          "type": { "type": "string", "format": "uri" },
+          "title": { "type": "string" },
+          "status": { "type": "integer" },
+          "code": { "type": "string" },
+          "detail": { "type": "string" },
+          "resolution": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -188,6 +188,7 @@ export default function BaselineDiagnosticModal({
                 {
                   strength: 'Initial Diagnostic Completion',
                   explanation: 'Successfully established your starting MET baseline across all 4 assessed skill areas.',
+                  evidence: 'Completed the baseline assessment across reading, writing, listening, and speaking.',
                 },
               ],
               whatToImprove: [
@@ -334,7 +335,7 @@ export default function BaselineDiagnosticModal({
             <div style={{ padding: '12px 16px', background: 'rgba(2, 132, 199, 0.08)', borderRadius: 8, marginBottom: 24, textAlign: 'left' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <strong style={{ fontSize: '0.9rem', color: '#2D7A8C' }}>Overall Scaled Score: {completedResult.overall} / 80</strong>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? '#3D8C65' : '#E08E45' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? '#3D8C65' : 'var(--warning-text)' }}>
                   {completedResult.overall >= 53 ? 'B2 Independent' : 'B1 Developing'}
                 </span>
               </div>

@@ -144,7 +144,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       border-top: 1px solid var(--border);
       background: var(--surface-alt);
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
     }
     .cp-section {
       margin-top: 8px;
@@ -155,7 +155,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -176,7 +176,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       border: 1px solid var(--border);
       background: var(--surface);
       cursor: pointer;
-      font-size: 13px;
+      font-size: 0.875rem;
       font-weight: 500;
       color: var(--text);
       transition: all 0.15s;
@@ -187,7 +187,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       color: var(--accent);
     }
     .cp-help-item-icon {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--primary);
       background: var(--primary-light);
@@ -219,6 +219,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
             id="cp-input"
             className="cp-input"
             placeholder="Type a command or search..."
+            aria-label="Search commands"
             value={query}
             onChange={e => setQuery(e.target.value)}
             onKeyDown={e => {

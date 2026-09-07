@@ -104,7 +104,7 @@ export default function ReportsPage({ students, onNavigate, workspaceQuery = '',
       <section className="hero-section hero-section--reports hero-section--rounded">
         <div>
           <div className="hero-tag">Progress Repository</div>
-          <h1 className="page-headline" style={{ color: '#fff' }}>Reports Workspace</h1>
+          <h1 className="page-headline" style={{ color: 'var(--on-dark)' }}>Reports Workspace</h1>
           <p className="page-sub" style={{ color: 'rgba(255,255,255,.78)', maxWidth: 620 }}>Teacher-facing performance view: evidence coverage, exercise pipeline, and progress story before sharing feedback.</p>
         </div>
         <div className="flex gap-2 flex-wrap">

@@ -46,6 +46,7 @@ export async function saveDiagnosis(data) {
     studentId: null, sessionId: null, strengths: [], weaknesses: [],
     grammarIssues: [], vocabularyIssues: [], skillIssues: [], metConnections: [], nextSteps: [], content: null,
     isBaseline: false, interventionNote: '', inquiryHypothesis: '',
+    approvedBy: null, approvedAt: null,
   });
 }
 export async function deleteDiagnosis(id) {

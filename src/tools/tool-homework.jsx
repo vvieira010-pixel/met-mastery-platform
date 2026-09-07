@@ -249,7 +249,7 @@ export default function ToolHomework({ student, students = [], onSelectStudent, 
               <div style={{ fontWeight: 700, marginBottom: 14 }}>New Homework Set</div>
 
               <label style={smallLabel}>Title</label>
-              <input className="input" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Grammar — Past Perfect Review" style={{ marginBottom: 12 }} />
+              <input className="input" value={form.title} aria-label="Homework set title" onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Grammar — Past Perfect Review" style={{ marginBottom: 12 }} />
 
               <label style={smallLabel}>Description / Instructions</label>
               <textarea className="input" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Instructions for the student..." rows={6} style={{ marginBottom: 12 }} />
@@ -263,7 +263,7 @@ export default function ToolHomework({ student, students = [], onSelectStudent, 
                 </div>
                 <div>
                   <label style={smallLabel}>Due date</label>
-                  <input className="input" type="date" value={form.dueDate} onChange={e => setForm(f => ({ ...f, dueDate: e.target.value }))} />
+                  <input className="input" type="date" value={form.dueDate} aria-label="Due date" onChange={e => setForm(f => ({ ...f, dueDate: e.target.value }))} />
                 </div>
               </div>
 
@@ -426,9 +426,9 @@ export default function ToolHomework({ student, students = [], onSelectStudent, 
             <label style={smallLabel}>Corrections</label>
             {reviewForm.corrections.map((c, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, marginBottom: 8 }}>
-                <input className="input" placeholder="Original" value={c.original} onChange={e => updateCorrection(i, 'original', e.target.value)} />
-                <input className="input" placeholder="Improved" value={c.improved} onChange={e => updateCorrection(i, 'improved', e.target.value)} />
-                <input className="input" placeholder="Note" value={c.note} onChange={e => updateCorrection(i, 'note', e.target.value)} />
+                <input className="input" placeholder="Original" aria-label={`Correction ${i + 1} original`} value={c.original} onChange={e => updateCorrection(i, 'original', e.target.value)} />
+                <input className="input" placeholder="Improved" aria-label={`Correction ${i + 1} improved`} value={c.improved} onChange={e => updateCorrection(i, 'improved', e.target.value)} />
+                <input className="input" placeholder="Note" aria-label={`Correction ${i + 1} note`} value={c.note} onChange={e => updateCorrection(i, 'note', e.target.value)} />
               </div>
             ))}
             <Button variant="ghost" size="sm" onClick={addCorrectionRow} style={{ marginBottom: 14 }}>+ Add correction</Button>

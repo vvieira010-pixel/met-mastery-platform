@@ -242,6 +242,7 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
   }
 
   const pendingTitle = pendingHw[0]?.title || 'No homework pending';
+  const awaitingReview = homework.filter(h => h.status === 'submitted' && !reviews.some(r => r.homeworkId === h.id));
   const snapshotEvaluatedSkills = snapshot.filter(s => s.evaluated || Number(s.score_0_80) > 0);
   const evaluatedSkills = snapshotEvaluatedSkills.length > 0
     ? snapshotEvaluatedSkills
@@ -455,7 +456,7 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
               <div className="stack-list">
                 {latestReview && <TodoRow done={false} label="Teacher review ready" meta={latestReview.homeworkTitle} />}
                 <div className="recent-feedback">
-                  <TodoRow done={!!latestFeedback} label="Review latest feedback" meta={latestFeedback ? 'Available in the Feedback tab' : 'Waiting for teacher approval'} />
+                  <TodoRow done={!!latestFeedback} label="Review latest feedback" meta={latestFeedback ? 'Available in the Feedback tab' : awaitingReview.length > 0 ? `${awaitingReview.length} waiting · usually reviewed within 24h` : 'Nothing waiting — submit homework to start the queue'} />
                 </div>
                 <TodoRow done={pendingHw.length === 0} label={pendingTitle} meta={pendingHw[0]?.dueDate ? `Due ${new Date(pendingHw[0].dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}` : 'Homework area'} />
               </div>
@@ -561,43 +562,6 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
               />
             </div>
 
-            <Card bezel className="referral-card">
-              <div className="referral-card-inner">
-                <div className="referral-card-icon">
-                  <Icon.group size={20} />
-                </div>
-                <div className="referral-card-body">
-                  <h3 className="referral-card-title">Refer a friend, earn a free class</h3>
-                  <p className="referral-card-desc">
-                    Share your experience with friends or colleagues preparing for MET. When they book a trial class, you both earn a free session.
-                  </p>
-                  <div className="referral-card-actions">
-                    <a
-                      className="referral-btn referral-btn--primary"
-                      href="https://wa.me/5511997801708?text=Hi%20Vin%C3%ADcius,%20I%20want%20to%20recommend%20you%20to%20a%20friend%20who%20needs%20MET%20preparation."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Icon.send size={14} /> Share on WhatsApp
-                    </a>
-                    <button
-                      type="button"
-                      className="referral-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigator.clipboard?.writeText(window.location.origin).then(
-                          () => window.toast?.('Link copied!', 'success'),
-                          () => window.toast?.('Could not copy link', 'warn')
-                        );
-                      }}
-                    >
-                      <Icon.copy size={14} /> Copy link
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </Card>
           </div>
         </>
       )}

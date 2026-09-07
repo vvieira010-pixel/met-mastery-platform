@@ -26,6 +26,21 @@ function canRefreshForLazyImport() {
 }
 
 /**
+ * A deployed page can remain open while its next deployment replaces a
+ * code-split asset. Vite then rejects the old page's dynamic import. Refresh
+ * exactly once so the current bundle can take over without an infinite loop.
+ */
+export function refreshForFailedDynamicImport(error) {
+  const message = String(error?.message || error || '');
+  const isDynamicImportFailure = /failed to fetch dynamically imported module|importing a module script failed|chunkloaderror/i.test(message);
+  if (!isDynamicImportFailure || !canRefreshForLazyImport()) return false;
+
+  console.warn('[lazyWithRetry] Refreshing once after a failed dynamic import.', error);
+  window.location.reload();
+  return true;
+}
+
+/**
  * Retries a transient dynamic-import failure, then performs at most one refresh
  * for an outdated deployment. A second failure reaches the ErrorBoundary
  * instead of trapping the learner in a permanent loading state.
@@ -49,9 +64,7 @@ export function lazyWithRetry(componentImport, maxRetries = 2) {
       }
     }
 
-    if (canRefreshForLazyImport()) {
-      console.warn('[lazyWithRetry] Refreshing once after a failed dynamic import.', lastError);
-      window.location.reload();
+    if (refreshForFailedDynamicImport(lastError)) {
       return new Promise(() => {});
     }
 

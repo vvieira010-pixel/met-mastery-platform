@@ -15,6 +15,11 @@ export function StudentFeedbackView({ feedback }) {
   if (!feedback || typeof feedback !== 'object') return null;
   const wins = (Array.isArray(feedback.whatYouDidWell) ? feedback.whatYouDidWell : [])
     .filter(w => w && (w.strength || w.explanation));
+  const evidenceText = (win) => win?.evidence || win?.quote || win?.example || '';
+  const cleanEvidence = (value) => String(value).trim()
+    .replace(/^Evidence(?: to review)?\s*:\s*/i, '')
+    .replace(/^['“]|['”]$/g, '')
+    .trim();
   const card = {
     border: '1px solid var(--border)', borderRadius: 'var(--radius-md)',
     padding: 16, background: 'var(--surface)',
@@ -39,7 +44,12 @@ export function StudentFeedbackView({ feedback }) {
               <div key={i} style={{ padding: 12, background: 'var(--primary-light)', borderRadius: 'var(--radius-sm)' }}>
                 {w.strength && <div style={{ fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{w.strength}</div>}
                 {w.explanation && <p style={{ fontSize: 'var(--text-base)', lineHeight: 1.7, margin: 0, color: 'var(--text)' }}>{w.explanation}</p>}
-                {w.example && <p style={{ fontSize: 'var(--text-base)', lineHeight: 1.7, margin: '4px 0 0', color: 'var(--text-2)', fontStyle: 'italic' }}>"{w.example}"</p>}
+                {evidenceText(w) && (
+                  <div style={{ marginTop: 10, padding: '9px 11px', background: 'var(--surface)', borderLeft: '3px solid var(--accent)', borderRadius: 'var(--radius-sm)' }}>
+                    <div style={{ fontSize: 'var(--text-2xs)', fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--accent-text)', marginBottom: 3 }}>Evidence</div>
+                    <p style={{ fontSize: 'var(--text-sm)', lineHeight: 1.65, margin: 0, color: 'var(--text-2)', fontStyle: 'italic' }}>"{cleanEvidence(evidenceText(w))}"</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

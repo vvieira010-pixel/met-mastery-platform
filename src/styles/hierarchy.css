@@ -302,7 +302,7 @@
 .practice-studio-card,
 .practice-studio-tips .rounded-xl {
   transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
-  will-change: transform;
+  /* ponytail: no will-change — hover lift doesn't need a retained GPU layer */
 }
 .student-study-tip-card:hover,
 .student-subject-card:hover,

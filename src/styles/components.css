@@ -5325,7 +5325,7 @@
   animation-duration: 0.8s;
   animation-fill-mode: both;
   animation-timing-function: var(--ease-out-expo);
-  will-change: transform, opacity, filter;
+  /* ponytail: no will-change at rest — GPU hint only helps during the 0.8s run, retaining it costs memory */
 }
 .td-anim-left  { animation-name: td-slide-left; }
 .td-anim-right { animation-name: td-slide-right; }
@@ -5435,7 +5435,7 @@
     transform 0.8s var(--ease-spring),
     filter 0.8s var(--ease-spring);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: transform, opacity, filter;
+  /* ponytail: no will-change at rest — transform/opacity/filter transitions don't need a retained GPU layer */
 }
 .reveal.is-visible {
   opacity: 1;
@@ -7804,4 +7804,13 @@ textarea:focus, .textarea:focus {
 .td-kpi-value,
 .student-metric-copy strong {
   font-variant-numeric: tabular-nums;
+}
+
+/* Collapsed Today sections: native disclosure keeps priority + KPIs + board on top */
+.td-disclosure-summary {
+  list-style: none;
+  cursor: pointer;
+}
+.td-disclosure-summary::-webkit-details-marker {
+  display: none;
 }

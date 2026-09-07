@@ -114,7 +114,7 @@ export default function ToolInbox({ students = [], onNavigate, workspaceQuery = 
       <section className="hero-section hero-section--inbox">
         <div>
           <div className="hero-tag">Communication Repository</div>
-          <h1 className="page-headline" style={{ color: '#fff' }}>Inbox Workspace</h1>
+          <h1 className="page-headline" style={{ color: 'var(--on-dark)' }}>Inbox Workspace</h1>
           <p className="page-sub" style={{ color: 'rgba(255,255,255,.78)', maxWidth: 620 }}>Keep student communication clear, fast, and connected to each learner's study cycle.</p>
         </div>
       </section>
@@ -156,7 +156,7 @@ export default function ToolInbox({ students = [], onNavigate, workspaceQuery = 
               Outbox ({outboxMessages.length})
             </button>
           </div>
-          <input className="input" value={localSearch} onChange={(e) => setLocalSearch(e.target.value)} placeholder="Search messages..." style={{ maxWidth: 300 }} />
+          <input className="input" value={localSearch} onChange={(e) => setLocalSearch(e.target.value)} placeholder="Search messages..." aria-label="Search messages" style={{ maxWidth: 300 }} />
         </div>
       </Card>
 
@@ -175,7 +175,7 @@ export default function ToolInbox({ students = [], onNavigate, workspaceQuery = 
                   onClick={() => { setSelected(m); setReply(''); }}
                   className="message-item"
                   style={{
-                    background: selected?.id === m.id ? 'var(--accent-subtle)' : (m.fromRole === 'student' && !m.read ? 'var(--info-bg)' : '#fff'),
+                    background: selected?.id === m.id ? 'var(--accent-subtle)' : (m.fromRole === 'student' && !m.read ? 'var(--info-bg)' : 'var(--surface)'),
                     outline: selected?.id === m.id ? '1.5px solid var(--accent-soft)' : 'none',
                     outlineOffset: '-1px',
                   }}

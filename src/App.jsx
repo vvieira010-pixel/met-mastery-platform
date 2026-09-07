@@ -565,6 +565,8 @@ function renderTeacherPage(view, params, ctx) {
         classEventId={params.classEventId}
         diagnosisId={params.diagnosisId}
         students={students}
+        teacherEmail={auth.email}
+        canApprove={auth.role === 'teacher'}
         onNavigate={navigate}
         data-testid="diagnostic-create-page"
       />;
@@ -710,7 +712,7 @@ function OfflineBar() {
   return (
     <div role="status" aria-live="polite" data-testid="offline-bar" style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-      background: 'var(--warning)', color: '#fff',
+      background: 'var(--warning-text)', color: '#fff',
       padding: '9px 16px', textAlign: 'center',
       fontSize: 'var(--text-sm)', fontWeight: 600,
       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,

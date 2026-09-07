@@ -5,7 +5,7 @@ import { Button } from '../../../components/ui/Button.jsx';
 const DIAGNOSIS_STEPS = [
   { id: 'prereq',     label: 'Set up' },
   { id: 'generating', label: 'Save feedback' },
-  { id: 'review',     label: 'Review feedback' },
+  { id: 'review',     label: 'Build in phases' },
   { id: 'saved',      label: 'Done' },
 ];
 const STEP_ORDER = DIAGNOSIS_STEPS.map(s => s.id);

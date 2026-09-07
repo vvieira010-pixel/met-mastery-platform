@@ -639,7 +639,7 @@ export default function ActionOrientedEvidenceCards({
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: '#E08E45' }} /> : <Icon.write size={14} style={{ color: '#8b5cf6' }} />}
+                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: 'var(--warning-text)' }} /> : <Icon.write size={14} style={{ color: '#8b5cf6' }} />}
                   <span style={{ fontWeight: 600, color: 'var(--text, #1A2E35)' }}>{item.title}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

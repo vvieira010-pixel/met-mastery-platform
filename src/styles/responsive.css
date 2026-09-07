@@ -365,6 +365,14 @@
 
 /* ── Small mobile (≤420px) ─────────────────────────────────────── */
 @media (max-width: 420px) {
+  /* ponytail: charts keep a min readable width and scroll instead of squishing to 390px */
+  .home-bento-cell .student-chart-wrap {
+    overflow-x: auto;
+    min-width: 0;
+  }
+  .home-bento-cell .student-chart-wrap > * {
+    min-width: 480px;
+  }
   .dash-topbar { padding-inline: 12px; }
   .dash-body { padding-inline: 12px; }
   .student-hero h1 { font-size: var(--text-2xl); }

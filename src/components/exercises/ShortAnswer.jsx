@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { MET_TASK_CONFIG } from '../../lib/met-task-spec.js';
 import { getDbContext, uploadSubmissionAudio } from '../../lib/supabase-db.js';
+import { readStoredSupabaseSession } from '../../lib/supabase-storage.js';
 
 const TEAL = 'var(--accent)';
 const NAVY = 'var(--accent-text)';
@@ -33,6 +34,10 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   const [recordingError, setRecordingError] = useState('');
   const [selfScore, setSelfScore] = useState(null);
   const [checks, setChecks] = useState(Array(reflectionChecks.length).fill(false));
+  const [audioPath, setAudioPath] = useState(null);
+  const [evalStatus, setEvalStatus] = useState('idle'); // idle | loading | done | error
+  const [evalData, setEvalData] = useState(null);
+  const [evalError, setEvalError] = useState('');
   const mediaRef = useRef(null);
   const chunksRef = useRef([]);
   const timerRef = useRef(null);
@@ -71,6 +76,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         const path = `${ctx.authUid}/${rand}/${exercise.id || 'speaking'}.webm`;
         try {
           await uploadSubmissionAudio(blob, path);
+          setAudioPath(path);
           if (onComplete) onComplete({ submitted: true, correct: null, audioPath: path, audioB64: null });
         } catch (e) {
           console.warn('[speak] audio upload failed:', e.message);
@@ -154,6 +160,31 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
     setRecordingError('');
     setSelfScore(null);
     setChecks(Array(reflectionChecks.length).fill(false));
+    setAudioPath(null);
+    setEvalStatus('idle');
+    setEvalData(null);
+    setEvalError('');
+  }
+
+  async function requestAiScore() {
+    if (!audioPath || evalStatus === 'loading') return;
+    setEvalStatus('loading');
+    setEvalError('');
+    try {
+      const token = readStoredSupabaseSession()?.access_token || '';
+      const res = await fetch('/api/evaluate-speaking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.' }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+      setEvalData(data);
+      setEvalStatus('done');
+    } catch (e) {
+      setEvalError(e.message || 'AI scoring failed. Please try again.');
+      setEvalStatus('error');
+    }
   }
 
   return (
@@ -305,6 +336,59 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           >
             ↺ Record again
           </button>
+
+          {/* AI MET score — Practice Studio recordings via /api/evaluate-speaking */}
+          {audioPath && (
+            <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                AI examiner score
+              </div>
+              {evalStatus === 'idle' && (
+                <button
+                  onClick={requestAiScore}
+                  style={{ padding: '10px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer' }}
+                >
+                  Get AI score
+                </button>
+              )}
+              {evalStatus === 'loading' && (
+                <p role="status" style={{ margin: 0, fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>Scoring your recording — transcription plus official MET rubric…</p>
+              )}
+              {evalStatus === 'error' && (
+                <div>
+                  <p role="alert" style={{ margin: '0 0 8px', fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{evalError}</p>
+                  <button onClick={requestAiScore} style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm, 6px)', border: `1.5px solid ${TEAL}`, background: 'none', color: TEAL, fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer' }}>Try again</button>
+                </div>
+              )}
+              {evalStatus === 'done' && evalData?.evaluation && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    {[['Task', evalData.evaluation.scores?.task], ['Language', evalData.evaluation.scores?.language], ['Delivery', evalData.evaluation.scores?.delivery]].map(([label, v]) => (
+                      <span key={label} style={{ padding: '6px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: NAVY }}>
+                        {label}: {v ?? '–'} / 4
+                      </span>
+                    ))}
+                    <span style={{ padding: '6px 12px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: '#fff' }}>
+                      {evalData.evaluation.cefrEstimate ?? '–'} · {evalData.evaluation.scaledScore ?? '–'}/80
+                    </span>
+                  </div>
+                  {evalData.fluency?.wpm && (
+                    <div style={{ color: 'var(--muted)' }}>~{evalData.fluency.wpm} wpm · {evalData.fluency.pausesOver500ms} pauses ≥0.5s</div>
+                  )}
+                  {evalData.evaluation.feedback && <p style={{ margin: 0, color: 'var(--text)' }}>{evalData.evaluation.feedback}</p>}
+                  {Array.isArray(evalData.evaluation.corrections) && evalData.evaluation.corrections.length > 0 && (
+                    <ul style={{ margin: 0, padding: '0 0 0 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                      {evalData.evaluation.corrections.slice(0, 4).map((c, i) => (
+                        <li key={i} style={{ color: 'var(--text-2)' }}>
+                          <s>{c.original}</s> → <strong>{c.corrected}</strong>{c.explanation ? ` — ${c.explanation}` : ''}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Sample answer + follow-ups (speaking pack) */}
           {sampleAnswer && (

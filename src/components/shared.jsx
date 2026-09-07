@@ -125,8 +125,8 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
       </header>
       <main id="main-content" className="shell-main">{children}</main>
       <nav className="shell-mobile-nav" aria-label="Mobile navigation">
-        {/* Priority tabs always visible: Review (R), Diagnose (D), Dashboard (H) */}
-        {['submissions', 'diagnostics', 'dashboard'].map(id => {
+        {/* Priority tabs always visible: Review, Diagnose, Homework, Dashboard */}
+        {['submissions', 'diagnostics', 'homework', 'dashboard'].map(id => {
           const tab = tabs.find(t => t.id === id);
           if (!tab) return null;
           return (
@@ -155,7 +155,7 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
           </button>
           {showMobileOverflow && (
             <div className="mobile-nav-dropdown" style={{ position: 'absolute', bottom: '100%', left: 0, right: 0, background: 'var(--surface)', border: '1px solid var(--border)', borderBottom: 'none', borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', boxShadow: '0 -4px 20px rgba(0,0,0,0.15)', zIndex: 100, padding: 8, display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {tabs.filter(t => t.mobile !== false && !['dashboard','students','diagnostics','homework','submissions','library','mock-test-results'].includes(t.id) || ['students','homework','library','mock-test-results'].includes(t.id)).map(tab => (
+              {tabs.filter(t => t.mobile !== false && !['submissions', 'diagnostics', 'homework', 'dashboard'].includes(t.id)).map(tab => (
                 <button key={tab.id}
                   className={`shell-mobile-nav-btn${active === tab.id ? ' active' : ''}`}
                   aria-current={active === tab.id ? 'page' : undefined}

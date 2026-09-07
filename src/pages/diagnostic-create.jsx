@@ -5,8 +5,8 @@
  * 1. Select target score profile (blocker)
  * 2. Confirm evaluated skills (blocker)
  * 3. Create an honest feedback draft immediately
- * 4. Preview, edit, and approve the student-facing feedback
- * 5. Optionally regenerate deeper AI sections one at a time
+ * 4. Save each optional, deeper phase only when it is needed
+ * 5. Preview, edit, and approve the student-facing feedback
  *
  * Business logic lives in src/domain/assessment/:
  *   constants.js, diagnosis-utils.js, hooks/useSectionApproval.js, components/SectionContent.jsx
@@ -17,6 +17,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { callAI } from '../components/shared.jsx';
 import { parseAiJson } from '../lib/ai-helpers.js';
+import { refreshForFailedDynamicImport } from '../lib/utils.js';
 import { withSkills } from '../education-skills/active-skills.js';
 import {
   buildSkillDiagnosisPrompt,
@@ -43,6 +44,7 @@ import {
 import {
   friendlyAiError,
   normalizeDiagnosisJson,
+  normalizeErrorTargets,
   normalizeEvidenceCounts, buildSnapshot,
 } from '../domain/assessment/diagnosis-utils.js';
 import { buildFeedbackDraft } from '../domain/assessment/feedback-draft.js';
@@ -50,8 +52,50 @@ import { useSectionApproval } from '../domain/assessment/hooks/useSectionApprova
 import { SectionContent, PrereqIcon, PrereqRow } from '../domain/assessment/components/SectionContent.jsx';
 import { DiagnosisStepBar, DiagnosisGeneratingProgress, DiagnosisSavedActions } from '../domain/assessment/components/DiagnosisStepBar.jsx';
 
+const DIAGNOSTIC_PHASES = [
+  {
+    id: 'feedback', number: 1, title: 'Student feedback',
+    description: 'Create and save the editable student-facing feedback first.',
+    action: 'Create feedback draft',
+  },
+  {
+    id: 'analysis', number: 2, title: 'Evidence analysis', requires: ['feedback'],
+    description: 'Generate the teacher analysis, scores, priorities, and next-class focus from the recorded evidence.',
+    action: 'Create evidence analysis',
+  },
+  {
+    id: 'targets', number: 3, title: 'Language targets', requires: ['analysis'],
+    description: 'Extract errors plus vocabulary and grammar targets from the evidence.',
+    action: 'Create language targets',
+  },
+  {
+    id: 'homework', number: 4, title: 'Homework plan', requires: ['targets'],
+    description: 'Create three student-ready tasks from the saved priorities and targets.',
+    action: 'Create homework plan',
+  },
+];
 
-export default function DiagnosticCreate({ studentId, classEventId, diagnosisId, students, onNavigate, "data-testid": testId }) {
+function readStudentFeedbackResponse(data, emptyMessage = 'AI returned an empty feedback response. Try again.') {
+  const raw = data?.content?.map(block => block.text || '').join('') || '';
+  if (!raw.trim()) throw new Error(emptyMessage);
+  const parsed = parseAiJson(raw);
+  const content = parsed?.studentFeedback ?? parsed;
+  if (
+    !content || typeof content !== 'object' ||
+    typeof content.classFocus !== 'string' ||
+    !Array.isArray(content.whatYouDidWell) ||
+    content.whatYouDidWell.length < 3 ||
+    content.whatYouDidWell.some(item => !item || typeof item.strength !== 'string' || typeof item.explanation !== 'string' || typeof item.evidence !== 'string') ||
+    !Array.isArray(content.whatToImprove) ||
+    typeof content.finalNote !== 'string'
+  ) {
+    throw new Error('AI returned feedback without three complete strengths. Try again.');
+  }
+  return content;
+}
+
+
+export default function DiagnosticCreate({ studentId, classEventId, diagnosisId, students, teacherEmail, canApprove = true, onNavigate, "data-testid": testId }) {
   const [step, setStep] = useState('prereq'); // prereq | generating | review | saved
   const [student, setStudent] = useState(null);
   const [classEvent, setClassEvent] = useState(null);
@@ -63,6 +107,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
   const [generatingStatus, setGeneratingStatus] = useState('Initializing…');
+  const [completedPhases, setCompletedPhases] = useState([]);
+  const [runningPhase, setRunningPhase] = useState(null);
+  const [regenerationError, setRegenerationError] = useState(null);
 
   // Student selector (if no studentId passed)
   const [selectedStudentId, setSelectedStudentId] = useState(studentId || '');
@@ -141,6 +188,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         setSections(dx.sections);
         setAiResult(dx.aiRaw || null);
       }
+      // Earlier drafts predate saved phase metadata. They already have feedback
+      // and should enter the new staged flow from the next optional phase.
+      setCompletedPhases(dx.completedPhases || ['feedback']);
       setTeacherMeaning({
         classSummary: dx.content?.overall_result || dx.classSummary || '',
         studentFeedback: dx.content?.student_friendly_feedback || dx.sections?.studentFeedback?.content || '',
@@ -193,6 +243,68 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     : evaluatedSkills.length > 0;
 
   const prereqOk = selectedStudent && targetProfile && inlineReady;
+
+  function buildDiagnosisRecord({
+    nextSections = sections,
+    nextAiResult = aiResult,
+    nextCompletedPhases = completedPhases,
+    approve = false,
+  } = {}) {
+    const feedback = nextSections.studentFeedback || {};
+    return {
+      id: savedDiagnosis?.id,
+      studentId: selectedStudentId || studentId,
+      classEventId: selectedClassEventId || classEventId,
+      targetProfileId: targetProfile?.id,
+      evaluatedSkills: Object.fromEntries(evaluatedSkills.map(k => [k, true])),
+      evidenceCounts: {
+        speaking: normalizedEvidence?.speakingEvidenceCount || 0,
+        writing: normalizedEvidence?.writingEvidenceCount || 0,
+        reading: normalizedEvidence?.readingEvidenceCount || 0,
+        listening: normalizedEvidence?.listeningEvidenceCount || 0,
+        grammar: normalizedEvidence?.grammarEvidenceCount || 0,
+        vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
+        testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
+      },
+      // Keep the persisted record usable by older dashboards while retaining
+      // the phase state needed to safely resume this flow.
+      sections: {
+        ...nextSections,
+        studentFeedback: { ...feedback, content: feedback.content, approved: approve || Boolean(feedback.approved), hidden: false },
+        profileUpdateSuggestions: nextSections.profileUpdateSuggestions || {
+          content: { progressNote: '', suggestedLevelChange: 'No change yet.', recurringErrorsToTrack: [], masteredItems: [] },
+          approved: approve,
+        },
+      },
+      completedPhases: nextCompletedPhases,
+      aiRaw: nextAiResult,
+      status: approve ? 'approved' : 'draft',
+      teacherApproved: approve,
+      approvedBy: approve ? (teacherEmail || null) : (savedDiagnosis?.approvedBy || null),
+      approvedAt: approve ? new Date().toISOString() : (savedDiagnosis?.approvedAt || null),
+      cycleStage: approve ? 'diagnosed' : 'needs-diagnosis',
+      classSummary: typeof nextSections.classSummary?.content === 'string' ? nextSections.classSummary.content : '',
+      isBaseline,
+      interventionNote,
+      inquiryHypothesis,
+      cambridgeSelfEval,
+      content: {
+        overall_result: (typeof nextSections.classSummary?.content === 'string' ? nextSections.classSummary.content : '') || '',
+        priorities: nextSections.priorityDiagnosis?.content || [],
+        student_friendly_feedback: feedback.content || null,
+        homework: nextSections.homeworkRecommendation?.content?.instructions || '',
+        error_bank: nextSections.errorBankSuggestions?.content || [],
+        section_snapshot: buildSnapshot(nextSections.skillDiagnosis?.content),
+      },
+    };
+  }
+
+  async function persistDiagnosisDraft(options = {}) {
+    const dx = await saveDiagnosis(buildDiagnosisRecord(options));
+    setSavedDiagnosis(dx);
+    return dx;
+  }
+
   // ── Run AI diagnosis ──
   async function handleGenerate() {
     if (!prereqOk) return;
@@ -202,7 +314,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     if (!diagnosisId) setSavedDiagnosis(null);
 
     try {
-      const FAILED = { content: 'Not generated. Click Regen to retry.', approved: false, hidden: false, edited: false };
+      const FAILED = { content: 'Not generated. Create the matching phase when you are ready.', approved: false, hidden: false, edited: false };
       const fallbackDiagnosis = normalizeDiagnosisJson({}, normalizedEvidence);
       const feedbackDraft = buildFeedbackDraft({
         student: selectedStudent,
@@ -210,7 +322,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         classEvidence: normalizedEvidence,
         evaluatedSkills,
       });
-      let draftId = diagnosisId ? savedDiagnosis?.id : undefined;
       const createSections = ({ diagnosis, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank, homework = FAILED } = {}) => ({
         skillDiagnosis:           { content: diagnosis.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
         studentFeedback:          feedback,
@@ -225,56 +336,57 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         nextClassFocus:           { content: diagnosis.nextClassFocus || {},                                                      approved: false, hidden: false, edited: false },
         profileUpdateSuggestions: { content: diagnosis.profileUpdateSuggestions || {},                                            approved: false, hidden: false, edited: false },
       });
-      const saveDraft = async (sectionsToSave, diagnosisToSave, errorBank = {}) => saveDiagnosis({
-        id: draftId,
-        studentId: selectedStudentId || studentId,
-        classEventId: selectedClassEventId || classEventId,
-        targetProfileId: targetProfile?.id,
-        evaluatedSkills: Object.fromEntries(evaluatedSkills.map(k => [k, true])),
-        evidenceCounts: {
-          speaking: normalizedEvidence?.speakingEvidenceCount || 0,
-          writing: normalizedEvidence?.writingEvidenceCount || 0,
-          reading: normalizedEvidence?.readingEvidenceCount || 0,
-          listening: normalizedEvidence?.listeningEvidenceCount || 0,
-          grammar: normalizedEvidence?.grammarEvidenceCount || 0,
-          vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
-          testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
-        },
-        sections: sectionsToSave,
-        aiRaw: diagnosisToSave,
-        status: 'draft',
-        cycleStage: 'needs-diagnosis',
-        classSummary: typeof diagnosisToSave.classSummary === 'string' ? diagnosisToSave.classSummary : '',
-        isBaseline: false,
-        interventionNote: '',
-        inquiryHypothesis: '',
-        cambridgeSelfEval: {},
-        content: {
-          overall_result: typeof diagnosisToSave.classSummary === 'string' ? diagnosisToSave.classSummary : '',
-          priorities: diagnosisToSave.priorityDiagnosis || [],
-          error_bank: errorBank.errorBankSuggestions || [],
-        },
-      });
-
-      // Feedback is the critical path. Create and persist an honest editable
-      // draft now; the expensive provider cascade is deliberately optional.
-      const feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
+      // Generate the editable student-facing feedback first. The feedback
+      // prompt already contains its teaching, evidence, voice, and JSON rules,
+      // so do not add the large optional education-skill attachments here.
+      setGeneratingStatus('Writing personalized feedback…');
+      let feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
+      let feedbackWasAiGenerated = false;
+      try {
+        const aiFeedback = await callAI(buildStudentFeedbackPrompt({
+          student: selectedStudent,
+          classEvent,
+          classEvidence: normalizedEvidence,
+          targetProfile,
+          diagnosis: fallbackDiagnosis,
+        }), { max_tokens: 2600, temperature: 0.3 });
+        feedbackSection = {
+          content: readStudentFeedbackResponse(aiFeedback),
+          approved: false,
+          hidden: false,
+          edited: false,
+        };
+        feedbackWasAiGenerated = true;
+      } catch (feedbackError) {
+        // Keep a truthful, editable draft available when an external provider
+        // is unavailable; do not present this fallback as AI feedback.
+        console.warn('Initial AI feedback generation failed:', feedbackError);
+        window.toast?.('AI feedback was unavailable, so an editable evidence-based draft was created. You can edit it or try Regen later.', 'warn');
+      }
       const feedbackSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackSection });
       setAiResult(fallbackDiagnosis);
       setSections(feedbackSections);
       setGeneratingStatus('Saving feedback draft…');
+      let feedbackSaved = false;
       try {
-        const draft = await saveDraft(feedbackSections, fallbackDiagnosis);
+        const draft = await persistDiagnosisDraft({
+          nextSections: feedbackSections,
+          nextAiResult: fallbackDiagnosis,
+          nextCompletedPhases: ['feedback'],
+        });
         if (draft) {
-          draftId = draft.id;
           setSavedDiagnosis(draft);
+          feedbackSaved = true;
         }
       } catch (autoSaveErr) {
         console.warn('Feedback-first draft save failed:', autoSaveErr);
         window.toast?.('The feedback draft could not be saved yet. You can still edit it and retry Save Draft.', 'warn');
       }
 
-      window.toast?.('Feedback draft created first. Edit and approve it now; other sections are optional.', 'ok');
+      setCompletedPhases(feedbackSaved ? ['feedback'] : []);
+      window.toast?.(feedbackWasAiGenerated
+        ? 'AI feedback generated. Review, edit, and approve it now; other sections are optional.'
+        : 'Feedback draft created. Review it, edit it, and try AI Regen later when the service is available.', 'ok');
       setStep('review');
     } catch (e) {
       console.error(e);
@@ -286,6 +398,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   // ── Regenerate individual section ──
   async function regenerateSection(key) {
     setRegenerating(key);
+    setRegenerationError(null);
     try {
       const existingSections = Object.fromEntries(Object.entries(sections).filter(([k]) => k !== key));
       let prompt;
@@ -316,9 +429,18 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         nextClassFocus: 6000, profileUpdateSuggestions: 6000, errorBankSuggestions: 2200,
       };
       const skillMap = { skillDiagnosis:'diagnosis', studentFeedback:'feedback', homeworkRecommendation:'homework', errorBankSuggestions:'diagnosis', vocabGrammarTargets:'diagnosis' };
-      const data = await callAI(prompt, await withSkills(skillMap[key] || 'diagnosis', {
-        max_tokens: DIAGNOSIS_DERIVED_KEYS.has(key) ? Math.min(SECTION_BUDGETS[key] || 2500, 3000) : SECTION_BUDGETS[key] || 2000,
-      }));
+      const maxTokens = key === 'studentFeedback'
+        ? 2600
+        : DIAGNOSIS_DERIVED_KEYS.has(key)
+          ? Math.min(SECTION_BUDGETS[key] || 2500, 3000)
+          : SECTION_BUDGETS[key] || 2000;
+      // The feedback prompt already contains its precise student-safety and
+      // voice rules. Do not append several long optional skill documents here:
+      // they make a small retry unreliable and can crowd out the JSON result.
+      const aiOptions = key === 'studentFeedback'
+        ? { max_tokens: maxTokens, temperature: 0.3 }
+        : await withSkills(skillMap[key] || 'diagnosis', { max_tokens: maxTokens });
+      const data = await callAI(prompt, aiOptions);
       const raw = data.content?.map(b => b.text || '').join('') || '';
       if (!raw.trim()) throw new Error('AI returned an empty response. Try Regen again.');
       const parsed = DIAGNOSIS_DERIVED_KEYS.has(key)
@@ -327,13 +449,94 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       if (!parsed || (typeof parsed === 'object' && Object.keys(parsed).length === 0)) {
         throw new Error('AI returned content that could not be read. Try Regen again.');
       }
-      const content = parsed[key] ?? parsed;
+      const content = key === 'studentFeedback'
+        ? readStudentFeedbackResponse(data, 'AI returned an empty feedback response. Try Regen again.')
+        : parsed[key] ?? parsed;
       setSections(s => ({ ...s, [key]: { ...(s[key] || {}), content, approved: false } }));
       window.toast?.('Section regenerated. Review it, then save the diagnosis.', 'ok');
     } catch (e) {
-      window.toast?.(`Regeneration failed: ${e.message}`, 'warn');
+      // An open page can briefly point at an old code-split asset after a
+      // deployment. Reload once into the current bundle rather than making
+      // the teacher decipher a browser-level import error.
+      if (refreshForFailedDynamicImport(e)) return;
+      const message = `Regeneration failed: ${e.message}`;
+      setRegenerationError({ key, message });
+      window.toast?.(message, 'warn');
     } finally {
       setRegenerating(null);
+    }
+  }
+
+  async function runDiagnosticPhase(phaseId) {
+    const phase = DIAGNOSTIC_PHASES.find(item => item.id === phaseId);
+    if (!phase || phaseId === 'feedback') return;
+    if ((phase.requires || []).some(required => !completedPhases.includes(required))) {
+      window.toast?.('Finish and save the earlier phase first.', 'warn');
+      return;
+    }
+
+    setRunningPhase(phaseId);
+    try {
+      const promptData = {
+        student: selectedStudent,
+        classEvent,
+        classEvidence: normalizedEvidence,
+        targetProfile,
+        diagnosis: aiResult,
+        existingSections: sections,
+        errorBank: sections.errorBankSuggestions?.content,
+        vocabTargets: sections.vocabGrammarTargets?.content,
+      };
+      let nextSections = sections;
+      let nextAiResult = aiResult;
+
+      if (phaseId === 'analysis') {
+        const data = await callAI(buildSkillDiagnosisPrompt(promptData), await withSkills('diagnosis', { max_tokens: 6000 }));
+        const raw = data.content?.map(block => block.text || '').join('') || '';
+        if (!raw.trim()) throw new Error('AI returned an empty response. Try the phase again.');
+        const analysis = normalizeDiagnosisJson(parseAiJson(raw), normalizedEvidence);
+        nextAiResult = { ...(aiResult || {}), ...analysis };
+        nextSections = { ...sections };
+        DIAGNOSIS_DERIVED_KEYS.forEach(key => {
+          nextSections[key] = { ...(sections[key] || {}), content: analysis[key], approved: false, hidden: false, edited: false };
+        });
+      } else if (phaseId === 'targets') {
+        const data = await callAI(buildErrorBankPrompt(promptData), await withSkills('diagnosis', { max_tokens: 3000 }));
+        const raw = data.content?.map(block => block.text || '').join('') || '';
+        if (!raw.trim()) throw new Error('AI returned an empty response. Try the phase again.');
+        const targets = normalizeErrorTargets(parseAiJson(raw));
+        nextAiResult = { ...(aiResult || {}), ...targets };
+        nextSections = {
+          ...sections,
+          errorBankSuggestions: { ...(sections.errorBankSuggestions || {}), content: targets.errorBankSuggestions, approved: false, hidden: false, edited: false },
+          vocabGrammarTargets: { ...(sections.vocabGrammarTargets || {}), content: targets.vocabGrammarTargets, approved: false, hidden: false, edited: false },
+        };
+      } else if (phaseId === 'homework') {
+        const data = await callAI(buildHomeworkPrompt(promptData), await withSkills('homework', { max_tokens: 3000 }));
+        const raw = data.content?.map(block => block.text || '').join('') || '';
+        if (!raw.trim()) throw new Error('AI returned an empty response. Try the phase again.');
+        const homework = parseAiJson(raw);
+        if (!homework || (typeof homework === 'object' && Object.keys(homework).length === 0)) {
+          throw new Error('AI returned homework that could not be read. Try the phase again.');
+        }
+        const content = homework.homeworkRecommendation || homework;
+        nextAiResult = { ...(aiResult || {}), homeworkRecommendation: content };
+        nextSections = {
+          ...sections,
+          homeworkRecommendation: { ...(sections.homeworkRecommendation || {}), content, approved: false, hidden: false, edited: false },
+        };
+      }
+
+      const nextCompletedPhases = [...new Set([...completedPhases, phaseId])];
+      await persistDiagnosisDraft({ nextSections, nextAiResult, nextCompletedPhases });
+      setAiResult(nextAiResult);
+      setSections(nextSections);
+      setCompletedPhases(nextCompletedPhases);
+      window.toast?.(`${phase.title} saved. Review it before approving the diagnosis.`, 'ok');
+    } catch (phaseError) {
+      window.toast?.(`${phase.title} was not saved: ${friendlyAiError(phaseError)}`, 'warn');
+    } finally {
+      setRunningPhase(null);
     }
   }
 
@@ -341,66 +544,22 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   async function handleSave(approve = false) {
     setSaving(true);
     try {
+      if (approve && canApprove === false) {
+        window.toast?.('Only the teacher can approve a diagnosis.', 'warn');
+        setSaving(false);
+        return;
+      }
       if (approve && !canApproveDiagnosis) {
         const missing = missingRequiredApprovals.map(key => SECTION_LABELS[key]).join(', ');
         window.toast?.(`Approve required sections first: ${missing}`, 'warn');
         setSaving(false);
         return;
       }
-      // Build legacy sections from new data for backward compat + student dashboard visibility
-      const legacySections = {
-        ...sections,
-        studentFeedback: {
-          content: sections.studentFeedback?.content,
-          approved: approve,
-          hidden: false,
-        },
-        profileUpdateSuggestions: sections?.profileUpdateSuggestions || {
-          content: {
-            progressNote: '',
-            suggestedLevelChange: 'No change yet.',
-            recurringErrorsToTrack: [],
-            masteredItems: [],
-          },
-          approved: approve,
-        },
-      };
-
-      const dx = await saveDiagnosis({
-        id: savedDiagnosis?.id,
-        studentId: selectedStudentId || studentId,
-        classEventId: selectedClassEventId || classEventId,
-        targetProfileId: targetProfile?.id,
-        evaluatedSkills: Object.fromEntries(evaluatedSkills.map(k => [k, true])),
-        evidenceCounts: {
-          speaking: normalizedEvidence?.speakingEvidenceCount || 0,
-          writing: normalizedEvidence?.writingEvidenceCount || 0,
-          reading: normalizedEvidence?.readingEvidenceCount || 0,
-          listening: normalizedEvidence?.listeningEvidenceCount || 0,
-          grammar: normalizedEvidence?.grammarEvidenceCount || 0,
-          vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
-          testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
-        },
-        sections: legacySections,
-        aiRaw: aiResult,
-        status: approve ? 'approved' : 'draft',
-        teacherApproved: approve,
-        cycleStage: approve ? 'diagnosed' : 'needs-diagnosis',
-        classSummary: typeof sections.classSummary?.content === 'string' ? sections.classSummary.content : '',
-        isBaseline,
-        interventionNote,
-        inquiryHypothesis,
-        cambridgeSelfEval,
-        content: {
-          overall_result: (typeof sections.classSummary?.content === 'string' ? sections.classSummary.content : '') || '',
-          priorities: sections.priorityDiagnosis?.content || [],
-          student_friendly_feedback: sections.studentFeedback?.content || null,
-          homework: sections.homeworkRecommendation?.content?.instructions || '',
-          error_bank: sections.errorBankSuggestions?.content || [],
-          section_snapshot: buildSnapshot(sections.skillDiagnosis?.content),
-        },
-      });
-      setSavedDiagnosis(dx);
+      const nextCompletedPhases = sections.studentFeedback?.content
+        ? [...new Set([...completedPhases, 'feedback'])]
+        : completedPhases;
+      await persistDiagnosisDraft({ approve, nextCompletedPhases });
+      setCompletedPhases(nextCompletedPhases);
       if (selectedClassEventId || classEventId) {
         await updateClassEventStatus(selectedClassEventId || classEventId, { diagnosticStatus: approve ? 'approved' : 'draft' });
       }
@@ -494,6 +653,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           : 'Select a student to begin'}
         action={savedDiagnosis && <Pill tone={savedDiagnosis.status === 'approved' ? 'success' : 'warning'}>{savedDiagnosis.status}</Pill>}
       />
+      {savedDiagnosis?.approvedBy && (
+        <p className="card-row-meta">Approved by {savedDiagnosis.approvedBy}{savedDiagnosis.approvedAt ? ` · ${new Date(savedDiagnosis.approvedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''}</p>
+      )}
 
       <DiagnosisStepBar step={step} />
 
@@ -852,6 +1014,41 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
             </div>
           </Card>
 
+          <Card className="card-p-4 mb-4">
+            <div className="card-row-title">Create this diagnostic in saved phases</div>
+            <p className="card-row-meta mt-1 mb-3">
+              Each phase saves before the next one becomes available. Feedback stays available even if a later AI request fails.
+            </p>
+            <div className="stack-list gap-3">
+              {DIAGNOSTIC_PHASES.map(phase => {
+                const complete = completedPhases.includes(phase.id);
+                const ready = (phase.requires || []).every(required => completedPhases.includes(required));
+                const isRunning = runningPhase === phase.id;
+                const isFeedback = phase.id === 'feedback';
+                return (
+                  <div key={phase.id} className="flex flex-wrap gap-3" style={{ alignItems: 'center', paddingTop: phase.number === 1 ? 0 : 'var(--space-3)', borderTop: phase.number === 1 ? 'none' : '1px solid var(--divider)' }}>
+                    <Pill tone={complete ? 'success' : ready ? 'warning' : 'muted'}>
+                      {complete ? <Icon.check size={12} /> : phase.number} {complete ? 'Saved' : ready ? 'Ready' : 'Locked'}
+                    </Pill>
+                    <div style={{ flex: 1, minWidth: 220 }}>
+                      <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)' }}>Phase {phase.number}: {phase.title}</div>
+                      <div className="card-row-meta mt-1">{phase.description}</div>
+                    </div>
+                    {isFeedback ? (
+                      <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving || complete}>
+                        {complete ? 'Feedback saved' : 'Save feedback'}
+                      </Button>
+                    ) : (
+                      <Button variant={complete ? 'ghost' : 'primary'} size="sm" onClick={() => runDiagnosticPhase(phase.id)} disabled={!ready || Boolean(runningPhase) || saving}>
+                        {isRunning ? 'Creating…' : complete ? `Recreate phase ${phase.number}` : phase.action}
+                      </Button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+
           {/* Approval status bar */}
           <div className="approval-bar">
             <div className="flex-1">
@@ -867,7 +1064,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
             </div>
             <Button variant="ghost" size="sm" onClick={approveAll}>Approve All</Button>
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save
             </Button>
           </div>
@@ -913,6 +1110,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
               const body = (
                 <div className="section-body">
+                  {regenerationError?.key === key && (
+                    <p role="alert" className="text-sm" style={{ margin: '0 0 var(--space-3)', color: 'var(--danger)' }}>
+                      {regenerationError.message}
+                    </p>
+                  )}
                   {isEditing ? (
                     <div>
                       <textarea value={editText} onChange={e => setEditText(e.target.value)} rows={10} className="dx-edit-textarea" />
@@ -968,7 +1170,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           {/* Bottom actions */}
           <div className="flex flex-wrap gap-3 mt-5">
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save ({approvedCount}/{totalSections})
             </Button>
             {savedDiagnosis && <Button variant="ghost" size="sm" onClick={() => setStep('saved')}>Post-approval actions</Button>}

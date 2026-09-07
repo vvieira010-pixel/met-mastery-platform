@@ -173,9 +173,9 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
         </div>
 
        <div className="teacher-dashboard-stack">
-          {/* Quick actions — top of stack for immediate access */}
-          <Card className="td-card-section td-card-accent td-admin-actions td-quick-actions td-anim td-anim-up" bezel>
-            <SectionHeader title="Teaching & planning actions" icon={<Icon.spark size={15} />} />
+          {/* Quick actions — collapsed by default so Today stays to priority + KPIs + board */}
+          <details className="td-card-section td-card-accent td-admin-actions td-quick-actions">
+            <summary className="td-disclosure-summary"><SectionHeader title="Teaching & planning actions" icon={<Icon.spark size={15} />} /></summary>
 
             <div className="grid-square">
               <QuickAction icon={<Icon.student size={24} />} label="Add new student" onClick={() => onNavigate('students')} />
@@ -185,7 +185,7 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
               <QuickAction icon={<Icon.practice size={24} />} label="Assign mock test" onClick={() => setShowAssignModal(true)} />
               <QuickAction icon={<Icon.warning size={24} />} label="View error bank" onClick={() => onNavigate('diagnostics:errors')} />
             </div>
-         </Card>
+          </details>
          
          <AssignMockTestModal 
             isOpen={showAssignModal} 

@@ -114,6 +114,29 @@ const NVIDIA_DEFAULT_MODELS = [
 
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
 
+/**
+ * A JSON-requesting client must receive a complete JSON document, not prose
+ * that happens to quote the request schema. Treating any text containing
+ * braces as JSON caused regeneration to accept provider reasoning and then
+ * fail silently in the client parser.
+ */
+export function isStrictJsonResponse(text) {
+  const raw = String(text || '').trim();
+  if (!raw) return false;
+  const fenced = raw.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  const candidate = (fenced ? fenced[1] : raw).trim();
+  try {
+    const parsed = JSON.parse(candidate);
+    return parsed !== null && (typeof parsed === 'object');
+  } catch {
+    return false;
+  }
+}
+
+function isGeminiModelName(model) {
+  return /^(?:gemini|gemma)[a-z0-9._-]*$/i.test(String(model || '').trim());
+}
+
 // A provider's models can be configured two ways: the singular env var
 // (e.g. GEMINI_MODEL — one model, highest priority) or the plural env var
 // (e.g. GEMINI_MODELS — comma-separated priority list). The singular override
@@ -126,7 +149,11 @@ const resolveModels = (singularEnv, pluralEnv, defaults) => {
   if (!single && !list.length) return defaults;
   return [...new Set([...(single ? [single] : []), ...list])];
 };
-const GEMINI_MODELS = resolveModels('GEMINI_MODEL', 'GEMINI_MODELS', GEMINI_DEFAULT_MODELS);
+const configuredGeminiModels = resolveModels('GEMINI_MODEL', 'GEMINI_MODELS', GEMINI_DEFAULT_MODELS)
+  .filter(isGeminiModelName);
+// A dashboard value in GEMINI_MODEL must be a model ID, never an API key. If
+// it is malformed, keep the service callable with the curated Gemini models.
+const GEMINI_MODELS = configuredGeminiModels.length ? configuredGeminiModels : GEMINI_DEFAULT_MODELS;
 const OPENROUTER_MODELS = resolveModels('OPENROUTER_MODEL', 'OPENROUTER_MODELS', OPENROUTER_DEFAULT_MODELS);
 const GROQ_MODELS = resolveModels('GROQ_MODEL', 'GROQ_MODELS', GROQ_DEFAULT_MODELS);
 /** fetch with an abort-backed timeout so a hung provider can't stall the function. */
@@ -171,10 +198,6 @@ export default async function handler(req, res) {
 
   const sys = system || 'You are a helpful MET English teaching assistant.';
   const expectsJson = Boolean(response_format) || /(?:return|respond|output)\s+(?:only\s+)?(?:valid\s+)?json\b/i.test(`${sys}\n${prompt}`);
-  const isJsonLike = (text) => {
-    const s = String(text || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
-    return (s.startsWith('{') && s.includes('}')) || (s.startsWith('[') && s.includes(']')) || (s.includes('{') && s.includes('}'));
-  };
   const errors = [];
   const deadline = Date.now() + AI_REQUEST_TIMEOUT_MS;
   const attemptTimeout = () => Math.max(1, Math.min(AI_ATTEMPT_TIMEOUT_MS, deadline - Date.now()));
@@ -215,7 +238,7 @@ export default async function handler(req, res) {
       if (r.ok) {
         const data = await r.json();
         const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-        if (text && (!expectsJson || isJsonLike(text))) {
+        if (text && (!expectsJson || isStrictJsonResponse(text))) {
           outcome = 'success';
           return { content: [{ text }] };
         }
@@ -262,7 +285,7 @@ export default async function handler(req, res) {
       if (r.ok) {
         const data = await r.json();
         const text = data?.choices?.[0]?.message?.content || '';
-        if (text && (!expectsJson || isJsonLike(text))) {
+        if (text && (!expectsJson || isStrictJsonResponse(text))) {
           outcome = 'success';
           return { content: [{ text }] };
         }
@@ -388,5 +411,9 @@ export default async function handler(req, res) {
     if (result) return res.status(200).json(result);
   }
 
-  return res.status(502).json({ error: { message: `All AI providers failed:\n${errors.join('\n')}` } });
+  // Do not return provider model identifiers or raw provider failures. Those
+  // values can contain dashboard configuration mistakes and are not useful to
+  // a teacher. The detailed, redacted attempt records stay server-side.
+  console.warn('[api/ai] all configured providers failed', { attempts: errors.length });
+  return res.status(502).json({ error: { message: 'AI generation is temporarily unavailable. Please try Regen again in a moment.' } });
 }

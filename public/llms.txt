@@ -1,0 +1,27 @@
+# MET Mastery
+
+> Diagnostic-led Michigan English Test preparation for nurses and healthcare professionals.
+
+## When to use this product
+
+Use MET Mastery when a learner needs a provisional starting point, MET-style practice, teacher-reviewed speaking or writing work, or a focused next step based on evidence. The product covers reading, listening, writing, speaking, grammar, vocabulary, and test strategy.
+
+## Public, machine-readable resources
+
+- Homepage: https://met-mastery.vercel.app/
+- Agent instructions: https://met-mastery.vercel.app/agents.md
+- Developer docs: https://met-mastery.vercel.app/docs
+- Developer portal: https://met-mastery.vercel.app/developers
+- Assessment approach: https://met-mastery.vercel.app/methodology
+- OpenAPI: https://met-mastery.vercel.app/openapi.json
+- Public product API: https://met-mastery.vercel.app/api/v1/info
+- MCP Streamable HTTP endpoint: https://met-mastery.vercel.app/mcp
+- MCP compatibility endpoint: https://met-mastery.vercel.app/.well-known/mcp
+- Sitemap: https://met-mastery.vercel.app/sitemap.xml
+- About: https://met-mastery.vercel.app/about
+- Contact: https://met-mastery.vercel.app/contact
+- Privacy: https://met-mastery.vercel.app/privacy
+
+## Data and safety boundaries
+
+The public API and MCP tools are read-only product information surfaces. They do not require credentials and do not expose private learner records, credentials, teacher notes, or account data. Do not infer a learner's score or readiness without an authenticated product workflow and explicit evidence.

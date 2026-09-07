@@ -60,7 +60,7 @@ function MetProgressTooltip({ active, payload, label, pathData = [], viewMode = 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 8px', marginTop: 8, paddingTop: 6, borderTop: '1px solid var(--divider, rgba(255,255,255,0.1))', fontSize: '0.72rem' }}>
           <span style={{ color: '#2D7A8C' }}>Listening: <strong>{pt.listening}</strong></span>
           <span style={{ color: '#3D8C65' }}>Reading: <strong>{pt.reading}</strong></span>
-          <span style={{ color: '#E08E45' }}>Speaking: <strong>{pt.speaking}</strong></span>
+          <span style={{ color: 'var(--warning-text)' }}>Speaking: <strong>{pt.speaking}</strong></span>
           <span style={{ color: '#8b5cf6' }}>Writing: <strong>{pt.writing}</strong></span>
         </div>
       )}

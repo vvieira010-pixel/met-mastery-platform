@@ -10,9 +10,12 @@ export async function getPayments(studentId) {
 export async function savePayment(data) {
   const amount = Number(data.amount);
   const method = METHODS.has(data.method) ? data.method : 'other';
+  const classCredits = Number(data.classCredits);
   if (!data.studentId) throw new Error('A student is required.');
   if (!Number.isFinite(amount) || amount <= 0 || amount > 1000000) throw new Error('Enter a valid payment amount.');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(data.receivedOn || ''))) throw new Error('Choose the date received.');
+  if (!Number.isInteger(classCredits)) throw new Error('Enter a whole number of classes.');
+  if (classCredits < 1 || classCredits > 100) throw new Error('Enter between 1 and 100 classes.');
 
   return saveVia('payments', K.payments, {
     id: data.id || uid(),
@@ -21,6 +24,7 @@ export async function savePayment(data) {
     currency: /^[A-Z]{3}$/.test(String(data.currency || '').toUpperCase()) ? String(data.currency).toUpperCase() : 'BRL',
     receivedOn: data.receivedOn,
     method,
+    classCredits,
     reference: String(data.reference || '').trim().slice(0, 80),
     note: String(data.note || '').trim().slice(0, 1000),
     arrangement: Boolean(data.arrangement),

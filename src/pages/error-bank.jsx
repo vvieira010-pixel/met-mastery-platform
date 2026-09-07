@@ -60,7 +60,7 @@ export default function ErrorBankPage({ students, workspaceQuery = '', "data-tes
       <section className="hero-section hero-section--errors">
         <div>
           <div className="hero-tag">Quality Repository</div>
-          <h1 className="page-headline" style={{ color: '#fff' }}>Error Bank Workspace</h1>
+          <h1 className="page-headline" style={{ color: 'var(--on-dark)' }}>Error Bank Workspace</h1>
           <p className="page-sub" style={{ color: 'rgba(255,255,255,.78)', maxWidth: 620 }}>Track recurring mistakes, move them through practice, and close solved patterns with clear teacher control.</p>
         </div>
       </section>

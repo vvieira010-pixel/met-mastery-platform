@@ -1,0 +1,8 @@
+{
+  "name": "MET Mastery",
+  "url": "https://met-mastery.vercel.app/",
+  "description": "Diagnostic-led Michigan English Test preparation for nurses and healthcare professionals.",
+  "documentation": "https://met-mastery.vercel.app/docs",
+  "mcp": "https://met-mastery.vercel.app/mcp",
+  "openapi": "https://met-mastery.vercel.app/openapi.json"
+}

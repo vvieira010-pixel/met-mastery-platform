@@ -404,13 +404,15 @@ Write like a real teacher talking TO this student right after class — warm, sp
 
 • SECOND PERSON ONLY: "you", "your". NEVER "the student", "he/she", "this learner".
 • USE THEIR NAME once or twice (it's fine to open finalNote with "${student?.firstName || 'You'}, ..."). Contractions are encouraged — "you're", "that's", "it'll".
-• QUOTE-ANCHORED: every strength and every improvement points to something they actually said or wrote today — quote their real words.
+• QUOTE-ANCHORED: every strength and every improvement points to something they actually said or wrote today — quote their real words in the separate evidence field.
+• WHAT'S WORKING: write 3-4 specific items. This is a hard minimum: never return fewer than 3. When the evidence is brief, draw three genuinely different strengths from the same sample (for example: completing the task, clarity of the idea, and a language/strategy choice). Do not invent events, quotes, or skills. Each item needs a short skill/behavior heading, a plain explanation of what the student did and why it worked, and a separate exact quote or concrete observation in evidence. Never use a generic heading such as "A real sample to work from" when the evidence identifies a real skill.
 • NO TEMPLATE / NO SAMENESS: phrase every item DIFFERENTLY. Never reuse one sentence shape (e.g. "You did X, which shows Y"). Vary length — some items can be a single short sentence. It must read hand-written, not filled into a form.
 • BANNED JARGON / AI-WORDS (never use): demonstrate, showcase, leverage, utilize, delve, crucial, essential, foster, robust, navigate, journey, elevate, "in terms of", "when it comes to", "this highlights", "this underscores", "a testament to". Use plain everyday words.
 • BANNED OPENERS: "Great work", "Well done", "Excellent", "Good job", "It is important", "Furthermore", "Additionally", "Moreover", "In addition", "Going forward", "In conclusion", "Overall".
 • BANNED PHRASES: "This demonstrates", "Your performance", "You demonstrated", "You exhibited", "This is crucial for", "This is essential", "This shows that you", "Continue to", "Keep up".
 • BANNED CERTAINTY PHRASES: "This will help", "This will improve", "This will make", "Doing X will Y" — these state pedagogical outcomes as proven fact. Instead, frame improvement advice as a testable hypothesis: "Try X and see if it helps", "One thing to experiment with is Y", "If you try Z next class, notice whether...". The goal is a suggestion the student can test, not a guaranteed result.
 • STRATEGIC FEEDBACK (for recurring errors): When a student repeats an error, move beyond simple correction. Provide a "mental model" or a simple "check" (e.g., "Imagine a photo of that day"). For Listening, explicitly use the Strategic Interventions (e.g., if they fall for lexical distractors, suggest prioritizing semantic equivalence over verbatim matching). The goal is to teach them how to self-correct, not just to fix the specific sentence.
+• IMPROVEMENT MATRIX: include 0-3 entries only when the class evidence contains a real phrase or observable behavior to discuss. For each entry, set skill to the actual skill, copy the exact phrase into insteadOf, name the focused category, and give one practical teacher action point. Do not invent a Writing or Speaking example to fill the table.
 • BREVITY: if a thought is one sentence, stop. No padding, no restating.
 • MET BUDGET: at most 2 sentences in the whole feedback may mention the MET exam, and each must be concrete (e.g., "examiners weight delivery in the third descriptor...").
 
@@ -423,10 +425,12 @@ Return ONLY VALID JSON:
 {
   "classFocus": "2-3 sentences. Name the actual task. How did it go? No 'The class focused on...'",
   "whatYouDidWell": [
-    { "strength": "plain phrase", "explanation": "1-2 sentences. What they did + WHY it worked. Include MET context if budget allows.", "example": "the actual quote: '...'" }
+    { "strength": "specific skill or behavior heading", "explanation": "1-2 sentences. What they did + WHY it worked. Include MET context if budget allows.", "evidence": "the exact quote or concrete observed moment from today's evidence" },
+    { "strength": "a different specific skill or behavior", "explanation": "1-2 sentences.", "evidence": "the exact quote or concrete observed moment from today's evidence" },
+    { "strength": "a third different specific skill or behavior", "explanation": "1-2 sentences.", "evidence": "the exact quote or concrete observed moment from today's evidence" }
   ],
   "whatToImprove": [
-    { "area": "plain phrase", "insteadOf": "exact quote of error", "sayInstead": "better version", "howToImprove": "1-2 sentences. ONE thing to try. Include MET context if budget allows." }
+    { "skill": "writing|speaking|reading|listening|grammar|vocabulary|testStrategy", "category": "focused language or strategy category", "area": "plain phrase", "insteadOf": "exact quote or concrete observed behavior to work on", "sayInstead": "better version or next attempt", "howToImprove": "1-2 sentences. ONE thing to try, framed as an experiment. Include MET context if budget allows." }
   ],
   "finalNote": "1-2 sentences. What you noticed them getting close to. Handwritten feel. No 'Keep up the great work!'"
 }`;

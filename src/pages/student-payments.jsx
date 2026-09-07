@@ -3,7 +3,7 @@ import { Icon, Pill, SectionHeader } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { getPayments, PAYMENT_METHODS, savePayment } from '../domain/payments.js';
 
-const EMPTY_FORM = { amount: '', currency: 'BRL', receivedOn: new Date().toISOString().slice(0, 10), method: 'pix', reference: '', note: '', arrangement: false, receipt: null };
+const EMPTY_FORM = { amount: '', classCredits: '', currency: 'BRL', receivedOn: new Date().toISOString().slice(0, 10), method: 'pix', reference: '', note: '', arrangement: false, receipt: null };
 const MAX_RECEIPT_BYTES = 1024 * 1024;
 
 function formatMoney(payment) {
@@ -85,11 +85,13 @@ export default function StudentPayments({ studentId }) {
           <form onSubmit={handleSubmit} style={{ marginTop: 'var(--space-4)', borderTop: '1px solid var(--border)', paddingTop: 'var(--space-4)' }} data-testid="payment-form">
             <div className="form-grid" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
               <label className="field-label">Amount<input className="input" required min="0.01" step="0.01" type="number" value={form.amount} onChange={event => setForm(current => ({ ...current, amount: event.target.value }))} /></label>
+              <label className="field-label">Classes included<input className="input" required min="1" max="100" step="1" type="number" value={form.classCredits} onChange={event => setForm(current => ({ ...current, classCredits: event.target.value }))} /></label>
               <label className="field-label">Currency<input className="input" required maxLength="3" value={form.currency} onChange={event => setForm(current => ({ ...current, currency: event.target.value.toUpperCase() }))} /></label>
               <label className="field-label">Received on<input className="input" required type="date" value={form.receivedOn} onChange={event => setForm(current => ({ ...current, receivedOn: event.target.value }))} /></label>
-              <label className="field-label">Method<select className="input" value={form.method} onChange={event => setForm(current => ({ ...current, method: event.target.value }))}>{PAYMENT_METHODS.map(method => <option key={method.value} value={method.value}>{method.label}</option>)}</select></label>
             </div>
-            <div className="form-grid" style={{ marginTop: 'var(--space-3)', gridTemplateColumns: '1fr 1fr' }}>
+            <p className="card-row-meta" style={{ margin: 'var(--space-2) 0 0' }}>This controls the student’s private classes-remaining count. Prices are never shown there.</p>
+            <div className="form-grid" style={{ marginTop: 'var(--space-3)', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+              <label className="field-label">Method<select className="input" value={form.method} onChange={event => setForm(current => ({ ...current, method: event.target.value }))}>{PAYMENT_METHODS.map(method => <option key={method.value} value={method.value}>{method.label}</option>)}</select></label>
               <label className="field-label">Reference<input className="input" maxLength="80" placeholder="Optional reference" value={form.reference} onChange={event => setForm(current => ({ ...current, reference: event.target.value }))} /></label>
               <label className="field-label">Receipt <span style={{ fontWeight: 400, textTransform: 'none' }}>(optional)</span><input ref={fileInput} className="input" type="file" accept="application/pdf,image/jpeg,image/png" onChange={handleReceipt} /></label>
             </div>
@@ -102,8 +104,8 @@ export default function StudentPayments({ studentId }) {
 
         <div style={{ marginTop: 'var(--space-4)', overflowX: 'auto' }}>
           {payments.length === 0 ? <p className="card-row-meta">No payment records yet.</p> : (
-            <table className="data-table" style={{ minWidth: 620 }}><thead><tr><th>Received</th><th>Method</th><th>Reference</th><th>Amount</th><th>Receipt</th></tr></thead><tbody>{payments.map(payment => (
-              <tr key={payment.id}><td>{formatDate(payment.receivedOn)}</td><td>{PAYMENT_METHODS.find(method => method.value === payment.method)?.label || 'Other'}</td><td>{payment.reference || '—'}</td><td>{formatMoney(payment)}</td><td>{payment.receipt ? <Button variant="ghost" size="sm" onClick={() => downloadReceipt(payment.receipt)}><Icon.download size={13} /> {payment.receipt.name}</Button> : '—'}</td></tr>
+            <table className="data-table" style={{ minWidth: 700 }}><thead><tr><th>Received</th><th>Classes</th><th>Method</th><th>Reference</th><th>Amount</th><th>Receipt</th></tr></thead><tbody>{payments.map(payment => (
+              <tr key={payment.id}><td>{formatDate(payment.receivedOn)}</td><td>{Number.isInteger(payment.classCredits) ? `${payment.classCredits} classes` : 'Not set'}</td><td>{PAYMENT_METHODS.find(method => method.value === payment.method)?.label || 'Other'}</td><td>{payment.reference || '—'}</td><td>{formatMoney(payment)}</td><td>{payment.receipt ? <Button variant="ghost" size="sm" onClick={() => downloadReceipt(payment.receipt)}><Icon.download size={13} /> {payment.receipt.name}</Button> : '—'}</td></tr>
             ))}</tbody></table>
           )}
         </div>
