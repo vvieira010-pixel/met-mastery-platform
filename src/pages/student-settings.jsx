@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Icon } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { readStoredSupabaseSession, updateUserPassword } from '../lib/supabase-storage.js';
+import { sendMessage } from '../lib/workflow.js';
+import FeedbackForm from '../components/FeedbackForm.jsx';
+import { buildFeedbackMessage } from '../domain/feedback/feedback-form.js';
 import CourseAdministration from './student-course-administration.jsx';
 
 export default function StudentSettings({ student, onSignOut, onNavigate, "data-testid": testId }) {
@@ -37,6 +40,13 @@ export default function StudentSettings({ student, onSignOut, onNavigate, "data-
       setPasswordMsg({ ok: false, text: err.message });
     }
     setPasswordSaving(false);
+  }
+
+  async function handleFeedbackSubmit(values) {
+    await sendMessage(buildFeedbackMessage(values, {
+      fromStudentId: student?.id || null,
+      fromName: student?.firstName || student?.name || 'Student',
+    }));
   }
 
   return (
@@ -102,6 +112,25 @@ export default function StudentSettings({ student, onSignOut, onNavigate, "data-
         )}
       </section>
       <CourseAdministration student={student} onMessage={onNavigate} />
+
+      {/* Feedback */}
+      <section className="student-panel" style={{ marginBottom: 'var(--space-4)' }}>
+        <div className="student-panel-head">
+          <div>
+            <span className="student-panel-kicker">Feedback</span>
+            <h2>Share your feedback</h2>
+          </div>
+        </div>
+        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)', lineHeight: 1.6, marginTop: 8 }}>
+          Rate any part of your course and add a comment. You can review and edit everything before it is sent to your teacher.
+        </p>
+        <FeedbackForm
+          showTitle={false}
+          draftKey={student?.id ? `met-feedback-draft:${student.id}` : undefined}
+          onSubmit={handleFeedbackSubmit}
+          data-testid="student-feedback-form"
+        />
+      </section>
 
       {/* Sign out */}
       <section className="student-panel">

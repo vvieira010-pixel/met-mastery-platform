@@ -12,6 +12,7 @@
 @import './dark.css';
 @import './redesign.css';
 @import './stitch-theme.css';
+@import './feedback-form.css';
 
 /* Owner map — .shell-topbar / .card canonical owner is components.css.
    stitch-theme.css, redesign.css, responsive.css, dark.css are modifiers
