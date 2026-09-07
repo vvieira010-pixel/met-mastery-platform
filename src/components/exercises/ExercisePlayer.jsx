@@ -13,6 +13,7 @@ import ErrorCorrection from './ErrorCorrection.jsx';
 import Listening from './Listening.jsx';
 import ReadExercise from './ReadExercise.jsx';
 import EmbeddedLesson from './EmbeddedLesson.jsx';
+import Writing from './Writing.jsx';
 import ErrorDiagnosisGate from '../ErrorDiagnosisGate.jsx';
 
 const TEAL = 'var(--accent)';
@@ -164,6 +165,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       case 'short':
       case 'speak':
       case 'speaking':   return <ShortAnswer {...props} />;
+      case 'writing':    return <Writing {...props} />;
       case 'order_sentences':
       case 'ordering_sequencing':
       case 'order':      return <OrderSentences {...props} />;

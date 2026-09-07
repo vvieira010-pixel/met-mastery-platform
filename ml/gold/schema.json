@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://met-mastery.local/schemas/gold-sample.json",
+  "title": "Gold sample with adjudicated label",
+  "description": "One evaluation artifact in the gold set. The response/transcript is the input; rubric is the reconciled human label that models are scored against.",
+  "type": "object",
+  "required": ["sample_id", "modality", "split", "rubric"],
+  "properties": {
+    "sample_id": { "type": "string", "pattern": "^[w|s]_[0-9]{4}$" },
+    "modality": { "type": "string", "enum": ["writing", "speaking"] },
+    "task_type": { "type": "string", "description": "Free label, e.g. B2_email_formal, MET_speaking_picture_1" },
+    "cefr_band": { "type": "string", "enum": ["A2", "B1", "B2", "C1", "unknown"] },
+    "split": { "type": "string", "enum": ["dev", "holdout"] },
+    "subject_ref": { "type": ["string", "null"], "description": "Pseudonymous student hash. Never a name or email." },
+    "response": { "type": ["string", "null"], "description": "Writing response text. Null for speaking." },
+    "transcript": { "type": ["string", "null"], "description": "Speaking transcript. Null for writing." },
+    "audio_uri": { "type": ["string", "null"] },
+    "source_table": { "type": ["string", "null"] },
+    "source_id": { "type": ["string", "null"] },
+    "rubric": {
+      "type": "object",
+      "description": "Adjudicated scores. Speaking: task/language/delivery (MET Speaking Rating Scale). Writing: task/organization/language.",
+      "minProperties": 1,
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5 }
+    },
+    "overall": { "type": ["number", "null"], "minimum": 0, "maximum": 4 },
+    "rationale": { "type": ["string", "null"], "description": "Why the band was chosen. Becomes the label book's anchor text." },
+    "labels": {
+      "type": "array",
+      "description": "The independent rater passes retained for agreement measurement.",
+      "items": {
+        "type": "object",
+        "required": ["rater", "rater_pass", "rubric"],
+        "properties": {
+          "rater": { "type": "string" },
+          "rater_pass": { "type": "integer", "minimum": 1 },
+          "rubric": { "type": "object" },
+          "overall": { "type": ["number", "null"] },
+          "comments": { "type": ["string", "null"] },
+          "labeled_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}

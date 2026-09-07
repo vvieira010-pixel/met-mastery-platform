@@ -8,7 +8,7 @@ process.env.GROQ_API_KEY = 'test-groq-key';
 process.env.GEMINI_MODELS = 'gemini-2.5-flash';
 process.env.OPENROUTER_MODELS = 'openrouter/free';
 process.env.NVIDIA_MODELS = 'deepseek-ai/deepseek-v4-flash,meta/llama-3.3-70b-instruct';
-process.env.GROQ_MODELS = 'llama-3.3-70b-versatile';
+process.env.GROQ_MODELS = 'openai/gpt-oss-120b';
 process.env.APP_ORIGIN = 'https://app.example.test';
 
 const {

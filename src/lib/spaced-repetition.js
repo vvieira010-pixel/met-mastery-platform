@@ -1,6 +1,7 @@
 /* spaced-repetition.js — Error bank items scheduled for review at increasing intervals */
 
 import { shuffleArray } from './exercise-types.js';
+import { trackEvent } from './ml-events.js';
 
 const REVIEW_INTERVALS = [1, 3, 7, 14, 30];
 
@@ -98,6 +99,20 @@ export function recordPractice(studentId, scheduleId, correct, confidence) {
   list[idx] = entry;
   save(studentId, list);
   maybeSync(studentId, list);
+  try {
+    // Server-side learning_events. This is the review outcome the Phase 2
+    // memory/IRT models are fitted on; without it the signal stays in
+    // localStorage only. Telemetry is best-effort and never blocks the UI.
+    trackEvent({
+      eventType: 'review',
+      itemId: entry.errorId || scheduleId,
+      itemType: 'error_bank',
+      correct: Boolean(correct),
+      meta: { interval: entry.interval, practiceCount: entry.practiceCount, confidence: confidence ?? null },
+    });
+  } catch {
+    // Intentionally swallowed: a telemetry failure must not break review practice.
+  }
   return entry;
 }
 

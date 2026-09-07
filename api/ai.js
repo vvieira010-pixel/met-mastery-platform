@@ -25,6 +25,10 @@
  * first. Each model is skipped if not in its provider's configured model list.
  */
 
+import { logPrediction } from './_ml/log.js';
+import { getActive } from './_ml/registry.js';
+import { telemetryEnabled } from './_ml/store.js';
+
 const env = (name) => process.env[name] || '';
 const multiKeys = (name) =>
   String(env(name) || '').split(/[,\n]/).map((s) => s.trim()).filter(Boolean)
@@ -64,11 +68,10 @@ function allowedOrigin(req) {
 }
 
 const GEMINI_DEFAULT_MODELS = [
+  'gemini-3.7-flash',
   'gemini-2.5-flash',
   'gemini-2.5-flash-lite',
   'gemini-2.5-pro',
-  'gemini-2.0-flash',
-  'gemini-2.0-flash-lite',
   'gemini-flash-latest',
   'gemma-4-31b-it',
   'gemma-4-26b-a4b-it',
@@ -76,25 +79,17 @@ const GEMINI_DEFAULT_MODELS = [
 
 const OPENROUTER_DEFAULT_MODELS = [
   'openrouter/free',
-  'deepseek/deepseek-chat-v3-0324:free',
-  'deepseek/deepseek-r1-0528:free',
-  'nvidia/nemotron-3-ultra-550b-a55b:free',
   'meta-llama/llama-3.3-70b-instruct:free',
-  'meta-llama/llama-4-scout:free',
-  'qwen/qwen3-235b-a22b:free',
-  'qwen/qwen-2.5-72b-instruct:free',
-  'google/gemma-3-27b-it:free',
-  'nvidia/llama-3.1-nemotron-70b-instruct:free',
-  'mistralai/mistral-small-3.1-24b-instruct:free',
-  'nvidia/nemotron-3-nano-30b-a3b:free',
+  'openai/gpt-oss-120b:free',
+  'openai/gpt-oss-20b:free',
+  'nvidia/nemotron-3-ultra-550b-a55b:free',
 ];
 
 const GROQ_DEFAULT_MODELS = [
-  'llama-3.3-70b-versatile',
-  'qwen3-32b',
-  'deepseek-r1-distill-70b',
-  'llama-3.1-8b-instant',
-  'llama-4-scout-17b-16e-instruct',
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+  'deepseek-r1-distill-llama-70b',
+  'qwen/qwen3.6-27b',
 ];
 
 const NVIDIA_DEFAULT_MODELS = [
@@ -105,7 +100,7 @@ const NVIDIA_DEFAULT_MODELS = [
   'nvidia/nemotron-3.5-lightning-30b-a3b',
   'mistralai/mixtral-8x22b-instruct',
   'qwen/qwen3-next-80b-a3b-instruct',
-  'meta/llama-3.1-70b-instruct',
+  'nvidia/llama-3.1-nemotron-51b-instruct',
 ];
 
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
@@ -181,6 +176,10 @@ export default async function handler(req, res) {
   const {
     prompt, system, max_tokens = 2048, temperature = 0.3, preferredProvider = null,
     response_format = null,
+    // Telemetry context. All optional: the caller may say which product feature
+    // this call belongs to and which student/submission it concerns. `subject`
+    // is hashed server-side (see api/_ml/hash.js) and never stored raw.
+    feature = 'ai_proxy', subject = null, submissionId = null,
   } = body || {};
   if (!prompt || typeof prompt !== 'string') {
     return res.status(400).json({ error: { message: 'Missing "prompt"' } });
@@ -195,7 +194,8 @@ export default async function handler(req, res) {
   const sys = system || 'You are a helpful MET English teaching assistant.';
   const expectsJson = Boolean(response_format) || /(?:return|respond|output)\s+(?:only\s+)?(?:valid\s+)?json\b/i.test(`${sys}\n${prompt}`);
   const errors = [];
-  const deadline = Date.now() + AI_REQUEST_TIMEOUT_MS;
+  const requestStartedAt = Date.now();
+  const deadline = requestStartedAt + AI_REQUEST_TIMEOUT_MS;
   const attemptTimeout = () => Math.max(1, Math.min(AI_ATTEMPT_TIMEOUT_MS, deadline - Date.now()));
   const logAttempt = (provider, model, outcome, startedAt) => {
     // Do not log prompts, responses, or provider errors: they can contain student data or secrets.
@@ -310,13 +310,13 @@ export default async function handler(req, res) {
     'nvidia/nemotron-3.5-lightning-30b-a3b',
     'mistralai/mixtral-8x22b-instruct',
     'qwen/qwen3-next-80b-a3b-instruct',
-    'meta/llama-3.1-70b-instruct',
+    'nvidia/llama-3.1-nemotron-51b-instruct',
   ];
   const NVIDIA_FAST_MODELS = [
     'nvidia/nemotron-3.5-lightning-30b-a3b',
     'nvidia/nemotron-3-nano-30b-a3b',
     'mistralai/mixtral-8x22b-instruct',
-    'meta/llama-3.1-70b-instruct',
+    'nvidia/llama-3.1-nemotron-51b-instruct',
   ];
   const configuredNvidiaModels = parseList(env('NVIDIA_MODELS'))
     .filter((model) => !/^openai\//i.test(model));
@@ -331,34 +331,25 @@ export default async function handler(req, res) {
     ...NVIDIA_MODELS,
   ])];
   const geminiFallback = [
+    'gemini-3.7-flash',
     'gemini-2.5-pro',
     'gemini-2.5-flash-lite',
-    'gemini-2.0-flash',
-    'gemini-2.0-flash-lite',
     'gemini-flash-latest',
     'gemma-4-31b-it',
     'gemma-4-26b-a4b-it',
   ];
   const openRouterFallback = [
-    'deepseek/deepseek-r1-0528:free',
-    'deepseek/deepseek-chat-v3-0324:free',
-    'nvidia/nemotron-3-ultra-550b-a55b:free',
     'meta-llama/llama-3.3-70b-instruct:free',
-    'qwen/qwen3-235b-a22b:free',
-    'meta-llama/llama-4-scout:free',
-    'qwen/qwen-2.5-72b-instruct:free',
-    'google/gemma-3-27b-it:free',
-    'nvidia/llama-3.1-nemotron-70b-instruct:free',
-    'mistralai/mistral-small-3.1-24b-instruct:free',
-    'nvidia/nemotron-3-nano-30b-a3b:free',
+    'openai/gpt-oss-120b:free',
+    'openai/gpt-oss-20b:free',
+    'nvidia/nemotron-3-ultra-550b-a55b:free',
     'openrouter/free',
   ];
   const groqFallback = [
-    ['llama-3.3-70b-versatile',                     'groq'],
-    ['qwen3-32b',                                   'groq'],
-    ['deepseek-r1-distill-70b',                     'groq'],
-    ['llama-3.1-8b-instant',                        'groq'],
-    ['llama-4-scout-17b-16e-instruct',              'groq'],
+    ['openai/gpt-oss-120b',                       'groq'],
+    ['openai/gpt-oss-20b',                        'groq'],
+    ['deepseek-r1-distill-llama-70b',             'groq'],
+    ['qwen/qwen3.6-27b',                          'groq'],
   ];
   // Order matters for the time budget (AI_REQUEST_TIMEOUT_MS): fast, reliable
   // providers run first so a slow/hanging provider (e.g. NVIDIA's large models
@@ -375,11 +366,13 @@ export default async function handler(req, res) {
 
   const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, nvidia: nvidiaKeys };
   const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), nvidia: new Set(NVIDIA_MODELS) };
+  // `model` is carried on each attempt so a successful call can be attributed to
+  // the exact provider model that served it (pricing and drift both need this).
   const providerRunner = {
-    gemini: (k, m) => ({ id: 'gemini', run: () => tryGemini(k, m) }),
-    groq: (k, m) => ({ id: 'groq', run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m, {}, 'Groq') }),
-    openrouter: (k, m) => ({ id: 'openrouter', run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }, 'OpenRouter') }),
-    nvidia: (k, m) => ({ id: 'nvidia', run: () => tryOpenAICompat('https://integrate.api.nvidia.com/v1/chat/completions', k, m, {}, 'Nvidia') }),
+    gemini: (k, m) => ({ id: 'gemini', model: m, run: () => tryGemini(k, m) }),
+    groq: (k, m) => ({ id: 'groq', model: m, run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m, {}, 'Groq') }),
+    openrouter: (k, m) => ({ id: 'openrouter', model: m, run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }, 'OpenRouter') }),
+    nvidia: (k, m) => ({ id: 'nvidia', model: m, run: () => tryOpenAICompat('https://integrate.api.nvidia.com/v1/chat/completions', k, m, {}, 'Nvidia') }),
   };
 
   const attempts = [];
@@ -397,17 +390,53 @@ export default async function handler(req, res) {
     if (pref.length) ordered = [...pref, ...attempts.filter((a) => a.id !== preferredProvider)];
   }
 
+  // Resolved once per request and cached for 60s in the registry module. Falls
+  // back to 'unversioned' so telemetry still works before the migration lands.
+  const activeModel = telemetryEnabled()
+    ? await getActive('model', 'ai_proxy', { version: 'unversioned', promptSha: 'unversioned' })
+    : { version: 'unversioned', promptSha: 'unversioned' };
+
+  const telemetry = {
+    feature: typeof feature === 'string' && feature ? feature : 'ai_proxy',
+    subject,
+    submissionId,
+    modelName: 'ai_proxy',
+    modelVersion: activeModel.version,
+    prompt: sys,
+    promptSha: activeModel.promptSha,
+    inputParts: [sys, prompt],
+    inputChars: sys.length + prompt.length,
+  };
+
   // Stop starting new attempts once an overall budget is used up
   // so the function finishes inside serverless time limits.
   for (const a of ordered) {
     if (Date.now() > deadline) break;
+    const attemptStartedAt = Date.now();
     const result = await a.run();
-    if (result) return res.status(200).json(result);
+    if (result) {
+      const text = result?.content?.[0]?.text || '';
+      await logPrediction({
+        ...telemetry,
+        provider: a.id,
+        modelId: a.model,
+        outputChars: text.length,
+        latencyMs: Date.now() - attemptStartedAt,
+        status: 'ok',
+      });
+      return res.status(200).json(result);
+    }
   }
 
   // Do not return provider model identifiers or raw provider failures. Those
   // values can contain dashboard configuration mistakes and are not useful to
   // a teacher. The detailed, redacted attempt records stay server-side.
+  await logPrediction({
+    ...telemetry,
+    latencyMs: Date.now() - requestStartedAt,
+    status: 'provider_error',
+    error: `all providers failed after ${errors.length} attempt(s)`,
+  });
   console.warn('[api/ai] all configured providers failed', { attempts: errors.length });
   return res.status(502).json({ error: { message: 'AI generation is temporarily unavailable. Please try Regen again in a moment.' } });
 }

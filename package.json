@@ -18,7 +18,9 @@
     "test": "node --test \"tests/**/*.test.js\"",
     "test:e2e": "playwright test --project=Chromium",
     "test:watch": "node --test --watch \"tests/**/*.test.js\"",
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma skills sync || exit 0",
+    "ml:report": "node scripts/ml-report.mjs",
+    "gold:export": "node scripts/export-gold-candidates.mjs"
   },
   "dependencies": {
     "@ai-sdk/perplexity": "^4.0.39",

@@ -650,12 +650,14 @@ export async function getWritingExercises(topicId) {
   if (topicId === 'writing_full_bank') topicId = 'general';
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
-  const base = topicId === 'general'
+  const asWriting = (e) => ({ ...e, type: 'writing' });
+  const base = (topicId === 'general'
     ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'short'))
-    : topic.exercises.filter(e => e.type === 'short');
+    : topic.exercises.filter(e => e.type === 'short')
+  ).map(asWriting);
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('writing');
-  const more = (b2WritingMoreData.modules || []).flatMap(mod => mod.exercises || []);
+  const more = (b2WritingMoreData.modules || []).flatMap(mod => (mod.exercises || []).map(e => (e.type === 'short' ? asWriting(e) : e)));
   return [...base, ...b2, ...more];
 }
 
