@@ -4,30 +4,30 @@
 - Explain why, be concise, respect Playwright best practices.
 - Provide a snippet of code with the fix, if possible.
 
-# Test info
+## Test info
 
 - Name: auth-workflow.test.ts >> teacher can open every primary workspace page
 - Location: tests\auth-workflow.test.ts:119:1
 
-# Error details
+## Error details
 
-```
+```text
 Test timeout of 30000ms exceeded.
 ```
 
-```
+```text
 Error: expect(locator).toContainText(expected) failed
 
 Locator: locator('.shell-main')
-Expected substring: "Exercise Library"
-Received string:    "Calendar0 upcoming · 0 need diagnosis Schedule ClassSeptember 2026SunMonTueWedThuFriSat123456789101112131415161718192021222324252627282930Upcoming ClassesNone scheduled.Loading your workspace…"
+Expected substring: "Operations"
+Received string:    "Exercise LibraryBrowse packs and saved exercises. Assign via Create Homework. Create HomeworkMET Mock Test 1Full-length practice exam · ~2 h 35 min Start Mock TestMy LibraryPractice StudioMET B2 PackEveryday EnglishExtended PracticeDialogue PracticeSelf EvaluationNo saved exercises. In the homework builder, tap ☆ on any exercise to save it here.Loading your workspace…"
 
 Call log:
   - Expect "toContainText" with timeout 5000ms
   - waiting for locator('.shell-main')
-    4 × locator resolved to <main tabindex="-1" id="main-content" class="shell-main">…</main>
-      - unexpected value "Calendar0 upcoming · 0 need diagnosis Schedule ClassSeptember 2026SunMonTueWedThuFriSat123456789101112131415161718192021222324252627282930Upcoming ClassesNone scheduled.Loading your workspace…"
-  - Protocol error (Runtime.callFunctionOn): Internal server error, session closed.
+    3 × locator resolved to <main tabindex="-1" id="main-content" class="shell-main">…</main>
+      - unexpected value "Exercise LibraryBrowse packs and saved exercises. Assign via Create Homework. Create HomeworkMET Mock Test 1Full-length practice exam · ~2 h 35 min Start Mock TestMy LibraryPractice StudioMET B2 PackEveryday EnglishExtended PracticeDialogue PracticeSelf EvaluationNo saved exercises. In the homework builder, tap ☆ on any exercise to save it here.Loading your workspace…"
+  - Test timeout of 30000ms exceeded.
 
 ```
 
@@ -37,7 +37,7 @@ Call log:
     - paragraph: Loading your workspace…
 ```
 
-# Test source
+## Test source
 
 ```ts
   35  | 

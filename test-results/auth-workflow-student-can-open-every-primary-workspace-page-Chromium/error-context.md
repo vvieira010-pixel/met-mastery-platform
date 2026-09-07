@@ -1,41 +1,55 @@
-# Instructions
+# Root cause
 
-- Following Playwright test failed.
-- Explain why, be concise, respect Playwright best practices.
-- Provide a snippet of code with the fix, if possible.
+The test is asserting on a generic shell before the page has finished loading. The snapshot shows the student dashboard is already rendered, but the content area is still in a loading state (`main "Progress content"` → `Loading…`). `locator('.dash-body, main').first()` is too broad and brittle here; it can resolve to a transient element that is not yet visible.
 
-# Test info
+Playwright best practice is to wait for the destination-specific content the user actually needs to see, not for a generic container that may still be mounting.
 
-- Name: auth-workflow.test.ts >> student can open every primary workspace page
-- Location: tests\auth-workflow.test.ts:77:1
+## Fix
 
-# Error details
+```ts
+for (const destination of destinations) {
+  const navButton = page.getByRole('button', { name: destination.button, exact: true });
+  await navButton.scrollIntoViewIfNeeded();
+  await navButton.click();
 
-```
-Test timeout of 30000ms exceeded.
-```
+  await expect(page.getByRole('main')).toContainText(destination.text, { timeout: 20_000 });
 
-```
-Error: expect(locator).toContainText(expected) failed
-
-Locator: locator('.dash-body, main').first()
-Expected substring: "Assigned practice"
-Received string:    "MET skillsBuild your MET map.Use Subjects to understand each skill, learn the strategies behind it, and choose a focused place to practise next.6 MET skills62 topic explanationsB1–B2 study tipsA simple way to use this pageLearn → notice → practiseChoose a skillStart with the area you want to understand better.Open a topicRead what it is and how to apply it on the MET.Take it to PracticeUse a focused exercise when you are ready to try.Choose a skillWhat do you want to work on?Each subject includes explanations and topic-by-topic guidance. You can return here whenever you need to refresh a strategy.ReadingCore reading skills explanations for MET preparation — from finding the main idea to comparing texts and timing your strategy.FocusRead for purpose, evidence, and meaning in context.12 topicsStarts with: Finding the Main IdeaOpen Reading reference →ListeningB1–B2 listening for MET: catch gist, details, and speaker intent while handling distractors, paraphrase, and connected speech under time pressure.FocusListen for the point, the details, and what the speaker intends.10 topicsStarts with: Listening for the Main Idea (The Gist) — B1Open Listening reference →SpeakingB1–B2 speaking for MET: plan in seconds, describe, narrate, opine, compare, and persuade with clear structure and natural flow.FocusPlan quickly, speak clearly, and keep your answer moving.10 topicsStarts with: Describing a Scene (Task 1) — B1Open Speaking reference →WritingBuild clear responses with a main point, supporting ideas, and accurate language — from decoding the prompt to editing under time pressure.FocusMake your ideas easy to follow from the first sentence to the last.10 topicsStarts with: Understanding the PromptOpen Writing reference →GrammarB1–B2 grammar for accuracy and range: use the right tense, modal, and connector so meaning is precise, not approximate.FocusNotice how grammar changes meaning, time, and relationships between ideas.10 topicsStarts with: Verb Tenses and Time (B1–B2)Open Grammar reference →VocabularyB1–B2 vocabulary for MET: learn words in chunks, recognise paraphrase, and choose the register that fits — from collocations to idioms.FocusLearn words in context so you can understand and use them with confidence.10 topicsStarts with: Meaning in Context — B1Open Vocabulary reference →How to study5 Study Tips — B1–B2Short, repeatable habits that make the 62 units stick. Pick one and start today.5 Words/Day + Spaced Recall10 min/dayKeep vocabulary by reusing it, not by collecting lists. 5 new words max per day, each with collocation + family + your sentence.1. Card = word + collocation + family + your sentence (e.g., put off | put off a meeting | postponement | I put off my dentist appointment until Friday). 2. Review Day 1 → 3 → 7 → 14, 5 min each. 3. Use each word once in speaking and once in writing within 48h. 4. Weekly test: write the collocation from memory; misses go back to Day 1.B1–B245–10 Focus Block45 min study + 10 min breakShort, intense blocks beat long, scattered sessions. One subject per block with a single technique, then switch to reset attention.1. Pick 1 subject + 1 technique (e.g., Reading: skimming map or scanning drill). 2. Work 45 min: 20 min technique → 20 min practice → 5 min quick check. 3. Break 10 min away from screen. 4. 3 blocks = a full session (Reading → Listening → Writing). Track blocks with a simple tally.B1–B2Shadow 10 Seconds Daily5 min/dayMimic native rhythm to fix both listening speed and speaking clarity. Shadowing trains the stressed-word beat that carries meaning.1. Pick a 10-sec MET clip (announcement or dialogue). 2. Listen once for stressed words. 3. Play again and speak along, matching rhythm and linking exactly (gonna, shoulda, didja). 4. Record 1 take and compare endings (-ed, -s) and stress. 5. Same clip 3 days in a row; change clip on day 4.B1–B21 PEEL Paragraph/Day12 min/dayOne perfect paragraph builds writing faster than one rushed essay. PEEL = Point → Explain → Example → Link. Reuse your 5 words inside it.1. Topic sentence = your point (e.g., One benefit of online learning is flexibility). 2. Explain why it matters (cause → effect, 1–2 sentences). 3. Add one specific example (personal or observed, with because/which). 4. Close with As a result / Therefore + link. 5. Insert 1–2 of today's 5 words; check for one complex sentence.B1–B2Weekly Mini-Mock + Evidence Check30 min/weekTrain exam discipline: every answer must point to a line. No line = no point. One focused review teaches more than three unchecked mocks.1. Do 10 reading questions under time (1.5 min each). 2. For each answer, underline the exact 1–2 sentence window that proves it. 3. If two answers feel plausible, pick the one with the closer paraphrase match. 4. Log errors by unit (main idea? scanning? inference?) — next week, drill only the weakest unit. 5. Keep a 4-week error tally to see progress.B1–B2Loading…"
-
-Call log:
-  - Expect "toContainText" with timeout 20000ms
-  - waiting for locator('.dash-body, main').first()
-    5 × locator resolved to <main class="dash-body" id="student-content" aria-label="Homework content">…</main>
-      - unexpected value "MET skillsBuild your MET map.Use Subjects to understand each skill, learn the strategies behind it, and choose a focused place to practise next.6 MET skills62 topic explanationsB1–B2 study tipsA simple way to use this pageLearn → notice → practiseChoose a skillStart with the area you want to understand better.Open a topicRead what it is and how to apply it on the MET.Take it to PracticeUse a focused exercise when you are ready to try.Choose a skillWhat do you want to work on?Each subject includes explanations and topic-by-topic guidance. You can return here whenever you need to refresh a strategy.ReadingCore reading skills explanations for MET preparation — from finding the main idea to comparing texts and timing your strategy.FocusRead for purpose, evidence, and meaning in context.12 topicsStarts with: Finding the Main IdeaOpen Reading reference →ListeningB1–B2 listening for MET: catch gist, details, and speaker intent while handling distractors, paraphrase, and connected speech under time pressure.FocusListen for the point, the details, and what the speaker intends.10 topicsStarts with: Listening for the Main Idea (The Gist) — B1Open Listening reference →SpeakingB1–B2 speaking for MET: plan in seconds, describe, narrate, opine, compare, and persuade with clear structure and natural flow.FocusPlan quickly, speak clearly, and keep your answer moving.10 topicsStarts with: Describing a Scene (Task 1) — B1Open Speaking reference →WritingBuild clear responses with a main point, supporting ideas, and accurate language — from decoding the prompt to editing under time pressure.FocusMake your ideas easy to follow from the first sentence to the last.10 topicsStarts with: Understanding the PromptOpen Writing reference →GrammarB1–B2 grammar for accuracy and range: use the right tense, modal, and connector so meaning is precise, not approximate.FocusNotice how grammar changes meaning, time, and relationships between ideas.10 topicsStarts with: Verb Tenses and Time (B1–B2)Open Grammar reference →VocabularyB1–B2 vocabulary for MET: learn words in chunks, recognise paraphrase, and choose the register that fits — from collocations to idioms.FocusLearn words in context so you can understand and use them with confidence.10 topicsStarts with: Meaning in Context — B1Open Vocabulary reference →How to study5 Study Tips — B1–B2Short, repeatable habits that make the 62 units stick. Pick one and start today.5 Words/Day + Spaced Recall10 min/dayKeep vocabulary by reusing it, not by collecting lists. 5 new words max per day, each with collocation + family + your sentence.1. Card = word + collocation + family + your sentence (e.g., put off | put off a meeting | postponement | I put off my dentist appointment until Friday). 2. Review Day 1 → 3 → 7 → 14, 5 min each. 3. Use each word once in speaking and once in writing within 48h. 4. Weekly test: write the collocation from memory; misses go back to Day 1.B1–B245–10 Focus Block45 min study + 10 min breakShort, intense blocks beat long, scattered sessions. One subject per block with a single technique, then switch to reset attention.1. Pick 1 subject + 1 technique (e.g., Reading: skimming map or scanning drill). 2. Work 45 min: 20 min technique → 20 min practice → 5 min quick check. 3. Break 10 min away from screen. 4. 3 blocks = a full session (Reading → Listening → Writing). Track blocks with a simple tally.B1–B2Shadow 10 Seconds Daily5 min/dayMimic native rhythm to fix both listening speed and speaking clarity. Shadowing trains the stressed-word beat that carries meaning.1. Pick a 10-sec MET clip (announcement or dialogue). 2. Listen once for stressed words. 3. Play again and speak along, matching rhythm and linking exactly (gonna, shoulda, didja). 4. Record 1 take and compare endings (-ed, -s) and stress. 5. Same clip 3 days in a row; change clip on day 4.B1–B21 PEEL Paragraph/Day12 min/dayOne perfect paragraph builds writing faster than one rushed essay. PEEL = Point → Explain → Example → Link. Reuse your 5 words inside it.1. Topic sentence = your point (e.g., One benefit of online learning is flexibility). 2. Explain why it matters (cause → effect, 1–2 sentences). 3. Add one specific example (personal or observed, with because/which). 4. Close with As a result / Therefore + link. 5. Insert 1–2 of today's 5 words; check for one complex sentence.B1–B2Weekly Mini-Mock + Evidence Check30 min/weekTrain exam discipline: every answer must point to a line. No line = no point. One focused review teaches more than three unchecked mocks.1. Do 10 reading questions under time (1.5 min each). 2. For each answer, underline the exact 1–2 sentence window that proves it. 3. If two answers feel plausible, pick the one with the closer paraphrase match. 4. Log errors by unit (main idea? scanning? inference?) — next week, drill only the weakest unit. 5. Keep a 4-week error tally to see progress.B1–B2Loading…"
-  - Test timeout of 30000ms exceeded.
-
+  // optional if the button becomes active
+  await expect(navButton).toHaveAttribute('aria-pressed', 'true');
+}
 ```
 
-```yaml
-- main "Homework content": Loading…
+If the app uses client-side routing, prefer:
+
+```ts
+await navButton.click();
+await expect(page).toHaveURL(new RegExp(destination.button, 'i'));
+await expect(page.getByRole('main')).toContainText(destination.text, { timeout: 20_000 });
 ```
 
-# Test source
+This avoids the flaky `first()` selector and waits on the actual page state instead of a transient shell.
+            - generic [ref=e11]: Student space
+        - navigation "Student navigation" [ref=e12]:
+          - button "Home" [ref=e13] [cursor=pointer]
+          - button "Practice" [ref=e17] [cursor=pointer]
+          - button "Subjects" [ref=e20] [cursor=pointer]
+          - button "Homework" [ref=e24] [cursor=pointer]
+          - button "Feedback" [ref=e29] [cursor=pointer]
+          - button "Progress" [active] [ref=e33] [cursor=pointer]
+          - button "Resources" [ref=e35] [cursor=pointer]
+          - button "More" [ref=e40] [cursor=pointer]
+        - generic [ref=e41]:
+          - generic [ref=e42]: Hi, Ana
+          - button "Sign out" [ref=e43] [cursor=pointer]
+      - main "Progress content" [ref=e46]:
+        - generic [ref=e47]: Loading…
+      - button "Message teacher" [ref=e49] [cursor=pointer]
+
+- generic [ref=e53]: 0%
+
+```
+
+## Test source
 
 ```ts
   1   | import { expect, test, type Page } from '@playwright/test';
@@ -135,9 +149,9 @@ Call log:
   95  |     await navButton.click();
   96  | 
   97  |     const shell = page.locator('.dash-body, main').first();
-  98  |     await expect(shell).toBeVisible({ timeout: 20_000 });
-> 99  |     await expect(shell).toContainText(destination.text, { timeout: 20_000 });
-      |                         ^ Error: expect(locator).toContainText(expected) failed
+> 98  |     await expect(shell).toBeVisible({ timeout: 20_000 });
+      |                         ^ Error: expect(locator).toBeVisible() failed
+  99  |     await expect(shell).toContainText(destination.text, { timeout: 20_000 });
   100 |   }
   101 | });
   102 | 
@@ -237,5 +251,4 @@ Call log:
   196 |     ['inbox', 'inbox-page'],
   197 |     ['error-bank', 'error-bank-page'],
   198 |     ['risk-dashboard', 'risk-dashboard-page'],
-  199 |     ['reports', 'reports-page'],
 ```
