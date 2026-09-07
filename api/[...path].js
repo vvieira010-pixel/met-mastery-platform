@@ -26,6 +26,10 @@ import mcp from './_routes/mcp.js';
 const routes = {
   health,
   'v1/info': info,
+  // Vercel only hands the catch-all a single path segment, so a two-segment
+  // request like /api/v1/info never reaches this function. vercel.json rewrites
+  // it to /api/v1-info; this alias serves that rewritten key.
+  'v1-info': info,
   ai,
   tts,
   'generate-image': generateImage,

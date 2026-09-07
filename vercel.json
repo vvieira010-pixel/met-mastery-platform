@@ -41,6 +41,10 @@
   ],
   "rewrites": [
     {
+      "source": "/api/v1/info",
+      "destination": "/api/v1-info"
+    },
+    {
       "source": "/",
       "has": [
         {
