@@ -19,6 +19,7 @@ import { getServiceKey, getSupabaseUrl } from './_config.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-speaking-scale.js';
 import { callAssemblyAILLMJson, extractScores } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
+import { guardRateLimit } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
 
@@ -281,6 +282,9 @@ export default async function handler(req, res) {
   if (!user) {
     return res.status(401).json({ error: 'Unauthorized — valid session required.' });
   }
+
+  // Spend guardrail: one request fans out to AssemblyAI STT + LLM grading.
+  if (!guardRateLimit(req, res, { scope: 'evaluate-speaking', user })) return;
 
   let body = req.body;
   if (typeof body === 'string') {

@@ -4,6 +4,7 @@
  */
 
 import { isSameOrigin } from './_config.js';
+import { guardRateLimit } from './_rate-limit.js';
 
 const env = (name) => process.env[name] || '';
 
@@ -101,6 +102,10 @@ export default async function handler(req, res) {
   if (!isSameOrigin(req)) {
     return res.status(403).json({ error: { message: 'Forbidden — cross-origin request.' } });
   }
+
+  // Spend guardrail: this request can reach Deepgram and, on failure, the
+  // considerably pricier ElevenLabs tier.
+  if (!guardRateLimit(req, res, { scope: 'tts' })) return;
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }

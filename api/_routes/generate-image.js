@@ -1,4 +1,5 @@
 import { verifySupabaseSession } from './_supabase-auth.js';
+import { guardRateLimit } from './_rate-limit.js';
 
 // SECURITY (#5): server-only secrets must NOT fall back to VITE_* (client-exposed) vars.
 const env = (name) => process.env[name] || '';
@@ -13,9 +14,13 @@ async function fetchT(url, init, ms = 30000) {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  if (!await verifySupabaseSession(req)) {
+  const user = await verifySupabaseSession(req);
+  if (!user) {
     return res.status(401).json({ error: 'Unauthorized — valid session required.' });
   }
+
+  // Spend guardrail: Imagen 3 bills per generated image.
+  if (!guardRateLimit(req, res, { scope: 'generate-image', user })) return;
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }

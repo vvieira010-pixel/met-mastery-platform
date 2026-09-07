@@ -20,6 +20,7 @@
 const env = (name) => process.env[name] || '';
 
 import { getSupabaseUrl, getServiceKey, allowedTeacherEmails } from './_config.js';
+import { guardRateLimit } from './_rate-limit.js';
 
 /** Verify the caller's Supabase JWT via Supabase and return the user, or null. */
 async function requireTeacherSession(req) {
@@ -123,6 +124,10 @@ export default async function handler(req, res) {
   if (teacherEmails.length && !teacherEmails.includes((user.email || '').toLowerCase())) {
     return res.status(403).json({ error: { message: 'Only teachers can send class invites.' } });
   }
+
+  // Spend guardrail: protects Resend volume and, more importantly, the sending
+  // domain's reputation against a burst of outbound mail.
+  if (!guardRateLimit(req, res, { scope: 'send-invite', user })) return;
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
