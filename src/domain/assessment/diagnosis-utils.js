@@ -1,10 +1,9 @@
-import { callAI } from '../../components/shared.jsx';
+import { callAI } from '../../lib/callAI.js';
 import { parseAiJson } from '../../lib/ai-helpers.js';
 import {
   buildSkillDiagnosisPrompt,
   buildCompactSkillDiagnosisPrompt,
 } from '../../lib/prompts.js';
-import { withSkills } from '../../education-skills/active-skills.js';
 import { SKILL_KEYS } from './constants.js';
 
 export function shouldRetryCompact(error) {
@@ -35,12 +34,16 @@ export function aiText(res) {
   return res?.content?.map(b => b.text || '').join('') || '';
 }
 
-export async function generateDiagnosisJson(promptData, setStatus = () => {}) {
+export async function generateDiagnosisJson(promptData, setStatus = () => {}, requestAI = callAI) {
   let firstError;
   try {
-    const raw = await callAI(buildSkillDiagnosisPrompt(promptData), await withSkills('diagnosis', { max_tokens: 6000 }));
-    const parsed = normalizeDiagnosisJson(parseAiJson(aiText(raw)), promptData.classEvidence);
-    if (hasUsefulDiagnosis(parsed)) return { raw, parsed };
+    // The diagnosis prompt is already evidence-rich. Adding the optional
+    // education-skill documents more than triples the provider request and
+    // can prevent a model call from ever starting. Keep this critical phase
+    // direct, then use its compact prompt when a provider rejects the full one.
+    const raw = await requestAI(buildSkillDiagnosisPrompt(promptData), { max_tokens: 6000, temperature: 0.3 });
+    const parsed = parseAiJson(aiText(raw));
+    if (hasUsefulDiagnosis(parsed)) return { raw, parsed: normalizeDiagnosisJson(parsed, promptData.classEvidence) };
     firstError = new Error('Full diagnosis returned incomplete sections.');
   } catch (e) {
     firstError = e;
@@ -48,22 +51,31 @@ export async function generateDiagnosisJson(promptData, setStatus = () => {}) {
 
   setStatus('Step 1/4 — Retrying with a smaller diagnosis prompt...');
   try {
-    const raw = await callAI(buildCompactSkillDiagnosisPrompt(promptData), await withSkills('diagnosis', { max_tokens: 3200 }));
-    const parsed = normalizeDiagnosisJson(parseAiJson(aiText(raw)), promptData.classEvidence);
-    return { raw, parsed };
+    const raw = await requestAI(buildCompactSkillDiagnosisPrompt(promptData), { max_tokens: 3200, temperature: 0.3 });
+    const parsed = parseAiJson(aiText(raw));
+    if (hasUsefulDiagnosis(parsed)) return { raw, parsed: normalizeDiagnosisJson(parsed, promptData.classEvidence) };
+    throw new Error('Compact diagnosis returned incomplete sections.');
   } catch (fallbackError) {
-    console.warn('Diagnosis generation failed; full prompt error:', firstError);
-    console.warn('Diagnosis compact fallback failed:', fallbackError);
-    return { raw: null, parsed: normalizeDiagnosisJson({}, promptData.classEvidence) };
+    // Do not quietly save normalizer defaults as an AI diagnosis. The teacher
+    // must be able to retry a phase that did not receive a usable AI response.
+    console.warn('Diagnosis generation failed after compact retry.', {
+      fullError: firstError?.message,
+      compactError: fallbackError?.message,
+    });
+    throw new Error(
+      fallbackError?.message || firstError?.message || 'AI diagnosis could not be generated.',
+      { cause: fallbackError },
+    );
   }
 }
 
 export function hasUsefulDiagnosis(parsed) {
+  const source = parsed?.diagnosis && typeof parsed.diagnosis === 'object' ? parsed.diagnosis : parsed;
   return Boolean(
-    parsed?.skillDiagnosis && Object.keys(parsed.skillDiagnosis).length &&
-    parsed.classSummary &&
-    Array.isArray(parsed.priorityDiagnosis) &&
-    parsed.nextClassFocus && Object.keys(parsed.nextClassFocus).length
+    source?.skillDiagnosis && Object.keys(source.skillDiagnosis).length &&
+    source.classSummary &&
+    Array.isArray(source.priorityDiagnosis) &&
+    source.nextClassFocus && Object.keys(source.nextClassFocus).length
   );
 }
 

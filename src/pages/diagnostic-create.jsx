@@ -43,6 +43,7 @@ import {
 } from '../domain/assessment/constants.js';
 import {
   friendlyAiError,
+  generateDiagnosisJson,
   normalizeDiagnosisJson,
   normalizeErrorTargets,
   normalizeEvidenceCounts, buildSnapshot,
@@ -491,10 +492,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       let nextAiResult = aiResult;
 
       if (phaseId === 'analysis') {
-        const data = await callAI(buildSkillDiagnosisPrompt(promptData), await withSkills('diagnosis', { max_tokens: 6000 }));
-        const raw = data.content?.map(block => block.text || '').join('') || '';
-        if (!raw.trim()) throw new Error('AI returned an empty response. Try the phase again.');
-        const analysis = normalizeDiagnosisJson(parseAiJson(raw), normalizedEvidence);
+        const { parsed: analysis } = await generateDiagnosisJson(promptData);
         nextAiResult = { ...(aiResult || {}), ...analysis };
         nextSections = { ...sections };
         DIAGNOSIS_DERIVED_KEYS.forEach(key => {
@@ -534,6 +532,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       setCompletedPhases(nextCompletedPhases);
       window.toast?.(`${phase.title} saved. Review it before approving the diagnosis.`, 'ok');
     } catch (phaseError) {
+      if (refreshForFailedDynamicImport(phaseError)) return;
       window.toast?.(`${phase.title} was not saved: ${friendlyAiError(phaseError)}`, 'warn');
     } finally {
       setRunningPhase(null);

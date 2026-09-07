@@ -15,7 +15,7 @@ test('feedback-first flow generates personalized AI feedback before saving and o
   const aiFeedback = source.indexOf('callAI(buildStudentFeedbackPrompt({', feedbackDraft);
   const feedbackSave = source.indexOf("nextCompletedPhases: ['feedback']", feedbackDraft);
   const review = source.indexOf("setStep('review');", feedbackSave);
-  const downstreamDiagnosis = source.indexOf('generateDiagnosisJson(');
+  const downstreamDiagnosis = source.indexOf('generateDiagnosisJson(promptData)');
 
   assert.ok(feedbackDraft >= 0, 'an honest fallback is prepared');
   assert.ok(aiFeedback > feedbackDraft, 'AI feedback is generated before the feedback draft is saved');
@@ -24,7 +24,7 @@ test('feedback-first flow generates personalized AI feedback before saving and o
   assert.match(source, /content\.whatYouDidWell\.length < 3/, 'AI feedback must contain at least three strengths');
   assert.ok(feedbackSave > feedbackDraft, 'feedback is persisted');
   assert.ok(review > feedbackSave, 'the teacher reaches review after feedback persistence');
-  assert.equal(downstreamDiagnosis, -1, 'the initial flow does not block on downstream diagnosis generation');
+  assert.ok(downstreamDiagnosis > review, 'downstream diagnosis is only available after the feedback-first review stage');
   assert.match(source, /sort\(\(a, b\) => Number\(b\.studentFacing\) - Number\(a\.studentFacing\)\)/, 'student-facing feedback is rendered before teacher analysis');
 });
 
@@ -79,6 +79,7 @@ test('diagnostic creation saves feedback and then unlocks separate saved phases'
   const updateUi = source.indexOf('setSections(nextSections);', persist);
   assert.ok(persist >= 0, 'each later phase is persisted');
   assert.ok(updateUi > persist, 'a later phase becomes visible only after its save succeeds');
+  assert.match(source, /generateDiagnosisJson\(promptData\)/, 'analysis uses the guarded direct AI request path');
 });
 
 test('the feedback improvement matrix uses real lesson targets instead of seeded examples', async () => {
