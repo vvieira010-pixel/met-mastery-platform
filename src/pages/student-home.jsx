@@ -8,7 +8,8 @@ import { asArray, getSkillTrend, hasVisibleApprovedStudentFeedback } from './stu
 import { lazyWithRetry } from '../lib/utils.js';
 import { useBodyScrollLock } from '../lib/use-body-scroll-lock.js';
 import LiveClassSchedulingGuardrails from '../components/LiveClassSchedulingGuardrails.jsx';
-import AcademicProgressChart from '../components/AcademicProgressChart.jsx';
+
+const AcademicProgressChart = lazyWithRetry(() => import('../components/AcademicProgressChart.jsx'));
 
 const ReviewSession = lazyWithRetry(() => import('../components/ReviewSession.jsx'));
 const ExercisePlayer = lazyWithRetry(() => import('../components/exercises/ExercisePlayer.jsx'));
@@ -476,7 +477,9 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
                 </div>
                 <span className="student-pill">Daily scores · Mon–Sun</span>
               </div>
-              <AcademicProgressChart />
+              <Suspense fallback={<div className="student-chart-skeleton" style={{ height: 260, borderRadius: 8, background: 'var(--bg-2, rgba(0,0,0,0.04))' }} aria-hidden="true" />}>
+                <AcademicProgressChart />
+              </Suspense>
             </Card>
 
             <Card bezel className="home-bento-cell home-bento-cell--orange home-evidence-card">

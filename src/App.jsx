@@ -1,7 +1,4 @@
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
-import LoginScreen from './pages/login.jsx';
-import LandingComplete from './pages/landing-complete.jsx';
-import StudentDashboard from './pages/student-dashboard.jsx';
 import ErrorBoundary from './components/error-boundary.jsx';
 import { logError } from './lib/error-logger.js';
 import { Icon, Shell } from './components/shared.jsx';
@@ -27,6 +24,9 @@ import { lazyWithRetry } from './lib/utils.js'; // Imported from utils.js
 // Lazy-loaded pages with retry on chunk load failure (prevents "Page unavailable" after new deployments)
 // Removed local lazyWithRetry definition as it's now a shared utility
 
+const LoginScreen = lazyWithRetry(() => import('./pages/login.jsx'));
+const LandingComplete = lazyWithRetry(() => import('./pages/landing-complete.jsx'));
+const StudentDashboard = lazyWithRetry(() => import('./pages/student-dashboard.jsx'));
 const TeacherDashboard  = lazyWithRetry(() => import('./pages/teacher-dashboard.jsx'));
 const StudentsPage      = lazyWithRetry(() => import('./pages/students.jsx'));
 const StudentProfile    = lazyWithRetry(() => import('./pages/student-profile.jsx'));
@@ -426,11 +426,23 @@ export default function App() {
 
   if (!auth) {
     if (publicView === 'landing') {
-      return <LandingComplete
-        onMemberSignIn={() => setPublicView('login')}
-      />;
+      return (
+        <ErrorBoundary label="Page unavailable">
+          <Suspense fallback={<PageLoader label="Loading…" />}>
+            <LandingComplete
+              onMemberSignIn={() => setPublicView('login')}
+            />
+          </Suspense>
+        </ErrorBoundary>
+      );
     }
-    return <LoginScreen onSignIn={handleSignIn} onBack={() => setPublicView('landing')} />;
+    return (
+      <ErrorBoundary label="Page unavailable">
+        <Suspense fallback={<PageLoader label="Loading sign in…" />}>
+          <LoginScreen onSignIn={handleSignIn} onBack={() => setPublicView('landing')} />
+        </Suspense>
+      </ErrorBoundary>
+    );
   }
 
   if (auth.role === 'student') {

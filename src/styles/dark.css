@@ -3,16 +3,20 @@
    ══════════════════════════════════════════════════════════════════ */
 
 [data-theme="dark"] {
+  --primary: #7FC9D2;
+  --primary-rgb: 127, 201, 210;
   --orange-light: rgba(164, 104, 51, 0.15);
   --orange-text: #FCD34D;
   --orange-soft: rgba(164, 104, 51, 0.18);
   --orange-subtle: rgba(164, 104, 51, 0.08);
 }
 
-/* ── Dark mode: --primary used as a FOREGROUND color ──────────────
-   --primary (deep teal) is not flipped in dark mode because it is also
-   used for backgrounds and borders. Where it was used as a text/icon color it
-   rendered ~1.1:1 on dark surfaces (invisible). Remap those to readable text. */
+/* ── Dark mode: --primary flipped to readable light teal ──────────
+   --primary (#19647E) is flipped to #7FC9D2 for dark surfaces. Background/
+   border usages inherit the flip (approved: stitch-theme sets
+   --primary-hover:#7fc9d2 in dark). Text/icon usages from color:var(--primary)
+   (e.g. components.css:164 .btn-outline:hover) are remapped below to
+   readable text. stitch-theme.css loads last — no !important here. */
 [data-theme="dark"] .student-hero h1,
 [data-theme="dark"] .student-panel h2,
 [data-theme="dark"] .student-homework-title h2,
@@ -187,6 +191,7 @@
 [data-theme="dark"] .btn-outline:hover:not(:disabled) {
   background: rgba(var(--ink-rgb),0.28);
   border-color: var(--accent-soft);
+  color: var(--text);
 }
 
 [data-theme="dark"] .btn-ghost {

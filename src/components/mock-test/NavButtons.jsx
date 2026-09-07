@@ -61,10 +61,14 @@ export default function NavButtons({
         .nbtn { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--border); margin-top: auto; }
         .nbtn__progress { flex: 1; text-align: center; font-size: var(--text-sm); color: var(--text-muted); font-variant-numeric: tabular-nums; }
         .nbtn__btn { white-space: nowrap; }
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
           .nbtn { flex-wrap: wrap; gap: var(--space-2); }
           .nbtn__progress { order: -1; flex: 1 0 100%; text-align: left; font-size: var(--text-xs); }
-          .nbtn__btn { flex: 1 1 calc(50% - var(--space-1)); min-height: 44px; }
+          .nbtn__btn { flex: 1 1 calc(50% - var(--space-1)); min-height: 44px; min-width: 44px; }
+        }
+        @media (max-width: 420px) {
+          .nbtn { flex-direction: column; align-items: stretch; }
+          .nbtn__btn { flex: 1 1 100%; width: 100%; }
         }
       `}</style>
     </div>

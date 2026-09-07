@@ -1,7 +1,7 @@
 import { Button } from '../ui/Button.jsx';
 import { Icon } from '../shared.jsx';
 
-export default function SectionHeader({ label, onBack, timer }) {
+export default function MockTestHeader({ label, onBack, timer }) {
   return (
     <header className="shdr">
       <div className="shdr__left">

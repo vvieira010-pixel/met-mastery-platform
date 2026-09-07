@@ -236,12 +236,17 @@ export default function SpeakingSection({ onComplete, speakingData }) {
         .ss__icon--success { color: var(--success); }
         .ss__icon--warning { color: var(--warning); }
         .ss__prep-count { color: var(--text-muted); font-size: var(--text-sm); }
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
           .ss { padding: var(--space-4) var(--space-3); }
           .ss__content { max-width: 100%; }
           .ss__prompt { padding: var(--space-3); font-size: var(--text-sm); }
           .ss__countdown-time { font-size: 28px; }
-          .ss__btn { align-self: stretch; min-height: 44px; }
+          .ss__btn { align-self: stretch; min-height: 44px; width: 100%; justify-content: center; }
+        }
+        @media (max-width: 420px) {
+          .ss { padding: var(--space-3) var(--space-2); }
+          .ss__prompt { padding: var(--space-2); }
+          .ss__countdown { padding: var(--space-3); }
         }
       `}</style>
     </div>

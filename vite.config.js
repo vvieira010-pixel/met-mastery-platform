@@ -12,6 +12,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     target: 'esnext',
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -23,6 +24,10 @@ export default defineConfig({
           if (id.includes('node_modules/d3-')) return 'vendor-d3';
           if (id.includes('node_modules/es-toolkit')) return 'vendor-toolkit';
           if (id.includes('node_modules/@grapesjs/studio-sdk')) return 'vendor-grapesjs';
+          if (id.includes('node_modules/@supabase/') || id.includes('node_modules/@supabase-')) return 'vendor-supabase';
+          if (id.includes('node_modules/gsap/') || id.includes('node_modules/@gsap/')) return 'vendor-gsap';
+          if (id.includes('node_modules/shiki/') || id.includes('node_modules/@shikijs/')) return 'vendor-shiki';
+          if (id.includes('node_modules/@google/genai') || id.includes('node_modules/@google_generative')) return 'vendor-genai';
         },
       },
     },

@@ -1,18 +1,38 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Icon } from './shared.jsx';
 import { HelpPaletteSection } from './ui/ContextualHelp.jsx';
 
+const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export default function CommandPalette({ isOpen, onClose, onExecute, actions }) {
   const [query, setQuery] = useState('');
+  const dialogRef = useRef(null);
+  const previouslyFocused = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
-      setQuery('');
-      setTimeout(() => {
-        const input = document.getElementById('cp-input');
-        if (input) input.focus();
-      }, 10);
+    if (!isOpen) return;
+    previouslyFocused.current = document.activeElement;
+    setQuery('');
+    const t = setTimeout(() => {
+      const input = document.getElementById('cp-input');
+      if (input) input.focus();
+    }, 10);
+    function handleTab(e) {
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+      const els = Array.from(dialogRef.current.querySelectorAll(FOCUSABLE));
+      if (!els.length) return;
+      if (e.shiftKey && document.activeElement === els[0]) {
+        e.preventDefault(); els[els.length - 1].focus();
+      } else if (!e.shiftKey && document.activeElement === els[els.length - 1]) {
+        e.preventDefault(); els[0].focus();
+      }
     }
+    document.addEventListener('keydown', handleTab);
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener('keydown', handleTab);
+      previouslyFocused.current?.focus?.();
+    };
   }, [isOpen]);
 
   const filteredActions = useMemo(() => {
@@ -75,6 +95,11 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       font-size: 16px;
       color: var(--text);
       font-family: inherit;
+    }
+    .cp-input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
     .cp-shortcut {
       font-size: 12px;
@@ -212,7 +237,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
 
   return (
     <div className="cp-overlay" onClick={onClose}>
-      <div className="cp-modal" onClick={e => e.stopPropagation()}>
+      <div ref={dialogRef} className="cp-modal" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Command palette">
         <div className="cp-search-container">
           <Icon.search size={18} className="cp-search-icon" />
           <input
@@ -240,12 +265,14 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
           <div className="cp-shortcut">⌘K</div>
         </div>
         
-        <div className="cp-results">
+        <div className="cp-results" role="listbox" aria-label="Commands">
           {filteredActions.length > 0 ? (
             filteredActions.map((action, i) => (
               <div 
                 key={action.id} 
                 className={`cp-item ${i === selectedIndex ? 'active' : ''}`}
+                role="option"
+                aria-selected={i === selectedIndex}
                 onClick={() => onExecute(action)}
               >
                 <div className="cp-item-left">

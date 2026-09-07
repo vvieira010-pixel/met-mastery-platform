@@ -33,7 +33,7 @@ const TABS = [
 const DONE_HOMEWORK_STATUSES = new Set(['submitted', 'reviewed', 'completed', 'corrected']);
 
 const MOBILE_STYLES = `
-  @media (max-width: 640px) {
+  @media (max-width: 860px) {
     .sp-header-card .card-row {
       flex-direction: column;
       align-items: flex-start;
@@ -52,6 +52,15 @@ const MOBILE_STYLES = `
     }
     .stat-grid {
       grid-template-columns: 1fr !important;
+    }
+  }
+  @media (max-width: 420px) {
+    .sp-header-card {
+      padding: var(--space-3) !important;
+    }
+    .sp-header-card .sp-actions > * {
+      flex: 1 1 100%;
+      width: 100%;
     }
   }
 `;

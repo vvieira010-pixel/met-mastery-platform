@@ -154,11 +154,15 @@ export default function ReadingSection({ onComplete, readingData }) {
         .rs__q-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
         .rs__q-text { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text); }
         .rs__options { display: flex; flex-direction: column; gap: var(--space-2); }
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
           .rs__main { padding: var(--space-4) var(--space-3); gap: var(--space-4); }
           .rs__passage { padding: var(--space-3) var(--space-4); }
           .rs__passage-title { font-size: var(--text-base); }
           .rs__passage-text { font-size: var(--text-sm); }
+        }
+        @media (max-width: 420px) {
+          .rs__main { padding: var(--space-3) var(--space-2); gap: var(--space-3); }
+          .rs__passage { padding: var(--space-2) var(--space-3); }
         }
       `}</style>
     </div>

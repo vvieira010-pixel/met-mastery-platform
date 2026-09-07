@@ -1,4 +1,4 @@
-import SectionHeader from './SectionHeader.jsx';
+import MockTestHeader from './MockTestHeader.jsx';
 import QuestionNav from './QuestionNav.jsx';
 import MockTestTimer from './MockTestTimer.jsx';
 
@@ -22,7 +22,7 @@ export default function SectionShell({
 
   return (
     <div className="mts-shell">
-      <SectionHeader
+      <MockTestHeader
         label={section.label}
         onBack={onBack}
         timer={

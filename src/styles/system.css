@@ -12,3 +12,8 @@
 @import './dark.css';
 @import './redesign.css';
 @import './stitch-theme.css';
+
+/* Owner map — .shell-topbar / .card canonical owner is components.css.
+   stitch-theme.css, redesign.css, responsive.css, dark.css are modifiers
+   (theme overlays / responsive tweaks / dark-mode overrides) and must not
+   redefine canonical structure. Do not reorder the imports above. */

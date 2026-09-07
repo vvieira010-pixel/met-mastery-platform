@@ -17,6 +17,9 @@ export function Modal({ open, onClose, kicker, title, subtitle, maxWidth = 680, 
   useEffect(() => {
     if (!open) return;
     previouslyFocused.current = document.activeElement;
+    const root = document.getElementById('root');
+    const hadInert = root?.hasAttribute('inert');
+    root?.setAttribute('inert', '');
 
     function handleKey(e) {
       if (e.key === 'Escape') { onClose(); return; }
@@ -37,6 +40,7 @@ export function Modal({ open, onClose, kicker, title, subtitle, maxWidth = 680, 
 
     return () => {
       document.removeEventListener('keydown', handleKey);
+      if (root && !hadInert) root.removeAttribute('inert');
       previouslyFocused.current?.focus?.();
     };
   }, [open, onClose]);
@@ -72,7 +76,7 @@ export function Modal({ open, onClose, kicker, title, subtitle, maxWidth = 680, 
         <div className="modal-header">
           <div style={{ flex: 1, minWidth: 0 }}>
             {kicker && <div className="modal-kicker">{kicker}</div>}
-            {title && <div id={titleId} className="modal-title">{title}</div>}
+            {title && <h2 id={titleId} className="modal-title" style={{ margin: 0 }}>{title}</h2>}
             {subtitle && <div id={subtitleId} className="modal-subtitle">{subtitle}</div>}
           </div>
           <button type="button" onClick={onClose} aria-label="Close dialog" className="modal-close">

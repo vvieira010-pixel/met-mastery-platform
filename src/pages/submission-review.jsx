@@ -367,7 +367,7 @@ Return JSON:
   return (
     <div>
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
           .sr-sticky-bar > div {
             height: auto !important;
             min-height: 54px;
@@ -401,6 +401,15 @@ Return JSON:
           .sr-page-shell {
             padding-left: var(--space-3) !important;
             padding-right: var(--space-3) !important;
+          }
+        }
+        @media (max-width: 420px) {
+          .sr-page-shell {
+            padding-left: var(--space-2) !important;
+            padding-right: var(--space-2) !important;
+          }
+          .sr-sticky-bar > div {
+            padding: 8px 10px !important;
           }
         }
       `}</style>

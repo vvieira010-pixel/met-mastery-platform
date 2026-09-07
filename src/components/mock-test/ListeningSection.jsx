@@ -276,9 +276,15 @@ export default function ListeningSection({ onComplete, listeningData }) {
         .ls__audio-status { font-size: var(--text-sm); color: var(--text-muted); }
         .ls__q-text { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text); }
         .ls__options { display: flex; flex-direction: column; gap: var(--space-2); }
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
           .ls__main { padding: var(--space-4) var(--space-3); gap: var(--space-4); }
           .ls__part-header { padding: var(--space-3) var(--space-4); }
+          .ls__audio-row audio { width: 100%; }
+          .ls__audio-row .btn { width: 100%; justify-content: center; min-height: 44px; }
+        }
+        @media (max-width: 420px) {
+          .ls__main { padding: var(--space-3) var(--space-2); gap: var(--space-3); }
+          .ls__audio-row { flex-direction: column; align-items: stretch; }
           .ls__audio-row audio { width: 100%; }
         }
       `}</style>

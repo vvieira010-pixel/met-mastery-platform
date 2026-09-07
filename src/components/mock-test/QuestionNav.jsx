@@ -95,13 +95,17 @@ export default function QuestionNav({
         .qnav__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-1); }
         .qnav__item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
         .qnav__part-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); text-align: center; padding: var(--space-1) 0 2px; width: 100%; }
-        .qnav__btn { width: 100%; height: 32px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; font-size: var(--text-2xs); font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: center; transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast); }
+        .qnav__btn { width: 100%; height: 44px; min-height: 44px; min-width: 44px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; font-size: var(--text-2xs); font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: center; transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast); }
         .qnav__btn:hover:not(:disabled) { border-color: var(--primary); }
         .qnav__btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
         .qnav__btn--current { border-color: var(--primary); background: var(--primary); color: #fff; }
         .qnav__btn--answered { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
         .qnav__btn--current.qnav__btn--answered { background: var(--primary); color: #fff; }
         @media (prefers-reduced-motion: reduce) { .qnav__btn { transition: none; } }
+        @media (max-width: 420px) {
+          .qnav { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: var(--space-2); }
+          .qnav__grid { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); }
+        }
       `}</style>
     </nav>
   );

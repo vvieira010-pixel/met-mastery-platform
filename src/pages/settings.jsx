@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Icon, SectionHeader } from '../components/shared.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
+import { FormField } from '../components/ui/FormField.jsx';
 import { clearWorkflowData, syncLocalToCloud } from '../lib/workflow.js';
 import { getDbContext, getTeacherSetting, setTeacherSetting } from '../lib/supabase-db.js';
 import { getSupabaseConfig, readStoredSupabaseSession, updateUserPassword } from '../lib/supabase-storage.js';
@@ -232,6 +233,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
 
   return (
     <div className="page-shell-narrow" data-testid={testId}>
+      <style>{`.skill-toggle input[type="checkbox"]:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }`}</style>
       <SectionHeader title="Settings" />
 
       {/* TTS, Listening Exercise Audio */}
@@ -248,7 +250,16 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
           <li><strong>Deepgram</strong></li>
         </ol>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-          <Field label="Piper server URL (optional, local/offline)">
+          <FormField
+            label="Piper server URL (optional, local/offline)"
+            hint={
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 3, lineHeight: 1.5 }}>
+                Run <code>python scripts/piper-server.py --model path/to/voice.onnx</code> on your machine.
+                Free, fully offline, no API key needed. From your voices list, good starting points are <code>en_US-lessac-medium</code> or <code>en_US-amy-medium</code> for a US woman voice, <code>en_US-ryan-medium</code> or <code>en_US-hfc_male-medium</code> for a US man voice.
+                Listen to samples at <a href="https://rhasspy.github.io/piper-samples" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper samples</a> and download models from <a href="https://huggingface.co/rhasspy/piper-voices/tree/main" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper voices</a>.
+              </span>
+            }
+          >
             <input
               className="input"
               type="url"
@@ -256,12 +267,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
               onChange={e => setPiperUrl(e.target.value)}
               placeholder="http://localhost:5050"
             />
-            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 3, lineHeight: 1.5 }}>
-              Run <code>python scripts/piper-server.py --model path/to/voice.onnx</code> on your machine.
-              Free, fully offline, no API key needed. From your voices list, good starting points are <code>en_US-lessac-medium</code> or <code>en_US-amy-medium</code> for a US woman voice, <code>en_US-ryan-medium</code> or <code>en_US-hfc_male-medium</code> for a US man voice.
-              Listen to samples at <a href="https://rhasspy.github.io/piper-samples" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper samples</a> and download models from <a href="https://huggingface.co/rhasspy/piper-voices/tree/main" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper voices</a>.
-            </span>
-          </Field>
+          </FormField>
           <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
             <Button variant="primary" onClick={savePiperUrl}>Save Piper URL</Button>
             {saved && <span style={{ color: 'var(--success)', fontSize: 'var(--text-sm)' }}>{saved}</span>}
@@ -275,7 +281,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
         <p className="card-row-meta" style={{ margin: 'var(--space-2) 0 var(--space-3)', lineHeight: 1.6 }}>
           This general memo appears for every student on the Memo Board.
         </p>
-        <Field label="General memo for all students">
+        <FormField label="General memo for all students">
           <textarea
             className="input"
             rows={4}
@@ -283,7 +289,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
             onChange={e => setGeneralMemo(e.target.value)}
             placeholder="Type the message every student should see..."
           />
-        </Field>
+        </FormField>
         <div style={{ marginTop: 12 }}>
           <Button variant="primary" onClick={saveGeneralMemo}>Save General Memo</Button>
         </div>
@@ -296,7 +302,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
           Set the MET exam date for your students. It appears as a live countdown on their Home dashboard.
           Leave blank to hide the countdown.
         </p>
-        <Field label="MET exam date">
+        <FormField label="MET exam date">
           <input
             className="input"
             type="date"
@@ -304,7 +310,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
             onChange={e => setExamDate(e.target.value)}
             style={{ maxWidth: 220 }}
           />
-        </Field>
+        </FormField>
         {examDate && (
           <p style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 6 }}>
             {(() => {
@@ -326,7 +332,10 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
           will include this link and an <code>.ics</code> calendar attachment for the student.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <Field label="Zoom meeting link">
+          <FormField
+            label="Zoom meeting link"
+            hint={<a href="https://zoom.us/profile" target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)', marginTop: 3 }}>Find your Personal Meeting Room link →</a>}
+          >
             <input
               className="input"
               type="url"
@@ -334,16 +343,15 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
               onChange={e => setZoomUrl(e.target.value)}
               placeholder="https://us05web.zoom.us/j/0000000000?pwd=…"
             />
-            <a href="https://zoom.us/profile" target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)', marginTop: 3 }}>Find your Personal Meeting Room link →</a>
-          </Field>
-          <Field label="Your name (shown as the organizer)">
+          </FormField>
+          <FormField label="Your name (shown as the organizer)">
             <input
               className="input"
               value={teacherName}
               onChange={e => setTeacherName(e.target.value)}
               placeholder="e.g. Vinicius, MET Coach"
             />
-          </Field>
+          </FormField>
           <div style={{
             padding: '10px 14px', fontSize: 'var(--text-xs)',
             background: 'var(--accent-subtle)', color: 'var(--muted)', lineHeight: 1.6,
@@ -368,7 +376,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
             Set a password so you can sign in with your email and password next time. No login link needed.
           </p>
           <form onSubmit={handleSetPassword} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <Field label="New password (min. 6 characters)">
+            <FormField label="New password (min. 6 characters)">
               <input
                 className="input"
                 type="password"
@@ -378,8 +386,8 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
                 onChange={e => setNewPassword(e.target.value)}
                 disabled={passwordSaving}
               />
-            </Field>
-            <Field label="Confirm password">
+            </FormField>
+            <FormField label="Confirm password">
               <input
                 className="input"
                 type="password"
@@ -389,9 +397,9 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
                 onChange={e => setConfirmPassword(e.target.value)}
                 disabled={passwordSaving}
               />
-            </Field>
+            </FormField>
             {passwordMsg && (
-              <p style={{ fontSize: 'var(--text-sm)', color: passwordMsg.ok ? 'var(--success)' : 'var(--danger)', margin: 0 }}>
+              <p role={passwordMsg.ok ? 'status' : 'alert'} style={{ fontSize: 'var(--text-sm)', color: passwordMsg.ok ? 'var(--success)' : 'var(--danger)', margin: 0 }}>
                 {passwordMsg.text}
               </p>
             )}
@@ -437,7 +445,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
                     <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--text)' }}>{task.label}</div>
                     <div style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 2 }}>{task.description}</div>
                   </div>
-                  <label style={{ flexShrink: 0, cursor: 'pointer', position: 'relative', width: 40, height: 22 }} aria-label={`Toggle ${task.label}`}>
+                  <label className="skill-toggle" style={{ flexShrink: 0, cursor: 'pointer', position: 'relative', width: 40, height: 22 }} aria-label={`Toggle ${task.label}`}>
                     <input
                       type="checkbox"
                       checked={enabled}
@@ -490,15 +498,6 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
         <Button variant="danger" onClick={handleClearAll}>Clear All Platform Data</Button>
       </Card>
     </div>
-  );
-}
-
-function Field({ label, children }) {
-  return (
-    <label className="field">
-      <span className="field-label">{label}</span>
-      {children}
-    </label>
   );
 }
 
