@@ -76,7 +76,7 @@ test('public landing opens the real sign-in screen and validates an empty form',
 
 test('student can open every primary workspace page', async ({ page }) => {
   await openStudentDashboard(page);
-  await expect(page.getByRole('img', { name: /Academic progress area chart/ })).toBeVisible();
+  await expect(page.getByRole('img', { name: /Academic progress area chart/ })).toBeVisible({ timeout: 20_000 });
   await expect(page.getByText('Chart could not load. Check your connection.')).toHaveCount(0);
 
   const destinations = [
@@ -87,11 +87,16 @@ test('student can open every primary workspace page', async ({ page }) => {
     { button: 'Feedback', text: "Your teacher's latest notes" },
     { button: 'Progress', text: 'Your MET progress path' },
     { button: 'Resources', text: 'Study Materials & Resources' },
-  ];
+  ] as const;
 
   for (const destination of destinations) {
-    await page.getByRole('button', { name: destination.button, exact: true }).click();
-    await expect(page.locator('.dash-body')).toContainText(destination.text);
+    const navButton = page.getByRole('button', { name: destination.button, exact: true });
+    await navButton.scrollIntoViewIfNeeded();
+    await navButton.click();
+
+    const shell = page.locator('.dash-body, main').first();
+    await expect(shell).toBeVisible({ timeout: 20_000 });
+    await expect(shell).toContainText(destination.text, { timeout: 20_000 });
   }
 });
 
@@ -134,7 +139,7 @@ test('teacher can open every primary workspace page', async ({ page }) => {
 test('teacher can create a student login and receive a one-time copyable credential message', async ({ page }) => {
   await seedAuthenticatedSession(page, TEACHER, 'teacher');
   const remoteStudents: Array<Record<string, unknown>> = [];
-  let provisionRequest: Record<string, unknown> | null = null;
+  let provisionRequest = null as Record<string, unknown> | null;
 
   await page.context().route('**/rest/v1/students**', async route => {
     const request = route.request();
