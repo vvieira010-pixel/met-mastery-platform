@@ -19,6 +19,7 @@ export function Button({
   block,
   icon,
   iconPosition = 'trailing',
+  ariaLabel,
   style,
   className = '',
 }) {
@@ -35,6 +36,8 @@ export function Button({
     <span className="btn-icon" aria-hidden="true">{icon}</span>
   ) : null;
 
+  const label = ariaLabel || children || '';
+
   const content = (
     <>
       {iconPosition === 'leading' && iconEl}
@@ -44,7 +47,14 @@ export function Button({
   );
 
   return (
-    <button type={type} className={cls} onClick={onClick} disabled={disabled} style={style}>
+    <button
+      type={type}
+      className={cls}
+      onClick={onClick}
+      disabled={disabled}
+      style={style}
+      aria-label={label}
+    >
       {content}
     </button>
   );

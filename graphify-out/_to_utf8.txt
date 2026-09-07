@@ -1,0 +1,742 @@
+뿯붿node.exe : npm notice run vv-method-platform@1.0.0 npx
+No linha:1 caractere:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\vviei\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm notice run ...tform@1.0.0 npx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm notice run playwright test tests/auth-workflow.test.ts --reporter=line
+
+Running 30 tests using 4 workers
+
+[1/30] [Chromium] › tests\auth-workflow.test.ts:57:1 › user can sign out
+[2/30] [Chromium] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload
+[3/30] [Chromium] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload
+[4/30] [Chromium] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs
+  1) [Chromium] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ─────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      81 |
+      82 | test('teacher can navigate between tabs', async ({ page }) => {
+    > 83 |   await page.goto('/');
+         |              ^
+      84 |   
+      85 |   // Sign in as teacher
+      86 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:83:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-navigate-between-tabs-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-navigate-between-tabs-Chromium\error-context.md
+
+
+  2) [Chromium] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ───
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       5 | test('student can sign in with mock direct payload', async ({ page }) => {
+       6 |   // Mock the Supabase auth state
+    >  7 |   await page.goto('/');
+         |              ^
+       8 |   
+       9 |   // Wait for app to load - should show login since no auth yet
+      10 |   await expect(page.locator('text:Login')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:7:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-Chromium\error-context.md
+
+
+  3) [Chromium] › tests\auth-workflow.test.ts:57:1 › user can sign out ─────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      56 |
+      57 | test('user can sign out', async ({ page }) => {
+    > 58 |   await page.goto('/');
+         |              ^
+      59 |   
+      60 |   // First sign in as student
+      61 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:58:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-user-can-sign-out-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-user-can-sign-out-Chromium\error-context.md
+
+
+  4) [Chromium] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ──
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      33 |
+      34 | test('teacher can sign in with mock direct payload', async ({ page }) => {
+    > 35 |   await page.goto('/');
+         |              ^
+      36 |   
+      37 |   await expect(page.locator('text:Login')).toBeVisible();
+      38 |   
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:35:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-Chromium\error-context.md
+
+
+[5/30] [Chromium] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test
+[6/30] [Chromium] › tests\auth-workflow.test.ts:135:1 › hash navigation works
+[7/30] [Chromium] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher
+[8/30] [Chromium] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student
+  5) [Chromium] › tests\auth-workflow.test.ts:135:1 › hash navigation works ────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/#diagnostics
+    Call log:
+      - navigating to "http://localhost:5173/#diagnostics", waiting until "load"
+
+
+      134 |
+      135 | test('hash navigation works', async ({ page }) => {
+    > 136 |   await page.goto('/#diagnostics');
+          |              ^
+      137 |   
+      138 |   // Should navigate to diagnostics
+      139 |   await expect(page.locator('[data-testid="diagnostics-page"]')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:136:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-hash-navigation-works-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-hash-navigation-works-Chromium\error-context.md
+
+
+  6) [Chromium] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ──────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      146 |
+      147 | test('keyboard shortcuts work for teacher', async ({ page }) => {
+    > 148 |   await page.goto('/');
+          |              ^
+      149 |   
+      150 |   // Sign in as teacher
+      151 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:148:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-keyboard-shortcuts-work-for-teacher-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-teacher-Chromium\error-context.md
+
+
+  7) [Chromium] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      110 |
+      111 | test('student can navigate to mock test', async ({ page }) => {
+    > 112 |   await page.goto('/');
+          |              ^
+      113 |   
+      114 |   // Sign in as student
+      115 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:112:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-student-can-navigate-to-mock-test-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-student-can-navigate-to-mock-test-Chromium\error-context.md
+
+
+  8) [Chromium] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ──────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      172 |
+      173 | test('keyboard shortcuts work for student', async ({ page }) => {
+    > 174 |   await page.goto('/');
+          |              ^
+      175 |   
+      176 |   // Sign in as student
+      177 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:174:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-keyboard-shortcuts-work-for-student-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-student-Chromium\error-context.md
+
+
+[9/30] [Chromium] › tests\auth-workflow.test.ts:196:1 › theme toggle works
+[10/30] [Chromium] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears
+[11/30] [Firefox] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload
+[12/30] [Firefox] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload
+  9) [Chromium] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      224 |
+      225 | test('online/offline bar appears/disappears', async ({ page }) => {
+    > 226 |   await page.goto('/');
+          |              ^
+      227 |   
+      228 |   // Sign in as teacher
+      229 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:226:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-online-offline-bar-appears-disappears-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-online-offline-bar-appears-disappears-Chromium\error-context.md
+
+
+  10) [Chromium] › tests\auth-workflow.test.ts:196:1 › theme toggle works ──────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      195 |
+      196 | test('theme toggle works', async ({ page }) => {
+    > 197 |   await page.goto('/');
+          |              ^
+      198 |   
+      199 |   // Sign in as teacher
+      200 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:197:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-theme-toggle-works-Chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-theme-toggle-works-Chromium\error-context.md
+
+
+[13/30] [Firefox] › tests\auth-workflow.test.ts:57:1 › user can sign out
+[14/30] [Firefox] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs
+  11) [Firefox] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ──
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      33 |
+      34 | test('teacher can sign in with mock direct payload', async ({ page }) => {
+    > 35 |   await page.goto('/');
+         |              ^
+      36 |   
+      37 |   await expect(page.locator('text:Login')).toBeVisible();
+      38 |   
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:35:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-Firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-Firefox\error-context.md
+
+
+[15/30] [Firefox] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test
+  12) [Firefox] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ───
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       5 | test('student can sign in with mock direct payload', async ({ page }) => {
+       6 |   // Mock the Supabase auth state
+    >  7 |   await page.goto('/');
+         |              ^
+       8 |   
+       9 |   // Wait for app to load - should show login since no auth yet
+      10 |   await expect(page.locator('text:Login')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:7:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-Firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-Firefox\error-context.md
+
+
+[16/30] [Firefox] › tests\auth-workflow.test.ts:135:1 › hash navigation works
+  13) [Firefox] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ─────────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      81 |
+      82 | test('teacher can navigate between tabs', async ({ page }) => {
+    > 83 |   await page.goto('/');
+         |              ^
+      84 |   
+      85 |   // Sign in as teacher
+      86 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:83:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-navigate-between-tabs-Firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-navigate-between-tabs-Firefox\error-context.md
+
+
+  14) [Firefox] › tests\auth-workflow.test.ts:57:1 › user can sign out ─────────────────────────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      56 |
+      57 | test('user can sign out', async ({ page }) => {
+    > 58 |   await page.goto('/');
+         |              ^
+      59 |   
+      60 |   // First sign in as student
+      61 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:58:14
+
+    Error Context: test-results\auth-workflow-user-can-sign-out-Firefox\error-context.md
+
+
+[17/30] [Firefox] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher
+[18/30] [Firefox] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student
+  15) [Firefox] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ────────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      110 |
+      111 | test('student can navigate to mock test', async ({ page }) => {
+    > 112 |   await page.goto('/');
+          |              ^
+      113 |   
+      114 |   // Sign in as student
+      115 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:112:14
+
+    Error Context: test-results\auth-workflow-student-can-navigate-to-mock-test-Firefox\error-context.md
+
+
+[19/30] [Firefox] › tests\auth-workflow.test.ts:196:1 › theme toggle works
+  16) [Firefox] › tests\auth-workflow.test.ts:135:1 › hash navigation works ────────────────────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/#diagnostics", waiting until "load"
+
+
+      134 |
+      135 | test('hash navigation works', async ({ page }) => {
+    > 136 |   await page.goto('/#diagnostics');
+          |              ^
+      137 |   
+      138 |   // Should navigate to diagnostics
+      139 |   await expect(page.locator('[data-testid="diagnostics-page"]')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:136:14
+
+    Error Context: test-results\auth-workflow-hash-navigation-works-Firefox\error-context.md
+
+
+[20/30] [Firefox] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears
+  17) [Firefox] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ──────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      146 |
+      147 | test('keyboard shortcuts work for teacher', async ({ page }) => {
+    > 148 |   await page.goto('/');
+          |              ^
+      149 |   
+      150 |   // Sign in as teacher
+      151 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:148:14
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-teacher-Firefox\error-context.md
+
+
+[21/30] [WebKit] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload
+  18) [Firefox] › tests\auth-workflow.test.ts:196:1 › theme toggle works ───────────────────────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      195 |
+      196 | test('theme toggle works', async ({ page }) => {
+    > 197 |   await page.goto('/');
+          |              ^
+      198 |   
+      199 |   // Sign in as teacher
+      200 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:197:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-theme-toggle-works-Firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-theme-toggle-works-Firefox\error-context.md
+
+
+[22/30] [WebKit] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload
+  19) [Firefox] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ──────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      172 |
+      173 | test('keyboard shortcuts work for student', async ({ page }) => {
+    > 174 |   await page.goto('/');
+          |              ^
+      175 |   
+      176 |   // Sign in as student
+      177 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:174:14
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-student-Firefox\error-context.md
+
+
+[23/30] [WebKit] › tests\auth-workflow.test.ts:57:1 › user can sign out
+  20) [Firefox] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ────────
+
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      224 |
+      225 | test('online/offline bar appears/disappears', async ({ page }) => {
+    > 226 |   await page.goto('/');
+          |              ^
+      227 |   
+      228 |   // Sign in as teacher
+      229 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:226:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-online-offline-bar-appears-disappears-Firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-online-offline-bar-appears-disappears-Firefox\error-context.md
+
+
+  21) [WebKit] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+       5 | test('student can sign in with mock direct payload', async ({ page }) => {
+       6 |   // Mock the Supabase auth state
+    >  7 |   await page.goto('/');
+         |              ^
+       8 |   
+       9 |   // Wait for app to load - should show login since no auth yet
+      10 |   await expect(page.locator('text:Login')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:7:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-student-can-sign-in-with-mock-direct-payload-WebKit\error-context.md
+
+
+  22) [WebKit] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ───
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      33 |
+      34 | test('teacher can sign in with mock direct payload', async ({ page }) => {
+    > 35 |   await page.goto('/');
+         |              ^
+      36 |   
+      37 |   await expect(page.locator('text:Login')).toBeVisible();
+      38 |   
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:35:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-sign-in-with-mock-direct-payload-WebKit\error-context.md
+
+
+[24/30] [WebKit] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs
+[25/30] [WebKit] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test
+[26/30] [WebKit] › tests\auth-workflow.test.ts:135:1 › hash navigation works
+  23) [WebKit] › tests\auth-workflow.test.ts:57:1 › user can sign out ──────────────────────────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      56 |
+      57 | test('user can sign out', async ({ page }) => {
+    > 58 |   await page.goto('/');
+         |              ^
+      59 |   
+      60 |   // First sign in as student
+      61 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:58:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-user-can-sign-out-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-user-can-sign-out-WebKit\error-context.md
+
+
+[27/30] [WebKit] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher
+  24) [WebKit] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ──────────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      81 |
+      82 | test('teacher can navigate between tabs', async ({ page }) => {
+    > 83 |   await page.goto('/');
+         |              ^
+      84 |   
+      85 |   // Sign in as teacher
+      86 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:83:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-teacher-can-navigate-between-tabs-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-teacher-can-navigate-between-tabs-WebKit\error-context.md
+
+
+  25) [WebKit] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ─────────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      110 |
+      111 | test('student can navigate to mock test', async ({ page }) => {
+    > 112 |   await page.goto('/');
+          |              ^
+      113 |   
+      114 |   // Sign in as student
+      115 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:112:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-student-can-navigate-to-mock-test-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-student-can-navigate-to-mock-test-WebKit\error-context.md
+
+
+[28/30] [WebKit] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student
+[29/30] [WebKit] › tests\auth-workflow.test.ts:196:1 › theme toggle works
+  26) [WebKit] › tests\auth-workflow.test.ts:135:1 › hash navigation works ─────────────────────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/#diagnostics", waiting until "load"
+
+
+      134 |
+      135 | test('hash navigation works', async ({ page }) => {
+    > 136 |   await page.goto('/#diagnostics');
+          |              ^
+      137 |   
+      138 |   // Should navigate to diagnostics
+      139 |   await expect(page.locator('[data-testid="diagnostics-page"]')).toBeVisible();
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:136:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-hash-navigation-works-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-hash-navigation-works-WebKit\error-context.md
+
+
+[30/30] [WebKit] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears
+  27) [WebKit] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ───────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      146 |
+      147 | test('keyboard shortcuts work for teacher', async ({ page }) => {
+    > 148 |   await page.goto('/');
+          |              ^
+      149 |   
+      150 |   // Sign in as teacher
+      151 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:148:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-keyboard-shortcuts-work-for-teacher-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-teacher-WebKit\error-context.md
+
+
+  28) [WebKit] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ───────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      172 |
+      173 | test('keyboard shortcuts work for student', async ({ page }) => {
+    > 174 |   await page.goto('/');
+          |              ^
+      175 |   
+      176 |   // Sign in as student
+      177 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:174:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-keyboard-shortcuts-work-for-student-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-keyboard-shortcuts-work-for-student-WebKit\error-context.md
+
+
+  29) [WebKit] › tests\auth-workflow.test.ts:196:1 › theme toggle works ────────────────────────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      195 |
+      196 | test('theme toggle works', async ({ page }) => {
+    > 197 |   await page.goto('/');
+          |              ^
+      198 |   
+      199 |   // Sign in as teacher
+      200 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:197:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-theme-toggle-works-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-theme-toggle-works-WebKit\error-context.md
+
+
+  30) [WebKit] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ─────────
+
+    Error: page.goto: Could not connect to server
+    Call log:
+      - navigating to "http://localhost:5173/", waiting until "load"
+
+
+      224 |
+      225 | test('online/offline bar appears/disappears', async ({ page }) => {
+    > 226 |   await page.goto('/');
+          |              ^
+      227 |   
+      228 |   // Sign in as teacher
+      229 |   await page.evaluate(() => {
+        at C:\Users\vviei\Downloads\Projects\met-platform\_review\tests\auth-workflow.test.ts:226:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\auth-workflow-online-offline-bar-appears-disappears-WebKit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\auth-workflow-online-offline-bar-appears-disappears-WebKit\error-context.md
+
+
+  30 failed
+    [Chromium] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ────
+    [Chromium] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ───
+    [Chromium] › tests\auth-workflow.test.ts:57:1 › user can sign out ──────────────────────────────
+    [Chromium] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ──────────────
+    [Chromium] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ─────────────
+    [Chromium] › tests\auth-workflow.test.ts:135:1 › hash navigation works ─────────────────────────
+    [Chromium] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ───────────
+    [Chromium] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ───────────
+    [Chromium] › tests\auth-workflow.test.ts:196:1 › theme toggle works ────────────────────────────
+    [Chromium] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ─────────
+    [Firefox] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ─────
+    [Firefox] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ────
+    [Firefox] › tests\auth-workflow.test.ts:57:1 › user can sign out ───────────────────────────────
+    [Firefox] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ───────────────
+    [Firefox] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ──────────────
+    [Firefox] › tests\auth-workflow.test.ts:135:1 › hash navigation works ──────────────────────────
+    [Firefox] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ────────────
+    [Firefox] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ────────────
+    [Firefox] › tests\auth-workflow.test.ts:196:1 › theme toggle works ─────────────────────────────
+    [Firefox] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ──────────
+    [WebKit] › tests\auth-workflow.test.ts:5:1 › student can sign in with mock direct payload ──────
+    [WebKit] › tests\auth-workflow.test.ts:34:1 › teacher can sign in with mock direct payload ─────
+    [WebKit] › tests\auth-workflow.test.ts:57:1 › user can sign out ────────────────────────────────
+    [WebKit] › tests\auth-workflow.test.ts:82:1 › teacher can navigate between tabs ────────────────
+    [WebKit] › tests\auth-workflow.test.ts:111:1 › student can navigate to mock test ───────────────
+    [WebKit] › tests\auth-workflow.test.ts:135:1 › hash navigation works ───────────────────────────
+    [WebKit] › tests\auth-workflow.test.ts:147:1 › keyboard shortcuts work for teacher ─────────────
+    [WebKit] › tests\auth-workflow.test.ts:173:1 › keyboard shortcuts work for student ─────────────
+    [WebKit] › tests\auth-workflow.test.ts:196:1 › theme toggle works ──────────────────────────────
+    [WebKit] › tests\auth-workflow.test.ts:225:1 › online/offline bar appears/disappears ───────────

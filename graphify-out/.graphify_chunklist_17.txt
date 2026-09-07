@@ -1,0 +1,22 @@
+C:\Users\vviei\platform0.3\platform0.3\docs\agents\issue-tracker.md
+C:\Users\vviei\platform0.3\platform0.3\docs\agents\domain.md
+C:\Users\vviei\platform0.3\platform0.3\docs\agents\triage-labels.md
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\chat-sdk\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\public\stitch\student_notifications_center\code.html
+C:\Users\vviei\platform0.3\platform0.3\public\stitch\design-qa.md
+C:\Users\vviei\platform0.3\platform0.3\public\stitch\DESIGN.md
+C:\Users\vviei\platform0.3\platform0.3\public\stitch\index.html
+C:\Users\vviei\platform0.3\platform0.3\reports\impeccable-audit.md
+C:\Users\vviei\platform0.3\platform0.3\src\lib\teaching_methodology_vinicius_vieira.pdf
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\add-adapter\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\public\stitch\login_access_your_workspace\code.html
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\api-caller\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\fastapi\app\templates\index.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part2\conv a.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part2\conv b.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part2\conv c.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part2\conv d.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part3\conv a.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part3\conv c.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part3\conv b.txt
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-2\transcripts\assets\audio\listening\part3\conv d.txt

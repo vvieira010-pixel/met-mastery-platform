@@ -196,7 +196,7 @@ export default function StudentsPage({ onNavigate, "data-testid": testId }) {
               <input className="input" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value, firstName: e.target.value.split(' ')[0] }))} placeholder="e.g. Ana Paula" autoFocus />
             </Field>
             <Field label="Email">
-              <input className="input" type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} placeholder="student@email.com" />
+              <input className="input" type="email" autoComplete="email" spellCheck={false} value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} placeholder="student@email.com" />
             </Field>
             <Field label="Current level">
               <select className="input" value={form.currentLevel} onChange={e => setForm(f => ({ ...f, currentLevel: e.target.value }))}>

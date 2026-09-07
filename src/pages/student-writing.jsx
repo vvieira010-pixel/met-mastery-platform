@@ -47,13 +47,13 @@ function WritingArea() {
         style={{ borderBottom: '1px solid rgba(var(--border-rgb), 0.2)', background: 'var(--surface-container)' }}
       >
         {['format_bold', 'format_italic', 'format_underlined'].map(icon => (
-          <button key={icon} className="p-1.5 rounded transition-colors" style={{ color: 'var(--text-muted)', background: 'transparent', border: 'none', cursor: 'pointer' }}>
+          <button key={icon} className="p-1.5 rounded transition-colors" style={{ color: 'var(--text-muted)', background: 'transparent', border: 'none', cursor: 'pointer' }} aria-label={`Format: ${icon}`}>
             <span className="material-symbols-outlined" style={{ fontSize: 20 }}>{icon}</span>
           </button>
         ))}
         <div className="w-px h-6 mx-1" style={{ background: 'var(--border)' }} />
         {['format_list_bulleted', 'format_list_numbered'].map(icon => (
-          <button key={icon} className="p-1.5 rounded transition-colors" style={{ color: 'var(--text-muted)', background: 'transparent', border: 'none', cursor: 'pointer' }}>
+          <button key={icon} className="p-1.5 rounded transition-colors" style={{ color: 'var(--text-muted)', background: 'transparent', border: 'none', cursor: 'pointer' }} aria-label={`Format: ${icon}`}>
             <span className="material-symbols-outlined" style={{ fontSize: 20 }}>{icon}</span>
           </button>
         ))}

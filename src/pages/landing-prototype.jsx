@@ -165,7 +165,7 @@ function SelfCheck() {
         </p>
         <form style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 18, flexWrap: 'wrap' }} onSubmit={e => { e.preventDefault(); window.toast?.('Result saved — check your email soon.', 'ok'); }}>
           <label className="lp-dashLabel" htmlFor="sc-email">Email my result</label>
-          <input id="sc-email" type="email" required placeholder="you@example.com" aria-label="Email address for your result" style={{ padding: '10px 12px', border: '1px solid #E8E5DF', borderRadius: 8, fontSize: '0.875rem' }} />
+          <input id="sc-email" type="email" required autoComplete="email" spellCheck={false} placeholder="you@example.com" aria-label="Email address for your result" style={{ padding: '10px 12px', border: '1px solid #E8E5DF', borderRadius: 8, fontSize: '0.875rem' }} />
           <button className="lp-btn lp-light" type="submit">Send</button>
         </form>
       </div>

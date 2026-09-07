@@ -1,0 +1,22 @@
+C:\Users\vviei\platform0.3\platform0.3\.playwright-mcp\page-2026-08-19T22-21-05-653Z.yml
+C:\Users\vviei\platform0.3\platform0.3\.playwright-mcp\page-2026-08-19T22-22-34-986Z.yml
+C:\Users\vviei\platform0.3\platform0.3\.playwright-mcp\page-2026-08-19T22-27-52-541Z.yml
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\reading-p3.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\reading-p2.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\listening-p1.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\reading-p1.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\mock-home.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\listening-p3.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\listening-p2.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\speaking-p5.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\thanks.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\writing-task2.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\reading.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\listening.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\speaking.html
+C:\Users\vviei\platform0.3\platform0.3\public\mock-test-3\sections\writing.html
+C:\Users\vviei\platform0.3\platform0.3\Exercises\b2_met_homework_bank.md
+C:\Users\vviei\platform0.3\platform0.3\Exercises\MET_Test_Skills_Guide.md
+C:\Users\vviei\platform0.3\platform0.3\Exercises\MET_B2_Mini_Mock_Test_Explanation_Guide.md
+C:\Users\vviei\platform0.3\platform0.3\Exercises\MET_Framework_Core_Competencies_Elaboration.md
+C:\Users\vviei\platform0.3\platform0.3\Exercises\Exercises for platform - MET.md

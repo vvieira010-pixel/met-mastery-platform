@@ -26,6 +26,7 @@
     "@google/genai": "^2.12.0",
     "@grapesjs/studio-sdk": "^1.1.1",
     "@gsap/react": "^2.1.2",
+    "@openrouter/sdk": "^1.2.107",
     "@supabase/server": "1.5.3",
     "@supabase/ssr": "^0.12.6",
     "@supabase/supabase-js": "^2.115.0",

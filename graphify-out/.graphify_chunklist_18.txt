@@ -1,0 +1,22 @@
+C:\Users\vviei\platform0.3\platform0.3\.github\PULL_REQUEST_TEMPLATE.md
+C:\Users\vviei\platform0.3\platform0.3\.github\dependabot.yml
+C:\Users\vviei\platform0.3\platform0.3\public\llms.txt
+C:\Users\vviei\platform0.3\platform0.3\public\agents.md
+C:\Users\vviei\platform0.3\platform0.3\public\404.html
+C:\Users\vviei\platform0.3\platform0.3\public\robots.txt
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\add-adapter\assets\adapter.mdx
+C:\Users\vviei\platform0.3\platform0.3\docs\superpowers\specs\2026-09-06-student-class-credit-indicator.md
+C:\Users\vviei\platform0.3\platform0.3\Practice Studio\README.md
+C:\Users\vviei\platform0.3\platform0.3\quizzes\met-speaking-practice.md
+C:\Users\vviei\platform0.3\platform0.3\src\education-skills\skills\epistemic-vigilance\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\task-list\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\text-analyzer\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\.claude\skills\calculator\SKILL.md
+C:\Users\vviei\platform0.3\platform0.3\public\developers\index.html
+C:\Users\vviei\platform0.3\platform0.3\public\methodology\index.html
+C:\Users\vviei\platform0.3\platform0.3\public\about\index.html
+C:\Users\vviei\platform0.3\platform0.3\public\terms\index.html
+C:\Users\vviei\platform0.3\platform0.3\public\privacy\index.html
+C:\Users\vviei\platform0.3\platform0.3\fastapi\README.md
+C:\Users\vviei\platform0.3\platform0.3\Exercises\met-b2\README.md
+C:\Users\vviei\platform0.3\platform0.3\docs\webmcp-practice-tour.md

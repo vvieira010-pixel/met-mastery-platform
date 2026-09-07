@@ -157,6 +157,7 @@ export default function LoginScreen({ onSignIn, onBack, "data-testid": testId })
               className={`lp-input${emailError ? ' lp-input--error' : ''}`}
               type="email"
               autoComplete="email"
+              spellCheck={false}
               placeholder="your@email.com"
               value={email}
               onChange={e => { setEmail(e.target.value); setEmailError(''); }}

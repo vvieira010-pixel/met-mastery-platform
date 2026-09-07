@@ -227,13 +227,13 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
          </Card>
 
          {needsAttention.length > 0 && (
-           <div className="td-alert-banner">
-             <Icon.spark size={14} />
-             <span>{needsAttention.length} student{needsAttention.length > 1 ? 's' : ''} need{needsAttention.length === 1 ? 's' : ''} attention</span>
-             <button className="td-alert-link" onClick={() => setStageFilter('submitted')}>
-               Review now <Icon.arrowR size={12} />
-             </button>
-           </div>
+<div className="td-alert-banner">
+              <Icon.spark size={14} />
+              <span>{needsAttention.length} student{needsAttention.length > 1 ? 's' : ''} need{needsAttention.length === 1 ? 's' : ''} attention</span>
+              <button className="td-alert-link" onClick={() => setStageFilter('submitted')} aria-label="Review now">
+                Review now <Icon.arrowR size={12} />
+              </button>
+            </div>
          )}
 
           {/* Student cycle board */}
@@ -384,6 +384,7 @@ function QuickAction({ icon, label, onClick }) {
   return (
     <button onClick={onClick} className="square-card td-quick-action" aria-label={label} style={{ border: '1px solid var(--border)', background: 'var(--surface)', cursor: 'pointer', transition: 'all 0.2s' }}>
       <span className="td-quick-action-icon" style={{ marginBottom: 8, color: 'var(--accent)' }}>{icon}</span>
+      <span className="sr-only">{label}</span>
       <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text)', textAlign: 'center' }}>{label}</span>
     </button>
   );

@@ -99,23 +99,21 @@ test('falls through provider failures and returns the first successful response'
     return response(200, { choices: [{ message: { content: 'Groq fallback OK' } }] });
   };
 
-  const res = result();
+const res = result();
   await handler(request('fallback-test'), res);
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.content[0].text, 'Groq fallback OK');
   assert.equal(calls[0], 'gemini');
-  assert.equal(calls[1], 'nvidia');
-  assert.ok(calls.slice(1, -2).every((provider) => provider === 'nvidia'));
-  assert.deepEqual(calls.slice(-2), ['openrouter', 'groq']);
+  assert.equal(calls[1], 'groq');
 });
 
-test('puts NVIDIA second and uses its evidence model for a large diagnostic request', async () => {
+test('reaches NVIDIA after the faster providers fail and uses its configured model for a large diagnostic request', async () => {
   const calls = [];
   globalThis.fetch = async (url, init) => {
     const provider = providerFor(url);
     const body = JSON.parse(init.body);
     calls.push({ provider, model: body.model || null });
-    if (provider === 'gemini') return response(503, { error: { message: 'temporarily unavailable' } });
+    if (provider === 'gemini' || provider === 'groq' || provider === 'openrouter') return response(503, { error: { message: 'temporarily unavailable' } });
     if (provider === 'nvidia') return response(200, { choices: [{ message: { content: 'NVIDIA diagnostic OK' } }] });
     return response(503, { error: { message: 'should not be reached' } });
   };
@@ -124,10 +122,11 @@ test('puts NVIDIA second and uses its evidence model for a large diagnostic requ
   await handler(request('nvidia-evidence-priority', { prompt: 'evidence '.repeat(3_000), max_tokens: 6_000 }), res);
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.content[0].text, 'NVIDIA diagnostic OK');
-  assert.deepEqual(calls, [
-    { provider: 'gemini', model: null },
-    { provider: 'nvidia', model: 'deepseek-ai/deepseek-v4-flash' },
-  ]);
+  assert.equal(calls[0].provider, 'gemini');
+  assert.equal(calls[1].provider, 'groq');
+  assert.equal(calls[2].provider, 'openrouter');
+  assert.equal(calls[3].provider, 'nvidia');
+  assert.equal(calls[3].model, 'deepseek-ai/deepseek-v4-flash');
 });
 
 test('rejects malformed JSON and continues to the next model in the cascade', async () => {
@@ -144,7 +143,7 @@ test('rejects malformed JSON and continues to the next model in the cascade', as
       assert.deepEqual(body.response_format, { type: 'json_object' });
       return response(200, { choices: [{ message: { content: '{"skillDiagnosis":"ok"}' } }] });
     }
-    return response(503, {});
+    return response(200, { choices: [{ message: { content: 'not-valid-json' } }] });
   };
 
   const res = result();
@@ -152,7 +151,7 @@ test('rejects malformed JSON and continues to the next model in the cascade', as
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.content[0].text, '{"skillDiagnosis":"ok"}');
   assert.equal(calls[0].provider, 'gemini');
-  assert.equal(calls[1].provider, 'nvidia');
+  assert.equal(calls[calls.length - 1].provider, 'nvidia');
 });
 
 test('does not return upstream provider error bodies', async () => {
@@ -160,7 +159,7 @@ test('does not return upstream provider error bodies', async () => {
   const res = result();
   await handler(request('error-redaction-test', { preferredProvider: 'groq' }), res);
   assert.equal(res.statusCode, 502);
-  assert.match(res.body.error.message, /Groq\/llama-3\.3-70b-versatile: HTTP 401/);
+  assert.match(res.body.error.message, /AI generation is temporarily unavailable/);
   assert.doesNotMatch(res.body.error.message, /secret test-groq-key|account detail/);
 });
 

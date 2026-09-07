@@ -1,8 +1,11 @@
-# Root cause
+# Why this fails
 
-The test is asserting on a generic shell before the page has finished loading. The snapshot shows the student dashboard is already rendered, but the content area is still in a loading state (`main "Progress content"` → `Loading…`). `locator('.dash-body, main').first()` is too broad and brittle here; it can resolve to a transient element that is not yet visible.
+The selector is too broad and the assertion is too generic.
 
-Playwright best practice is to wait for the destination-specific content the user actually needs to see, not for a generic container that may still be mounting.
+- `page.locator('.dash-body, main').first()` matches multiple possible containers and then blindly picks the first one.
+- In the snapshot, the active page is still rendering a loading state: `main "Progress content"` contains `Loading…`.
+- `first()` is a flaky anti-pattern here because it can target a hidden/transient element instead of the real content shell.
+- Playwright best practice is to wait for the specific content that should appear after the nav click, not for a generic `main`/`.first()` container.
 
 ## Fix
 
@@ -12,22 +15,38 @@ for (const destination of destinations) {
   await navButton.scrollIntoViewIfNeeded();
   await navButton.click();
 
-  await expect(page.getByRole('main')).toContainText(destination.text, { timeout: 20_000 });
-
-  // optional if the button becomes active
-  await expect(navButton).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('main')).toBeVisible({ timeout: 20_000 });
+  await expect(page.locator('main')).toContainText(destination.text, { timeout: 20_000 });
 }
 ```
 
-If the app uses client-side routing, prefer:
+If there is a stable app-specific content container, prefer that:
 
 ```ts
-await navButton.click();
-await expect(page).toHaveURL(new RegExp(destination.button, 'i'));
-await expect(page.getByRole('main')).toContainText(destination.text, { timeout: 20_000 });
+for (const destination of destinations) {
+  await page.getByRole('button', { name: destination.button, exact: true }).click();
+
+  const content = page.locator('[data-testid="workspace-content"], main');
+  await expect(content).toBeVisible({ timeout: 20_000 });
+  await expect(content).toContainText(destination.text, { timeout: 20_000 });
+}
 ```
 
-This avoids the flaky `first()` selector and waits on the actual page state instead of a transient shell.
+This avoids `.first()`, targets the real workspace content, and waits for the exact page state the test cares about.
+
+## Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to content" [ref=e3] [cursor=pointer]:
+      - /url: "#student-content"
+    - generic [ref=e5]:
+      - banner [ref=e6]:
+        - button "MET Mastery student home" [ref=e7] [cursor=pointer]:
+          - generic [ref=e8]: M
+          - generic [ref=e9]:
+            - strong [ref=e10]: MET Mastery
             - generic [ref=e11]: Student space
         - navigation "Student navigation" [ref=e12]:
           - button "Home" [ref=e13] [cursor=pointer]
@@ -44,9 +63,7 @@ This avoids the flaky `first()` selector and waits on the actual page state inst
       - main "Progress content" [ref=e46]:
         - generic [ref=e47]: Loading…
       - button "Message teacher" [ref=e49] [cursor=pointer]
-
-- generic [ref=e53]: 0%
-
+  - generic [ref=e53]: 0%
 ```
 
 ## Test source
@@ -149,106 +166,105 @@ This avoids the flaky `first()` selector and waits on the actual page state inst
   95  |     await navButton.click();
   96  | 
   97  |     const shell = page.locator('.dash-body, main').first();
-> 98  |     await expect(shell).toBeVisible({ timeout: 20_000 });
-      |                         ^ Error: expect(locator).toBeVisible() failed
+  98  |     await expect(shell).toBeVisible({ timeout: 20_000 });
   99  |     await expect(shell).toContainText(destination.text, { timeout: 20_000 });
   100 |   }
   101 | });
-  102 | 
-  103 | test('student can open every More-menu page', async ({ page }) => {
-  104 |   await openStudentDashboard(page);
-  105 | 
-  106 |   const destinations = [
-  107 |     { item: 'Mock Tests', text: 'MET Mock Test 1' },
-  108 |     { item: 'Messages', text: 'Inbox' },
-  109 |     { item: 'Settings', text: 'Settings' },
-  110 |   ];
-  111 | 
-  112 |   for (const destination of destinations) {
-  113 |     await page.getByRole('button', { name: 'More', exact: true }).click();
-  114 |     await page.getByRole('menuitem', { name: destination.item, exact: true }).click();
-  115 |     await expect(page.locator('.dash-body')).toContainText(destination.text);
-  116 |   }
-  117 | });
-  118 | 
-  119 | test('teacher can open every primary workspace page', async ({ page }) => {
-  120 |   await openTeacherDashboard(page);
-  121 | 
-  122 |   const destinations = [
-  123 |     { button: 'Today', text: 'Today' },
-  124 |     { button: 'Students', text: 'Students' },
-  125 |     { button: 'Diagnose', text: 'Diagnostics' },
-  126 |     { button: 'Homework', text: 'Homework' },
-  127 |     { button: 'Review', text: 'Submissions' },
-  128 |     { button: 'Calendar', text: 'Calendar' },
-  129 |     { button: 'Resources', text: 'Exercise Library' },
-  130 |     { button: 'Operations', text: 'Operations' },
-  131 |   ];
-  132 | 
-  133 |   for (const destination of destinations) {
-  134 |     await page.getByRole('button', { name: destination.button, exact: true }).click();
-  135 |     await expect(page.locator('.shell-main')).toContainText(destination.text);
-  136 |   }
-  137 | });
-  138 | 
-  139 | test('teacher can create a student login and receive a one-time copyable credential message', async ({ page }) => {
-  140 |   await seedAuthenticatedSession(page, TEACHER, 'teacher');
-  141 |   const remoteStudents: Array<Record<string, unknown>> = [];
-  142 |   let provisionRequest = null as Record<string, unknown> | null;
-  143 | 
-  144 |   await page.context().route('**/rest/v1/students**', async route => {
-  145 |     const request = route.request();
-  146 |     const method = request.method();
-  147 |     if (method === 'POST') {
-  148 |       const row = request.postDataJSON() as Record<string, unknown>;
-  149 |       const saved = { id: 'student-row-e2e', ...row };
-  150 |       remoteStudents.unshift(saved);
-  151 |       await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify([saved]) });
-  152 |       return;
-  153 |     }
-  154 |     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(remoteStudents) });
-  155 |   });
-  156 |   await page.context().route('**/api/create-student-account', async route => {
-  157 |     provisionRequest = route.request().postDataJSON() as Record<string, unknown>;
-  158 |     await route.fulfill({
-  159 |       status: 201,
-  160 |       contentType: 'application/json',
-  161 |       body: JSON.stringify({ ok: true, email: 'new.student@example.invalid', studentId: provisionRequest?.studentId || null, authUserId: 'auth-student-e2e' }),
-  162 |     });
-  163 |   });
-  164 | 
-  165 |   await page.goto(BASE);
-  166 |   await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
-  167 |   await page.getByRole('button', { name: 'Students', exact: true }).click();
-  168 |   await page.getByRole('button', { name: 'Add Student', exact: true }).first().click();
-  169 |   await page.getByPlaceholder('e.g. Ana Paula').fill('New Student');
-  170 |   await page.getByPlaceholder('student@email.com').fill('new.student@example.invalid');
-  171 |   await page.getByRole('button', { name: 'Add Student', exact: true }).last().click();
-  172 | 
-  173 |   await expect(page.getByText('Account created for New Student', { exact: false })).toBeVisible();
-  174 |   await expect(page.getByRole('button', { name: 'Copy credentials', exact: true })).toBeVisible();
-  175 |   expect(provisionRequest).toMatchObject({
-  176 |     email: 'new.student@example.invalid',
-  177 |     name: 'New Student',
-  178 |   });
-  179 |   expect(String(provisionRequest?.password || '').length).toBeGreaterThanOrEqual(12);
-  180 | });
-  181 | 
-  182 | test('teacher secondary routes render their own page shell without a runtime error', async ({ page }) => {
-  183 |   await seedAuthenticatedSession(page, TEACHER, 'teacher');
-  184 |   const pageErrors: Error[] = [];
-  185 |   page.on('pageerror', error => pageErrors.push(error));
-  186 | 
-  187 |   const routes = [
-  188 |     ['cohorts', 'cohorts-page'],
-  189 |     ['students:profile?studentId=missing-student', 'student-profile-page'],
-  190 |     ['calendar:class?classEventId=missing-class', 'class-record-page'],
-  191 |     ['diagnostics:create', 'diagnostic-create-page'],
-  192 |     ['diagnostics:errors', 'error-bank-page'],
-  193 |     ['calendar:inbox', 'inbox-page'],
-  194 |     ['homework:create', 'homework-create-page'],
-  195 |     ['submissions:review?submissionId=missing-submission', 'submission-review-page'],
-  196 |     ['inbox', 'inbox-page'],
-  197 |     ['error-bank', 'error-bank-page'],
-  198 |     ['risk-dashboard', 'risk-dashboard-page'],
+102 | 
+103 | test('student can open every More-menu page', async ({ page }) => {
+104 |   await openStudentDashboard(page);
+105 | 
+106 |   const destinations = [
+107 |     { item: 'Mock Tests', text: 'MET Mock Test 1' },
+108 |     { item: 'Messages', text: 'Inbox' },
+109 |     { item: 'Settings', text: 'Settings' },
+110 |   ];
+111 | 
+112 |   for (const destination of destinations) {
+113 |     await page.getByRole('button', { name: 'More', exact: true }).click();
+114 |     await page.getByRole('menuitem', { name: destination.item, exact: true }).click();
+115 |     await expect(page.locator('.dash-body')).toContainText(destination.text);
+116 |   }
+117 | });
+118 | 
+119 | test('teacher can open every primary workspace page', async ({ page }) => {
+120 |   await openTeacherDashboard(page);
+121 | 
+122 |   const destinations = [
+123 |     { button: 'Today', text: 'Today' },
+124 |     { button: 'Students', text: 'Students' },
+125 |     { button: 'Diagnose', text: 'Diagnostics' },
+126 |     { button: 'Homework', text: 'Homework' },
+127 |     { button: 'Review', text: 'Submissions' },
+128 |     { button: 'Calendar', text: 'Calendar' },
+129 |     { button: 'Resources', text: 'Exercise Library' },
+130 |     { button: 'Operations', text: 'Operations' },
+131 |   ];
+132 | 
+133 |   for (const destination of destinations) {
+134 |     await page.getByRole('button', { name: destination.button, exact: true }).click();
+135 |     await expect(page.locator('.shell-main')).toContainText(destination.text);
+136 |   }
+137 | });
+138 | 
+139 | test('teacher can create a student login and receive a one-time copyable credential message', async ({ page }) => {
+140 |   await seedAuthenticatedSession(page, TEACHER, 'teacher');
+141 |   const remoteStudents: Array<Record<string, unknown>> = [];
+142 |   let provisionRequest = null as Record<string, unknown> | null;
+143 | 
+144 |   await page.context().route('**/rest/v1/students**', async route => {
+145 |     const request = route.request();
+146 |     const method = request.method();
+147 |     if (method === 'POST') {
+148 |       const row = request.postDataJSON() as Record<string, unknown>;
+149 |       const saved = { id: 'student-row-e2e', ...row };
+150 |       remoteStudents.unshift(saved);
+151 |       await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify([saved]) });
+152 |       return;
+153 |     }
+154 |     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(remoteStudents) });
+155 |   });
+156 |   await page.context().route('**/api/create-student-account', async route => {
+157 |     provisionRequest = route.request().postDataJSON() as Record<string, unknown>;
+158 |     await route.fulfill({
+159 |       status: 201,
+160 |       contentType: 'application/json',
+161 |       body: JSON.stringify({ ok: true, email: 'new.student@example.invalid', studentId: provisionRequest?.studentId || null, authUserId: 'auth-student-e2e' }),
+162 |     });
+163 |   });
+164 | 
+165 |   await page.goto(BASE);
+166 |   await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
+167 |   await page.getByRole('button', { name: 'Students', exact: true }).click();
+168 |   await page.getByRole('button', { name: 'Add Student', exact: true }).first().click();
+169 |   await page.getByPlaceholder('e.g. Ana Paula').fill('New Student');
+170 |   await page.getByPlaceholder('student@email.com').fill('new.student@example.invalid');
+171 |   await page.getByRole('button', { name: 'Add Student', exact: true }).last().click();
+172 | 
+173 |   await expect(page.getByText('Account created for New Student', { exact: false })).toBeVisible();
+174 |   await expect(page.getByRole('button', { name: 'Copy credentials', exact: true })).toBeVisible();
+175 |   expect(provisionRequest).toMatchObject({
+176 |     email: 'new.student@example.invalid',
+177 |     name: 'New Student',
+178 |   });
+179 |   expect(String(provisionRequest?.password || '').length).toBeGreaterThanOrEqual(12);
+180 | });
+181 | 
+182 | test('teacher secondary routes render their own page shell without a runtime error', async ({ page }) => {
+183 |   await seedAuthenticatedSession(page, TEACHER, 'teacher');
+184 |   const pageErrors: Error[] = [];
+185 |   page.on('pageerror', error => pageErrors.push(error));
+186 | 
+187 |   const routes = [
+188 |     ['cohorts', 'cohorts-page'],
+189 |     ['students:profile?studentId=missing-student', 'student-profile-page'],
+190 |     ['calendar:class?classEventId=missing-class', 'class-record-page'],
+191 |     ['diagnostics:create', 'diagnostic-create-page'],
+192 |     ['diagnostics:errors', 'error-bank-page'],
+193 |     ['calendar:inbox', 'inbox-page'],
+194 |     ['homework:create', 'homework-create-page'],
+195 |     ['submissions:review?submissionId=missing-submission', 'submission-review-page'],
+196 |     ['inbox', 'inbox-page'],
+197 |     ['error-bank', 'error-bank-page'],
+198 |     ['risk-dashboard', 'risk-dashboard-page'],
 ```

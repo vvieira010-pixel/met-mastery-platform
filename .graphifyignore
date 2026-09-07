@@ -1,0 +1,22 @@
+# graphify: skip binary media (audio/video/images) - too expensive, low graph signal
+*.mp3
+*.wav
+*.m4a
+*.ogg
+*.flac
+*.opus
+*.aac
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.ico
+*.svg
+*.avif

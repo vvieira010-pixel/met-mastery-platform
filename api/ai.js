@@ -100,16 +100,12 @@ const GROQ_DEFAULT_MODELS = [
 const NVIDIA_DEFAULT_MODELS = [
   // Hosted NVIDIA NIM text models. Keep this list provider-specific so
   // NVIDIA can carry diagnostics even when the other providers are unavailable.
-  'nvidia/nemotron-3-super-120b-a12b',
+  // Retired models that return HTTP 410 have been removed, along with the large
+  // models that hang past the attempt timeout and waste the request budget.
   'nvidia/nemotron-3.5-lightning-30b-a3b',
-  'moonshotai/kimi-k2-instruct',
   'mistralai/mixtral-8x22b-instruct',
   'qwen/qwen3-next-80b-a3b-instruct',
-  'meta/llama-3.3-70b-instruct',
   'meta/llama-3.1-70b-instruct',
-  'meta/llama-3.1-8b-instruct',
-  'meta/llama-3.2-3b-instruct',
-  'meta/llama-3.2-1b-instruct',
 ];
 
 const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
@@ -311,23 +307,16 @@ export default async function handler(req, res) {
   // instead of treating every request as the same generic chat completion.
   const isEvidenceHeavy = (prompt.length + sys.length) > 16_000 || max_tokens > 3_500;
   const NVIDIA_EVIDENCE_MODELS = [
-    'nvidia/nemotron-3-super-120b-a12b',
     'nvidia/nemotron-3.5-lightning-30b-a3b',
-    'moonshotai/kimi-k2-instruct',
     'mistralai/mixtral-8x22b-instruct',
     'qwen/qwen3-next-80b-a3b-instruct',
-    'meta/llama-3.3-70b-instruct',
     'meta/llama-3.1-70b-instruct',
   ];
   const NVIDIA_FAST_MODELS = [
     'nvidia/nemotron-3.5-lightning-30b-a3b',
     'nvidia/nemotron-3-nano-30b-a3b',
-    'moonshotai/kimi-k2-instruct',
-    'meta/llama-3.3-70b-instruct',
-    'google/gemma-4-31b-it',
-    'meta/llama-3.1-8b-instruct',
-    'meta/llama-3.2-3b-instruct',
-    'meta/llama-3.2-1b-instruct',
+    'mistralai/mixtral-8x22b-instruct',
+    'meta/llama-3.1-70b-instruct',
   ];
   const configuredNvidiaModels = parseList(env('NVIDIA_MODELS'))
     .filter((model) => !/^openai\//i.test(model));
@@ -371,12 +360,17 @@ export default async function handler(req, res) {
     ['llama-3.1-8b-instant',                        'groq'],
     ['llama-4-scout-17b-16e-instruct',              'groq'],
   ];
+  // Order matters for the time budget (AI_REQUEST_TIMEOUT_MS): fast, reliable
+  // providers run first so a slow/hanging provider (e.g. NVIDIA's large models
+  // timing out at the full attempt timeout) cannot consume the whole budget and
+  // starve the healthy fallbacks. Groq and OpenRouter are quick OpenAI-compatible
+  // gateways, so they are tried before the heavier NVIDIA evidence models.
   const MODEL_PRIORITY = [
     [GEMINI_MODELS[0], 'gemini'],
-    ...nvidiaPriority.map((model) => [model, 'nvidia']),
     ...geminiFallback.map((model) => [model, 'gemini']),
-    ...openRouterFallback.map((model) => [model, 'openrouter']),
     ...groqFallback,
+    ...openRouterFallback.map((model) => [model, 'openrouter']),
+    ...nvidiaPriority.map((model) => [model, 'nvidia']),
   ];
 
   const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, nvidia: nvidiaKeys };
