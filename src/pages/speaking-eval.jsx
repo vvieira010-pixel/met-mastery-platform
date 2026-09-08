@@ -342,7 +342,7 @@ IMPORTANT: overallScore is the sum of all three criterion scores (out of 12). BE
         .se-right { position: sticky; top: var(--space-4); }
         .se-tab { padding: 6px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: var(--text-xs); font-weight: 700; color: var(--text); transition: background-color 0.15s, border-color 0.15s, color 0.15s; }
         .se-tab:hover { border-color: var(--accent); }
-        .se-tab--active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .se-tab--active { background: var(--accent); color: var(--on-dark); border-color: var(--accent); }
         .se-task-list { display: flex; flex-direction: column; gap: 6px; max-height: 400px; overflow-y: auto; }
         .se-task-row { display: block; width: 100%; text-align: left; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: background-color 0.15s, border-color 0.15s, color 0.15s; font: inherit; color: var(--text); }
         .se-task-row:hover { border-color: var(--accent); background: var(--accent-subtle); }
@@ -375,7 +375,7 @@ IMPORTANT: overallScore is the sum of all three criterion scores (out of 12). BE
         .se-score-value { display: block; font-size: 28px; font-weight: 800; color: var(--text); }
         .se-score-card--total .se-score-value { color: var(--accent); }
         .se-score-label { display: block; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.04em; }
-        .se-cefr { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 700; font-size: 12px; }
+        .se-cefr { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 999px; background: var(--accent); color: var(--on-dark); font-weight: 700; font-size: 12px; }
         .se-rationale { font-size: var(--text-xs); color: var(--text-2); margin: 8px 0 0; line-height: 1.5; }
         .se-list { list-style: none; padding: 0; margin: 0; }
         .se-list-item { padding: 6px 0 6px 20px; position: relative; font-size: var(--text-sm); line-height: 1.5; }

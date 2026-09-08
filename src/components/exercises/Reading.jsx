@@ -108,7 +108,7 @@ export default function Reading({ exercise, onComplete }) {
                 : submitted && i === selected && !isCorrect
                   ? 'var(--danger)'
                   : 'transparent',
-              color: submitted && (i === correct || (i === selected && !isCorrect)) ? '#fff' : 'inherit',
+              color: submitted && (i === correct || (i === selected && !isCorrect)) ? 'var(--on-dark)' : 'inherit',
             }}>
               {markerLabel(i)}
             </span>
@@ -128,7 +128,7 @@ export default function Reading({ exercise, onComplete }) {
               background: selected == null
                 ? 'var(--border)'
                 : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-              color: '#fff', fontWeight: 600, fontSize: 14,
+              color: 'var(--on-dark)', fontWeight: 600, fontSize: 14,
               fontFamily: 'var(--font-sans)',
               opacity: selected == null ? 0.5 : 1, transition: 'opacity 0.15s',
             }}

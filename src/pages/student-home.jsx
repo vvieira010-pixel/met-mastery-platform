@@ -14,10 +14,10 @@ const AcademicProgressChart = lazyWithRetry(() => import('../components/Academic
 const ReviewSession = lazyWithRetry(() => import('../components/ReviewSession.jsx'));
 const ExercisePlayer = lazyWithRetry(() => import('../components/exercises/ExercisePlayer.jsx'));
 
-function TodoRow({ done, label, meta }) {
+function TodoRow({ done, label, meta, waiting }) {
   return (
     <div className={`todo-row${done ? ' todo-row--done' : ''}`}>
-      <span className={`todo-row-icon${done ? ' todo-row-icon--done' : ''}`}>
+      <span className={`todo-row-icon${done ? ' todo-row-icon--done' : ''} ${waiting ? 'todo-row-icon--waiting' : ''}`}>
         {done ? <Icon.check size={16} /> : <Icon.circle size={16} />}
       </span>
       <div className="todo-row-content">
@@ -456,9 +456,11 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
               </div>
               <div className="stack-list">
                 {latestReview && <TodoRow done={false} label="Teacher review ready" meta={latestReview.homeworkTitle} />}
-                <div className="recent-feedback">
-                  <TodoRow done={!!latestFeedback} label="Review latest feedback" meta={latestFeedback ? 'Available in the Feedback tab' : awaitingReview.length > 0 ? `${awaitingReview.length} waiting · usually reviewed within 24h` : 'Nothing waiting — submit homework to start the queue'} />
-                </div>
+                 <div className="recent-feedback">
+                   {!latestFeedback && awaitingReview.length > 0
+                     ? <TodoRow done={false} label="Waiting on teacher review" meta={`${awaitingReview.length} ${awaitingReview.length === 1 ? 'item' : 'items'} in queue · reviewed within 24h`} waiting />
+                     : <TodoRow done={!!latestFeedback} label="Review latest feedback" meta={latestFeedback ? 'Available in the Feedback tab' : 'Nothing waiting — submit homework to start the queue'} />}
+                 </div>
                 <TodoRow done={pendingHw.length === 0} label={pendingTitle} meta={pendingHw[0]?.dueDate ? `Due ${new Date(pendingHw[0].dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}` : 'Homework area'} />
               </div>
               <button className="student-wide-action" onClick={() => onTab(heroAction.tab)}>

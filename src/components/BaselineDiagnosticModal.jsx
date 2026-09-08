@@ -277,7 +277,7 @@ export default function BaselineDiagnosticModal({
                 height: 56,
                 borderRadius: '50%',
                 background: 'rgba(22, 163, 74, 0.12)',
-                color: '#3D8C65',
+                color: 'var(--success)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -308,25 +308,25 @@ export default function BaselineDiagnosticModal({
             >
               <div>
                 <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Listening</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.listening >= 53 ? '#3D8C65' : '#2D7A8C' }}>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.listening >= 53 ? 'var(--success)' : 'var(--primary)' }}>
                   {completedResult.listening}
                 </div>
               </div>
               <div>
                 <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Reading</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.reading >= 53 ? '#3D8C65' : '#2D7A8C' }}>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.reading >= 53 ? 'var(--success)' : 'var(--primary)' }}>
                   {completedResult.reading}
                 </div>
               </div>
               <div>
                 <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Writing</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.writing >= 53 ? '#3D8C65' : '#2D7A8C' }}>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.writing >= 53 ? 'var(--success)' : 'var(--primary)' }}>
                   {completedResult.writing}
                 </div>
               </div>
               <div>
                 <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted, #6B7C80)', textTransform: 'uppercase' }}>Speaking</span>
-                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.speaking >= 53 ? '#3D8C65' : '#2D7A8C' }}>
+                <div style={{ fontSize: '1.3rem', fontWeight: 800, color: completedResult.speaking >= 53 ? 'var(--success)' : 'var(--primary)' }}>
                   {completedResult.speaking}
                 </div>
               </div>
@@ -334,8 +334,8 @@ export default function BaselineDiagnosticModal({
 
             <div style={{ padding: '12px 16px', background: 'rgba(2, 132, 199, 0.08)', borderRadius: 8, marginBottom: 24, textAlign: 'left' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <strong style={{ fontSize: '0.9rem', color: '#2D7A8C' }}>Overall Scaled Score: {completedResult.overall} / 80</strong>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? '#3D8C65' : 'var(--warning-text)' }}>
+                <strong style={{ fontSize: '0.9rem', color: 'var(--primary)' }}>Overall Scaled Score: {completedResult.overall} / 80</strong>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: completedResult.overall >= 53 ? 'var(--success)' : 'var(--warning-text)' }}>
                   {completedResult.overall >= 53 ? 'B2 Independent' : 'B1 Developing'}
                 </span>
               </div>
@@ -351,7 +351,7 @@ export default function BaselineDiagnosticModal({
                 width: '100%',
                 padding: '10px 16px',
                 background: 'var(--primary, #2D7A8C)',
-                color: '#ffffff',
+                color: 'var(--on-dark)',
                 border: 'none',
                 borderRadius: 8,
                 fontWeight: 700,
@@ -554,7 +554,7 @@ export default function BaselineDiagnosticModal({
                   style={{
                     padding: '8px 18px',
                     background: 'var(--primary, #2D7A8C)',
-                    color: '#ffffff',
+                    color: 'var(--on-dark)',
                     border: 'none',
                     borderRadius: 6,
                     fontSize: '0.8rem',
@@ -572,8 +572,8 @@ export default function BaselineDiagnosticModal({
                   disabled={submitting}
                   style={{
                     padding: '8px 18px',
-                    background: '#3D8C65',
-                    color: '#ffffff',
+                    background: 'var(--success)',
+                    color: 'var(--on-dark)',
                     border: 'none',
                     borderRadius: 6,
                     fontSize: '0.8rem',

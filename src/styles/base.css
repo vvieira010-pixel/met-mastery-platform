@@ -44,7 +44,7 @@ main [id] {
   z-index: 10000;
   padding: 8px 16px;
   background: var(--primary);
-  color: #fff;
+  color: var(--on-dark);
   font-size: var(--text-sm);
   font-weight: 600;
   text-decoration: none;

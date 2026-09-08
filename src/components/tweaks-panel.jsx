@@ -8,7 +8,7 @@ const CSS = `
   .tweaks-toggle {
     position: fixed; bottom: 20px; right: 20px; z-index: 50;
     width: 40px; height: 40px; border-radius: 50%;
-    background: var(--primary); color: #fff;
+    background: var(--primary); color: var(--on-dark);
     border: none; cursor: pointer; display: flex; align-items: center;
     justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     font-size: 18px; transition: transform 0.2s;
@@ -30,7 +30,7 @@ const CSS = `
     background: var(--divider); color: var(--text-2); border: none; cursor: pointer;
     font-family: var(--font-sans); transition: background 0.12s, color 0.12s;
   }
-  .tweak-radio-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
+  .tweak-radio-btn.active { background: var(--accent); color: var(--on-dark); font-weight: 600; }
   .tweak-toggle-row { display: flex; align-items: center; justify-content: space-between; }
   .tweak-toggle-track {
     width: 36px; height: 20px; border-radius: 999px;
@@ -40,7 +40,7 @@ const CSS = `
   .tweak-toggle-track.on { background: var(--accent); }
   .tweak-toggle-thumb {
     position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
-    border-radius: 50%; background: #fff;
+    border-radius: 50%; background: var(--surface);
     transition: left 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
   .tweak-toggle-track.on .tweak-toggle-thumb { left: 18px; }

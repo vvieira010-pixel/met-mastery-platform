@@ -124,7 +124,7 @@ export default function OrderSentences({ exercise, onComplete }) {
                 width: 26, height: 26, borderRadius: '50%', display: 'grid', placeItems: 'center',
                 fontSize: 12, fontWeight: 700, flexShrink: 0,
                 background: isCorrect ? 'var(--ex-correct-strong)' : isWrong ? 'var(--danger)' : 'var(--bg-deep)',
-                color: isCorrect || isWrong ? '#fff' : 'var(--muted)',
+                color: isCorrect || isWrong ? 'var(--on-dark)' : 'var(--muted)',
               }}>
                 {pos + 1}
               </span>
@@ -179,7 +179,7 @@ export default function OrderSentences({ exercise, onComplete }) {
           style={{
             padding: '10px 24px', borderRadius: 'var(--radius-sm)', border: 'none', cursor: 'pointer',
             background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-            color: '#fff', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
+            color: 'var(--on-dark)', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
           }}
         >
           Check order

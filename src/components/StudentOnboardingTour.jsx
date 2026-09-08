@@ -55,9 +55,9 @@ export default function StudentOnboardingTour() {
       steps={steps}
       styles={{
         options: {
-          primaryColor: '#2D7A8C', // Simple blue tone to match the platform aesthetics
-          textColor: '#2B454E',
-          backgroundColor: '#ffffff',
+          primaryColor: 'var(--primary)', // Simple blue tone to match the platform aesthetics
+          textColor: 'var(--ink)',
+          backgroundColor: 'var(--on-dark)',
           overlayColor: 'rgba(0, 0, 0, 0.4)',
           zIndex: 1000,
         },
@@ -67,7 +67,7 @@ export default function StudentOnboardingTour() {
           padding: '8px 16px',
         },
         buttonSkip: {
-          color: '#6B7C80',
+          color: 'var(--muted)',
         },
         tooltip: {
           borderRadius: '8px',

@@ -16,8 +16,8 @@
  */
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-const TEAL = '#0D9488';
-const NAVY = '#0B1F3A';
+const TEAL = 'var(--primary)';
+const NAVY = 'var(--ink)';
 // Theme-aware text color (NAVY is near-invisible in dark mode).
 const TEXT = 'var(--text)';
 
@@ -262,7 +262,7 @@ const [playCount, setPlayCount] = useState(0);
       }}>
         <div style={{
           fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-          color: '#0E5F6B', textTransform: 'uppercase',
+          color: 'var(--primary)', textTransform: 'uppercase',
         }}>
           🎧 Listening Exercise
         </div>
@@ -274,8 +274,8 @@ const [playCount, setPlayCount] = useState(0);
             aria-label={isFetchingAudio ? 'Loading audio...' : playing ? 'Pause audio' : 'Play audio'}
             style={{
               width: 64, height: 64, borderRadius: '50%', border: 'none',
-              background: isFetchingAudio ? 'var(--border)' : playing ? '#A34E48' : TEAL,
-              color: '#fff',
+              background: isFetchingAudio ? 'var(--border)' : playing ? 'var(--error)' : TEAL,
+              color: 'var(--on-dark)',
               cursor: (isFetchingAudio || !(audioText || audioSrc || isDialogue) || !canPlay) ? 'not-allowed' : 'pointer',
               fontSize: 24, display: 'grid', placeItems: 'center',
               boxShadow: playing ? '0 0 0 6px rgba(239,68,68,.15)' : '0 4px 14px rgba(13,148,136,.3)',
@@ -333,7 +333,7 @@ const [playCount, setPlayCount] = useState(0);
 
       {playCount > 0 && (
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0E5F6B', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{listeningFormat.replace(/_/g, ' ')}</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{listeningFormat.replace(/_/g, ' ')}</div>
           {sourceSentence && listeningFormat === 'paraphrase' && <div style={{ padding: '10px 12px', marginBottom: 12, borderLeft: '3px solid #0E5F6B', background: 'var(--accent-subtle)', color: TEXT, fontStyle: 'italic' }}>“{sourceSentence}”</div>}
           <p style={{ fontSize: 15.5, fontWeight: 600, color: TEXT, marginBottom: 16, lineHeight: 1.6 }}>{question || (listeningFormat === 'gap_fill' ? 'Complete the missing words.' : listeningFormat === 'ordering' ? 'Put the events in the order you hear them.' : 'Choose the best answer.')}</p>
 
@@ -357,12 +357,12 @@ const [playCount, setPlayCount] = useState(0);
                   display: 'grid', placeItems: 'center',
                   fontSize: 13, fontWeight: 700, flexShrink: 0,
                   background: submitted && i === correct
-                    ? '#3D8C65'
+                    ? 'var(--success)'
                     : submitted && i === selected && !isCorrect
                       ? 'var(--danger)'
                       : 'transparent',
                   color: submitted && (i === correct || (i === selected && !isCorrect))
-                    ? '#fff'
+                    ? 'var(--on-dark)'
                     : 'inherit',
                 }}>
                   {markerLabel(i)}
@@ -383,7 +383,7 @@ const [playCount, setPlayCount] = useState(0);
                 background: selected == null
                   ? 'var(--border)'
                   : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-                color: '#fff', fontWeight: 600, fontSize: 14,
+                color: 'var(--on-dark)', fontWeight: 600, fontSize: 14,
                 fontFamily: 'var(--font-ui)',
                 opacity: selected == null ? 0.5 : 1, transition: 'background 0.15s, opacity 0.15s',
               }}
@@ -411,7 +411,7 @@ const [playCount, setPlayCount] = useState(0);
               )}
               {audioText && (
                 <details style={{ marginTop: 10, borderTop: '1px solid var(--divider)', paddingTop: 8 }}>
-                  <summary style={{ cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#0E5F6B' }}>
+                  <summary style={{ cursor: 'pointer', fontSize: 13, fontWeight: 600, color: 'var(--primary)' }}>
                     Show transcript
                   </summary>
                   <div style={{ marginTop: 6, fontSize: 13.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-line' }}>

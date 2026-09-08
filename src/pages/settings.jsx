@@ -477,7 +477,7 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
                     }}>
                       <span style={{
                         position: 'absolute', top: 2, left: enabled ? 20 : 2,
-                        width: 18, height: 18, borderRadius: '50%', backgroundColor: '#fff',
+                        width: 18, height: 18, borderRadius: '50%', backgroundColor: 'var(--on-dark)',
                         transition: 'left 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
                       }} />
                     </span>

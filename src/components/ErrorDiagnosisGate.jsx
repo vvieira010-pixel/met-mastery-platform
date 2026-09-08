@@ -46,7 +46,7 @@ export default function ErrorDiagnosisGate({ onDiagnose, onSkip }) {
           style={{
             padding: '8px 18px', borderRadius: 'var(--radius-sm)', border: 'none',
             background: !selected ? 'var(--border)' : 'var(--accent)',
-            color: !selected ? 'var(--muted)' : '#fff',
+            color: !selected ? 'var(--muted)' : 'var(--on-dark)',
             fontWeight: 600, fontSize: 'var(--text-xs)', cursor: !selected ? 'default' : 'pointer',
             fontFamily: 'var(--font-sans)',
           }}

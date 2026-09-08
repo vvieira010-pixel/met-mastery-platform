@@ -787,7 +787,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
                         >
                           <div className="flex-row-gap2">
                             <span className="skill-chip-check">
-                              {evaluated && <Icon.check size={10} color="#fff" />}
+                              {evaluated && <Icon.check size={10} color="var(--on-dark)" />}
                             </span>
                             <span className={`text-xs font-semibold ${evaluated ? 'text-primary' : ''}`}>{key}</span>
                           </div>

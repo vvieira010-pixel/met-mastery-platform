@@ -505,7 +505,7 @@ function TranscriptTab({ diagnoses, homework, submissions, reviews, errors, stud
           };
           return (
             <Card key={ev.id || i} style={{ marginLeft: 32, marginBottom: 'var(--space-2)', padding: 'var(--space-2) var(--space-3)', position: 'relative' }}>
-              <div style={{ position: 'absolute', left: -27, top: 12, width: 20, height: 20, borderRadius: '50%', background: colorMap[ev.type] || 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+              <div style={{ position: 'absolute', left: -27, top: 12, width: 20, height: 20, borderRadius: '50%', background: colorMap[ev.type] || 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-dark)' }}>
                 {iconMap[ev.type] || <Icon.dot size={14} />}
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>

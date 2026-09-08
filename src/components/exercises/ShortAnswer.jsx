@@ -219,7 +219,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
       {taskConfig && (
         <div style={{ border: '1px solid var(--ex-cat-blue-border)', borderRadius: 'var(--radius-sm, 6px)', marginBottom: 16, overflow: 'hidden' }}>
           <div style={{ padding: '10px 16px', background: 'var(--ex-cat-blue-text)' }}>
-            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--on-dark)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               {taskConfig.label}
             </span>
           </div>
@@ -240,7 +240,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
             )}
             {taskConfig.trap && (
               <div style={{ padding: '8px 12px', background: 'var(--ex-wrong-bg)', border: '1px solid var(--ex-wrong-border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#A34E48', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--error)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
                 <span style={{ fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{taskConfig.trap}</span>
               </div>
             )}
@@ -279,7 +279,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '11px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
               background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-              color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
+              color: 'var(--on-dark)', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
             }}
           >
             Start preparation
@@ -302,17 +302,17 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '11px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
-              background: '#A34E48', color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
+              background: 'var(--error)', color: 'var(--on-dark)', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer',
             }}
           >
-            <span style={{ width: 10, height: 10, background: '#fff', display: 'inline-block', borderRadius: 2 }} />
+            <span style={{ width: 10, height: 10, background: 'var(--on-dark)', display: 'inline-block', borderRadius: 2 }} />
             Stop recording
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF4D4D', display: 'inline-block', animation: 'pulse 1s infinite' }} />
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--danger)', display: 'inline-block', animation: 'pulse 1s infinite' }} />
             <span style={{
               fontSize: 'var(--text-sm)', fontWeight: 700,
-              color: target && seconds <= 10 ? '#FF4D4D' : '#A34E48',
+              color: target && seconds <= 10 ? 'var(--danger)' : 'var(--error)',
               fontVariantNumeric: 'tabular-nums',
             }}>
               {target ? fmt(seconds) : fmt(seconds)}
@@ -351,7 +351,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
               {evalStatus === 'idle' && (
                 <button
                   onClick={requestAiScore}
-                  style={{ padding: '10px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer' }}
+                  style={{ padding: '10px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: 'var(--on-dark)', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer' }}
                 >
                   Get AI score
                 </button>
@@ -371,7 +371,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
               {evalStatus === 'done' && evalData?.evaluation && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-                    <span style={{ padding: '8px 18px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: '#fff', fontSize: 'var(--text-base)' }}>
+                    <span style={{ padding: '8px 18px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: 'var(--on-dark)', fontSize: 'var(--text-base)' }}>
                       {evalData.evaluation.cefrEstimate ?? '–'}
                     </span>
                     <span style={{ padding: '6px 14px', background: 'var(--accent-subtle, rgba(0,0,0,0.04))', border: '1px solid var(--accent-border, var(--border))', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 600, color: 'var(--text)', fontSize: 'var(--text-sm)' }}>
@@ -431,7 +431,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
                     width: 44, height: 44, borderRadius: 'var(--radius-sm, 6px)',
                     border: `2px solid ${selfScore === n ? TEAL : 'var(--border)'}`,
                     background: selfScore === n ? TEAL : 'var(--surface)',
-                    color: selfScore === n ? '#fff' : 'var(--text)',
+                    color: selfScore === n ? 'var(--on-dark)' : 'var(--text)',
                     fontWeight: 700, fontSize: 'var(--text-base)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s, color 0.15s',
                   }}>{n}</button>
                 ))}
@@ -521,7 +521,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
       {taskConfig && !submitted && (
         <div style={{ border: '1px solid var(--ex-cat-blue-border)', borderRadius: 'var(--radius-sm, 6px)', marginBottom: 16, overflow: 'hidden' }}>
           <div style={{ padding: '10px 16px', background: 'var(--ex-cat-blue-text)', borderRadius: 'var(--radius-sm, 6px) var(--radius-sm, 6px) 0 0' }}>
-            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--on-dark)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               {taskConfig.label}
             </span>
           </div>
@@ -551,7 +551,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
 
             {taskConfig.trap && (
               <div style={{ padding: '8px 12px', background: 'var(--ex-wrong-bg)', border: '1px solid var(--ex-wrong-border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: '#A34E48', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--error)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Common mistake: </span>
                 <span style={{ fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{taskConfig.trap}</span>
               </div>
             )}
@@ -615,7 +615,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
             marginTop: 10, padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
             cursor: text.trim() ? 'pointer' : 'not-allowed',
             background: text.trim() ? `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)` : 'var(--border)',
-            color: '#fff', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
+            color: 'var(--on-dark)', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
              opacity: text.trim() ? 1 : 0.5, transition: 'opacity 0.15s',
 
           }}
@@ -629,7 +629,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
             border: '1px solid var(--border)',
           }}>
             <div style={{
-              padding: '9px 14px', background: NAVY, color: '#fff',
+              padding: '9px 14px', background: NAVY, color: 'var(--on-dark)',
               fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
             }}>
               Your answer
@@ -648,7 +648,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
               border: '1px solid var(--ex-selected-border)',
             }}>
               <div style={{
-                padding: '9px 14px', background: TEAL, color: '#fff',
+                padding: '9px 14px', background: TEAL, color: 'var(--on-dark)',
                 fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
               }}>
                 What a strong answer includes
@@ -687,7 +687,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
                       width: 44, height: 44, borderRadius: 'var(--radius-sm, 6px)',
                       border: `2px solid ${selfScore === n ? TEAL : 'var(--border)'}`,
                       background: selfScore === n ? TEAL : 'var(--surface)',
-                      color: selfScore === n ? '#fff' : 'var(--text)',
+                      color: selfScore === n ? 'var(--on-dark)' : 'var(--text)',
                       fontWeight: 700, fontSize: 'var(--text-base)', cursor: 'pointer',
                       transition: 'all 0.15s',
                     }}

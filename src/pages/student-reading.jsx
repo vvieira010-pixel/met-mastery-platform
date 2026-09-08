@@ -82,7 +82,7 @@ function SmartDictionary({ word, definition, synonyms }) {
             <div className="flex gap-2 flex-wrap">
               <span className="px-2 py-1 rounded font-bold" style={{ fontSize: 'var(--text-xs)', background: 'var(--surface-container)', color: 'var(--text)' }}>Synonyms:</span>
               {synonyms.map(s => (
-                <span key={s} className="px-2 py-1 rounded" style={{ fontSize: 'var(--text-xs)', background: '#fff', border: '1px solid rgba(var(--border-rgb), 0.3)', color: 'var(--text-muted)' }}>{s}</span>
+                <span key={s} className="px-2 py-1 rounded" style={{ fontSize: 'var(--text-xs)', background: 'var(--on-dark)', border: '1px solid rgba(var(--border-rgb), 0.3)', color: 'var(--text-muted)' }}>{s}</span>
               ))}
             </div>
           )}
@@ -258,7 +258,7 @@ export default function StudentReading({ onBack, 'data-testid': testId }) {
           <div className="mt-12 pt-8 flex justify-end" style={{ borderTop: '1px solid rgba(var(--border-rgb), 0.2)' }}>
             <button
               className="px-6 py-3 rounded-lg font-bold transition-colors"
-              style={{ background: 'var(--primary)', color: '#fff', border: 'none', cursor: 'pointer' }}
+              style={{ background: 'var(--primary)', color: 'var(--on-dark)', border: 'none', cursor: 'pointer' }}
             >
               Mark as Read
             </button>

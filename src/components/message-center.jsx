@@ -15,7 +15,7 @@ const CSS = `
   }
   .mc-dock-btn {
     width: 44px; height: 44px; border-radius: var(--radius-md);
-    background: var(--accent); color: #fff;
+    background: var(--accent); color: var(--on-dark);
     border: none; cursor: pointer; display: flex; align-items: center;
     justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     position: relative; transition: transform 0.18s;
@@ -24,7 +24,7 @@ const CSS = `
   .mc-badge {
     position: absolute; top: -3px; right: -3px;
     width: 18px; height: 18px; border-radius: 50%;
-    background: var(--warning); color: #fff;
+    background: var(--warning); color: var(--on-dark);
     font-size: 10px; font-weight: 700; display: flex;
     align-items: center; justify-content: center; border: 2px solid #fff;
   }
@@ -47,7 +47,7 @@ const CSS = `
     max-width: 200px; padding: 8px 12px; border-radius: var(--radius-md);
     font-size: 13px; line-height: 1.45; word-break: break-word;
   }
-  .mc-msg.from-me  .mc-bubble { background: var(--accent); color: #fff; border-radius: var(--radius-md) var(--radius-md) 2px var(--radius-md); }
+  .mc-msg.from-me  .mc-bubble { background: var(--accent); color: var(--on-dark); border-radius: var(--radius-md) var(--radius-md) 2px var(--radius-md); }
   .mc-msg.from-them .mc-bubble { background: var(--bg-deep); color: var(--text); border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 2px; }
   .mc-bubble-time { font-size: 10px; opacity: 0.6; margin-top: 3px; }
   .mc-compose {
@@ -63,7 +63,7 @@ const CSS = `
   .mc-compose-input:focus { border-color: var(--primary); }
   .mc-compose-send {
     width: 40px; height: 40px; border-radius: var(--radius-sm);
-    background: var(--accent); color: #fff; border: none; cursor: pointer;
+    background: var(--accent); color: var(--on-dark); border: none; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.15s; flex-shrink: 0;
   }
@@ -134,7 +134,7 @@ export function TeacherUnreadBadge() {
   if (!count) return null;
   return (
     <span style={{
-      background: 'var(--warning)', color: '#fff',
+      background: 'var(--warning)', color: 'var(--on-dark)',
       borderRadius: '999px', padding: '1px 7px',
       fontSize: 11, fontWeight: 700,
     }}>{count}</span>

@@ -28,8 +28,14 @@ export default function LandingComplete({ onMemberSignIn, "data-testid": testId 
     <header className="site-header">
       <a className="site-brand" href="#top"><span className="brand-mark">M</span><span>MET Mastery</span></a>
       <button className="menu-button" type="button" onClick={() => setMenuOpen((open) => !open)} aria-expanded={menuOpen} aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" className={menuOpen ? 'open' : ''}><a href="#how" onClick={() => setMenuOpen(false)}>The learning loop</a><a href="#method" onClick={() => setMenuOpen(false)}>How it works</a><button type="button" className="mobile-signin" onClick={() => { setMenuOpen(false); onMemberSignIn(); }}>Sign in</button></nav>
-      <button className="signin-link" type="button" onClick={onMemberSignIn}>Sign in</button><a className="header-cta" href="#start">Book an RN diagnostic <span aria-hidden="true">→</span></a>
+      <nav id="site-nav" className={menuOpen ? 'open' : ''}>
+        <a href="#how" onClick={() => setMenuOpen(false)}>The learning loop</a>
+        <a href="#method" onClick={() => setMenuOpen(false)}>How it works</a>
+        <button type="button" className="mobile-signin" onClick={() => { setMenuOpen(false); onMemberSignIn(); }}>Sign in</button>
+        <a className="header-cta mobile-cta" href="#start" onClick={() => setMenuOpen(false)}>Book an RN diagnostic <span aria-hidden="true">→</span></a>
+      </nav>
+      <button className="signin-link" type="button" onClick={onMemberSignIn}>Sign in</button>
+      <a className="header-cta desktop-cta" href="#start">Book an RN diagnostic <span aria-hidden="true">→</span></a>
     </header>
     <main id="main">
     <section className="hero" id="top">

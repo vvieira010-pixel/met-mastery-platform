@@ -282,7 +282,7 @@ function downloadResourceDocument(resource) {
     @page { margin: 20mm; size: A4; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #2B454E;
+      color: var(--ink);
       line-height: 1.6;
       margin: 0;
       padding: 24px;
@@ -297,31 +297,31 @@ function downloadResourceDocument(resource) {
       justify-content: space-between;
       align-items: flex-end;
     }
-    .brand { font-size: 20px; font-weight: 800; color: #0f766e; letter-spacing: -0.5px; }
-    .meta-tag { font-size: 11px; background: #f0fdfa; color: #0f766e; border: 1px solid #ccfbf1; padding: 3px 8px; border-radius: 4px; font-weight: 600; }
-    h1 { font-size: 22px; color: #1A2E35; margin: 0 0 8px 0; }
-    h2 { font-size: 16px; color: #0f766e; border-bottom: 1px solid #F6F4EE; padding-bottom: 4px; margin-top: 24px; }
-    h3 { font-size: 14px; color: #2B454E; margin-top: 16px; }
-    p, li { font-size: 13px; color: #2B454E; }
+    .brand { font-size: 20px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .meta-tag { font-size: 11px; background: #f0fdfa; color: var(--primary); border: 1px solid #ccfbf1; padding: 3px 8px; border-radius: 4px; font-weight: 600; }
+    h1 { font-size: 22px; color: var(--ink); margin: 0 0 8px 0; }
+    h2 { font-size: 16px; color: var(--primary); border-bottom: 1px solid #F6F4EE; padding-bottom: 4px; margin-top: 24px; }
+    h3 { font-size: 14px; color: var(--ink); margin-top: 16px; }
+    p, li { font-size: 13px; color: var(--ink); }
     ul { padding-left: 20px; }
-    code, pre { background: #FDFCF8; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace; }
+    code, pre { background: var(--bg); padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace; }
     pre { padding: 12px; white-space: pre-wrap; word-break: break-word; }
     .badge-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: #F6F4EE; color: #5D787D; }
-    .footer { margin-top: 40px; pt-4; border-top: 1px solid #F6F4EE; font-size: 11px; color: #6B7C80; text-align: center; }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: var(--border); color: var(--text-muted); }
+    .footer { margin-top: 40px; pt-4; border-top: 1px solid #F6F4EE; font-size: 11px; color: var(--muted); text-align: center; }
   </style>
 </head>
 <body>
   <div class="header">
     <div>
       <div class="brand">MET MASTERY · VV METHOD</div>
-      <div style="font-size: 12px; color: #6B7C80;">Official Student Resource Document</div>
+      <div style="font-size: 12px; color: var(--muted);">Official Student Resource Document</div>
     </div>
     <span class="meta-tag">${resource.level || 'B2 Target'} · ${resource.category?.toUpperCase() || 'GENERAL'}</span>
   </div>
   
   <h1>${title}</h1>
-  <p style="font-size: 13px; color: #6B7C80; margin-bottom: 16px;">${resource.description || ''}</p>
+  <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">${resource.description || ''}</p>
   
   <div class="badge-bar">
     <span class="badge">Source: ${resource.source || 'VV Method'}</span>
@@ -645,7 +645,7 @@ export default function StudentResources({
               height: '42px',
               borderRadius: '10px',
               background: 'rgba(239, 68, 68, 0.1)',
-              color: '#A34E48',
+              color: 'var(--error)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -656,7 +656,7 @@ export default function StudentResources({
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700, color: '#A34E48', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--error)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Downloadable PDFs
               </span>
               <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink-muted, #6B7C80)' }}>
@@ -708,7 +708,7 @@ export default function StudentResources({
               height: '42px',
               borderRadius: '10px',
               background: 'rgba(37, 99, 235, 0.1)',
-              color: '#2D7A8C',
+              color: 'var(--primary)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -719,7 +719,7 @@ export default function StudentResources({
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700, color: '#2D7A8C', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Official Link Hub
               </span>
               <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink-muted, #6B7C80)' }}>
@@ -901,7 +901,7 @@ export default function StudentResources({
               borderRadius: '6px',
               border: selectedCategory === 'all' ? '1px solid var(--ink, #1A2E35)' : '1px solid transparent',
               background: selectedCategory === 'all' ? 'var(--ink, #1A2E35)' : 'transparent',
-              color: selectedCategory === 'all' ? '#ffffff' : 'var(--ink-muted, #6B7C80)',
+              color: selectedCategory === 'all' ? 'var(--on-dark)' : 'var(--ink-muted, #6B7C80)',
               cursor: 'pointer',
             }}
           >
@@ -922,7 +922,7 @@ export default function StudentResources({
                   borderRadius: '6px',
                   border: active ? '1px solid var(--ink, #1A2E35)' : '1px solid transparent',
                   background: active ? 'var(--ink, #1A2E35)' : 'transparent',
-                  color: active ? '#ffffff' : 'var(--ink-muted, #6B7C80)',
+                  color: active ? 'var(--on-dark)' : 'var(--ink-muted, #6B7C80)',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -945,7 +945,7 @@ export default function StudentResources({
             borderRadius: '8px',
             background: 'rgba(234, 179, 8, 0.1)',
             border: '1px solid rgba(234, 179, 8, 0.3)',
-            color: '#854d0e',
+            color: 'var(--warning)',
             fontSize: '13px',
             marginBottom: '20px',
             display: 'flex',
@@ -1029,7 +1029,7 @@ export default function StudentResources({
               fontWeight: 600,
               borderRadius: '8px',
               background: 'var(--primary, #0f766e)',
-              color: '#ffffff',
+              color: 'var(--on-dark)',
               border: 'none',
               cursor: 'pointer',
             }}
@@ -1052,8 +1052,8 @@ export default function StudentResources({
             }}
           >
             <span>Showing {filteredResources.length} study {filteredResources.length === 1 ? 'material' : 'materials'}</span>
-            {selectedFormat === 'pdf' && <span style={{ color: '#A34E48' }}>📄 PDF Downloads Only</span>}
-            {selectedFormat === 'link' && <span style={{ color: '#2D7A8C' }}>🔗 Official Links Only</span>}
+            {selectedFormat === 'pdf' && <span style={{ color: 'var(--error)' }}>📄 PDF Downloads Only</span>}
+            {selectedFormat === 'link' && <span style={{ color: 'var(--primary)' }}>🔗 Official Links Only</span>}
           </div>
 
           <div
@@ -1112,7 +1112,7 @@ export default function StudentResources({
                           letterSpacing: '0.03em',
                           textTransform: 'uppercase',
                           background: isPdf ? 'rgba(239, 68, 68, 0.1)' : (isLink ? 'rgba(37, 99, 235, 0.1)' : 'rgba(1, 121, 111, 0.1)'),
-                          color: isPdf ? '#A34E48' : (isLink ? '#2D7A8C' : 'var(--primary, #0f766e)'),
+                          color: isPdf ? 'var(--error)' : (isLink ? 'var(--primary)' : 'var(--primary, #0f766e)'),
                         }}
                       >
                         {isPdf ? <Icon.doc size={12} /> : (isLink ? <Icon.link size={12} /> : <Icon.book size={12} />)}
@@ -1146,12 +1146,12 @@ export default function StudentResources({
                             border: 'none',
                             cursor: 'pointer',
                             padding: '4px',
-                            color: isBookmarked ? '#eab308' : 'var(--ink-muted, #6B7C80)',
+                            color: isBookmarked ? 'var(--warning)' : 'var(--ink-muted, #6B7C80)',
                             display: 'flex',
                             borderRadius: '4px',
                           }}
                         >
-                          <Icon.star size={16} fill={isBookmarked ? '#eab308' : 'none'} />
+                          <Icon.star size={16} fill={isBookmarked ? 'var(--warning)' : 'none'} />
                         </button>
                       </div>
                     </div>
@@ -1241,8 +1241,8 @@ export default function StudentResources({
                               fontSize: '12px',
                               fontWeight: 600,
                               borderRadius: '8px',
-                              background: downloadSuccessId === res.id ? '#3D8C65' : '#A34E48',
-                              color: '#ffffff',
+                              background: downloadSuccessId === res.id ? 'var(--success)' : 'var(--error)',
+                              color: 'var(--on-dark)',
                               border: 'none',
                               cursor: 'pointer',
                               transition: 'background 0.15s ease',
@@ -1290,8 +1290,8 @@ export default function StudentResources({
                               fontSize: '12px',
                               fontWeight: 600,
                               borderRadius: '8px',
-                              background: '#2D7A8C',
-                              color: '#ffffff',
+                              background: 'var(--primary)',
+                              color: 'var(--on-dark)',
                               textDecoration: 'none',
                               transition: 'background 0.15s ease',
                             }}
@@ -1338,7 +1338,7 @@ export default function StudentResources({
                               fontWeight: 600,
                               borderRadius: '8px',
                               background: 'var(--primary, #0f766e)',
-                              color: '#ffffff',
+                              color: 'var(--on-dark)',
                               border: 'none',
                               cursor: 'pointer',
                             }}
@@ -1517,8 +1517,8 @@ export default function StudentResources({
                     fontSize: '12px',
                     fontWeight: 600,
                     borderRadius: '8px',
-                    background: '#A34E48',
-                    color: '#ffffff',
+                    background: 'var(--error)',
+                    color: 'var(--on-dark)',
                     border: 'none',
                     cursor: 'pointer',
                   }}

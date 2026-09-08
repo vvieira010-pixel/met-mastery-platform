@@ -33,7 +33,7 @@
 .landing-preview .learning-loop h2,
 .landing-preview .learning-loop h3,
 .landing-preview .audience-cards article:last-child h2 {
-  color: #FFFFFF;
+  color: var(--on-dark);
 }
 
 .landing-preview .hero h1 span { color: #F2C36A; }
@@ -46,7 +46,7 @@
 }
 
 .landing-preview .learning-loop .loop-steps h3 {
-  color: #FFFFFF !important;
+  color: var(--on-dark) !important;
 }
 
 .landing-preview .learning-loop .loop-steps p {
@@ -77,7 +77,7 @@
 .landing-preview .task-action button,
 .landing-preview .audience-cards a {
   background: var(--landing-teal);
-  color: #FFFFFF;
+  color: var(--on-dark);
 }
 
 .landing-preview .header-cta:hover,
@@ -88,14 +88,14 @@
 .landing-preview .task-action button:hover,
 .landing-preview .audience-cards a:hover { background: var(--landing-teal-hover); }
 
-.landing-preview .hero-secondary { border-color: rgb(215 230 225 / 48%); color: #FFFFFF; }
+.landing-preview .hero-secondary { border-color: rgb(215 230 225 / 48%); color: var(--on-dark); }
 
 .landing-preview .audience-picker,
 .landing-preview .method-section { background: var(--landing-paper); }
 
 .landing-preview .skills-strip,
 .landing-preview .product-proof,
-.landing-preview .audience-cards { background: #FFFFFF; }
+.landing-preview .audience-cards { background: var(--surface); }
 
 .landing-preview .method-intro > p:not(.eyebrow),
 .landing-preview .method-grid p,

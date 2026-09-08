@@ -370,7 +370,7 @@ export default function ActionOrientedEvidenceCards({
               <strong style={{ fontSize: '0.85rem', color: 'var(--text, #1A2E35)' }}>
                 Target Task: 45-Second Oral Response with One Concrete Example
               </strong>
-              <span style={{ fontSize: '0.7rem', color: '#3D8C65', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '1px 6px', borderRadius: 4 }}>
+              <span style={{ fontSize: '0.7rem', color: 'var(--success)', fontWeight: 600, background: 'rgba(22, 163, 74, 0.1)', padding: '1px 6px', borderRadius: 4 }}>
                 MET Stage 3–5
               </span>
             </div>
@@ -401,8 +401,8 @@ export default function ActionOrientedEvidenceCards({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  background: '#A34E48',
-                  color: '#ffffff',
+                  background: 'var(--error)',
+                  color: 'var(--on-dark)',
                   border: 'none',
                   borderRadius: 6,
                   padding: '8px 16px',
@@ -422,8 +422,8 @@ export default function ActionOrientedEvidenceCards({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  background: '#2B454E',
-                  color: '#ffffff',
+                  background: 'var(--ink)',
+                  color: 'var(--on-dark)',
                   border: 'none',
                   borderRadius: 6,
                   padding: '8px 16px',
@@ -439,7 +439,7 @@ export default function ActionOrientedEvidenceCards({
             )}
 
             {/* Timer Display */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 700, color: isRecording ? '#A34E48' : 'var(--text, #1A2E35)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 700, color: isRecording ? 'var(--error)' : 'var(--text, #1A2E35)' }}>
               <Icon.clock size={15} />
               <span>{Math.floor(recordingTime / 60)}:{String(recordingTime % 60).padStart(2, '0')} / 0:45</span>
             </div>
@@ -452,7 +452,7 @@ export default function ActionOrientedEvidenceCards({
                   type="button"
                   onClick={() => { setAudioBlobUrl(null); setAudioFile(null); }}
                   title="Clear recording"
-                  style={{ background: 'none', border: 'none', color: '#6B7C80', cursor: 'pointer', padding: 4 }}
+                  style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', padding: 4 }}
                 >
                   <Icon.trash size={15} />
                 </button>
@@ -461,7 +461,7 @@ export default function ActionOrientedEvidenceCards({
           </div>
 
           {recordError && (
-            <div style={{ fontSize: '0.76rem', color: '#b91c1c', marginBottom: 10 }}>
+            <div style={{ fontSize: '0.76rem', color: 'var(--danger)', marginBottom: 10 }}>
               {recordError}
             </div>
           )}
@@ -480,7 +480,7 @@ export default function ActionOrientedEvidenceCards({
                 data-testid="upload-audio-input"
               />
               {audioFile && (
-                <span style={{ fontSize: '0.72rem', color: '#3D8C65', display: 'block', marginTop: 2 }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--success)', display: 'block', marginTop: 2 }}>
                   Selected: {audioFile.name}
                 </span>
               )}
@@ -517,7 +517,7 @@ export default function ActionOrientedEvidenceCards({
                 alignItems: 'center',
                 gap: 8,
                 background: 'var(--primary, #2D7A8C)',
-                color: '#ffffff',
+                color: 'var(--on-dark)',
                 border: 'none',
                 borderRadius: 6,
                 padding: '9px 18px',
@@ -584,7 +584,7 @@ export default function ActionOrientedEvidenceCards({
                 style={{ fontSize: '0.76rem' }}
               />
               {writingFile && (
-                <span style={{ fontSize: '0.72rem', color: '#3D8C65', display: 'block', marginTop: 2 }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--success)', display: 'block', marginTop: 2 }}>
                   Attached: {writingFile.name}
                 </span>
               )}
@@ -599,7 +599,7 @@ export default function ActionOrientedEvidenceCards({
                 alignItems: 'center',
                 gap: 8,
                 background: 'var(--primary, #2D7A8C)',
-                color: '#ffffff',
+                color: 'var(--on-dark)',
                 border: 'none',
                 borderRadius: 6,
                 padding: '9px 18px',
@@ -639,7 +639,7 @@ export default function ActionOrientedEvidenceCards({
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: 'var(--warning-text)' }} /> : <Icon.write size={14} style={{ color: '#8b5cf6' }} />}
+                  {item.type === 'speaking-sample' ? <Icon.chat size={14} style={{ color: 'var(--warning-text)' }} /> : <Icon.write size={14} style={{ color: 'var(--accent)' }} />}
                   <span style={{ fontWeight: 600, color: 'var(--text, #1A2E35)' }}>{item.title}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

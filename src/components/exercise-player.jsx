@@ -1138,7 +1138,7 @@ export function DialoguePlayer({ ex, res, update, readOnly }) {
     { id: 'practiceB', label: `Practice ${ex.speakerB || 'B'}` },
   ];
 
-  const speakerColor = (s) => s === 'A' ? '#0E5F6B' : '#5A2C5C';
+  const speakerColor = (s) => s === 'A' ? 'var(--primary)' : 'var(--accent)';
 
   return (
     <div>
@@ -1152,9 +1152,9 @@ export function DialoguePlayer({ ex, res, update, readOnly }) {
             style={{
               padding: '5px 14px', borderRadius: 0, border: '1.5px solid',
               fontSize: 'var(--text-xs)', fontWeight: 700, cursor: 'pointer',
-              borderColor: mode === t.id ? '#0E5F6B' : 'var(--border)',
-              background: mode === t.id ? '#0E5F6B' : 'var(--surface)',
-              color: mode === t.id ? '#fff' : 'var(--text-2)',
+              borderColor: mode === t.id ? 'var(--primary)' : 'var(--border)',
+              background: mode === t.id ? 'var(--primary)' : 'var(--surface)',
+              color: mode === t.id ? 'var(--on-dark)' : 'var(--text-2)',
               transition: 'all .15s',
             }}>
             {t.label}
@@ -1189,7 +1189,7 @@ export function DialoguePlayer({ ex, res, update, readOnly }) {
             }}>
               <div style={{
                 flexShrink: 0, width: 30, height: 30, borderRadius: '50%',
-                background: speakerColor(line.speaker), color: '#fff',
+                background: speakerColor(line.speaker), color: 'var(--on-dark)',
                 display: 'grid', placeItems: 'center', fontWeight: 700,
                 fontSize: 'var(--text-xs)',
               }}>
@@ -1272,7 +1272,7 @@ export function SwapPlayer({ ex, res, update, readOnly }) {
           if (!/^\[.*\]$/.test(seg)) return <span key={i}>{seg}</span>;
           const word = seg.slice(1, -1);
           const swap = getSwap(word);
-          if (!swap) return <span key={i} style={{ color: '#5A2C5C', fontWeight: 600 }}>{word}</span>;
+          if (!swap) return <span key={i} style={{ color: 'var(--accent)', fontWeight: 600 }}>{word}</span>;
 
           const result = getResult(swap.id);
           const chosen = swap.id in selections ? swap.options[selections[swap.id]] : null;
@@ -1354,9 +1354,9 @@ export function LevelUpPlayer({ ex, res, update, readOnly }) {
   };
 
   const levelConfig = {
-    b1: { label: 'B1', color: '#6B7280', bg: 'rgba(107,114,128,.1)', text: ex.b1 },
-    b2: { label: 'B2', color: '#1A5C2A', bg: 'rgba(26,92,42,.1)', text: ex.b2 },
-    c1: { label: 'C1', color: '#5A2C5C', bg: 'rgba(90,44,92,.1)', text: ex.c1 },
+    b1: { label: 'B1', color: 'var(--muted)', bg: 'rgba(107,114,128,.1)', text: ex.b1 },
+    b2: { label: 'B2', color: 'var(--success)', bg: 'rgba(26,92,42,.1)', text: ex.b2 },
+    c1: { label: 'C1', color: 'var(--accent)', bg: 'rgba(90,44,92,.1)', text: ex.c1 },
   };
 
   return (
@@ -1396,8 +1396,8 @@ export function LevelUpPlayer({ ex, res, update, readOnly }) {
             const isRight = i === correct;
             let bg = 'var(--surface)', border = '1px solid var(--border)', color = 'var(--text)';
             if (submitted) {
-              if (isRight) { bg = 'var(--success-bg)'; border = '1.5px solid var(--success)'; color = '#226B22'; }
-              else if (isSelected) { bg = 'rgba(200,50,50,.08)'; border = '1.5px solid #C03030'; color = '#C03030'; }
+              if (isRight) { bg = 'var(--success-bg)'; border = '1.5px solid var(--success)'; color = 'var(--success)'; }
+              else if (isSelected) { bg = 'rgba(200,50,50,.08)'; border = '1.5px solid #C03030'; color = 'var(--danger)'; }
             } else if (isSelected) {
               bg = 'var(--accent-subtle)'; border = '1.5px solid var(--primary)'; color = 'var(--primary)';
             }
@@ -1442,7 +1442,7 @@ export function LevelUpPlayer({ ex, res, update, readOnly }) {
                 <span key={kw} style={{
                   padding: '3px 10px', borderRadius: 0, fontSize: 'var(--text-xs)', fontWeight: 600,
                   background: found ? 'rgba(34,139,34,.12)' : 'var(--bg)',
-                  color: found ? '#226B22' : 'var(--muted)',
+                  color: found ? 'var(--success)' : 'var(--muted)',
                   border: found ? '1px solid var(--success)' : '1px solid var(--border)',
                   transition: 'all .2s',
                 }}>

@@ -164,7 +164,7 @@ export function StudentNextTask({ task, onAction, onStart, onSecondary }) {
   };
   return (
     <div style={{
-      background:'var(--primary)', color:'#fff', borderRadius:'var(--radius-lg)',
+      background:'var(--primary)', color:'var(--on-dark)', borderRadius:'var(--radius-lg)',
       padding:'16px 20px', display:'flex', alignItems:'center',
       justifyContent:'space-between', gap:12,
     }}>
@@ -176,13 +176,13 @@ export function StudentNextTask({ task, onAction, onStart, onSecondary }) {
       </div>
       <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
         <button onClick={handlePrimary} style={{
-          background:'rgba(255,255,255,0.15)', color:'#fff', border:'none',
+          background:'rgba(255,255,255,0.15)', color:'var(--on-dark)', border:'none',
           borderRadius:'var(--radius-md)', padding:'8px 16px',
           fontSize:'var(--text-sm)', fontWeight:600, cursor:'pointer', fontFamily:'var(--font-sans)',
         }}>Start</button>
         {(onSecondary || onAction) && (
           <button onClick={handleSecondary} style={{
-            background:'rgba(255,255,255,0.08)', color:'#fff', border:'1px solid rgba(255,255,255,0.2)',
+            background:'rgba(255,255,255,0.08)', color:'var(--on-dark)', border:'1px solid rgba(255,255,255,0.2)',
             borderRadius:'var(--radius-md)', padding:'8px 12px',
             fontSize:'var(--text-sm)', fontWeight:500, cursor:'pointer', fontFamily:'var(--font-sans)',
           }}>Inbox</button>
@@ -220,7 +220,7 @@ export function RecommendedNextStep({ title, detail, message, stage, status, ico
       </div>
       {actionTarget && (
         <button onClick={() => onAction?.(actionTarget)} style={{
-          background:'var(--accent)', color:'#fff', border:'none',
+          background:'var(--accent)', color:'var(--on-dark)', border:'none',
           borderRadius:'var(--radius-md)', padding:'7px 14px',
           fontSize:'var(--text-xs)', fontWeight:600, cursor:'pointer',
           fontFamily:'var(--font-sans)', flexShrink:0,

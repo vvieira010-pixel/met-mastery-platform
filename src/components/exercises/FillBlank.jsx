@@ -139,7 +139,7 @@ export default function FillBlank({ exercise, onComplete }) {
             padding: '10px 24px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
             cursor: allFilled ? 'pointer' : 'not-allowed',
             background: allFilled ? `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)` : 'var(--border)',
-            color: '#fff', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
+            color: 'var(--on-dark)', fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)',
             opacity: allFilled ? 1 : 0.5, transition: 'opacity 0.15s, background 0.15s',
           }}
         >

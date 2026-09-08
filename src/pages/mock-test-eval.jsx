@@ -117,15 +117,15 @@ function TypeBadge({ type, level }) {
       {type && (
         <span style={{
           fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
-          padding: '1px 7px', borderRadius: 99, background: `${typeColors[type] || '#6B7C80'}1a`,
-          color: typeColors[type] || '#6B7C80', border: `1px solid ${typeColors[type] || '#6B7C80'}33`,
+          padding: '1px 7px', borderRadius: 99, background: `${typeColors[type] || 'var(--muted)'}1a`,
+          color: typeColors[type] || 'var(--muted)', border: `1px solid ${typeColors[type] || 'var(--muted)'}33`,
         }}>{type}</span>
       )}
       {level && (
         <span style={{
           fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
-          padding: '1px 7px', borderRadius: 99, background: `${levelColors[level] || '#6B7C80'}1a`,
-          color: levelColors[level] || '#6B7C80', border: `1px solid ${levelColors[level] || '#6B7C80'}33`,
+          padding: '1px 7px', borderRadius: 99, background: `${levelColors[level] || 'var(--muted)'}1a`,
+          color: levelColors[level] || 'var(--muted)', border: `1px solid ${levelColors[level] || 'var(--muted)'}33`,
         }}>{level}</span>
       )}
     </span>
@@ -282,7 +282,7 @@ export default function MockTestEvalPage({ 'data-testid': testId }) {
         }
         .mte-section-tab--active {
           background: var(--accent);
-          color: #fff;
+          color: var(--on-dark);
           border-color: var(--accent);
         }
         .mte-layout {

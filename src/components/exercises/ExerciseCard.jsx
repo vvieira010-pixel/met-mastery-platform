@@ -170,7 +170,7 @@ export default function ExerciseCard({ exercise, index, total, isExpanded, onTog
                     <button onClick={(e) => { e.stopPropagation(); onChange({ _teacherVerified: !isVerified }); }}
                       style={{
                         padding: '3px 10px', borderRadius: 'var(--radius-sm)', border: 'none',
-                        background: isVerified ? 'var(--warning-bg)' : 'var(--success)', color: isVerified ? 'var(--warning)' : '#fff',
+                        background: isVerified ? 'var(--warning-bg)' : 'var(--success)', color: isVerified ? 'var(--warning)' : 'var(--on-dark)',
                         cursor: 'pointer', fontWeight: 600, fontSize: 'var(--text-xs)',
                         fontFamily: 'var(--font-sans)',
                       }}>

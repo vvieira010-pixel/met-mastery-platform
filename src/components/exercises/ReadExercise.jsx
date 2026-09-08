@@ -120,7 +120,7 @@ export default function ReadExercise({ exercise, onComplete }) {
         <button onClick={handleSubmit} disabled={!allAnswered} style={{
           padding: '10px 24px', borderRadius: 'var(--radius-sm)', border: 'none', cursor: allAnswered ? 'pointer' : 'not-allowed',
           background: allAnswered ? `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)` : 'var(--border)',
-          color: '#fff', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
+          color: 'var(--on-dark)', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
              opacity: allAnswered ? 1 : 0.5, transition: 'opacity 0.15s',
 
         }}>

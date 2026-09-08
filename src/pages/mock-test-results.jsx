@@ -442,7 +442,7 @@ export default function MockTestResults({ onNavigate, "data-testid": testId }) {
         .mtr-filter-buttons { display: flex; gap: 8px; }
         .mtr-filter-btn { padding: 6px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); font-size: 12px; font-weight: 600; cursor: pointer; transition: background-color 0.15s, border-color 0.15s, color 0.15s; color: var(--text); }
         .mtr-filter-btn:hover { border-color: var(--accent); background: var(--accent-subtle); }
-        .mtr-filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .mtr-filter-btn.active { background: var(--accent); color: var(--on-dark); border-color: var(--accent); }
         .mtr-list { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; display: flex; flex-direction: column; gap: 8px; }
         .mtr-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
         .mtr-row__header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; width: 100%; text-align: left; background: none; border: none; font: inherit; color: inherit; cursor: pointer; }
@@ -450,7 +450,7 @@ export default function MockTestResults({ onNavigate, "data-testid": testId }) {
         .mtr-row__header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
         .mtr-row__student { font-weight: 700; font-size: 15px; color: var(--text); }
         .mtr-row__meta { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); }
-        .mtr-cefr-badge { padding: 2px 10px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 11px; }
+        .mtr-cefr-badge { padding: 2px 10px; border-radius: 999px; color: var(--on-dark); font-weight: 700; font-size: 11px; }
         .mtr-detail { border-top: 1px solid var(--border); padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; }
         .mtr-block { }
         .mtr-block__title { font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin: 0 0 8px; }
@@ -480,7 +480,7 @@ export default function MockTestResults({ onNavigate, "data-testid": testId }) {
         .mtr-speaking-task__actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .mtr-eval-btn { padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--accent); background: var(--accent-subtle); color: var(--accent); font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .mtr-eval-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .mtr-eval-btn:hover:not(:disabled) { background: var(--accent); color: #fff; }
+        .mtr-eval-btn:hover:not(:disabled) { background: var(--accent); color: var(--on-dark); }
         .mtr-speaking-eval { margin-top: 8px; }
         .mtr-eval-loading { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); padding: 8px; }
         .mtr-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: mtr-spin 0.6s linear infinite; }
@@ -492,7 +492,7 @@ export default function MockTestResults({ onNavigate, "data-testid": testId }) {
         .mtr-eval-score { text-align: center; }
         .mtr-eval-score__value { display: block; font-size: 18px; font-weight: 800; color: var(--accent); }
         .mtr-eval-score__label { display: block; font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.04em; }
-        .mtr-eval-cefr { padding: 2px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 700; font-size: 12px; }
+        .mtr-eval-cefr { padding: 2px 10px; border-radius: 999px; background: var(--accent); color: var(--on-dark); font-weight: 700; font-size: 12px; }
         .mtr-eval-criterion { font-size: 11px; font-weight: 600; color: var(--text); padding: 2px 8px; background: var(--surface); border-radius: var(--radius-sm); }
         .mtr-eval-corrections { padding: 8px; margin-bottom: 8px; }
         .mtr-eval-corrections strong { font-size: 12px; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 6px; }

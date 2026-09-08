@@ -15,7 +15,7 @@
   --color-warning: #C9803C;
   --color-error: #A34E48;
   --color-on-dark: #FFFFFF;
-  --color-on-dark-muted: rgba(255, 255, 255, 0.78);
+  --color-on-dark-muted: rgba(var(--on-dark-rgb), 0.78);
   --color-ink-faint: rgba(31, 32, 65, 0.08);
 
   --font-sans: 'Inter', sans-serif;

@@ -104,7 +104,7 @@ export function ExerciseTypePicker({ onSelect, onClose, onAiGenerate, exerciseOp
               </div>
               <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
                 <button onClick={() => onSelect(t.id, qty, level)}
-                  style={{ ...actionBtn, background: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 600, fontSize: 'var(--text-xs)' }}>
+                  style={{ ...actionBtn, background: 'var(--accent)', color: 'var(--on-dark)', border: 'none', fontWeight: 600, fontSize: 'var(--text-xs)' }}>
                   Add
                 </button>
                 {onAiGenerate && (
@@ -136,7 +136,7 @@ export function ExerciseTypePicker({ onSelect, onClose, onAiGenerate, exerciseOp
                   <ExTypeBadge typeId={ex.type} />
                   <span style={{ flex: 1, fontSize: 'var(--text-xs)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--text-2)' }}>{preview}</span>
                   <button onClick={() => onAddAiSuggestion?.(ex)}
-                    style={{ padding: '4px 10px', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--accent)', color: '#fff', cursor: 'pointer', fontWeight: 600, fontSize: 'var(--text-xs)', fontFamily: 'var(--font-sans)' }}>
+                    style={{ padding: '4px 10px', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--accent)', color: 'var(--on-dark)', cursor: 'pointer', fontWeight: 600, fontSize: 'var(--text-xs)', fontFamily: 'var(--font-sans)' }}>
                     Add
                   </button>
                 </div>
@@ -896,7 +896,7 @@ export function DialogueEditor({ ex, update }) {
                   flexShrink: 0, width: 32, height: 32, borderRadius: '50%', border: '2px solid var(--primary)',
                   cursor: 'pointer', fontWeight: 700, fontSize: 'var(--text-sm)',
                   background: line.speaker === 'A' ? 'var(--primary)' : 'var(--surface)',
-                  color: line.speaker === 'A' ? '#fff' : 'var(--primary)',
+                  color: line.speaker === 'A' ? 'var(--on-dark)' : 'var(--primary)',
                 }}>
                 {line.speaker}
               </button>

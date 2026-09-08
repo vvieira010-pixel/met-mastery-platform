@@ -206,7 +206,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{
             padding: '3px 10px', borderRadius: 'var(--radius-sm, 6px)',
-            background: TEAL, color: '#fff',
+            background: TEAL, color: 'var(--on-dark)',
             fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase',
           }}>
             {label}
@@ -216,7 +216,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
               padding: '2px 8px', borderRadius: 'var(--radius-sm, 6px)',
               fontSize: 12, fontWeight: 700,
               background: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--ink-soft)',
-              color: isCorrect ? '#fff' : isIncorrect ? '#fff' : 'var(--text-muted)',
+              color: isCorrect ? 'var(--on-dark)' : isIncorrect ? 'var(--on-dark)' : 'var(--text-muted)',
             }}>
               {isCorrect ? '✓ Correct' : isIncorrect ? '✗ Incorrect' : 'Skipped'}
             </span>
@@ -337,7 +337,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
               style={{
                 padding: '8px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
                 cursor: 'pointer', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-                color: '#fff', fontWeight: 600, fontSize: 13, fontFamily: 'var(--font-sans)',
+                color: 'var(--on-dark)', fontWeight: 600, fontSize: 13, fontFamily: 'var(--font-sans)',
               }}
             >
               {index < total - 1 ? 'Next exercise →' : 'Finish session →'}
@@ -635,7 +635,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
                 onClick={submitFinalAttempt}
                 disabled={submittingFinal}
                 data-testid="practice-studio-final-submit"
-                style={{ padding: '10px 20px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: '#fff', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: submittingFinal ? 'wait' : 'pointer', fontFamily: 'var(--font-sans)' }}
+                style={{ padding: '10px 20px', borderRadius: 'var(--radius-sm, 6px)', border: 'none', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, color: 'var(--on-dark)', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: submittingFinal ? 'wait' : 'pointer', fontFamily: 'var(--font-sans)' }}
               >
                 {submittingFinal ? 'Saving to your teacher record…' : finalSubmissionLabel}
               </button>

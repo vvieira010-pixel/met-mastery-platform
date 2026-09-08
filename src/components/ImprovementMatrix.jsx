@@ -220,7 +220,7 @@ export default function ImprovementMatrix({
                   {/* What to Change Column */}
                   <td style={{ padding: '14px', verticalAlign: 'top', color: 'var(--text, #2B454E)' }}>
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
-                      <span style={{ color: '#2D7A8C', marginTop: 2, flexShrink: 0 }}>
+                      <span style={{ color: 'var(--primary)', marginTop: 2, flexShrink: 0 }}>
                         <Icon.alert size={14} />
                       </span>
                       <span style={{ fontSize: '0.8rem', lineHeight: 1.5 }}>

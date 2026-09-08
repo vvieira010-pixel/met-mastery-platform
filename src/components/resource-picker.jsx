@@ -132,7 +132,7 @@ export default function ResourcePicker({ open, onClose, onSelect, tab: initialTa
             display: 'inline-flex', alignItems: 'center', gap: 6,
             padding: '6px 14px', borderRadius: 'var(--radius-sm)',
             background: uploading ? 'var(--border)' : 'var(--accent)',
-            color: '#fff', cursor: uploading ? 'wait' : 'pointer',
+            color: 'var(--on-dark)', cursor: uploading ? 'wait' : 'pointer',
             fontSize: 'var(--text-xs)', fontWeight: 600, fontFamily: 'var(--font-sans)',
             border: 'none', opacity: uploading ? 0.7 : 1,
           }}>

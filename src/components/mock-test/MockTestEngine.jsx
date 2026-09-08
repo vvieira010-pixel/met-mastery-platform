@@ -292,7 +292,7 @@ export default function MockTestEngine({ student, onBack, testId = 'mock-test-1'
           height: 24px;
           border-radius: 50%;
           background: var(--success);
-          color: #fff;
+          color: var(--on-dark);
           display: flex;
           align-items: center;
           justify-content: center;

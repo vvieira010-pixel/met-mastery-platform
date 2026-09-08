@@ -142,7 +142,7 @@ export default function ClassRecord({ classEventId, students, onNavigate, "data-
                 onClick={() => toggleSkill(evalKey, countKey)}>
                 <div className="flex-row gap-2">
                   <span className={`cr-skill-check${evaluated ? ' cr-skill-check--active' : ''}`}>
-                    {evaluated && <Icon.check size={11} color="#fff" />}
+                    {evaluated && <Icon.check size={11} color="var(--on-dark)" />}
                   </span>
                   <span className="cr-skill-label">{key}</span>
                 </div>

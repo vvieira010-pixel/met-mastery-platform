@@ -180,8 +180,8 @@ export default function LiveClassSchedulingGuardrails({
 
         {/* Policy Pill Badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(245, 158, 11, 0.1)', padding: '6px 10px', borderRadius: 8 }}>
-          <Icon.clock size={14} style={{ color: '#C9803C' }} />
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#92400e' }}>
+          <Icon.clock size={14} style={{ color: 'var(--warning)' }} />
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--warning)' }}>
             Enforced 24h Advance Notice
           </span>
         </div>
@@ -224,7 +224,7 @@ export default function LiveClassSchedulingGuardrails({
                       height: 42,
                       borderRadius: 8,
                       background: cls.isOver24h ? 'rgba(2, 132, 199, 0.1)' : 'rgba(245, 158, 11, 0.12)',
-                      color: cls.isOver24h ? 'var(--primary, #2D7A8C)' : '#C9803C',
+                      color: cls.isOver24h ? 'var(--primary, #2D7A8C)' : 'var(--warning)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -246,7 +246,7 @@ export default function LiveClassSchedulingGuardrails({
                           padding: '1px 6px',
                           borderRadius: 4,
                           background: cls.isOver24h ? 'rgba(22, 163, 74, 0.1)' : 'rgba(245, 158, 11, 0.15)',
-                          color: cls.isOver24h ? '#3D8C65' : '#b45309',
+                          color: cls.isOver24h ? 'var(--success)' : 'var(--warning)',
                         }}
                       >
                         {cls.isOver24h ? `In ${hoursLeft}h (Policy Met)` : `Locked: Starts in ${hoursLeft}h ${minsLeft}m`}
@@ -289,7 +289,7 @@ export default function LiveClassSchedulingGuardrails({
                           borderRadius: 6,
                           border: '1px solid rgba(239, 68, 68, 0.3)',
                           background: 'rgba(239, 68, 68, 0.05)',
-                          color: '#A34E48',
+                          color: 'var(--error)',
                           fontSize: '0.75rem',
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -310,7 +310,7 @@ export default function LiveClassSchedulingGuardrails({
                         borderRadius: 6,
                         border: '1px solid rgba(245, 158, 11, 0.4)',
                         background: 'rgba(245, 158, 11, 0.08)',
-                        color: '#92400e',
+                        color: 'var(--warning)',
                         fontSize: '0.75rem',
                         fontWeight: 700,
                         cursor: 'pointer',
@@ -347,7 +347,7 @@ export default function LiveClassSchedulingGuardrails({
           }}
         >
           <div style={{ background: 'var(--surface, #ffffff)', padding: 24, borderRadius: 12, maxWidth: 460, width: '100%', boxShadow: '0 20px 25px rgba(0,0,0,0.15)' }}>
-            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: '#A34E48' }}>Cancel Upcoming Class</h3>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: 'var(--error)' }}>Cancel Upcoming Class</h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-2, #2B454E)', margin: '0 0 14px' }}>
               Verified: You have provided <strong>{Math.round(selectedClass.hoursUntil)} hours advance notice</strong> (exceeds the 24-hour requirement). Your teacher will be notified immediately.
             </p>
@@ -375,7 +375,7 @@ export default function LiveClassSchedulingGuardrails({
                 type="button"
                 onClick={handleConfirmCancel}
                 disabled={processing}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: '#A34E48', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--error)', color: 'var(--on-dark)', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
                 data-testid="confirm-cancel-btn"
               >
                 {processing ? 'Processing...' : 'Confirm 24h+ Cancellation'}
@@ -455,7 +455,7 @@ export default function LiveClassSchedulingGuardrails({
                 type="button"
                 onClick={handleConfirmReschedule}
                 disabled={processing}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: 'var(--on-dark)', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem' }}
                 data-testid="confirm-reschedule-btn"
               >
                 {processing ? 'Sending...' : 'Send Reschedule Request'}
@@ -482,14 +482,14 @@ export default function LiveClassSchedulingGuardrails({
           }}
         >
           <div style={{ background: 'var(--surface, #ffffff)', padding: 24, borderRadius: 12, maxWidth: 460, width: '100%', boxShadow: '0 20px 25px rgba(0,0,0,0.15)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#C9803C', marginBottom: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--warning)', marginBottom: 10 }}>
               <Icon.lock size={22} />
-              <h3 style={{ margin: 0, fontSize: '1.15rem', color: '#92400e' }}>24-Hour Notice Policy Guardrail</h3>
+              <h3 style={{ margin: 0, fontSize: '1.15rem', color: 'var(--warning)' }}>24-Hour Notice Policy Guardrail</h3>
             </div>
             <p style={{ fontSize: '0.82rem', color: 'var(--text, #2B454E)', lineHeight: 1.5, margin: '0 0 12px' }}>
               Under the VV Method Course Policy, self-service cancellations and adjustments are locked within <strong>24 hours of class start</strong>.
             </p>
-            <div style={{ padding: '10px 14px', background: 'rgba(245, 158, 11, 0.08)', borderRadius: 8, border: '1px solid rgba(245, 158, 11, 0.2)', marginBottom: 16, fontSize: '0.78rem', color: '#78350f' }}>
+            <div style={{ padding: '10px 14px', background: 'rgba(245, 158, 11, 0.08)', borderRadius: 8, border: '1px solid rgba(245, 158, 11, 0.2)', marginBottom: 16, fontSize: '0.78rem', color: 'var(--warning)' }}>
               <strong>Class session begins in {Math.floor(policyModalClass.hoursUntil)} hours {Math.floor((policyModalClass.hoursUntil * 60) % 60)} minutes.</strong>
               <div style={{ marginTop: 4 }}>
                 For unexpected emergencies, please message your teacher directly in the platform messages to coordinate.
@@ -506,7 +506,7 @@ export default function LiveClassSchedulingGuardrails({
               <button
                 type="button"
                 onClick={() => handleEmergencyMessageTeacher(policyModalClass)}
-                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: '#ffffff', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{ padding: '8px 16px', borderRadius: 6, border: 'none', background: 'var(--primary, #2D7A8C)', color: 'var(--on-dark)', fontWeight: 700, cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}
                 data-testid="emergency-message-teacher-btn"
               >
                 <Icon.chat size={14} /> Message Teacher

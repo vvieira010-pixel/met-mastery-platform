@@ -36,7 +36,7 @@ export default function GuidedTourOverlay({ highlight, onDismiss, onNext, totalS
         <h2 style={{ margin: 'var(--space-1) 0', fontSize: 'var(--text-base)' }}>{highlight.label}</h2>
         <p style={{ margin: 0, color: 'var(--muted)', fontSize: 'var(--text-sm)', lineHeight: 1.45 }}>{rect ? highlight.description : 'This target is not visible yet. Complete the current step, then ask Codex to check again.'}</p>
         {onNext ? (
-          <button type="button" onClick={onNext} style={{ marginTop: 'var(--space-3)', minHeight: 44, padding: '8px 14px', border: '1px solid var(--primary)', borderRadius: 'var(--radius-sm)', background: 'var(--primary)', color: '#fff', font: 'inherit', fontWeight: 600, cursor: 'pointer' }}>{highlight.step >= totalSteps ? 'Done' : 'Next'}</button>
+          <button type="button" onClick={onNext} style={{ marginTop: 'var(--space-3)', minHeight: 44, padding: '8px 14px', border: '1px solid var(--primary)', borderRadius: 'var(--radius-sm)', background: 'var(--primary)', color: 'var(--on-dark)', font: 'inherit', fontWeight: 600, cursor: 'pointer' }}>{highlight.step >= totalSteps ? 'Done' : 'Next'}</button>
         ) : (
           <button type="button" onClick={onDismiss} style={{ marginTop: 'var(--space-3)', minHeight: 44, padding: '8px 10px', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', background: 'var(--surface)', color: 'var(--text)', font: 'inherit', cursor: 'pointer' }}>Dismiss highlight</button>
         )}

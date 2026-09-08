@@ -87,7 +87,7 @@ export default function MockTestPage({ student, students, onNavigate, auth, "dat
           {students.map(s => (
             <Card key={s.id} style={{ cursor: 'pointer' }} onClick={() => setSelectedStudent(s)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--primary)', color: 'var(--on-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>
                   {(s.name || '?')[0].toUpperCase()}
                 </div>
                 <div>
@@ -209,7 +209,7 @@ export default function MockTestPage({ student, students, onNavigate, auth, "dat
         .mtr-student__row { display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 14px; }
         .mtr-student__date { color: var(--text-muted); min-width: 90px; }
         .mtr-student__score { font-weight: 600; color: var(--text); flex: 1; }
-        .mtr-student__cefr { padding: 2px 10px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 11px; }
+        .mtr-student__cefr { padding: 2px 10px; border-radius: 999px; color: var(--on-dark); font-weight: 700; font-size: 11px; }
       `}</style>
     </div>
   );

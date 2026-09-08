@@ -218,7 +218,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.55) 45%, transparent 70%);
+  background: linear-gradient(100deg, transparent 20%, rgba(var(--on-dark-rgb), 0.55) 45%, transparent 70%);
   background-size: 200% 100%;
   background-position: -120% 0;
   opacity: 0;

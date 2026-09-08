@@ -59,7 +59,7 @@ export default function OptionButton({
         }
         .opt-btn--selected .opt-btn__letter { 
           background: var(--primary); 
-          color: #fff; 
+          color: var(--on-dark); 
           border-color: var(--primary);
         }
         .opt-btn__text { flex: 1; line-height: 1.5; }

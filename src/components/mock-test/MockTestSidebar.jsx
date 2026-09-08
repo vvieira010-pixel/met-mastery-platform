@@ -24,9 +24,9 @@ export default function MockTestSidebar({ total, currentIdx, answered, onJump })
         .mts__btn { height: 32px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; font-size: var(--text-2xs); font-weight: 600; color: var(--text); padding: 0; display: flex; align-items: center; justify-content: center; transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast); }
         .mts__btn:hover:not(:disabled) { border-color: var(--primary); }
         .mts__btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-        .mts__btn--current { border-color: var(--primary); background: var(--primary); color: #fff; }
+        .mts__btn--current { border-color: var(--primary); background: var(--primary); color: var(--on-dark); }
         .mts__btn--answered { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
-        .mts__btn--current.mts__btn--answered { background: var(--primary); color: #fff; }
+        .mts__btn--current.mts__btn--answered { background: var(--primary); color: var(--on-dark); }
         @media (prefers-reduced-motion: reduce) { .mts__btn { transition: none; } }
       `}</style>
     </nav>

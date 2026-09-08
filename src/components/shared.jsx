@@ -3,7 +3,7 @@
  * Core UI primitives, icons, layout shell, and AI utilities.
  */
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { WorkflowStageStrip } from './domain-ui.jsx';
 import { Icon } from './ui/icons.jsx';
 
@@ -79,6 +79,22 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
   const NAV_SECTIONS = isNewNav ? NEW_NAV_SECTIONS : LEGACY_NAV_SECTIONS;
   const activeTab = tabMap[active];
   const [showMobileOverflow, setShowMobileOverflow] = useState(false);
+  const mobileOverflowRef = useRef(null);
+
+  useEffect(() => {
+    if (!showMobileOverflow) return;
+    const onOutsideClick = (e) => {
+      if (mobileOverflowRef.current && !mobileOverflowRef.current.contains(e.target)) {
+        setShowMobileOverflow(false);
+      }
+    };
+    document.addEventListener('mousedown', onOutsideClick);
+    document.addEventListener('touchstart', onOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', onOutsideClick);
+      document.removeEventListener('touchstart', onOutsideClick);
+    };
+  }, [showMobileOverflow]);
 
   return (
     <div className="shell">
@@ -104,7 +120,7 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
                     {tab.label}
                     {tab.badge > 0 && (
                       <span style={{
-                        marginLeft:4, background:'var(--danger)', color:'#fff',
+                        marginLeft:4, background:'var(--danger)', color:'var(--on-dark)',
                         borderRadius:'var(--radius-pill)', padding:'1px 6px',
                         fontSize:10, fontWeight:700, minWidth:18, textAlign:'center',
                       }}>{tab.badge}</span>
@@ -141,7 +157,7 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
           );
         })}
         {/* Overflow menu for remaining tabs */}
-        <div className="mobile-nav-overflow">
+        <div className="mobile-nav-overflow" ref={mobileOverflowRef} style={{ position: 'relative' }}>
           <button
             className="shell-mobile-nav-btn"
             onClick={() => setShowMobileOverflow(!showMobileOverflow)}
@@ -151,10 +167,10 @@ export function Shell({ tabs = [], active, onTab, children, rightSlot, workflowA
             style={{ minWidth: 60, minHeight: 48, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, padding: '8px 6px' }}
           >
             <Icon.more size={20} />
-            <span style={{ fontSize: 10, fontWeight: 600 }}>More</span>
+            <span style={{ fontSize: 11, fontWeight: 600 }}>More</span>
           </button>
           {showMobileOverflow && (
-            <div className="mobile-nav-dropdown" style={{ position: 'absolute', bottom: '100%', left: 0, right: 0, background: 'var(--surface)', border: '1px solid var(--border)', borderBottom: 'none', borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', boxShadow: '0 -4px 20px rgba(0,0,0,0.15)', zIndex: 100, padding: 8, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <div className="mobile-nav-dropdown">
               {tabs.filter(t => t.mobile !== false && !['submissions', 'diagnostics', 'homework', 'dashboard'].includes(t.id)).map(tab => (
                 <button key={tab.id}
                   className={`shell-mobile-nav-btn${active === tab.id ? ' active' : ''}`}
@@ -209,7 +225,7 @@ export function Tooltip({ children, content }) {
           visibility: hidden;
           width: 200px;
           background-color: var(--primary);
-          color: #fff;
+          color: var(--on-dark);
           text-align: center;
           border-radius: 6px;
           padding: 6px 10px;

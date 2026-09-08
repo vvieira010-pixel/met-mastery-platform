@@ -487,10 +487,7 @@ export default function App() {
     { id: 'homework',    label: 'Homework',     icon: <Icon.homework size={16} /> },
     { id: 'submissions', label: 'Review',       icon: <Icon.doc size={16} />,     badge: pendingSubmissions || 0 },
     { id: 'library',     label: 'Resources',    icon: <Icon.book size={16} /> },
-    { id: 'mock-test-results', label: 'Mock Tests', icon: <Icon.practice size={16} /> },
-    { id: 'risk-dashboard', label: 'Risk', icon: <Icon.warning size={16} /> },
-    { id: 'operations', label: 'Operations', icon: <Icon.calendar size={16} /> },
-    { id: 'social-studio', label: 'Social', icon: <Icon.doc size={16} /> },
+    { id: 'operations',  label: 'Operations',   icon: <Icon.calendar size={16} /> },
   ];
 
   const rightSlot = (

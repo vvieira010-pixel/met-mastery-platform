@@ -104,7 +104,7 @@ export default function LevelUp({ exercise, onComplete }) {
                 background: submitted && i === correct ? 'var(--ex-correct-strong)'
                   : submitted && i === selected && i !== correct ? 'var(--danger)'
                   : 'transparent',
-                color: submitted && (i === correct || (i === selected && i !== correct)) ? '#fff' : 'inherit',
+                color: submitted && (i === correct || (i === selected && i !== correct)) ? 'var(--on-dark)' : 'inherit',
               }}>
                 {submitted
                   ? (i === correct ? '✓' : i === selected ? '✗' : String.fromCharCode(65 + i))
@@ -126,7 +126,7 @@ export default function LevelUp({ exercise, onComplete }) {
             background: selected == null
               ? 'var(--border)'
               : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-            color: '#fff', fontWeight: 600, fontSize: 14,
+            color: 'var(--on-dark)', fontWeight: 600, fontSize: 14,
             fontFamily: 'var(--font-sans)',
              opacity: selected == null ? 0.5 : 1, transition: 'opacity 0.15s',
 
@@ -181,7 +181,7 @@ export default function LevelUp({ exercise, onComplete }) {
               style={{
                 width: '100%', padding: '10px 12px', borderRadius: 'var(--radius-sm)', resize: 'vertical',
                 border: '1.5px solid var(--border)', fontSize: 14, fontFamily: 'var(--font-sans)',
-                outline: 'none', background: '#fff', color: 'var(--text)', lineHeight: 1.6,
+                outline: 'none', background: 'var(--on-dark)', color: 'var(--text)', lineHeight: 1.6,
               }}
             />
             {sandbox && keywords.length > 0 && (

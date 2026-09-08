@@ -10,9 +10,9 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'rec
  */
 
 const SERIES = [
-  { label: 'Reading', color: '#2D7A8C' },
-  { label: 'Listening', color: '#3D8C65' },
-  { label: 'Speaking', color: '#E08E45' },
+  { label: 'Reading', color: 'var(--primary)' },
+  { label: 'Listening', color: 'var(--success)' },
+  { label: 'Speaking', color: 'var(--warning)' },
 ];
 
 // TODO: replace with real per-student weekly data.
@@ -80,7 +80,7 @@ export default function AcademicProgressChart() {
                 strokeWidth={2.5}
                 fill={series.color}
                 fillOpacity={0.08}
-                dot={{ r: 3, fill: series.color, stroke: '#fff', strokeWidth: 1.5 }}
+                dot={{ r: 3, fill: series.color, stroke: 'var(--on-dark)', strokeWidth: 1.5 }}
                 activeDot={{ r: 5 }}
               />
             ))}

@@ -176,7 +176,7 @@ export default function StudentSpeaking({ onBack: _onBack, 'data-testid': testId
                   className="w-full h-full rounded-full relative z-10 flex items-center justify-center"
                   style={{ background: 'var(--primary)', border: '2px solid var(--primary-container)' }}
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: 28, color: '#fff' }}>smart_toy</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: 28, color: 'var(--on-dark)' }}>smart_toy</span>
                 </div>
                 <div
                   className="absolute -bottom-1 -right-1 rounded-full p-1 shadow-sm z-20"
@@ -237,7 +237,7 @@ export default function StudentSpeaking({ onBack: _onBack, 'data-testid': testId
                   aria-label={isRecording ? 'Stop recording' : 'Start recording'}
                   onClick={() => setIsRecording(!isRecording)}
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: 40, color: '#fff' }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: 40, color: 'var(--on-dark)' }}>
                     {isRecording ? 'stop' : 'mic'}
                   </span>
                 </button>

@@ -111,7 +111,7 @@ export default function SynonymSwap({ exercise, onComplete, readOnly = false, re
             background: Object.keys(selected).length < swaps.length
               ? 'var(--border)'
               : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-            color: '#fff', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
+            color: 'var(--on-dark)', fontWeight: 600, fontSize: 14, fontFamily: 'var(--font-sans)',
             opacity: Object.keys(selected).length < swaps.length ? 0.5 : 1,
           }}
         >

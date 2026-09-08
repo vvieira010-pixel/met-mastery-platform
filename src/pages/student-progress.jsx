@@ -193,7 +193,7 @@ export default function StudentProgress({ student, "data-testid": testId = 'stud
                   onClick={() => setBaselineModalOpen(true)}
                   style={{
                     background: 'var(--primary, #2D7A8C)',
-                    color: '#ffffff',
+                    color: 'var(--on-dark)',
                     border: 'none',
                     borderRadius: 8,
                     padding: '12px 22px',

@@ -5,10 +5,10 @@ import { asArray, getProgressStage } from '../pages/student-helpers.jsx';
 
 function getCefrBandInfo(score) {
   const s = Number(score) || 0;
-  if (s >= 65) return { level: 'B2+ / C1', label: 'Advanced / Exam Ready', color: '#2D7A8C' };
-  if (s >= 53) return { level: 'B2', label: 'Independent Passing Standard', color: '#3D8C65' };
-  if (s >= 40) return { level: 'B1', label: 'Threshold / Developing', color: '#E08E45' };
-  return { level: 'A2', label: 'Foundation Stage', color: '#8b5cf6' };
+  if (s >= 65) return { level: 'B2+ / C1', label: 'Advanced / Exam Ready', color: 'var(--primary)' };
+  if (s >= 53) return { level: 'B2', label: 'Independent Passing Standard', color: 'var(--success)' };
+  if (s >= 40) return { level: 'B1', label: 'Threshold / Developing', color: 'var(--warning)' };
+  return { level: 'A2', label: 'Foundation Stage', color: 'var(--accent)' };
 }
 
 function normalizeSectionKey(raw) {
@@ -58,10 +58,10 @@ function MetProgressTooltip({ active, payload, label, pathData = [], viewMode = 
 
       {viewMode === 'skills' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 8px', marginTop: 8, paddingTop: 6, borderTop: '1px solid var(--divider, rgba(255,255,255,0.1))', fontSize: '0.72rem' }}>
-          <span style={{ color: '#2D7A8C' }}>Listening: <strong>{pt.listening}</strong></span>
-          <span style={{ color: '#3D8C65' }}>Reading: <strong>{pt.reading}</strong></span>
+          <span style={{ color: 'var(--primary)' }}>Listening: <strong>{pt.listening}</strong></span>
+          <span style={{ color: 'var(--success)' }}>Reading: <strong>{pt.reading}</strong></span>
           <span style={{ color: 'var(--warning-text)' }}>Speaking: <strong>{pt.speaking}</strong></span>
-          <span style={{ color: '#8b5cf6' }}>Writing: <strong>{pt.writing}</strong></span>
+          <span style={{ color: 'var(--accent)' }}>Writing: <strong>{pt.writing}</strong></span>
         </div>
       )}
     </div>
@@ -420,15 +420,15 @@ export default function MetProgressPathGraph({
                 {/* Benchmark Reference Lines */}
                 <rechartsModules.ReferenceLine
                   y={53}
-                  stroke="#3D8C65"
+                  stroke="var(--success)"
                   strokeDasharray="4 4"
-                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#3D8C65', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: 'var(--success)', fontSize: 10, fontWeight: 700 }}
                 />
                 <rechartsModules.ReferenceLine
                   y={65}
-                  stroke="#2D7A8C"
+                  stroke="var(--primary)"
                   strokeDasharray="4 4"
-                  label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: '#2D7A8C', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'Exam Target (65)', position: 'insideTopRight', fill: 'var(--primary)', fontSize: 10, fontWeight: 700 }}
                 />
 
                 <rechartsModules.Area
@@ -439,7 +439,7 @@ export default function MetProgressPathGraph({
                   strokeWidth={3}
                   fillOpacity={1}
                   fill="url(#metPathGradient)"
-                  dot={{ r: 5, fill: 'var(--primary, #2D7A8C)', strokeWidth: 2, stroke: '#ffffff' }}
+                  dot={{ r: 5, fill: 'var(--primary, #2D7A8C)', strokeWidth: 2, stroke: 'var(--on-dark)' }}
                   activeDot={{ r: 7, strokeWidth: 2, stroke: 'var(--primary, #2D7A8C)' }}
                 />
               </rechartsModules.AreaChart>
@@ -464,15 +464,15 @@ export default function MetProgressPathGraph({
 
                 <rechartsModules.ReferenceLine
                   y={53}
-                  stroke="#3D8C65"
+                  stroke="var(--success)"
                   strokeDasharray="4 4"
-                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: '#3D8C65', fontSize: 10, fontWeight: 700 }}
+                  label={{ value: 'B2 Benchmark (53)', position: 'insideTopRight', fill: 'var(--success)', fontSize: 10, fontWeight: 700 }}
                 />
 
-                <rechartsModules.Line type="monotone" dataKey="listening" name="Listening" stroke="#2D7A8C" strokeWidth={2} dot={{ r: 4 }} />
-                <rechartsModules.Line type="monotone" dataKey="reading" name="Reading" stroke="#3D8C65" strokeWidth={2} dot={{ r: 4 }} />
-                <rechartsModules.Line type="monotone" dataKey="speaking" name="Speaking" stroke="#E08E45" strokeWidth={2} dot={{ r: 4 }} />
-                <rechartsModules.Line type="monotone" dataKey="writing" name="Writing" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="listening" name="Listening" stroke="var(--primary)" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="reading" name="Reading" stroke="var(--success)" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="speaking" name="Speaking" stroke="var(--warning)" strokeWidth={2} dot={{ r: 4 }} />
+                <rechartsModules.Line type="monotone" dataKey="writing" name="Writing" stroke="var(--accent)" strokeWidth={2} dot={{ r: 4 }} />
               </rechartsModules.LineChart>
             )}
           </rechartsModules.ResponsiveContainer>
@@ -547,7 +547,7 @@ export default function MetProgressPathGraph({
                       ? 'var(--bg, #FDFCF8)'
                       : 'transparent',
                     color: isCurrent
-                      ? '#ffffff'
+                      ? 'var(--on-dark)'
                       : isDone
                       ? 'var(--text, #1A2E35)'
                       : 'var(--muted, #6B7C80)',

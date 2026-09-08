@@ -55,7 +55,7 @@ export default function CefrSkillGapFlags({
     return {
       ...item,
       tier,
-      color: tier.isB2 ? '#3D8C65' : '#2D7A8C', // emerald green vs simple blue
+      color: tier.isB2 ? 'var(--success)' : 'var(--primary)', // emerald green vs simple blue
       colorName: tier.isB2 ? 'emerald' : 'blue',
       badgeBg: tier.isB2 ? 'rgba(16, 185, 129, 0.12)' : 'rgba(2, 132, 199, 0.12)',
     };
@@ -118,12 +118,12 @@ export default function CefrSkillGapFlags({
         {/* Color Legend */}
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', fontSize: '0.74rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#3D8C65', display: 'inline-block' }} />
-            <strong style={{ color: '#3D8C65' }}>B2 Passing (≥ 53)</strong>
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--success)', display: 'inline-block' }} />
+            <strong style={{ color: 'var(--success)' }}>B2 Passing (≥ 53)</strong>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#2D7A8C', display: 'inline-block' }} />
-            <strong style={{ color: '#2D7A8C' }}>B1 Developing (&lt; 53)</strong>
+            <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
+            <strong style={{ color: 'var(--primary)' }}>B1 Developing (&lt; 53)</strong>
           </div>
         </div>
       </div>
@@ -143,19 +143,19 @@ export default function CefrSkillGapFlags({
           }}
           data-testid="skill-gap-alert"
         >
-          <div style={{ color: '#C9803C', marginTop: 2, flexShrink: 0 }}>
+          <div style={{ color: 'var(--warning)', marginTop: 2, flexShrink: 0 }}>
             <Icon.alert size={20} />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
-              <strong style={{ fontSize: '0.85rem', color: '#92400e' }}>
+              <strong style={{ fontSize: '0.85rem', color: 'var(--warning)' }}>
                 Skill Gap Flag: {highest.tier.code} {highest.label} ({highest.score}) vs {lowest.tier.code} {lowest.label} ({lowest.score})
               </strong>
-              <span style={{ fontSize: '0.72rem', background: 'rgba(245, 158, 11, 0.2)', color: '#b45309', padding: '2px 6px', borderRadius: 4, fontWeight: 700 }}>
+              <span style={{ fontSize: '0.72rem', background: 'rgba(245, 158, 11, 0.2)', color: 'var(--warning)', padding: '2px 6px', borderRadius: 4, fontWeight: 700 }}>
                 {scoreDiff} pt differential
               </span>
             </div>
-            <p style={{ margin: 0, fontSize: '0.8rem', color: '#78350f', lineHeight: 1.45 }}>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--warning)', lineHeight: 1.45 }}>
               Your {highest.label} section ({highest.score}/80) demonstrates solid B2 readiness. However, your {lowest.label} section ({lowest.score}/80) is currently at the {lowest.tier.code} threshold. To pass the MET, focus your immediate practice on {lowest.label} to eliminate this gap.
             </p>
           </div>
@@ -173,8 +173,8 @@ export default function CefrSkillGapFlags({
             gap: 10,
           }}
         >
-          <Icon.check size={18} style={{ color: '#3D8C65' }} />
-          <span style={{ fontSize: '0.8rem', color: '#065f46' }}>
+          <Icon.check size={18} style={{ color: 'var(--success)' }} />
+          <span style={{ fontSize: '0.8rem', color: 'var(--success-soft)' }}>
             <strong>Balanced Skill Profile:</strong> All sections are progressing evenly across the CEFR spectrum.
           </span>
         </div>
@@ -245,7 +245,7 @@ export default function CefrSkillGapFlags({
               {/* B2 Benchmark Reference Marker */}
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', color: 'var(--muted, #6B7C80)' }}>
                 <span>0</span>
-                <span style={{ color: '#3D8C65', fontWeight: 700 }}>53 (B2 Pass)</span>
+                <span style={{ color: 'var(--success)', fontWeight: 700 }}>53 (B2 Pass)</span>
                 <span>80</span>
               </div>
             </div>

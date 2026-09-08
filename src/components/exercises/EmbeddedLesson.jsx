@@ -17,7 +17,7 @@ export default function EmbeddedLesson({ exercise, onComplete }) {
         overflow: 'hidden',
         borderRadius: 'var(--radius-sm, 6px)',
         border: '1px solid var(--border)',
-        background: '#000'
+        background: 'var(--ink)'
       }}>
         <iframe
           src={exercise.url}
@@ -50,7 +50,7 @@ export default function EmbeddedLesson({ exercise, onComplete }) {
             borderRadius: 'var(--radius-sm, 6px)',
             border: 'none',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--on-dark)',
             fontWeight: 600,
             fontSize: 13,
             cursor: 'pointer',

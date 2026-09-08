@@ -4,21 +4,21 @@
   "sourceOfTruth": "src/styles/tokens.css",
   "tokens": {
     "color": {
-      "primary": "#006877",
-      "primary-hover": "#004E5A",
-      "primary-light": "#BFE6EF",
-      "accent": "#DA8847",
-      "accent-hover": "#904D0E",
-      "accent-light": "#FFDCC5",
-      "bg": "#E5F0F0",
-      "surface": "#F6FAFB",
-      "ink": "#171C1D",
-      "ink-muted": "#3D494B",
-      "border": "#C6D5D4",
-      "success": "#006877",
-      "warning": "#B27A3E",
-      "error": "#8C5149",
-      "info": "#709BA1"
+      "primary": "#19647E",
+      "primary-hover": "#0F4250",
+      "primary-light": "#E1F0F1",
+      "accent": "#FFC857",
+      "accent-hover": "#B8860B",
+      "accent-light": "#FFF4E0",
+      "bg": "#FDFCF8",
+      "surface": "#FFFFFF",
+      "ink": "#1F2041",
+      "ink-muted": "#6B7280",
+      "border": "#D1D9DB",
+      "success": "#19647E",
+      "warning": "#B8860B",
+      "error": "#B91C18",
+      "info": "#0EA5E9"
     },
     "radius": { "sm": "8px", "md": "12px", "lg": "16px", "xl": "20px", "pill": "99px" },
     "shadow": {
@@ -36,37 +36,37 @@
     {
       "name": "Button / Primary",
       "html": "<button class=\"mm-btn mm-btn--primary\">Start diagnostic</button>",
-      "css": ".mm-btn{font-family:var(--font-body,DM Sans);height:44px;min-height:44px;padding:0 1rem;border-radius:8px;border:1px solid transparent;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}.mm-btn--primary{background:#006877;color:#fff}.mm-btn--primary:hover{background:#004E5A}.mm-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,104,119,.2)}.mm-btn[aria-label]{ }"
+      "css": ".mm-btn{font-family:var(--font-body,DM Sans);height:44px;min-height:44px;padding:0 1rem;border-radius:8px;border:1px solid transparent;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}.mm-btn--primary{background:#19647E;color:#fff}.mm-btn--primary:hover{background:#0F4250}.mm-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,104,119,.2)}.mm-btn[aria-label]{ }"
     },
     {
       "name": "Button / Secondary",
       "html": "<button class=\"mm-btn mm-btn--secondary\">Skip</button>",
-      "css": ".mm-btn--secondary{background:transparent;color:#004E5A;border-color:#C6D5D4}.mm-btn--secondary:hover{background:#BFE6EF}"
+      "css": ".mm-btn--secondary{background:transparent;color:#0F4250;border-color:#D1D9DB}.mm-btn--secondary:hover{background:#E1F0F1}"
     },
     {
       "name": "Card",
       "html": "<article class=\"mm-card\"><h3 class=\"mm-card__title\">Reading diagnostic</h3><p class=\"mm-card__meta\">12 questions · 18 min</p></article>",
-      "css": ".mm-card{background:#F6FAFB;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(54,84,90,.04)}.mm-card__title{font-family:var(--font-display,Cormorant Garamond);font-size:1.35rem;margin:0 0 .25rem;color:#171C1D}.mm-card__meta{font-size:.85rem;color:#3D494B;margin:0}"
+      "css": ".mm-card{background:#FFFFFF;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(54,84,90,.04)}.mm-card__title{font-family:var(--font-display,Cormorant Garamond);font-size:1.35rem;margin:0 0 .25rem;color:#1F2041}.mm-card__meta{font-size:.85rem;color:#6B7280;margin:0}"
     },
     {
       "name": "Input / Field",
       "html": "<label class=\"mm-label\" for=\"nm\">Student name</label><input id=\"nm\" class=\"mm-input\" placeholder=\" type…\">",
-      "css": ".mm-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:#3D494B;margin-bottom:.4rem}.mm-input{width:100%;height:44px;padding:0 .75rem;border:1px solid #C6D5D4;border-radius:8px;background:#F6FAFB;color:#171C1D;font-family:var(--font-body,DM Sans)}.mm-input:focus{outline:none;border-color:#006877;box-shadow:0 0 0 3px rgba(0,104,119,.2)}"
+      "css": ".mm-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:#6B7280;margin-bottom:.4rem}.mm-input{width:100%;height:44px;padding:0 .75rem;border:1px solid #D1D9DB;border-radius:8px;background:#FFFFFF;color:#1F2041;font-family:var(--font-body,DM Sans)}.mm-input:focus{outline:none;border-color:#19647E;box-shadow:0 0 0 3px rgba(0,104,119,.2)}"
     },
     {
       "name": "Chip / Pill (selected)",
       "html": "<button class=\"mm-chip mm-chip--on\">Reading</button>",
-      "css": ".mm-chip{height:36px;padding:0 1rem;border-radius:99px;border:1px solid #C6D5D4;background:#E5F0F0;color:#171C1D;font-weight:600;cursor:pointer}.mm-chip--on{border-color:#006877;background:#BFE6EF;color:#004E5A}"
+      "css": ".mm-chip{height:36px;padding:0 1rem;border-radius:99px;border:1px solid #D1D9DB;background:#FDFCF8;color:#1F2041;font-weight:600;cursor:pointer}.mm-chip--on{border-color:#19647E;background:#E1F0F1;color:#0F4250}"
     },
     {
       "name": "Score (mono)",
       "html": "<span class=\"mm-score\">B2 · 78</span>",
-      "css": ".mm-score{font-family:Space Mono,monospace;font-weight:700;color:#006877;letter-spacing:.02em}"
+      "css": ".mm-score{font-family:Space Mono,monospace;font-weight:700;color:#19647E;letter-spacing:.02em}"
     }
   ],
   "rules": [
-    "Saturated primary teal (#006877) only for action + active state; amber (#DA8847) is the sole companion hue.",
-    "Page #E5F0F0 over surface #F6FAFB; never pure white panels.",
+    "Saturated primary teal (#19647E) only for action + active state; amber (#FFC857) is the sole companion hue.",
+    "Page #FDFCF8 over surface #FFFFFF; never pure white panels.",
     "44px minimum touch target on every interactive control.",
     "Icon-only buttons and inputs must carry aria-label;",
     "Dark mode is composed from the token set (dark.css), not an inverted light theme.",

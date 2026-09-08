@@ -1156,7 +1156,7 @@ export default function StudentDashboard({
                           disabled={sendingReply || !replyText.trim()}
                           style={{
                             background: 'var(--primary)',
-                            color: '#fff',
+                            color: 'var(--on-dark)',
                             border: 'none',
                             borderRadius: 'var(--radius-sm)',
                             padding: '4px 12px',

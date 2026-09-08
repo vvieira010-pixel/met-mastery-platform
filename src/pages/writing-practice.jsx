@@ -384,7 +384,7 @@ const boxStyle = {
 };
 
 const promptBoxStyle = {
-  background: '#fffef7',
+  background: 'var(--bg)',
   border: '1px solid #f3e8a5',
   padding: 'var(--space-3) var(--space-4)',
   borderRadius: 'var(--radius-md)',

@@ -44,7 +44,7 @@
 }
 
 [data-theme="dark"] .student-metric--teal   .student-metric-icon { background: rgba(var(--ink-rgb),0.14); color: var(--accent-soft); }
-[data-theme="dark"] .student-metric--navy   .student-metric-icon { background: rgba(15,27,45,0.14); color: var(--text); }
+[data-theme="dark"] .student-metric--navy   .student-metric-icon { background: rgba(var(--ink-rgb), 0.14); color: var(--text); }
 [data-theme="dark"] .student-metric--amber  .student-metric-icon { background: rgba(var(--ink-rgb),0.14);  color: var(--warning); }
 [data-theme="dark"] .student-metric--exam   .student-metric-icon { background: rgba(26,140,95,0.14);  color: var(--success); }
 [data-theme="dark"] .student-metric--urgent .student-metric-icon { background: rgba(185,28,28,0.14);  color: var(--danger); }
@@ -75,7 +75,7 @@
 [data-theme="dark"] .hw-filter-btn.active {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-dark);
 }
 
 [data-theme="dark"] .hw-teacher-review,
@@ -103,7 +103,7 @@
 [data-theme="dark"] .main-wrapper {
   background: var(--surface);
   border-color: var(--border);
-  box-shadow: 40px 40px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 40px 40px 0px rgba(var(--ink-rgb), 0.4);
 }
 
 [data-theme="dark"] .brand-section {
@@ -130,12 +130,12 @@
 
 /* ── Dark mode: Shell ────────────────────────────────────────── */
 [data-theme="dark"] .shell-nav-btn {
-  color: rgba(255,255,255,0.65);
+  color: rgba(var(--on-dark-rgb), 0.65);
 }
 
 [data-theme="dark"] .shell-nav-btn:hover {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
+  background: rgba(var(--on-dark-rgb), 0.08);
+  color: var(--on-dark);
 }
 
 [data-theme="dark"] .shell-nav-btn.active {
@@ -259,7 +259,7 @@
 }
 
 [data-theme="dark"] .dash-nav-btn:hover:not(.active) {
-  background: rgba(255,255,255,0.06);
+  background: rgba(var(--on-dark-rgb), 0.06);
 }
 
 [data-theme="dark"] .student-metric {
@@ -455,7 +455,7 @@
 
 [data-theme="dark"] .qp-modal {
   background: var(--surface);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 48px rgba(var(--ink-rgb), 0.5);
 }
 
 [data-theme="dark"] .qp-modal-card {
@@ -506,21 +506,21 @@
 /* ── Dark-mode remap for the modern craft layer (added 2026-09-03) ── */
 [data-theme="dark"] {
   --glass-bg: rgba(13, 22, 30, 0.66);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --bezel-tray: rgba(255, 255, 255, 0.05);
-  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.4), 0 16px 40px -14px rgba(0, 0, 0, 0.55);
-  --shadow-float-xl: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
-  --shadow-inset-hi: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(var(--on-dark-rgb), 0.09);
+  --bezel-tray: rgba(var(--on-dark-rgb), 0.05);
+  --shadow-soft: 0 2px 10px rgba(var(--ink-rgb), 0.4), 0 16px 40px -14px rgba(var(--ink-rgb), 0.55);
+  --shadow-float-xl: 0 30px 60px -24px rgba(var(--ink-rgb), 0.7);
+  --shadow-inset-hi: inset 0 1px 1px rgba(var(--on-dark-rgb), 0.08);
   --grain-opacity: 0.06;
 }
 
 [data-theme="dark"] .shell-topbar {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 1px 0 rgba(var(--on-dark-rgb), 0.06) inset, 0 10px 30px -18px rgba(var(--ink-rgb), 0.8);
 }
 
 [data-theme="dark"] .shell-settings-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--on-dark-rgb), 0.06);
+  border-color: rgba(var(--on-dark-rgb), 0.1);
 }
 
 [data-theme="dark"] .btn:focus-visible {
