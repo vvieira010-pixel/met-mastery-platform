@@ -33,7 +33,6 @@ import {
   AI_REQUEST_TIMEOUT_MS,
   MAX_AI_PROMPT_CHARS,
   modelPriority,
-  multiKeys,
   providerConfig,
 } from './_ai-providers.js';
 
@@ -141,7 +140,6 @@ export default async function handler(req, res) {
   const attemptTimeout = () => Math.max(1, Math.min(AI_ATTEMPT_TIMEOUT_MS, deadline - Date.now()));
   const logAttempt = (provider, model, outcome, startedAt) => {
     // Do not log prompts, responses, or provider errors: they can contain student data or secrets.
-    // eslint-disable-next-line no-console -- structured, redacted server-side operational event.
     console.info(JSON.stringify({ event: 'ai_attempt', provider, model, outcome, durationMs: Date.now() - startedAt }));
   };
 

@@ -72,7 +72,6 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
     const videoUrl = videoProvider === 'meet' ? getMeetUrl() : getZoomUrl();
     if (!videoUrl) {
       const label = videoProvider === 'meet' ? 'Google Meet' : 'Zoom';
-      const key = videoProvider === 'meet' ? 'vv:meet_meeting_url' : 'vv:zoom_meeting_url';
       window.toast?.(`Add your ${label} link in Settings → Class Video Link first.`, 'warn');
       onNavigate?.('settings');
       return;

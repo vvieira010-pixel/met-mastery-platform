@@ -68,7 +68,10 @@ export default [
     files: ['api/**/*.js'],
     rules: {
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      // `info` is allowed here on purpose: serverless handlers emit structured
+      // JSON lines (e.g. ai_cascade_start) that are read from Vercel logs.
+      // Browser-side code still may not use console.info.
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
       'no-empty': ['error', { allowEmptyCatch: true }],
     },
     languageOptions: {
