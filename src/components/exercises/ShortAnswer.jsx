@@ -368,18 +368,10 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
               {evalStatus === 'done' && evalData?.evaluation && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                    {[['Task', evalData.evaluation.scores?.task], ['Language', evalData.evaluation.scores?.language], ['Delivery', evalData.evaluation.scores?.delivery]].map(([label, v]) => (
-                      <span key={label} style={{ padding: '6px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: 'var(--text)' }}>
-                        {label}: {v ?? '–'} / 4
-                      </span>
-                    ))}
                     <span style={{ padding: '6px 12px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: '#fff' }}>
                       {evalData.evaluation.cefrEstimate ?? '–'} · {evalData.evaluation.scaledScore ?? '–'}/80
                     </span>
                   </div>
-                  {evalData.fluency?.wpm && (
-                    <div style={{ color: 'var(--muted)' }}>~{evalData.fluency.wpm} wpm · {evalData.fluency.pausesOver500ms} pauses ≥0.5s</div>
-                  )}
                   {evalData.evaluation.feedback && <p style={{ margin: 0, color: 'var(--text)' }}>{evalData.evaluation.feedback}</p>}
                   {Array.isArray(evalData.evaluation.corrections) && evalData.evaluation.corrections.length > 0 && (
                     <ul style={{ margin: 0, padding: '0 0 0 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
