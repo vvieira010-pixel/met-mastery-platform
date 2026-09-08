@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Progress Timeline - MET Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { background: linear-gradient(to bottom right, #F6FAFB, #E3F2FD); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 104, 119, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 101, 116, 0.05);
+        }
+        .timeline-line {
+            width: 2px;
+            background: #bdc9cc;
+            position: absolute;
+            left: 23px;
+            top: 24px;
+            bottom: 0;
+            z-index: 0;
+        }
+        .timeline-node {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            position: relative;
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="font-body-md text-on-surface bg-background min-h-screen overflow-x-hidden flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col py-8 w-64 bg-teal-deep dark:bg-on-primary-fixed shadow-lg z-50">
+<div class="px-8 mb-8 flex items-center gap-3">
+<span class="font-headline-md text-headline-md text-surface-container-lowest font-bold">MET Mastery</span>
+</div>
+<div class="px-8 mb-8 flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-surface-container-lowest/20" data-alt="A detailed headshot of a student named Alex Rivers in a well-lit modern learning environment, casual yet focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATEU5rOH1mXzsyAmiVZiq3PN_aD2EmcwkAZVf9Xl8Rpq5ybGFhbz6u0_8VHaoiCrR0e3d9zgZPiOnG4XTT6rkEk0C375b0BOebDnsmrY3fOUh-5n8TqELIyr-4vuszdIOgy58Cg4Tv0IJxsRnFEdr5pfHQyxpgRdOMdEYcFa9gmJtvFOadyKZS0JpqjCk6zxRxJHhpoqyWMObcGyhnuHoeC3D8kxYmQ9uTJQDI0EdHne6BxoJ9o4gI"/>
+<div>
+<p class="font-label-sm-bold text-label-sm-bold text-surface-container-lowest">Alex Rivers</p>
+<p class="text-xs text-primary-fixed-dim">English Proficiency - B2</p>
+</div>
+</div>
+<ul class="flex-1 space-y-2 mt-4">
+<li>
+<a class="flex items-center gap-3 text-surface-container-low px-8 py-3 hover:bg-primary-container/20 transition-all active:translate-x-1 font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-l-full ml-4 pl-4 py-3 active:translate-x-1 font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timeline</span>
+                    Timeline
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-surface-container-low px-8 py-3 hover:bg-primary-container/20 transition-all active:translate-x-1 font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+                    Courses
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-surface-container-low px-8 py-3 hover:bg-primary-container/20 transition-all active:translate-x-1 font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">folder_open</span>
+                    Resources
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-surface-container-low px-8 py-3 hover:bg-primary-container/20 transition-all active:translate-x-1 font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">emoji_events</span>
+                    Achievements
+                </a>
+</li>
+</ul>
+<div class="px-8 mt-auto mb-4">
+<button class="w-full py-2 rounded-lg bg-energy-orange-glow/20 text-secondary-container border border-secondary-container hover:bg-secondary-container hover:text-white transition-colors font-label-sm-bold text-label-sm-bold">
+                Go Premium
+            </button>
+</div>
+<ul class="pb-4 border-t border-surface-container-lowest/10 mt-4 pt-4">
+<li>
+<a class="flex items-center gap-3 text-surface-container-low px-8 py-3 hover:bg-primary-container/20 transition-all font-label-sm-bold text-label-sm-bold" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Mobile mainly, hidden on md based on instructions, but keeping structural flex just in case) -->
+<header class="md:hidden fixed top-0 w-full z-40 flex justify-between items-center px-gutter-lg h-16 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b-0 shadow-sm">
+<span class="font-headline-md text-headline-md font-bold text-teal-deep">MET Mastery</span>
+<div class="flex gap-4 text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined hover:text-primary transition-colors duration-200 active:scale-95 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined hover:text-primary transition-colors duration-200 active:scale-95 cursor-pointer">help</span>
+<span class="material-symbols-outlined hover:text-primary transition-colors duration-200 active:scale-95 cursor-pointer">settings</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop pt-24 md:pt-12 max-w-[1200px] mx-auto w-full">
+<header class="mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Your Progress Timeline</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Track your momentum, celebrate milestones, and visualize your growth across all skills.</p>
+</header>
+<!-- Summary Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg mb-12">
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-base">
+<div class="flex items-center gap-2 text-tertiary">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Total Hours Practiced</span>
+</div>
+<div class="font-display-lg text-display-lg text-primary">124<span class="text-headline-md text-outline">h</span></div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">+12h this month. Consistent effort!</p>
+</div>
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-base">
+<div class="flex items-center gap-2 text-secondary-container">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Milestones Reached</span>
+</div>
+<div class="font-display-lg text-display-lg text-secondary">18</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">3 major milestones unlocked recently.</p>
+</div>
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-base bg-gradient-to-br from-teal-deep to-primary text-white border-none">
+<div class="flex items-center gap-2 text-primary-fixed">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase">Current Rank</span>
+</div>
+<div class="font-display-lg text-display-lg">B2+</div>
+<p class="font-body-md text-body-md text-primary-fixed-dim text-sm">Approaching C1 Readiness. Keep pushing!</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<!-- Left Column: Interactive Timeline (8 cols) -->
+<div class="lg:col-span-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Learning Journey</h2>
+<div class="relative pl-2">
+<div class="timeline-line"></div>
+<!-- Timeline Item 1 -->
+<div class="relative flex gap-6 mb-8 group cursor-pointer">
+<div class="timeline-node bg-secondary-container text-white shadow-lg ring-4 ring-background">
+<span class="material-symbols-outlined">star</span>
+</div>
+<div class="flex-1 glass-panel rounded-2xl p-6 group-hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm-bold text-label-sm-bold text-secondary-container uppercase bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full">Milestone Unlocked</span>
+<span class="font-data-mono text-data-mono text-outline">Oct 12, 2023</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Level Up to C1 Readiness</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Based on your recent diagnostic and consistent high scores in Reading and Listening modules, you are now tracking towards C1.</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex gap-6 mb-8 group cursor-pointer">
+<div class="timeline-node bg-primary text-white shadow-md ring-4 ring-background">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div class="flex-1 glass-panel rounded-2xl p-6 group-hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm-bold text-label-sm-bold text-primary uppercase">Module Completed</span>
+<span class="font-data-mono text-data-mono text-outline">Oct 05, 2023</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Advanced Grammar Syntax</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Successfully completed the 4-part module with an average quiz score of 92%.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative flex gap-6 mb-8 group cursor-pointer">
+<div class="timeline-node bg-surface-variant text-on-surface-variant shadow-sm ring-4 ring-background">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<div class="flex-1 glass-panel rounded-2xl p-6 group-hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm-bold text-label-sm-bold text-tertiary uppercase">Teacher Feedback</span>
+<span class="font-data-mono text-data-mono text-outline">Sep 28, 2023</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Writing Assessment Graded</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">"Excellent cohesive devices used in paragraph 3. Work on expanding vocabulary for abstract concepts."</p>
+<button class="px-4 py-2 bg-transparent border border-outline rounded-lg text-primary font-label-sm-bold text-label-sm-bold hover:bg-surface-container transition-colors">Review Essay</button>
+</div>
+</div>
+</div>
+<button class="ml-16 mt-4 px-6 py-3 bg-surface-container-high rounded-full text-on-surface-variant font-label-sm-bold text-label-sm-bold hover:bg-surface-variant transition-colors flex items-center gap-2">
+                        Load Earlier Progress <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+<!-- Right Column: Insight Panel (4 cols) -->
+<div class="lg:col-span-4 space-y-gutter-lg mt-12 lg:mt-0">
+<!-- Growth Graph Placeholder (Visualized with a gradient/structure to imply graph) -->
+<div class="glass-panel rounded-2xl p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Skill Trajectory</h3>
+<p class="font-label-sm-bold text-label-sm-bold text-outline uppercase mb-6">Last 6 Months</p>
+<!-- Simulated Graph Area -->
+<div class="h-48 w-full bg-gradient-to-t from-academic-blue-soft/50 to-transparent border-b-2 border-l-2 border-outline-variant relative mb-4">
+<!-- Abstract SVG Path to simulate chart -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,80 Q25,70 50,40 T100,20" fill="none" stroke="#008093" stroke-width="2"></path>
+<path d="M0,90 Q30,85 60,60 T100,30" fill="none" stroke="#ff7a31" stroke-dasharray="4" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex flex-wrap gap-4 font-label-sm-bold text-label-sm-bold">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary-container"></span> Reading</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-secondary-container"></span> Writing</div>
+</div>
+</div>
+<!-- Milestone Celebration Badges -->
+<div class="glass-panel rounded-2xl p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Recent Badges</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl text-center">
+<div class="w-12 h-12 rounded-full bg-energy-orange-glow/20 text-secondary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-2xl">local_fire_department</span>
+</div>
+<span class="font-label-sm-bold text-label-sm-bold text-on-surface">10-Day Streak</span>
+</div>
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl text-center">
+<div class="w-12 h-12 rounded-full bg-primary-fixed/30 text-teal-deep flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-2xl">psychology</span>
+</div>
+<span class="font-label-sm-bold text-label-sm-bold text-on-surface">Grammar Master</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
+
+
+
+

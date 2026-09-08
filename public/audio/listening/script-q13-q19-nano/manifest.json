@@ -1,0 +1,187 @@
+{
+  "title": "Listening Section Script Q13-Q19 (Chatterbox-Nano)",
+  "format": "wav 24000Hz mono, voice-cloned from script-q13-q19 turns",
+  "parts": {
+    "part1": {
+      "file": "part1.wav",
+      "engine": "chatterbox-nano (cpu)",
+      "turns": [
+        {
+          "n": 1,
+          "speaker": "SPEAKER A (Woman)",
+          "gender": "female",
+          "file": "part1_turn01_female.wav",
+          "text": "Excuse me, could you tell me what time the next train to Central Station leaves?"
+        },
+        {
+          "n": 2,
+          "speaker": "SPEAKER B (Man)",
+          "gender": "male",
+          "file": "part1_turn02_male.wav",
+          "text": "Sure, let me check... The next one leaves at 3:45, but it's usually a few minutes late."
+        },
+        {
+          "n": 3,
+          "speaker": "SPEAKER A (Woman)",
+          "gender": "female",
+          "file": "part1_turn03_female.wav",
+          "text": "Oh no, I have a meeting at 4:15. Is there a faster way to get there?"
+        },
+        {
+          "n": 4,
+          "speaker": "SPEAKER B (Man)",
+          "gender": "male",
+          "file": "part1_turn04_male.wav",
+          "text": "You could take the express bus outside the station. It only takes fifteen minutes, but it leaves in five minutes, so you'd better hurry."
+        },
+        {
+          "n": 5,
+          "speaker": "SPEAKER A (Woman)",
+          "gender": "female",
+          "file": "part1_turn05_female.wav",
+          "text": "Thanks so much! I'll run."
+        }
+      ]
+    },
+    "part2": {
+      "file": "part2.wav",
+      "engine": "chatterbox-nano (cpu)",
+      "turns": [
+        {
+          "n": 1,
+          "speaker": "Airport Announcer",
+          "gender": "male",
+          "file": "part2_turn01_male.wav",
+          "text": "Attention passengers. Flight 205 to London, originally scheduled to depart at 6:30 p.m., has been delayed due to bad weather conditions. The new departure time is 8:15 p.m. Passengers are kindly requested to remain in the boarding area and listen for further announcements. We apologize for any inconvenience this may cause."
+        }
+      ]
+    },
+    "part3": {
+      "file": "part3.wav",
+      "engine": "chatterbox-nano (cpu)",
+      "turns": [
+        {
+          "n": 1,
+          "speaker": "SPEAKER A (Manager)",
+          "gender": "male",
+          "file": "part3_turn01_male.wav",
+          "text": "Morning, Claire. I wanted to talk to you about the client presentation next week."
+        },
+        {
+          "n": 2,
+          "speaker": "SPEAKER B (Claire)",
+          "gender": "female",
+          "file": "part3_turn02_female.wav",
+          "text": "Of course. I've already prepared most of the slides, but I'm still waiting on the sales figures from the finance team."
+        },
+        {
+          "n": 3,
+          "speaker": "SPEAKER A (Manager)",
+          "gender": "male",
+          "file": "part3_turn03_male.wav",
+          "text": "That's fine, they should send them by Wednesday. Do you think you'll need extra time to rehearse?"
+        },
+        {
+          "n": 4,
+          "speaker": "SPEAKER B (Claire)",
+          "gender": "female",
+          "file": "part3_turn04_female.wav",
+          "text": "Actually, yes. I was hoping we could do a practice run on Thursday afternoon, if that works for you."
+        },
+        {
+          "n": 5,
+          "speaker": "SPEAKER A (Manager)",
+          "gender": "male",
+          "file": "part3_turn05_male.wav",
+          "text": "Thursday afternoon works well for me. Let's book the conference room for two o'clock."
+        },
+        {
+          "n": 6,
+          "speaker": "SPEAKER B (Claire)",
+          "gender": "female",
+          "file": "part3_turn06_female.wav",
+          "text": "Perfect, I'll send a calendar invite."
+        }
+      ]
+    }
+  },
+  "questions": {
+    "Q13": {
+      "part": "part1",
+      "prompt": "What is the woman's main concern?",
+      "options": [
+        "She missed her train",
+        "She might be late for her meeting",
+        "She doesn't know where the station is",
+        "She lost her ticket"
+      ],
+      "answer": 1
+    },
+    "Q14": {
+      "part": "part1",
+      "prompt": "What does the man suggest?",
+      "options": [
+        "Wait for the next train",
+        "Take a taxi",
+        "Take the express bus",
+        "Reschedule the meeting"
+      ],
+      "answer": 2
+    },
+    "Q15": {
+      "part": "part2",
+      "prompt": "Why was the flight delayed?",
+      "options": [
+        "Technical problems",
+        "Bad weather",
+        "Staff shortage",
+        "Security check"
+      ],
+      "answer": 1
+    },
+    "Q16": {
+      "part": "part2",
+      "prompt": "What are passengers asked to do?",
+      "options": [
+        "Go to a different gate",
+        "Collect their luggage",
+        "Stay in the boarding area",
+        "Contact the airline by phone"
+      ],
+      "answer": 2
+    },
+    "Q17": {
+      "part": "part3",
+      "prompt": "What is Claire still waiting for?",
+      "options": [
+        "Approval from her manager",
+        "Sales figures from finance",
+        "A new laptop",
+        "Feedback from the client"
+      ],
+      "answer": 1
+    },
+    "Q18": {
+      "part": "part3",
+      "prompt": "When will they rehearse the presentation?",
+      "options": [
+        "Wednesday morning",
+        "Thursday afternoon",
+        "Friday morning",
+        "Next Monday"
+      ],
+      "answer": 1
+    },
+    "Q19": {
+      "part": "part3",
+      "prompt": "What will Claire do next?",
+      "options": [
+        "Cancel the meeting",
+        "Call the finance team",
+        "Send a calendar invite",
+        "Rewrite the slides"
+      ],
+      "answer": 2
+    }
+  }
+}

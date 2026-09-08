@@ -1,0 +1,8 @@
+[narrator] Listen to a conversation about starting a business.
+[male] I'm thinking of opening my own restaurant. I've been saving money for years.
+[female] That's exciting! But have you thought about how much it costs to start one?
+[male] That's what I'm worried about. The rent for a good location is extremely high, and then there's equipment, staff, ingredients...
+[female] Have you considered starting with something smaller, like a food truck? It would be much less expensive.
+[male] I did think about that, but I really want a proper sit-down restaurant.
+[female] Then you definitely need a solid business plan first. That will help you figure out the costs and get funding.
+[male] You're right. I should focus on that before anything else.

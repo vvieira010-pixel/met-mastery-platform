@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.vvieira010/met-mastery",
+  "title": "MET Mastery",
+  "description": "Read public MET Mastery product and developer guidance for agents.",
+  "version": "1.0.0",
+  "websiteUrl": "https://met-mastery.vercel.app/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://met-mastery.vercel.app/mcp"
+    }
+  ]
+}

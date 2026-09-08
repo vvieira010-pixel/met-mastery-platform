@@ -108,8 +108,12 @@ export default async function handler(req, res) {
 
   const {
     to, studentName, teacherName, title, date, startTime, endTime,
-    zoomUrl, classFocus, timezone,
+    zoomUrl, meetUrl, videoProvider, classFocus, timezone,
   } = body;
+
+  const videoUrl = videoProvider === 'meet' ? meetUrl : zoomUrl;
+  const providerLabel = videoProvider === 'meet' ? 'Google Meet' : 'Zoom';
+  const providerKey = videoProvider === 'meet' ? 'meetUrl' : 'zoomUrl';
 
   if (!to || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(to))) {
     return res.status(400).json({ error: { message: 'A valid student email ("to") is required.' } });
@@ -117,8 +121,8 @@ export default async function handler(req, res) {
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(String(date))) {
     return res.status(400).json({ error: { message: 'A valid class "date" (YYYY-MM-DD) is required.' } });
   }
-  if (!zoomUrl || !/^https?:\/\//.test(String(zoomUrl))) {
-    return res.status(400).json({ error: { message: 'A Zoom link ("zoomUrl") is required. Set it in Settings.' } });
+  if (!videoUrl || !/^https?:\/\//.test(String(videoUrl))) {
+    return res.status(400).json({ error: { message: `A ${providerLabel} link ("${providerKey}") is required. Set it in Settings.` } });
   }
 
   const apiKey = env('RESEND_API_KEY');
@@ -160,7 +164,7 @@ export default async function handler(req, res) {
     : `${new Date(Date.UTC(y, mo - 1, d)).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })} · ${startTime}${endTime ? `–${endTime}` : ''} (${tz})`;
 
   const descriptionPlain = [
-    `Join your English class on Zoom: ${zoomUrl}`,
+    `Join your English class on ${providerLabel}: ${videoUrl}`,
     classFocus ? `Focus: ${classFocus}` : '',
     `When: ${whenLabel}`,
   ].filter(Boolean).join('\n');
@@ -171,8 +175,8 @@ export default async function handler(req, res) {
     dtStart, dtEnd, allDay,
     summary,
     description: descriptionPlain,
-    location: zoomUrl,
-    url: zoomUrl,
+    location: videoUrl,
+    url: videoUrl,
     organizerEmail: fromEmail,
     organizerName: teacherName || fromName,
     attendeeEmail: to,
@@ -184,11 +188,11 @@ export default async function handler(req, res) {
       <h2 style="margin:0 0 4px">${escapeHtml(summary)}</h2>
       <p style="margin:0 0 16px;color:#4a5f70">${escapeHtml(whenLabel)}</p>
       ${classFocus ? `<p style="margin:0 0 16px"><strong>Focus:</strong> ${escapeHtml(classFocus)}</p>` : ''}
-      <p style="margin:0 0 20px">Hi${studentName ? ' ' + escapeHtml(String(studentName).split(' ')[0]) : ''}, here's your class invite. Tap below to join on Zoom:</p>
+      <p style="margin:0 0 20px">Hi${studentName ? ' ' + escapeHtml(String(studentName).split(' ')[0]) : ''}, here's your class invite. Tap below to join on ${providerLabel}:</p>
       <p style="margin:0 0 20px">
-        <a href="${escapeAttr(zoomUrl)}" style="display:inline-block;background:#148891;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:600">Join Zoom class</a>
+        <a href="${escapeAttr(videoUrl)}" style="display:inline-block;background:#148891;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:600">Join ${providerLabel} class</a>
       </p>
-      <p style="margin:0;color:#4a5f70;font-size:13px">Or copy this link: <a href="${escapeAttr(zoomUrl)}">${escapeHtml(zoomUrl)}</a></p>
+      <p style="margin:0;color:#4a5f70;font-size:13px">Or copy this link: <a href="${escapeAttr(videoUrl)}">${escapeHtml(videoUrl)}</a></p>
       <p style="margin:16px 0 0;color:#4a5f70;font-size:13px">The attached <code>invite.ics</code> adds this class to your calendar.</p>
     </div>`;
 

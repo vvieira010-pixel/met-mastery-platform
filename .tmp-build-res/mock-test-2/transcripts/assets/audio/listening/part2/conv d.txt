@@ -1,0 +1,7 @@
+[narrator] Listen to a conversation about the environment.
+[female] I've been trying to reduce my plastic waste. I started bringing my own bags to the supermarket and using a reusable water bottle.
+[male] That's good, but I feel like individual actions aren't enough to solve the bigger problem.
+[female] What do you mean?
+[male] Well, large companies produce most of the pollution. Even if millions of people reduce their waste, it won't make as much difference as getting corporations to change their practices.
+[female] I see your point. But I think both are important. Individual actions set an example and create demand for change.
+[male] That's true. I just wish governments would do more to regulate industries.

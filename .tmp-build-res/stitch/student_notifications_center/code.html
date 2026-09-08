@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MET Mastery - Notifications</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { background-color: theme('colors.background'); }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(246, 250, 251, 0.9) 0%, rgba(227, 242, 253, 0.9) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(9, 150, 171, 0.1);
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="font-body-md text-on-surface antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (Suppressed for this specific flow as per instructions, but requested to keep from SCREEN_4. Context rules state we suppress if linear, but this is a dashboard view. The prompt asks to maintain side nav. We will include it.) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-primary dark:bg-inverse-surface shadow-xl shadow-teal-deep/20 z-50 flex flex-col hidden md:flex">
+<div class="flex flex-col h-full py-base">
+<div class="px-6 py-8 flex items-center gap-4 border-b border-outline/20">
+<img alt="Student Profile Picture" class="w-12 h-12 rounded-full border-2 border-primary-fixed" data-alt="A small, stylized profile avatar of a student in a vibrant, corporate academic style with teal and orange accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAJjUkBCUDXha87V0cobovLveDLbqn6pD0COxPYRfT3uYCZZqhQC8WU6vWGYh4KRUIv_isPhy-HfRacZm9FCSmARvZx30FmSCvM9NbZ2sqq6-eHqFAmUTHvaefQNXVaguyWv7V1OmJ7OUmaDAnlbRZLzA3kXvlKO5Gv_tCOks6lSAfKVArF--ZnE6BQ-FwuIDMoHlYdWk-hhniQLsPZ0fgZdb__fTE2sxkq4rMG5XSCZSpGaUMfyMX"/>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-inverse-on-surface leading-none mb-1">MET Mastery</h2>
+<p class="font-label-sm-bold text-label-sm-bold text-primary-fixed opacity-80">English Proficiency</p>
+</div>
+</div>
+<nav class="flex-1 mt-8 px-2 space-y-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm-bold text-label-sm-bold">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="exercise">exercise</span>
+<span class="font-label-sm-bold text-label-sm-bold">Practice</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="import_contacts">import_contacts</span>
+<span class="font-label-sm-bold text-label-sm-bold">Lessons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span class="font-label-sm-bold text-label-sm-bold">Grades</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 dark:text-on-surface-variant hover:text-on-primary hover:bg-primary-container/50 dark:hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-sm-bold text-label-sm-bold">Resources</span>
+</a>
+</nav>
+<div class="px-6 py-6 mt-auto">
+<button class="w-full bg-energy-orange-glow text-on-secondary-container font-label-sm-bold text-label-sm-bold py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">Start Practice</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md docked full-width top-0 sticky z-40 border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center w-full h-16 px-gutter-lg max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary hidden md:block">Notifications</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-primary font-bold border-b-2 border-primary pb-1 flex items-center justify-center w-10 h-10 hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications" data-weight="fill" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant flex items-center justify-center w-10 h-10 hover:bg-surface-container dark:hover:bg-surface-container-highest rounded-full p-2 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Student Avatar" class="w-8 h-8 rounded-full ml-4 hidden md:block border border-outline-variant" data-alt="Small circular student avatar for top app bar, matching the vibrant corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSZ8c2PEpJ4SQvFqPHFEoUQFWDGY6spi4LYgPZW9OAzR1Lm9e9Qn5bIw1ZJXcRKN_oGpgs0blo04ydj0OlxFJ3fvXqSLZ-nlgTEMnXg_lg0qs-HLjreRmsuKZPRexss2GZV3SoQbB6QOPOKijG0LMvwfAb6mlYnW7w-h2svkhjS-nrheGITcabQwfzuvCdnOKn6hrsOYaUWFljRss7g-z6l18p_zaHK1Km-WvDCsN_x612XS-z8CgJ"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-gutter-lg">
+<div class="max-w-[800px] mx-auto w-full">
+<!-- Notification Header & Controls -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-background">Your Alerts</h2>
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="flex bg-surface-container rounded-lg p-1 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-4 py-1.5 rounded-md bg-surface text-primary font-label-sm-bold text-label-sm-bold shadow-sm">All</button>
+<button class="flex-1 sm:flex-none px-4 py-1.5 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-sm-bold text-label-sm-bold">Messages</button>
+<button class="flex-1 sm:flex-none px-4 py-1.5 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-sm-bold text-label-sm-bold">Achievements</button>
+</div>
+<button class="hidden sm:flex text-primary font-label-sm-bold text-label-sm-bold hover:underline whitespace-nowrap">Mark all as read</button>
+</div>
+</div>
+<!-- Notifications List -->
+<div class="space-y-4">
+<!-- Unread Notification: Achievement -->
+<div class="glass-panel rounded-xl p-4 md:p-6 flex gap-4 items-start relative group transition-transform hover:-translate-y-1 hover:shadow-md hover:shadow-teal-deep/10">
+<!-- Unread Indicator -->
+<div class="absolute left-0 top-0 h-full w-1.5 bg-energy-orange-glow rounded-l-xl"></div>
+<div class="w-12 h-12 rounded-full bg-energy-orange-glow/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-energy-orange-glow" data-icon="emoji_events">emoji_events</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Streak Master!</h3>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-sm">2m ago</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-2">You've hit a 7-day practice streak. Keep the momentum going!</p>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-label-sm-bold text-label-sm-bold bg-energy-orange-glow/20 text-secondary">Achievement</span>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Read Notification: Message -->
+<div class="bg-surface rounded-xl p-4 md:p-6 flex gap-4 items-start relative border border-outline-variant/30 group transition-all">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="mail">mail</span>
+</div>
+<div class="flex-1 opacity-70">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Feedback Received</h3>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-sm">2h ago</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-2">Instructor Sarah left detailed feedback on your recent essay submission.</p>
+<button class="text-primary font-label-sm-bold text-label-sm-bold hover:underline">View Feedback</button>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Read Notification: Reminder -->
+<div class="bg-surface rounded-xl p-4 md:p-6 flex gap-4 items-start relative border border-outline-variant/30 group transition-all">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="event">event</span>
+</div>
+<div class="flex-1 opacity-70">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Upcoming Practice Exam</h3>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-sm">Yesterday</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-2">Your mock MET listening test is scheduled for tomorrow at 10:00 AM.</p>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-label-sm-bold text-label-sm-bold bg-tertiary-container/20 text-tertiary-container">Reminder</span>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<div class="mt-8 text-center sm:hidden">
+<button class="text-primary font-label-sm-bold text-label-sm-bold hover:underline">Mark all as read</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
+
+
+
+

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Speaking Practice - MET Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=DM+Sans:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(9, 150, 171, 0.1);
+            box-shadow: 0 4px 24px rgba(0, 101, 116, 0.05);
+        }
+        
+        .bg-gradient-page {
+            background: linear-gradient(135deg, #F6FAFB 0%, #E3F2FD 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #006877, #008093);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glow-active {
+            box-shadow: 0 0 15px rgba(255, 171, 123, 0.3);
+        }
+
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 122, 49, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(255, 122, 49, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 122, 49, 0); }
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="bg-gradient-page min-h-screen text-on-surface antialiased overflow-x-hidden">
+<!-- Top Navigation (Generated from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface-bright/80 backdrop-blur-xl dark:bg-surface-dim/80 shadow-sm flex justify-between items-center px-gutter-lg h-16">
+<div class="font-headline-md text-headline-md font-black text-teal-deep">MET Mastery</div>
+<div class="flex items-center gap-6">
+<!-- Search placeholder on right -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-md font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed">
+<button class="hover:bg-primary-container/20 p-2 rounded-full transition-colors relative group">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-secondary-container rounded-full"></span>
+</button>
+<button class="hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A confident student smiling, bathed in soft studio lighting, creating a bright and modern light-mode aesthetic against a clear white background. Professional, high-energy academic portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLTw0L63LEt_c0kyWi_Wo_QVAfrTi8cGiFJoTTCsYkvjnvDPrnOgduRChgAmi4ut37Q5ybQIk5XywsmNajOkqfkUuK0m8MwE5yJ4eQlAh1QwcwWlTy34TDWQxdcsd2n_Lp22UVcVsURjgmxMdlD3veB97WsusZ0yTKOF2m2o32PltDocgzbvwgdhhqCiCMvU-mGFULDmfC1loxuhh_b30n82Z3MbEomWtFA9AqpsE6QvQv_GG8kKet"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Side Navigation (Generated from JSON) -->
+<nav class="bg-teal-deep dark:bg-on-surface h-screen w-64 fixed left-0 top-0 shadow-lg flex flex-col h-full py-8 z-50">
+<div class="px-6 mb-8 flex items-center gap-4">
+<img alt="Student Profile Avatar" class="w-12 h-12 rounded-xl object-cover bg-surface-container-lowest p-1" data-alt="A stylized, modern academic shield logo featuring a glowing digital book and subtle geometric shapes, rendered in deep teal and white with bright orange accents. High-tech, energetic education theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVU48ALEAaFHFJx5mWdeHD98wef0uKtU__sIRW1C-AtyWwsR0bKuLlXrU6w2quI88ch-YXD4wmgERUDBviGnYuLLtAZW-uH590C9QlUW5JZ_5hDuG7XKgbUfCZDuFV62-akkO8kQ7K0gBn5z8WsLb6cGe4oIA2jRwgp4Av96T89OKfKgEZxc5BSSlxgg9aJ1gNPV8bNY3Ky9jAD-AV2oCu-nZTU8hFLc4e3rSxHLPszByeMLEbxb2r"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-surface-lowest leading-tight">MET Mastery</h1>
+<p class="text-tertiary-fixed-dim text-sm opacity-80">Elite Proficiency</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors rounded-l-full group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="home">home</span>
+<span class="font-body-md text-body-md">Home</span>
+</a>
+</li>
+<li>
+<!-- Active State for Practice -->
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-l-full ml-4 py-3 px-6 transition-all duration-300 scale-95 shadow-md" href="#">
+<span class="material-symbols-outlined" data-icon="exercise" data-weight="fill" style="font-variation-settings: 'FILL' 1;">exercise</span>
+<span class="font-body-md text-body-md font-bold">Practice</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors rounded-l-full group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="import_contacts">import_contacts</span>
+<span class="font-body-md text-body-md">Lessons</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors rounded-l-full group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="grade">grade</span>
+<span class="font-body-md text-body-md">Grades</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors rounded-l-full group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="folder_open">folder_open</span>
+<span class="font-body-md text-body-md">Resources</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full bg-gradient-to-r from-teal-deep to-primary-container text-surface-lowest font-body-md text-body-md font-bold py-3 rounded-lg shadow hover:-translate-y-0.5 transition-transform">
+                Start Practice
+            </button>
+<ul class="mt-6 space-y-2 border-t border-primary-fixed-dim/20 pt-4">
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-2 px-4 hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md text-sm">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-surface-variant hover:text-surface-bright py-2 px-4 hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+<span class="font-body-md text-body-md text-sm">Help</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-[1200px] mx-auto p-gutter-lg grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<!-- Left/Center: Simulation Environment (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Header -->
+<div class="flex justify-between items-end mb-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-secondary-container/10 text-secondary-container px-2 py-1 rounded-full font-label-sm-bold text-label-sm-bold uppercase">Speaking Module</span>
+<span class="text-outline font-data-mono text-data-mono text-xs">Task 3/5</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg gradient-text">Interactive Dialogue</h2>
+</div>
+<button class="text-tertiary border border-tertiary hover:bg-tertiary-container/10 px-4 py-2 rounded-lg font-body-md text-body-md font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="pause">pause</span> Pause Session
+                    </button>
+</div>
+<!-- Simulation Canvas -->
+<div class="glass-panel rounded-2xl p-6 flex-1 flex flex-col min-h-[500px] relative overflow-hidden glow-active">
+<!-- AI Avatar & Speech Bubble -->
+<div class="flex items-start gap-4 mb-8">
+<div class="relative w-16 h-16 shrink-0">
+<div class="absolute inset-0 bg-primary-container rounded-full animate-pulse opacity-20"></div>
+<img alt="AI Tutor Avatar" class="w-full h-full object-cover rounded-full border-2 border-primary-container relative z-10" data-alt="A stylized, friendly AI tutor avatar with glowing teal rings, designed in a sleek, modern, flat-vector style against a white background. High-tech educational aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB8K5fNNIkzgKPpVvydoqyrGOkVFiOABxSGu60WrkEiGRUrpf5Kp_kVQwKsbkZpz4kxITYYNXW3Y5737J63eNXTnfF3ATxt7iBNr9jgfDgTsxcNBU5xzu5l_qNXd7W1TJAV3e4mYhZ61nL-vidbaBSgk-ZshMMR72ezGNxD5H_XfNE26olB3vf1EENmpu7qkqPe0IBUehgJFSlhXMbfL7nSE_JEPuc9aLOzRFdvgafbfSoATZLucLC"/>
+<div class="absolute -bottom-1 -right-1 bg-surface-lowest rounded-full p-1 shadow-sm z-20">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="volume_up">volume_up</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-2xl rounded-tl-none max-w-[80%] shadow-sm relative">
+<p class="font-body-lg text-body-lg text-on-surface">"That's an interesting point about urban planning. How do you think <span class="text-primary font-medium">green spaces</span> specifically impact the community's overall well-being?"</p>
+<!-- Audio wave visualization -->
+<div class="flex items-end gap-1 h-4 mt-3 opacity-50">
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-1 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- User Response Area -->
+<div class="mt-auto">
+<!-- Prompt Card -->
+<div class="bg-surface-lowest border border-academic-blue-soft rounded-xl p-4 mb-6 shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-container" data-icon="lightbulb">lightbulb</span>
+<h4 class="font-label-sm-bold text-label-sm-bold text-on-surface-variant uppercase">Prompt of the Moment</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Provide two concrete examples of community benefits derived from parks, using transition words (e.g., 'Furthermore', 'Consequently').</p>
+</div>
+<!-- Recording Control -->
+<div class="flex flex-col items-center justify-center py-4">
+<div class="text-outline font-data-mono text-data-mono mb-4">00:14 / 01:00</div>
+<button class="w-20 h-20 bg-secondary-container rounded-full shadow-lg flex items-center justify-center pulse-ring hover:scale-105 transition-transform group relative z-10">
+<span class="material-symbols-outlined text-surface-lowest text-4xl" data-icon="mic" data-weight="fill" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<p class="font-body-md text-body-md text-secondary-container font-medium mt-4">Listening...</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Insight Panel (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Live Feedback Card -->
+<div class="glass-panel rounded-2xl p-6">
+<h3 class="font-headline-md text-headline-md text-teal-deep mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span> Real-Time Insights
+                    </h3>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center">
+<span class="font-data-mono text-data-mono text-outline mb-1">Fluency</span>
+<div class="relative w-16 h-16 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="85, 100" stroke-width="3"></path>
+</svg>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">85</span>
+</div>
+</div>
+<div class="bg-surface-lowest border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center">
+<span class="font-data-mono text-data-mono text-outline mb-1">Speech Rate</span>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">124</span>
+<span class="text-xs text-outline">WPM</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-secondary-container h-full w-[60%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Transcript Analysis -->
+<div>
+<div class="flex justify-between items-center mb-3">
+<h4 class="font-label-sm-bold text-label-sm-bold text-on-surface-variant uppercase">Live Transcript Analysis</h4>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-container"></span>
+</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 max-h-[200px] overflow-y-auto">
+<p class="font-body-md text-body-md leading-relaxed">
+<span class="text-on-surface">Well, I think green spaces are vital. </span>
+<span class="text-on-surface bg-green-100 dark:bg-green-900/30 px-1 rounded border-b-2 border-green-500">Furthermore</span><span class="text-on-surface">, they provide a place for... um... </span>
+<span class="text-on-surface bg-orange-100 dark:bg-orange-900/30 px-1 rounded border-b-2 border-orange-500 cursor-help" title="Suggestion: 'recreation' or 'leisure'">relaxing activities</span><span class="text-on-surface">, which lowers stress levels across the neighborhood.</span>
+</p>
+</div>
+<div class="flex gap-4 mt-3 text-xs">
+<div class="flex items-center gap-1"><div class="w-2 h-2 bg-green-500 rounded-full"></div> Excellent</div>
+<div class="flex items-center gap-1"><div class="w-2 h-2 bg-orange-500 rounded-full"></div> Needs Vocab Upgrade</div>
+</div>
+</div>
+</div>
+<!-- Milestones / Gamification -->
+<div class="glass-panel rounded-2xl p-6 mt-auto">
+<h4 class="font-label-sm-bold text-label-sm-bold text-on-surface-variant uppercase mb-4">Session Milestones</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-3 bg-surface-lowest p-3 rounded-xl border border-academic-blue-soft">
+<div class="bg-secondary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary-container" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface text-sm">Vocabulary Streak</p>
+<p class="text-xs text-outline">Used 3 advanced academic words</p>
+</div>
+<span class="ml-auto text-secondary-container font-data-mono text-data-mono text-sm">+50</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-lowest p-3 rounded-xl border border-academic-blue-soft opacity-60 grayscale">
+<div class="bg-surface-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-outline" data-icon="timer">timer</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface text-sm">Perfect Pacing</p>
+<p class="text-xs text-outline">Maintain 110-130 WPM for 2 mins</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
+
+
+
+

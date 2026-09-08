@@ -1,14 +1,14 @@
-import supplementaryListeningData from '../../met_listening_section_76_100.json' with { type: 'json' };
-import met26ConversationsData from '../../met_26_conversations.json' with { type: 'json' };
-import practiceStudioListeningData from '../data/exercises/listening/practice-studio-listening.json' with { type: 'json' };
-import practiceStudioSpeakingData from '../data/exercises/speaking/practice-studio-speaking.json' with { type: 'json' };
-import b2VocabMoreData from '../data/exercises/vocabulary/b2-vocab-50-more.json' with { type: 'json' };
-import b2SpeakingMoreData from '../data/exercises/speaking/b2-speaking-50-more.json' with { type: 'json' };
-import b2WritingMoreData from '../data/exercises/writing/b2-writing-50-more.json' with { type: 'json' };
-import b2ReadingData from '../data/exercises/reading/b2-reading.json' with { type: 'json' };
-import b2ReadingMoreData from '../data/exercises/reading/b2-reading-50-more.json' with { type: 'json' };
-import readingTreesData from '../data/exercises/reading/reading-23-trees-77.json' with { type: 'json' };
-import readingSubjectsData from '../data/exercises/reading/reading-23-met-subjects-77.json' with { type: 'json' };
+import supplementaryListeningData from '../../met_listening_section_76_100.js';
+import met26ConversationsData from '../../met_26_conversations.js';
+import practiceStudioListeningData from '../data/exercises/listening/practice-studio-listening.js';
+import practiceStudioSpeakingData from '../data/exercises/speaking/practice-studio-speaking.js';
+import b2VocabMoreData from '../data/exercises/vocabulary/b2-vocab-50-more.js';
+import b2SpeakingMoreData from '../data/exercises/speaking/b2-speaking-50-more.js';
+import b2WritingMoreData from '../data/exercises/writing/b2-writing-50-more.js';
+import b2ReadingData from '../data/exercises/reading/b2-reading.js';
+import b2ReadingMoreData from '../data/exercises/reading/b2-reading-50-more.js';
+import readingTreesData from '../data/exercises/reading/reading-23-trees-77.js';
+import readingSubjectsData from '../data/exercises/reading/reading-23-met-subjects-77.js';
 import { MET_TASK_CONFIG } from './met-task-spec.js';
 
 let fullDataPromise = null;
@@ -91,9 +91,21 @@ export function getTopicList(mode) {
       { id: 'gm_full_bank', title: 'Complete Grammar Collection (218 Questions)', subtitle: 'All 218 Q — 22 topics' },
     ];
   }
-  if (mode === 'writing' || mode === 'vocab') {
+  if (mode === 'writing') {
     return [
-      { id: `${mode}_full_bank`, title: mode === 'writing' ? 'Complete Writing Collection (138 Tasks)' : 'Complete Vocabulary Collection (128 Tasks)' },
+      { id: 'education', title: 'Education, Teaching & Learning' },
+      { id: 'technology', title: 'Digital Technology & Modern Life' },
+      { id: 'work_career', title: 'Professional Life & Employment' },
+      { id: 'environment', title: 'Environmental Issues & Sustainability' },
+      { id: 'healthcare', title: 'Healthcare Communication & Patient Care' },
+      { id: 'travel_culture', title: 'Travel, Culture & Living Abroad' },
+      { id: 'community', title: 'Community Services & Public Life' },
+      { id: 'media_news', title: 'Media, News & Digital Communication' },
+    ];
+  }
+  if (mode === 'vocab') {
+    return [
+      { id: 'vocab_full_bank', title: 'Complete Vocabulary Collection (128 Tasks)' },
       { id: 'work_career', title: 'Professional Life & Employment' },
       { id: 'healthcare', title: 'Healthcare Communication & Patient Care' },
       { id: 'education', title: 'Education, Teaching & Learning' },
@@ -101,8 +113,6 @@ export function getTopicList(mode) {
       { id: 'environment', title: 'Environmental Issues & Sustainability' },
       { id: 'community', title: 'Community Services & Public Life' },
       { id: 'travel_culture', title: 'Travel, Culture & Living Abroad' },
-      { id: 'money_consumer', title: 'Consumer Life, Money & Advertising' },
-      { id: 'family_relationships', title: 'Family, Relationships & Social Interaction' },
       { id: 'media_news', title: 'Media, News & Digital Communication' },
       { id: 'general', title: 'General & Academic Vocabulary' },
     ];
@@ -645,19 +655,48 @@ function classifyAdditionalSpeakingTopic(topic) {
   return destinations[topic] || 'community';
 }
 
+function classifyWritingB2Topic(topic) {
+  const map = {
+    'Education': 'education',
+    'Technology': 'technology',
+    'Work': 'work_career',
+    'Environment': 'environment',
+    'Health': 'healthcare',
+    'Culture': 'travel_culture',
+    'Travel': 'travel_culture',
+    'Hometown': 'travel_culture',
+    'Food': 'travel_culture',
+    'Society': 'community',
+    'Family': 'media_news',
+    'Friends': 'media_news',
+    'School': 'education',
+    'Shopping': 'community',
+    'Hobbies': 'community',
+    'Daily Life': 'community',
+    'Free Time': 'community',
+    'Childhood': 'education',
+    'Science': 'technology',
+    'Transportation': 'community',
+    'Learning English': 'education',
+  };
+  return map[topic] || 'community';
+}
+
 export async function getWritingExercises(topicId) {
   const { vocabTopics } = await getFullData();
-  if (topicId === 'writing_full_bank') topicId = 'general';
   const topic = vocabTopics.find(t => t.id === topicId);
   if (!topic) return [];
   const asWriting = (e) => ({ ...e, type: 'writing' });
-  const base = (topicId === 'general'
-    ? vocabTopics.flatMap(t => t.exercises.filter(e => e.type === 'short'))
-    : topic.exercises.filter(e => e.type === 'short')
-  ).map(asWriting);
+  const base = topic.exercises.filter(e => e.type === 'short').map(asWriting);
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('writing');
-  const more = (b2WritingMoreData.modules || []).flatMap(mod => (mod.exercises || []).map(e => (e.type === 'short' ? asWriting(e) : e)));
+  const more = (b2WritingMoreData.modules || []).flatMap(mod =>
+    (mod.exercises || []).map(e => {
+      const mapped = classifyWritingB2Topic(e.topic);
+      const asW = e.type === 'short' ? asWriting(e) : e;
+      return { ...asW, topic: mapped, sourceTopic: e.topic };
+    })
+  ).filter(ex => ex.topic === topicId);
   return [...base, ...b2, ...more];
 }
 

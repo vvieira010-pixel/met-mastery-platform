@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://met-mastery.vercel.app/sitemap.xml

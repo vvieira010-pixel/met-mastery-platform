@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MET Mastery - Reading Practice Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background: linear-gradient(135deg, #F6FAFB 0%, #E3F2FD 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(9, 150, 171, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 104, 119, 0.05);
+        }
+        .glow-active {
+            box-shadow: 0 0 24px rgba(255, 171, 123, 0.15);
+        }
+        .text-highlight {
+            background-color: rgba(255, 171, 123, 0.2);
+            border-bottom: 2px dashed #FFAB7B;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .text-highlight:hover {
+            background-color: rgba(255, 171, 123, 0.4);
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased flex overflow-hidden">
+<!-- SideNavBar (Desktop/Tablet) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-teal-deep dark:bg-on-primary-fixed shadow-[4px_0_24px_rgba(0,104,119,0.15)] py-8 z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
+<img alt="Student profile avatar" class="w-full h-full object-cover" data-alt="A highly detailed close up portrait of a young professional student with a bright confident smile, soft studio lighting on a neutral grey background, high resolution photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2UKQ2BO16CHKDiZ6_dO7GT5GxW91C9o2JauxEvomExNX_kGfbPHozLw9GSCt-tsXPdXrf2MK13R5toMFFN1XanXAC4iCYBoY56YTxxwHcFRTwcKJVXkUqLDja7XCbGdBsw3RuMKefMc_B0G86hMqaFp_gl6K9cltss8ykU5ltRgcCm-Mbxvro9GSJATmyqGuRnjKFbWyBHFyHf0W_tKUih6rB6yKUBH8vilnqqeu0cZyw58zxSbkI"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-white">MET Mastery</h1>
+<p class="font-label-sm-bold text-label-sm-bold text-white/70 mt-1">Learning Loop: B2</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto w-full">
+<ul class="flex flex-col gap-2 w-full">
+<li><a class="text-white/70 hover:text-white py-3 pl-10 flex items-center gap-4 hover:bg-primary-container/20 transition-all" href="#"><span class="material-symbols-outlined" data-icon="home">home</span> Home</a></li>
+<li><a class="bg-secondary-container text-on-secondary-container rounded-l-full ml-4 py-3 pl-6 flex items-center gap-4" href="#"><span class="material-symbols-outlined" data-icon="menu_book" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu_book</span> Read</a></li>
+<li><a class="text-white/70 hover:text-white py-3 pl-10 flex items-center gap-4 hover:bg-primary-container/20 transition-all" href="#"><span class="material-symbols-outlined" data-icon="edit_note">edit_note</span> Write</a></li>
+<li><a class="text-white/70 hover:text-white py-3 pl-10 flex items-center gap-4 hover:bg-primary-container/20 transition-all" href="#"><span class="material-symbols-outlined" data-icon="headphones">headphones</span> Listen</a></li>
+<li><a class="text-white/70 hover:text-white py-3 pl-10 flex items-center gap-4 hover:bg-primary-container/20 transition-all" href="#"><span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span> Speak</a></li>
+</ul>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 px-4 bg-gradient-to-r from-secondary-container to-secondary text-white rounded-lg font-label-sm-bold text-label-sm-bold hover:shadow-lg transition-all flex justify-center items-center gap-2">
+                Start Practice <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-64 h-screen flex flex-col relative overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 z-50 bg-surface-container/50 border-b border-primary/10 shadow-sm flex justify-between items-center w-full px-max-width h-16 mx-auto">
+<div class="flex items-center gap-6 md:hidden px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-teal-deep dark:text-primary-fixed">MET Mastery</h1>
+</div>
+<div class="hidden md:flex items-center gap-8 ml-8">
+<ul class="flex gap-6 h-full">
+<li class="h-16 flex items-center"><a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 transition-colors px-3 py-2 rounded-md" href="#">Dashboard</a></li>
+<li class="h-16 flex items-center border-b-2 border-primary"><a class="text-primary dark:text-primary-fixed-dim font-bold px-3 py-2" href="#">Studio</a></li>
+<li class="h-16 flex items-center"><a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 transition-colors px-3 py-2 rounded-md" href="#">Analytics</a></li>
+<li class="h-16 flex items-center"><a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 transition-colors px-3 py-2 rounded-md" href="#">Library</a></li>
+</ul>
+</div>
+<div class="flex items-center gap-4 pr-6">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 transition-transform"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 transition-transform"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 transition-transform"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 overflow-y-auto p-4 md:p-margin-desktop w-full max-w-[1400px] mx-auto">
+<!-- Breadcrumb / Back Action -->
+<div class="mb-8 flex items-center gap-2 text-teal-deep opacity-80 hover:opacity-100 transition-opacity cursor-pointer w-fit">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span class="font-label-sm-bold text-label-sm-bold uppercase tracking-wider">Back to Practice Studio</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<!-- Left Column: Reading Passage -->
+<article class="lg:col-span-8 glass-panel rounded-[16px] p-8 md:p-12 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary to-primary-container"></div>
+<header class="mb-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 rounded-full bg-academic-blue-soft text-primary font-data-mono text-data-mono text-xs">Environment</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-data-mono text-data-mono text-xs flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">timer</span> 8 Min Read</span>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[48px] text-on-background mb-4">The Future of Sustainable Architecture</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic">Exploring how modern structural engineering is adapting to climate change.</p>
+</header>
+<div class="prose prose-lg max-w-none text-on-surface space-y-6 leading-relaxed font-body-lg text-body-lg">
+<p>
+                            In recent years, the architectural landscape has undergone a profound transformation. Moving away from the resource-intensive practices of the 20th century, contemporary designers are increasingly prioritizing sustainability. This shift is not merely an aesthetic trend but a vital <span class="text-highlight group relative">adaptation<span class="absolute -top-12 left-1/2 -translate-x-1/2 hidden group-hover:flex bg-inverse-surface text-inverse-on-surface px-4 py-2 rounded-lg text-sm w-48 shadow-lg z-10 flex-col items-center"><strong>Adaptation (n):</strong> The process of changing to fit new circumstances.</span></span> to escalating environmental crises.
+                        </p>
+<p>
+                            One of the most significant advancements is the integration of "living materials" into building construction. Unlike traditional concrete and steel, which carry a heavy carbon footprint, biological materials such as engineered timber and mycelium composites offer structural integrity while actively sequestering carbon dioxide.
+                        </p>
+<p>
+                            Furthermore, building design is becoming highly <span class="text-highlight">responsive</span> to local microclimates. Utilizing passive design principles, modern structures are oriented to maximize natural light and ventilation, drastically reducing reliance on artificial heating and cooling systems. The implementation of kinetic facades, which automatically adjust to the sun's trajectory, exemplifies this dynamic approach.
+                        </p>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant/30 flex justify-end">
+<button class="px-6 py-3 bg-primary text-white rounded-lg font-label-sm-bold text-label-sm-bold hover:bg-teal-deep transition-colors shadow-sm">Mark as Read</button>
+</div>
+</article>
+<!-- Right Sidebar: Insight Panel -->
+<aside class="lg:col-span-4 flex flex-col gap-6">
+<!-- Progress Card -->
+<div class="glass-panel rounded-[16px] p-6 glow-active relative overflow-hidden">
+<h3 class="font-headline-md text-headline-md text-on-background mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary-container">trending_up</span> Session Progress</h3>
+<div class="mb-2 flex justify-between items-end">
+<span class="font-data-mono text-data-mono text-on-surface-variant">Reading Complete</span>
+<span class="font-headline-lg text-headline-lg text-primary">65%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden mb-6">
+<div class="h-full bg-gradient-to-r from-primary to-inverse-primary rounded-full" style="width: 65%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
+<span class="block font-label-sm-bold text-label-sm-bold text-on-surface-variant mb-1 uppercase">Est. Speed</span>
+<span class="block font-data-mono text-data-mono text-on-background text-lg">240 WPM</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
+<span class="block font-label-sm-bold text-label-sm-bold text-on-surface-variant mb-1 uppercase">Accuracy</span>
+<span class="block font-data-mono text-data-mono text-on-background text-lg">92%</span>
+</div>
+</div>
+</div>
+<!-- Dictionary Widget -->
+<div class="glass-panel rounded-[16px] p-6 border-t-4 border-secondary-container">
+<h3 class="font-headline-md text-headline-md text-on-background mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary-container">dictionary</span> Smart Dictionary</h3>
+<div class="relative mb-4">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-10 pr-4 py-2 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Select word or type to search..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-md text-headline-md text-primary">Adaptation</h4>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">volume_up</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">The action or process of changing to suit a new environment or situation.</p>
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-surface-container rounded text-xs font-label-sm-bold text-on-surface">Synonyms:</span>
+<span class="px-2 py-1 bg-white border border-outline-variant/50 rounded text-xs font-body-md text-on-surface-variant">Modification</span>
+<span class="px-2 py-1 bg-white border border-outline-variant/50 rounded text-xs font-body-md text-on-surface-variant">Adjustment</span>
+</div>
+</div>
+</div>
+<!-- Quiz Preview -->
+<div class="glass-panel rounded-[16px] p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-on-background flex items-center gap-2"><span class="material-symbols-outlined text-teal-deep">quiz</span> Comprehension</h3>
+<span class="font-data-mono text-data-mono text-sm bg-academic-blue-soft text-primary px-2 py-1 rounded">1 of 5</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-4">According to the passage, why are biological materials preferred over traditional concrete?</p>
+<div class="space-y-3">
+<label class="flex items-center gap-3 p-3 rounded-lg border border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="text-primary focus:ring-primary w-4 h-4" name="q1" type="radio"/>
+<span class="font-body-md text-body-md">They are cheaper to mass-produce.</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-primary bg-academic-blue-soft cursor-pointer transition-colors">
+<input checked="" class="text-primary focus:ring-primary w-4 h-4" name="q1" type="radio"/>
+<span class="font-body-md text-body-md">They sequester carbon dioxide.</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="text-primary focus:ring-primary w-4 h-4" name="q1" type="radio"/>
+<span class="font-body-md text-body-md">They require less structural engineering.</span>
+</label>
+</div>
+</div>
+</aside>
+</div>
+<footer class="mt-12 text-center text-on-surface-variant font-data-mono text-xs opacity-60">
+                MET Mastery © 2024. Dynamic Scholar UI.
+            </footer>
+</main>
+</div>
+</body></html>
+
+
+
+

@@ -1,0 +1,1 @@
+import{r as i}from"./vendor-react-_P-FXV2G.js";function s(t){i.useEffect(()=>{if(!t||typeof document>"u")return;const e=document.body,n=e.style.overflow,d=e.style.paddingRight,o=window.innerWidth-document.documentElement.clientWidth;return o>0&&(e.style.paddingRight=`${o}px`),e.style.overflow="hidden",()=>{e.style.overflow=n,e.style.paddingRight=d}},[t])}export{s as u};

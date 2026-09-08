@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MET Mastery - Grammar Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 104, 119, 0.1);
+        }
+        .learning-glow {
+            box-shadow: 0 4px 20px rgba(255, 171, 123, 0.15);
+        }
+        .teal-shadow {
+            box-shadow: 0 4px 15px rgba(0, 104, 119, 0.08);
+        }
+        .bg-gradient-light {
+            background: linear-gradient(135deg, #F6FAFB 0%, #E3F2FD 100%);
+        }
+        .input-glow:focus-within {
+            box-shadow: 0 0 0 3px rgba(105, 213, 235, 0.3);
+            border-color: #008093;
+        }
+    </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="bg-gradient-light min-h-screen text-on-surface font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-teal-deep shadow-xl flex-col py-8 z-50">
+<div class="px-6 mb-12 flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-surface-lowest leading-tight">MET Mastery</h1>
+<p class="font-label-sm-bold text-label-sm-bold text-primary-fixed">Vibrant Learning</p>
+</div>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="flex items-center gap-4 text-on-primary-fixed-variant hover:text-white py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors duration-200 rounded-l-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-body-md text-body-md">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-primary-fixed-variant hover:text-white py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors duration-200 rounded-l-full" href="#">
+<span class="material-symbols-outlined" data-icon="exercise">exercise</span>
+<span class="font-body-md text-body-md">Practice</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-primary-fixed-variant hover:text-white py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors duration-200 rounded-l-full" href="#">
+<span class="material-symbols-outlined" data-icon="import_contacts">import_contacts</span>
+<span class="font-body-md text-body-md">Lessons</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-l-full ml-4 py-3 px-6 font-bold scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-body-md text-body-md">Grammar Guide</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-primary-fixed-variant hover:text-white py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors duration-200 rounded-l-full" href="#">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span class="font-body-md text-body-md">Grades</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-primary-fixed-variant hover:text-white py-3 px-6 ml-4 hover:bg-primary-container/20 transition-colors duration-200 rounded-l-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-body-md text-body-md">Resources</span>
+</a>
+</li>
+</ul>
+<div class="px-6 mt-auto">
+<button class="w-full bg-secondary-container text-on-secondary-container font-label-sm-bold text-label-sm-bold py-3 rounded-lg hover:bg-energy-orange-glow transition-colors">
+                Start Now
+            </button>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center px-gutter-lg z-40">
+<div class="flex items-center gap-4 md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">MET Mastery</span>
+</div>
+<div class="hidden md:flex items-center gap-4 flex-1">
+<div class="relative w-64 input-glow rounded-lg transition-all duration-300">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-academic-blue-soft rounded-lg text-body-md font-body-md focus:outline-none transition-colors text-on-surface placeholder:text-outline-variant" placeholder="Search grammar rules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-secondary-container rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Student Profile" class="w-full h-full object-cover" data-alt="A portrait of a diverse university student in a bright, modern learning environment, styled with glassmorphic elements and soft teal lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7NV_i6hz7g8z--o34HOxEzPrAymQWWO-85vxr6DxSZW_4nOdyYs5FR19sexKGuqQA7pCaXwciZcuT01_GEQReRL3iMEPiNcAktfkqcnzkC1BuZ9dXe73X81_t8fv4J5Yx5Fc4oBUSYQmkwH9YH_VhuLiHBcjRddjM_QQM4wXhPCceVYqcFPaqj4tAxVMiXb8Jpff9cYEAWeha6Q3hDgxufAM_Me_OHV7m85LKVCVagtA_atVkXDtb"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-20 md:pb-10 md:ml-64 px-gutter-sm md:px-gutter-lg max-w-[1200px] mx-auto min-h-screen flex flex-col md:flex-row gap-gutter-lg">
+<!-- Left/Center Canvas (8 columns) -->
+<div class="flex-1 flex flex-col gap-gutter-lg">
+<!-- Header Section -->
+<div class="glass-panel rounded-xl p-6 teal-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Grammar Essentials</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Master the rules, perfect your practice.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-lowest border border-primary/20 rounded-full font-data-mono text-data-mono text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span> Filter
+                    </span>
+<span class="px-3 py-1 bg-tertiary-container/10 border border-tertiary/20 rounded-full font-data-mono text-data-mono text-tertiary flex items-center gap-1">
+                        B2 Level
+                    </span>
+</div>
+</div>
+<!-- Central Explanation Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 teal-shadow learning-glow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-energy-orange-glow/10 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="account_tree">account_tree</span>
+</div>
+<div>
+<span class="font-data-mono text-data-mono text-secondary-container">Unit 4 • Core Syntax</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Conditional Structures (If-clauses)</h3>
+</div>
+</div>
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Conditionals describe the result of something that might happen (in the present or future) or might have happened but didn't (in the past).
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="border border-outline-variant/30 rounded-xl p-4 bg-surface-bright hover:border-primary/50 transition-colors">
+<h4 class="font-label-sm-bold text-label-sm-bold text-primary mb-2 uppercase tracking-wider">Zero Conditional</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2 text-sm">General truths &amp; facts.</p>
+<div class="bg-surface-container-lowest p-3 rounded-lg font-data-mono text-data-mono text-sm text-on-surface border-l-2 border-primary">
+                                If + present simple, present simple.
+                                <br/><span class="text-secondary-container mt-1 inline-block">"If you heat ice, it melts."</span>
+</div>
+</div>
+<div class="border border-outline-variant/30 rounded-xl p-4 bg-surface-bright hover:border-primary/50 transition-colors">
+<h4 class="font-label-sm-bold text-label-sm-bold text-primary mb-2 uppercase tracking-wider">First Conditional</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2 text-sm">Real/possible situations.</p>
+<div class="bg-surface-container-lowest p-3 rounded-lg font-data-mono text-data-mono text-sm text-on-surface border-l-2 border-primary">
+                                If + present simple, will + verb.
+                                <br/><span class="text-secondary-container mt-1 inline-block">"If it rains, we will stay home."</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Exercise -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 teal-shadow">
+<div class="flex items-center justify-between mb-6 border-b border-outline-variant/20 pb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-icon="edit_note">edit_note</span>
+                        Interactive Exercise
+                    </h3>
+<span class="px-2 py-1 bg-academic-blue-soft text-primary-container rounded font-label-sm-bold text-label-sm-bold">3 Questions</span>
+</div>
+<div class="space-y-6">
+<!-- Q1 -->
+<div class="flex flex-col gap-3 group">
+<p class="font-body-md text-body-md text-on-surface">1. If I <input class="inline-block w-24 border-b-2 border-outline-variant border-t-0 border-l-0 border-r-0 bg-transparent focus:ring-0 focus:border-primary text-center font-data-mono text-data-mono mx-2 transition-colors px-1" placeholder="study" type="text"/> (study) harder, I will pass the MET exam.</p>
+<div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-sm font-label-sm-bold text-label-sm-bold text-primary flex items-center gap-1 hover:text-primary-container">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> Check
+                            </button>
+</div>
+</div>
+<!-- Q2 -->
+<div class="flex flex-col gap-3 group">
+<p class="font-body-md text-body-md text-on-surface">2. She <input class="inline-block w-32 border-b-2 border-outline-variant border-t-0 border-l-0 border-r-0 bg-transparent focus:ring-0 focus:border-primary text-center font-data-mono text-data-mono mx-2 transition-colors px-1" placeholder="would travel" type="text"/> (travel) more if she had more free time.</p>
+<div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-sm font-label-sm-bold text-label-sm-bold text-primary flex items-center gap-1 hover:text-primary-container">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> Check
+                            </button>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/20 flex justify-end">
+<button class="bg-gradient-to-r from-teal-deep to-primary text-white font-label-sm-bold text-label-sm-bold py-2 px-6 rounded-lg hover:-translate-y-0.5 transition-transform shadow-md">
+                        Submit All Answers
+                    </button>
+</div>
+</div>
+</div>
+<!-- Right Insight Panel (4 columns) -->
+<aside class="w-full md:w-80 flex-shrink-0 flex flex-col gap-gutter-lg">
+<!-- Progress Widget -->
+<div class="glass-panel rounded-2xl p-6 teal-shadow">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="timeline">timeline</span>
+                    Grammar Mastery
+                </h3>
+<div class="space-y-5">
+<!-- Topic 1 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-body-md text-body-md font-bold text-on-surface">Tenses</span>
+<span class="font-data-mono text-data-mono text-primary">85%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-body-md text-body-md font-bold text-on-surface">Modals</span>
+<span class="font-data-mono text-data-mono text-primary">60%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Topic 3 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-body-md text-body-md font-bold text-on-surface">Passives</span>
+<span class="font-data-mono text-data-mono text-secondary-container">30%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-secondary-container h-2 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Streak Widget -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 teal-shadow border border-secondary-container/20 relative overflow-hidden group">
+<div class="absolute inset-0 bg-energy-orange-glow/5 group-hover:bg-energy-orange-glow/10 transition-colors"></div>
+<div class="relative z-10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container text-2xl" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface m-0 leading-none">5 Day Streak!</h4>
+<p class="font-label-sm-bold text-label-sm-bold text-on-surface-variant mt-1">Keep up the momentum.</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>
+
+
+
+

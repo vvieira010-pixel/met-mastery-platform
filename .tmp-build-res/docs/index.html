@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Developer resources | MET Mastery</title>
+    <meta name="description" content="OpenAPI, MCP, machine-readable guidance, and public integration resources for MET Mastery.">
+    <link rel="canonical" href="https://met-mastery.vercel.app/docs"><link rel="stylesheet" href="/agent-page.css">
+  </head>
+  <body><header><div class="eyebrow">MET Mastery</div><h1>Developer resources</h1><p>Public, read-only interfaces for agents and integrations.</p></header>
+    <main>
+      <p>MET Mastery exposes a small public information surface for developers and AI agents. It is designed to make the product understandable and callable without opening student or teacher data. Start with the product information endpoint, then use the machine-readable contract that matches your integration.</p>
+      <h2>Canonical resources</h2>
+      <ul><li><a href="/api/v1/info">Public product information</a> — JSON capabilities and canonical links.</li><li><a href="/openapi.json">OpenAPI 3.1 contract</a> — read-only HTTP endpoints.</li><li><a href="/mcp">MCP endpoint</a> — Streamable HTTP JSON-RPC endpoint for product and developer guidance.</li><li><a href="/llms.txt">llms.txt</a> and <a href="/agents.md">agents.md</a> — when-to-use guidance and boundaries.</li><li><a href="/server.json">MCP server manifest</a> and <a href="/.well-known/mcp/server-card.json">server card</a> — discovery metadata.</li></ul>
+      <div class="card"><strong>Authentication:</strong> The public endpoints do not require authentication. They deliberately do not expose private application operations. Treat links and response content as public documentation, not as permission to access an account.</div>
+      <div class="links"><a href="/">Home</a><a href="/methodology">Assessment approach</a><a href="/about">About</a><a href="/contact">Contact</a></div>
+    </main><footer>MET Mastery · Public developer documentation</footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">MET Mastery</title>
+  <path fill="#006877" d="M8 10.5A8.5 8.5 0 0 1 16.5 2H48a8.5 8.5 0 0 1 8.5 8.5V48A8.5 8.5 0 0 1 48 56.5H16.5A8.5 8.5 0 0 1 8 48V10.5Z"/>
+  <path fill="#F0A46D" d="M15 45.5h34v5H15z"/>
+  <path fill="#fff" d="M15 42V18.5h7.3L32 33l9.7-14.5H49V42h-6.4V28.5L34.8 40h-5.6l-7.8-11.5V42H15Z"/>
+</svg>

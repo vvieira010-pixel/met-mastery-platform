@@ -1,0 +1,36 @@
+{
+  "patterns": {},
+  "memories": [],
+  "trajectories": [],
+  "errors": {},
+  "file_sequences": [],
+  "agents": {},
+  "edges": [],
+  "stats": {
+    "total_patterns": 0,
+    "total_memories": 0,
+    "total_trajectories": 0,
+    "total_errors": 0,
+    "session_count": 0,
+    "last_session": 0
+  },
+  "embeddingProvenance": null,
+  "activeTrajectories": {
+    "traj_1784173156598_w1d96o4ge": {
+      "id": "traj_1784173156598_w1d96o4ge",
+      "context": "20260716033915-capture-screenshots-of-the-met-p: Capture screenshots of the MET Platform UI for design review",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1784173156599
+    },
+    "traj_1784173163591_oolwrv9ac": {
+      "id": "traj_1784173163591_oolwrv9ac",
+      "context": "20260716033923-take-screenshot-of-met-platform-: Take screenshot of MET Platform login page for design review",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1784173163591
+    }
+  }
+}

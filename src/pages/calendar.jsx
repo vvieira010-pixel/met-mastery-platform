@@ -6,7 +6,7 @@ import { Icon, SectionHeader, Pill, Avatar } from '../components/shared.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { getClassEvents, saveClassEvent, deleteClassEvent, updateClassEventStatus } from '../lib/workflow.js';
-import { sendClassInvite, getZoomUrl } from '../lib/send-invite.js';
+import { sendClassInvite, getZoomUrl, getMeetUrl, getVideoProvider } from '../lib/send-invite.js';
 import { MET_SKILLS } from '../lib/report-metrics.js';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -68,9 +68,12 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
   }
 
   async function handleSendInvite(ev) {
-    const zoomUrl = getZoomUrl();
-    if (!zoomUrl) {
-      window.toast?.('Add your Zoom link in Settings → Class Video Link first.', 'warn');
+    const videoProvider = getVideoProvider();
+    const videoUrl = videoProvider === 'meet' ? getMeetUrl() : getZoomUrl();
+    if (!videoUrl) {
+      const label = videoProvider === 'meet' ? 'Google Meet' : 'Zoom';
+      const key = videoProvider === 'meet' ? 'vv:meet_meeting_url' : 'vv:zoom_meeting_url';
+      window.toast?.(`Add your ${label} link in Settings → Class Video Link first.`, 'warn');
       onNavigate?.('settings');
       return;
     }
@@ -89,7 +92,8 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
         date: ev.date,
         startTime: ev.startTime || '',
         endTime: ev.endTime || '',
-        zoomUrl,
+        ...(videoProvider === 'meet' ? { meetUrl: videoUrl } : { zoomUrl: videoUrl }),
+        videoProvider,
         classFocus: ev.classFocus || '',
         timezone: ev.timezone || student.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
@@ -283,7 +287,7 @@ function EventCard({ ev, students, onNavigate, onMarkComplete, onDelete, onSendI
       </div>
       <Pill tone={STATUS_TONE[ev.status] || 'muted'}>{ev.status}</Pill>
       {ev.status === 'scheduled' && onSendInvite && (
-        <Button variant="ghost" size="sm" aria-label="Email Zoom invite" title="Email Zoom invite" onClick={() => onSendInvite(ev)}><Icon.send size={12} /> Invite</Button>
+        <Button variant="ghost" size="sm" aria-label="Email video invite" title="Email video invite" onClick={() => onSendInvite(ev)}><Icon.send size={12} /> Invite</Button>
       )}
       <Button variant="ghost" size="sm" onClick={() => onNavigate('calendar:class', { classEventId: ev.id })}>Record</Button>
       {ev.status === 'scheduled' && <Button variant="ghost" size="sm" onClick={() => onMarkComplete(ev)}>Done</Button>}

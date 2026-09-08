@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en" data-expander-initialized="true"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MET Mastery - Teacher Feedback</title>
+<!-- Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<!-- Icons -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<style data-purpose="custom-styles">
+    body {
+      background-color: #f6fafb;
+      color: #1e293b;
+    }
+    
+    .sidebar-link {
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .sidebar-link:hover, .sidebar-link.active {
+      background-color: #f6fafb;
+      color: #0a6c75;
+      font-weight: 600;
+      border-radius: 9999px; /* Pill shape */
+    }
+    
+    .sidebar-link i {
+      color: inherit;
+    }
+    
+    /* Scrollbar styling for a cleaner look */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 20px;
+    }
+    
+    .feedback-hero {
+      background: linear-gradient(135deg, #f0f4f5 0%, #e2eff1 100%);
+    }
+  </style>
+  <link rel="stylesheet" href="../met-mastery-utilities.css" />
+  <link rel="stylesheet" href="../met-mastery-platform.css" />
+  <script defer src="../met-mastery-prototype.js"></script>
+</head>
+<body class="antialiased flex h-screen overflow-hidden bg-surface">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-sidebar text-white flex flex-col flex-shrink-0">
+<!-- Brand -->
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30">
+<i class="ri-graduation-cap-line text-xl"></i>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-tight tracking-wide">MET Mastery</h1>
+<p class="text-xs text-white/70 uppercase tracking-wider font-semibold mt-0.5">English Proficiency</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
+<a class="sidebar-link flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/90" href="#">
+<i class="ri-home-5-line text-lg w-5 text-center"></i>
+        Home
+      </a>
+<a class="sidebar-link flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/90" href="#">
+<i class="ri-bar-chart-box-line text-lg w-5 text-center"></i>
+        Practice
+      </a>
+<a class="sidebar-link flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/90" href="#">
+<i class="ri-book-open-line text-lg w-5 text-center"></i>
+        Lessons
+      </a>
+<a class="sidebar-link active flex items-center gap-3 px-4 py-3 text-sm font-medium text-sidebar bg-surface shadow-sm" href="#">
+<i class="ri-feedback-line text-lg w-5 text-center"></i>
+        Feedback
+      </a>
+<a class="sidebar-link flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/90" href="#">
+<i class="ri-star-line text-lg w-5 text-center"></i>
+        Grades
+      </a>
+<a class="sidebar-link flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/90" href="#">
+<i class="ri-folder-2-line text-lg w-5 text-center"></i>
+        Resources
+      </a>
+</nav>
+<!-- Bottom Action -->
+<div class="p-4 mt-auto">
+<button class="w-full py-3 px-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors flex justify-center items-center gap-2 text-sm">
+        Start Practice
+      </button>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-surface relative">
+<!-- BEGIN: Topbar -->
+<header class="h-16 flex-shrink-0 flex items-center justify-between px-8 bg-surface/80 backdrop-blur-sm border-b border-border sticky top-0 z-10">
+<div class="w-96 relative">
+<i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"></i>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-border rounded-full text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Search resources..." type="text">
+</div>
+<div class="flex items-center gap-5">
+<button class="text-text-muted hover:text-text relative">
+<i class="ri-notification-3-line text-xl"></i>
+<span class="absolute top-0 right-0 w-2 h-2 bg-danger rounded-full border border-surface"></span>
+</button>
+<button class="text-text-muted hover:text-text">
+<i class="ri-settings-3-line text-xl"></i>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALLGBuFRdY-BGLBDVGavzw1cUJhaemKa5i0e-3xec6v53-2f4vl9QWp7oGyRnQ7CPCTw2ezEwhUCoTnogoACouk7T6rJ682rV8PShPv32hO2XOUc64LUrNSvtNkQDRuVFxMV2nZSf6I6_y0mAOyVsfe-ENxrn8CJ1ttHZtOuOgbrt3DD7eb1jOBj085tC6AUVTX2_bZcKfBK6AoCbLBe4VBoKOTvPhBregrikkdpWTFN_6Ug7WwYiH">
+</div>
+</div>
+</header>
+<!-- END: Topbar -->
+<!-- BEGIN: Page Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-4xl mx-auto space-y-8 pb-12">
+<!-- BEGIN: Feedback Hero -->
+<section class="feedback-hero rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm border border-border/50">
+<div>
+<p class="text-xs font-bold tracking-wider text-text-muted uppercase mb-2">Feedback</p>
+<h2 class="text-3xl md:text-4xl font-extrabold text-sidebar tracking-tight leading-tight">
+              Your teacher's<br>latest notes
+            </h2>
+</div>
+<button class="shrink-0 bg-sidebar hover:bg-sidebar-hover text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 shadow-sm">
+<i class="ri-file-edit-line"></i>
+            Practice next
+          </button>
+</section>
+<!-- END: Feedback Hero -->
+<!-- BEGIN: Feedback Details -->
+<section class="space-y-6">
+<div class="flex items-end justify-between border-b border-border pb-3">
+<div>
+<p class="text-xs font-bold tracking-wider text-primary uppercase mb-1">Your Feedback</p>
+<h3 class="text-2xl font-bold text-text">Teacher-approved notes</h3>
+</div>
+<p class="text-sm font-medium text-text-muted">16 Jul</p>
+</div>
+<div class="space-y-5">
+<!-- Current Focus Card -->
+<div class="bg-white rounded-xl p-6 border border-border shadow-sm">
+<h4 class="text-xs font-bold tracking-wider text-primary uppercase mb-3 flex items-center gap-2">
+<i class="ri-focus-2-line"></i> Current Focus
+              </h4>
+<p class="text-text leading-relaxed">
+                We tackled phrasal verbs and practiced describing images to get you ready for the speaking section. You also got a clear look at how to handle the writing portion so you don't run out of time again.
+              </p>
+</div>
+<!-- What's Working Card -->
+<div class="bg-white rounded-xl p-6 border border-border shadow-sm space-y-4">
+<h4 class="text-xs font-bold tracking-wider text-success uppercase mb-1 flex items-center gap-2">
+<i class="ri-check-line text-lg"></i> What's Working
+              </h4>
+<div class="bg-surface-container-low rounded-lg p-5">
+<h5 class="font-bold text-text mb-2">Building smart inferences</h5>
+<p class="text-sm text-text-muted leading-relaxed mb-3">You didn't just list what you saw; you connected the dots to explain the scene, which is exactly how you grab the examiner's attention.</p>
+<p class="text-sm italic text-sidebar bg-sidebar/5 inline-block px-3 py-1.5 rounded-md border border-sidebar/10">"they seem to be a Greenpeace group"</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-5">
+<h5 class="font-bold text-text mb-2">Using continuous verbs</h5>
+<p class="text-sm text-text-muted leading-relaxed mb-3">Your use of -ing forms made your description feel alive and active rather than just a static list of objects.</p>
+<p class="text-sm italic text-sidebar bg-sidebar/5 inline-block px-3 py-1.5 rounded-md border border-sidebar/10">"picking up, placing, holding"</p>
+</div>
+</div>
+<!-- Focus for Next Time Card -->
+<div class="bg-white rounded-xl p-6 border border-border shadow-sm space-y-4">
+<h4 class="text-xs font-bold tracking-wider text-warning uppercase mb-1 flex items-center gap-2">
+<i class="ri-arrow-right-circle-line"></i> Focus for Next Time
+              </h4>
+<div class="bg-surface-container-low rounded-lg p-5">
+<h5 class="font-bold text-text mb-2 flex items-center gap-2">
+                  Spatial prepositions
+                </h5>
+<div class="flex items-center gap-2 mb-3 text-sm">
+<span class="text-text-muted line-through">across from each other</span>
+<i class="ri-arrow-right-line text-text-muted"></i>
+<span class="font-bold text-sidebar bg-sidebar/10 px-2 py-0.5 rounded">in front of each other</span>
+</div>
+<p class="text-sm text-text-muted leading-relaxed">Next time you see people at a table, picture if there's a river or street between them; if it's just a table, use 'in front of' to be more accurate.</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-5">
+<h5 class="font-bold text-text mb-2">Pronunciation</h5>
+<div class="flex items-center gap-2 mb-3 text-sm">
+<span class="text-text-muted">carefully (with the E sound)</span>
+<i class="ri-arrow-right-line text-text-muted"></i>
+<span class="font-bold text-sidebar bg-sidebar/10 px-2 py-0.5 rounded">carefully (silent E)</span>
+</div>
+<p class="text-sm text-text-muted leading-relaxed">Try saying the word while tapping your finger for each syllable you actually hear, and notice how the second 'e' disappears.</p>
+</div>
+</div>
+<!-- From Your Teacher Card -->
+<div class="bg-white rounded-xl p-6 border border-border shadow-sm">
+<h4 class="text-xs font-bold tracking-wider text-primary uppercase mb-3 flex items-center gap-2">
+<i class="ri-message-3-line"></i> From your teacher
+              </h4>
+<p class="text-text leading-relaxed">
+                Great job today, Vini! You're making solid progress. Keep practicing those spatial prepositions and you'll be well-prepared. Let me know if you have any questions before our next session.
+              </p>
+</div>
+</div>
+</section>
+<!-- END: Feedback Details -->
+</div>
+</div>
+<!-- END: Page Content -->
+</main>
+<!-- END: Main Content Area -->
+
+
+</body></html>
+
+
+
+

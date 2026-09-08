@@ -11,9 +11,11 @@ import {
   getSubmissions,
   getPracticeSubmissions,
   sendMessage,
+  getPayments,
 } from '../lib/workflow.js';
 import { getDueCount } from '../lib/spaced-repetition.js';
 import { asArray, hasVisibleApprovedStudentFeedback, getSkillTrend } from '../pages/student-helpers.jsx';
+import { calculateCourseCredits } from '../domain/course-credits.js';
 
 /**
  * Maps MET raw/scaled score (0-80) to CEFR band descriptor.
@@ -56,6 +58,7 @@ export default function StudentDashboard({
   const [submissionsCount, setSubmissionsCount] = useState(0);
   const [practiceSessions, setPracticeSessions] = useState([]);
   const [dueReviewsCount, setDueReviewsCount] = useState(0);
+  const [courseCredits, setCourseCredits] = useState(null);
 
   // Quick feedback interaction state
   const [replyOpenId, setReplyOpenId] = useState(null);
@@ -75,13 +78,14 @@ export default function StudentDashboard({
     else setRefreshing(true);
 
     try {
-      const [hw, dx, ev, rev, subs, practice] = await Promise.all([
+      const [hw, dx, ev, rev, subs, practice, payments] = await Promise.all([
         getHomework(studentId).catch(() => []),
         getDiagnoses(studentId).catch(() => []),
         getClassEvents(studentId).catch(() => []),
         getReviews(studentId).catch(() => []),
         getSubmissions(studentId).catch(() => []),
         getPracticeSubmissions({ studentId }).catch(() => []),
+        getPayments(studentId).catch(() => []),
       ]);
 
       setHomeworkList(hw || []);
@@ -91,6 +95,7 @@ export default function StudentDashboard({
       setSubmissionsCount((subs || []).length);
       setPracticeSessions(practice || []);
       setDueReviewsCount(getDueCount(studentId) || 0);
+      setCourseCredits(calculateCourseCredits({ payments: payments || [], classEvents: ev || [] }));
     } catch (err) {
       console.warn('[StudentDashboard] Error loading data:', err);
     } finally {
@@ -511,6 +516,25 @@ export default function StudentDashboard({
               {upcomingTasks.filter(t => !t.isDone).length}
             </div>
           </div>
+
+          {courseCredits?.hasRecordedCredits && (
+            <div style={{
+              background: 'var(--bg)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-md)',
+              padding: '10px 16px',
+              textAlign: 'center',
+            }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink-muted)', letterSpacing: '0.04em' }}>
+                Classes Remaining
+              </div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: courseCredits.remainingClasses === 0 ? 'var(--danger)' : 'var(--success)' }}>
+                {courseCredits.remainingClasses === 0
+                  ? 'No classes remaining'
+                  : `${courseCredits.remainingClasses} ${courseCredits.remainingClasses === 1 ? 'class' : 'classes'} remaining`}
+              </div>
+            </div>
+          )}
 
           <button
             type="button"

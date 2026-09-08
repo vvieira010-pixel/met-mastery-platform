@@ -170,11 +170,12 @@ describe('AssemblyAI client — extractScores validation', () => {
 describe('evaluate-writing endpoint — contract', () => {
   const src = readApi('evaluate-writing.js');
 
-  test('uses the AssemblyAI gateway as the primary scorer', () => {
-    assert.ok(src.includes("import { callAssemblyAILLMJson"), 'must use the hardened AssemblyAI helper');
-    assert.ok(src.includes("provider: 'assemblyai-llm'"));
+  test('uses Gemini as the primary scorer (AssemblyAI reserved for Practice Studio speaking)', () => {
+    assert.ok(src.includes("provider: 'gemini'"), 'must use Gemini as primary');
     // Fallbacks still present so evaluation never goes down.
-    assert.ok(src.includes("provider: 'gemini'") && src.includes("provider: 'openai'") && src.includes("provider: 'groq'"));
+    assert.ok(src.includes("provider: 'openai'") && src.includes("provider: 'groq'"));
+    // AssemblyAI must NOT be used for writing
+    assert.ok(!src.includes("provider: 'assemblyai-llm'"));
   });
 
   test('requires an authenticated session (paid AI endpoint)', () => {

@@ -52,6 +52,7 @@ function result() {
 
 function providerFor(url) {
   if (url.includes('generativelanguage.googleapis.com')) return 'gemini';
+  if (url.includes('llm-gateway.assemblyai.com')) return 'assemblyai';
   if (url.includes('openrouter.ai')) return 'openrouter';
   if (url.includes('integrate.api.nvidia.com')) return 'nvidia';
   if (url.includes('api.groq.com')) return 'groq';
@@ -162,6 +163,35 @@ test('does not return upstream provider error bodies', async () => {
   assert.match(res.body.error.message, /AI generation is temporarily unavailable/);
   assert.doesNotMatch(res.body.error.message, /secret test-groq-key|account detail/);
 });
+
+test('attempts every configured model of a provider, not only the first one', async () => {
+  const original = process.env.GEMINI_MODELS;
+  process.env.GEMINI_MODELS = 'gemini-3.7-flash,gemini-2.5-flash,gemini-2.5-pro';
+  try {
+    const tried = [];
+    globalThis.fetch = async (url) => {
+      const model = String(url).match(/models\/([^:]+):generateContent/)?.[1];
+      if (model) tried.push(model);
+      return response(503, { error: { message: 'unavailable' } });
+    };
+
+    const res = result();
+    await handler(request('all-models-test', { preferredProvider: 'gemini' }), res);
+    assert.deepEqual(tried, ['gemini-3.7-flash', 'gemini-2.5-flash', 'gemini-2.5-pro']);
+  } finally {
+    process.env.GEMINI_MODELS = original;
+  }
+});
+
+test('reports quota exhaustion with HTTP 429 when every provider is rate limited', async () => {
+  globalThis.fetch = async () => response(429, { error: { message: 'quota exceeded for model' } });
+  const res = result();
+  await handler(request('all-rate-limited-test'), res);
+  assert.equal(res.statusCode, 429);
+  assert.match(res.body.error.message, /rate limited|quota/i);
+});
+
+
 
 test('accepts long diagnostic prompts and retains a bounded request guard', async () => {
   const receivedPrompts = [];

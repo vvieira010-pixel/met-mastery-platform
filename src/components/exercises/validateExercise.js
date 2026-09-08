@@ -81,6 +81,10 @@ export function validateExercise(ex) {
       if (!Array.isArray(ex.questions) || ex.questions.length === 0) return { valid: false, reason: 'Reading exercise needs at least 1 question.' };
       return { valid: true };
 
+    case 'writing':
+      if (!ex.prompt && !ex.question) return { valid: false, reason: 'Writing exercise is missing "prompt" or "question".' };
+      return { valid: true };
+
     case 'embed':
       return { valid: true };
 

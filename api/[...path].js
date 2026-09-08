@@ -11,6 +11,7 @@
 import health from './_routes/health.js';
 import info from './_routes/info.js';
 import ai from './_routes/ai.js';
+import aiStatus from './_routes/ai-status.js';
 import tts from './_routes/tts.js';
 import generateImage from './_routes/generate-image.js';
 import getSubmissions from './_routes/get-submissions.js';
@@ -31,6 +32,7 @@ const routes = {
   // it to /api/v1-info; this alias serves that rewritten key.
   'v1-info': info,
   ai,
+  'ai-status': aiStatus,
   tts,
   'generate-image': generateImage,
   'get-submissions': getSubmissions,

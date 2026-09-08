@@ -25,6 +25,8 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
   const [generalMemo, setGeneralMemo] = useState(() => localStorage.getItem('vv:student_general_memo') || '');
   const [examDate, setExamDate] = useState(() => localStorage.getItem('vv:met_exam_date') || '');
   const [zoomUrl, setZoomUrl] = useState(() => localStorage.getItem('vv:zoom_meeting_url') || '');
+  const [meetUrl, setMeetUrl] = useState(() => localStorage.getItem('vv:meet_meeting_url') || '');
+  const [videoProvider, setVideoProvider] = useState(() => localStorage.getItem('vv:video_provider') || 'zoom');
   const [teacherName, setTeacherName] = useState(() => localStorage.getItem('vv:teacher_name') || '');
   const [saved, setSaved] = useState('');
   const [syncing, setSyncing] = useState(false);
@@ -131,17 +133,23 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
   }
 
   function saveClassLink() {
-    const url = zoomUrl.trim();
-    if (url && !/^https?:\/\//i.test(url)) {
+    const zUrl = zoomUrl.trim();
+    const mUrl = meetUrl.trim();
+    const provider = videoProvider;
+    if ((provider === 'zoom' && zUrl && !/^https?:\/\//i.test(zUrl)) ||
+        (provider === 'meet' && mUrl && !/^https?:\/\//i.test(mUrl))) {
       window.toast?.('Enter a full link starting with https://', 'warn');
       return;
     }
-    if (url) localStorage.setItem('vv:zoom_meeting_url', url);
+    if (zUrl) localStorage.setItem('vv:zoom_meeting_url', zUrl);
     else localStorage.removeItem('vv:zoom_meeting_url');
+    if (mUrl) localStorage.setItem('vv:meet_meeting_url', mUrl);
+    else localStorage.removeItem('vv:meet_meeting_url');
+    localStorage.setItem('vv:video_provider', provider);
     const name = teacherName.trim();
     if (name) localStorage.setItem('vv:teacher_name', name);
     else localStorage.removeItem('vv:teacher_name');
-    window.toast?.('Class link saved. Use "Send invite" on a class in the Calendar.', 'ok');
+    window.toast?.('Class video link saved. Use "Send invite" on a class in the Calendar.', 'ok');
   }
 
   async function saveGeneralMemo() {
@@ -324,24 +332,34 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
         </div>
       </Card>
 
-      {/* Class video link (Zoom) for calendar invites */}
+      {/* Class video link (Zoom / Google Meet) for calendar invites */}
       <Card style={{ padding: 20, marginTop: 14 }}>
-        <SectionHeader title="Class Video Link (Zoom)" icon={<Icon.calendar size={15} />} />
+        <SectionHeader title="Class Video Link" icon={<Icon.calendar size={15} />} />
         <p style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', margin: '8px 0 14px', lineHeight: 1.6 }}>
-          Paste your Zoom Personal Meeting Room link. Every calendar invite you send from a class
+          Choose your video provider and paste the meeting link. Every calendar invite you send from a class
           will include this link and an <code>.ics</code> calendar attachment for the student.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <FormField label="Video provider">
+            <select className="input" value={videoProvider} onChange={e => setVideoProvider(e.target.value)}>
+              <option value="zoom">Zoom</option>
+              <option value="meet">Google Meet</option>
+            </select>
+          </FormField>
           <FormField
-            label="Zoom meeting link"
-            hint={<a href="https://zoom.us/profile" target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)', marginTop: 3 }}>Find your Personal Meeting Room link →</a>}
+            label={videoProvider === 'zoom' ? 'Zoom meeting link' : 'Google Meet link'}
+            hint={videoProvider === 'zoom'
+              ? <a href="https://zoom.us/profile" target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)', marginTop: 3 }}>Find your Personal Meeting Room link →</a>
+              : <a href="https://meet.google.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)', marginTop: 3 }}>Create a Google Meet link →</a>}
           >
             <input
               className="input"
               type="url"
-              value={zoomUrl}
-              onChange={e => setZoomUrl(e.target.value)}
-              placeholder="https://us05web.zoom.us/j/0000000000?pwd=…"
+              value={videoProvider === 'zoom' ? zoomUrl : meetUrl}
+              onChange={e => (videoProvider === 'zoom' ? setZoomUrl(e.target.value) : setMeetUrl(e.target.value))}
+              placeholder={videoProvider === 'zoom'
+                ? 'https://us05web.zoom.us/j/0000000000?pwd=…'
+                : 'https://meet.google.com/xxx-xxxx-xxx'}
             />
           </FormField>
           <FormField label="Your name (shown as the organizer)">

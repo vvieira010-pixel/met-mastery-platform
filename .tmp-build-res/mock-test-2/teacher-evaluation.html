@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Evaluation — Vinicius Vieira</title>
+  <meta name="theme-color" content="#062B3D" />
+  <link rel="stylesheet" href="css/met-brand.css">
+  <link rel="stylesheet" href="css/met-shell.css">
+  <link rel="stylesheet" href="css/met-standard.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --shadow-sm: 0 2px 8px rgba(15,23,42,.08);
+      --shadow-md: 0 6px 20px rgba(15,23,42,.12);
+      --shadow-lg: 0 12px 40px rgba(15,23,42,.18);
+      --shadow-xl: 0 24px 60px rgba(15,23,42,.22);
+      --ease-out: cubic-bezier(.22,1,.36,1);
+      --r-lg: 12px;
+    }
+
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--met-page-bg);
+      font-family: var(--met-font-body);
+      color: var(--azul-deep);
+    }
+
+    /* ===== TOP BAR ===== */
+    .eval-topbar {
+      background: var(--met-teal-deep);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      min-height: 48px;
+      flex-shrink: 0;
+    }
+    .eval-topbar__brand {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .eval-topbar__brand svg { flex-shrink: 0; }
+    .eval-topbar__badge {
+      font-size: 11px; font-weight: 800;
+      background: var(--amber); color: #1A1A00;
+      border-radius: var(--r-pill); padding: 3px 10px;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    /* ===== INFO BAR ===== */
+    .eval-infobar {
+      background: var(--met-teal-darker);
+      color: rgba(255,255,255,.88);
+      font-size: 13px;
+      padding: 4px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    /* ===== MAIN WRAPPER ===== */
+    .eval-wrap {
+      width: min(1200px, calc(100% - 32px));
+      margin: 24px auto 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ===== HERO ===== */
+    .eval-hero {
+      background: linear-gradient(135deg, var(--met-teal-deep) 0%, #0a1a3e 100%);
+      border-radius: var(--r-lg);
+      padding: 32px 32px 28px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .eval-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -8%;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .eval-hero__kicker {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 6px;
+    }
+    .eval-hero__name {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .eval-hero__title {
+      font-size: 16px;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 14px;
+    }
+    .eval-hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .eval-hero__pill {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--r-pill);
+      padding: 4px 12px;
+      color: #fff;
+    }
+    .eval-hero__pill--amber { background: var(--amber); border-color: #94660F; color: #1A1A00; }
+
+    .eval-hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .eval-hero__badge {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--amber);
+      border-radius: 50%;
+      box-shadow: 0 8px 28px rgba(15,23,42,.2);
+      padding: 8px 6px;
+    }
+    .eval-hero__badge-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .eval-hero__badge-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.85);
+      margin-top: 2px;
+    }
+
+    /* ===== SECTION TABS ===== */
+    .eval-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 4px;
+      overflow-x: auto;
+    }
+    .eval-tab {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      background: transparent;
+      color: var(--met-slate);
+      font-family: inherit;
+      transition: background-color .15s var(--ease-out), border-color .15s var(--ease-out), transform .15s var(--ease-out);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .eval-tab:hover { color: var(--azul-deep); background: var(--azul-wash); }
+    .eval-tab.active {
+      background: var(--azul-deep);
+      color: #fff;
+    }
+
+    /* ===== PANEL ===== */
+    .eval-panel { display: none; }
+    .eval-panel.active { display: block; }
+
+    /* ===== CARD ===== */
+    .eval-card {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .eval-card + .eval-card { margin-top: 16px; }
+    .eval-card__title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--azul-deep);
+      margin-bottom: 16px;
+      letter-spacing: -.02em;
+    }
+    .eval-card__sub {
+      font-size: 14px;
+      color: var(--met-slate);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* ===== RATING BADGE ===== */
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 6px 12px;
+      border-radius: var(--r-pill);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .rating-badge--4 { background: #D4EDDA; color: #155724; }
+    .rating-badge--3 { background: #D1ECF1; color: #0C5460; }
+    .rating-badge--2 { background: #FFF3CD; color: #856404; }
+    .rating-badge--1 { background: #F8D7DA; color: #721C24; }
+
+    /* ===== RATING BAR ===== */
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .rating-bar__label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+    .rating-bar__track {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .rating-bar__fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: transform .6s var(--ease-out);
+    }
+    .rating-bar__fill--4 { background: linear-gradient(90deg, #28A745, #20C997); }
+    .rating-bar__fill--3 { background: linear-gradient(90deg, #17A2B8, #6CC8D9); }
+    .rating-bar__fill--2 { background: linear-gradient(90deg, #FFC107, #FFD043); }
+    .rating-bar__fill--1 { background: linear-gradient(90deg, #DC3545, #E8686B); }
+    .rating-bar__score {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--met-slate);
+      min-width: 50px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ===== STARS ===== */
+    .stars { display: flex; gap: 2px; }
+    .stars__star { color: var(--border); font-size: 16px; }
+    .stars__star--fill { color: var(--amber); }
+
+    /* ===== OBSERVATION BLOCK ===== */
+    .obs-card {
+      background: var(--azul-wash);
+      border: 1px solid var(--azul-light);
+      border-radius: var(--r-sm);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .obs-card:last-child { margin-bottom: 0; }
+    .obs-card__label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--met-slate);
+      margin-bottom: 6px;
+    }
+    .obs-card__text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--azul-deep);
+    }
+    .obs-card__text strong { color: var(--met-teal); }
+    .obs-card__time {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--met-slate);
+      margin-bottom: 4px;
+    }
+
+    /* ===== CRITERIA GRID ===== */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .criteria-item {
+      background: var(--azul-wash);
+      border: 1px solid var(--azul-light);
+      border-radius: var(--r-sm);
+      padding: 16px;
+    }
+    .criteria-item__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .criteria-item__name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul-deep);
+    }
+    .criteria-item__rating {
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .criteria-item__rating--4 { color: #155724; }
+    .criteria-item__rating--3 { color: #0C5460; }
+    .criteria-item__rating--2 { color: #856404; }
+    .criteria-item__rating--1 { color: #721C24; }
+    .criteria-item__desc {
+      font-size: 12px;
+      color: var(--met-slate);
+      line-height: 1.6;
+    }
+
+    /* ===== STRENGTHS LIST ===== */
+    .strength-item {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .strength-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .strength-item__num {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--amber);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+      color: #1A1A00;
+      padding: 2px 1px;
+    }
+    .strength-item__body { flex: 1; }
+    .strength-item__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      margin-bottom: 3px;
+    }
+    .strength-item__text {
+      font-size: 13px;
+      color: var(--met-slate);
+      line-height: 1.6;
+    }
+
+    /* ===== CHECKLIST ===== */
+    .eval-checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .eval-checklist li {
+      font-size: 14px;
+      color: var(--azul-deep);
+      line-height: 1.6;
+      padding-left: 22px;
+      position: relative;
+    }
+    .eval-checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: var(--amber);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M3 7l3 3 5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M3 7l3 3 5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* ===== MODEL STEPS ===== */
+    .model-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .model-step {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .model-step__icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--azul-deep);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .model-step__title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      margin-bottom: 4px;
+    }
+    .model-step__desc {
+      font-size: 12px;
+      color: var(--met-slate);
+      line-height: 1.5;
+    }
+
+    /* ===== GOAL CARDS ===== */
+    .goal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .goal-card {
+      background: var(--surface);
+      border-radius: var(--r-sm);
+      padding: 16px;
+    }
+    .goal-card__area {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #94660F;
+      margin-bottom: 4px;
+    }
+    .goal-card__text {
+      font-size: 13px;
+      color: var(--azul-deep);
+      line-height: 1.6;
+    }
+    .goal-card__indicator {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ===== QUOTE BLOCK ===== */
+    .eval-quote {
+      background: var(--azul-wash);
+      border-radius: var(--r-sm);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .eval-quote:last-child { margin-bottom: 0; }
+    .eval-quote__text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--azul-deep);
+      font-style: italic;
+    }
+    .eval-quote__text::before { content: '\201C'; }
+    .eval-quote__text::after { content: '\201D'; }
+    .eval-quote__source {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--met-slate);
+      margin-top: 8px;
+      font-style: normal;
+    }
+
+    /* ===== TABLE ===== */
+    .eval-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    .eval-table-wrap:last-child { margin-bottom: 0; }
+    .eval-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      color: var(--azul-deep);
+    }
+    .eval-table th {
+      text-align: left;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--met-slate);
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    .eval-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .eval-table tr:last-child td { border-bottom: none; }
+
+    /* ===== PHASE LIST ===== */
+    .phase-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .phase-item {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 16px;
+    }
+    .phase-item__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .phase-item__badge {
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--azul-deep);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      letter-spacing: .04em;
+    }
+    .phase-item__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul-deep);
+    }
+    .phase-item__desc {
+      font-size: 13px;
+      color: var(--met-slate);
+      line-height: 1.6;
+      padding-left: 0;
+    }
+    .phase-item__desc li {
+      margin-bottom: 2px;
+      padding-left: 18px;
+      position: relative;
+      list-style: none;
+    }
+    .phase-item__desc li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--met-taupe);
+      border-radius: 50%;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 760px) {
+      .eval-hero { grid-template-columns: 1fr; padding: 24px 20px; }
+      .eval-hero__visual { order: -1; }
+      .eval-hero__badge { width: 90px; height: 90px; }
+      .eval-hero__badge-value { font-size: 28px; }
+      .eval-tabs { flex-wrap: wrap; }
+    }
+    @media (max-width: 540px) {
+      .eval-wrap { margin-top: 16px; gap: 14px; }
+      .eval-card { padding: 18px 16px; }
+      .eval-tab { font-size: 11px; padding: 8px 10px; }
+      .criteria-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="eval-topbar">
+  <span class="eval-topbar__brand">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" fill="none"/>
+      <path d="M5 9l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Teacher Evaluation
+  </span>
+  <span class="eval-topbar__badge">Cambridge Standards</span>
+</header>
+
+<!-- INFO BAR -->
+<div class="eval-infobar">
+  <span>Vinicius Vieira &middot; English Language (MET Preparation)</span>
+  <span>Observation: 2026-07-01</span>
+</div>
+
+<main class="eval-wrap">
+
+  <!-- ===== HERO ===== -->
+  <div class="eval-hero">
+    <div>
+      <div class="eval-hero__kicker">Per-Class Evaluation Report</div>
+      <h1 class="eval-hero__name">Vinicius Vieira</h1>
+      <p class="eval-hero__title">English Language Instructor &middot; MET Test Preparation Specialist</p>
+      <div class="eval-hero__meta">
+        <span class="eval-hero__pill eval-hero__pill--amber">Overall: 4 — Outstanding</span>
+        <span class="eval-hero__pill">78 min session</span>
+        <span class="eval-hero__pill">One-on-one</span>
+        <span class="eval-hero__pill">7 criteria assessed</span>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:4px">
+        <div><div class="stars"><span class="stars__star stars__star--fill">★</span><span class="stars__star stars__star--fill">★</span><span class="stars__star stars__star--fill">★</span><span class="stars__star stars__star--fill">★</span><span class="stars__star">★</span></div></div>
+        <span style="font-size:12px;color:rgba(255,255,255,.7)">4.0 / 5 — Outstanding</span>
+      </div>
+    </div>
+    <div class="eval-hero__visual">
+      <div class="eval-hero__badge">
+        <span class="eval-hero__badge-value">4.0</span>
+        <span class="eval-hero__badge-label">Rating</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TABS ===== -->
+  <div class="eval-tabs" role="tablist">
+    <button class="eval-tab active" role="tab" data-panel="overview">Overview</button>
+    <button class="eval-tab" role="tab" data-panel="criteria">Criteria</button>
+    <button class="eval-tab" role="tab" data-panel="submissions">Submissions</button>
+    <button class="eval-tab" role="tab" data-panel="strengths">Strengths &amp; Growth</button>
+    <button class="eval-tab" role="tab" data-panel="model">Per-Class Model</button>
+    <button class="eval-tab" role="tab" data-panel="goals">PD Goals</button>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: OVERVIEW                                                   -->
+  <!-- ================================================================ -->
+  <div class="eval-panel active" id="panel-overview">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Evaluation Summary</h2>
+      <p class="eval-card__sub">
+        This evaluation is based on a one-on-one English tutoring session focused on MET test preparation.
+        The lesson covered grammar review (discourse connectors) and intensive speaking practice across all four
+        MET speaking question types under timed conditions.
+      </p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+        <span class="rating-badge rating-badge--4">Teaching &amp; Learning &middot; 3.8 ★</span>
+        <span class="rating-badge rating-badge--4">Professional Standards &middot; 3.7 ★</span>
+      </div>
+
+      <div class="rating-bar">
+        <span class="rating-bar__label">Lesson Planning</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--4" style="width:100%"></div></div>
+        <span class="rating-bar__score">4.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Instructional Delivery</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--4" style="width:100%"></div></div>
+        <span class="rating-bar__score">4.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Assessment for Learning</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--4" style="width:100%"></div></div>
+        <span class="rating-bar__score">4.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Classroom Management</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--3" style="width:75%"></div></div>
+        <span class="rating-bar__score">3.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Subject Knowledge</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--4" style="width:100%"></div></div>
+        <span class="rating-bar__score">4.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Professional Development</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--3" style="width:75%"></div></div>
+        <span class="rating-bar__score">3.0</span>
+      </div>
+      <div class="rating-bar">
+        <span class="rating-bar__label">Communication</span>
+        <div class="rating-bar__track"><div class="rating-bar__fill rating-bar__fill--4" style="width:100%"></div></div>
+        <span class="rating-bar__score">4.0</span>
+      </div>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Observer Comments</h2>
+      <div class="eval-quote">
+        <p class="eval-quote__text">What impressed me most was Vinicius's ability to make test preparation feel like genuine language learning rather than mechanical drill. He didn't just teach what to say — he taught how to think in test situations.</p>
+        <p class="eval-quote__source">— Observer</p>
+      </div>
+      <div class="eval-quote">
+        <p class="eval-quote__text">The moment when he explained that 'every single person' struggles with timed practice was pedagogically brilliant. By normalizing the difficulty and emphasizing practice over perfection, he reframed potential anxiety into productive motivation.</p>
+        <p class="eval-quote__source">— Observer</p>
+      </div>
+      <div class="eval-quote">
+        <p class="eval-quote__text">His strategic use of the 'attempt-fail-learn-retry' cycle demonstrates sophisticated understanding of formative assessment. Students learn more from supported struggle than from passive instruction.</p>
+        <p class="eval-quote__source">— Observer</p>
+      </div>
+      <div class="eval-quote">
+        <p class="eval-quote__text">The teacher's investment in creating custom platform materials and mock tests shows exceptional professional commitment. This level of resource development benefits not just individual students but potentially the broader teaching community.</p>
+        <p class="eval-quote__source">— Observer</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: CRITERIA                                                   -->
+  <!-- ================================================================ -->
+  <div class="eval-panel" id="panel-criteria">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Teaching &amp; Learning Criteria</h2>
+
+      <div class="criteria-grid">
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Lesson Planning</span>
+            <span class="criteria-item__rating criteria-item__rating--4">4 — Outstanding</span>
+          </div>
+          <p class="criteria-item__desc">Clear objectives aligned with MET requirements. Logical structure: homework review → scaffolded speaking practice with increasing challenge. Timed conditions matching real test format.</p>
+        </div>
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Instructional Delivery</span>
+            <span class="criteria-item__rating criteria-item__rating--4">4 — Outstanding</span>
+          </div>
+          <p class="criteria-item__desc">Excellent scaffolding — challenged first, then provided structured support. Clear explanations of discourse connectors. Strategic use of spatial language and inference vocabulary. Statement-Reason-Support structure taught for opinions.</p>
+        </div>
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Assessment for Learning</span>
+            <span class="criteria-item__rating criteria-item__rating--4">4 — Outstanding</span>
+          </div>
+          <p class="criteria-item__desc">Immediate, constructive feedback after each attempt. Specific improvement suggestions with examples. Validated correct usage while correcting errors. Formative checks throughout. Second attempts consistently improved.</p>
+        </div>
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Classroom Management</span>
+            <span class="criteria-item__rating criteria-item__rating--2">3 — Good</span>
+          </div>
+          <p class="criteria-item__desc">Positive encouraging tone. Managed technical issues professionally. Flexible with interruptions. Excellent rapport-building. Note: one-on-one online format limits demonstration of traditional classroom management.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Professional Standards</h2>
+
+      <div class="criteria-grid">
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Subject Knowledge</span>
+            <span class="criteria-item__rating criteria-item__rating--4">4 — Outstanding</span>
+          </div>
+          <p class="criteria-item__desc">Deep understanding of MET format and scoring criteria. Comprehensive knowledge of discourse connectors and assessment rubrics. Personal C2-level ECPE examination experience. 1.5 years specialized MET teaching.</p>
+        </div>
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Professional Development</span>
+            <span class="criteria-item__rating criteria-item__rating--2">3 — Good</span>
+          </div>
+          <p class="criteria-item__desc">Custom digital platform with practice materials. Developing mock tests simulating real conditions. Resource library (phrasal verbs, collocations). Recommendation: formalize CPD documentation.</p>
+        </div>
+        <div class="criteria-item">
+          <div class="criteria-item__head">
+            <span class="criteria-item__name">Communication</span>
+            <span class="criteria-item__rating criteria-item__rating--4">4 — Outstanding</span>
+          </div>
+          <p class="criteria-item__desc">Exceptionally clear explanations tailored to student level. Empathetic, encouraging tone. Realistic expectations: 'Practice, practice, practice. There's no other way.' Clear homework instructions.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: SUBMISSIONS                                                -->
+  <!-- ================================================================ -->
+  <div class="eval-panel" id="panel-submissions">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Student Submissions</h2>
+      <p class="eval-card__sub" id="submissionsStatus">Loading submissions…</p>
+
+      <div id="submissionsStats" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px"></div>
+
+      <div class="eval-table-wrap">
+        <table class="eval-table" id="submissionsTable">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Date</th>
+              <th>Score</th>
+              <th>CEFR</th>
+              <th>Sections</th>
+            </tr>
+          </thead>
+          <tbody id="submissionsBody"></tbody>
+        </table>
+      </div>
+      <p class="eval-card__sub" style="font-size:12px;margin-bottom:0;text-align:center" id="submissionsEmpty">No submissions yet.</p>
+    </div>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: STRENGTHS & GROWTH                                        -->
+  <!-- ================================================================ -->
+  <div class="eval-panel" id="panel-strengths">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Notable Strengths</h2>
+
+      <div class="strength-item">
+        <span class="strength-item__num">1</span>
+        <div class="strength-item__body">
+          <div class="strength-item__title">Mastery of Test-Specific Pedagogy</div>
+          <p class="strength-item__text">Exceptional understanding of high-stakes test preparation. Doesn't just teach English — teaches how to perform under test conditions. Emphasis on timed practice and the psychological dimension shows sophisticated pedagogical awareness.</p>
+        </div>
+      </div>
+      <div class="strength-item">
+        <span class="strength-item__num">2</span>
+        <div class="strength-item__body">
+          <div class="strength-item__title">Strategic Scaffolding</div>
+          <p class="strength-item__text">The "challenge first, support after" approach is exemplary. By having students attempt tasks without templates before providing structured support, he builds both confidence and realistic self-assessment skills.</p>
+        </div>
+      </div>
+      <div class="strength-item">
+        <span class="strength-item__num">3</span>
+        <div class="strength-item__body">
+          <div class="strength-item__title">Metacognitive Instruction</div>
+          <p class="strength-item__text">Rather than simply correcting errors, teaches strategies: how to make inferences, structure arguments, use preparation time effectively. Students learn <em>how to think</em> in test situations.</p>
+        </div>
+      </div>
+      <div class="strength-item">
+        <span class="strength-item__num">4</span>
+        <div class="strength-item__body">
+          <div class="strength-item__title">Growth Mindset Cultivation</div>
+          <p class="strength-item__text">Consistently normalizes struggle and emphasizes practice over innate ability. Shares personal learning journey to build student confidence and resilience.</p>
+        </div>
+      </div>
+      <div class="strength-item">
+        <span class="strength-item__num">5</span>
+        <div class="strength-item__body">
+          <div class="strength-item__title">Adaptive Teaching</div>
+          <p class="strength-item__text">Responds to real-time student needs: explains vocabulary on the fly, provides targeted corrections, adjusts pacing. Demonstrates sophisticated understanding of responsive teaching.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Areas for Development</h2>
+      <ul class="eval-checklist">
+        <li>Develop visual aids or decision-tree references for complex grammar points</li>
+        <li>Incorporate peer learning or small group formats when expanding beyond one-on-one</li>
+        <li>Document professional development systematically for formal CPD portfolio</li>
+        <li>Create rubrics and checklists for student self-assessment between sessions</li>
+        <li>Record sample model answers for asynchronous student reference</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: PER-CLASS MODEL                                           -->
+  <!-- ================================================================ -->
+  <div class="eval-panel" id="panel-model">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Per-Class Evaluation Model</h2>
+      <p class="eval-card__sub">
+        A continuous improvement framework inspired by Cambridge CELTA standards.
+        Every class generates evaluation data that informs teacher self-reflection and student progress tracking.
+        Emphasizes formative assessment over summative judgment.
+      </p>
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--azul-deep)">Four-Component Documentation System</h3>
+      <div class="model-steps">
+        <div class="model-step">
+          <div class="model-step__icon">1</div>
+          <div class="model-step__title">Class Recording</div>
+          <p class="model-step__desc">Audio/video capture with automated transcription and speaker tagging via AI services.</p>
+        </div>
+        <div class="model-step">
+          <div class="model-step__icon">2</div>
+          <div class="model-step__title">AI Data Extraction</div>
+          <p class="model-step__desc">Systematic extraction of topics, patterns, engagement markers, and pedagogical techniques from transcripts.</p>
+        </div>
+        <div class="model-step">
+          <div class="model-step__icon">3</div>
+          <div class="model-step__title">Self-Evaluation</div>
+          <p class="model-step__desc">CELTA-aligned reflective practice covering learner-centeredness, language awareness, planning, and feedback.</p>
+        </div>
+        <div class="model-step">
+          <div class="model-step__icon">4</div>
+          <div class="model-step__title">Progress Tracking</div>
+          <p class="model-step__desc">Per-class student documentation tracking strengths, development areas, and longitudinal growth trajectory.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Implementation Workflow</h2>
+      <div class="phase-list">
+        <div class="phase-item">
+          <div class="phase-item__head">
+            <span class="phase-item__badge">Before Class</span>
+            <span class="phase-item__title">5 min</span>
+          </div>
+          <ul class="phase-item__desc">
+            <li>Review previous notes and student progress</li>
+            <li>Prepare lesson plan with clear objectives</li>
+            <li>Start recording system</li>
+          </ul>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item__head">
+            <span class="phase-item__badge">After Class</span>
+            <span class="phase-item__title">10 min</span>
+          </div>
+          <ul class="phase-item__desc">
+            <li>Quick voice memo: initial impressions</li>
+            <li>Log lesson completion and topics covered</li>
+            <li>Save recording and initiate transcription</li>
+          </ul>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item__head">
+            <span class="phase-item__badge">Within 24h</span>
+            <span class="phase-item__title">30–45 min</span>
+          </div>
+          <ul class="phase-item__desc">
+            <li>Review transcript at 1.5x speed</li>
+            <li>Run AI analysis on transcript</li>
+            <li>Complete CELTA-aligned self-evaluation</li>
+            <li>Write student progress documentation</li>
+          </ul>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item__head">
+            <span class="phase-item__badge">Weekly</span>
+            <span class="phase-item__title">60 min</span>
+          </div>
+          <ul class="phase-item__desc">
+            <li>Analyze patterns across multiple class documents</li>
+            <li>Identify recurring teaching strengths and weaknesses</li>
+            <li>Update progress tracking dashboards</li>
+            <li>Set professional development goals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Document Standards</h2>
+      <div class="eval-table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Document Type</th>
+              <th>Length</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AI Transcript Analysis</strong></td>
+              <td>2–3 pages</td>
+              <td>Objective data extraction: topics, patterns, quotes</td>
+            </tr>
+            <tr>
+              <td><strong>Teacher Self-Evaluation</strong></td>
+              <td>1–2 pages</td>
+              <td>Reflective analysis against CELTA criteria</td>
+            </tr>
+            <tr>
+              <td><strong>Student Progress Note</strong></td>
+              <td>1–2 pages</td>
+              <td>Specific observations and next steps</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">Total per Class</td>
+              <td style="font-weight:700">4–7 pages</td>
+              <td>Comprehensive record for longitudinal analysis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PANEL: PD GOALS                                                   -->
+  <!-- ================================================================ -->
+  <div class="eval-panel" id="panel-goals">
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Short-Term Goals</h2>
+      <p class="eval-card__sub">Current term — actionable improvements from this evaluation</p>
+      <ul class="eval-checklist">
+        <li>Develop a digital resource bank categorizing grammar explanations, speaking templates, and sample responses by proficiency level</li>
+        <li>Create student self-assessment rubrics aligned with MET scoring criteria</li>
+        <li>Explore screen recording techniques for asynchronous "thinking aloud" model responses</li>
+      </ul>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Medium-Term Goals</h2>
+      <p class="eval-card__sub">Next academic year — structured growth and community contribution</p>
+      <ul class="eval-checklist">
+        <li>Pursue Cambridge English Teaching Framework certification to formalize pedagogical approach</li>
+        <li>Present test preparation strategies at regional ELT conference</li>
+        <li>Develop case studies documenting student progress from initial assessment to test success</li>
+        <li>Establish peer observation exchange with other test preparation instructors</li>
+      </ul>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Long-Term Professional Development Path</h2>
+      <ul class="eval-checklist">
+        <li>Become a certified MET examiner to deepen understanding of assessment standards</li>
+        <li>Develop comprehensive course curriculum scalable beyond one-on-one tutoring</li>
+        <li>Contribute to professional literature on high-stakes test preparation pedagogy</li>
+        <li>Mentor early-career English language teachers specializing in test preparation</li>
+      </ul>
+    </div>
+
+    <div class="eval-card">
+      <h2 class="eval-card__title">Sample PD Goals Framework</h2>
+      <div class="goal-grid">
+        <div class="goal-card">
+          <div class="goal-card__area">Assessment Literacy</div>
+          <p class="goal-card__text">Complete Cambridge Assessment training and moderate 20 sample papers with >90% accuracy.</p>
+          <div class="goal-card__indicator">Training certificate + moderation accuracy</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-card__area">Differentiation</div>
+          <p class="goal-card__text">Implement tiered activities in 80% of lessons with measurable engagement improvement.</p>
+          <div class="goal-card__indicator">Lesson plan audit + student surveys</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-card__area">Technology Integration</div>
+          <p class="goal-card__text">Integrate digital resources into 3+ lessons per week with observable impact.</p>
+          <div class="goal-card__indicator">Usage logs + observation feedback</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-card__area">Leadership Development</div>
+          <p class="goal-card__text">Lead department initiative coordinating 6 professional learning sessions for colleagues.</p>
+          <div class="goal-card__indicator">Sessions delivered + feedback scores</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+(function () {
+  var tabs = document.querySelectorAll('.eval-tab');
+  var panels = {};
+
+  tabs.forEach(function (tab) {
+    var panelId = 'panel-' + tab.getAttribute('data-panel');
+    var panel = document.getElementById(panelId);
+    if (panel) panels[panelId] = panel;
+
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      Object.values(panels).forEach(function (p) { p.classList.remove('active'); });
+
+      tab.classList.add('active');
+      if (panels[panelId]) panels[panelId].classList.add('active');
+    });
+  });
+
+  // Animate bars on load
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.rating-bar__fill').forEach(function (bar) {
+        var w = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(function () {
+          bar.style.width = w;
+        });
+      });
+    }, 300);
+  });
+
+  // ── Fetch live submissions ──
+  fetch('/api/get-submissions')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var statusEl = document.getElementById('submissionsStatus');
+      var statsEl = document.getElementById('submissionsStats');
+      var bodyEl = document.getElementById('submissionsBody');
+      var emptyEl = document.getElementById('submissionsEmpty');
+      if (!bodyEl) return;
+
+      if (!data.submissions || !data.submissions.length) {
+        if (statusEl) statusEl.textContent = 'No student submissions found.';
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      if (statusEl) statusEl.textContent = data.submissions.length + ' submission(s) found.';
+
+      if (statsEl && data.stats) {
+        statsEl.innerHTML =
+          '<span class="eval-hero__pill">' + data.stats.total + ' total</span>' +
+          '<span class="eval-hero__pill">' + data.stats.uniqueStudents + ' unique students</span>' +
+          '<span class="eval-hero__pill">' + data.stats.recentWeek + ' this week</span>';
+      }
+      if (emptyEl) emptyEl.style.display = 'none';
+
+      data.submissions.forEach(function (s) {
+        var c = s.content || {};
+        var scores = c.scores || {};
+        var total = scores.totalCorrect || '—';
+        var cefr = scores.cefr || {};
+        var band = cefr.band || '—';
+        var date = new Date(s.createdAt);
+        var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        var sections = c.sectionsCompleted || '—';
+
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td><strong>' + (c.studentName || s.studentId) + '</strong></td>' +
+          '<td>' + dateStr + '</td>' +
+          '<td>' + total + '</td>' +
+          '<td>' + band + '</td>' +
+          '<td>' + sections + '</td>';
+        bodyEl.appendChild(tr);
+      });
+    })
+    .catch(function (err) {
+      var el = document.getElementById('submissionsStatus');
+      if (el) el.textContent = 'Could not load submissions: ' + err.message;
+    });
+})();
+</script>
+</body>
+</html>

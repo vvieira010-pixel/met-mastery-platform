@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import listeningPack from '../met_listening_section_76_100.json' with { type: 'json' };
+import listeningPack from '../met_listening_section_76_100.js';
 import { getListeningAudioGroups, getListeningExercises } from '../src/lib/vocab-homework-bank.js';
 
 const root = path.resolve(import.meta.dirname, '..');
