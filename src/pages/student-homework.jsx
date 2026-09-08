@@ -467,7 +467,7 @@ export default function StudentHomework({ student, "data-testid": testId }) {
                         <h2 style={{ margin: 0, fontSize: 'var(--text-sm)', fontWeight: 700 }}>Practice Session</h2>
                       </div>
                       <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.7 }}>
-                        <strong>How it works:</strong>
+                        <strong>One attempt only:</strong> You can submit each homework once. Your answers lock after you press Submit — review with your teacher afterward.
                         <ol style={{ margin: '4px 0 10px', paddingLeft: 18 }}>
                           <li>Work through each exercise one at a time</li>
                           <li>Progress saves automatically — leave and come back anytime</li>
