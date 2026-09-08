@@ -28,19 +28,19 @@
 import { logPrediction } from './_ml/log.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
+import {
+  AI_ATTEMPT_TIMEOUT_MS,
+  AI_REQUEST_TIMEOUT_MS,
+  MAX_AI_PROMPT_CHARS,
+  modelPriority,
+  multiKeys,
+  providerConfig,
+} from './_ai-providers.js';
+
+// Re-exported so existing importers (and the fallback tests) keep working.
+export { AI_ATTEMPT_TIMEOUT_MS, AI_REQUEST_TIMEOUT_MS, MAX_AI_PROMPT_CHARS };
 
 const env = (name) => process.env[name] || '';
-const multiKeys = (name) =>
-  String(env(name) || '').split(/[,\n]/).map((s) => s.trim()).filter(Boolean)
-    .filter((k, i, a) => a.indexOf(k) === i);
-
-// Diagnostics can include a full class transcript plus detailed teacher notes.
-// 8,000 characters prevented that normal workflow from ever reaching a model.
-// This is intentionally well below the 5 MB HTTP body guard, but comfortably
-// supports long, evidence-based diagnostic prompts (roughly 30,000 English tokens).
-export const MAX_AI_PROMPT_CHARS = 120_000;
-export const AI_REQUEST_TIMEOUT_MS = 30_000;
-export const AI_ATTEMPT_TIMEOUT_MS = 18_000;
 
 // ── Rate limit (best-effort per warm instance; set APP_ORIGIN in Vercel dashboard) ──
 const _rl = new Map();
@@ -67,43 +67,8 @@ function allowedOrigin(req) {
   return origin === allowed.toLowerCase();
 }
 
-const GEMINI_DEFAULT_MODELS = [
-  'gemini-3.7-flash',
-  'gemini-2.5-flash',
-  'gemini-2.5-flash-lite',
-  'gemini-2.5-pro',
-  'gemini-flash-latest',
-  'gemma-4-31b-it',
-  'gemma-4-26b-a4b-it',
-];
-
-const OPENROUTER_DEFAULT_MODELS = [
-  'openrouter/free',
-  'meta-llama/llama-3.3-70b-instruct:free',
-  'openai/gpt-oss-120b:free',
-  'openai/gpt-oss-20b:free',
-  'nvidia/nemotron-3-ultra-550b-a55b:free',
-];
-
-const GROQ_DEFAULT_MODELS = [
-  'openai/gpt-oss-120b',
-  'openai/gpt-oss-20b',
-  'deepseek-r1-distill-llama-70b',
-  'qwen/qwen3.6-27b',
-];
-
-const NVIDIA_DEFAULT_MODELS = [
-  // Hosted NVIDIA NIM text models. Keep this list provider-specific so
-  // NVIDIA can carry diagnostics even when the other providers are unavailable.
-  // Retired models that return HTTP 410 have been removed, along with the large
-  // models that hang past the attempt timeout and waste the request budget.
-  'nvidia/nemotron-3.5-lightning-30b-a3b',
-  'mistralai/mixtral-8x22b-instruct',
-  'qwen/qwen3-next-80b-a3b-instruct',
-  'nvidia/llama-3.1-nemotron-51b-instruct',
-];
-
-const parseList = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
+// Model lists and key resolution now live in ./_ai-providers.js so the proxy
+// and /api/ai-status cannot drift apart.
 
 /**
  * A JSON-requesting client must receive a complete JSON document, not prose
@@ -124,29 +89,6 @@ export function isStrictJsonResponse(text) {
   }
 }
 
-function isGeminiModelName(model) {
-  return /^(?:gemini|gemma)[a-z0-9._-]*$/i.test(String(model || '').trim());
-}
-
-// A provider's models can be configured two ways: the singular env var
-// (e.g. GEMINI_MODEL — one model, highest priority) or the plural env var
-// (e.g. GEMINI_MODELS — comma-separated priority list). The singular override
-// is tried FIRST so a dashboard one-model override takes effect even when the
-// plural var already exists. Curated defaults are only used when NEITHER is
-// set, so an explicit config is never polluted with the fallback models.
-const resolveModels = (singularEnv, pluralEnv, defaults) => {
-  const single = env(singularEnv);
-  const list = parseList(env(pluralEnv));
-  if (!single && !list.length) return defaults;
-  return [...new Set([...(single ? [single] : []), ...list])];
-};
-const configuredGeminiModels = resolveModels('GEMINI_MODEL', 'GEMINI_MODELS', GEMINI_DEFAULT_MODELS)
-  .filter(isGeminiModelName);
-// A dashboard value in GEMINI_MODEL must be a model ID, never an API key. If
-// it is malformed, keep the service callable with the curated Gemini models.
-const GEMINI_MODELS = configuredGeminiModels.length ? configuredGeminiModels : GEMINI_DEFAULT_MODELS;
-const OPENROUTER_MODELS = resolveModels('OPENROUTER_MODEL', 'OPENROUTER_MODELS', OPENROUTER_DEFAULT_MODELS);
-const GROQ_MODELS = resolveModels('GROQ_MODEL', 'GROQ_MODELS', GROQ_DEFAULT_MODELS);
 /** fetch with an abort-backed timeout so a hung provider can't stall the function. */
 async function fetchT(url, init, ms = AI_ATTEMPT_TIMEOUT_MS) {
   const ctrl = new AbortController();
@@ -206,14 +148,18 @@ export default async function handler(req, res) {
   // GEMINI_API_KEY_2 (and any _2/_3 suffixed key) is honored as a fallback so a
   // rate-limited or exhausted primary key does not force the diagnostic to fall
   // back to other providers.
-  const geminiKeys = [...new Set([...multiKeys('GEMINI_API_KEY'), ...multiKeys('GEMINI_API_KEY_2')])];
-  const openrouterKeys = multiKeys('OPENROUTER_API_KEY');
-  const groqKeys = multiKeys('GROQ_API_KEY');
-  const nvidiaKeys = multiKeys('NVIDIA_API_KEY');
-  if (!geminiKeys.length && !openrouterKeys.length && !groqKeys.length &&
-      !nvidiaKeys.length) {
+  //
+  // The diagnostic's first stage carries the long transcript and returns the
+  // core assessment; its later feedback/homework stages are much smaller, and
+  // NVIDIA picks different models for each case.
+  const isEvidenceHeavy = (prompt.length + sys.length) > 16_000 || max_tokens > 3_500;
+  const { keys: providerKeys, models: providerModelLists } = providerConfig({ isEvidenceHeavy });
+  if (!Object.values(providerKeys).some((list) => list.length)) {
     return res.status(503).json({ error: { message: 'No AI provider keys configured on the server.' } });
   }
+  const providerModels = Object.fromEntries(
+    Object.entries(providerModelLists).map(([provider, list]) => [provider, new Set(list)]),
+  );
 
   async function tryGemini(key, model) {
     const startedAt = Date.now();
@@ -301,71 +247,14 @@ export default async function handler(req, res) {
     return null;
   }
 
-  // The diagnostic's first stage carries the long transcript and returns the
-  // core assessment. Its later feedback/homework stages are much smaller.
-  // Put NVIDIA immediately after Gemini and select its models for the job,
-  // instead of treating every request as the same generic chat completion.
-  const isEvidenceHeavy = (prompt.length + sys.length) > 16_000 || max_tokens > 3_500;
-  const NVIDIA_EVIDENCE_MODELS = [
-    'nvidia/nemotron-3.5-lightning-30b-a3b',
-    'mistralai/mixtral-8x22b-instruct',
-    'qwen/qwen3-next-80b-a3b-instruct',
-    'nvidia/llama-3.1-nemotron-51b-instruct',
-  ];
-  const NVIDIA_FAST_MODELS = [
-    'nvidia/nemotron-3.5-lightning-30b-a3b',
-    'nvidia/nemotron-3-nano-30b-a3b',
-    'mistralai/mixtral-8x22b-instruct',
-    'nvidia/llama-3.1-nemotron-51b-instruct',
-  ];
-  const configuredNvidiaModels = parseList(env('NVIDIA_MODELS'))
-    .filter((model) => !/^openai\//i.test(model));
-  if (!configuredNvidiaModels.length && env('NVIDIA_MODEL')) configuredNvidiaModels.push(env('NVIDIA_MODEL'));
-  const NVIDIA_MODELS = [...new Set([...configuredNvidiaModels, ...NVIDIA_DEFAULT_MODELS])];
-  // Respect the operator's explicit NVIDIA model order first (so a configured
-  // diagnostic-capable model is tried before the curated defaults), then the
-  // evidence/fast-curated defaults, then the full configured+default set.
-  const nvidiaPriority = [...new Set([
-    ...configuredNvidiaModels,
-    ...(isEvidenceHeavy ? NVIDIA_EVIDENCE_MODELS : NVIDIA_FAST_MODELS),
-    ...NVIDIA_MODELS,
-  ])];
-  const geminiFallback = [
-    'gemini-3.7-flash',
-    'gemini-2.5-pro',
-    'gemini-2.5-flash-lite',
-    'gemini-flash-latest',
-    'gemma-4-31b-it',
-    'gemma-4-26b-a4b-it',
-  ];
-  const openRouterFallback = [
-    'meta-llama/llama-3.3-70b-instruct:free',
-    'openai/gpt-oss-120b:free',
-    'openai/gpt-oss-20b:free',
-    'nvidia/nemotron-3-ultra-550b-a55b:free',
-    'openrouter/free',
-  ];
-  const groqFallback = [
-    ['openai/gpt-oss-120b',                       'groq'],
-    ['openai/gpt-oss-20b',                        'groq'],
-    ['deepseek-r1-distill-llama-70b',             'groq'],
-    ['qwen/qwen3.6-27b',                          'groq'],
-  ];
-  // Order matters for the time budget (AI_REQUEST_TIMEOUT_MS): fast, reliable
-  // providers run first so a slow/hanging provider (e.g. NVIDIA's large models
-  // timing out at the full attempt timeout) cannot consume the whole budget and
-  // starve the healthy fallbacks. Groq and OpenRouter are quick OpenAI-compatible
-  // gateways, so they are tried before the heavier NVIDIA evidence models.
-  const MODEL_PRIORITY = [
-    [GEMINI_MODELS[0], 'gemini'],
-    ...geminiFallback.map((model) => [model, 'gemini']),
-    ...groqFallback,
-    ...openRouterFallback.map((model) => [model, 'openrouter']),
-    ...nvidiaPriority.map((model) => [model, 'nvidia']),
-  ];
+  // Attempt order matters for the time budget (AI_REQUEST_TIMEOUT_MS): fast,
+  // reliable providers run first so a slow/hanging provider (e.g. NVIDIA's large
+  // models timing out at the full attempt timeout) cannot consume the whole
+  // budget and starve the healthy fallbacks. Every configured model of each
+  // provider is included — previously only the first configured model was ever
+  // attempted, which reduced the whole cascade to a single call.
+  const MODEL_PRIORITY = modelPriority({ isEvidenceHeavy });
 
-  const providerKeys = { gemini: geminiKeys, groq: groqKeys, openrouter: openrouterKeys, nvidia: nvidiaKeys };
-  const providerModels = { gemini: new Set(GEMINI_MODELS), groq: new Set(GROQ_MODELS), openrouter: new Set(OPENROUTER_MODELS), nvidia: new Set(NVIDIA_MODELS) };
   // `model` is carried on each attempt so a successful call can be attributed to
   // the exact provider model that served it (pricing and drift both need this).
   const providerRunner = {
@@ -408,6 +297,17 @@ export default async function handler(req, res) {
     inputChars: sys.length + prompt.length,
   };
 
+  // One structured line per request describing the cascade that was built.
+  // This is the fastest way to answer "why did Regen fail?": attempts:1 with a
+  // 429 means a single provider is carrying the whole feature.
+  console.info(JSON.stringify({
+    event: 'ai_cascade_start',
+    attempts: ordered.length,
+    providers: [...new Set(ordered.map((a) => a.id))],
+    expectsJson,
+    promptChars: prompt.length,
+  }));
+
   // Stop starting new attempts once an overall budget is used up
   // so the function finishes inside serverless time limits.
   for (const a of ordered) {
@@ -438,5 +338,18 @@ export default async function handler(req, res) {
     error: `all providers failed after ${errors.length} attempt(s)`,
   });
   console.warn('[api/ai] all configured providers failed', { attempts: errors.length });
+
+  // A teacher-facing message should say what is actually wrong. When every
+  // attempt was rejected with HTTP 429 the provider quota is exhausted: retrying
+  // immediately cannot help, and the fix is another provider key.
+  const onlyRateLimited = errors.length > 0 && errors.every((e) => /HTTP 429/.test(e));
+  if (onlyRateLimited) {
+    return res.status(429).json({
+      error: {
+        message: 'Every configured AI provider is currently rate limited (HTTP 429). Add a fallback provider key or wait for the quota to reset, then try Regen again.',
+        code: 'provider_quota_exhausted',
+      },
+    });
+  }
   return res.status(502).json({ error: { message: 'AI generation is temporarily unavailable. Please try Regen again in a moment.' } });
 }

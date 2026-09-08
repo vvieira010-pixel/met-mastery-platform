@@ -1,6 +1,6 @@
 /**
  * api/tts.js — Vercel serverless TTS proxy.
- * Supports Deepgram, ElevenLabs, OpenAI, and Gemini.
+ * Supports Deepgram, ElevenLabs, and Gemini.
  */
 
 import { isSameOrigin } from './_config.js';
@@ -12,13 +12,11 @@ const VOICES = {
   female: {
     elevenlabs: '21m00Tcm4TlvDq8ikWAM',
     deepgram:   'aura-2-thalia-en',
-    openai:     'nova',
     gemini:     'Kore',
   },
   male: {
     elevenlabs: 'pNInz6obpgDQGcFmaJgB',
     deepgram:   'aura-2-asteria-en',
-    openai:     'onyx',
     gemini:     'Puck',
   },
 };
@@ -48,20 +46,6 @@ async function tryElevenLabs(text, gender) {
       model_id: 'eleven_multilingual_v2',
       voice_settings: { stability: 0.5, similarity_boost: 0.75 },
     }),
-  });
-  if (!res.ok) return null;
-  const buffer = await res.arrayBuffer();
-  return Buffer.from(buffer).toString('base64');
-}
-
-async function tryOpenAI(text, gender) {
-  const apiKey = env('OPENAI_API_KEY');
-  if (!apiKey) return null;
-  const voice = VOICES[gender]?.openai || VOICES.female.openai;
-  const res = await fetch('https://api.openai.com/v1/audio/speech', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: 'tts-1', input: text, voice }),
   });
   if (!res.ok) return null;
   const buffer = await res.arrayBuffer();
@@ -119,10 +103,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: { message: 'Text too long for TTS (max 8000 characters).' } });
   }
 
-  // Cascade order: Deepgram (default) -> ElevenLabs -> OpenAI -> Gemini
+  // Cascade order: Deepgram (default) -> ElevenLabs -> Gemini
   let audioB64 = await tryDeepgram(text, gender, voice);
   if (!audioB64) audioB64 = await tryElevenLabs(text, gender);
-  if (!audioB64) audioB64 = await tryOpenAI(text, gender);
   if (!audioB64) audioB64 = await tryGemini(text, gender);
 
   if (audioB64) {

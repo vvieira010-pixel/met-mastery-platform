@@ -38,7 +38,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob:",
   "font-src 'self' data: https://fonts.gstatic.com",
-  `connect-src 'self' https://*.supabase.co https://generativelanguage.googleapis.com https://api.openai.com https://api.anthropic.com https://api.groq.com https://openrouter.ai https://api.deepgram.com https://api.elevenlabs.io${isDevelopment ? ' ws://localhost:* ws://127.0.0.1:*' : ''}`,
+  `connect-src 'self' https://*.supabase.co https://generativelanguage.googleapis.com https://api.groq.com https://openrouter.ai https://api.deepgram.com https://api.elevenlabs.io${isDevelopment ? ' ws://localhost:* ws://127.0.0.1:*' : ''}`,
   "media-src 'self' blob:",
   "frame-ancestors 'none'",
   "base-uri 'self'",

@@ -3,15 +3,14 @@
  *
  * Takes { essay, taskPrompt, subject, submissionId }
  * Scores the essay against the official MET Writing Rating Scale (5 criteria,
- * 0.0–4.0 each in 0.5 steps) via AssemblyAI's LLM Gateway (user-requested
- * scorer: api/_assemblyai-llm.js), with graceful fallback to Gemini / OpenAI /
- * Groq if the gateway is unavailable. Scoring (avg → scaled 0–80 → CEFR) is
- * computed server-side, deterministically — never LLM-derived.
+ * 0.0–4.0 each in 0.5 steps) via Gemini (primary) with graceful fallback to
+ * Groq. Scoring (avg → scaled 0–80 → CEFR) is computed server-side,
+ * deterministically — never LLM-derived.
  */
 
 import { verifySupabaseSession } from './_supabase-auth.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-writing-scale.js';
-import { callAssemblyAILLMJson, parseLLMJson, extractScores, DEFAULT_ASSEMBLYAI_MODEL } from './_assemblyai-llm.js';
+import { parseLLMJson, extractScores } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
@@ -27,19 +26,6 @@ function fetchWithTimeout(url, init, ms = 25000) {
 }
 
 const WRITING_KEYS = ['task', 'organization', 'grammar', 'vocabulary', 'mechanics'];
-
-// Returns { evaluation, provider, modelId } or null when nothing parses.
-async function scoreWithAssemblyAI(prompt) {
-  const r = await callAssemblyAILLMJson(
-    { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
-    { retries: 1, validateKeys: WRITING_KEYS },
-  );
-  if (!r.ok) {
-    console.warn('AssemblyAI LLM writing eval error:', r.error, r.requestId || '');
-    return null;
-  }
-  return { evaluation: r.evaluation, provider: 'assemblyai-llm', modelId: r.model };
-}
 
 async function scoreWithGemini(prompt) {
   const key = env('GEMINI_API_KEY');
@@ -61,29 +47,6 @@ async function scoreWithGemini(prompt) {
     return extractScores(parsed, WRITING_KEYS) ? { evaluation: parsed, provider: 'gemini', modelId: 'gemini-2.5-flash' } : null;
   } catch (e) {
     console.warn('Gemini writing eval error:', e.message);
-    return null;
-  }
-}
-
-async function scoreWithOpenAI(prompt) {
-  const key = env('OPENAI_API_KEY');
-  if (!key) return null;
-  try {
-    const res = await fetchWithTimeout(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-        body: JSON.stringify({ model: 'gpt-4o-mini', temperature: 0.2, messages: [{ role: 'user', content: prompt }] }),
-      },
-      12000,
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    const parsed = parseLLMJson(data?.choices?.[0]?.message?.content || '');
-    return extractScores(parsed, WRITING_KEYS) ? { evaluation: parsed, provider: 'openai', modelId: 'gpt-4o-mini' } : null;
-  } catch (e) {
-    console.warn('OpenAI writing eval error:', e.message);
     return null;
   }
 }
@@ -142,7 +105,7 @@ export default async function handler(req, res) {
 
   // 0. AssemblyAI LLM Gateway is the requested primary scorer.
   // 1–3. Fall back to existing providers so evaluation never goes down.
-  const attempts = [scoreWithAssemblyAI, scoreWithGemini, scoreWithOpenAI, scoreWithGroq];
+  const attempts = [scoreWithGemini, scoreWithGroq];
   let result = null;
   const llmStartedAt = Date.now();
   for (const attempt of attempts) {
@@ -199,5 +162,5 @@ export default async function handler(req, res) {
     parsedOutput: { scores: evaluation.scores || null, rubricAvg: evaluation.rubricAvg ?? null, cefr: evaluation.cefrEstimate ?? null },
   });
 
-  return res.status(200).json({ evaluation, provider, model: modelId || DEFAULT_ASSEMBLYAI_MODEL });
+  return res.status(200).json({ evaluation, provider, model: modelId || 'gemini-2.5-flash' });
 }

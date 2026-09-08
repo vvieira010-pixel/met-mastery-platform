@@ -205,7 +205,6 @@ function pauseStats(words, durationSec) {
 
 async function transcribeAudio(audio) {
   const deepgramKey = env('DEEPGRAM_API_KEY');
-  const openaiKey = env('OPENAI_API_KEY');
 
   // 0. Local openai-whisper (no API cost) — preferred when a LOCAL_WHISPER_URL is set.
   // When WHISPER_PROVIDER=local, never fall back to paid cloud providers.
@@ -245,29 +244,6 @@ async function transcribeAudio(audio) {
     }
   }
 
-  if (openaiKey && audio) {
-    try {
-      const formData = new FormData();
-      const blob = new Blob([audio.audioBuffer], { type: audio.contentType });
-      formData.append('file', blob, 'audio.webm');
-      formData.append('model', 'whisper-1');
-
-      const whisperRes = await fetchWithTimeout('https://api.openai.com/v1/audio/transcriptions', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${openaiKey}` },
-        body: formData,
-      });
-      if (whisperRes.ok) {
-        const data = await whisperRes.json();
-        if (data.text && data.text.trim()) {
-          return { text: data.text.trim(), words: [], duration: null, confidence: null, stats: pauseStats([], null), asrProvider: 'openai', asrModel: 'whisper-1' };
-        }
-      }
-    } catch (e) {
-      console.warn('Whisper transcription error:', e.message);
-    }
-  }
-
   return null;
 }
 
@@ -293,7 +269,7 @@ export default async function handler(req, res) {
 
   // subject/submissionId are optional telemetry context. `subject` is hashed
   // server-side before storage (see api/_ml/hash.js).
-  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null } = body || {};
+  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null, assemblyOnly = false } = body || {};
   if (audioUrl) {
     return res.status(400).json({ error: 'audioUrl is not accepted. Provide a stored recording path.' });
   }
@@ -356,7 +332,6 @@ export default async function handler(req, res) {
     : { version: 'unversioned', promptSha: 'unversioned' };
 
   const geminiKey = env('GEMINI_API_KEY');
-  const openaiKey = env('OPENAI_API_KEY');
   const groqKey = env('GROQ_API_KEY');
 
   let evaluation = null;
@@ -384,8 +359,8 @@ export default async function handler(req, res) {
     }
   }
 
-  // 1. Try Gemini
-  if (geminiKey) {
+  // 1. Try Gemini (skipped if assemblyOnly requested)
+  if (!assemblyOnly && geminiKey) {
     try {
       const gRes = await fetchWithTimeout(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
@@ -412,40 +387,8 @@ export default async function handler(req, res) {
     }
   }
 
-  // 2. Try OpenAI
-  if (!evaluation && openaiKey) {
-    try {
-      const oRes = await fetchWithTimeout(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${openaiKey}`,
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            temperature: 0.2,
-            messages: [{ role: 'user', content: prompt }],
-          }),
-        },
-        12000
-      );
-      if (oRes.ok) {
-        const oData = await oRes.json();
-        const rawText = oData?.choices?.[0]?.message?.content || '';
-        const cleaned = rawText.replace(/```(?:json)?\s*|\s*```/g, '').trim();
-        evaluation = JSON.parse(cleaned);
-        evalProvider = 'openai';
-        evalModelId = 'gpt-4o-mini';
-      }
-    } catch (e) {
-      console.warn('OpenAI evaluation error:', e.message);
-    }
-  }
-
-  // 3. Try Groq
-  if (!evaluation && groqKey) {
+  // 2. Try Groq (skipped if assemblyOnly requested)
+  if (!assemblyOnly && !evaluation && groqKey) {
     try {
       const grRes = await fetchWithTimeout(
         'https://api.groq.com/openai/v1/chat/completions',
