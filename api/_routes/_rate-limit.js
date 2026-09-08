@@ -48,6 +48,16 @@ export const LIMITS = {
     { name: 'hourly', limit: 60, windowMs: HOUR },
     { name: 'daily', limit: 200, windowMs: DAY },
   ],
+  'evaluate-writing': [
+    { name: 'burst', limit: 20, windowMs: MINUTE },
+    { name: 'hourly', limit: 60, windowMs: HOUR },
+    { name: 'daily', limit: 200, windowMs: DAY },
+  ],
+  ai: [
+    { name: 'burst', limit: 30, windowMs: MINUTE },
+    { name: 'hourly', limit: 200, windowMs: HOUR },
+    { name: 'daily', limit: 1000, windowMs: DAY },
+  ],
   'generate-image': [
     { name: 'burst', limit: 10, windowMs: MINUTE },
     { name: 'daily', limit: 60, windowMs: DAY },

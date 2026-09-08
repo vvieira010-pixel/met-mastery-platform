@@ -3,13 +3,17 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
 import aiHandler from './api/_routes/ai.js';
+import aiStatusHandler from './api/_routes/ai-status.js';
 import ttsHandler from './api/_routes/tts.js';
 import generateImageHandler from './api/_routes/generate-image.js';
 import getSubmissionsHandler from './api/_routes/get-submissions.js';
 import saveSubmissionHandler from './api/_routes/save-submission.js';
 import sendInviteHandler from './api/_routes/send-invite.js';
 import evaluateSpeakingHandler from './api/_routes/evaluate-speaking.js';
+import evaluateWritingHandler from './api/_routes/evaluate-writing.js';
 import createStudentAccountHandler from './api/_routes/create-student-account.js';
+import logLearningEventsHandler from './api/_routes/log-learning-events.js';
+import markdownHomepageHandler from './api/_routes/markdown-homepage.js';
 import healthHandler from './api/_routes/health.js';
 import infoHandler from './api/_routes/info.js';
 
@@ -87,6 +91,10 @@ async function startServer() {
   app.all('/api/save-submission', wrap(saveSubmissionHandler));
   app.all('/api/send-invite', wrap(sendInviteHandler));
   app.all('/api/evaluate-speaking', wrap(evaluateSpeakingHandler));
+  app.all('/api/evaluate-writing', wrap(evaluateWritingHandler));
+  app.all('/api/ai-status', wrap(aiStatusHandler));
+  app.all('/api/log-learning-events', wrap(logLearningEventsHandler));
+  app.all('/api/markdown-homepage', wrap(markdownHomepageHandler));
   app.all('/api/create-student-account', wrap(createStudentAccountHandler));
   const { default: mcpHandler } = await import('./api/_routes/mcp.js');
   app.all('/mcp', wrap(mcpHandler));

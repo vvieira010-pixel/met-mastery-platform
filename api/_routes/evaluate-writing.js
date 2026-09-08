@@ -10,8 +10,9 @@
 
 import { verifySupabaseSession } from './_supabase-auth.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-writing-scale.js';
-import { parseLLMJson, extractScores } from './_assemblyai-llm.js';
+import { callAssemblyAILLMJson, extractScores, parseLLMJson } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
+import { guardRateLimit } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
 
@@ -74,12 +75,32 @@ async function scoreWithGroq(prompt) {
   }
 }
 
+async function scoreWithAssemblyAI(prompt) {
+  if (!env('ASSEMBLYAI_API_KEY')) return null;
+  try {
+    const aai = await callAssemblyAILLMJson(
+      { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
+      { retries: 1, validateKeys: WRITING_KEYS },
+    );
+    if (aai.ok && aai.evaluation) {
+      return { evaluation: aai.evaluation, provider: 'assemblyai-llm', modelId: aai.model };
+    }
+    if (aai.error) console.warn('AssemblyAI writing eval error:', aai.error, aai.requestId || '');
+    return null;
+  } catch (e) {
+    console.warn('AssemblyAI writing eval error:', e.message);
+    return null;
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   // Paid AI endpoint — require a valid Supabase session.
   const user = await verifySupabaseSession(req);
   if (!user) return res.status(401).json({ error: 'Unauthorized — valid session required.' });
+
+  if (!guardRateLimit(req, res, { scope: 'evaluate-writing', user })) return;
 
   let body = req.body;
   if (typeof body === 'string') {
@@ -105,7 +126,7 @@ export default async function handler(req, res) {
 
   // 0. AssemblyAI LLM Gateway is the requested primary scorer.
   // 1–3. Fall back to existing providers so evaluation never goes down.
-  const attempts = [scoreWithGemini, scoreWithGroq];
+  const attempts = [scoreWithAssemblyAI, scoreWithGemini, scoreWithGroq];
   let result = null;
   const llmStartedAt = Date.now();
   for (const attempt of attempts) {

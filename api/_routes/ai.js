@@ -28,6 +28,7 @@
 import { logPrediction } from './_ml/log.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
+import { guardRateLimit } from './_rate-limit.js';
 import {
   AI_ATTEMPT_TIMEOUT_MS,
   AI_REQUEST_TIMEOUT_MS,
@@ -41,17 +42,6 @@ export { AI_ATTEMPT_TIMEOUT_MS, AI_REQUEST_TIMEOUT_MS, MAX_AI_PROMPT_CHARS };
 
 const env = (name) => process.env[name] || '';
 
-// ── Rate limit (best-effort per warm instance; set APP_ORIGIN in Vercel dashboard) ──
-const _rl = new Map();
-function checkRateLimit(ip, max = 30, windowMs = 60_000) {
-  const now = Date.now();
-  const e = _rl.get(ip) || { n: 0, t: now + windowMs };
-  if (now > e.t) { e.n = 0; e.t = now + windowMs; }
-  e.n++;
-  _rl.set(ip, e);
-  if (_rl.size > 500) for (const [k, v] of _rl) if (now > v.t) _rl.delete(k);
-  return e.n <= max;
-}
 function allowedOrigin(req) {
   const origin = (req.headers['origin'] || '').toLowerCase();
   // Local development (browser on the same machine) is always permitted.
@@ -106,11 +96,7 @@ export default async function handler(req, res) {
   if (!allowedOrigin(req)) {
     return res.status(403).json({ error: { message: 'Forbidden' } });
   }
-  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (!checkRateLimit(ip)) {
-    res.setHeader('Retry-After', '60');
-    return res.status(429).json({ error: { message: 'Too many requests. Please slow down.' } });
-  }
+  if (!guardRateLimit(req, res, { scope: 'ai' })) return;
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
