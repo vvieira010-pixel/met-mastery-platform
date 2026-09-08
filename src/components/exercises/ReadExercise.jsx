@@ -62,6 +62,11 @@ export default function ReadExercise({ exercise, onComplete }) {
 
   return (
     <div onKeyDown={e => { if (e.key === 'Enter' && !submitted && allAnswered) { e.preventDefault(); handleSubmit(); } }}>
+      {(questions || []).length === 0 && (
+        <div role="status" style={{ padding: '14px 16px', background: 'var(--ex-hint-bg)', border: '1px solid var(--ex-hint-border)', borderRadius: 'var(--radius-sm)', marginBottom: 20, fontSize: 14, color: 'var(--ex-hint-text)' }}>
+          No questions available for this exercise yet. Try another topic.
+        </div>
+      )}
       {/* MET part banner */}
       {partConfig && (
         <div style={{ padding: '10px 14px', background: 'var(--ex-selected-bg)', border: '1px solid var(--ex-selected-border)', borderRadius: 'var(--radius-sm)', marginBottom: 14 }}>
@@ -76,14 +81,14 @@ export default function ReadExercise({ exercise, onComplete }) {
       )}
 
       {passage && !hidePassage && (
-        <div style={{ padding: '14px 16px', background: 'var(--ex-panel-bg)', border: '1px solid var(--ex-panel-border)', borderRadius: 'var(--radius-sm)', marginBottom: 20, fontSize: 14.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-wrap', maxHeight: 400, overflowY: 'auto' }}>
+        <div style={{ padding: '14px 16px', background: 'var(--ex-panel-bg)', border: '1px solid var(--ex-panel-border)', borderRadius: 'var(--radius-sm)', marginBottom: 20, fontSize: 14.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-wrap', maxHeight: 400, overflowY: 'auto', overscrollBehavior: 'contain', overflowWrap: 'break-word' }}>
           {passage}
           {source && <div style={{ marginTop: 8, fontSize: 12, color: 'var(--muted)', fontStyle: 'italic' }}>{source}</div>}
         </div>
       )}
 
       {passage && hidePassage && submitted && showTranscript && (
-        <div style={{ padding: '14px 16px', background: 'var(--ex-hint-bg)', border: '1px solid var(--ex-hint-border)', borderRadius: 'var(--radius-sm)', marginBottom: 20, fontSize: 14.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-wrap', maxHeight: 400, overflowY: 'auto' }}>
+        <div style={{ padding: '14px 16px', background: 'var(--ex-hint-bg)', border: '1px solid var(--ex-hint-border)', borderRadius: 'var(--radius-sm)', marginBottom: 20, fontSize: 14.5, lineHeight: 1.7, color: 'var(--text)', whiteSpace: 'pre-wrap', maxHeight: 400, overflowY: 'auto', overscrollBehavior: 'contain', overflowWrap: 'break-word' }}>
           <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--ex-hint-text)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Transcript (revealed after answering)</div>
           {passage}
         </div>
@@ -97,10 +102,10 @@ export default function ReadExercise({ exercise, onComplete }) {
 
       {(questions || []).map((q, qi) => (
         <div key={q.id} style={{ marginBottom: 18 }}>
-          <p style={{ fontSize: 14.5, fontWeight: 600, color: NAVY, marginBottom: 8, lineHeight: 1.5 }}>{qi + 1}. {q.question}</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <p style={{ fontSize: 14.5, fontWeight: 600, color: 'var(--text)', marginBottom: 8, lineHeight: 1.5, overflowWrap: 'break-word' }}>{qi + 1}. {q.question}</p>
+          <div role="radiogroup" aria-label={q.question || `Question ${qi + 1}`} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {(q.options || []).map((opt, oi) => (
-              <button key={oi} onClick={() => { if (!submitted) setAnswers(prev => ({ ...prev, [q.id]: oi })); }} style={optionStyle(qi, oi)}>
+              <button key={oi} onClick={() => { if (!submitted) setAnswers(prev => ({ ...prev, [q.id]: oi })); }} style={optionStyle(qi, oi)} role="radio" aria-checked={answers[q.id] === oi} className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105">
                 <span style={{ fontWeight: 700, marginRight: 8, color: submitted && oi === q.correct ? 'var(--ex-correct-strong)' : submitted && oi === answers[q.id] && oi !== q.correct ? 'var(--danger)' : 'inherit' }}>
                   {String.fromCharCode(65 + oi)}.
                 </span>

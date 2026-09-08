@@ -50,8 +50,8 @@ export default function FillBlank({ exercise, onComplete }) {
       display: 'inline-block', minWidth: 90,
       padding: '3px 8px', margin: '0 3px',
       borderRadius: 'var(--radius-sm, 6px)', border: '2px solid', fontSize: 'var(--text-sm)',
-      fontFamily: 'var(--font-sans)', outline: 'none',
-      verticalAlign: 'middle', background: 'var(--surface)',
+      fontFamily: 'var(--font-sans)',
+      verticalAlign: 'middle', background: 'var(--surface)', color: 'var(--text)',
       transition: 'border-color 0.15s',
     };
     if (!submitted) return { ...base, borderColor: values[i] ? TEAL : 'var(--border)' };
@@ -69,7 +69,7 @@ export default function FillBlank({ exercise, onComplete }) {
             const isCorrectChoice = isResult && normalize(choice) === normalize(blank.correct);
             let bg = 'var(--surface)';
             let border = 'var(--border)';
-            let color = NAVY;
+            let color = 'var(--text)';
             if (!submitted && selected) { bg = 'var(--ex-selected-bg)'; border = TEAL; color = TEAL; }
             if (isResult && isCorrectChoice) { bg = 'var(--ex-panel-bg)'; border = 'var(--ex-panel-border)'; color = 'var(--text)'; }
             return (
@@ -102,6 +102,10 @@ export default function FillBlank({ exercise, onComplete }) {
         onChange={e => setValue(i, e.target.value)}
         disabled={submitted}
         aria-label={`Blank ${i + 1}`}
+        name={`blank-${i + 1}`}
+        autoComplete="off"
+        spellCheck={false}
+        className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:border-[var(--accent)]"
         style={textInputStyle(i)}
       />
     );
@@ -118,7 +122,7 @@ export default function FillBlank({ exercise, onComplete }) {
         </div>
       )}
 
-      <div style={{ fontSize: 'var(--text-base)', lineHeight: 2.4, color: NAVY, fontWeight: 500, marginBottom: 20 }}>
+      <div style={{ fontSize: 'var(--text-base)', lineHeight: 2.4, color: 'var(--text)', fontWeight: 500, marginBottom: 20, overflowWrap: 'break-word' }}>
         {parts.map((part, i) => (
           <span key={i}>
             {part}
@@ -162,7 +166,7 @@ export default function FillBlank({ exercise, onComplete }) {
               padding: '11px 14px', background: 'var(--ex-panel-bg)', borderRadius: 'var(--radius-sm, 6px)',
               border: '1px solid var(--ex-panel-border)',
             }}>
-              <span style={{ fontWeight: 700, color: NAVY }}>Why: </span>
+              <span style={{ fontWeight: 700, color: 'var(--text)' }}>Why: </span>
               {exercise.explanation}
             </div>
           )}

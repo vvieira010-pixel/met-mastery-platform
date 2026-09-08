@@ -27,6 +27,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   const heroRef=useRef(null);
 
   useGSAP(()=>{
+    if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
     const hero = heroRef.current;
     if(!hero) return;
     const title = hero.querySelector('.hero-title');
@@ -113,6 +114,8 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
 
   return(
     <main className="student-page" data-testid={testId}>
+      <a href="#practice-studio-content" className="skip-link focus-visible:ring-2 focus-visible:ring-offset-2">Skip to practice content</a>
+      <span id="practice-studio-content" tabIndex={-1} />
       {showLanding ? (
         <>
           <header ref={heroRef} className="practice-studio-hero">
@@ -158,7 +161,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
               else handleBackToLanding();
             }} className="student-page-back">← {showListeningPartPicker||showSpeakingQuestionPicker ? 'All skills' : selectedKind==='listening' ? 'Listening parts' : selectedKind==='speaking' ? 'Speaking questions' : 'All skills'}</button>
             <h1 className="student-page-title">{showListeningPartPicker ? 'MET-style Listening Practice' : showSpeakingQuestionPicker ? 'MET-style Speaking Practice' : MODE_LABELS[selectedKind]}</h1>
-            <span className="student-page-subtitle">{showListeningPartPicker ? 'Choose a part-style drill, then choose a topic. These are extra practice, not a timed full MET form.' : showSpeakingQuestionPicker ? 'Choose the MET Speaking question format first, then choose a topic.' : selectedKind==='listening' ? 'Choose a topic within this listening part.' : selectedKind==='speaking' ? 'Choose a topic for this speaking question.' : MODE_SUBTITLES[selectedKind]}</span>
+            <span className="student-page-subtitle" style={{ overflowWrap: 'break-word', minWidth: 0 }}>{showListeningPartPicker ? 'Choose a part-style drill, then choose a topic. These are extra practice, not a timed full MET form.' : showSpeakingQuestionPicker ? 'Choose the MET Speaking question format first, then choose a topic.' : selectedKind==='listening' ? 'Choose a topic within this listening part.' : selectedKind==='speaking' ? 'Choose a topic for this speaking question.' : MODE_SUBTITLES[selectedKind]}</span>
           </header>
           <div className="practice-studio-topics">
             {topics.length>8&&(

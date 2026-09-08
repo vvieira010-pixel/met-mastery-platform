@@ -175,7 +175,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
       const res = await fetch('/api/evaluate-speaking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.' }),
+        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.', assemblyOnly: true }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
@@ -198,12 +198,17 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         </div>
       )}
       {imageUrl ? (
-        <div style={{ marginBottom: 16, border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden' }}>
-          <img src={imageUrl} alt={imageAlt || imageDescription || 'Picture for this task'} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', display: 'block', margin: '0 auto' }} />
-          {imageDescription && (
-            <p style={{ margin: 0, padding: '8px 12px', fontSize: 'var(--text-xs)', color: 'var(--muted)', fontStyle: 'italic' }}>{imageDescription}</p>
-          )}
-        </div>
+        <figure style={{ margin: '0 0 16px', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden', background: 'var(--ex-panel-bg)' }}>
+          <a href={imageUrl} target="_blank" rel="noreferrer" title="Open image full size" style={{ display: 'block' }}>
+            <img src={imageUrl} alt={imageAlt || imageDescription || 'Picture for this task'} width={960} height={600} loading="lazy" style={{ width: '100%', height: 'auto', maxHeight: 520, objectFit: 'contain', display: 'block', margin: '0 auto', background: 'var(--ex-panel-bg)' }} />
+          </a>
+          <figcaption style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, padding: '8px 12px' }}>
+            {imageDescription ? (
+              <span style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--muted)', fontStyle: 'italic' }}>{imageDescription}</span>
+            ) : <span />}
+            <a href={imageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--accent)', whiteSpace: 'nowrap' }}>View larger ⤢</a>
+          </figcaption>
+        </figure>
       ) : imageDescription ? (
         <div style={{ marginBottom: 16, padding: '14px 16px', background: 'var(--accent-subtle)', borderRadius: 'var(--radius-sm, 6px)', border: '1px solid var(--accent-border, var(--border))' }}>
           <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>Picture to describe</div>
@@ -243,7 +248,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         </div>
       )}
 
-      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: NAVY, marginBottom: 16, lineHeight: 1.6 }}>{prompt}</p>
+      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--text)', marginBottom: 16, lineHeight: 1.6, overflowWrap: 'break-word' }}>{prompt}</p>
 
       {/* Prompt audio (speaking pack) */}
       {audioSrc && status !== 'recording' && (
@@ -285,7 +290,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
       {status === 'preparing' && (
         <div data-testid="speaking-preparation-countdown" role="status" aria-live="assertive" style={{ padding: '14px 16px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--ex-selected-bg)', border: '1px solid var(--ex-selected-border)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
           <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Preparation time</span>
-          <strong style={{ color: NAVY, fontSize: '1.4rem', fontVariantNumeric: 'tabular-nums' }}>{fmt(preparationSeconds)}</strong>
+          <strong style={{ color: 'var(--text)', fontSize: '1.4rem', fontVariantNumeric: 'tabular-nums' }}>{fmt(preparationSeconds)}</strong>
           <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}>Plan your answer. Recording starts automatically when this timer reaches zero.</span>
         </div>
       )}
@@ -340,7 +345,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           {/* AI MET score — Practice Studio recordings via /api/evaluate-speaking */}
           {audioPath && (
             <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 AI examiner score
               </div>
               {evalStatus === 'idle' && (
@@ -364,7 +369,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                     {[['Task', evalData.evaluation.scores?.task], ['Language', evalData.evaluation.scores?.language], ['Delivery', evalData.evaluation.scores?.delivery]].map(([label, v]) => (
-                      <span key={label} style={{ padding: '6px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: NAVY }}>
+                      <span key={label} style={{ padding: '6px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: 'var(--text)' }}>
                         {label}: {v ?? '–'} / 4
                       </span>
                     ))}
@@ -393,7 +398,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           {/* Sample answer + follow-ups (speaking pack) */}
           {sampleAnswer && (
             <details style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-              <summary style={{ cursor: 'pointer', fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY }}>
+              <summary style={{ cursor: 'pointer', fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)' }}>
                 Compare with a sample answer
               </summary>
               <p style={{ margin: '10px 0 0', fontSize: 'var(--text-sm)', color: 'var(--text)', lineHeight: 1.7 }}>{sampleAnswer}</p>
@@ -412,7 +417,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
 
           {taskConfig && (
             <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Score your Task Completion (0–4):
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -421,8 +426,8 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
                     width: 44, height: 44, borderRadius: 'var(--radius-sm, 6px)',
                     border: `2px solid ${selfScore === n ? TEAL : 'var(--border)'}`,
                     background: selfScore === n ? TEAL : 'var(--surface)',
-                    color: selfScore === n ? '#fff' : NAVY,
-                    fontWeight: 700, fontSize: 'var(--text-base)', cursor: 'pointer', transition: 'all 0.15s',
+                    color: selfScore === n ? '#fff' : 'var(--text)',
+                    fontWeight: 700, fontSize: 'var(--text-base)', cursor: 'pointer', transition: 'border-color 0.15s, background 0.15s, color 0.15s',
                   }}>{n}</button>
                 ))}
               </div>
@@ -436,7 +441,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
           )}
 
           <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Self-check your answer:
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -498,9 +503,14 @@ export default function ShortAnswer({ exercise, onComplete }) {
       )}
 
       {imageUrl && (
-        <div style={{ marginBottom: 16, border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden', background: 'var(--ex-panel-bg)', textAlign: 'center' }}>
-          <img src={imageUrl} alt={imageAlt || 'Picture for this task'} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', display: 'block', margin: '0 auto' }} />
-        </div>
+        <figure style={{ margin: '0 0 16px', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden', background: 'var(--ex-panel-bg)', textAlign: 'center' }}>
+          <a href={imageUrl} target="_blank" rel="noreferrer" title="Open image full size" style={{ display: 'block' }}>
+            <img src={imageUrl} alt={imageAlt || 'Picture for this task'} width={960} height={600} loading="lazy" style={{ width: '100%', height: 'auto', maxHeight: 520, objectFit: 'contain', display: 'block', margin: '0 auto', background: 'var(--ex-panel-bg)' }} />
+          </a>
+          <figcaption style={{ padding: '8px 12px', textAlign: 'right' }}>
+            <a href={imageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--accent)' }}>View larger ⤢</a>
+          </figcaption>
+        </figure>
       )}
 
       {taskConfig && !submitted && (
@@ -571,7 +581,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
         </div>
       )}
 
-      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: NAVY, marginBottom: 14, lineHeight: 1.6 }}>{prompt}</p>
+      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--text)', marginBottom: 14, lineHeight: 1.6, overflowWrap: 'break-word' }}>{prompt}</p>
 
       <textarea
         value={text}
@@ -580,11 +590,13 @@ export default function ShortAnswer({ exercise, onComplete }) {
         rows={6}
         placeholder="Write your answer here…"
         aria-label="Your answer"
+        autoComplete="off"
+        className="focus-visible:ring-2 focus-visible:ring-offset-2"
         style={{
           width: '100%', padding: '12px 14px', borderRadius: 'var(--radius-sm, 6px)',
           border: `1.5px solid ${submitted ? 'var(--border)' : text.trim() ? TEAL : 'var(--border)'}`,
           fontSize: 'var(--text-sm)', fontFamily: 'var(--font-sans)', lineHeight: 1.7,
-          resize: 'vertical', outline: 'none', color: 'var(--text)',
+          resize: 'vertical', color: 'var(--text)',
           background: submitted ? 'var(--bg)' : 'var(--surface)',
           transition: 'border-color 0.15s',
         }}
@@ -658,7 +670,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
 
           {taskConfig && (
             <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Score your Task Completion (0–4):
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -670,7 +682,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
                       width: 44, height: 44, borderRadius: 'var(--radius-sm, 6px)',
                       border: `2px solid ${selfScore === n ? TEAL : 'var(--border)'}`,
                       background: selfScore === n ? TEAL : 'var(--surface)',
-                      color: selfScore === n ? '#fff' : NAVY,
+                      color: selfScore === n ? '#fff' : 'var(--text)',
                       fontWeight: 700, fontSize: 'var(--text-base)', cursor: 'pointer',
                       transition: 'all 0.15s',
                     }}
@@ -691,7 +703,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
           )}
 
           <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: NAVY, marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Self-check your answer:
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

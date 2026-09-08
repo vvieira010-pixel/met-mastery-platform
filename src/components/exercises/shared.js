@@ -25,7 +25,7 @@ export function getOptionStyle(i, selected, submitted, correct) {
   const base = optionBaseStyle();
   base.cursor = submitted ? 'default' : 'pointer';
   if (!submitted) {
-    if (selected === i) return { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: NAVY };
+    if (selected === i) return { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: 'var(--text)' };
     return { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
   }
   if (i === correct) return { ...base, borderColor: 'var(--ex-correct-strong)', background: 'var(--ex-correct-bg)', color: 'var(--ex-correct-text)' };

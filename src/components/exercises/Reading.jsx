@@ -12,7 +12,7 @@ function optionBase(submitted, selected, correct, i) {
   };
   if (!submitted) {
     return selected === i
-      ? { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: NAVY }
+      ? { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: 'var(--text)' }
       : { ...base, borderColor: 'var(--border)', color: 'var(--text)' };
   }
   if (i === correct) return { ...base, borderColor: 'var(--ex-correct-strong)', background: 'var(--ex-correct-bg)', color: 'var(--ex-correct-text)' };
@@ -31,10 +31,12 @@ export default function Reading({ exercise, onComplete }) {
     imageUrl = '',
     image = '',
     imageSrc = '',
+    imageAlt = '',
   } = exercise;
 
   const text   = passage || audioText || '';
   const imgSrc = imageUrl || image || imageSrc || '';
+  const imgAlt = imageAlt || (question ? `Illustration for: ${String(question).slice(0, 120)}` : 'Exercise illustration');
 
   const [selected, setSelected]   = useState(null);
   const [submitted, setSubmitted] = useState(false);
@@ -59,8 +61,8 @@ export default function Reading({ exercise, onComplete }) {
       {/* Image */}
       {imgSrc && (
         <img
-          src={imgSrc} alt="Exercise visual" loading="lazy"
-          style={{ width: '100%', borderRadius: 'var(--radius-sm)', marginBottom: 16, maxHeight: 260, objectFit: 'cover', display: 'block' }}
+          src={imgSrc} alt={imgAlt} loading="lazy" width={640} height={360}
+          style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)', marginBottom: 16, maxHeight: 260, objectFit: 'cover', display: 'block' }}
         />
       )}
 
@@ -82,18 +84,20 @@ export default function Reading({ exercise, onComplete }) {
       )}
 
       {/* Question */}
-      <p style={{ fontSize: 15.5, fontWeight: 600, color: NAVY, marginBottom: 14, lineHeight: 1.6 }}>
+      <p style={{ fontSize: 15.5, fontWeight: 600, color: 'var(--text)', marginBottom: 14, lineHeight: 1.6, overflowWrap: 'break-word' }}>
         {question}
       </p>
 
       {/* Options */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+      <div role="radiogroup" aria-label={question || 'Answer choices'} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
         {options.map((opt, i) => (
           <button
             key={i}
             onClick={() => !submitted && setSelected(i)}
             style={optionBase(submitted, selected, correct, i)}
-            aria-pressed={selected === i}
+            role="radio"
+            aria-checked={selected === i}
+            className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
           >
             <span style={{
               width: 24, height: 24, borderRadius: '50%',

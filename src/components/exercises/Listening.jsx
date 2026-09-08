@@ -214,16 +214,16 @@ const [playCount, setPlayCount] = useState(0);
       display: 'flex', alignItems: 'center', gap: 12,
       padding: '12px 16px', borderRadius: 10,
       border: '1.5px solid', cursor: submitted ? 'default' : 'pointer',
-      transition: 'all 0.15s', fontSize: 14.5, lineHeight: 1.5,
+      transition: 'border-color 0.15s, background 0.15s, color 0.15s, opacity 0.15s', fontSize: 14.5, lineHeight: 1.5,
       fontFamily: 'var(--font-ui)', textAlign: 'left', width: '100%',
     };
     if (!submitted) {
       return selected === i
-        ? { ...base, borderColor: TEAL, background: 'var(--primary-light)', color: TEXT }
+        ? { ...base, borderColor: TEAL, background: 'var(--ex-selected-bg)', color: TEXT }
         : { ...base, borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--text)' };
     }
-    if (i === correct) return { ...base, borderColor: '#3D8C65', background: '#ECFDF5', color: '#065F46' };
-    if (i === selected && !isCorrect) return { ...base, borderColor: 'var(--danger)', background: '#FEF2F2', color: '#991B1B' };
+    if (i === correct) return { ...base, borderColor: 'var(--ex-correct-strong)', background: 'var(--ex-correct-bg)', color: 'var(--ex-correct-text)' };
+    if (i === selected && !isCorrect) return { ...base, borderColor: 'var(--danger)', background: 'var(--ex-wrong-bg)', color: 'var(--ex-wrong-text)' };
     return { ...base, borderColor: 'var(--divider)', background: 'var(--surface)', color: 'var(--muted)', opacity: 0.6 };
   }
 
@@ -279,11 +279,11 @@ const [playCount, setPlayCount] = useState(0);
               cursor: (isFetchingAudio || !(audioText || audioSrc || isDialogue) || !canPlay) ? 'not-allowed' : 'pointer',
               fontSize: 24, display: 'grid', placeItems: 'center',
               boxShadow: playing ? '0 0 0 6px rgba(239,68,68,.15)' : '0 4px 14px rgba(13,148,136,.3)',
-              transition: 'all 0.18s var(--ease)',
+              transition: 'background 0.18s, box-shadow 0.18s, opacity 0.18s, transform 0.18s',
               opacity: (isFetchingAudio || !(audioText || audioSrc || isDialogue) || !canPlay) ? 0.45 : 1,
             }}
           >
-            {isFetchingAudio ? '⏳' : playing ? '⏸' : '▶'}
+            <span aria-hidden="true">{isFetchingAudio ? '⏳' : playing ? '⏸' : '▶'}</span>
           </button>
         </div>
 
@@ -314,7 +314,7 @@ const [playCount, setPlayCount] = useState(0);
               background: showTranscript ? 'var(--accent-subtle)' : 'var(--surface)',
               color: showTranscript ? 'var(--primary)' : 'var(--muted)',
               fontSize: 12.5, fontWeight: 600, cursor: 'pointer',
-              transition: 'all 0.15s',
+              transition: 'border-color 0.15s, background 0.15s, color 0.15s',
             }}
           >
             {showTranscript ? '▾ Hide transcript' : '▸ Show transcript'}
@@ -338,17 +338,19 @@ const [playCount, setPlayCount] = useState(0);
           <p style={{ fontSize: 15.5, fontWeight: 600, color: TEXT, marginBottom: 16, lineHeight: 1.6 }}>{question || (listeningFormat === 'gap_fill' ? 'Complete the missing words.' : listeningFormat === 'ordering' ? 'Put the events in the order you hear them.' : 'Choose the best answer.')}</p>
 
           {listeningFormat === 'gap_fill' ? (
-            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{gaps.map((gap, i) => <label key={gap.id || i} style={{ display: 'grid', gap: 5, fontSize: 13, color: TEXT }}>{gap.prompt || `Blank ${i + 1}`}<input value={gapAnswers[gap.id || i] || ''} disabled={submitted} onChange={e => setGapAnswers(prev => ({ ...prev, [gap.id || i]: e.target.value }))} placeholder="Type what you hear" style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }} /></label>)}</div>
+            <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{gaps.map((gap, i) => <label key={gap.id || i} style={{ display: 'grid', gap: 5, fontSize: 13, color: TEXT }}>{gap.prompt || `Blank ${i + 1}`}<input value={gapAnswers[gap.id || i] || ''} disabled={submitted} onChange={e => setGapAnswers(prev => ({ ...prev, [gap.id || i]: e.target.value }))} placeholder="Type what you hear…" autoComplete="off" spellCheck={false} className="focus-visible:ring-2 focus-visible:ring-offset-2" style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit', background: 'var(--surface)', color: 'var(--text)' }} /></label>)}</div>
           ) : listeningFormat === 'ordering' ? (
             <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>{sequenceItems.map((_, i) => <label key={i} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 8, alignItems: 'center', fontSize: 13, color: TEXT }}><span>{i + 1}.</span><select value={orderAnswer[i] ?? ''} disabled={submitted} onChange={e => setOrderAnswer(prev => { const next = [...prev]; next[i] = e.target.value; return next; })} style={{ padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 8, font: 'inherit' }}><option value="">Choose an event</option>{sequenceItems.map((item, optionIndex) => <option key={optionIndex} value={optionIndex}>{item || `Event ${optionIndex + 1}`}</option>)}</select></label>)}</div>
           ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+          <div role="radiogroup" aria-label={question || 'Answer choices'} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
             {options.map((opt, i) => (
               <button
                 key={i}
                 onClick={() => !submitted && setSelected(i)}
                 style={optionStyle(i)}
-                aria-pressed={selected === i}
+                role="radio"
+                aria-checked={selected === i}
+                className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
               >
                 <span style={{
                   width: 24, height: 24, borderRadius: '50%',
@@ -383,7 +385,7 @@ const [playCount, setPlayCount] = useState(0);
                   : `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
                 color: '#fff', fontWeight: 600, fontSize: 14,
                 fontFamily: 'var(--font-ui)',
-                opacity: selected == null ? 0.5 : 1, transition: 'all 0.15s',
+                opacity: selected == null ? 0.5 : 1, transition: 'background 0.15s, opacity 0.15s',
               }}
             >
               Submit answer
@@ -391,19 +393,19 @@ const [playCount, setPlayCount] = useState(0);
           ) : (
             <div style={{
               padding: '12px 16px', borderRadius: 10,
-              background: isCorrect ? '#ECFDF5' : '#FEF2F2',
-              border: `1px solid ${isCorrect ? '#A7F3D0' : '#FECACA'}`,
+              background: isCorrect ? 'var(--ex-correct-bg)' : 'var(--ex-wrong-bg)',
+              border: `1px solid ${isCorrect ? 'var(--ex-correct-border)' : 'var(--ex-wrong-border)'}`,
               fontSize: 14,
             }}>
               <div style={{
-                color: isCorrect ? '#065F46' : '#991B1B',
+                color: isCorrect ? 'var(--ex-correct-text)' : 'var(--ex-wrong-text)',
                 fontWeight: 600,
                 marginBottom: explanation ? 6 : 0,
               }}>
                 {isCorrect ? '✓ Correct — well done.' : '✗ Not quite. Review the correct answer above.'}
               </div>
               {explanation && (
-                <div style={{ color: '#374151', fontWeight: 400, fontSize: 13.5, lineHeight: 1.65 }}>
+                <div style={{ color: 'var(--ex-panel-text)', fontWeight: 400, fontSize: 13.5, lineHeight: 1.65 }}>
                   {explanation}
                 </div>
               )}

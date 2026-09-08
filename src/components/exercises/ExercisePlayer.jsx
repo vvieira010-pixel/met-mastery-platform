@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect, useMemo, memo } from 'react'; // ExercisePlayer
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Icon } from '../shared.jsx';
 import { loadExercises } from './validateExercise.js';
 import { hintLimit } from '../../lib/fading-manager.js';
@@ -236,16 +236,17 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
             onClick={onBack}
             disabled={index === 0}
             aria-label="Previous exercise"
+            className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
             style={{
-              width: 28, height: 28, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
+              width: 40, height: 40, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
               border: '1px solid var(--border, #e5e7eb)', background: 'var(--surface)',
               color: index === 0 ? 'var(--faint, #d1d5db)' : 'var(--text-2, var(--ex-panel-text))',
               cursor: index === 0 ? 'not-allowed' : 'pointer',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14, fontWeight: 700, lineHeight: 1,
+              fontSize: 16, fontWeight: 700, lineHeight: 1,
             }}
           >
-            ←
+            <span aria-hidden="true">←</span>
           </button>
           <span style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 500, minWidth: 42, textAlign: 'center' }}>
             {index + 1} / {total}
@@ -254,16 +255,17 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
             onClick={done ? onNext : onSkip}
             disabled={index === total - 1 && !done}
             aria-label={done ? 'Next exercise' : 'Skip exercise'}
+            className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
             style={{
-              width: 28, height: 28, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
+              width: 40, height: 40, padding: 0, borderRadius: 'var(--radius-sm, 6px)',
               border: '1px solid var(--border, #e5e7eb)', background: 'var(--surface)',
               color: (index === total - 1 && !done) ? 'var(--faint, #d1d5db)' : 'var(--text-2, var(--ex-panel-text))',
               cursor: (index === total - 1 && !done) ? 'not-allowed' : 'pointer',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14, fontWeight: 700, lineHeight: 1,
+              fontSize: 16, fontWeight: 700, lineHeight: 1,
             }}
           >
-            →
+            <span aria-hidden="true">→</span>
           </button>
         </div>
       </div>
@@ -366,19 +368,20 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
 
 function ProgressBar({ current, total }) {
   const pct = total > 0 ? Math.round((current / total) * 100) : 0;
+  const reduceMotion = useReducedMotion();
   return (
     <div style={{ marginBottom: 20 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 'var(--text-xs)', color: 'var(--muted)', fontWeight: 500 }}>
-        <span>Progress</span>
+        <span id="ex-progress-label">Progress</span>
         <span>{current} of {total} completed</span>
       </div>
-      <div style={{ height: 6, borderRadius: 99, background: 'var(--border)', overflow: 'hidden' }}>
+      <div role="progressbar" aria-labelledby="ex-progress-label" aria-valuenow={current} aria-valuemin={0} aria-valuemax={total} style={{ height: 6, borderRadius: 99, background: 'var(--border)', overflow: 'hidden' }}>
         <div style={{
           height: '100%', borderRadius: 99, background: TEAL,
           width: '100%',
           transform: `scaleX(${pct / 100})`,
           transformOrigin: 'left',
-          transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: reduceMotion ? 'none' : 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }} />
       </div>
     </div>
@@ -463,6 +466,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   const [submittingFinal, setSubmittingFinal] = useState(false);
   const [submissionError, setSubmissionError] = useState('');
   const [confidenceBefore] = useState(5);
+  const reduceMotionMain = useReducedMotion();
   const currentRef = useRef(current);
   const totalRef = useRef(exercises.length);
   const onDoneRef = useRef(onSessionComplete);
@@ -558,7 +562,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   // Errors only (nothing valid loaded)
   if (errors.length > 0 && exercises.length === 0) {
     return (
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '20px 16px' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '20px 16px' }}>
         {title && <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xl)', fontWeight: 700, color: NAVY, marginBottom: 16 }}>{title}</h2>}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {errors.map((e, i) => <InvalidExercise key={i} reason={e} />)}
@@ -568,9 +572,10 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   }
 
   const completedCount = results.filter(Boolean).length;
+  const reduceMotion = reduceMotionMain;
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: '20px 16px' }}>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '20px 16px' }}>
       {title && (
         <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xl)', fontWeight: 700, color: NAVY, marginBottom: 6 }}>{title}</h2>
       )}
@@ -591,9 +596,9 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
       {!done ? (
         <motion.div
           key={`${current}-${reviewVersion}`}
-          initial={{ opacity: 0, y: 8 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
         >
           <ExerciseCard
             exercise={exercises[current]}
@@ -610,9 +615,9 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
         >
           <ScoreSummary results={results.filter(Boolean)} total={exercises.length} waitingForFinalSubmission={requireFinalSubmission} />
           {requireFinalSubmission ? (

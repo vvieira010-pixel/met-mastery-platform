@@ -71,6 +71,7 @@ export default function MultipleChoice({ exercise, onComplete }) {
 
   return (
     <div onKeyDown={e => { if (e.key === 'Enter' && !submitted && selected != null) { e.preventDefault(); handleSubmit(); } }}>
+      <style>{`@media (prefers-reduced-motion: reduce) { .ex-fade { animation: none !important; } }`}</style>
       {sectionConfig && (
         <div style={{ padding: '10px 14px', background: sectionConfig.bg, border: `1px solid ${sectionConfig.border}`, borderRadius: 'var(--radius-sm, 6px)', marginBottom: 14 }}>
           <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: sectionConfig.color, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 5 }}>
@@ -107,23 +108,25 @@ export default function MultipleChoice({ exercise, onComplete }) {
 
       {imageUrl && (
         <div style={{ marginBottom: 16, border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', overflow: 'hidden', background: 'var(--ex-panel-bg)', textAlign: 'center' }}>
-          <img src={imageUrl} alt={imageAlt || 'Image for this question'} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', display: 'block', margin: '0 auto' }} />
+          <img src={imageUrl} alt={imageAlt || (typeof question === 'string' && question ? `Illustration for: ${question.slice(0, 120)}` : 'Illustration for this question')} width={640} height={360} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', display: 'block', margin: '0 auto' }} />
         </div>
       )}
 
       <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: CONTENT_TEXT, marginBottom: 16, lineHeight: 1.6 }}>{question}</p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+      <div role="radiogroup" aria-label={typeof question === 'string' ? question : 'Answer choices'} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
         {options.map((opt, i) => (
           <button
             key={i}
             onClick={() => !submitted && setSelected(i)}
+            className="ex-fade focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
             style={{
               ...getOptionStyle(i),
               animation: submitted ? undefined : 'fadeUp 0.18s ease-out both',
               animationDelay: submitted ? undefined : `${i * 55}ms`,
             }}
-            aria-pressed={selected === i}
+            role="radio"
+            aria-checked={selected === i}
           >
             <span style={{
               width: 24, height: 24, borderRadius: '50%', display: 'grid', placeItems: 'center',
