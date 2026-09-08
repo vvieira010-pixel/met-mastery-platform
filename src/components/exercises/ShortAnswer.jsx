@@ -248,7 +248,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
         </div>
       )}
 
-      <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--text)', marginBottom: 16, lineHeight: 1.6, overflowWrap: 'break-word' }}>{prompt}</p>
+      <p style={{ fontSize: 'clamp(1.15rem, 2.5vw, 1.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: 20, lineHeight: 1.45, overflowWrap: 'break-word', letterSpacing: '-0.01em' }}>{prompt}</p>
 
       {/* Prompt audio (speaking pack) */}
       {audioSrc && status !== 'recording' && (
@@ -344,8 +344,8 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
 
           {/* AI MET score — Practice Studio recordings via /api/evaluate-speaking */}
           {audioPath && (
-            <div style={{ padding: '14px 16px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
-              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ padding: '18px 20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md, 10px)' }}>
+              <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 AI examiner score
               </div>
               {evalStatus === 'idle' && (
@@ -357,30 +357,43 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
                 </button>
               )}
               {evalStatus === 'loading' && (
-                <p role="status" style={{ margin: 0, fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>Scoring your recording — transcription plus official MET rubric…</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0' }}>
+                  <span style={{ width: 18, height: 18, border: `2.5px solid var(--border)`, borderTopColor: TEAL, borderRadius: '50%', animation: 'spin 0.8s linear infinite', display: 'inline-block' }} />
+                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>Scoring your recording…</span>
+                </div>
               )}
               {evalStatus === 'error' && (
-                <div>
-                  <p role="alert" style={{ margin: '0 0 8px', fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{evalError}</p>
-                  <button onClick={requestAiScore} style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm, 6px)', border: `1.5px solid ${TEAL}`, background: 'none', color: TEAL, fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer' }}>Try again</button>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                  <p role="alert" style={{ margin: 0, fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{evalError}</p>
+                  <button onClick={requestAiScore} style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm, 6px)', border: `1.5px solid ${TEAL}`, background: 'none', color: TEAL, fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer', whiteSpace: 'nowrap' }}>Try again</button>
                 </div>
               )}
               {evalStatus === 'done' && evalData?.evaluation && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                    <span style={{ padding: '6px 12px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: '#fff' }}>
-                      {evalData.evaluation.cefrEstimate ?? '–'} · {evalData.evaluation.scaledScore ?? '–'}/80
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <span style={{ padding: '8px 18px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: '#fff', fontSize: 'var(--text-base)' }}>
+                      {evalData.evaluation.cefrEstimate ?? '–'}
+                    </span>
+                    <span style={{ padding: '6px 14px', background: 'var(--accent-subtle, rgba(0,0,0,0.04))', border: '1px solid var(--accent-border, var(--border))', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 600, color: 'var(--text)', fontSize: 'var(--text-sm)' }}>
+                      {evalData.evaluation.scaledScore ?? '–'}/80
                     </span>
                   </div>
-                  {evalData.evaluation.feedback && <p style={{ margin: 0, color: 'var(--text)' }}>{evalData.evaluation.feedback}</p>}
+                  {evalData.evaluation.feedback && (
+                    <div style={{ padding: '14px 16px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)', lineHeight: 1.7, color: 'var(--text)' }}>
+                      {evalData.evaluation.feedback}
+                    </div>
+                  )}
                   {Array.isArray(evalData.evaluation.corrections) && evalData.evaluation.corrections.length > 0 && (
-                    <ul style={{ margin: 0, padding: '0 0 0 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                       {evalData.evaluation.corrections.slice(0, 4).map((c, i) => (
-                        <li key={i} style={{ color: 'var(--text-2)' }}>
-                          <s>{c.original}</s> → <strong>{c.corrected}</strong>{c.explanation ? ` — ${c.explanation}` : ''}
-                        </li>
+                        <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)' }}>
+                          <s style={{ color: 'var(--muted)' }}>{c.original}</s>
+                          <span style={{ color: 'var(--muted)', fontSize: '0.8em' }}>→</span>
+                          <strong style={{ color: 'var(--text)' }}>{c.corrected}</strong>
+                          {c.explanation && <span style={{ color: 'var(--muted)', fontSize: '0.9em', marginLeft: 4 }}>— {c.explanation}</span>}
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   )}
                 </div>
               )}
