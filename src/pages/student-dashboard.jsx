@@ -45,6 +45,7 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
   const [activeTab, setActiveTab] = useState('home');
   const [dots, setDots] = useState({});
   const [moreOpen, setMoreOpen] = useState(false);
+  const [dataError, setDataError] = useState(null);
 
   const [lastVisited, setLastVisited] = useState({});
 

@@ -205,7 +205,6 @@ export default function StudentSubjects({ onOpenSubject, 'data-testid': testId }
                   <span>{subject.units.length} topics</span>
                   <span>Starts with: {firstTopic}</span>
                 </div>
-                <span className="student-subject-card-units-link">Open {subject.name} reference →</span>
               </div>
             </article>
           );
