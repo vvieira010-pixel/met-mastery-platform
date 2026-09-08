@@ -172,8 +172,13 @@ describe('evaluate-writing endpoint — contract', () => {
 
   test('uses Gemini as the primary scorer (AssemblyAI reserved for Practice Studio speaking)', () => {
     assert.ok(src.includes("provider: 'gemini'"), 'must use Gemini as primary');
-    // Fallbacks still present so evaluation never goes down.
-    assert.ok(src.includes("provider: 'openai'") && src.includes("provider: 'groq'"));
+    // Groq is the fallback so evaluation never goes down. OpenAI and Anthropic
+    // were removed from the cascade intentionally (see a3244cb).
+    assert.ok(src.includes("provider: 'groq'"), 'must keep a fallback provider');
+    assert.ok(
+      !src.includes("provider: 'openai'") && !src.includes("provider: 'anthropic'"),
+      'OpenAI/Anthropic must stay out of the grading cascade'
+    );
     // AssemblyAI must NOT be used for writing
     assert.ok(!src.includes("provider: 'assemblyai-llm'"));
   });
