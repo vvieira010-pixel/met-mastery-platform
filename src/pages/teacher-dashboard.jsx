@@ -10,11 +10,11 @@ import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { Reveal } from '../components/ui/Reveal.jsx';
 import {
-  getClassEvents, getAllSubmissions, getReviews,
+  getClassEvents, getAllSubmissions,
   getStudentCycleState, requestInboxNotificationPermission,
   getSeedsStages, setStudentSeedsStage,
 } from '../lib/workflow.js';
-import { SEEDS_STAGES, SEEDS_STAGE_ORDER } from '../domain/seeds/constants.js';
+import { SEEDS_STAGES } from '../domain/seeds/constants.js';
 import AssignMockTestModal from '../components/mock-test/AssignMockTestModal.jsx';
 
 function timeOfDay() {
