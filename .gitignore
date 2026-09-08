@@ -40,3 +40,6 @@ Mock Tests/
 
 # Local Whisper bootstrap binary (downloaded at runtime by imageio-ffmpeg, not source)
 fastapi/whisper_service/bin/
+
+# Design-review tool output (local only, regenerated per run)
+.impeccable/
