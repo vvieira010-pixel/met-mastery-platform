@@ -192,13 +192,20 @@ export default function StudentHomework({ student, "data-testid": testId }) {
   async function handleLegacySubmit(hwId) {
     if (!answers[hwId]?.trim()) { window.toast?.('Please write your answer.', 'warn'); return; }
     setSubmitting(true);
-    await submitHomework(hwId, student.id, answers[hwId]);
-    const hw = await getHomework(student.id);
-    setHomework(hw || []);
-    setAnswers(prev => { const n = { ...prev }; delete n[hwId]; return n; });
-    setExpanded(null);
-    setSubmitting(false);
-    window.toast?.('Submitted! Your teacher will review soon.', 'ok');
+    try {
+      await submitHomework(hwId, student.id, answers[hwId]);
+      const hw = await getHomework(student.id);
+      setHomework(hw || []);
+      setAnswers(prev => { const n = { ...prev }; delete n[hwId]; return n; });
+      setExpanded(null);
+      window.toast?.('Submitted! Your teacher will review soon. This homework is now locked — one attempt only.', 'ok');
+    } catch (e) {
+      window.toast?.(e?.message || 'This homework was already submitted — one attempt only.', 'warn');
+      const hw = await getHomework(student.id).catch(() => null);
+      if (hw) setHomework(hw);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   async function handleStructuredSubmit(hwId, confidence) {
@@ -221,21 +228,28 @@ export default function StudentHomework({ student, "data-testid": testId }) {
     });
     const content = summaryParts.join('\n\n---\n\n');
     const exerciseResponses = Object.fromEntries(exercises.map(ex => [ex.id, responses[ex.id] || {}]));
-    await submitHomework(hwId, student.id, content, exerciseResponses, confidence);
-    const reviewItems = exercises.filter(ex => ex.isReviewItem && ex.reviewItemId);
-    reviewItems.forEach(ex => {
-      const grade = autoGrade(ex, exerciseResponses[ex.id]);
-      if (grade) recordPractice(student.id, ex.reviewItemId, grade.correct);
-    });
-    removeHomeworkDrafts(hwId);
-    dirtyHomeworkIdRef.current = null;
-    const hwList = await getHomework(student.id);
-    setHomework(hwList || []);
-    setResponses({});
-    setDraftMeta(prev => ({ ...prev, [hwId]: null }));
-    setExpanded(null);
-    setSubmitting(false);
-    window.toast?.('Submitted! Your teacher will review soon.', 'ok');
+    try {
+      await submitHomework(hwId, student.id, content, exerciseResponses, confidence);
+      const reviewItems = exercises.filter(ex => ex.isReviewItem && ex.reviewItemId);
+      reviewItems.forEach(ex => {
+        const grade = autoGrade(ex, exerciseResponses[ex.id]);
+        if (grade) recordPractice(student.id, ex.reviewItemId, grade.correct);
+      });
+      removeHomeworkDrafts(hwId);
+      dirtyHomeworkIdRef.current = null;
+      const hwList = await getHomework(student.id);
+      setHomework(hwList || []);
+      setResponses({});
+      setDraftMeta(prev => ({ ...prev, [hwId]: null }));
+      setExpanded(null);
+      window.toast?.('Submitted! Your teacher will review soon. This homework is now locked — one attempt only.', 'ok');
+    } catch (e) {
+      window.toast?.(e?.message || 'This homework was already submitted — one attempt only.', 'warn');
+      const hwList = await getHomework(student.id).catch(() => null);
+      if (hwList) setHomework(hwList || []);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function updateResponse(exerciseId, updatedRes) {

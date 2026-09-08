@@ -106,6 +106,12 @@ export async function getSubmissions(studentId) {
   return listVia('submissions', K.submissions, studentId ? (s => s.studentId === studentId) : null);
 }
 export async function submitHomework(homeworkId, studentId, content, responses, confidence) {
+  // Once-only guard: each homework may be submitted exactly once per student.
+  // Check both Supabase (when available) and local fallback before creating.
+  const existingList = await getSubmissions(studentId);
+  if ((existingList || []).some(s => s.homeworkId === homeworkId)) {
+    throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.');
+  }
   const sub = {
     id: uid(), homeworkId, studentId, content,
     responses: responses || null, confidence: confidence != null ? confidence : null,
@@ -120,10 +126,19 @@ export async function submitHomework(homeworkId, studentId, content, responses, 
       } catch { /* ignore */ }
       if (saved) return saved;
     } catch (e) {
+      if (/23505|duplicate key|unique constraint/i.test(String(e?.message || e))) {
+        const dup = (await getSubmissions(studentId)).find(s => s.homeworkId === homeworkId);
+        if (dup) throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.');
+      }
       console.warn('[workflow] submitHomework via Supabase failed, using localStorage:', e.message);
+      if (/already been submitted/i.test(e.message)) throw e;
     }
   }
+  // Re-check local store to avoid race after Supabase failure
   const all = load(K.submissions);
+  if (all.some(s => s.homeworkId === homeworkId && s.studentId === studentId)) {
+    throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.');
+  }
   all.unshift(sub);
   save(K.submissions, all);
   const hw = load(K.homework);
