@@ -221,4 +221,25 @@ describe('evaluate-speaking endpoint — AssemblyAI wiring', () => {
     assert.ok(src.includes('extractScores(evaluation'), 'speaking must validate scores too');
     assert.ok(src.includes("['task', 'language', 'delivery']"));
   });
+
+  test('keeps structured Gemini and Groq fallbacks available after a Practice Studio AssemblyAI failure', () => {
+    assert.match(src, /if \(!evaluation && geminiKey\)/, 'Gemini must run after AssemblyAI fails');
+    assert.match(src, /if \(!evaluation && groqKey\)/, 'Groq must run after Gemini fails');
+    assert.doesNotMatch(src, /if \(!useAssemblyAI && geminiKey\)/, 'Practice Studio must not lose its fallback');
+    assert.doesNotMatch(src, /if \(!useAssemblyAI && !evaluation && groqKey\)/, 'Practice Studio must not lose its final fallback');
+  });
+
+  test('adds a server-only Whisper transcription fallback with timing evidence', () => {
+    assert.match(src, /async function transcribeWithOpenAIWhisper/);
+    assert.match(src, /https:\/\/api\.openai\.com\/v1\/audio\/transcriptions/);
+    assert.match(src, /response_format', 'verbose_json'/);
+    assert.match(src, /timestamp_granularities\[\]', 'word'/);
+    assert.match(src, /asrProvider: 'openai-whisper'/);
+  });
+
+  test('labels every student result as a provisional practice estimate', () => {
+    assert.match(src, /evaluation\.provisional = true/);
+    assert.match(src, /Practice estimate — not an official MET score/);
+    assert.match(src, /Pronunciation and rhythm still need teacher review/);
+  });
 });

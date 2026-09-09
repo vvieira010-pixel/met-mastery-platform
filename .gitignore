@@ -31,6 +31,14 @@ deno.lock
 
 # Transient audit / build cache artifacts
 .tmp/
+.tmp-build-verify/
+.tmp-build-res/
+
+# Generated graph-analysis output and Python bytecode
+graphify-out/
+src/graphify-out/
+.graphify_*
+scripts/__pycache__/
 
 # Source material not served by the app (199 MB audio/source)
 Mock Tests/

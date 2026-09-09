@@ -73,11 +73,15 @@ async function loadRefs(ctx) {
     hwByLocal: new Map(), hwByUuid: new Map(),
   };
   for (const s of students) {
-    if (s.local_id) r.studentByLocal.set(s.local_id, s.id);
+    // A row with no local_id (e.g. created by claim_student_by_email) would
+    // otherwise be missing from studentByLocal, making studentUuid() return
+    // null and silently orphaning every record written for that student
+    // (student_id = null -> invisible to the student under RLS).
+    r.studentByLocal.set(s.local_id || s.id, s.id);
     r.studentByUuid.set(s.id, s.local_id || s.id);
   }
   for (const h of homework) {
-    if (h.local_id) r.hwByLocal.set(h.local_id, h.id);
+    r.hwByLocal.set(h.local_id || h.id, h.id);
     r.hwByUuid.set(h.id, h.local_id || h.id);
   }
   refsCache = r;

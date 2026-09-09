@@ -17,7 +17,7 @@ const env = (name) => process.env[name] || '';
 import { verifySupabaseSession } from './_supabase-auth.js';
 import { getServiceKey, getSupabaseUrl } from './_config.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-speaking-scale.js';
-import { callAssemblyAILLMJson, extractScores } from './_assemblyai-llm.js';
+import { callAssemblyAILLMJson, extractScores, parseLLMJson } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
 import { guardRateLimit } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
@@ -28,6 +28,32 @@ const DEFAULT_AUDIO_BUCKET = 'mock-test-audio';
 // Practice Studio uploads land in submission-audio; mock tests use mock-test-audio.
 const ALLOWED_AUDIO_BUCKETS = ['mock-test-audio', 'submission-audio'];
 const MAX_AUDIO_BYTES = 15 * 1024 * 1024;
+const SPEAKING_SCORE_KEYS = ['task', 'language', 'delivery'];
+
+function validSpeakingScores(evaluation) {
+  const scores = extractScores(evaluation, SPEAKING_SCORE_KEYS);
+  if (!scores) return null;
+
+  const normalized = {};
+  for (const key of SPEAKING_SCORE_KEYS) {
+    const score = Number(scores[key]);
+    // The MET rubric permits only 0.0–4.0 in half-point increments. Do not
+    // silently turn an invalid provider value into a plausible student score.
+    if (score < 0 || score > 4 || Math.abs(score * 2 - Math.round(score * 2)) > 1e-8) return null;
+    normalized[key] = score;
+  }
+  return normalized;
+}
+
+function parseSpeakingEvaluation(rawText, provider) {
+  const evaluation = parseLLMJson(rawText);
+  const scores = validSpeakingScores(evaluation);
+  if (!scores) {
+    console.warn(`${provider} speaking evaluation had an invalid rubric payload.`);
+    return null;
+  }
+  return { ...evaluation, scores };
+}
 
 async function fetchWithTimeout(url, init, ms = 25000) {
   const ctrl = new AbortController();
@@ -183,14 +209,66 @@ async function transcribeWithLocalWhisper(audio) {
   }
 }
 
+// Hosted Whisper is the server-side ASR fallback for student recordings when
+// AssemblyAI is unavailable or rate-limited. `verbose_json` plus word timestamps
+// lets the Delivery estimate use observable timing facts instead of transcript
+// length alone. It uses only the server-side OPENAI_API_KEY.
+async function transcribeWithOpenAIWhisper(audio) {
+  const key = env('OPENAI_API_KEY');
+  if (!key || !audio) return null;
+  try {
+    const formData = new FormData();
+    const type = audio.contentType || 'audio/webm';
+    const extension = type.includes('ogg') ? 'ogg' : type.includes('mp4') ? 'mp4' : 'webm';
+    formData.append('file', new Blob([audio.audioBuffer], { type }), `recording.${extension}`);
+    formData.append('model', env('OPENAI_WHISPER_MODEL') || 'whisper-1');
+    formData.append('language', 'en');
+    formData.append('response_format', 'verbose_json');
+    formData.append('timestamp_granularities[]', 'word');
+
+    const whisperRes = await fetchWithTimeout(
+      'https://api.openai.com/v1/audio/transcriptions',
+      { method: 'POST', headers: { Authorization: `Bearer ${key}` }, body: formData },
+      Number(env('OPENAI_WHISPER_TIMEOUT_MS')) || 30000,
+    );
+    if (!whisperRes.ok) return null;
+
+    const data = await whisperRes.json();
+    const text = (data.text || '').trim();
+    if (!text) return null;
+    const words = (data.words || []).map((word) => ({
+      start: Math.round(Number(word.start) * 1000),
+      end: Math.round(Number(word.end) * 1000),
+    })).filter((word) => Number.isFinite(word.start) && Number.isFinite(word.end));
+    const duration = Number.isFinite(Number(data.duration)) ? Number(data.duration) : null;
+    const segments = Array.isArray(data.segments) ? data.segments : [];
+    const avgNoSpeech = segments.length
+      ? segments.reduce((sum, segment) => sum + (Number(segment.no_speech_prob) || 0), 0) / segments.length
+      : null;
+
+    return {
+      text,
+      words,
+      duration,
+      confidence: avgNoSpeech == null ? null : Math.round((1 - avgNoSpeech) * 100) / 100,
+      stats: pauseStats(words, duration, text),
+      asrProvider: 'openai-whisper',
+      asrModel: data.model || env('OPENAI_WHISPER_MODEL') || 'whisper-1',
+    };
+  } catch (e) {
+    console.warn('OpenAI Whisper transcription error:', e.message);
+    return null;
+  }
+}
+
 // Word-gap stats from AssemblyAI word timings → acoustic evidence for Delivery.
-function pauseStats(words, durationSec) {
+function pauseStats(words, durationSec, text = '') {
   const gaps = [];
   for (let i = 1; i < (words || []).length; i++) {
     const gap = words[i].start - words[i - 1].end;
     if (Number.isFinite(gap) && gap >= 0) gaps.push(gap);
   }
-  const wordCount = (words || []).length;
+  const wordCount = (words || []).length || String(text).split(/\s+/).filter(Boolean).length;
   return {
     wordCount,
     durationSec,
@@ -219,8 +297,14 @@ async function transcribeAudio(audio, { useAssemblyAI = false } = {}) {
   // AssemblyAI transcription is reserved for the Practice Studio speaking flow.
   if (useAssemblyAI) {
     const aai = await transcribeWithAssemblyAI(audio);
-    if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration) };
+    if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration, aai.text) };
   }
+
+  // Hosted Whisper is available for the real recording path even when the
+  // AssemblyAI scorer is reserved for Practice Studio.
+  const whisper = await transcribeWithOpenAIWhisper(audio);
+  if (whisper) return whisper;
+
   if (deepgramKey && audio) {
     try {
       const dgRes = await fetchWithTimeout('https://api.deepgram.com/v1/listen?model=nova-2&smart_format=true', {
@@ -238,7 +322,7 @@ async function transcribeAudio(audio, { useAssemblyAI = false } = {}) {
         if (text && text.trim()) {
           const words = alt?.words || [];
           const duration = data?.metadata?.duration ?? null;
-          return { text: text.trim(), words, duration, confidence: alt?.confidence ?? null, stats: pauseStats(words, duration), asrProvider: 'deepgram', asrModel: 'nova-2' };
+          return { text: text.trim(), words, duration, confidence: alt?.confidence ?? null, stats: pauseStats(words, duration, text), asrProvider: 'deepgram', asrModel: 'nova-2' };
         }
       }
     } catch (e) {
@@ -348,10 +432,11 @@ export default async function handler(req, res) {
     try {
       const aai = await callAssemblyAILLMJson(
         { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
-        { retries: 1, validateKeys: ['task', 'language', 'delivery'] },
+        { retries: 1, validateKeys: SPEAKING_SCORE_KEYS },
       );
-      if (aai.ok) {
-        evaluation = aai.evaluation;
+      const scores = aai.ok ? validSpeakingScores(aai.evaluation) : null;
+      if (aai.ok && scores) {
+        evaluation = { ...aai.evaluation, scores };
         evalProvider = 'assemblyai-llm';
         evalModelId = aai.model;
       } else {
@@ -362,8 +447,9 @@ export default async function handler(req, res) {
     }
   }
 
-  // 1. Try Gemini outside Practice Studio.
-  if (!useAssemblyAI && geminiKey) {
+  // 1. Gemini is a safe fallback after AssemblyAI for Practice Studio and the
+  // primary evaluator elsewhere. A provider failure must never fabricate a score.
+  if (!evaluation && geminiKey) {
     try {
       const gRes = await fetchWithTimeout(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
@@ -380,18 +466,20 @@ export default async function handler(req, res) {
       if (gRes.ok) {
         const gData = await gRes.json();
         const rawText = gData?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-        const cleaned = rawText.replace(/```(?:json)?\s*|\s*```/g, '').trim();
-        evaluation = JSON.parse(cleaned);
-        evalProvider = 'gemini';
-        evalModelId = 'gemini-2.5-flash';
+        const candidate = parseSpeakingEvaluation(rawText, 'Gemini');
+        if (candidate) {
+          evaluation = candidate;
+          evalProvider = 'gemini';
+          evalModelId = 'gemini-2.5-flash';
+        }
       }
     } catch (e) {
       console.warn('Gemini evaluation error:', e.message);
     }
   }
 
-  // 2. Try Groq outside Practice Studio.
-  if (!useAssemblyAI && !evaluation && groqKey) {
+  // 2. Groq is the final structured-score fallback for every caller.
+  if (!evaluation && groqKey) {
     try {
       const grRes = await fetchWithTimeout(
         'https://api.groq.com/openai/v1/chat/completions',
@@ -412,10 +500,12 @@ export default async function handler(req, res) {
       if (grRes.ok) {
         const grData = await grRes.json();
         const rawText = grData?.choices?.[0]?.message?.content || '';
-        const cleaned = rawText.replace(/```(?:json)?\s*|\s*```/g, '').trim();
-        evaluation = JSON.parse(cleaned);
-        evalProvider = 'groq';
-        evalModelId = 'llama-3.3-70b-versatile';
+        const candidate = parseSpeakingEvaluation(rawText, 'Groq');
+        if (candidate) {
+          evaluation = candidate;
+          evalProvider = 'groq';
+          evalModelId = 'llama-3.3-70b-versatile';
+        }
       }
     } catch (e) {
       console.warn('Groq evaluation error:', e.message);
@@ -440,9 +530,12 @@ export default async function handler(req, res) {
   }
 
   // Server-side scoring: average → snap to 0.5 → scaled 0–80 + CEFR (deterministic, not LLM-derived).
-  const s = extractScores(evaluation, ['task', 'language', 'delivery']) || {};
-  // Clamp to the official 0–4 range so an out-of-range model value can't skew the average.
-  const nums = ['task', 'language', 'delivery'].map((k) => Math.min(4, Math.max(0, Number(s[k] || 0))));
+  const s = validSpeakingScores(evaluation);
+  if (!s) {
+    return res.status(503).json({ error: 'AI evaluation unavailable — the returned rubric score was invalid. Please try again.' });
+  }
+  evaluation.scores = s;
+  const nums = SPEAKING_SCORE_KEYS.map((key) => s[key]);
   const avgRaw = nums.reduce((a, b) => a + b, 0) / 3;
   const conversion = rubricToScaled(Number.isFinite(avgRaw) ? avgRaw : 0);
   evaluation.rubricAvg = conversion.rubricAvg;
@@ -451,6 +544,12 @@ export default async function handler(req, res) {
   // Backward-compatible fields used by mock-test-results.jsx:
   evaluation.overallScore = Math.round((Number(s.task) + Number(s.language) + Number(s.delivery)) * 10) / 10;
   evaluation.cefrEstimate = conversion.cefr;
+  evaluation.provisional = true;
+  evaluation.scoreLabel = 'Practice estimate — not an official MET score';
+  evaluation.estimatedBandLabel = `Estimated ${conversion.cefr} practice band`;
+  evaluation.deliveryEvidence = fluency
+    ? 'Transcript plus word-timing evidence. Pronunciation and rhythm still need teacher review.'
+    : 'Transcript-only estimate. Pronunciation, pauses, and rhythm need teacher review.';
 
   // Store the rubric scores (not the transcript) so agreement against the gold
   // set can be computed later. parsed_output may quote student speech — it is

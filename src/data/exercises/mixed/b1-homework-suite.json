@@ -1,0 +1,234 @@
+{
+  "title": "B1 Homework Suite: Present Perfect, Prepositions, and Connectors",
+  "level": "B1",
+  "skill": "Integrated (Grammar, Vocabulary, Reading, Listening, Writing, Speaking)",
+  "instructions": "Complete all sections to practice your B1 skills. Pay special attention to the Present Perfect tense, prepositions of time and place, and linking words.",
+  "grammar_and_vocabulary": {
+    "items": [
+      {
+        "id": 1,
+        "question": "I __________ in this city since I graduated from university in 2020.",
+        "options": { "A": "live", "B": "have lived", "C": "lived", "D": "am living" },
+        "correctAnswer": "B",
+        "explanation": "We use the Present Perfect to talk about an action that started in the past and continues to the present, especially with 'since'.",
+        "incorrectOptionExplanations": {
+          "A": "Incorrect. 'Live' is present simple and does not describe an action continuing from a specific point in the past.",
+          "C": "Incorrect. 'Lived' is past simple, meaning the action is completely finished.",
+          "D": "Incorrect. 'Am living' is present continuous; we need the perfect aspect with 'since'."
+        },
+        "grammarOrVocabularyFocus": "Present Perfect with 'since'",
+        "teachingTip": "When you see 'since + a specific time in the past' (like 2020, yesterday, last week), you usually need the Present Perfect.",
+        "exampleSentence": "She has worked at the company since January."
+      },
+      {
+        "id": 2,
+        "question": "My manager has __________ reviewed the report, so you don't need to send it again.",
+        "options": { "A": "yet", "B": "ever", "C": "already", "D": "never" },
+        "correctAnswer": "C",
+        "explanation": "'Already' is used in affirmative Present Perfect sentences to show that something happened earlier than expected.",
+        "incorrectOptionExplanations": {
+          "A": "Incorrect. 'Yet' is used in negative sentences and questions, usually at the end of the sentence.",
+          "B": "Incorrect. 'Ever' is used mostly in questions (Have you ever...?).",
+          "D": "Incorrect. 'Never' changes the meaning to negative, which contradicts 'so you don't need to send it again'."
+        },
+        "grammarOrVocabularyFocus": "Present Perfect with 'already'",
+        "teachingTip": "Place 'already' between 'have/has' and the past participle.",
+        "exampleSentence": "We have already eaten lunch, but thank you for the invitation."
+      },
+      {
+        "id": 3,
+        "question": "Our team meeting usually starts __________ 9:00 a.m. __________ Monday mornings.",
+        "options": { "A": "in / on", "B": "at / on", "C": "on / at", "D": "at / in" },
+        "correctAnswer": "B",
+        "explanation": "Use 'at' for specific times (9:00 a.m.) and 'on' for specific days of the week (Monday mornings).",
+        "incorrectOptionExplanations": {
+          "A": "Incorrect. We do not use 'in' for specific clock times.",
+          "C": "Incorrect. The order is reversed.",
+          "D": "Incorrect. We use 'on' for days, not 'in'."
+        },
+        "grammarOrVocabularyFocus": "Prepositions of Time (at, on)",
+        "teachingTip": "Remember the triangle: IN (months, years, big periods) -> ON (days, dates) -> AT (specific clock times).",
+        "exampleSentence": "The train leaves at 3:15 p.m. on Friday."
+      },
+      {
+        "id": 4,
+        "question": "I am very interested __________ learning how to code, __________ I signed up for an online course.",
+        "options": { "A": "in / so", "B": "on / because", "C": "at / however", "D": "about / although" },
+        "correctAnswer": "A",
+        "explanation": "The adjective 'interested' is always followed by the preposition 'in'. 'So' is the correct connector to show the result (signing up for the course).",
+        "incorrectOptionExplanations": {
+          "B": "Incorrect. 'Interested on' is wrong. 'Because' introduces a reason, not a result.",
+          "C": "Incorrect. 'Interested at' is wrong. 'However' introduces a contrast.",
+          "D": "Incorrect. 'Interested about' is wrong. 'Although' introduces a contrast."
+        },
+        "grammarOrVocabularyFocus": "Dependent Prepositions & Connectors of Result",
+        "teachingTip": "Learn dependent prepositions as chunks! Always practice saying 'interested in', 'good at', 'depend on'.",
+        "exampleSentence": "She is interested in art, so she visits museums often."
+      },
+      {
+        "id": 5,
+        "question": "__________ the heavy rain, they have decided to play the football match anyway.",
+        "options": { "A": "Although", "B": "Because", "C": "Despite", "D": "However" },
+        "correctAnswer": "C",
+        "explanation": "'Despite' is a connector of contrast that must be followed by a noun or noun phrase ('the heavy rain').",
+        "incorrectOptionExplanations": {
+          "A": "Incorrect. 'Although' must be followed by a full subject and verb clause (e.g., Although it rained).",
+          "B": "Incorrect. 'Because' shows a reason, but playing during heavy rain is a contrast.",
+          "D": "Incorrect. 'However' is usually used to start a new sentence after a full stop or semicolon."
+        },
+        "grammarOrVocabularyFocus": "Connectors of Contrast (Despite vs. Although)",
+        "teachingTip": "If you don't see a verb directly after the blank, you probably need a preposition like 'Despite' or 'Because of'.",
+        "exampleSentence": "Despite the noise, I have slept very well."
+      }
+    ],
+    "answerKey": [
+      { "id": 1, "answer": "B" },
+      { "id": 2, "answer": "C" },
+      { "id": 3, "answer": "B" },
+      { "id": 4, "answer": "A" },
+      { "id": 5, "answer": "C" }
+    ]
+  },
+  "reading": {
+    "texts": [
+      {
+        "id": "R1",
+        "title": "My Life in London",
+        "content": "I have lived in London since October 2022. I have worked at a small cafe on High Street for six months. Because the cafe is very busy at noon, I have learned to make coffee very fast. Although the job is tiring, I have made many friends there. We often meet at the park on Sundays. Have you ever worked in a busy cafe?",
+        "items": [
+          {
+            "id": 6,
+            "question": "How long has the writer worked at the cafe?",
+            "options": { "A": "Since October 2022", "B": "For six months", "C": "Since Sunday", "D": "For a year" },
+            "correctAnswer": "B",
+            "explanation": "The text states: 'I have worked at a small cafe on High Street for six months.'",
+            "incorrectOptionExplanations": {
+              "A": "Incorrect. October 2022 is when they moved to London, not when they started the job.",
+              "C": "Incorrect. Sunday is when they meet friends.",
+              "D": "Incorrect. The text specifically says six months."
+            },
+            "grammarOrVocabularyFocus": "Reading for specific detail (Time expressions)",
+            "teachingTip": "Pay attention to the difference between 'since' (starting point) and 'for' (duration).",
+            "exampleSentence": "I have lived here since 2010, so I have been here for over ten years."
+          },
+          {
+            "id": 7,
+            "question": "Why has the writer learned to make coffee fast?",
+            "options": { "A": "Because they work on High Street.", "B": "Although the job is tiring.", "C": "Because the cafe gets very busy at noon.", "D": "So they can make friends at the park." },
+            "correctAnswer": "C",
+            "explanation": "The text uses the connector 'because' to show the reason: 'Because the cafe is very busy at noon, I have learned to make coffee very fast.'",
+            "incorrectOptionExplanations": {
+              "A": "Incorrect. High street is just the location.",
+              "B": "Incorrect. This is a contrast about making friends, not the reason for working fast.",
+              "D": "Incorrect. Making friends is a result of working there, not the reason they make coffee quickly."
+            },
+            "grammarOrVocabularyFocus": "Understanding cause and effect connectors",
+            "teachingTip": "Look for words like 'because' or 'so' to find reasons and results in a text.",
+            "exampleSentence": "Because it was raining heavily, we stayed at home."
+          }
+        ]
+      },
+      {
+        "id": "R2",
+        "title": "The New Sports Center",
+        "content": "Our town has finally opened a new sports center! It has been under construction for two years. I have already visited it twice this week. The swimming pool opens at 7:00 a.m. on weekdays. So, I have decided to swim before work. However, I haven't tried the tennis courts yet.",
+        "items": [
+          {
+            "id": 8,
+            "question": "What is the writer's plan for the weekdays?",
+            "options": { "A": "To play tennis before work.", "B": "To help construct the building.", "C": "To visit the center twice a week.", "D": "To swim before starting work." },
+            "correctAnswer": "D",
+            "explanation": "The text states: 'So, I have decided to swim before work' after mentioning the pool opens at 7:00 a.m. on weekdays.",
+            "incorrectOptionExplanations": {
+              "A": "Incorrect. They haven't tried the tennis courts yet.",
+              "B": "Incorrect. The construction is already finished.",
+              "C": "Incorrect. They have already visited twice, but the plan is specifically swimming before work."
+            },
+            "grammarOrVocabularyFocus": "Reading for specific plans",
+            "teachingTip": "Notice how the connector 'so' introduces a decision or result based on the previous sentence.",
+            "exampleSentence": "I was tired, so I went to bed early."
+          }
+        ]
+      }
+    ],
+    "answerKey": [
+      { "id": 6, "answer": "B" },
+      { "id": 7, "answer": "C" },
+      { "id": 8, "answer": "D" }
+    ]
+  },
+  "listening": {
+    "scripts": [
+      {
+        "id": "L1",
+        "title": "A Surprise Meeting",
+        "content": "Speaker A: Have you spoken to Maria recently?\nSpeaker B: No, I haven't seen her since she moved to Madrid in October.\nSpeaker A: Well, she has just arrived at the airport! She is staying in a hotel on 5th Avenue.\nSpeaker B: That's great! Although I am busy on Monday, we can meet on Tuesday.",
+        "items": [
+          {
+            "id": 9,
+            "question": "When did Maria move to Madrid?",
+            "options": { "A": "Recently", "B": "In October", "C": "On Monday", "D": "On Tuesday" },
+            "correctAnswer": "B",
+            "explanation": "Speaker B says: 'I haven't seen her since she moved to Madrid in October.'",
+            "incorrectOptionExplanations": {
+              "A": "Incorrect. Recently is when Speaker A asks if they have spoken.",
+              "C": "Incorrect. Monday is when Speaker B is busy.",
+              "D": "Incorrect. Tuesday is when they plan to meet."
+            },
+            "grammarOrVocabularyFocus": "Listening for specific time prepositions (in + month)",
+            "teachingTip": "In spoken English, listen carefully to prepositions like 'in', 'on', or 'since' to catch the exact timeline of events.",
+            "exampleSentence": "He moved to Canada in December."
+          },
+          {
+            "id": 10,
+            "question": "Where is Maria staying right now?",
+            "options": { "A": "At the airport", "B": "In Madrid", "C": "In a hotel on 5th Avenue", "D": "At Speaker B's house" },
+            "correctAnswer": "C",
+            "explanation": "Speaker A states clearly: 'She is staying in a hotel on 5th Avenue.'",
+            "incorrectOptionExplanations": {
+              "A": "Incorrect. She just arrived at the airport, but isn't staying there.",
+              "B": "Incorrect. She moved to Madrid previously, but just arrived back.",
+              "D": "Incorrect. The script mentions a hotel, not a house."
+            },
+            "grammarOrVocabularyFocus": "Listening for prepositions of place (on + street)",
+            "teachingTip": "We use the preposition 'on' for streets and avenues (e.g., on 5th Avenue).",
+            "exampleSentence": "The new restaurant is on Main Street."
+          }
+        ]
+      }
+    ],
+    "answerKey": [
+      { "id": 9, "answer": "B" },
+      { "id": 10, "answer": "C" }
+    ]
+  },
+  "writing": {
+    "task": {
+      "prompt": "Write a short email (50-70 words) to a friend about a new hobby you have started recently. You must use the Present Perfect at least twice, use prepositions of time (in, on, at), and include at least two connectors (because, so, although, however).",
+      "checklist": [
+        "Did I write 50-70 words?",
+        "Did I use the Present Perfect tense correctly?",
+        "Did I include prepositions of time?",
+        "Did I use at least two connectors to link my ideas?"
+      ]
+    }
+  },
+  "speaking": {
+    "task": {
+      "prompt": "Prepare a 1-minute audio recording describing a place in your city that you have visited multiple times. Talk about when you usually go there, what you have done there, and why you like it.",
+      "useful_language": [
+        "I have visited...",
+        "I have been there since...",
+        "I usually go there on [day] at [time]...",
+        "Because it is...",
+        "Although it can be crowded, I..."
+      ],
+      "feedbackCriteria": [
+        "Task completion: Did the student talk for about 1 minute?",
+        "Grammar: Was the Present Perfect used accurately for past experiences?",
+        "Grammar: Were prepositions of time (in/on/at) correct?",
+        "Fluency: Did the student use connectors smoothly to avoid short, choppy sentences?"
+      ]
+    }
+  }
+}

@@ -346,7 +346,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
           {audioPath && (
             <div style={{ padding: '18px 20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md, 10px)' }}>
               <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                AI examiner score
+                AI practice estimate
               </div>
               {evalStatus === 'idle' && (
                 <button
@@ -370,17 +370,25 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
               )}
               {evalStatus === 'done' && evalData?.evaluation && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--muted)', lineHeight: 1.5 }}>
+                    {evalData.evaluation.scoreLabel || 'Practice estimate — not an official MET score'}
+                  </p>
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
                     <span style={{ padding: '8px 18px', background: TEAL, borderRadius: 'var(--radius-sm, 6px)', fontWeight: 700, color: 'var(--on-dark)', fontSize: 'var(--text-base)' }}>
-                      {evalData.evaluation.cefrEstimate ?? '–'}
+                      {evalData.evaluation.estimatedBandLabel || (evalData.evaluation.cefrEstimate ? `Estimated ${evalData.evaluation.cefrEstimate} practice band` : 'Practice estimate')}
                     </span>
                     <span style={{ padding: '6px 14px', background: 'var(--accent-subtle, rgba(0,0,0,0.04))', border: '1px solid var(--accent-border, var(--border))', borderRadius: 'var(--radius-sm, 6px)', fontWeight: 600, color: 'var(--text)', fontSize: 'var(--text-sm)' }}>
-                      {evalData.evaluation.scaledScore ?? '–'}/80
+                      Rubric average {evalData.evaluation.rubricAvg ?? '–'} / 4
                     </span>
                   </div>
                   {evalData.evaluation.feedback && (
                     <div style={{ padding: '14px 16px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)', lineHeight: 1.7, color: 'var(--text)' }}>
                       {evalData.evaluation.feedback}
+                    </div>
+                  )}
+                  {evalData.evaluation.deliveryEvidence && (
+                    <div style={{ padding: '10px 12px', background: 'var(--accent-subtle, rgba(0,0,0,0.04))', border: '1px solid var(--accent-border, var(--border))', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-xs)', lineHeight: 1.55, color: 'var(--text-2)' }}>
+                      <strong>Delivery note: </strong>{evalData.evaluation.deliveryEvidence}
                     </div>
                   )}
                   {Array.isArray(evalData.evaluation.corrections) && evalData.evaluation.corrections.length > 0 && (
