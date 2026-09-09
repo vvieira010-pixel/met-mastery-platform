@@ -271,8 +271,8 @@ export default async function handler(req, res) {
 
   // subject/submissionId are optional telemetry context. `subject` is hashed
   // server-side before storage (see api/_ml/hash.js).
-  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null, assemblyOnly = false, practiceStudio = false } = body || {};
-  const useAssemblyAI = practiceStudio === true || assemblyOnly === true;
+  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null, practiceStudio = false } = body || {};
+  const useAssemblyAI = practiceStudio === true;
   if (audioUrl) {
     return res.status(400).json({ error: 'audioUrl is not accepted. Provide a stored recording path.' });
   }
@@ -362,8 +362,8 @@ export default async function handler(req, res) {
     }
   }
 
-  // 1. Try Gemini (skipped if assemblyOnly requested)
-  if (!assemblyOnly && geminiKey) {
+  // 1. Try Gemini outside Practice Studio.
+  if (!useAssemblyAI && geminiKey) {
     try {
       const gRes = await fetchWithTimeout(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
@@ -390,8 +390,8 @@ export default async function handler(req, res) {
     }
   }
 
-  // 2. Try Groq (skipped if assemblyOnly requested)
-  if (!assemblyOnly && !evaluation && groqKey) {
+  // 2. Try Groq outside Practice Studio.
+  if (!useAssemblyAI && !evaluation && groqKey) {
     try {
       const grRes = await fetchWithTimeout(
         'https://api.groq.com/openai/v1/chat/completions',

@@ -213,7 +213,7 @@ describe('evaluate-speaking endpoint — AssemblyAI wiring', () => {
     const geminiIdx = src.indexOf("evalProvider = 'gemini'");
     assert.ok(aaiIdx > 0, 'AssemblyAI evaluator must be present');
     assert.ok(geminiIdx > aaiIdx, 'AssemblyAI must run before the Gemini fallback');
-    assert.match(src, /const useAssemblyAI = practiceStudio === true \|\| assemblyOnly === true/);
+    assert.match(src, /const useAssemblyAI = practiceStudio === true/);
     assert.match(src, /if \(evaluation == null && useAssemblyAI && env\('ASSEMBLYAI_API_KEY'\)\)/);
   });
 

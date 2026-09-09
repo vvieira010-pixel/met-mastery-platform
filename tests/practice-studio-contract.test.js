@@ -37,7 +37,7 @@ test('only Practice Studio labels writing and speaking requests for AssemblyAI s
   assert.match(practiceStudio, /finalSubmissionLabel="Submit this practice once" practiceStudio/);
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
   assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio \}\)/);
-  assert.match(shortAnswer, /assemblyOnly: practiceStudio, practiceStudio/);
+  assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {

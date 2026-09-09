@@ -175,7 +175,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
       const res = await fetch('/api/evaluate-speaking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.', assemblyOnly: practiceStudio, practiceStudio }),
+        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.', practiceStudio }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
