@@ -1,5 +1,6 @@
 import listeningData from '../data/exercises/listening/met-listening-skills-bank.json';
 import partsData from '../data/exercises/listening/met-listening-parts-bank.json';
+import part1_19_Data from '../data/exercises/listening/met-part1-19-chatterbox.json';
 import { dbList, dbEnabled } from './supabase-db.js';
 
 function buildModule(mod) {
@@ -37,6 +38,7 @@ function buildModule(mod) {
 export const listeningModules = [
   ...((listeningData?.modules || []).map(buildModule)),
   ...((partsData?.modules || []).map(buildModule)),
+  ...((part1_19_Data?.modules || []).map(buildModule)),
 ];
 
 export async function getSupabaseListeningModules() {

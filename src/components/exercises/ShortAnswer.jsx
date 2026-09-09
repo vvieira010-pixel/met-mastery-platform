@@ -23,7 +23,7 @@ const DEFAULT_CHECKS = [
   'Did I finish with a consequence or conclusion?',
 ];
 
-function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }) {
+function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, practiceStudio = false }) {
   const { prompt, context, instruction, imageUrl, imageAlt, imageDescription, audioSrc, sampleAnswer, followUps } = exercise;
   const target = Number(exercise.targetSeconds || exercise.seconds || taskConfig?.responseSeconds) || null;
   const preparationTarget = Number(exercise.preparationSeconds ?? taskConfig?.preparationSeconds) || 0;
@@ -175,7 +175,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
       const res = await fetch('/api/evaluate-speaking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.', assemblyOnly: true }),
+        body: JSON.stringify({ storagePath: audioPath, bucket: 'submission-audio', taskPrompt: prompt || 'Speak on the topic.', assemblyOnly: practiceStudio, practiceStudio }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
@@ -470,7 +470,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete }
   );
 }
 
-export default function ShortAnswer({ exercise, onComplete }) {
+export default function ShortAnswer({ exercise, onComplete, practiceStudio = false }) {
   const { prompt, rubric, context, instruction, imageUrl, imageAlt, metTaskType } = exercise;
   const taskConfig = metTaskType ? MET_TASK_CONFIG[metTaskType] : null;
   const reflectionChecks = taskConfig ? taskConfig.checks : DEFAULT_CHECKS;
@@ -481,7 +481,7 @@ export default function ShortAnswer({ exercise, onComplete }) {
   const [checks, setChecks] = useState(Array(reflectionChecks.length).fill(false));
 
   if (exercise.type === 'speak') {
-    return <SpeakingRecorder exercise={exercise} taskConfig={taskConfig} reflectionChecks={reflectionChecks} onComplete={onComplete} />;
+    return <SpeakingRecorder exercise={exercise} taskConfig={taskConfig} reflectionChecks={reflectionChecks} onComplete={onComplete} practiceStudio={practiceStudio} />;
   }
 
   function handleSubmit() {

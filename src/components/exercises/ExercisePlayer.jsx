@@ -104,7 +104,7 @@ function useAIPoweredHints(exercise, scaffoldLevel) {
   return { hints, loading };
 }
 
-const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, scaffoldLevel = 4, onHintLevelChange }) {
+const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, scaffoldLevel = 4, onHintLevelChange, practiceStudio = false }) {
   const label = TYPE_LABELS[exercise.type] || exercise.type;
   const skill = exercise.skill || exercise.focus || null;
   const done = result != null;
@@ -153,7 +153,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
   }, [onComplete, errorCategory]);
 
   function renderExercise() {
-    const props = { exercise, onComplete: handleComplete };
+    const props = { exercise, onComplete: handleComplete, practiceStudio };
     switch (exercise.type) {
       case 'multiple_choice':
       case 'multiple_choice_single':
@@ -456,7 +456,7 @@ function ScoreSummary({ results, waitingForFinalSubmission = false }) {
  *   title — optional session title
  *   onSessionComplete — called with { results, score } when all done
  */
-export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once' }) {
+export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false }) {
   const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
   const [results, setResults] = useState([]);
@@ -611,6 +611,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
             onSkip={handleSkip}
             scaffoldLevel={scaffoldLevel}
             onHintLevelChange={handleHintLevelChange}
+            practiceStudio={practiceStudio}
           />
         </motion.div>
       ) : (

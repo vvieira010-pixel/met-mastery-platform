@@ -7,6 +7,8 @@ const root = path.resolve(import.meta.dirname, '..');
 const practiceStudio = fs.readFileSync(path.join(root, 'src', 'pages', 'practice-studio.jsx'), 'utf8');
 const dashboard = fs.readFileSync(path.join(root, 'src', 'pages', 'student-dashboard.jsx'), 'utf8');
 const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ExercisePlayer.jsx'), 'utf8');
+const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
+const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
   assert.match(practiceStudio, /const \[loadError, setLoadError\] = useState\(false\)/);
@@ -29,6 +31,13 @@ test('Dialogue exercise triggers completion when the final line is revealed', ()
 
 test('Practice Studio does not ask a confidence question after each answer', () => {
   assert.doesNotMatch(exercisePlayer, /After seeing the answer|ConfidenceSlider|confidenceAfter|showConfidenceAfter/);
+});
+
+test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
+  assert.match(practiceStudio, /finalSubmissionLabel="Submit this practice once" practiceStudio/);
+  assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
+  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio \}\)/);
+  assert.match(shortAnswer, /assemblyOnly: practiceStudio, practiceStudio/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {

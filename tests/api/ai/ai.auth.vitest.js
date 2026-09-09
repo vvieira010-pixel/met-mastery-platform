@@ -91,6 +91,6 @@ describe('POST /api/ai - access (405 / 403 / 429 + no-401 lock)', () => {
       .send({ prompt: 'Return ONLY VALID JSON: {"ok":true}' });
     expect(limited.status).toBe(429);
     expect(limited.headers['retry-after']).toBe('60');
-    expect(limited.body.error.message).toMatch(/too many requests/i);
+    expect(limited.body.error).toMatch(/too many requests/i);
   }, 30000);
 });

@@ -271,7 +271,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
             <>
               <FadingBanner level={scaffoldLevel} verdict={fadingVerdict?.verdict} reason={fadingVerdict?.reason} />
               {submissionState.error&&<p role="alert" style={{margin:'0 0 var(--space-3)',color:'var(--ex-wrong-text)',fontSize:'var(--text-sm)'}}>{submissionState.error}</p>}
-              <ExercisePlayer exercises={exercises} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} requireFinalSubmission finalSubmissionLabel="Submit this practice once" />
+              <ExercisePlayer exercises={exercises} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} requireFinalSubmission finalSubmissionLabel="Submit this practice once" practiceStudio />
             </>
           )}
           </>

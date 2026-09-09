@@ -106,7 +106,7 @@ export default async function handler(req, res) {
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
-  const { essay, taskPrompt = 'Write an essay on the topic.', subject = null, submissionId = null } = body || {};
+  const { essay, taskPrompt = 'Write an essay on the topic.', subject = null, submissionId = null, practiceStudio = false } = body || {};
 
   if (typeof essay !== 'string' || essay.trim().length < 10) {
     return res.status(400).json({ error: 'A written essay of at least 10 characters is required.' });
@@ -124,9 +124,13 @@ export default async function handler(req, res) {
     ? await getActive('model', 'writing_eval', { version: 'unversioned', promptSha: 'unversioned' })
     : { version: 'unversioned', promptSha: 'unversioned' };
 
-  // 0. AssemblyAI LLM Gateway is the requested primary scorer.
-  // 1–3. Fall back to existing providers so evaluation never goes down.
-  const attempts = [scoreWithAssemblyAI, scoreWithGemini, scoreWithGroq];
+  // AssemblyAI is reserved for the student Practice Studio writing flow.
+  // Other callers retain the existing Gemini → Groq fallback order.
+  const attempts = [
+    ...(practiceStudio === true ? [scoreWithAssemblyAI] : []),
+    scoreWithGemini,
+    scoreWithGroq,
+  ];
   let result = null;
   const llmStartedAt = Date.now();
   for (const attempt of attempts) {

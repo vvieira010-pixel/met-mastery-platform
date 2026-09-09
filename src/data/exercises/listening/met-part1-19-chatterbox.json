@@ -1,0 +1,130 @@
+{
+  "modules": [
+    {
+      "id": "met_part1_19_chatterbox",
+      "title": "MET Listening Part 1 — 19 Short Conversations (Chatterbox)",
+      "skill": "listening",
+      "levelRange": "B2",
+      "moduleType": "listening_set",
+      "engine": "chatterbox-nano",
+      "audioBase": "/audio/listening/part1",
+      "sourceNote": "19 short conversations — 1 question each, matches official MET Part 1 (19 Qs). Audio pre-generated via Chatterbox Nano CPU, 24kHz, dual-voice (see scripts/generate-chatterbox-part1-19.py). Files: public/audio/listening/part1/part1_conv01-19.mp3 (109k-143k each). Re-generate with: python scripts/generate-chatterbox-part1-19.py",
+      "items": [
+        {
+          "id": "p1_01_bus",
+          "audioFile": "part1/part1_conv01.mp3",
+          "script": "N: Listen to a short conversation.\nA: Did you catch the 8:15 bus this morning?\nB: No, I missed it by two minutes. The next one was 20 minutes late because of roadwork on Main.\nA: Did you make it to your interview on time?\nB: Barely — I ran the last two blocks.",
+          "questions": [{ "stem": "Why was the speaker late?", "options": ["Missed the bus and roadwork delayed the next one", "The bus was cancelled", "She overslept", "She took the wrong route"], "correct": 0, "explanation": "She missed the 8:15 by two minutes and the next bus was 20 minutes late due to roadwork." }]
+        },
+        {
+          "id": "p1_02_library",
+          "audioFile": "part1/part1_conv02.mp3",
+          "script": "N: Listen to a short conversation.\nA: Can I renew this book online?\nB: You've already renewed it twice — you need to bring it in so we can check the condition.\nA: I have it here. My paper is due Friday and I need it until then.\nB: No hold on it, so I can give you seven more days.",
+          "questions": [{ "stem": "Why must the student bring the book in?", "options": ["Library website is down", "Two online renewals already used", "Book is overdue", "Forgot password"], "correct": 1, "explanation": "After two online renewals the book must be checked in person." }]
+        },
+        {
+          "id": "p1_03_clinic",
+          "audioFile": "part1/part1_conv03.mp3",
+          "script": "N: Listen to a short conversation.\nA: Are my blood test results ready?\nB: Yes, the doctor reviewed them this morning and wants to see you tomorrow at ten.\nA: Should I be worried?\nB: Not urgent — otherwise she would have called directly. Bring ID and your medication list.",
+          "questions": [{ "stem": "What does the receptionist imply?", "options": ["Results are urgent", "Results are probably not urgent", "Results were lost", "Test must be repeated"], "correct": 1, "explanation": "She says not urgent, otherwise doctor would have called directly." }]
+        },
+        {
+          "id": "p1_04_cafe",
+          "audioFile": "part1/part1_conv04.mp3",
+          "script": "N: Listen to a short conversation.\nBarista: What can I get for you?\nCustomer: A large latte with oat milk, please.\nBarista: We're out of oat milk until about two — delivery delayed by traffic.\nCustomer: I have a dairy allergy — can I come back after my 2:30 meeting?\nBarista: I'll set one aside for you.",
+          "questions": [{ "stem": "Why can't the customer order now?", "options": ["Shop is closing", "Out of oat milk until delivery", "No money", "Barista can't make lattes"], "correct": 1, "explanation": "Out of oat milk until delivery around two/three." }]
+        },
+        {
+          "id": "p1_05_advisor",
+          "audioFile": "part1/part1_conv05.mp3",
+          "script": "N: Listen to a short conversation.\nAdvisor: Thinking about Marketing next term?\nStudent: Only open section is Tuesday evenings when I work at the clinic.\nAdvisor: Online section exists but fills quickly — register today if you want it.\nStudent: I'll call my manager to try to switch shifts first.",
+          "questions": [{ "stem": "What will the student do first?", "options": ["Register online immediately", "Call manager about switching shifts", "Drop the course", "Talk to another professor"], "correct": 1, "explanation": "He'll call his manager to see if he can switch shifts before deciding." }]
+        },
+        {
+          "id": "p1_06_train",
+          "audioFile": "part1/part1_conv06.mp3",
+          "script": "N: Listen to an announcement and conversation.\nAnnouncer: The 9:15 express to Riverview is delayed 20 minutes for signal maintenance. Passengers needing arrival before ten should take the 9:30 local on platform one, arriving 9:55.\nA: We'll miss our connection if we wait.\nB: Let's switch to the local — slower but on time.",
+          "questions": [{ "stem": "What do the passengers decide?", "options": ["Wait for the express", "Take the local on platform one", "Cancel the trip", "Ask for refund"], "correct": 1, "explanation": "They switch to the 9:30 local on platform one to arrive on time." }]
+        },
+        {
+          "id": "p1_07_housing",
+          "audioFile": "part1/part1_conv07.mp3",
+          "script": "N: Listen to a short conversation.\nA: I like the Green Street place — cheaper and renovated kitchen.\nB: But far from the station and bedrooms are small for my desk.\nA: Bus stop is outside and internet is included.\nB: Let's visit again Friday with a tape measure.",
+          "questions": [{ "stem": "What do they decide?", "options": ["Sign today", "Visit again Friday to measure", "Look elsewhere immediately", "Ask a third roommate"], "correct": 1, "explanation": "They agree to revisit Friday with a tape measure." }]
+        },
+        {
+          "id": "p1_08_museum",
+          "audioFile": "part1/part1_conv08.mp3",
+          "script": "N: Listen to a talk.\nCoordinator: Arrive fifteen minutes early to collect badges and leave bags in the staff room. Most will help visitors find galleries. If you don't know an answer, send them to the information desk. Food and drinks not allowed in exhibition rooms.\nN: Now answer the question.",
+          "questions": [{ "stem": "What should volunteers do if unsure of an answer?", "options": ["Guess", "Send visitor to information desk", "Call manager", "Ask another visitor"], "correct": 1, "explanation": "Don't guess — send visitor to information desk near main entrance." }]
+        },
+        {
+          "id": "p1_09_office",
+          "audioFile": "part1/part1_conv09.mp3",
+          "script": "N: Listen to a manager.\nManager: Hybrid next month — work from home Monday and Friday, office Tuesday-Thursday. Update shared calendar by Friday for room bookings. For home equipment issues, see HR this week. Hours stay nine to five.\nN: Now answer the question.",
+          "questions": [{ "stem": "When do employees work from home?", "options": ["Every day", "Weekends only", "Monday and Friday", "Tuesday-Thursday"], "correct": 2, "explanation": "Work from home Monday and Friday, office Tuesday-Thursday." }]
+        },
+        {
+          "id": "p1_10_doctor",
+          "audioFile": "part1/part1_conv10.mp3",
+          "script": "N: Listen to a doctor.\nDoctor: Blood pressure is lower than last month — medication is working. Dizzy mornings can be a side effect — try taking the pill in the evening. Keep limiting salt and walking thirty minutes daily. Back in two weeks.\nPatient: Should I keep avoiding salty foods?\nDoctor: Yes.",
+          "questions": [{ "stem": "What does the doctor suggest about the pill?", "options": ["Double the dose", "Stop for a week", "Take it in the evening", "Take only when dizzy"], "correct": 2, "explanation": "Try taking the pill in the evening instead of morning." }]
+        },
+        {
+          "id": "p1_11_bike",
+          "audioFile": "part1/part1_conv11.mp3",
+          "script": "N: Listen at a bike shop.\nAssistant: City or trails?\nCustomer: Trails — planning a ride Saturday with my brother.\nAssistant: Hill trail partly closed after heavy rain — river route is open and easier. Helmets included, repair kit extra.\nCustomer: Two bikes, two helmets, one kit please.",
+          "questions": [{ "stem": "What does the customer rent?", "options": ["One bike only", "Two bikes, two helmets, one repair kit", "Two bikes only", "Helmets only"], "correct": 1, "explanation": "Two bikes, two helmets (included), one repair kit (extra)." }]
+        },
+        {
+          "id": "p1_12_pharmacy",
+          "audioFile": "part1/part1_conv12.mp3",
+          "script": "N: Listen to a short conversation.\nCustomer: Is this prescription ready? I dropped it off yesterday.\nPharmacist: Almost — the doctor changed the dosage, so we're confirming it. Should be ready in about thirty minutes.\nCustomer: Can you text me when it's done?\nPharmacist: Yes, and please bring your insurance card when you pick up.",
+          "questions": [{ "stem": "Why isn't the prescription ready?", "options": ["Out of stock", "Dosage was changed and needs confirmation", "Customer forgot ID", "Pharmacy closed"], "correct": 1, "explanation": "Doctor changed the dosage, pharmacy is confirming." }]
+        },
+        {
+          "id": "p1_13_gym",
+          "audioFile": "part1/part1_conv13.mp3",
+          "script": "N: Listen to a short conversation.\nA: Are you going to the gym orientation tonight?\nB: I wanted to, but my shift ends at seven and orientation starts at six-thirty.\nA: They repeat it Thursday at the same time. Want to go together?\nB: Perfect — I'll put it in my calendar.",
+          "questions": [{ "stem": "Why can't the speaker attend tonight?", "options": ["No interest", "Work shift conflicts", "Gym is closed", "No invitation"], "correct": 1, "explanation": "Shift ends at seven, orientation starts at six-thirty." }]
+        },
+        {
+          "id": "p1_14_email",
+          "audioFile": "part1/part1_conv14.mp3",
+          "script": "N: Listen to a short conversation.\nA: Did you get my email about the project draft?\nB: I saw it, but the attachment didn't open — can you resend as a PDF?\nA: Sure, I'll send it within the hour. The deadline is tomorrow at noon, right?\nB: Yes, and Professor Lee wants a printed copy too.",
+          "questions": [{ "stem": "What is the problem?", "options": ["Email was not sent", "Attachment wouldn't open", "Wrong recipient", "Deadline passed"], "correct": 1, "explanation": "Attachment didn't open, needs PDF resend." }]
+        },
+        {
+          "id": "p1_15_weather",
+          "audioFile": "part1/part1_conv15.mp3",
+          "script": "N: Listen to a short conversation.\nA: The forecast says heavy rain all weekend — should we cancel the picnic?\nB: Maybe move it to the community center? They allow outside food and it's free to reserve.\nA: Good idea — I'll call them now before someone else books it.\nB: And I'll bring the games we planned for outdoors.",
+          "questions": [{ "stem": "What do they decide?", "options": ["Cancel completely", "Move to community center", "Postpone to next month", "Have picnic in rain"], "correct": 1, "explanation": "Move picnic to community center which allows outside food." }]
+        },
+        {
+          "id": "p1_16_transit_pass",
+          "audioFile": "part1/part1_conv16.mp3",
+          "script": "N: Listen to a short conversation.\nA: My monthly transit pass expires tomorrow. Should I renew at the station?\nB: The machine there is out of order — use the app. It takes five minutes and you get a digital receipt.\nA: Does the app accept my student discount?\nB: Yes, just upload your ID once.",
+          "questions": [{ "stem": "What does the speaker recommend?", "options": ["Renew at station", "Use the app", "Wait a week", "Buy single tickets"], "correct": 1, "explanation": "Station machine is out of order, app is faster and gives receipt." }]
+        },
+        {
+          "id": "p1_17_interview",
+          "audioFile": "part1/part1_conv17.mp3",
+          "script": "N: Listen to a short conversation.\nInterviewer: Can you start next Monday?\nCandidate: I can, but I need to give my current employer one week's notice — so the following Monday works better.\nInterviewer: That's fine. Can you send your references by Friday?\nCandidate: I'll email them tomorrow morning.",
+          "questions": [{ "stem": "When can the candidate start?", "options": ["Next Monday", "The following Monday", "In a month", "Immediately"], "correct": 1, "explanation": "Needs one week's notice, so following Monday." }]
+        },
+        {
+          "id": "p1_18_hotel",
+          "audioFile": "part1/part1_conv18.mp3",
+          "script": "N: Listen to a short conversation.\nGuest: My room's air conditioning isn't working and it's quite warm.\nClerk: I'm sorry — maintenance can fix it in about an hour. Would you like a different room in the meantime?\nGuest: If it's not too much trouble, a room on a lower floor would be quieter.\nClerk: Of course — here's a key to 312, and we'll move your luggage.",
+          "questions": [{ "stem": "What does the guest request?", "options": ["A refund", "A lower-floor quieter room while maintenance fixes AC", "Late checkout", "Extra towels"], "correct": 1, "explanation": "Guest asks for a different room on a lower floor while AC is fixed." }]
+        },
+        {
+          "id": "p1_19_delivery",
+          "audioFile": "part1/part1_conv19.mp3",
+          "script": "N: Listen to a short conversation.\nA: Your package was supposed to arrive yesterday — did you get a notice?\nB: Yes, the courier tried to deliver but no one was home. They left a slip to pick it up at the post office.\nA: How long will they hold it?\nB: Until Friday — I plan to go tomorrow morning.",
+          "questions": [{ "stem": "What must the speaker do?", "options": ["Wait for redelivery", "Pick up at post office by Friday", "Order again", "Call the seller"], "correct": 1, "explanation": "Courier left a slip; package held at post office until Friday." }]
+        }
+      ]
+    }
+  ]
+}

@@ -19,6 +19,7 @@ import {
 } from './lib/supabase-storage.js';
 import { claimStudentByEmail, ensureProfile, setSessionRole, upsertReviewSchedule, loadReviewSchedule, subscribeToTable } from './lib/supabase-db.js';
 import { enableSync } from './lib/spaced-repetition.js';
+import { enableTutorSync } from './lib/met-tutor-store.js';
 import { lazyWithRetry } from './lib/utils.js'; // Imported from utils.js
 
 // Lazy-loaded pages with retry on chunk load failure (prevents "Page unavailable" after new deployments)
@@ -56,6 +57,7 @@ const RiskDashboard = lazyWithRetry(() => import('./pages/risk-dashboard.jsx'));
 const OperationsPage = lazyWithRetry(() => import('./pages/operations.jsx'));
 const VisualEditorPage = lazyWithRetry(() => import('./pages/visual-editor.jsx'));
 const SocialStudio = lazyWithRetry(() => import('./pages/social-studio.jsx'));
+const MetTutorPage = lazyWithRetry(() => import('./pages/met-tutor.jsx'));
 
 export default function App() {
   const [auth, setAuth] = useState(null);
@@ -214,6 +216,7 @@ export default function App() {
     if (!auth || auth.role !== 'student' || !auth.studentId) return;
     const { studentId } = auth;
     enableSync((sid, list) => upsertReviewSchedule(sid, list));
+    enableTutorSync((sid, payload) => upsertReviewSchedule(sid, [{ ...payload, kind: 'tutor' }]));
     loadReviewSchedule(studentId).then(rows => {
       if (!rows.length) return;
       try {
@@ -310,6 +313,7 @@ export default function App() {
   };
 
   const paletteActions = [
+    { id: 'met-tutor', label: 'MET Tutor', target: 'met-tutor', icon: <Icon.practice size={16} />, keywords: ['met', 'tutor', 'b2', 'practice', 'fluent'] },
     { id: 'dashboard', label: 'Today', target: 'dashboard', icon: <Icon.home size={16} />, keywords: ['home', 'today', 'main'] },
     { id: 'students', label: 'Students', target: 'students', icon: <Icon.student size={16} />, keywords: ['roster', 'list'] },
     { id: 'calendar', label: 'Calendar', target: 'calendar', icon: <Icon.calendar size={16} />, keywords: ['schedule', 'events'] },
@@ -462,6 +466,19 @@ export default function App() {
     if (studentsLoading && students.length === 0) return <PageLoader label="Loading your student workspace…" />;
     if (studentsError && !student) return <WorkspaceLoadError onRetry={() => window.location.reload()} />;
 
+    if (view === 'met-tutor') {
+      return (
+        <>
+          <OfflineBar />
+          <ErrorBoundary label="MET Tutor unavailable">
+            <Suspense fallback={<PageLoader label="Loading MET Tutor…" />}>
+              <MetTutorPage onNavigate={navigate} data-testid="met-tutor-page" />
+            </Suspense>
+          </ErrorBoundary>
+        </>
+      );
+    }
+
     return (
       <>
         <OfflineBar />
@@ -481,6 +498,7 @@ export default function App() {
   // ── Teacher shell ──
   const teacherTabs = [
     { id: 'dashboard',   label: 'Today',        icon: <Icon.home size={16} /> },
+    { id: 'met-tutor',   label: 'MET Tutor',    icon: <Icon.practice size={16} /> },
     { id: 'students',    label: 'Students',     icon: <Icon.student size={16} /> },
     { id: 'calendar',    label: 'Calendar',     icon: <Icon.calendar size={16} /> },
     { id: 'diagnostics', label: 'Diagnose',     icon: <Icon.diagnose size={16} /> },
@@ -670,6 +688,9 @@ function renderTeacherPage(view, params, ctx) {
 
     case 'social-studio':
       return <SocialStudio data-testid="social-studio-page" />;
+
+    case 'met-tutor':
+      return <MetTutorPage onNavigate={navigate} data-testid="met-tutor-page" />;
 
     default:
       return <TeacherDashboard students={students} onNavigate={navigate} teacherName={teacherName} data-testid="teacher-dashboard" />;

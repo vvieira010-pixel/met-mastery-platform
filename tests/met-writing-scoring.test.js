@@ -170,17 +170,22 @@ describe('AssemblyAI client — extractScores validation', () => {
 describe('evaluate-writing endpoint — contract', () => {
   const src = readApi('evaluate-writing.js');
 
-  test('uses Gemini as the primary scorer (AssemblyAI reserved for Practice Studio speaking)', () => {
-    assert.ok(src.includes("provider: 'gemini'"), 'must use Gemini as primary');
-    // Groq is the fallback so evaluation never goes down. OpenAI and Anthropic
-    // were removed from the cascade intentionally (see a3244cb).
+  test('uses AssemblyAI as the primary scorer with Gemini and Groq fallbacks', () => {
+    assert.ok(src.includes("provider: 'assemblyai-llm'"), 'must use AssemblyAI as primary');
+    assert.ok(src.includes("provider: 'gemini'"), 'must keep Gemini as a fallback');
+    // Groq is the final fallback so evaluation never goes down. OpenAI and
+    // Anthropic were removed from the cascade intentionally (see a3244cb).
     assert.ok(src.includes("provider: 'groq'"), 'must keep a fallback provider');
     assert.ok(
       !src.includes("provider: 'openai'") && !src.includes("provider: 'anthropic'"),
       'OpenAI/Anthropic must stay out of the grading cascade'
     );
-    // AssemblyAI must NOT be used for writing
-    assert.ok(!src.includes("provider: 'assemblyai-llm'"));
+    assert.match(
+      src,
+      /const attempts = \[\s*\.\.\.\(practiceStudio === true \? \[scoreWithAssemblyAI\] : \[\]\),\s*scoreWithGemini,\s*scoreWithGroq,/,
+      'Practice Studio fallback order must remain AssemblyAI → Gemini → Groq',
+    );
+    assert.match(src, /practiceStudio = false/, 'the endpoint must distinguish Practice Studio callers');
   });
 
   test('requires an authenticated session (paid AI endpoint)', () => {
@@ -208,6 +213,8 @@ describe('evaluate-speaking endpoint — AssemblyAI wiring', () => {
     const geminiIdx = src.indexOf("evalProvider = 'gemini'");
     assert.ok(aaiIdx > 0, 'AssemblyAI evaluator must be present');
     assert.ok(geminiIdx > aaiIdx, 'AssemblyAI must run before the Gemini fallback');
+    assert.match(src, /const useAssemblyAI = practiceStudio === true \|\| assemblyOnly === true/);
+    assert.match(src, /if \(evaluation == null && useAssemblyAI && env\('ASSEMBLYAI_API_KEY'\)\)/);
   });
 
   test('validates speaking scores the same way as writing', () => {

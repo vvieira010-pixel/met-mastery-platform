@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { scoreWriting } from '../../lib/writing-score.js';
 
 const TEAL = 'var(--accent)';
-const NAVY = 'var(--accent-text)';
+// `--accent-text` is white in the student Stitch theme and is reserved for
+// text on accent-colored controls. Writing prompts and scores sit on the
+// light exercise surface, so they need the readable body-ink token.
+const NAVY = 'var(--ink)';
 
 function scoreColor(val) {
   if (val == null) return 'var(--muted)';
@@ -20,7 +23,7 @@ function scoreBg(val) {
   return 'var(--error-bg)';
 }
 
-export default function Writing({ exercise, onComplete }) {
+export default function Writing({ exercise, onComplete, practiceStudio = false }) {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -39,7 +42,7 @@ export default function Writing({ exercise, onComplete }) {
     setLoading(true);
     setError(null);
     try {
-      const data = await scoreWriting({ essay: text, taskPrompt: prompt });
+      const data = await scoreWriting({ essay: text, taskPrompt: prompt, practiceStudio });
       setResult(data.evaluation);
     } catch (e) {
       setError(e.message);

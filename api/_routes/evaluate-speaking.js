@@ -203,7 +203,7 @@ function pauseStats(words, durationSec) {
 
 // rubricToScaled is imported from ./_met-speaking-scale.js (single source of truth).
 
-async function transcribeAudio(audio) {
+async function transcribeAudio(audio, { useAssemblyAI = false } = {}) {
   const deepgramKey = env('DEEPGRAM_API_KEY');
 
   // 0. Local openai-whisper (no API cost) — preferred when a LOCAL_WHISPER_URL is set.
@@ -216,9 +216,11 @@ async function transcribeAudio(audio) {
     if (forceLocal) return null;
   }
 
-  // 1. AssemblyAI first — word timings + disfluencies give real Delivery evidence.
-  const aai = await transcribeWithAssemblyAI(audio);
-  if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration) };
+  // AssemblyAI transcription is reserved for the Practice Studio speaking flow.
+  if (useAssemblyAI) {
+    const aai = await transcribeWithAssemblyAI(audio);
+    if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration) };
+  }
   if (deepgramKey && audio) {
     try {
       const dgRes = await fetchWithTimeout('https://api.deepgram.com/v1/listen?model=nova-2&smart_format=true', {
@@ -269,7 +271,8 @@ export default async function handler(req, res) {
 
   // subject/submissionId are optional telemetry context. `subject` is hashed
   // server-side before storage (see api/_ml/hash.js).
-  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null, assemblyOnly = false } = body || {};
+  const { storagePath, audioUrl, bucket, taskPrompt = 'Speak on the topic.', transcript: userTranscript, subject = null, submissionId = null, assemblyOnly = false, practiceStudio = false } = body || {};
+  const useAssemblyAI = practiceStudio === true || assemblyOnly === true;
   if (audioUrl) {
     return res.status(400).json({ error: 'audioUrl is not accepted. Provide a stored recording path.' });
   }
@@ -291,7 +294,7 @@ export default async function handler(req, res) {
     const asrStartedAt = Date.now();
     try {
       const storedAudio = await fetchStoredAudio(normalizedPath, audioBucket);
-      const result = storedAudio ? await transcribeAudio(storedAudio) : null;
+      const result = storedAudio ? await transcribeAudio(storedAudio, { useAssemblyAI }) : null;
       transcription = result?.text || '';
       if (result?.stats?.wordCount) fluency = result.stats;
       // ASR is a separate cost centre from the LLM rubric call, so it gets its
@@ -339,9 +342,9 @@ export default async function handler(req, res) {
   let evalModelId = null;
   const llmStartedAt = Date.now();
 
-  // 0. AssemblyAI LLM Gateway — the requested primary scorer for speaking.
+  // AssemblyAI LLM Gateway is reserved for the Practice Studio speaking flow.
   // Reuses the same examiner prompt (Task/Language/Delivery) and JSON shape.
-  if (evaluation == null && env('ASSEMBLYAI_API_KEY')) {
+  if (evaluation == null && useAssemblyAI && env('ASSEMBLYAI_API_KEY')) {
     try {
       const aai = await callAssemblyAILLMJson(
         { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
