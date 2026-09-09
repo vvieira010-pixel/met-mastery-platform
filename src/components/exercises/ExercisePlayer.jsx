@@ -104,7 +104,7 @@ function useAIPoweredHints(exercise, scaffoldLevel) {
   return { hints, loading };
 }
 
-const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, scaffoldLevel = 4, onHintLevelChange, practiceStudio = false }) {
+const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result, onComplete, onNext, onBack, onSkip, saving = false, scaffoldLevel = 4, onHintLevelChange, practiceStudio = false }) {
   const label = TYPE_LABELS[exercise.type] || exercise.type;
   const skill = exercise.skill || exercise.focus || null;
   const done = result != null;
@@ -234,7 +234,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <button
             onClick={onBack}
-            disabled={index === 0}
+            disabled={index === 0 || saving}
             aria-label="Previous exercise"
             className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
             style={{
@@ -253,7 +253,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
           </span>
           <button
             onClick={done ? onNext : onSkip}
-            disabled={index === total - 1 && !done}
+            disabled={saving || (index === total - 1 && !done)}
             aria-label={done ? 'Next exercise' : 'Skip exercise'}
             className="focus-visible:ring-2 focus-visible:ring-offset-2 hover:brightness-105"
             style={{
@@ -272,7 +272,12 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
 
       {/* Exercise body */}
       <div style={{ padding: '20px 20px 24px' }}>
-        {renderExercise()}
+        {done && practiceStudio ? (
+          <p role="status" style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
+            Your response is saved. This question is locked and cannot be changed.
+          </p>
+        ) : renderExercise()}
+        {saving && <p role="status" aria-live="polite" style={{ margin: '12px 0 0', color: 'var(--text-2)', fontSize: 13 }}>Saving this question…</p>}
       </div>
 
       {/* Error diagnosis gate — shown when wrong answer + hint clicked */}
@@ -306,7 +311,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       <div style={{ padding: '0 20px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <button
           onClick={onBack}
-          disabled={index === 0}
+          disabled={index === 0 || saving}
           style={{
             padding: '8px 16px', borderRadius: 'var(--radius-sm, 6px)',
             border: '1px solid var(--border, #e5e7eb)', background: 'none',
@@ -321,11 +326,12 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
           {!done && (
             <button
               onClick={onSkip}
+              disabled={saving}
               style={{
                 padding: '8px 16px', borderRadius: 'var(--radius-sm, 6px)',
                 border: '1px solid var(--border, #e5e7eb)', background: 'none',
                 color: 'var(--muted, #9ca3af)', fontSize: 13, fontWeight: 500,
-                cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                cursor: saving ? 'default' : 'pointer', fontFamily: 'var(--font-sans)', opacity: saving ? 0.5 : 1,
               }}
             >
               Skip →
@@ -334,9 +340,10 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
           {done && (
             <button
               onClick={onNext}
+              disabled={saving}
               style={{
                 padding: '8px 22px', borderRadius: 'var(--radius-sm, 6px)', border: 'none',
-                cursor: 'pointer', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
+                cursor: saving ? 'default' : 'pointer', background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`, opacity: saving ? 0.5 : 1,
                 color: 'var(--on-dark)', fontWeight: 600, fontSize: 13, fontFamily: 'var(--font-sans)',
               }}
             >
@@ -456,7 +463,7 @@ function ScoreSummary({ results, waitingForFinalSubmission = false }) {
  *   title — optional session title
  *   onSessionComplete — called with { results, score } when all done
  */
-export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false }) {
+export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, onExerciseComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false }) {
   const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
   const [results, setResults] = useState([]);
@@ -472,6 +479,8 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   const onDoneRef = useRef(onSessionComplete);
   const resultsRef = useRef(results);
   const maxHintLevelRef = useRef(0);
+  const savingExerciseRef = useRef(false);
+  const [savingExercise, setSavingExercise] = useState(false);
   useEffect(() => { currentRef.current = current; });
   useEffect(() => { totalRef.current = exercises.length; });
   useEffect(() => { onDoneRef.current = onSessionComplete; });
@@ -481,14 +490,33 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     if (level > maxHintLevelRef.current) maxHintLevelRef.current = level;
   }, []);
 
+  const saveExerciseResult = useCallback(async (result) => {
+    const idx = currentRef.current;
+    if (savingExerciseRef.current || resultsRef.current[idx]) return false;
+    const savedResult = { ...result, index: idx };
+    savingExerciseRef.current = true;
+    setSavingExercise(true);
+    try {
+      await onExerciseComplete?.({ exercise: exercises[idx], index: idx, result: savedResult });
+      setResults(prev => {
+        const next = [...prev];
+        next[idx] = savedResult;
+        return next;
+      });
+      return true;
+    } catch (error) {
+      setSubmissionError(error?.message || 'We could not save this question. Please try again.');
+      setReviewVersion(version => version + 1);
+      return false;
+    } finally {
+      savingExerciseRef.current = false;
+      setSavingExercise(false);
+    }
+  }, [exercises, onExerciseComplete]);
+
   const handleComplete = useCallback((result) => {
-    setResults(prev => {
-      const next = [...prev];
-      const idx = currentRef.current;
-      next[idx] = { ...result, index: idx };
-      return next;
-    });
-  }, [setResults]);
+    void saveExerciseResult(result);
+  }, [saveExerciseResult]);
 
   const buildSummary = useCallback((completedResults = resultsRef.current) => {
     const live = completedResults.filter(r => r && r.correct !== null && r.correct !== undefined);
@@ -550,14 +578,19 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     if (currentRef.current > 0) setCurrent(c => c - 1);
   }, [setCurrent]);
 
-  const handleSkip = useCallback(() => {
-    const nextIdx = currentRef.current + 1;
-    if (nextIdx >= totalRef.current) {
-      finishSession();
-    } else {
-      setCurrent(nextIdx);
+  const handleSkip = useCallback(async () => {
+    if (!onExerciseComplete) {
+      const nextIdx = currentRef.current + 1;
+      if (nextIdx >= totalRef.current) finishSession();
+      else setCurrent(nextIdx);
+      return;
     }
-  }, [setCurrent, finishSession]);
+    const saved = await saveExerciseResult({ correct: null, skipped: true });
+    if (!saved) return;
+    const nextIdx = currentRef.current + 1;
+    if (nextIdx >= totalRef.current) finishSession();
+    else setCurrent(nextIdx);
+  }, [onExerciseComplete, saveExerciseResult, setCurrent, finishSession]);
 
   // Errors only (nothing valid loaded)
   if (errors.length > 0 && exercises.length === 0) {
@@ -609,6 +642,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
             onNext={handleNext}
             onBack={handleBack}
             onSkip={handleSkip}
+            saving={savingExercise}
             scaffoldLevel={scaffoldLevel}
             onHintLevelChange={handleHintLevelChange}
             practiceStudio={practiceStudio}

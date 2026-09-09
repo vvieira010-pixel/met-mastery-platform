@@ -5,7 +5,7 @@ import { Icon } from '../components/shared.jsx';
 import ExercisePlayer from '../components/exercises/ExercisePlayer.jsx';
 import FadingBanner from '../components/FadingBanner.jsx';
 import { getGrammarExercises, getTopicList, getVocabExercises, getPracticeStudioSpeakingExercises, getPracticeStudioSpeakingTopics, getWritingExercises, getPracticeStudioListeningExercises, getPracticeStudioListeningParts, getPracticeStudioListeningTopics, getReadingExercises } from '../lib/vocab-homework-bank.js';
-import { createPracticeStudioSessionKey, getPracticeStudioSubmission, submitPracticeStudioSession } from '../lib/workflow.js';
+import { createPracticeStudioSessionKey, createPracticeStudioExerciseKey, getPracticeStudioExerciseSubmissions, submitPracticeStudioExercise } from '../lib/workflow.js';
 import { getExamMode, getDaysUntilExam, MODE_SPRINT } from '../lib/exam-window.js';
 import { LISTENING_FORMATS } from '../lib/exercise-types.js';
 import { getScaffoldLevel, setScaffoldLevel, classifyRetrieval, evaluateFading, logSession } from '../lib/fading-manager.js';
@@ -21,7 +21,8 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   const [selectedListeningFormat,setSelectedListeningFormat]=useState('all'); const [listeningSearch,setListeningSearch]=useState('');
   const [sessionKey,setSessionKey]=useState(0); const [exercises,setExercises]=useState([]); const [loading,setLoading]=useState(false);
   const [loadError, setLoadError] = useState(false); const [sessionComplete, setSessionComplete] = useState(null);
-  const [submissionState, setSubmissionState] = useState({ status: 'idle', record: null, error: '' });
+  const [submissionState, setSubmissionState] = useState({ status: 'idle', records: [], error: '' });
+  const [lockedQuestionKeys, setLockedQuestionKeys] = useState([]);
   const daysLeft=getDaysUntilExam(); const examMode=getExamMode(); const [topics,setTopics]=useState([]);
   const [scaffoldLevel,setScaffoldLevelState]=useState(4); const [fadingVerdict,setFadingVerdict]=useState(null);
   const heroRef=useRef(null);
@@ -58,7 +59,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   const showTopicPicker = selectedKind && (showListeningPartPicker || showSpeakingQuestionPicker || !selectedTopic);
   const selectedTopicTitle = topics.find(t=>t.id===selectedTopic)?.title||'';
   const showLanding = !selectedKind;
-  const resetSubmissionState=()=>setSubmissionState({ status: 'idle', record: null, error: '' });
+  const resetSubmissionState=()=>{ setSubmissionState({ status: 'idle', records: [], error: '' }); setLockedQuestionKeys([]); };
   const handleSelectMode=k=>{setSelectedKind(k); setSelectedTopic(null); setSelectedListeningPart(null); setSelectedSpeakingQuestion(null); setSelectedListeningFormat('all'); setListeningSearch(''); setSessionKey(v=>v+1); setFadingVerdict(null); setSessionComplete(null); resetSubmissionState();};
   const handleBackToLanding=()=>{setSelectedKind(null); setSelectedTopic(null); setSelectedListeningPart(null); setSelectedSpeakingQuestion(null); setSelectedListeningFormat('all'); setListeningSearch(''); setExercises([]); setFadingVerdict(null); setSessionComplete(null); resetSubmissionState();};
   const handleListeningPartSelect=partId=>{setSelectedListeningPart(partId); setSelectedTopic(null); setListeningSearch(''); setSessionComplete(null); resetSubmissionState();};
@@ -73,31 +74,29 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   useEffect(()=>{
     let cancelled=false;
     if(!studentId || !practiceSessionKey || loading || loadError || exercises.length===0){
-      setSubmissionState({ status: 'idle', record: null, error: '' });
+      setSubmissionState({ status: 'idle', records: [], error: '' }); setLockedQuestionKeys([]);
       return()=>{cancelled=true};
     }
-    setSubmissionState({ status: 'checking', record: null, error: '' });
-    getPracticeStudioSubmission(studentId,practiceSessionKey)
-      .then(record=>{ if(!cancelled) setSubmissionState(record ? { status: 'locked', record, error: '' } : { status: 'ready', record: null, error: '' }); })
-      .catch(error=>{ if(!cancelled) setSubmissionState({ status: 'unavailable', record: null, error: error?.message || 'Practice Studio could not reach Supabase.' }); });
+    setSubmissionState({ status: 'checking', records: [], error: '' });
+    getPracticeStudioExerciseSubmissions(studentId,{ mode:selectedKind, topicId:selectedTopic, listeningPart:selectedListeningPart, speakingQuestion:selectedSpeakingQuestion })
+      .then(records=>{ if(!cancelled) { setLockedQuestionKeys(records.map(record=>record.sessionKey)); setSubmissionState({ status: 'ready', records, error: '' }); } })
+      .catch(error=>{ if(!cancelled) setSubmissionState({ status: 'unavailable', records: [], error: error?.message || 'Practice Studio could not reach Supabase.' }); });
     return()=>{cancelled=true};
-  },[studentId,practiceSessionKey,loading,loadError,exercises]);
+  },[studentId,practiceSessionKey,loading,loadError,exercises,selectedKind,selectedTopic,selectedListeningPart,selectedSpeakingQuestion]);
 
-  const handleSessionComplete=async summary=>{
+  const studioSelection = { mode:selectedKind, topicId:selectedTopic, listeningPart:selectedListeningPart, speakingQuestion:selectedSpeakingQuestion };
+  const savedQuestionKeys = new Set(lockedQuestionKeys);
+  const availableExercises = exercises.filter((exercise,index)=>!savedQuestionKeys.has(createPracticeStudioExerciseKey(studioSelection,exercise,index)));
+
+  const handleExerciseComplete=async ({exercise,index,result})=>{
+    if(!studentId || !practiceSessionKey) throw new Error('Sign in before saving this Practice Studio question.');
+    const sessionKey=createPracticeStudioExerciseKey(studioSelection,exercise,index);
+    const saved=await submitPracticeStudioExercise(studentId,{sessionKey,selection:studioSelection,mode:selectedKind,topicId:selectedTopic,topicTitle:selectedTopicTitle,listeningPart:selectedListeningPart,speakingQuestion:selectedSpeakingQuestion,exerciseId:exercise?.id||null,exerciseIndex:index,result});
+    setSubmissionState(current=>({ ...current, records: current.records.some(record=>record.sessionKey===saved.record.sessionKey) ? current.records : [...current.records,saved.record] }));
+  };
+
+  const handleSessionComplete=summary=>{
     const {score,maxHintLevel,hintUsed,results,confidenceBefore}=summary;
-    if(!studentId || !practiceSessionKey) throw new Error('Sign in before submitting this Practice Studio attempt.');
-    setSubmissionState(current=>({ ...current, status:'submitting', error:'' }));
-    let saved;
-    try{
-      saved=await submitPracticeStudioSession(studentId,{sessionKey:practiceSessionKey,mode:selectedKind,topicId:selectedTopic,topicTitle:selectedTopicTitle,listeningPart:selectedListeningPart,speakingQuestion:selectedSpeakingQuestion,score,maxHintLevel:maxHintLevel||0,hintUsed:hintUsed||false,exerciseCount:exercises.length,correctCount:results?.filter(r=>r?.correct===true).length||0,results,confidenceBefore:confidenceBefore??null,errorCategories:results?.filter(r=>r?.errorCategory).map(r=>r.errorCategory)||null});
-    }catch(error){
-      setSubmissionState({ status:'ready', record:null, error:error?.message||'We could not save this attempt to Supabase. Please try again.' });
-      throw error;
-    }
-    if(saved.alreadySubmitted){
-      setSubmissionState({ status:'locked', record:saved.record, error:'' });
-      return;
-    }
     if(score!==null){
       const quality=classifyRetrieval(maxHintLevel||0,hintUsed||false,score);
       const correctCount=results?.filter(r=>r?.correct===true).length||0;
@@ -109,7 +108,6 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
     }else{
       setSessionComplete({ score:null, correctCount:0, totalScored:0, exerciseCount:exercises.length, verdict:'maintain', newLevel:scaffoldLevel });
     }
-    setSubmissionState({ status:'locked', record:saved.record, error:'' });
   };
 
   return(
@@ -247,7 +245,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
           ) : submissionState.status==='checking' ? (
             <section className="card" style={{textAlign:'center',padding:'var(--space-8) var(--space-6)'}} aria-live="polite">
               <h2 style={{fontSize:'var(--text-lg)',fontWeight:600}}>Checking your submitted work…</h2>
-              <p style={{marginTop:'var(--space-2)',fontSize:'var(--text-sm)',color:'var(--text-muted)'}}>We check Supabase before opening the set, so each topic can be submitted only once.</p>
+              <p style={{marginTop:'var(--space-2)',fontSize:'var(--text-sm)',color:'var(--text-muted)'}}>We check Supabase before opening the set, so every saved question stays locked.</p>
             </section>
           ) : submissionState.status==='unavailable' ? (
             <section className="card" style={{textAlign:'center',padding:'var(--space-8) var(--space-6)'}} aria-live="assertive" data-testid="practice-studio-supabase-unavailable">
@@ -258,10 +256,10 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
                 <button onClick={handleBackToLanding} className="btn btn-outline">All skills</button>
               </div>
             </section>
-          ) : submissionState.status==='locked' ? (
+          ) : availableExercises.length === 0 ? (
             <section className="card practice-studio-completion" data-testid="practice-studio-submission-locked">
-              <h2>This topic has already been submitted</h2>
-              <p className="fading-note">Submitted {submissionState.record?.submittedAt ? new Date(submissionState.record.submittedAt).toLocaleString() : 'previously'}. It is locked to keep one final attempt in your teacher record.</p>
+              <h2>All questions in this set are already saved</h2>
+              <p className="fading-note">Each question is saved separately in Supabase and cannot be completed a second time.</p>
               <div style={{display:'flex',justifyContent:'center',gap:'var(--space-3)',marginTop:'var(--space-4)'}}>
                 <button onClick={()=>{setSelectedTopic(null); resetSubmissionState();}} className="btn btn-primary">Choose another topic</button>
                 <button onClick={handleBackToLanding} className="btn btn-outline">All skills</button>
@@ -270,8 +268,12 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
           ) : (
             <>
               <FadingBanner level={scaffoldLevel} verdict={fadingVerdict?.verdict} reason={fadingVerdict?.reason} />
+              <section role="note" aria-label="One-time attempt warning" className="card" style={{margin:'0 0 var(--space-3)',padding:'var(--space-3) var(--space-4)',borderLeft:'4px solid var(--warning, #b45309)',background:'var(--ex-hint-bg)'}}>
+                <strong>One-time attempt</strong>
+                <span style={{display:'block',marginTop:4,fontSize:'var(--text-sm)',color:'var(--text-2)'}}>When you answer or skip this question, it is saved and locked. You cannot retry it.</span>
+              </section>
               {submissionState.error&&<p role="alert" style={{margin:'0 0 var(--space-3)',color:'var(--ex-wrong-text)',fontSize:'var(--text-sm)'}}>{submissionState.error}</p>}
-              <ExercisePlayer exercises={exercises} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} requireFinalSubmission finalSubmissionLabel="Submit this practice once" practiceStudio />
+              <ExercisePlayer exercises={availableExercises} onExerciseComplete={handleExerciseComplete} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} practiceStudio />
             </>
           )}
           </>

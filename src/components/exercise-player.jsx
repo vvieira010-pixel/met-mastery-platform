@@ -442,6 +442,7 @@ function SpeakPlayer({ ex, res, update, readOnly }) {
   const [seconds, setSeconds] = useState(0);
   const [typing, setTyping] = useState(false); // "type instead" alternative to recording
   const [playbackUrl, setPlaybackUrl] = useState(res?.audioB64 || null);
+  const [isReadingPrompt, setIsReadingPrompt] = useState(false);
   const timerRef = useRef(null);
   const mediaRef = useRef(null);
   const chunksRef = useRef([]);
@@ -452,6 +453,27 @@ function SpeakPlayer({ ex, res, update, readOnly }) {
 
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
   const target = ex.targetSeconds || 60;
+
+  const readPromptAloud = () => {
+    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+      window.toast?.('Read aloud is not available in this browser.', 'warn') || window.alert('Read aloud is not available in this browser.');
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    if (isReadingPrompt) {
+      setIsReadingPrompt(false);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(`${ex.prompt} Target: ${target} seconds.`);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    utterance.onend = () => setIsReadingPrompt(false);
+    utterance.onerror = () => setIsReadingPrompt(false);
+    setIsReadingPrompt(true);
+    window.speechSynthesis.speak(utterance);
+  };
 
   const start = async () => {
     if (readOnly) return;
@@ -527,7 +549,11 @@ function SpeakPlayer({ ex, res, update, readOnly }) {
     update({ audioB64: null, audioPath: null, transcript: '' });
   };
 
-  useEffect(() => () => { clearInterval(timerRef.current); mediaRef.current?.stream?.getTracks().forEach(t => t.stop()); }, []);
+  useEffect(() => () => {
+    clearInterval(timerRef.current);
+    mediaRef.current?.stream?.getTracks().forEach(t => t.stop());
+    window.speechSynthesis?.cancel();
+  }, []);
 
   // Restore a previously-recorded answer (base64 inline, or a signed URL for a Storage path).
   // Depend on the individual fields, not `res` — the caller passes
@@ -579,6 +605,14 @@ function SpeakPlayer({ ex, res, update, readOnly }) {
           {ex.prompt}
           <span style={{ color: 'var(--muted)', fontWeight: 600 }}> Target: {target} seconds.</span>
         </p>
+        <button
+          type="button"
+          onClick={readPromptAloud}
+          aria-pressed={isReadingPrompt}
+          style={{ marginTop: 10, minHeight: 36, padding: '7px 10px', border: '1px solid var(--accent-soft)', borderRadius: 'var(--radius-sm)', background: 'var(--surface, var(--white))', color: 'var(--primary)', cursor: 'pointer', fontSize: 'var(--text-sm)', fontWeight: 700, fontFamily: 'var(--font-sans)' }}
+        >
+          {isReadingPrompt ? 'Stop reading prompt' : 'Read prompt aloud'}
+        </button>
       </div>
 
       {/* SCAFFOLDING */}

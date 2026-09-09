@@ -62,8 +62,11 @@ export {
   savePracticeSubmission,
   savePracticeSession,
   createPracticeStudioSessionKey,
+  createPracticeStudioExerciseKey,
   getPracticeStudioSubmission,
+  getPracticeStudioExerciseSubmissions,
   submitPracticeStudioSession,
+  submitPracticeStudioExercise,
 } from '../domain/practice.js';
 
 /* ─── ERROR BANK ─────────────────────────────────────────────── */

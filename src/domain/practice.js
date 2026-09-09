@@ -1,5 +1,5 @@
 import { K, load, loadObj, save, uid, dbReady, listVia, saveVia, removeVia } from '../lib/workflow-core.js';
-import { dbList, dbUpsert, dbRemove } from '../lib/supabase-db.js';
+import { dbList, dbUpsert } from '../lib/supabase-db.js';
 import { initSchedule, markSRMastered } from '../lib/spaced-repetition.js';
 import { getDiagnoses } from '../lib/workflow-academic.js';
 
@@ -101,8 +101,27 @@ export function createPracticeStudioSessionKey({ mode, topicId, listeningPart, s
   ].join(':');
 }
 
+/**
+ * A Practice Studio question must be identifiable without browser state. The
+ * exercise id is content-owned, so this key remains the same after a refresh
+ * or on a different device. The index is only a safe fallback for legacy
+ * content that has not yet been given an id.
+ */
+export function createPracticeStudioExerciseKey(selection, exercise, index = 0) {
+  const sessionKey = createPracticeStudioSessionKey(selection);
+  const exerciseId = exercise?.id || `position-${index + 1}`;
+  return `${sessionKey}:exercise:${exerciseId}`;
+}
+
 function isFinalStudioSubmission(record, studentId, sessionKey) {
   return record?.type === 'practice_studio'
+    && record?.studentId === studentId
+    && record?.sessionKey === sessionKey
+    && record?.status === 'submitted';
+}
+
+function isStudioExerciseSubmission(record, studentId, sessionKey) {
+  return record?.type === 'practice_studio_exercise'
     && record?.studentId === studentId
     && record?.sessionKey === sessionKey
     && record?.status === 'submitted';
@@ -120,6 +139,63 @@ export async function getPracticeStudioSubmission(studentId, sessionKey) {
   }
   const records = await dbList('practiceSubmissions', { fresh: true });
   return records.find(record => isFinalStudioSubmission(record, studentId, sessionKey)) || null;
+}
+
+/** Read all saved questions for one selected Practice Studio path. */
+export async function getPracticeStudioExerciseSubmissions(studentId, selection) {
+  if (!studentId) return [];
+  if (!dbReady('practiceSubmissions')) {
+    throw new Error('Sign in to Supabase before opening Practice Studio work.');
+  }
+  const prefix = `${createPracticeStudioSessionKey(selection)}:exercise:`;
+  const records = await dbList('practiceSubmissions', { fresh: true });
+  return records.filter(record => isStudioExerciseSubmission(record, studentId, record?.sessionKey)
+    && String(record.sessionKey || '').startsWith(prefix));
+}
+
+/**
+ * Save exactly one answer (or skip) for one question. The same database unique
+ * index used for final attempts makes a second device or a duplicate click a
+ * normal locked state instead of a second submission.
+ */
+export async function submitPracticeStudioExercise(studentId, data) {
+  const sessionKey = data?.sessionKey;
+  if (!studentId || !sessionKey) throw new Error('Missing Practice Studio question details.');
+
+  const records = await getPracticeStudioExerciseSubmissions(studentId, data?.selection || {});
+  const existing = records.find(record => record.sessionKey === sessionKey);
+  if (existing) return { record: existing, alreadySubmitted: true };
+
+  const record = {
+    id: uid(),
+    type: 'practice_studio_exercise',
+    studentId,
+    sessionKey,
+    mode: data?.mode || null,
+    topicId: data?.topicId || null,
+    topicTitle: data?.topicTitle || null,
+    listeningPart: data?.listeningPart || null,
+    speakingQuestion: data?.speakingQuestion || null,
+    exerciseId: data?.exerciseId || null,
+    exerciseIndex: data?.exerciseIndex ?? null,
+    result: data?.result || null,
+    results: data?.result ? [data.result] : [],
+    submittedAt: data?.submittedAt || new Date().toISOString(),
+    status: 'submitted',
+  };
+
+  try {
+    const saved = await dbUpsert('practiceSubmissions', record);
+    if (!saved) throw new Error('Supabase did not confirm the Practice Studio question.');
+    return { record: saved, alreadySubmitted: false };
+  } catch (error) {
+    if (/23505|duplicate key|unique constraint/i.test(String(error?.message || error))) {
+      const duplicate = (await getPracticeStudioExerciseSubmissions(studentId, data?.selection || {}))
+        .find(item => item.sessionKey === sessionKey);
+      if (duplicate) return { record: duplicate, alreadySubmitted: true };
+    }
+    throw error;
+  }
 }
 
 /**

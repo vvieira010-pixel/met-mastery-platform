@@ -11,6 +11,7 @@ import {
 
 const root = path.resolve(import.meta.dirname, '..');
 const audioRoot = path.join(root, 'public', 'audio', 'speaking');
+const speakingPlayerSource = fs.readFileSync(path.join(root, 'src', 'components', 'exercise-player.jsx'), 'utf8');
 
 test('Practice Studio presents the five MET Speaking questions before topics', () => {
   assert.deepEqual(
@@ -86,6 +87,12 @@ test('speaking prompt-audio files remain present for the dedicated practice pack
     assert.ok(exercise.transcript && exercise.transcript.length > 20, exercise.id);
     assert.ok(fs.existsSync(path.join(audioRoot, decodeURIComponent(exercise.audioSrc.split('/').pop()))), exercise.audioSrc);
   }
+});
+
+test('text-only speaking prompts provide a browser read-aloud control', () => {
+  assert.match(speakingPlayerSource, /Read prompt aloud/);
+  assert.match(speakingPlayerSource, /SpeechSynthesisUtterance/);
+  assert.match(speakingPlayerSource, /aria-pressed=\{isReadingPrompt\}/);
 });
 
 test('the raw speaking bank no longer exposes non-recordable short or MCQ tasks', async () => {
