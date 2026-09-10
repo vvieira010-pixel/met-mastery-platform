@@ -14,9 +14,11 @@
 
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
-import { verifySupabaseSession } from '../api/_routes/_supabase-auth.js';
+import { verifySupabaseSession, requireTeacher } from '../api/_routes/_supabase-auth.js';
 import { requireServiceKey } from '../api/_routes/_config.js';
+import { resetRateLimits } from '../api/_routes/_rate-limit.js';
 import getSubmissions from '../api/_routes/get-submissions.js';
 import saveSubmission from '../api/_routes/save-submission.js';
 
@@ -83,6 +85,7 @@ beforeEach(() => {
   process.env.APP_ORIGIN = 'https://app.example.com';
   authUserResponse = { status: 200, body: { id: 'u1', email: 'teacher@example.com', role: 'authenticated' } };
   lastRestCall = null;
+  resetRateLimits();
   installFetch();
 });
 
@@ -97,9 +100,10 @@ afterEach(() => {
 // --- helpers --------------------------------------------------------------
 
 function makeRes() {
-  const res = { statusCode: 200, body: null, headersSent: false };
+  const res = { statusCode: 200, body: null, headersSent: false, headers: {} };
   res.status = (c) => { res.statusCode = c; return res; };
   res.json = (b) => { res.body = b; return res; };
+  res.setHeader = (name, value) => { res.headers[name] = value; };
   return res;
 }
 
@@ -146,6 +150,7 @@ test('#1 S1: no session -> 401 (no PII dump)', async () => {
 
 test('#1 S1: valid session -> results scoped to the teacher email (no cross-teacher leak)', async () => {
   authUserResponse = { status: 200, body: { id: 'u1', email: 'teacherA@example.com', role: 'authenticated' } };
+  process.env.VITE_TEACHER_EMAIL = 'teacherA@example.com';
   const res = makeRes();
   await getSubmissions({ method: 'GET', headers: { authorization: 'Bearer good' }, query: {} }, res);
   assert.equal(res.statusCode, 200);
@@ -157,6 +162,7 @@ test('#1 S1: valid session -> results scoped to the teacher email (no cross-teac
 
 test('#1 S1: limit is clamped to [1, 200]', async () => {
   authUserResponse = { status: 200, body: { id: 'u1', email: 'teacherA@example.com', role: 'authenticated' } };
+  process.env.VITE_TEACHER_EMAIL = 'teacherA@example.com';
   // too high
   let res = makeRes();
   await getSubmissions({ method: 'GET', headers: { authorization: 'Bearer good' }, query: { limit: '9999' } }, res);
@@ -171,12 +177,21 @@ test('#1 S1: limit is clamped to [1, 200]', async () => {
   assert.match(lastRestCall.url, /limit=50/);
 });
 
-test('#1 S1: even a well-formed token is rejected when the server cannot verify (fail-closed 401)', async () => {
-  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
-  delete process.env.SUPABASE_SECRET_KEY;
+test('#1 S1: signed-in non-teacher -> 403 without a database query', async () => {
+  authUserResponse = { status: 200, body: { id: 'u2', email: 'student@example.com', role: 'authenticated' } };
   const res = makeRes();
   await getSubmissions({ method: 'GET', headers: { authorization: 'Bearer good' }, query: {} }, res);
-  assert.equal(res.statusCode, 401);
+  assert.equal(res.statusCode, 403);
+  assert.equal(lastRestCall, null);
+});
+
+test('teacher-only access fails closed when no teacher allowlist is configured', async () => {
+  delete process.env.VITE_TEACHER_EMAIL;
+  delete process.env.TEACHER_EMAIL;
+  const res = makeRes();
+  const user = await requireTeacher({ headers: { authorization: 'Bearer good' } }, res);
+  assert.equal(user, null);
+  assert.equal(res.statusCode, 503);
 });
 
 // --- #3 (S3): save-submission controls -----------------------------------
@@ -192,25 +207,25 @@ test('#3 S3: cross-origin request -> 403', async () => {
   assert.equal(lastRestCall, null);
 });
 
-test('#3 S3: same-origin but unknown teacher -> 403 (allowlist)', async () => {
+test('#3 S3: same-origin session-less submission -> 401', async () => {
   const res = makeRes();
   await saveSubmission(
     { method: 'POST', headers: { origin: 'https://app.example.com', 'content-type': 'application/json' },
-      body: { teacherEmail: 'intruder@evil.com', studentName: 'A', studentEmail: 'a@b.com' } },
+      body: { studentName: 'A', studentEmail: 'a@b.com' } },
     res,
   );
-  assert.equal(res.statusCode, 403);
+  assert.equal(res.statusCode, 401);
   assert.equal(lastRestCall, null);
 });
 
-test('#3 S3: allowlisted teacher -> 200 and fields are size-capped', async () => {
+test('#3 S3: allowlisted teacher session -> 200, derived teacher, and capped fields', async () => {
   const res = makeRes();
   const longEmail = 'x'.repeat(500);
   const longAnswers = 'y'.repeat(30000);
   await saveSubmission(
-    { method: 'POST', headers: { origin: 'https://app.example.com', 'content-type': 'application/json' },
+    { method: 'POST', headers: { origin: 'https://app.example.com', authorization: 'Bearer good', 'content-type': 'application/json' },
       body: {
-        teacherEmail: 'teacher@example.com',
+        teacherEmail: 'forged@evil.com',
         studentName: longEmail,
         studentEmail: longEmail,
         readingAnswers: longAnswers,
@@ -221,23 +236,39 @@ test('#3 S3: allowlisted teacher -> 200 and fields are size-capped', async () =>
   assert.ok(lastRestCall, 'should have inserted');
   assert.equal(lastRestCall.method, 'POST');
   const inserted = JSON.parse(lastRestCall.body);
-  assert.equal(inserted.teacher_id, 'teacher@example.com');
+  assert.equal(inserted.teacher_id, 'teacher@example.com', 'teacher id must come from the verified session, not request body');
   assert.ok(inserted.content.studentEmail.length <= 200, 'studentEmail must be capped at 200');
   assert.ok(inserted.content.studentName.length <= 200, 'studentName must be capped at 200');
   assert.ok(inserted.content.readingAnswers.length <= 20000, 'answers must be capped at 20000');
 });
 
-test('#3 S3: missing service key -> fail-closed 500 (same-origin + allowlisted still blocked)', async () => {
+test('#3 S3: missing service key -> fail-closed before a database write', async () => {
   delete process.env.SUPABASE_SERVICE_ROLE_KEY;
   delete process.env.SUPABASE_SECRET_KEY;
   const res = makeRes();
   await saveSubmission(
-    { method: 'POST', headers: { origin: 'https://app.example.com', 'content-type': 'application/json' },
-      body: { teacherEmail: 'teacher@example.com', studentName: 'A', studentEmail: 'a@b.com' } },
+    { method: 'POST', headers: { origin: 'https://app.example.com', authorization: 'Bearer good', 'content-type': 'application/json' },
+      body: { studentName: 'A', studentEmail: 'a@b.com' } },
     res,
   );
-  assert.equal(res.statusCode, 500);
+  assert.equal(res.statusCode, 401);
   assert.equal(lastRestCall, null);
+});
+
+test('#3 S3: public static mock-test pages do not post untrusted results to the privileged endpoint', () => {
+  for (const file of [
+    'public/mock-test-2/sections/thanks.html',
+    'public/mock-test-3/sections/thanks.html',
+  ]) {
+    assert.doesNotMatch(readFileSync(file, 'utf8'), /\/api\/save-submission/);
+  }
+});
+
+test('#1 S1: the teacher dashboard uses the secured submissions API, not direct anon table access', () => {
+  const source = readFileSync('src/components/mock-test/MockTestTeacherDashboard.jsx', 'utf8');
+  assert.match(source, /\/api\/get-submissions\?limit=50/);
+  assert.match(source, /Authorization: `Bearer \$\{session\.access_token\}`/);
+  assert.doesNotMatch(source, /\/rest\/v1\/mock_test_results/);
 });
 
 // --- config fail-closed helper -------------------------------------------

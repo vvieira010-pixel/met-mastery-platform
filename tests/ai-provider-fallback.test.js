@@ -10,6 +10,10 @@ process.env.OPENROUTER_MODELS = 'openrouter/free';
 process.env.NVIDIA_MODELS = 'deepseek-ai/deepseek-v4-flash,meta/llama-3.3-70b-instruct';
 process.env.GROQ_MODELS = 'openai/gpt-oss-120b';
 process.env.APP_ORIGIN = 'https://app.example.test';
+// The AI proxy requires a session (audit AUTH-1). These contract tests exercise
+// the cascade as an internal caller via the shared internal token.
+process.env.AI_INTERNAL_TOKEN = 'test-internal-token';
+const INTERNAL_TOKEN = process.env.AI_INTERNAL_TOKEN;
 
 const {
   default: handler,
@@ -34,7 +38,11 @@ function response(status, body) {
 function request(ip, extra = {}) {
   return {
     method: 'POST',
-    headers: { 'x-forwarded-for': ip, origin: 'https://app.example.test' },
+    headers: {
+      'x-forwarded-for': ip,
+      origin: 'https://app.example.test',
+      'x-internal-token': INTERNAL_TOKEN,
+    },
     body: { prompt: 'Reply with OK.', ...extra },
   };
 }

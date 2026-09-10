@@ -57,6 +57,7 @@ export default function CommandPalette({ isOpen, onClose, onExecute, actions }) 
       right: 0;
       bottom: 0;
       background: rgba(15, 27, 45, 0.6);
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       z-index: 2000;
       display: flex;

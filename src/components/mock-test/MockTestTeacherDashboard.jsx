@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '../ui/Button.jsx';
 import { Icon } from '../shared.jsx';
-import { getSupabaseConfig, buildSupabaseHeaders } from '../../lib/supabase-storage.js';
+import { readStoredSupabaseSession } from '../../lib/supabase-storage.js';
 
 export default function MockTestTeacherDashboard({ onBack }) {
   const [results, setResults] = useState([]);
@@ -10,19 +10,18 @@ export default function MockTestTeacherDashboard({ onBack }) {
 
   useEffect(() => {
     async function fetchResults() {
-      const cfg = getSupabaseConfig();
-      try {
-        // In a real app, we'd filter by the logged-in teacher's ID
-        const headers = buildSupabaseHeaders(cfg.anonKey);
-        const res = await fetch(`${cfg.url}/rest/v1/mock_test_results?order=created_at.desc`, {
+        const session = readStoredSupabaseSession();
+        if (!session?.access_token) throw new Error('Teacher sign-in required.');
+        try {
+        const res = await fetch('/api/get-submissions?limit=50', {
           method: 'GET',
-          headers
+          headers: { Authorization: `Bearer ${session.access_token}` },
         });
 
         if (!res.ok) throw new Error(`Failed to fetch results: ${res.status}`);
         
         const data = await res.json();
-        setResults(data);
+        setResults(data.submissions || []);
       } catch (e) {
         console.error('Error fetching mock test results', e);
         setError(e.message);

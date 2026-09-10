@@ -22,8 +22,11 @@ export function getDbContext() {
   const claims = parseJwtClaims(session.access_token) || {};
   const authUid = session.user?.id || claims.sub || null;
   if (!authUid) return null;
-  let role = 'teacher';
-  try { role = localStorage.getItem(ROLE_KEY) || 'teacher'; } catch {}
+  // Least privilege: never default to the elevated 'teacher' role. The real role is
+  // set from the server during sign-in (setSessionRole) — this fallback only applies
+  // when no role has been established yet, so it must not grant teacher access.
+  let role = 'student';
+  try { role = localStorage.getItem(ROLE_KEY) || 'student'; } catch {}
   return { url: cfg.url, anonKey: cfg.anonKey, token: session.access_token, authUid, role };
 }
 

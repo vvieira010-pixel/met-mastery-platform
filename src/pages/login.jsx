@@ -54,6 +54,17 @@ export default function LoginScreen({ onSignIn, onBack, "data-testid": testId })
     }
   };
 
+  const validateMissingSignInFields = () => {
+    if (isReset) return false;
+    const missingEmail = !email.trim();
+    const missingPassword = !password.trim();
+    if (!missingEmail && !missingPassword) return false;
+    setEmailError(missingEmail ? 'Enter your email address.' : '');
+    setPasswordError(missingPassword ? 'Enter your password.' : '');
+    setError('Please enter your email and password.');
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -78,14 +89,7 @@ export default function LoginScreen({ onSignIn, onBack, "data-testid": testId })
       return;
     }
 
-    const missingEmail = !email.trim();
-    const missingPassword = !password.trim();
-    if (missingEmail || missingPassword) {
-      setEmailError(missingEmail ? 'Enter your email address.' : '');
-      setPasswordError(missingPassword ? 'Enter your password.' : '');
-      setError('Please enter your email and password.');
-      return;
-    }
+    if (validateMissingSignInFields()) return;
     if (!supabaseReady) {
       setError("Access isn't set up yet. Contact your teacher to get started.");
       return;
@@ -232,10 +236,7 @@ export default function LoginScreen({ onSignIn, onBack, "data-testid": testId })
             type="submit"
             className={`lp-submit${loading ? ' lp-submit--loading' : ''}`}
             disabled={loading}
-            onClick={(event) => {
-              event.preventDefault();
-              void handleSubmit(event);
-            }}
+            onPointerDown={() => { validateMissingSignInFields(); }}
           >
             {loading ? (
               <><span className="lp-spinner" />{isReset ? 'Sending…' : 'Accessing…'}</>

@@ -5,6 +5,7 @@
 
 import { isSameOrigin } from './_config.js';
 import { guardRateLimit } from './_rate-limit.js';
+import { verifySupabaseSession } from './_supabase-auth.js';
 
 const env = (name) => process.env[name] || '';
 
@@ -81,9 +82,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: { message: 'Method not allowed' } });
   }
 
-  // Mirror the cross-origin guard used by save-submission.js — without it any
-  // origin can drive the (paid) TTS cascade and bill our provider accounts.
-  if (!isSameOrigin(req)) {
+  // SECURITY (audit AUTH-4): TTS drives paid providers (Deepgram, ElevenLabs,
+  // Gemini), so it must not be anonymously callable. Require a Supabase session;
+  // genuine server-to-server callers may use the shared AI_INTERNAL_TOKEN.
+  const user = await verifySupabaseSession(req);
+  const internalToken = env('AI_INTERNAL_TOKEN');
+  const isInternal = Boolean(internalToken) && req.headers['x-internal-token'] === internalToken;
+  if (!user && !isInternal) {
+    return res.status(401).json({ error: { message: 'Sign-in required to use text-to-speech.' } });
+  }
+
+  // Defense-in-depth: same-origin only unless an internal token is presented.
+  // Without this, any logged-in origin could still drive the (paid) cascade.
+  if (!isInternal && !isSameOrigin(req)) {
     return res.status(403).json({ error: { message: 'Forbidden — cross-origin request.' } });
   }
 

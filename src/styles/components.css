@@ -695,7 +695,10 @@
   width: 100%;
   max-width: 1000px;
   display: grid;
-  grid-template-columns: 1fr 440px;
+  /* minmax(0, …) on BOTH tracks: a bare `1fr` is `minmax(auto, 1fr)`, which floors the
+     track at its content's min-content width. Long headline text then pushes the grid
+     wider than the viewport and `overflow-x: hidden` on the shell clips it silently. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
   gap: 3rem;
   align-items: center;
   background: var(--surface);
@@ -706,12 +709,14 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 860px) {
+/* Collapse to one column while there is still not enough room for a 440px sidebar
+   (1000px cap − 6rem padding − 3rem gap leaves the brand column under 420px). */
+@media (max-width: 1023px) {
   .main-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 2rem;
     gap: 1.5rem;
-    max-width: 500px;
+    max-width: 560px;
   }
 }
 

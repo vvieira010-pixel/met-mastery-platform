@@ -1,0 +1,863 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MET MASTERY — UNIFIED APP SHELL
+   Proposed drop-in: src/styles/shell.css
+   ───────────────────────────────────────────────────────────────────────────
+   Design system .......... Mintlify (topology) + Linear (focus/motion craft)
+                            + Notion (Student-register warmth)
+   Contract ............... design/shell-tokens.md (amended) §3 §4 §5 §6
+   Replaces ............... .shell-*  (components.css, responsive.css, dark.css,
+                            redesign.css, stitch-theme.css) and .dash-*
+                            (student-dashboard.jsx)
+   ───────────────────────────────────────────────────────────────────────────
+   CASCADE CONTRACT — do not break any of these four invariants:
+
+   1. SPECIFICITY LOCK. Every component rule is `.mm-shell .mm-*` = (0,2,0).
+      Every dark rule is `:root[data-theme="dark"] .mm-shell …` = (0,3,0).
+      All five legacy shell authors are (0,1,0), so the lock wins on
+      specificity and source order stops mattering.
+      → This is what neutralises redesign.css:359 (@media min-width:861px
+        turning the teacher topbar into a 17.5rem left rail, F0.2) and
+        redesign.css:716 (height-locked .shell, F0.6) without deleting a line.
+
+   2. ZERO !important. If one is ever needed, the lock is broken — fix the
+      selector instead.
+
+   3. MIN-WIDTH ONLY. Not one `max-width` query. redesign.css pairs
+      `max-width:860` with `min-width:861`, so 860.5px matches neither and the
+      shell renders unstyled (F0.5). Min-width-only cannot have a gap by
+      construction: the base covers [0,391) and each threshold overrides
+      upward.
+
+   4. NO HARD-CODED CHROME HEIGHT. `--mm-chrome-h` is derived and is the only
+      thing `<main>` consumes. Grep for `52px` → zero hits.
+
+   LOAD ORDER (§4.3): after redesign.css, before stitch-theme.css.
+   PREREQUISITE (§4.6): index.html:7 needs `viewport-fit=cover`, or every
+   env(safe-area-inset-*) evaluates to 0px and the bottom tabs sit under the
+   iPhone home indicator (F0.3).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §3.1  COLOUR — light
+   Light values reconcile tokens.css / DESIGN.md with the effective
+   stitch-theme.css overlay, which loads last and wins today (F0.4).
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Primary — deep teal */
+  --mm-primary:         #19647E;
+  --mm-primary-hover:   #0F4C61;
+  --mm-primary-press:   #0B3E4F;
+  --mm-primary-on:      #FFFFFF;   /* 6.6:1 on #19647E */
+  --mm-primary-tint:    #E2F0F3;   /* active nav fill  */
+  --mm-primary-rgb:     25 100 126;
+
+  /* Accent — brand amber.
+     ⚠ #FFC857 is 1.50:1 on #FDFCF8. FILL / INDICATOR ONLY.
+       Every amber TEXT and ICON uses --mm-accent-ink (6.1:1). */
+  --mm-accent:          #FFC857;
+  --mm-accent-ink:      #8B562A;
+  --mm-accent-tint:     #FFF8E7;
+  --mm-accent-rgb:      255 200 87;
+
+  /* Surfaces */
+  --mm-page:            #FDFCF8;
+  --mm-surface:         #FFFFFF;
+  --mm-surface-sunken:  #F6F3EC;
+  --mm-chrome:          #FFFFFF;
+  --mm-chrome-muted:    #FDFCF8;
+
+  /* Ink */
+  --mm-ink:             #1A2E35;
+  --mm-ink-muted:       #5D787D;   /* 4.7:1 on #FFFFFF */
+  --mm-ink-disabled:    #9AA9AC;   /* non-text-safe only */
+
+  /* Lines */
+  --mm-border:          #E8E5DF;
+  --mm-border-strong:   #CFC9BE;
+  --mm-divider:         rgba(26 46 53 / .06);
+
+  /* Semantic (shell use only) */
+  --mm-danger:          #A34E48;
+  --mm-danger-on:       #FFFFFF;
+  --mm-scrim:           rgba(11 21 32 / .38);
+
+  /* Focus */
+  --mm-focus-ring:       0 0 0 2px var(--mm-chrome), 0 0 0 4px var(--mm-primary);
+  /* Used inside `overflow-x:auto` scrollers, where an outward ring is clipped
+     because overflow-y is forced to `auto` alongside overflow-x. */
+  --mm-focus-ring-inset: inset 0 0 0 2px var(--mm-primary);
+
+  /* Amber indicator geometry — the ONLY way --mm-accent may appear */
+  --mm-underline:      3px;
+  --mm-dot:            6px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §3.1  COLOUR — dark
+   Scoped to :root[data-theme="dark"] (0,2,0) so it outranks every existing
+   [data-theme="dark"] block (0,1,0) in dark.css and stitch-theme.css.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root[data-theme="dark"] {
+  --mm-primary:         #7FC9D2;   /* 8.8:1 on #12202b */
+  --mm-primary-hover:   #A5DCE3;
+  --mm-primary-press:   #5FB4BE;
+  --mm-primary-on:      #06202B;
+  --mm-primary-tint:    #14343D;
+  --mm-primary-rgb:     127 201 210;
+
+  --mm-accent:          #F0B74A;   /* 9.1:1 on #12202b */
+  --mm-accent-ink:      #FCD34D;
+  --mm-accent-tint:     #2A2113;
+  --mm-accent-rgb:      240 183 74;
+
+  --mm-page:            #0b1520;
+  --mm-surface:         #12202b;
+  --mm-surface-sunken:  #0b1520;
+  --mm-chrome:          #12202b;
+  --mm-chrome-muted:    #1a2c38;
+
+  --mm-ink:             #eaf1f2;   /* 14.5:1 on #12202b */
+  --mm-ink-muted:       #9fb4b8;   /* 7.6:1 */
+  --mm-ink-disabled:    #5C7076;
+
+  --mm-border:          #2a3e49;
+  --mm-border-strong:   #45616a;
+  --mm-divider:         rgba(255 255 255 / .06);
+
+  --mm-danger:          #E0857F;
+  --mm-danger-on:       #2A1210;
+  --mm-scrim:           rgba(0 0 0 / .55);
+
+  --mm-e-1: 0 1px 2px rgba(0 0 0 / .40);
+  --mm-e-2: 0 2px 8px -2px rgba(0 0 0 / .55), 0 1px 2px rgba(0 0 0 / .40);
+  --mm-e-3: 0 12px 32px -12px rgba(0 0 0 / .70), 0 2px 6px rgba(0 0 0 / .45);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §3.2  SPACING · RADIUS · ELEVATION · MOTION
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* 4px base */
+  --mm-s-1: 4px;   --mm-s-2: 8px;   --mm-s-3: 12px;  --mm-s-4: 16px;
+  --mm-s-5: 20px;  --mm-s-6: 24px;  --mm-s-8: 32px;  --mm-s-10: 40px;
+  --mm-s-12: 48px;
+
+  --mm-r-sm: 8px;
+  --mm-r-md: 10px;
+  --mm-r-lg: 12px;
+  --mm-r-pill: 999px;
+
+  /* Flat by default — DESIGN.md Flat-By-Default Rule.
+     Shadows are a state response, never ambient. */
+  --mm-e-0: none;
+  --mm-e-1: 0 1px 2px rgba(26 46 53 / .04);
+  --mm-e-2: 0 2px 8px -2px rgba(26 46 53 / .10), 0 1px 2px rgba(26 46 53 / .04);
+  --mm-e-3: 0 12px 32px -12px rgba(26 46 53 / .20), 0 2px 6px rgba(26 46 53 / .06);
+
+  /* Motion — honoured / disabled in the component layer, §prefers-reduced-motion */
+  --mm-dur-1: 120ms;
+  --mm-dur-2: 180ms;
+  --mm-ease:  cubic-bezier(.2, 0, .2, 1);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §3.3  TYPOGRAPHY — shell chrome only
+   Authored as composite `font` shorthands (the slash notation in the spec is
+   not valid CSS) plus a separate tracking token, because `font` carries no
+   letter-spacing. Variant weight is swapped by re-declaring the composite on
+   `.mm-shell[data-shell]` — see §5.7 at the end of this file.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --mm-font-ui: 'DM Sans', 'Inter', system-ui, -apple-system, 'Segoe UI',
+                Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mm-font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --mm-font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --mm-t-brand:              600 0.9375rem/1.2 var(--mm-font-display);
+  --mm-t-brand-tracking:     -0.01em;
+  --mm-t-brand-sub:          600 0.6875rem/1.2 var(--mm-font-ui);
+  --mm-t-brand-sub-tracking:  0.08em;
+  --mm-t-nav:                500 0.875rem/1.2 var(--mm-font-ui);
+  --mm-t-nav-tracking:        0;
+  --mm-t-nav-active-weight:  600;
+  --mm-t-section:            700 0.625rem/1.2 var(--mm-font-ui);
+  --mm-t-section-tracking:    0.14em;
+  --mm-t-tab:                600 0.625rem/1.1 var(--mm-font-ui);
+  --mm-t-tab-tracking:        0;
+  --mm-t-mobile-title:       600 0.9375rem/1.2 var(--mm-font-ui);
+  --mm-t-mobile-title-tracking: -0.01em;
+  --mm-t-menu:               500 0.9375rem/1.3 var(--mm-font-ui);
+  --mm-t-menu-tracking:       0;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §3.4  LAYOUT — the five states. BASE = smallest phone.
+   min-width thresholds only: 391 · 421 · 769 · 861 · 1025.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --mm-topbar-h:    56px;
+  --mm-navbar-h:    0px;                 /* no nav row on phones */
+  --mm-bottomnav-h: 56px;
+  --mm-gutter:      12px;
+  --mm-content-max: 880px;               /* below desktop both roles are fluid */
+
+  --mm-safe-t:      env(safe-area-inset-top, 0px);
+  --mm-safe-b:      env(safe-area-inset-bottom, 0px);
+
+  /* Derived — <main> consumes these, never the raw numbers */
+  --mm-chrome-h:        calc(var(--mm-topbar-h) + var(--mm-navbar-h) + var(--mm-safe-t));
+  --mm-bottomnav-total: calc(var(--mm-bottomnav-h) + var(--mm-safe-b));
+  --mm-content-pad-b:   calc(var(--mm-bottomnav-total) + var(--mm-s-4));
+
+  --mm-z-chrome: 1000;
+  --mm-z-scrim:  1050;
+  --mm-z-menu:   1100;                   /* above bottom nav, below --z-modal */
+
+  /* §3.5 touch targets */
+  --mm-touch:        44px;               /* WCAG 2.5.8 floor */
+  --mm-nav-item-h:   44px;
+  --mm-nav-item-px:  12px;               /* overridden per variant, §5.7 */
+  --mm-nav-item-gap: 4px;
+  --mm-tab-min-w:    60px;               /* 5 × 60 = 300 ≤ 320 */
+  --mm-tab-h:        56px;
+  --mm-menu-item-h:  48px;
+  --mm-icon:         20px;
+  --mm-icon-tab:     22px;
+}
+
+/* 391px — restore the phone gutter and the full-size tab label (XS keeps 10px) */
+@media (min-width: 391px) {
+  :root {
+    --mm-gutter: 16px;
+    --mm-t-tab: 600 0.6875rem/1.1 var(--mm-font-ui);
+    --mm-t-tab-tracking: 0.01em;
+  }
+}
+
+/* 421px — brand wordmark returns. §3.4 state table: rows 4 (391–420) and 5
+   (≤390) both read "brand copy hidden"; state 3 (421–768) does not. */
+@media (min-width: 421px) {
+  .mm-shell .mm-brand-copy { display: flex; }
+}
+
+/* 769px — compact tablet: bottom nav OFF, horizontal nav row ON.
+   This is the block that closes the 769–860 dead zone (F0.2 / F0.5). */
+@media (min-width: 769px) {
+  :root {
+    --mm-navbar-h: 44px;
+    --mm-gutter: 20px;
+    --mm-content-pad-b: var(--mm-s-8);   /* 32px — no bottom nav */
+  }
+  .mm-shell .mm-nav          { display: flex; }
+  .mm-shell .mm-tabbar       { display: none; }
+  .mm-shell .mm-mobile-title { display: none; }
+}
+
+/* 861px — tablet */
+@media (min-width: 861px) {
+  :root { --mm-gutter: 24px; }
+}
+
+/* 1025px — desktop: full-height nav row, section labels, per-role content max */
+@media (min-width: 1025px) {
+  :root { --mm-navbar-h: 48px; --mm-gutter: 32px; }
+  .mm-shell .mm-nav-section-label      { display: block; }
+  .mm-shell[data-shell="teacher"]      { --mm-content-max: 1120px; }  /* DESIGN.md:187 */
+  .mm-shell[data-shell="student"]      { --mm-content-max: 880px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESET — the only selectors in this file not written as `.mm-shell .mm-*`.
+   They establish the box model the geometry below depends on; every
+   behavioural property is still set by a (0,2,0) rule.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mm-shell,
+.mm-shell *,
+.mm-shell *::before,
+.mm-shell *::after { box-sizing: border-box; }
+
+.mm-shell button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.6a  SHELL ROOT — the F0.6 fix
+   The legacy root is `display:flex; height:100dvh; min-height:100vh;
+   overflow:hidden; padding: calc(52px + env(...)) 0 0` (redesign.css:716-723).
+   All three defects are reversed here:
+     · `height` + `min-height:100vh` is self-defeating — dvh ≤ vh, so vh wins
+       and the dvh correction can never apply. Use min-height twice, vh first.
+     · `overflow:hidden` pushes scroll onto an inner container, which breaks
+       position:sticky, degrades scroll anchoring and stops the Android URL
+       bar collapsing. → Let the DOCUMENT scroll.
+     · A third hard-coded topbar height. → No root padding at all.
+   The explicit `height:auto / overflow:visible / padding:0` resets exist only
+   to beat redesign.css:359 and :716; they are not decoration.
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;        /* fallback — must come first so dvh wins below */
+  min-height: 100dvh;
+  height: auto;             /* ← neutralises redesign.css:721 */
+  overflow: visible;        /* ← neutralises redesign.css:718 */
+  padding: 0;               /* ← neutralises redesign.css:362 and :722 */
+  background: var(--mm-page);
+  color: var(--mm-ink);
+  font-family: var(--mm-font-ui);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.1  SKIP LINK
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-skip {
+  position: fixed;
+  top: var(--mm-s-2);
+  left: var(--mm-s-2);
+  z-index: calc(var(--mm-z-menu) + 100);
+  padding: var(--mm-s-2) var(--mm-s-4);
+  border-radius: var(--mm-r-sm);
+  background: var(--mm-primary);
+  color: var(--mm-primary-on);
+  font: 600 0.875rem/1.2 var(--mm-font-ui);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-skip:focus-visible {
+  transform: none;
+  outline: none;
+  box-shadow: var(--mm-focus-ring);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.2  TOPBAR — solid, full-bleed, fixed. No backdrop-filter (3G).
+   Replaces the floating glass island (components.css:1176-1197):
+   top:10px; left/right:12px; border-radius:28px; backdrop-filter: blur(18px).
+   The island's inset geometry breaks env(safe-area-inset-*) compensation and
+   it is one of the most expensive paints on a mid-range Android GPU.
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--mm-z-chrome);
+  height: calc(var(--mm-topbar-h) + var(--mm-navbar-h) + var(--mm-safe-t));
+  padding-top: var(--mm-safe-t);
+  padding-inline: var(--mm-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--mm-chrome);
+  border-bottom: 1px solid var(--mm-border);
+  /* NO backdrop-filter. NO border-radius. NO box-shadow. */
+}
+
+.mm-shell .mm-topbar-row {
+  height: var(--mm-topbar-h);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mm-s-3);
+  min-width: 0;
+}
+
+/* Brand ──────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--mm-s-2);
+  min-height: var(--mm-touch);
+  min-width: 0;
+  flex: none;
+  border-radius: var(--mm-r-sm);
+  color: var(--mm-ink);
+  text-align: left;
+}
+.mm-shell .mm-brand-mark {
+  flex: none;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: var(--mm-r-sm);
+  background: var(--mm-primary);
+  color: var(--mm-primary-on);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.9375rem/1 var(--mm-font-display);
+}
+.mm-shell .mm-brand-copy {
+  display: none;                 /* restored at ≥421px */
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.mm-shell .mm-brand-copy strong {
+  font: var(--mm-t-brand);
+  letter-spacing: var(--mm-t-brand-tracking);
+  white-space: nowrap;
+}
+.mm-shell .mm-brand-copy small {
+  font: var(--mm-t-brand-sub);
+  letter-spacing: var(--mm-t-brand-sub-tracking);
+  text-transform: uppercase;
+  color: var(--mm-ink-muted);
+  white-space: nowrap;
+}
+
+/* Mobile page title — a visual echo of <main>'s <h1>, hidden from AT so the
+   document keeps exactly one h1 (§5.1 shows an <h1>; this is a deliberate
+   a11y correction, see hand-off notes). */
+.mm-shell .mm-mobile-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+  font: var(--mm-t-mobile-title);
+  letter-spacing: var(--mm-t-mobile-title-tracking);
+  color: var(--mm-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mm-shell .mm-topbar-actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--mm-s-2);
+}
+.mm-shell .mm-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--mm-touch);
+  min-width: var(--mm-touch);
+  border-radius: var(--mm-r-sm);
+  color: var(--mm-ink-muted);
+  font: 600 0.6875rem/1 var(--mm-font-ui);
+  letter-spacing: .06em;
+  transition: background var(--mm-dur-1) var(--mm-ease),
+              color var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-iconbtn:hover { background: var(--mm-primary-tint); color: var(--mm-ink); }
+.mm-shell .mm-iconbtn:focus-visible {
+  outline: none;
+  box-shadow: var(--mm-focus-ring-inset);
+}
+.mm-shell .mm-avatar {
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--mm-r-pill);
+  background: var(--mm-primary-tint);
+  color: var(--mm-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.75rem/1 var(--mm-font-ui);
+  flex: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.3  NAV — horizontal, ≥769px. Hidden in the base.
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-nav {
+  display: none;                 /* → flex at ≥769px */
+  height: var(--mm-navbar-h);
+  flex: none;
+  align-items: center;
+  gap: var(--mm-nav-item-gap);
+  border-top: 1px solid var(--mm-divider);
+  /* Long PT strings scroll; they never wrap (§3.3 bilingual note). */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.mm-shell .mm-nav::-webkit-scrollbar { display: none; }
+
+/* Edge fade — applied only while the row actually overflows. JS toggles
+   `.is-overflowing` from scrollWidth > clientWidth. */
+.mm-shell .mm-nav.is-overflowing {
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+          mask-image: linear-gradient(to right,
+      transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+}
+
+.mm-shell .mm-nav-section {
+  display: flex;
+  align-items: center;
+  gap: var(--mm-nav-item-gap);
+  flex: none;
+}
+.mm-shell .mm-nav-section + .mm-nav-section {
+  border-left: 1px solid var(--mm-divider);
+  margin-left: var(--mm-s-3);
+  padding-left: var(--mm-s-3);
+}
+.mm-shell .mm-nav-section-label {
+  display: none;                 /* → block at ≥1025px */
+  flex: none;
+  margin-right: var(--mm-s-1);
+  font: var(--mm-t-section);
+  letter-spacing: var(--mm-t-section-tracking);
+  text-transform: uppercase;
+  color: var(--mm-ink-muted);
+  white-space: nowrap;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.4  NAV ITEM — states
+   min-height + padding, NEVER a fixed height, so 44px survives user font
+   scaling (WCAG 1.4.4). The legacy .shell-nav-btn is ≈30px (WCAG 2.5.8 fail).
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mm-s-2);
+  min-height: var(--mm-nav-item-h);
+  padding: 0 var(--mm-nav-item-px);
+  flex: none;
+  max-inline-size: 24ch;
+  border-radius: var(--mm-r-sm);
+  background: transparent;
+  color: var(--mm-ink-muted);
+  font: var(--mm-t-nav);
+  letter-spacing: var(--mm-t-nav-tracking);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background var(--mm-dur-1) var(--mm-ease),
+              color var(--mm-dur-1) var(--mm-ease),
+              transform var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-nav-item > svg,
+.mm-shell .mm-nav-item > .mm-ico { flex: none; inline-size: var(--mm-icon); block-size: var(--mm-icon); }
+.mm-shell .mm-nav-item .mm-label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mm-shell .mm-nav-item:hover {
+  background: var(--mm-primary-tint);
+  color: var(--mm-ink);
+}
+
+/* ACTIVE — teal TEXT + inset underline + tint fill.
+   Never a filled teal pill: that paints ~10% of the screen per active item and
+   breaks DESIGN.md's One Voice Rule. */
+.mm-shell .mm-nav-item[aria-current="page"] {
+  background: var(--mm-primary-tint);
+  color: var(--mm-primary);
+  font-weight: var(--mm-t-nav-active-weight);
+  box-shadow: inset 0 calc(-1 * var(--mm-underline)) 0 var(--mm-primary);
+}
+
+.mm-shell .mm-nav-item:focus-visible {
+  outline: none;
+  box-shadow: var(--mm-focus-ring-inset);
+}
+
+.mm-shell .mm-nav-item:active {
+  background: var(--mm-primary-tint);
+  color: var(--mm-primary-press);
+  transform: scale(.97);
+}
+
+.mm-shell .mm-nav-item[aria-disabled="true"],
+.mm-shell .mm-nav-item:disabled {
+  background: transparent;
+  color: var(--mm-ink-disabled);
+  cursor: not-allowed;
+  transform: none;
+}
+.mm-shell .mm-nav-item[aria-disabled="true"]:focus-visible {
+  box-shadow: var(--mm-focus-ring-inset);
+}
+
+/* Badge — counts only. aria-label on the parent carries "3 unread". */
+.mm-shell .mm-badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 5px;
+  border-radius: var(--mm-r-pill);
+  background: var(--mm-danger);
+  color: var(--mm-danger-on);
+  font: 700 10px/1 var(--mm-font-ui);
+}
+
+/* Student-only "new" indicator. --mm-accent is a FILL/INDICATOR token (§3.1);
+   never a text colour, never the sole state signal. */
+.mm-shell .mm-nav-item[data-new]::after {
+  content: "";
+  flex: none;
+  inline-size: var(--mm-dot);
+  block-size: var(--mm-dot);
+  border-radius: var(--mm-r-pill);
+  background: var(--mm-accent);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.6  MAIN
+   padding-top consumes ONLY the derived --mm-chrome-h. Never a literal.
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-main {
+  display: block;
+  inline-size: 100%;
+  max-inline-size: calc(var(--mm-content-max) + var(--mm-gutter) * 2);
+  margin-inline: auto;
+  padding-top: var(--mm-chrome-h);
+  padding-bottom: var(--mm-content-pad-b);
+  padding-inline: var(--mm-gutter);
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* Document scroll ⇒ the skip link needs this or it lands under the topbar. */
+  scroll-margin-top: var(--mm-chrome-h);
+  /* 3G win carried over from components.css:1346. `auto` remembers the last
+     rendered size, which is what prevents scroll-anchoring jumps. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+.mm-shell .mm-main:focus { outline: none; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.5  TABBAR — bottom nav, ≤768px. Hidden from 769px up: the exact
+   complement of .mm-nav. The two never coexist.
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--mm-z-chrome);
+  height: var(--mm-bottomnav-total);
+  padding-bottom: var(--mm-safe-b);
+  display: flex;                 /* → none at ≥769px */
+  justify-content: space-around;
+  align-items: stretch;
+  background: var(--mm-chrome);
+  border-top: 1px solid var(--mm-border);
+  /* NO backdrop-filter. */
+}
+
+.mm-shell .mm-tab {
+  position: relative;
+  flex: 1 1 0;
+  min-width: var(--mm-tab-min-w);
+  min-height: var(--mm-touch);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 4px;
+  background: transparent;
+  color: var(--mm-ink-muted);
+  text-decoration: none;
+}
+/* 3px top bar — a shape, not just a colour (WCAG 1.4.1). */
+.mm-shell .mm-tab::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--mm-underline);
+  background: var(--mm-primary);
+  opacity: 0;
+  transition: opacity var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-tab[aria-current="page"]::before { opacity: 1; }
+
+/* Tint pill behind the icon — the second, non-colour-only signal. */
+.mm-shell .mm-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--mm-r-pill);
+  background: transparent;
+  transition: background var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-tab[aria-current="page"] .mm-tab-pill { background: var(--mm-primary-tint); }
+.mm-shell .mm-tab > svg,
+.mm-shell .mm-tab .mm-ico { inline-size: var(--mm-icon-tab); block-size: var(--mm-icon-tab); }
+.mm-shell .mm-tab[aria-current="page"] { color: var(--mm-primary); }
+.mm-shell .mm-tab .mm-tab-label {
+  max-inline-size: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--mm-t-tab);
+  letter-spacing: var(--mm-t-tab-tracking);
+}
+.mm-shell .mm-tab:focus-visible {
+  outline: none;
+  box-shadow: var(--mm-focus-ring-inset);
+}
+.mm-shell .mm-tab:active { transform: scale(.97); }
+
+/* Student next-action ring — amber as a FILL/INDICATOR only. */
+.mm-shell[data-shell="student"] .mm-tab[data-next] .mm-tab-pill {
+  box-shadow: inset 0 0 0 2px var(--mm-accent);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   §5.5  OVERFLOW SHEET + SCRIM
+   ─────────────────────────────────────────────────────────────────────────── */
+.mm-shell .mm-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mm-z-scrim);
+  background: var(--mm-scrim);
+  animation: mm-fade-in var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-scrim[hidden] { display: none; }
+
+.mm-shell .mm-sheet {
+  position: fixed;
+  left: var(--mm-gutter);
+  right: var(--mm-gutter);
+  bottom: calc(var(--mm-bottomnav-total) + var(--mm-s-2));
+  z-index: var(--mm-z-menu);
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-border);
+  border-radius: var(--mm-r-lg);
+  box-shadow: var(--mm-e-3);
+  max-height: min(60dvh, 420px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--mm-s-2) 0;
+  animation: mm-sheet-in var(--mm-dur-2) var(--mm-ease);
+}
+.mm-shell .mm-sheet[hidden] { display: none; }
+
+.mm-shell .mm-sheet-head {
+  padding: var(--mm-s-2) var(--mm-s-4) var(--mm-s-3);
+  font: var(--mm-t-section);
+  letter-spacing: var(--mm-t-section-tracking);
+  text-transform: uppercase;
+  color: var(--mm-ink-muted);
+}
+.mm-shell .mm-sheet-item {
+  inline-size: 100%;
+  min-height: var(--mm-menu-item-h);
+  padding: 0 var(--mm-s-4);
+  display: flex;
+  align-items: center;
+  gap: var(--mm-s-3);
+  font: var(--mm-t-menu);
+  letter-spacing: var(--mm-t-menu-tracking);
+  color: var(--mm-ink);
+  text-align: left;
+  transition: background var(--mm-dur-1) var(--mm-ease);
+}
+.mm-shell .mm-sheet-item > svg,
+.mm-shell .mm-sheet-item .mm-ico {
+  flex: none;
+  inline-size: var(--mm-icon);
+  block-size: var(--mm-icon);
+  color: var(--mm-ink-muted);
+}
+.mm-shell .mm-sheet-item:hover { background: var(--mm-primary-tint); }
+.mm-shell .mm-sheet-item:focus-visible {
+  outline: none;
+  box-shadow: var(--mm-focus-ring-inset);
+}
+.mm-shell .mm-sheet-item[aria-current="page"] {
+  color: var(--mm-primary);
+  font-weight: 600;
+  background: var(--mm-primary-tint);
+}
+.mm-shell .mm-sheet-item .mm-badge { margin-left: auto; }
+
+@keyframes mm-fade-in   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mm-sheet-in  { from { opacity: 0; transform: translateY(8px); }
+                          to   { opacity: 1; transform: none; } }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   DARK — (0,3,0), beating dark.css:132-158 (0,2,0) and stitch-theme (0,2,0).
+   Intentionally thin: every colour above is already a token, so dark painting
+   flows through §3.1. This block exists to prove the pattern and to pin the
+   two things a token cannot express.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root[data-theme="dark"] .mm-shell {
+  color-scheme: dark;
+  --mm-e-0: none;
+}
+:root[data-theme="dark"] .mm-shell .mm-sheet {
+  border-color: var(--mm-border);
+  box-shadow: var(--mm-e-3);
+}
+:root[data-theme="dark"] .mm-shell .mm-tab-pill { color: inherit; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION — kill the press scale and the sheet slide.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mm-shell .mm-nav-item,
+  .mm-shell .mm-tab,
+  .mm-shell .mm-tab-pill,
+  .mm-shell .mm-tab::before,
+  .mm-shell .mm-iconbtn,
+  .mm-shell .mm-sheet-item,
+  .mm-shell .mm-skip {
+    transition: none;
+  }
+  .mm-shell .mm-nav-item:active,
+  .mm-shell .mm-tab:active { transform: none; }
+  .mm-shell .mm-sheet,
+  .mm-shell .mm-scrim { animation: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   FORCED COLOURS — box-shadow rings vanish; restore a real outline.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (forced-colors: active) {
+  .mm-shell .mm-nav-item:focus-visible,
+  .mm-shell .mm-tab:focus-visible,
+  .mm-shell .mm-sheet-item:focus-visible,
+  .mm-shell .mm-iconbtn:focus-visible,
+  .mm-shell .mm-skip:focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   §5.7  VARIANTS — LAST in the file on purpose.
+   These are (0,2,0), identical to every other .mm-shell rule above, so they
+   win on source order alone. Moving them up silently breaks both registers.
+   Teacher vs Student is a FIVE-TOKEN delta, not a second component.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mm-shell[data-shell="teacher"] {
+  --mm-nav-item-px: 12px;                                    /* denser */
+  --mm-t-nav: 500 0.875rem/1.2 var(--mm-font-ui);            /* weight 500 */
+  --mm-t-nav-tracking: 0;
+}
+.mm-shell[data-shell="student"] {
+  --mm-nav-item-px: 14px;                                    /* airier */
+  --mm-t-nav: 600 0.875rem/1.2 var(--mm-font-ui);            /* weight 600 */
+  --mm-t-nav-tracking: 0;
+  --mm-chrome: var(--mm-page);                               /* warmer (Notion) */
+}
+/* One Voice: the teacher shell is monochrome-teal. Any amber inside teacher
+   nav collapses to primary. */
+.mm-shell[data-shell="teacher"] .mm-nav-item { --mm-accent: var(--mm-primary); }
+.mm-shell[data-shell="teacher"] .mm-tab      { --mm-accent: var(--mm-primary); }

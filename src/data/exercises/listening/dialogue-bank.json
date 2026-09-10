@@ -9,7 +9,7 @@
       "items": [
         {
           "id": "listen_01_cafe",
-          "audioFile": "listening-L01-cafe-oat-milk.wav",
+          "audioFile": "listening-L01-cafe-oat-milk.mp3",
           "script": "N: Listen to a conversation in a coffee shop.\nBarista: Hi, what can I get for you?\nCustomer: I’d like a large latte, please — with oat milk if you have it.\nBarista: We do, but I should mention we’re out of oat milk until the delivery arrives around two.\nCustomer: Oh, I have a dairy allergy, so I can’t have regular milk. What time is your delivery usually?\nBarista: Usually by two, but the driver called and said maybe three today because of traffic on Main Street.\nCustomer: I have a meeting at two-thirty nearby. Could I come back after that?\nBarista: That should work. I can set one aside for you if you’d like.\nN: Now answer the questions.",
           "questions": [
             {
@@ -34,7 +34,7 @@
         },
         {
           "id": "listen_02_advisor",
-          "audioFile": "listening-L02-academic-advisor.wav",
+          "audioFile": "listening-L02-academic-advisor.mp3",
           "script": "N: Listen to a conversation between a student and an academic advisor.\nAdvisor: So, you’re thinking about taking Introduction to Marketing next term?\nStudent: Yes, but the only open section is Tuesday evenings, and that’s when I work at the clinic.\nAdvisor: There is an online section, but it fills quickly. If you want it, you should register today.\nStudent: I was hoping for in-person because I learn better when I can ask questions directly.\nAdvisor: I understand, but if your work schedule can’t change, the online option may be more practical.\nStudent: True. I’ll call my manager this afternoon to see if I can switch shifts. If not, I’ll take the online class.\nN: Now answer the questions.",
           "questions": [
             {
@@ -59,7 +59,7 @@
         },
         {
           "id": "listen_03_clinic",
-          "audioFile": "listening-L03-clinic-reception.wav",
+          "audioFile": "listening-L03-clinic-reception.mp3",
           "script": "N: Listen to a conversation at a clinic reception desk.\nReceptionist: Good morning, how can I help you?\nPatient: I had a blood test last Thursday, and I’m calling to ask if the results are ready.\nReceptionist: Let me check. Yes, the doctor reviewed them this morning. She’d like you to come in tomorrow at ten to discuss them.\nPatient: Is everything okay? Should I be worried?\nReceptionist: The note just says she wants to explain the results in person. It doesn’t look urgent — otherwise she would have called you directly.\nPatient: Okay, I’ll be there at ten. Do I need to bring anything?\nReceptionist: Just your ID and a list of any medications you’re currently taking.\nN: Now answer the questions.",
           "questions": [
             {
@@ -84,7 +84,7 @@
         },
         {
           "id": "listen_04_library",
-          "audioFile": "listening-L04-library-renewal.wav",
+          "audioFile": "listening-L04-library-renewal.mp3",
           "script": "N: Listen to a conversation in a university library.\nStudent: Hi, I need to renew a book, but I’ve already renewed it twice online.\nLibrarian: Yes, after two online renewals you have to bring the book in so we can check its condition.\nStudent: I have it here. I was hoping to keep it for another week because I’m finishing a research paper.\nLibrarian: Let me see. There’s no hold on it from other students, so I can renew it for seven more days. After that, though, you’ll need to return it.\nStudent: That’s perfect — my paper is due Friday.\nN: Now answer the questions.",
           "questions": [
             {
@@ -109,7 +109,7 @@
         },
         {
           "id": "listen_05_train",
-          "audioFile": "listening-L05-train-delay.wav",
+          "audioFile": "listening-L05-train-delay.mp3",
           "script": "N: Listen to an announcement and a short conversation at a train station.\nAnnouncer: Attention passengers on platform three. The 9:15 express to Riverview is delayed by approximately twenty minutes due to signal maintenance. Passengers who need to reach Riverview before ten should take the 9:30 local train on platform one, which will make all stops but arrive by 9:55.\nWoman: Did you hear that? We’ll miss our connection if we wait.\nMan: Let’s switch to the local. It’s slower, but we’ll still get there on time, and I’d rather not risk waiting.\nWoman: Okay, let’s move to platform one now before it gets crowded.\nN: Now answer the questions.",
           "questions": [
             {
@@ -134,7 +134,7 @@
         },
         {
           "id": "listen_06_housing",
-          "audioFile": "listening-L06-apartment-viewing.wav",
+          "audioFile": "listening-L06-apartment-viewing.mp3",
           "script": "N: Listen to two roommates discussing an apartment.\nWoman: I like the place on Green Street. It’s cheaper, and the kitchen was renovated last year.\nMan: I liked it too, but it’s quite far from the train station, and the bedrooms are small — I’m not sure my desk would fit.\nWoman: That’s true, though the bus stop is right outside, and internet is included in the rent, which saves money each month.\nMan: Good point. Should we visit again and measure the rooms before deciding?\nWoman: Yes, let’s go again on Friday and bring a tape measure.\nN: Now answer the questions.",
           "questions": [
             {
@@ -159,7 +159,7 @@
         },
         {
           "id": "listen_07_museum",
-          "audioFile": "listening-L07-museum-volunteer.wav",
+          "audioFile": "listening-L07-museum-volunteer.mp3",
           "script": "N: Listen to a volunteer coordinator at a museum.\nCoordinator: Welcome and thank you for volunteering this weekend. Please arrive fifteen minutes before your shift to collect your name badge and leave bags in the staff room. Most of you will help visitors find the correct galleries. If you don’t know an answer, don’t guess — send the visitor to the information desk near the main entrance. And remember, food and drinks are not allowed in the exhibition rooms, so please finish them before your shift.\nN: Now answer the questions.",
           "questions": [
             {
@@ -184,7 +184,7 @@
         },
         {
           "id": "listen_08_office",
-          "audioFile": "listening-L08-office-hybrid-policy.wav",
+          "audioFile": "listening-L08-office-hybrid-policy.mp3",
           "script": "N: Listen to a manager talking to a team about a work policy.\nManager: As you know, we’re moving to a hybrid model next month. You’ll work from home Monday and Friday, and be in the office Tuesday through Thursday. The idea is to keep focused work at home but have in-person time for planning and training. Please update the shared calendar by this Friday so we know when to book meeting rooms. If you have concerns about equipment at home, talk to HR this week.\nTeam member: Will the office hours change?\nManager: No, hours stay nine to five, but you can request flexible start times through HR.\nN: Now answer the questions.",
           "questions": [
             {
@@ -209,7 +209,7 @@
         },
         {
           "id": "listen_09_doctor",
-          "audioFile": "listening-L09-doctor-followup.wav",
+          "audioFile": "listening-L09-doctor-followup.mp3",
           "script": "N: Listen to a doctor talking to a patient during a follow-up visit.\nDoctor: Your blood pressure is lower than last month — that’s good progress. It looks like the new medication is working. How are you feeling?\nPatient: Better, but I still get a little dizzy in the mornings.\nDoctor: That can be a side effect at first. Try taking the pill in the evening instead, and keep checking your pressure daily. If the dizziness continues for more than a week, call the clinic.\nPatient: Should I still avoid salty foods?\nDoctor: Yes, keep limiting salt and keep walking thirty minutes a day. Let’s meet again in two weeks.\nN: Now answer the questions.",
           "questions": [
             {
@@ -234,7 +234,7 @@
         },
         {
           "id": "listen_10_bike",
-          "audioFile": "listening-L10-bike-rental-trails.wav",
+          "audioFile": "listening-L10-bike-rental-trails.mp3",
           "script": "N: Listen to a conversation in a bike rental shop.\nAssistant: Are you renting for the city or for the trails?\nCustomer: For the trails. My brother is visiting and we planned a ride for Saturday.\nAssistant: Then I should tell you the hill trail is partly closed after last week’s heavy rain.\nCustomer: Is there another route you recommend?\nAssistant: The river route is open and it’s easier. I’d also suggest helmets and a repair kit.\nCustomer: Do helmets come with the bikes?\nAssistant: Yes, helmets are included, but the repair kit costs extra.\nCustomer: Fine — we’ll take two bikes, two helmets, and one repair kit.\nN: Now answer the questions.",
           "questions": [
             {

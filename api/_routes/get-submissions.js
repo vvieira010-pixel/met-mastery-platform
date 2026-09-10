@@ -8,18 +8,19 @@
  * 
  * Updated to use the new auth module (src/lib/auth/index.ts).
  */
-import { verifySupabaseSession } from './_supabase-auth.js';
+import { requireTeacher } from './_supabase-auth.js';
 import { getSupabaseUrl, getServiceKey } from './_config.js';
+import { guardRateLimit } from './_rate-limit.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const user = await verifySupabaseSession(req);
-  if (!user) {
-    return res.status(401).json({ error: 'Unauthorized — valid teacher session required.' });
-  }
+  const user = await requireTeacher(req, res);
+  if (!user) return;
+
+  if (!guardRateLimit(req, res, { scope: 'get-submissions', user })) return;
 
   const serviceKey = getServiceKey();
   if (!serviceKey) {

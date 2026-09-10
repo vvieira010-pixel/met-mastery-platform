@@ -48,6 +48,18 @@ export function allowedTeacherEmails() {
 }
 
 /**
+ * Server-side teacher authorization. A Supabase session proves identity, but
+ * a teacher-only operation also needs a configured teacher allowlist. Keep
+ * this separate from UI-only role hints so an empty deployment configuration
+ * always fails closed.
+ */
+export function isTeacherIdentity(user) {
+  const email = String(user?.email || '').trim().toLowerCase();
+  const teachers = allowedTeacherEmails();
+  return Boolean(email) && teachers.length > 0 && teachers.includes(email);
+}
+
+/**
  * Same-origin check for unauthenticated submission endpoints.
  * When APP_ORIGIN is configured, the request Origin/Referer must match it.
  * When unset, we still rely on the teacher allowlist enforced by the caller.

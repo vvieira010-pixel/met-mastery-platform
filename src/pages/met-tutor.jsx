@@ -151,10 +151,10 @@ export default function MetTutorPage({ studentId: propStudentId, students, onNav
   const [result, setResult] = useState(null);
   const [sessionCount, setSessionCount] = useState(0);
 
-  const stats = useMemo(() => getTutorStats(studentId), [profile, studentId]);
-  const dueCount = useMemo(() => { try { return getDueItems(studentId).length; } catch { return 0; } }, [profile, studentId]);
+  const stats = useMemo(() => getTutorStats(studentId), [studentId]);
+  const dueCount = useMemo(() => { try { return getDueItems(studentId).length; } catch { return 0; } }, [studentId]);
 
-  const current = useMemo(() => pickNextExercise(studentId, skill, profile.cefrLevel, askedIds), [studentId, skill, profile.cefrLevel, askedIds, sessionCount]);
+  const current = useMemo(() => pickNextExercise(studentId, skill, profile.cefrLevel, askedIds), [studentId, skill, profile.cefrLevel, askedIds]);
   const exercise = current?.ex || null;
 
   useEffect(() => {
@@ -165,7 +165,7 @@ export default function MetTutorPage({ studentId: propStudentId, students, onNav
 
   useEffect(() => {
     if (exercise) setResponse(createEmptyResponse(exercise.type));
-  }, [exercise?.id]);
+  }, [exercise]);
 
   function handleCheck() {
     if (!exercise) return;

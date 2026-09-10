@@ -8,6 +8,7 @@ import {
   mockGeminiSuccess,
   mockAllProvidersFail,
   mockNonJsonProse,
+  authHeaders,
 } from './helpers.js';
 
 /**
@@ -36,6 +37,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'Return ONLY VALID JSON: {"ok":true}' });
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('content');
@@ -48,6 +50,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'Return ONLY VALID JSON: {"ok":true}' });
     expect(res.status).toBe(503);
     expect(res.body.error.message).toMatch(/no ai provider keys/i);
@@ -59,6 +62,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'Return ONLY VALID JSON: {"ok":true}' });
     expect(res.status).toBe(502);
     expect(res.body.error.message).toMatch(/temporarily unavailable/i);
@@ -73,6 +77,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'Return ONLY VALID JSON: {"ok":true}' });
     // Client sees 502 even though the upstream cause was 401 — locks the
     // "do not return upstream provider error bodies" contract.
@@ -87,6 +92,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'Return ONLY VALID JSON: {"classFocus":"x"}' });
     expect(res.status).toBe(502);
   });
@@ -107,6 +113,7 @@ describe('POST /api/ai - contract (200 / 502 / 503 + no-leak)', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({
         prompt: 'Return ONLY VALID JSON: {"classFocus":"..."}',
         max_tokens: 2600,

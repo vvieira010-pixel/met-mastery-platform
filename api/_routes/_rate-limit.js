@@ -70,6 +70,10 @@ export const LIMITS = {
     { name: 'burst', limit: 10, windowMs: MINUTE },
     { name: 'daily', limit: 100, windowMs: DAY },
   ],
+  'get-submissions': [
+    { name: 'burst', limit: 30, windowMs: MINUTE },
+    { name: 'hourly', limit: 200, windowMs: HOUR },
+  ],
 };
 
 function normalizeRule(rule) {
@@ -261,3 +265,64 @@ export function resetRateLimits() {
 }
 
 export const RATE_LIMIT_CONSTANTS = { MAX_TRACKED_KEYS, SECOND, MINUTE, HOUR, DAY };
+
+/**
+ * DISTRIBUTED HARD CAP (audit RATE-1).
+ *
+ * The in-memory limiter above is per-lambda-instance, so on Vercel the real
+ * ceiling is `limit × concurrent instances`. This optional layer adds a TRUE
+ * global cap using Upstash Redis REST (no SDK needed — plain fetch). It is
+ * DORMANT unless UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN are set, so
+ * it never changes behaviour in the current deployment. When enabled it is
+ * consulted *in addition to* the per-instance guard, and it fails OPEN (returns
+ * true) on any error so a misconfigured Redis can never take the site down.
+ *
+ * `identity` should be the same per-account key used by the in-memory guard.
+ * @returns {Promise<boolean>} true if the global budget still permits the request.
+ */
+async function upstashPost(commands) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 800);
+  try {
+    const r = await fetch(`${url.replace(/\/$/, '')}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ commands }),
+    });
+    if (!r.ok) return null;
+    const json = await r.json();
+    return Array.isArray(json.result) ? json.result : json;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+export async function enforceDistributedCap(identity, rules, _now = Date.now()) {
+  const id = String(identity || 'anon').slice(0, 128);
+  const normalized = (Array.isArray(rules) ? rules : [rules]).filter(Boolean).map(normalizeRule);
+  if (!normalized.length) return true;
+
+  // One INCR (+ EXPIRE on first hit) per window. Build the command pipeline.
+  const commands = [];
+  const meta = [];
+  for (const rule of normalized) {
+    const key = `rl:${id}:${rule.name}`;
+    const ttlSec = Math.max(1, Math.ceil(rule.windowMs / SECOND));
+    commands.push(['INCR', key], ['EXPIRE', key, ttlSec], ['PTTL', key]);
+    meta.push({ key, rule });
+  }
+  const res = await upstashPost(commands);
+  if (!res || !Array.isArray(res)) return true; // dormant or error → fail open
+
+  for (let i = 0; i < meta.length; i += 1) {
+    const count = Number(res[i * 3]); // INCR result
+    if (!Number.isFinite(count)) return true;
+    if (count > meta[i].rule.limit) return false;
+  }
+  return true;
+}

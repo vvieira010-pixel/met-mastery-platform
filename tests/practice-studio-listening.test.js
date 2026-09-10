@@ -41,9 +41,9 @@ test('practice studio listening has 63 playable groups', async () => {
   // per-group question counts: conversations x2, talks x3, bonus x3, pack 76-88 x1, pack 89-100 x2
   for (const [id, list] of byId) {
     const file = id.split('/').pop();
-    if (/^conversation_\d+\.wav$/.test(file)) assert.equal(list.length, 2, id);
+    if (/^conversation_\d+\.(wav|mp3)$/.test(file)) assert.equal(list.length, 2, id);
     else if (/^listening-(L\d+|1min-).+\.mp3$/.test(file)) assert.equal(list.length, 3, id);
-    else if (/^met_audio_\d+_.+\.wav$/.test(file)) assert.equal(list.length, 3, id);
+    else if (/^met_audio_\d+_.+\.(wav|mp3)$/.test(file)) assert.equal(list.length, 3, id);
     else if (/^listening-(89|9\d|100)-.+\.mp3$/.test(file)) assert.equal(list.length, 2, id);
     else if (/^listening-(7[6-9]|8\d|9\d|100)-.+\.mp3$/.test(file)) assert.equal(list.length, 1, id);
     else assert.fail(`unexpected group file ${id}`);

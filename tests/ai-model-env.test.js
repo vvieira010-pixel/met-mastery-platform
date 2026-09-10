@@ -11,11 +11,24 @@ process.env.GEMINI_API_KEY_2 = 'fallback-key';
 process.env.GEMINI_MODEL = 'gemini-2.5-pro';
 process.env.GEMINI_MODELS = 'gemini-2.5-flash-lite,gemini-2.0-flash';
 process.env.APP_ORIGIN = 'https://app.example.test';
+// The AI proxy requires a session (audit AUTH-1). These contract tests exercise
+// the server-side cascade as an internal caller, so we authenticate with the
+// shared internal token — the same path production server-to-server calls use.
+process.env.AI_INTERNAL_TOKEN = 'test-internal-token';
+const INTERNAL_TOKEN = process.env.AI_INTERNAL_TOKEN;
 
 const { default: handler } = await import('../api/_routes/ai.js');
 
 function request(ip, extra = {}) {
-  return { method: 'POST', headers: { 'x-forwarded-for': ip, origin: 'https://app.example.test' }, body: { prompt: 'Reply with OK.', ...extra } };
+  return {
+    method: 'POST',
+    headers: {
+      'x-forwarded-for': ip,
+      origin: 'https://app.example.test',
+      'x-internal-token': INTERNAL_TOKEN,
+    },
+    body: { prompt: 'Reply with OK.', ...extra },
+  };
 }
 function result() {
   return { statusCode: 200, headers: {}, body: null, status(c) { this.statusCode = c; return this; }, setHeader() {}, json(b) { this.body = b; return this; } };

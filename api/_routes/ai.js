@@ -28,7 +28,8 @@
 import { logPrediction } from './_ml/log.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
-import { guardRateLimit } from './_rate-limit.js';
+import { guardRateLimit, enforceDistributedCap, rateLimitIdentity, LIMITS } from './_rate-limit.js';
+import { verifySupabaseSession } from './_supabase-auth.js';
 import {
   AI_ATTEMPT_TIMEOUT_MS,
   AI_REQUEST_TIMEOUT_MS,
@@ -93,10 +94,30 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: { message: 'Method not allowed' } });
   }
-  if (!allowedOrigin(req)) {
+  // SECURITY (audit AUTH-1): the paid AI proxy must not be anonymously callable.
+  // A valid Supabase session is required; genuine server-to-server callers may
+  // use the shared AI_INTERNAL_TOKEN instead. This closes the open-proxy hole
+  // where `curl` (no Origin) was treated as trusted.
+  const user = await verifySupabaseSession(req);
+  const internalToken = env('AI_INTERNAL_TOKEN');
+  const isInternal = Boolean(internalToken) && req.headers['x-internal-token'] === internalToken;
+  if (!user && !isInternal) {
+    return res.status(401).json({ error: { message: 'Sign-in required to use AI features.' } });
+  }
+  // Defense-in-depth: same-origin only unless an internal token is presented.
+  if (!isInternal && !allowedOrigin(req)) {
     return res.status(403).json({ error: { message: 'Forbidden' } });
   }
-  if (!guardRateLimit(req, res, { scope: 'ai' })) return;
+  if (!guardRateLimit(req, res, { scope: 'ai', user })) return;
+  // Optional TRUE global cap (audit RATE-1). Dormant unless Upstash Redis env is
+  // set; when enabled it enforces the budget across all Vercel instances, not
+  // just the single lambda that handled this request. Fails open on error.
+  const distributedOk = await enforceDistributedCap(rateLimitIdentity(req, user), LIMITS.ai);
+  if (!distributedOk) {
+    return res.status(429).json({
+      error: { message: 'Global AI rate limit reached. Please try again later.', code: 'rate_limit_global' },
+    });
+  }
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
@@ -300,14 +321,15 @@ export default async function handler(req, res) {
     const result = await a.run();
     if (result) {
       const text = result?.content?.[0]?.text || '';
-      await logPrediction({
+      // Fire-and-forget: do not block the response on telemetry (PERF-1).
+      void logPrediction({
         ...telemetry,
         provider: a.id,
         modelId: a.model,
         outputChars: text.length,
         latencyMs: Date.now() - attemptStartedAt,
         status: 'ok',
-      });
+      }).catch(() => {});
       return res.status(200).json(result);
     }
   }
@@ -315,12 +337,12 @@ export default async function handler(req, res) {
   // Do not return provider model identifiers or raw provider failures. Those
   // values can contain dashboard configuration mistakes and are not useful to
   // a teacher. The detailed, redacted attempt records stay server-side.
-  await logPrediction({
+  void logPrediction({
     ...telemetry,
     latencyMs: Date.now() - requestStartedAt,
     status: 'provider_error',
     error: `all providers failed after ${errors.length} attempt(s)`,
-  });
+  }).catch(() => {});
   console.warn('[api/ai] all configured providers failed', { attempts: errors.length });
 
   // A teacher-facing message should say what is actually wrong. When every

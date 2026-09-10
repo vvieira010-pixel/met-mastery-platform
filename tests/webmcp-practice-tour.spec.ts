@@ -37,7 +37,7 @@ test('WebMCP tour guides a learner into a Grammar Sprint without acting for them
     }));
   });
 
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.dash')).toBeVisible();
   await expect.poll(() => page.evaluate(() => (window as any).__webMcpTourTools.length)).toBe(6);
 

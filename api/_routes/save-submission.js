@@ -1,18 +1,13 @@
 /**
  * api/save-submission.js — persist a mock-test submission.
  *
- * FIX (was S3 ship-blocker): the previous version inserted an attacker-controlled
- * row into mock_test_results via the service-role key with only a name/email
- * presence check — anyone could poison any teacher's data. The static mock-test-3
- * client cannot send a Supabase session, so full auth is not possible here; we
- * instead enforce: (1) same-origin, (2) teacher must be in the allowlist, and
- * (3) field-size caps. The service-role key is now read from env and fails closed.
- *
- * Prefer calling this from an authenticated context; the React SPA writes
- * submissions through Supabase directly (RLS-protected), not via this route.
+ * This is a teacher-only administrative write. Public static mock-test pages
+ * do not have an authenticated identity, so they must never be allowed to
+ * create rows through a service-role key. Their local results stay local until
+ * an authenticated product flow owns a student-to-teacher submission contract.
  */
-import { getSupabaseUrl, requireServiceKey, allowedTeacherEmails, isSameOrigin } from './_config.js';
-import { verifySupabaseSession } from './_supabase-auth.js';
+import { getSupabaseUrl, requireServiceKey, isSameOrigin } from './_config.js';
+import { requireTeacher } from './_supabase-auth.js';
 
 const cap = (v, n) => (typeof v === 'string' ? v.slice(0, n) : v);
 
@@ -26,6 +21,9 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'Forbidden — cross-origin request.' });
   }
 
+  const teacher = await requireTeacher(req, res);
+  if (!teacher) return;
+
   const serviceKey = requireServiceKey(res);
   if (!serviceKey) return;
 
@@ -34,21 +32,6 @@ export default async function handler(req, res) {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
   body = body || {};
-
-  // (2) Resolve the teacher identity. Prefer a verified Supabase session
-  // (the React SPA sends one); fall back to the legacy allowlist ONLY for the
-  // static client that cannot authenticate. Never trust a session-less
-  // request to claim an arbitrary teacher email — that allowed forged-result
-  // poisoning when the allowlist was client-exposed.
-  const sessionUser = await verifySupabaseSession(req).catch(() => null);
-  const teachers = allowedTeacherEmails();
-  const claimedEmail = (body.teacherEmail || '').toLowerCase();
-  const teacherId = sessionUser && sessionUser.email
-    ? sessionUser.email.toLowerCase()
-    : (teachers.length && teachers.includes(claimedEmail) ? claimedEmail : null);
-  if (!teacherId) {
-    return res.status(403).json({ error: 'Forbidden — unknown or unauthorized teacher.' });
-  }
 
   if (!body.studentName && !body.studentEmail) {
     return res.status(400).json({ error: 'Missing student info' });
@@ -66,7 +49,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         student_id: cap(body.studentEmail, 200),
-        teacher_id: teacherId,
+        teacher_id: teacher.email.toLowerCase(),
         content: {
           studentName: cap(body.studentName, 200),
           studentEmail: cap(body.studentEmail, 200),

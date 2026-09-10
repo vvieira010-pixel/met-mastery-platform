@@ -2,6 +2,23 @@ import express from 'express';
 import aiHandler from '../../../api/_routes/ai.js';
 
 /**
+ * Shared internal token for the AI proxy tests.
+ *
+ * The proxy now requires a session (audit AUTH-1). These integration tests
+ * exercise the handler as an internal server-to-server caller, so we set
+ * AI_INTERNAL_TOKEN and present it on every request that should succeed. The
+ * handler reads env('AI_INTERNAL_TOKEN') per request, so setting it here
+ * (module load, before any test runs) is enough.
+ */
+export const AI_TEST_TOKEN = process.env.AI_INTERNAL_TOKEN || 'vitest-internal-token';
+process.env.AI_INTERNAL_TOKEN = AI_TEST_TOKEN;
+
+/** Header bag that authenticates a request as an internal caller. */
+export function authHeaders() {
+  return { 'x-internal-token': AI_TEST_TOKEN };
+}
+
+/**
  * Minimal test app wrapping the real /api/ai handler.
  * Mirrors server.ts middleware (express.json 5mb) without starting a server.
  */

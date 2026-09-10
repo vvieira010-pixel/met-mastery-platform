@@ -12,7 +12,7 @@
  * that are still cryptographically valid).
  */
 import { jwtVerify, createRemoteJWKSet } from 'jose';
-import { getServiceKey, getSupabaseUrl, allowedTeacherEmails } from './_config.js';
+import { getServiceKey, getSupabaseUrl, allowedTeacherEmails, isTeacherIdentity } from './_config.js';
 
 let jwksClient = null;
 let jwksUrl = null;
@@ -98,7 +98,16 @@ export async function requireTeacher(req, res) {
     return null;
   }
   const emails = allowedTeacherEmails();
-  if (emails.length && !emails.includes((user.email || '').toLowerCase())) {
+  // A missing allowlist is a deployment configuration error, never permission
+  // for every signed-in account. This route gates teacher-only operations such
+  // as invitations and mock-test result review.
+  if (!emails.length) {
+    if (res && !res.headersSent) {
+      res.status(503).json({ error: { message: 'Teacher access is not configured for this deployment.' } });
+    }
+    return null;
+  }
+  if (!isTeacherIdentity(user)) {
     if (res && !res.headersSent) {
       res.status(403).json({ error: { message: 'Only teachers can access this resource.' } });
     }

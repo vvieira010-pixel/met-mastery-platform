@@ -33,8 +33,12 @@ test('Practice Studio does not ask a confidence question after each answer', () 
   assert.doesNotMatch(exercisePlayer, /After seeing the answer|ConfidenceSlider|confidenceAfter|showConfidenceAfter/);
 });
 
-test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
-  assert.match(practiceStudio, /finalSubmissionLabel="Submit this practice once" practiceStudio/);
+test('Practice Studio saves and locks individual questions while preserving AI scoring labels', () => {
+  assert.match(practiceStudio, /getPracticeStudioExerciseSubmissions/);
+  assert.match(practiceStudio, /createPracticeStudioExerciseKey/);
+  assert.match(practiceStudio, /availableExercises/);
+  assert.match(practiceStudio, /onExerciseComplete=\{handleExerciseComplete\}/);
+  assert.match(practiceStudio, /Each question is saved separately in Supabase/);
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
   assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio \}\)/);
   assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);

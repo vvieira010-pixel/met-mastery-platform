@@ -51,7 +51,7 @@ async function seedStudentWorkspace(page: Page, practiceRows: Array<Record<strin
   }, { session: storedSession() });
 }
 
-test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a submitted topic', async ({ page }) => {
+test('student sees Speaking Question 1–5 and skips an individually saved question', async ({ page }) => {
   const practiceRows = [{
     id: 'practice-submission-e2e',
     teacher_id: TEACHER_ID,
@@ -59,9 +59,9 @@ test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a
     created_at: '2026-09-05T12:00:00.000Z',
     content: {
       id: 'practice-submission-e2e',
-      type: 'practice_studio',
+      type: 'practice_studio_exercise',
       studentId: STUDENT_LOCAL_ID,
-      sessionKey: 'practice-studio:speaking:all:Q1:Q1::describe_image',
+      sessionKey: 'practice-studio:speaking:all:Q1:Q1::describe_image:exercise:image_description_01',
       topicId: 'Q1::describe_image',
       speakingQuestion: 'Q1',
       status: 'submitted',
@@ -75,7 +75,7 @@ test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a
   page.on('pageerror', error => pageErrors.push(error));
   page.on('console', message => { if (message.type() === 'warning') consoleWarnings.push(message.text()); });
 
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
   await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await page.getByRole('button', { name: /Speaking Mirror/ }).click();
@@ -94,20 +94,20 @@ test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a
   await page.getByRole('button', { name: /Question 1 — Describe a Picture/ }).click();
   await expect(page.getByRole('heading', { name: 'Everyday scenes' })).toBeVisible();
   await page.getByRole('button', { name: /Everyday scenes/ }).click();
-  await expect(page.locator('[data-testid="practice-studio-submission-locked"]')).toBeVisible();
-  await expect(page.getByText('This topic has already been submitted', { exact: true })).toBeVisible();
+  await expect(page.getByText('Describe the bus interior.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Describe the football match.', { exact: false })).toHaveCount(0);
+  await expect(page.getByRole('note', { name: 'One-time attempt warning' })).toBeVisible();
   expect(pageErrors.map(error => error.message)).toEqual([]);
   expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);
 });
 
 test('speaking gives preparation time before automatically opening the timed recorder', async ({ page }) => {
-  await page.clock.install({ time: new Date('2026-09-05T12:00:00.000Z') });
   await seedStudentWorkspace(page, []);
   await page.addInitScript(() => {
     const fakeStream = { getTracks: () => [] } as unknown as MediaStream;
-    Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+    Object.defineProperty(navigator, 'mediaDevices', {
       configurable: true,
-      value: async () => fakeStream,
+      value: { getUserMedia: async () => fakeStream },
     });
     class FakeMediaRecorder {
       stream: MediaStream;
@@ -118,18 +118,23 @@ test('speaking gives preparation time before automatically opening the timed rec
       start() { this.state = 'recording'; }
       stop() { this.state = 'inactive'; this.onstop?.(); }
     }
-    Object.defineProperty(window, 'MediaRecorder', { configurable: true, value: FakeMediaRecorder });
+    Object.defineProperty(globalThis, 'MediaRecorder', { configurable: true, writable: true, value: FakeMediaRecorder });
   });
 
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
   await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await page.getByRole('button', { name: /Speaking Mirror/ }).click();
   await page.getByRole('button', { name: /Question 1 — Describe a Picture/ }).click();
   await page.getByRole('button', { name: /Everyday scenes/ }).click();
 
-  await expect(page.getByTestId('speaking-start-preparation')).toBeVisible();
-  await page.getByTestId('speaking-start-preparation').click();
+  const startPreparation = page.getByTestId('speaking-start-preparation');
+  await expect(startPreparation).toBeVisible();
+  // Install the virtual clock only after the lazy Practice Studio chunks have
+  // loaded. WebKit otherwise freezes their loading work before the recorder is
+  // even reachable.
+  await page.clock.install({ time: new Date('2026-09-05T12:00:00.000Z') });
+  await startPreparation.click({ force: true });
   await expect(page.getByTestId('speaking-preparation-countdown')).toContainText('Preparation time');
   await expect(page.getByTestId('speaking-preparation-countdown')).toContainText('00:15');
 
@@ -146,7 +151,7 @@ test('speaking gives preparation time before automatically opening the timed rec
 test('mobile Question 4 keeps the Practice Studio title readable in the student theme', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await seedStudentWorkspace(page, []);
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
   await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await page.getByRole('button', { name: /Speaking Mirror/ }).click();

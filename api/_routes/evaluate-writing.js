@@ -12,7 +12,7 @@ import { verifySupabaseSession } from './_supabase-auth.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-writing-scale.js';
 import { callAssemblyAILLMJson, extractScores, parseLLMJson } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
-import { guardRateLimit } from './_rate-limit.js';
+import { guardRateLimit, enforceDistributedCap, rateLimitIdentity, LIMITS } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
 
@@ -101,6 +101,10 @@ export default async function handler(req, res) {
   if (!user) return res.status(401).json({ error: 'Unauthorized — valid session required.' });
 
   if (!guardRateLimit(req, res, { scope: 'evaluate-writing', user })) return;
+  // Optional TRUE global cap (audit RATE-1) — dormant unless Upstash is set.
+  if (!(await enforceDistributedCap(rateLimitIdentity(req, user), LIMITS['evaluate-writing']))) {
+    return res.status(429).json({ error: { message: 'Global rate limit reached. Please try again later.', code: 'rate_limit_global' } });
+  }
 
   let body = req.body;
   if (typeof body === 'string') {
@@ -139,7 +143,7 @@ export default async function handler(req, res) {
   }
 
   if (!result) {
-    await logPrediction({
+    void logPrediction({
       feature: 'writing_eval',
       subject,
       submissionId,
@@ -151,7 +155,7 @@ export default async function handler(req, res) {
       latencyMs: Date.now() - llmStartedAt,
       status: 'provider_error',
       error: 'no provider returned a parseable evaluation',
-    });
+    }).catch(() => {});
     return res.status(503).json({ error: 'AI evaluation unavailable — no provider responded. Please try again.' });
   }
 
@@ -170,7 +174,7 @@ export default async function handler(req, res) {
   // Backward-compatible summary used by results UIs.
   evaluation.overallScore = Math.round(avgRaw * 10) / 10;
 
-  await logPrediction({
+  void logPrediction({
     feature: 'writing_eval',
     subject,
     submissionId,
@@ -185,7 +189,7 @@ export default async function handler(req, res) {
     status: 'ok',
     confidence: Number.isFinite(Number(evaluation.confidence)) ? Number(evaluation.confidence) : null,
     parsedOutput: { scores: evaluation.scores || null, rubricAvg: evaluation.rubricAvg ?? null, cefr: evaluation.cefrEstimate ?? null },
-  });
+  }).catch(() => {});
 
   return res.status(200).json({ evaluation, provider, model: modelId || 'gemini-2.5-flash' });
 }

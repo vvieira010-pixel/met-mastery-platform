@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-
 export default defineConfig({
   plugins: [
     tailwindcss(),
@@ -11,7 +10,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    target: 'esnext',
+    // 'esnext' shipped ~1,719 `?.` and 109 `??` completely untranspiled. Those are
+    // ES2020 syntax, so any pre-2020 browser hits a SyntaxError while *parsing* the
+    // bundle — the user gets a blank page with no React mount and no error boundary
+    // (it never runs). 'es2019' makes esbuild downlevel optional chaining and nullish
+    // coalescing, which removes that whole failure class at a cost of only a few KB.
+    // Note: 'es2022' would NOT have helped here — it already includes ES2020 syntax.
+    // Runtime APIs (Object.fromEntries, String.replaceAll) still need feature guards.
+    target: 'es2019',
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {

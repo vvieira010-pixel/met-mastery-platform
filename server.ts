@@ -1,4 +1,5 @@
 import express from 'express';
+import { existsSync } from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
@@ -110,6 +111,13 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
+    // The normal production build renames Vite's entry to app.html so the
+    // public Markdown index can coexist with the application. If a build is
+    // interrupted after Vite writes index.html but before that rename, keep
+    // the local production server usable instead of returning a 404 at '/'.
+    const appEntryPath = path.join(distPath, 'app.html');
+    const fallbackEntryPath = path.join(distPath, 'index.html');
+    const entryPath = existsSync(appEntryPath) ? appEntryPath : fallbackEntryPath;
     app.use((req, res, next) => {
       if (req.path === '/' && /text\/markdown/i.test(req.headers.accept || '')) {
         res.setHeader('Vary', 'Accept, Accept-Encoding');
@@ -119,7 +127,7 @@ async function startServer() {
       next();
     });
     app.get('/', (req, res, next) => {
-      res.sendFile(path.join(distPath, 'app.html'), (err) => {
+      res.sendFile(entryPath, (err) => {
         if (err) next(err);
       });
     });

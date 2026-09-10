@@ -36,8 +36,6 @@ export function Button({
     <span className="btn-icon" aria-hidden="true">{icon}</span>
   ) : null;
 
-  const label = ariaLabel || children || '';
-
   const content = (
     <>
       {iconPosition === 'leading' && iconEl}
@@ -53,7 +51,7 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       style={style}
-      aria-label={label}
+      aria-label={ariaLabel || undefined}
     >
       {content}
     </button>

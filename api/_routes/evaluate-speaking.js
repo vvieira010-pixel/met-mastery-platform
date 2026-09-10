@@ -19,7 +19,7 @@ import { getServiceKey, getSupabaseUrl } from './_config.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-speaking-scale.js';
 import { callAssemblyAILLMJson, extractScores, parseLLMJson } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
-import { guardRateLimit } from './_rate-limit.js';
+import { guardRateLimit, enforceDistributedCap, rateLimitIdentity, LIMITS } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
 import { telemetryEnabled } from './_ml/store.js';
 
@@ -347,6 +347,10 @@ export default async function handler(req, res) {
 
   // Spend guardrail: one request fans out to AssemblyAI STT + LLM grading.
   if (!guardRateLimit(req, res, { scope: 'evaluate-speaking', user })) return;
+  // Optional TRUE global cap (audit RATE-1) — dormant unless Upstash is set.
+  if (!(await enforceDistributedCap(rateLimitIdentity(req, user), LIMITS['evaluate-speaking']))) {
+    return res.status(429).json({ error: { message: 'Global rate limit reached. Please try again later.', code: 'rate_limit_global' } });
+  }
 
   let body = req.body;
   if (typeof body === 'string') {
@@ -375,6 +379,21 @@ export default async function handler(req, res) {
     if (!normalizedPath) {
       return res.status(400).json({ error: 'A valid stored recording path or transcript is required.' });
     }
+    // SECURITY (audit AUTH-2): prevent one student from transcribing another
+    // student's voice recording. Recordings must live under the caller's own
+    // id/email prefix. Teachers legitimately review student audio, so they are
+    // exempt. Opt out via STORAGE_OWNERSHIP_CHECK=false if your upload layout
+    // does not yet prefix by user (then enforce via RLS on the bucket instead).
+    if (
+      user.role !== 'teacher' &&
+      env('STORAGE_OWNERSHIP_CHECK') !== 'false'
+    ) {
+      const ownPrefixes = [`${user.id}/`, `${user.email}/`].filter(Boolean);
+      const belongsToCaller = ownPrefixes.some((p) => normalizedPath.startsWith(p));
+      if (!belongsToCaller) {
+        return res.status(403).json({ error: 'You can only evaluate your own recordings.' });
+      }
+    }
     const asrStartedAt = Date.now();
     try {
       const storedAudio = await fetchStoredAudio(normalizedPath, audioBucket);
@@ -385,7 +404,8 @@ export default async function handler(req, res) {
       // own telemetry row. Accent-related WER is a known fairness risk — log
       // the provider so subgroup accuracy can be compared later.
       if (result?.text) {
-        await logPrediction({
+        // Fire-and-forget (PERF-1): never block the response on telemetry.
+        void logPrediction({
           feature: 'speaking_asr',
           subject,
           submissionId,
@@ -396,7 +416,7 @@ export default async function handler(req, res) {
           latencyMs: Date.now() - asrStartedAt,
           status: 'ok',
           parsedOutput: { confidence: result.confidence ?? null, wpm: result.stats?.wpm ?? null },
-        });
+        }).catch(() => {});
       }
     } catch (e) {
       console.warn('Stored audio retrieval error:', e.message);
@@ -513,7 +533,7 @@ export default async function handler(req, res) {
   }
 
   if (!evaluation) {
-    await logPrediction({
+    void logPrediction({
       feature: 'speaking_eval',
       subject,
       submissionId,
@@ -525,7 +545,7 @@ export default async function handler(req, res) {
       latencyMs: Date.now() - llmStartedAt,
       status: 'provider_error',
       error: 'no provider returned a parseable evaluation',
-    });
+    }).catch(() => {});
     return res.status(503).json({ error: 'AI evaluation unavailable — no provider responded. Please try again.' });
   }
 
@@ -554,7 +574,7 @@ export default async function handler(req, res) {
   // Store the rubric scores (not the transcript) so agreement against the gold
   // set can be computed later. parsed_output may quote student speech — it is
   // telemetry, not a transcript store, and is covered by the retention policy.
-  await logPrediction({
+  void logPrediction({
     feature: 'speaking_eval',
     subject,
     submissionId,
@@ -570,7 +590,7 @@ export default async function handler(req, res) {
     status: 'ok',
     confidence: Number.isFinite(Number(evaluation.confidence)) ? Number(evaluation.confidence) : null,
     parsedOutput: { scores: evaluation.scores || null, rubricAvg: evaluation.rubricAvg ?? null, cefr: evaluation.cefrEstimate ?? null },
-  });
+  }).catch(() => {});
 
   return res.status(200).json({
     transcription,

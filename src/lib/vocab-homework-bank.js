@@ -231,8 +231,8 @@ const LISTENING_PARTS = [
 ];
 
 const PART_1_AUDIO_FILES = new Set([
-  'conversation_01.wav', 'conversation_02.wav', 'conversation_03.wav', 'conversation_04.wav',
-  'conversation_05.wav', 'conversation_06.wav', 'conversation_07.wav',
+  'conversation_01.mp3', 'conversation_02.mp3', 'conversation_03.mp3', 'conversation_04.mp3',
+  'conversation_05.mp3', 'conversation_06.mp3', 'conversation_07.mp3',
 ]);
 
 const PART_2_AUDIO_FILES = new Set([

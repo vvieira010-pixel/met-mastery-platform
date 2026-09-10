@@ -8,6 +8,8 @@
  * so the AI can apply pedagogical best practices to its response.
  */
 
+import { readStoredSupabaseSession } from './supabase-storage.js';
+
 export async function callAI(prompt, { max_tokens = 2048, system, temperature = 0.3, preferredProvider = null, skills } = {}) {
   let finalSystem = system || 'You are a helpful MET English teaching assistant.';
 
@@ -26,9 +28,16 @@ export async function callAI(prompt, { max_tokens = 2048, system, temperature = 
   // transcript summaries untouched.
   const wantsJson = /(?:return|respond|output)\s+(?:only\s+)?(?:valid\s+)?json\b/i.test(prompt);
   try {
+    // Attach the signed-in user's session token so the server-side AI proxy
+    // can enforce per-account rate limits and reject anonymous callers.
+    const session = readStoredSupabaseSession();
+    const token = session?.access_token;
     r = await fetch('/api/ai', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
       body: JSON.stringify({
         prompt,
         system: finalSystem,

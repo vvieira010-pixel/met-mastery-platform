@@ -184,7 +184,7 @@ test('all four paid routes enforce the guardrail', () => {
     'api/_routes/send-invite.js',
   ]) {
     const source = readFileSync(`${root}${file}`, 'utf8');
-    assert.match(source, /import \{ guardRateLimit \} from '\.\/_rate-limit\.js';/, `${file} must import the guard`);
+    assert.match(source, /import \{[^}]*guardRateLimit[^}]*\} from '\.\/_rate-limit\.js';/, `${file} must import the guard`);
     assert.match(source, /if \(!guardRateLimit\(/, `${file} must call the guard`);
     assert.match(source, /\) return;/, `${file} must bail out when the guard denies the request`);
   }

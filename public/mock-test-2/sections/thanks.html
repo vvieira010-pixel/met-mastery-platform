@@ -564,32 +564,10 @@
       });
       document.getElementById('sectionsCompleted').value = completed.join(', ');
 
-      // Save a normalized copy for admin reporting (best effort).
-      try {
-        var payload = {
-          studentName: document.getElementById('studentName').value || '',
-          studentEmail: document.getElementById('studentEmail').value || '',
-          submittedAt: document.getElementById('submittedAt').value || '',
-          sessionId: document.getElementById('sessionId').value || '',
-          readingAnswers: document.getElementById('readingAnswers').value || '',
-          listeningAnswers: document.getElementById('listeningAnswers').value || '',
-          writingAnswers: document.getElementById('writingAnswers').value || '',
-          scores: scoresField.value || '',
-          sectionsCompleted: document.getElementById('sectionsCompleted').value || ''
-        };
-        var body = JSON.stringify(payload);
-        if (navigator.sendBeacon) {
-          var blob = new Blob([body], { type: 'application/json' });
-          navigator.sendBeacon('/api/save-submission', blob);
-        } else {
-          fetch('/api/save-submission', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: body,
-            keepalive: true
-          }).catch(function () {});
-        }
-      } catch (_) {}
+      // This public static test has no authenticated student identity. Do not
+      // send an untrusted result to a service-role endpoint; its answers stay
+      // in this browser until an authenticated platform submission flow owns
+      // the student-to-teacher relationship.
 
       document.getElementById('submitBtn').disabled = true;
       document.getElementById('submitBtn').textContent = 'Submitting…';

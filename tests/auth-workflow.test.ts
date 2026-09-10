@@ -54,18 +54,18 @@ async function seedAuthenticatedSession(page: Page, user: TestUser, role: 'stude
 
 async function openStudentDashboard(page: Page) {
   await seedAuthenticatedSession(page, STUDENT, 'student');
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
 }
 
 async function openTeacherDashboard(page: Page) {
   await seedAuthenticatedSession(page, TEACHER, 'teacher');
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible({ timeout: 15_000 });
 }
 
 test('public landing opens the real sign-in screen and validates an empty form', async ({ page }) => {
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.getByText('Prepare for the MET', { exact: false })).toBeVisible();
 
   await page.getByRole('button', { name: 'Sign in', exact: true }).first().click();
@@ -162,7 +162,7 @@ test('teacher can create a student login and receive a one-time copyable credent
     });
   });
 
-  await page.goto(BASE);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-testid="teacher-dashboard"]')).toBeVisible();
   await page.getByRole('button', { name: 'Students', exact: true }).click();
   await page.getByRole('button', { name: 'Add Student', exact: true }).first().click();
@@ -212,7 +212,7 @@ test('teacher secondary routes render their own page shell without a runtime err
   ] as const;
 
   for (const [route] of routes) {
-    await page.goto(`${BASE}#${route}`);
+    await page.goto(`${BASE}#${route}`, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('main')).not.toBeEmpty({ timeout: 15_000 });
     await expect(page.getByText('Page unavailable', { exact: true })).toHaveCount(0);
   }

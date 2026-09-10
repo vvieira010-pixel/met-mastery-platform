@@ -5,6 +5,7 @@ import {
   useGeminiKeyOnly,
   uniqueIp,
   mockGeminiSuccess,
+  authHeaders,
 } from './helpers.js';
 
 /** Input-validation matrix for POST /api/ai (400s + pass-through behavior). */
@@ -29,6 +30,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({});
     expect(res.status).toBe(400);
     expect(res.body.error.message).toMatch(/missing "prompt"/i);
@@ -38,6 +40,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 12345 });
     expect(res.status).toBe(400);
   });
@@ -46,6 +49,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'hello', system: { role: 'x' } });
     expect(res.status).toBe(400);
     expect(res.body.error.message).toMatch(/"system" must be a string/i);
@@ -55,6 +59,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: 'a'.repeat(120001) });
     expect(res.status).toBe(400);
     expect(res.body.error.message).toMatch(/prompt too long/i);
@@ -66,6 +71,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt });
     expect(res.status).toBe(200);
   });
@@ -80,6 +86,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .send({ prompt: `Return ONLY VALID JSON: {"echo":"${evil}"}` });
     // Proxy does not block adversarial input; shape/escaping is the prompt contract's job.
     expect(res.status).toBe(200);
@@ -90,6 +97,7 @@ describe('POST /api/ai - input validation', () => {
     const res = await request(app)
       .post('/api/ai')
       .set('X-Forwarded-For', uniqueIp())
+      .set(authHeaders())
       .set('Content-Type', 'application/json')
       .send(JSON.stringify({ prompt: 'Return ONLY VALID JSON: {"ok":true}' }));
     expect(res.status).toBe(200);
