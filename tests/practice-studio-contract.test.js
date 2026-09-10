@@ -10,6 +10,7 @@ const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exe
 const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
 const writingScore = fs.readFileSync(path.join(root, 'src', 'lib', 'writing-score.js'), 'utf8');
 const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
+const writingEndpoint = fs.readFileSync(path.join(root, 'api', '_routes', 'evaluate-writing.js'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
   assert.match(practiceStudio, /const \[loadError, setLoadError\] = useState\(false\)/);
@@ -34,18 +35,32 @@ test('Practice Studio does not ask a confidence question after each answer', () 
   assert.doesNotMatch(exercisePlayer, /After seeing the answer|ConfidenceSlider|confidenceAfter|showConfidenceAfter/);
 });
 
-test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
+test('AssemblyAI is reserved for speaking and writing uses its own scorer cascade', () => {
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
-  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio, token \}\)/);
   assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);
+  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, token \}\)/);
+  assert.doesNotMatch(writingScore, /practiceStudio/);
+  assert.doesNotMatch(writingEndpoint, /callAssemblyAI|ASSEMBLYAI_API_KEY|assemblyai-llm/);
+  assert.match(writingEndpoint, /const attempts = \[scoreWithGemini, scoreWithGroq\]/);
 });
 
-test('Practice Studio only locks speaking after AI scoring and sends writing authentication', () => {
-  assert.match(shortAnswer, /if \(!practiceStudio && onComplete\)/);
-  assert.match(shortAnswer, /evaluation: data\.evaluation/);
-  assert.match(writing, /readStoredSupabaseSession/);
+test('Practice Studio waits for persistence before marking speaking or writing finalized', () => {
+  assert.match(exercisePlayer, /return onComplete\?\.\(/);
+  assert.match(exercisePlayer, /return saveExerciseResult\(result\)/);
+  assert.match(shortAnswer, /const saved = await onComplete\(/);
+  assert.match(shortAnswer, /if \(saved !== true\)/);
+  assert.match(shortAnswer, /setFinalized\(true\)/);
+  assert.match(writing, /const saved = await onComplete\(/);
+  assert.match(writing, /if \(saved !== true\)/);
+  assert.match(writing, /setFinalized\(true\)/);
   assert.match(writingScore, /Authorization: `Bearer \$\{token\}`/);
-  assert.match(writing, /evaluation: data\.evaluation/);
+});
+
+test('Practice Studio preserves an AI result when persistence fails so retry does not rescore', () => {
+  assert.match(shortAnswer, /if \(practiceStudio && evalData\?\.evaluation\)/);
+  assert.match(shortAnswer, /Retry saving/);
+  assert.match(writing, /if \(practiceStudio && result\)/);
+  assert.match(writing, /Retry saving result/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {
