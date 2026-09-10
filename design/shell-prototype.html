@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MET Mastery — Shell Prototype (rail ≥861px · bottom-bar ≤860px)</title>
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       Prototype: what the shell looks like at every breakpoint,
+       both roles, both themes.  Self-contained — no external deps.
+       The demo-viewport simulates a device screen; JS toggles
+       data-layout="rail" at ≥861px to mirror the real media query
+       without depending on the browser viewport.
+       ───────────────────────────────────────────────────────────── */
+
+    :root {
+      --mm-rail-w: 280px;
+      --mm-topbar-h: 48px;
+      --mm-tabbar-h: 56px;
+      --mm-accent:  #e1703c;   /* amber — student */
+      --mm-primary: #2a9d8f;   /* teal */
+      --mm-page:    #ffffff;
+      --mm-chrome:  #ffffff;
+      --mm-fg:      #1a1a1a;
+      --mm-fg-muted:#6b7280;
+      --mm-border:  #e5e7eb;
+      --mm-nav-bg:  #f9fafb;
+      --mm-rail-bg: #f9fafb;
+    }
+    :root[data-theme="dark"] {
+      --mm-page:    #0f1117;
+      --mm-chrome:  #1a1b1e;
+      --mm-fg:      #f3f4f6;
+      --mm-fg-muted:#9ca3af;
+      --mm-border:  #374151;
+      --mm-nav-bg:  #24262b;
+      --mm-rail-bg: #24262b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #e5e7eb; padding: 24px; }
+
+    /* ── Demo controls ─────────────────────────────────────────── */
+    .demo-controls {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .demo-controls label { font-size: 13px; color: var(--mm-fg-muted); }
+    .demo-controls button, .demo-controls input {
+      font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--mm-border);
+      background: var(--mm-page); color: var(--mm-fg); cursor: pointer;
+    }
+    .demo-controls button:hover { background: var(--mm-nav-bg); }
+    .demo-controls input[type=range] { width: 160px; }
+
+    /* ── Simulated viewport ───────────────────────────────────── */
+    .demo-viewport {
+      width: 960px;           /* driven by the width slider */
+      height: 600px;
+      border: 1px solid var(--mm-border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--mm-page);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    /* ── Shell — base = bottom-bar mode (≤860px) ────────────── */
+    .mm-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--mm-page);
+      color: var(--mm-fg);
+    }
+
+    /* Topbar — always present in bottom-bar mode */
+    .mm-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--mm-topbar-h);
+      padding: 0 16px;
+      background: var(--mm-chrome);
+      border-block-end: 1px solid var(--mm-border);
+      font-weight: 600;
+    }
+
+    /* Rail — hidden in bottom-bar mode, shown at ≥861px */
+    .mm-rail { display: none; }
+
+    /* Main content area */
+    .mm-main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* Bottom tab bar — shown in bottom-bar mode, hidden in rail mode */
+    .mm-tabbar {
+      display: flex;
+      height: var(--mm-tabbar-h);
+      background: var(--mm-chrome);
+      border-block-start: 1px solid var(--mm-border);
+    }
+    .mm-tabbar__item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 11px;
+      color: var(--mm-fg-muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .mm-tabbar__item[aria-current="true"] {
+      color: var(--mm-accent);
+      border-block-start: 2px solid var(--mm-accent);
+    }
+    .mm-tabbar__more { border-block-start: 2px solid transparent; }
+
+    /* ── Shell — rail mode (≥861px) ─────────────────────────── */
+    .mm-shell[data-layout="rail"] .mm-topbar   { display: none; }
+    .mm-shell[data-layout="rail"] .mm-rail     { display: flex; }
+    .mm-shell[data-layout="rail"] .mm-tabbar   { display: none; }
+    .mm-shell[data-layout="rail"] .mm-main     { padding: 32px 24px; }
+
+    /* Rail structure */
+    .mm-rail {
+      flex-direction: column;
+      width: var(--mm-rail-w);
+      background: var(--mm-rail-bg);
+      border-inline-end: 1px solid var(--mm-border);
+      padding-block: 16px;
+    }
+    .mm-rail__nav { flex: 1; }
+    .mm-rail__list { list-style: none; }
+    .mm-rail__group-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--mm-fg-muted);
+      padding: 12px 16px 4px;
+    }
+    .mm-rail__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      margin-inline: 8px;
+      border-radius: 6px;
+      font-weight: 500;
+      color: var(--mm-fg-muted);
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-inline-start: 2px solid transparent;
+    }
+    .mm-rail__item:hover       { background: var(--mm-nav-bg); color: var(--mm-fg); }
+    .mm-rail__item[aria-current="true"] {
+      color: var(--mm-accent);
+      border-inline-start: 2px solid var(--mm-accent);
+      background: var(--mm-nav-bg);
+    }
+
+    /* Section labels at ≥861px */
+    .mm-rail__section-label { display: block; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em; color: var(--mm-fg-muted);
+      padding: 12px 16px 4px; }
+
+    /* Teacher-only workflow strip — pinned to rail bottom */
+    .mm-rail__strip {
+      border-block-start: 1px solid var(--mm-border);
+      padding: 12px 16px;
+      margin-block-start: auto;
+    }
+    .mm-shell[data-shell="student"] .mm-rail__strip { display: none; }
+
+    /* ── More overflow sheet (student bottom bar) ──────────── */
+    .mm-sheet-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      align-items: flex-end;
+    }
+    .mm-sheet-backdrop[aria-hidden="false"] { display: flex; }
+    .mm-sheet {
+      width: 100%; max-width: 360px;
+      background: var(--mm-chrome);
+      border-block-start-start: 12px solid var(--mm-border);
+      padding: 12px;
+    }
+    .mm-sheet__item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 12px; border-radius: 6px; cursor: pointer;
+    }
+    .mm-sheet__item:hover { background: var(--mm-nav-bg); }
+    .mm-sheet__item[aria-current="true"] {
+      background: var(--mm-nav-bg); color: var(--mm-accent);
+    }
+
+    /* ── Section labels that are hidden below 861px ─────────── */
+    .mm-rail__section-label { display: block; }
+    .mm-shell[data-layout="bottom"] .mm-rail__section-label { display: none; }
+
+    /* Student tabbar uses amber accent */
+    .mm-shell[data-shell="student"] .mm-tabbar__item[aria-current="true"] { color: var(--mm-accent); }
+
+  </style>
+</head>
+<body>
+
+  <div class="demo-controls">
+    <label>Viewport width: <span id="wlabel">960</span>px</label>
+    <input type="range" id="widthSlider" min="320" max="1200" value="960">
+
+    <label>Role:</label>
+    <button id="roleBtn">Switch to Student</button>
+
+    <label>Theme:</label>
+    <button id="themeBtn">Dark</button>
+
+    <label><input type="checkbox" id="moreToggle"> Student "More" sheet open</label>
+  </div>
+
+  <div class="demo-viewport" id="viewport">
+    <div class="mm-shell" data-shell="teacher" data-theme="light" data-layout="rail">
+
+      <!-- topbar (bottom-bar mode only) -->
+      <div class="mm-topbar">
+        <span>🏠 MET Mastery</span>
+        <span>👤 Teacher</span>
+      </div>
+
+      <!-- rail (≥861px mode) -->
+      <nav class="mm-rail" aria-label="Main">
+        <div class="mm-rail__nav">
+          <div class="mm-rail__section-label">Today</div>
+          <ul class="mm-rail__list">
+            <a href="#" class="mm-rail__item" aria-current="true">🏠 Dashboard</a>
+            <a href="#" class="mm-rail__item">📊 Analytics</a>
+            <a href="#" class="mm-rail__item">📚 Classes</a>
+          </ul>
+          <div class="mm-rail__section-label">Library</div>
+          <ul class="mm-rail__list">
+            <a href="#" class="mm-rail__item">📖 Curricula</a>
+            <a href="#" class="mm-rail__item">🎯 Assessments</a>
+          </ul>
+        </div>
+
+        <!-- teacher-only WorkflowStageStrip slot -->
+        <div class="mm-rail__strip">
+          <div style="font-size:12px; font-weight:600; color:var(--mm-fg-muted);">
+            WorkflowStageStrip (teacher-only)
+          </div>
+          <div style="font-size:11px; color:var(--mm-fg-muted); margin-top:4px;">
+            Step 2 of 4 — Grading
+          </div>
+        </div>
+      </nav>
+
+      <!-- main content -->
+      <main class="mm-main">
+        <h1>Shell preview</h1>
+        <p style="margin-top:8px; color:var(--mm-fg-muted); font-size:14px;">
+          Layout: <span id="layoutLabel">Rail (≥861px)</span>
+          &nbsp;|&nbsp; Role: <span id="roleLabel">Teacher</span>
+          &nbsp;|&nbsp; Theme: <span id="themeLabel">Light</span>
+        </p>
+        <p style="margin-top:16px; color:var(--mm-fg-muted); font-size:13px;">
+          The rail is 280px wide with a 2px accent-colored left border on the
+          active item. Section labels ("Today", "Library") are shown. The
+          teacher-only WorkflowStageStrip is pinned to the rail bottom via
+          <code>margin-block-start: auto</code>.
+        </p>
+        <p style="margin-top:12px; color:var(--mm-fg-muted); font-size:13px;">
+          At ≤860px the rail disappears; a horizontal topbar + bottom tab bar
+          take over. Student renders 5 tabs + a "More" overflow sheet; progress
+          indicators live inside More, never in the rail.
+        </p>
+        <div id="fracNote" style="margin-top:16px; padding:12px; background:var(--mm-nav-bg);
+            border-radius:6px; font-size:12px; color:var(--mm-fg-muted);">
+          Fractional proof: drag the slider to 860.5px or 768.5px — the shell
+          falls cleanly into bottom-bar mode (no dead zone).
+        </div>
+      </main>
+
+      <!-- bottom tab bar (≤860px mode) -->
+      <div class="mm-tabbar">
+        <button class="mm-tabbar__item" aria-current="true">🏠 Today</button>
+        <button class="mm-tabbar__item">📚 Library</button>
+        <button class="mm-tabbar__item">🎯 Workflow</button>
+        <button class="mm-tabbar__item">📊 Progress</button>
+        <button class="mm-tabbar__item">⚙️ Settings</button>
+        <button class="mm-tabbar__item mm-tabbar__more" id="moreBtn">⋯ More</button>
+      </div>
+
+      <!-- More overflow sheet (student) -->
+      <div class="mm-sheet-backdrop" id="sheetBackdrop" aria-hidden="true">
+        <div class="mm-sheet">
+          <div class="mm-sheet__item">📖 My Subjects</div>
+          <div class="mm-sheet__item">✍️ Homework</div>
+          <div class="mm-sheet__item">💬 Messages</div>
+          <div class="mm-sheet__item" aria-current="true" style="color:var(--mm-accent);">
+            📈 Progress Detail (in More, not rail)
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const vp = document.getElementById('viewport');
+    const shell = vp.querySelector('.mm-shell');
+    const slider = document.getElementById('widthSlider');
+    const wlabel = document.getElementById('wlabel');
+    const layoutLabel = document.getElementById('layoutLabel');
+    const roleBtn = document.getElementById('roleBtn');
+    const themeBtn = document.getElementById('themeBtn');
+    const moreToggle = document.getElementById('moreToggle');
+    const sheet = document.getElementById('sheetBackdrop');
+    const moreBtn = document.getElementById('moreBtn');
+
+    function updateLayout() {
+      const w = +slider.value;
+      wlabel.textContent = w;
+      vp.style.width = w + 'px';
+
+      if (w >= 861) {
+        shell.setAttribute('data-layout', 'rail');
+        layoutLabel.textContent = 'Rail (≥861px)';
+      } else {
+        shell.setAttribute('data-layout', 'bottom');
+        layoutLabel.textContent = 'Bottom-bar (≤860px)';
+      }
+    }
+
+    slider.addEventListener('input', updateLayout);
+
+    // Role toggle
+    roleBtn.addEventListener('click', () => {
+      const role = shell.getAttribute('data-shell');
+      const next = role === 'teacher' ? 'student' : 'teacher';
+      shell.setAttribute('data-shell', next);
+      roleLabel.textContent = next.charAt(0).toUpperCase() + next.slice(1);
+      roleBtn.textContent = 'Switch to ' + (next === 'teacher' ? 'Student' : 'Teacher');
+    });
+
+    // Theme toggle
+    themeBtn.addEventListener('click', () => {
+      const t = shell.getAttribute('data-theme');
+      const next = t === 'light' ? 'dark' : 'light';
+      shell.setAttribute('data-theme', next);
+      themeLabel.textContent = next.charAt(0).toUpperCase() + next.slice(1);
+      themeBtn.textContent = next === 'light' ? 'Dark' : 'Light';
+    });
+
+    // More sheet toggle
+    moreToggle.addEventListener('change', () => {
+      sheet.setAttribute('aria-hidden', !moreToggle.checked);
+    });
+    moreBtn.addEventListener('click', () => {
+      const open = sheet.getAttribute('aria-hidden') === 'true';
+      sheet.setAttribute('aria-hidden', !open);
+      moreToggle.checked = open;
+    });
+
+    updateLayout();
+  </script>
+</body>
+</html>

@@ -530,6 +530,17 @@ Row 2 = `.mm-nav` (`height: var(--mm-navbar-h)`, `border-top: 1px solid var(--mm
 - `.mm-nav-section-label` — `--mm-t-section`, colour `var(--mm-ink-muted)`; **shown only ≥1025px** (`display: none` in the base, `display: block` in the `min-width: 1025px` block).
 - Edge fade on scroll: `mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%)` — only when `scrollWidth > clientWidth`.
 
+### 5.3b `.mm-rail` — vertical rail (≥861px)
+
+Per DECISION LOCK (lines 9–36): at ≥861px **both roles** render a vertical left rail. One code path — geometry branches on breakpoint only, never on role. The horizontal nav described in §5.3 is retired at this width.
+
+- **Width:** `--mm-rail-w` = `280px` (17.5rem); not fluid. (`tokens.css:112`)
+- **Element:** `.mm-rail` — `display: flex; flex-direction: column;`. The existing `.mm-nav` content (same `<nav>` / `<ul>` / `<li>`) is **relocated**, not duplicated. No new markup element.
+- **Active marker:** `.mm-rail__item[aria-current="true"]` gets a `2px solid var(--mm-accent)` on `border-inline-start`. No background fills.
+- **Section labels:** "Today" / "Library" — `.mm-nav-section-label { display: block; }` activated at this breakpoint.
+- **Teacher-only slot:** `.mm-rail__strip` renders `WorkflowStageStrip` (`shared.jsx:128`) with `margin-block-start: auto`, pinning it to the rail bottom. Students simply omit the slot from markup — the rail still renders identically.
+- **Focus order:** rail → strip (if teacher) → main content. No skip-link — the rail is always in the initial viewport at ≥861px.
+
 ### 5.4 `.mm-nav-item` — states
 
 | State | Background | Text | Border / decoration | Notes |
@@ -543,7 +554,14 @@ Row 2 = `.mm-nav` (`height: var(--mm-navbar-h)`, `border-top: 1px solid var(--mm
 
 Badge: `background: var(--mm-danger); color: var(--mm-danger-on); min-width: 18px; height: 18px; border-radius: var(--mm-r-pill); font-size: 10px; font-weight: 700` + `aria-label` on the parent ("3 unread").
 
-### 5.5 `.mm-tabbar` (bottom nav, ≤768px)
+### 5.5 `.mm-tabbar` (bottom nav, ≤860px)
+
+Per DECISION LOCK (lines 9–36): ≤860px = horizontal topbar + bottom tab bar; the rail is **removed**. (This spec previously stated ≤768px; that pre-dated the DECISION LOCK revision and has been corrected.)
+
+- **5 visible tabs.** Teacher: 4 + More = 5. Student: 5 + More = 6 total destinations collapsed to 5 + overflow (Decision 2, line 30). No `flex:1` shrink below ~57px/tab.
+- **"More" overflow sheet** holds remaining destinations; the **progress** indicator renders inside More, never in the rail (rail is absent below 861px).
+- **Fractional proof:** 860.5px and 768.5px must both land in the bottom-bar zone — no dead zone. Min-width-only media queries guarantee this by construction (§4.1); 860.5px matches `min-width: 769px` only, never `861px`.
+- **Focus:** bottom-bar tabs first, then main content.
 
 - `position: fixed; bottom:0; left:0; right:0; height: var(--mm-bottomnav-total)`
 - `padding-bottom: var(--mm-safe-b)`

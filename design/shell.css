@@ -255,7 +255,11 @@
 
 /* 861px — tablet */
 @media (min-width: 861px) {
-  :root { --mm-gutter: 24px; }
+  :root { --mm-gutter: 24px; --mm-rail-w: 280px; }
+  .mm-shell .mm-rail        { display: flex; }
+  .mm-shell .mm-nav         { display: none; }
+  .mm-shell .mm-tabbar      { display: none; }
+  .mm-shell[data-shell="teacher"] .mm-rail__strip { margin-block-start: auto; }
 }
 
 /* 1025px — desktop: full-height nav row, section labels, per-role content max */
