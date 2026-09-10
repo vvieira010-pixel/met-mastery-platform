@@ -178,7 +178,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
   }, [onHintLevelChange]);
 
   const handleComplete = useCallback((answerResult) => {
-    onComplete?.({ ...answerResult, errorCategory: errorCategory || null });
+    return onComplete?.({ ...answerResult, errorCategory: errorCategory || null });
   }, [onComplete, errorCategory]);
 
   function renderExercise() {
@@ -203,7 +203,6 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       case 'listen':     return <Listening {...props} />;
       case 'read':       return <ReadExercise {...props} />;
       case 'embed':      return <EmbeddedLesson {...props} />;
-      // New types (stubs for now)
       case 'drag_and_drop_matching':
       case 'true_false_with_explanation':
       case 'interactive_scenario_case_study':
@@ -225,7 +224,6 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       boxShadow: '0 4px 20px -8px rgba(14,31,92,0.18), 0 1px 4px rgba(18,40,121,0.06)',
       transition: 'border-color 0.2s ease',
     }}>
-      {/* Card header */}
       <div style={{
         padding: '14px 20px', borderBottom: '1px solid var(--divider)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
@@ -299,7 +297,6 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
         </div>
       </div>
 
-      {/* Exercise body */}
       <div style={{ padding: '20px 20px 24px' }}>
         {done && practiceStudio ? (
           <SavedPracticeFeedback result={result} />
@@ -307,14 +304,12 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
         {saving && <p role="status" aria-live="polite" style={{ margin: '12px 0 0', color: 'var(--text-2)', fontSize: 13 }}>Saving this question…</p>}
       </div>
 
-      {/* Error diagnosis gate — shown when wrong answer + hint clicked */}
       {!done && showErrorGate && (
         <div style={{ padding: '0 20px' }}>
           <ErrorDiagnosisGate onDiagnose={handleDiagnose} onSkip={handleSkipGate} />
         </div>
       )}
 
-      {/* Progressive hint ladder — AI-powered, controlled by scaffold level */}
       {!done && !showErrorGate && maxHints > 0 && (
         <div style={{ padding: '0 20px 16px' }}>
           {hintLevel > 0 && (
@@ -334,7 +329,6 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
         </div>
       )}
 
-      {/* Navigation footer */}
       <div style={{ padding: '0 20px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <button
           onClick={onBack}
@@ -447,49 +441,38 @@ function ScoreSummary({ results, waitingForFinalSubmission = false }) {
       }}
     >
       <div style={{ fontSize: 13, fontWeight: 700, color: headingColor, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-            {waitingForFinalSubmission ? 'Ready to submit' : 'Session Complete'}
-          </div>
+        {waitingForFinalSubmission ? 'Ready to submit' : 'Session Complete'}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
+        {results.map((r, i) => {
+          const isCorrect = r?.correct === true;
+          const isIncorrect = r?.correct === false;
+          return (
+            <span
+              key={i}
+              aria-label={isCorrect ? `Exercise ${i + 1}: correct` : isIncorrect ? `Exercise ${i + 1}: incorrect` : `Exercise ${i + 1}: skipped`}
+              style={{
+                width: 30, height: 30, borderRadius: 'var(--radius-sm, 6px)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 14, fontWeight: 700, lineHeight: 1,
+                background: isCorrect ? 'var(--success-bg)' : isIncorrect ? 'var(--ex-wrong-bg)' : 'var(--ink-light)',
+                color: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--muted)',
+                border: `1px solid ${isCorrect ? 'var(--success-soft)' : isIncorrect ? 'var(--ex-wrong-border)' : 'var(--border)'}`,
+              }}
+            >
+              {isCorrect ? '✓' : isIncorrect ? '✗' : '—'}
+            </span>
+          );
+        })}
+      </div>
+      <div style={{ fontSize: 14, color: 'var(--text-muted)', fontWeight: 500, lineHeight: 1.6 }}>
+        {correctCount} correct{incorrectCount > 0 ? ` · ${incorrectCount} incorrect` : ''}{skippedCount > 0 ? ` · ${skippedCount} skipped` : ''}.{' '}
+        {waitingForFinalSubmission ? 'You can review your work or submit this final attempt once.' : msg}
+      </div>
+    </div>
+  );
+}
 
-          {/* Per-exercise completion indicators */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
-            {results.map((r, i) => {
-              const isCorrect = r?.correct === true;
-              const isIncorrect = r?.correct === false;
-              return (
-                <span
-                  key={i}
-                  aria-label={isCorrect ? `Exercise ${i + 1}: correct` : isIncorrect ? `Exercise ${i + 1}: incorrect` : `Exercise ${i + 1}: skipped`}
-                  style={{
-                    width: 30, height: 30, borderRadius: 'var(--radius-sm, 6px)',
-                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 14, fontWeight: 700, lineHeight: 1,
-                    background: isCorrect ? 'var(--success-bg)' : isIncorrect ? 'var(--ex-wrong-bg)' : 'var(--ink-light)',
-                    color: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--muted)',
-                    border: `1px solid ${isCorrect ? 'var(--success-soft)' : isIncorrect ? 'var(--ex-wrong-border)' : 'var(--border)'}`,
-                  }}
-                >
-                  {isCorrect ? '✓' : isIncorrect ? '✗' : '—'}
-                </span>
-              );
-            })}
-          </div>
-
-          <div style={{ fontSize: 14, color: 'var(--text-muted)', fontWeight: 500, lineHeight: 1.6 }}>
-            {correctCount} correct{incorrectCount > 0 ? ` · ${incorrectCount} incorrect` : ''}{skippedCount > 0 ? ` · ${skippedCount} skipped` : ''}.{' '}
-            {waitingForFinalSubmission ? 'You can review your work or submit this final attempt once.' : msg}
-          </div>
-        </div>
-      );
-    }
-
-/**
- * ExercisePlayer
- *
- * Props:
- *   exercises — raw JSON value (array or { exercises: [...] }) OR already-parsed array
- *   title — optional session title
- *   onSessionComplete — called with { results, score } when all done
- */
 export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, onExerciseComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false, initialResults = [] }) {
   const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
@@ -530,6 +513,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     const savedResult = { ...result, index: idx };
     savingExerciseRef.current = true;
     setSavingExercise(true);
+    setSubmissionError('');
     try {
       await onExerciseComplete?.({ exercise: exercises[idx], index: idx, result: savedResult });
       setResults(prev => {
@@ -549,7 +533,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   }, [exercises, onExerciseComplete]);
 
   const handleComplete = useCallback((result) => {
-    void saveExerciseResult(result);
+    return saveExerciseResult(result);
   }, [saveExerciseResult]);
 
   const buildSummary = useCallback((completedResults = resultsRef.current) => {
@@ -624,9 +608,8 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     const nextIdx = currentRef.current + 1;
     if (nextIdx >= totalRef.current) finishSession();
     else setCurrent(nextIdx);
-  }, [onExerciseComplete, saveExerciseResult, setCurrent, finishSession]);
+  }, [onExerciseComplete, saveExerciseResult, finishSession]);
 
-  // Errors only (nothing valid loaded)
   if (errors.length > 0 && exercises.length === 0) {
     return (
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '20px 16px' }}>
@@ -647,7 +630,6 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
         <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xl)', fontWeight: 700, color: NAVY, marginBottom: 6 }}>{title}</h2>
       )}
 
-      {/* Load errors (partial — some valid exercises exist) */}
       {errors.length > 0 && (
         <div style={{ marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
           {errors.map((e, i) => (
