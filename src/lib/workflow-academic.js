@@ -108,7 +108,9 @@ export async function getSubmissions(studentId) {
 export async function submitHomework(homeworkId, studentId, content, responses, confidence) {
   // Once-only guard: each homework may be submitted exactly once per student.
   // Check both Supabase (when available) and local fallback before creating.
-  const existingList = await getSubmissions(studentId);
+  const existingList = dbReady('submissions')
+    ? await dbList('submissions', { fresh: true })
+    : await getSubmissions(studentId);
   if ((existingList || []).some(s => s.homeworkId === homeworkId)) {
     throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.');
   }
@@ -125,15 +127,17 @@ export async function submitHomework(homeworkId, studentId, content, responses, 
         if (hw) await dbUpsert('homework', { ...hw, status: 'submitted' });
       } catch { /* ignore */ }
       if (saved) return saved;
+      throw new Error('The database did not confirm the homework submission.');
     } catch (e) {
       if (/23505|duplicate key|unique constraint/i.test(String(e?.message || e))) {
-        const dup = (await getSubmissions(studentId)).find(s => s.homeworkId === homeworkId);
+        const latest = await dbList('submissions', { fresh: true });
+        const dup = (latest || []).find(s => s.homeworkId === homeworkId && s.studentId === studentId);
         // Preserve the original unique-violation error so the stack trace
         // still points at the Postgres constraint, not just this guard.
         if (dup) throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.', { cause: e });
       }
-      console.warn('[workflow] submitHomework via Supabase failed, using localStorage:', e.message);
-      if (/already been submitted/i.test(e.message)) throw e;
+      console.warn('[workflow] submitHomework via Supabase failed:', e.message);
+      throw new Error(`Could not submit this homework to your teacher. ${e.message}`, { cause: e });
     }
   }
   // Re-check local store to avoid race after Supabase failure

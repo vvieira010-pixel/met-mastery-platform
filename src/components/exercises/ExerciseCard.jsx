@@ -13,7 +13,7 @@ function arrowBtnStyle(disabled) {
   };
 }
 
-export default function ExerciseCard({ exercise, index, total, isExpanded, onToggle, onChange, onRemove, onMove, onSaveToLibrary }) {
+export default function ExerciseCard({ exercise, index, total, isExpanded, onToggle, onChange, onRemove, onMove, onSaveToLibrary, onGenerateAudio }) {
   const previewText = exercisePreview(exercise);
   const cardRef = useRef(null);
 
@@ -157,7 +157,7 @@ export default function ExerciseCard({ exercise, index, total, isExpanded, onTog
             maxHeight: 340, overflowY: 'auto', scrollbarGutter: 'stable',
             padding: '14px 14px 14px',
           }}>
-            <ExerciseEditor exercise={exercise} onChange={onChange} />
+            <ExerciseEditor exercise={exercise} onChange={onChange} onGenerateAudio={onGenerateAudio} />
 
             {/* Teacher review section */}
             {isAiGen && (

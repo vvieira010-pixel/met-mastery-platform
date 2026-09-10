@@ -1676,7 +1676,7 @@ const CONFIDENCE_LEVELS = [
   { value: 3, label: 'Very sure', desc: 'I am confident I did well' },
 ];
 
-export function HomeworkStepThrough({ exercises, responses, onResponse, onSubmit, onSave, initialExerciseId, currentExerciseRef, onNavigate, readOnly = false }) {
+export function HomeworkStepThrough({ exercises, responses, onResponse, onSubmit, onSave, initialExerciseId, currentExerciseRef, onNavigate, readOnly = false, submitting = false }) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [confidence, setConfidence] = useState(null);
   const [showConfidence, setShowConfidence] = useState(false);
@@ -1739,6 +1739,7 @@ export function HomeworkStepThrough({ exercises, responses, onResponse, onSubmit
                   key={level.value}
                   type="button"
                   onClick={() => setConfidence(level.value)}
+                  disabled={readOnly || submitting}
                   style={{
                     display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer',
                     padding: '12px 16px', borderRadius: 'var(--radius-sm)',
@@ -1769,8 +1770,8 @@ export function HomeworkStepThrough({ exercises, responses, onResponse, onSubmit
           <Button variant="ghost" size="sm" onClick={() => { setShowConfidence(false); setConfidence(null); }}>
             <Icon.arrowL size={12} /> Back
           </Button>
-          <Button variant="primary" onClick={handleSubmitClick} disabled={confidence === null}>
-            <Icon.check size={13} /> Submit Homework
+          <Button variant="primary" onClick={handleSubmitClick} disabled={confidence === null || readOnly || submitting}>
+            <Icon.check size={13} /> {submitting ? 'Submitting…' : 'Submit Homework'}
           </Button>
         </div>
       </div>
@@ -1822,8 +1823,8 @@ export function HomeworkStepThrough({ exercises, responses, onResponse, onSubmit
             <Icon.check size={12} /> Save progress
           </Button>
           {isLast ? (
-            <Button variant="primary" onClick={handleSubmitClick} disabled={readOnly}>
-              <Icon.check size={13} /> Submit Homework
+            <Button variant="primary" onClick={handleSubmitClick} disabled={readOnly || submitting}>
+              <Icon.check size={13} /> {submitting ? 'Submitting…' : 'Submit Homework'}
             </Button>
           ) : (
             <Button variant="primary" size="sm" onClick={goNext}>

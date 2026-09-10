@@ -337,7 +337,8 @@ export async function uploadTeacherResource(file, folder = 'images') {
   }
   const ctx = getDbContext();
   if (!ctx) throw new Error('Not signed in.');
-  const ext = file.name.split('.').pop() || 'bin';
+  const fileName = file.name || 'teacher-resource.bin';
+  const ext = fileName.split('.').pop() || 'bin';
   const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 6)}.${ext}`;
   const res = await fetch(`${ctx.url}/storage/v1/object/${RESOURCE_BUCKET}/${path}`, {
     method: 'POST',

@@ -25,12 +25,12 @@ function getSessionToken() {
   } catch { return ''; }
 }
 
-async function fetchServerAudio(text, gender = 'female') {
+async function fetchServerAudio(text, gender = 'female', provider = 'auto') {
   const token = getSessionToken();
   const res = await fetch('/api/tts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-    body: JSON.stringify({ text, gender }),
+    body: JSON.stringify({ text, gender, provider }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -74,6 +74,28 @@ export async function fetchAudioWithGender(text, gender = 'female') {
   if (piperUrl) { try { return await fetchPiperAudio(text, piperUrl, gender); } catch (e) { console.warn('[tts] Piper failed:', e.message); } }
   try { return await fetchServerAudio(text, gender); } catch (e) { console.warn('[tts] Server proxy failed:', e.message); }
   return null;
+}
+
+/**
+ * Generate one listening asset using the teacher's selected provider.
+ * `auto` preserves the existing Piper -> server fallback behavior.
+ * `piper` deliberately fails when no local Piper URL is configured so the
+ * builder never reports a local asset that was actually generated remotely.
+ */
+export async function fetchAudioWithProvider(text, provider = 'auto', gender = 'female') {
+  const selected = provider || 'auto';
+  const piperUrl = getPiperUrl();
+
+  if (selected === 'piper') {
+    if (!piperUrl) throw new Error('Add your local Piper server URL in Settings first.');
+    return fetchPiperAudio(text, piperUrl, gender);
+  }
+
+  if (selected === 'deepgram') {
+    return fetchServerAudio(text, gender, 'deepgram');
+  }
+
+  return fetchAudioWithGender(text, gender);
 }
 
 export async function fetchConversationAudio(utterances) {

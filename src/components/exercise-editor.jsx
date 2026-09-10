@@ -155,7 +155,7 @@ export function ExerciseTypePicker({ onSelect, onClose, onAiGenerate, exerciseOp
  * ExerciseEditor — renders the correct sub-editor based on exercise.type.
  * @param {{ exercise: object, onChange: (updated: object) => void }} props
  */
-export function ExerciseEditor({ exercise, onChange }) {
+export function ExerciseEditor({ exercise, onChange, onGenerateAudio }) {
   if (!exercise) return null;
   const update = (patch) => onChange({ ...exercise, ...patch });
 
@@ -170,12 +170,12 @@ export function ExerciseEditor({ exercise, onChange }) {
           placeholder="Tell the student what to do, e.g. 'Read the sentence carefully and choose the best word.'"
         />
       </div>
-      {renderSubEditor(exercise, update)}
+      {renderSubEditor(exercise, update, onGenerateAudio)}
     </div>
   );
 }
 
-function renderSubEditor(exercise, update) {
+function renderSubEditor(exercise, update, onGenerateAudio) {
   switch (exercise.type) {
     case 'mcq':    return <MCQEditor    ex={exercise} update={update} />;
     case 'blank':  return <BlankEditor  ex={exercise} update={update} />;
@@ -184,7 +184,7 @@ function renderSubEditor(exercise, update) {
     case 'order':  return <OrderEditor  ex={exercise} update={update} />;
     case 'fix':    return <FixEditor    ex={exercise} update={update} />;
     case 'flash':    return <FlashEditor    ex={exercise} update={update} />;
-    case 'listen':   return <ListenEditor   ex={exercise} update={update} />;
+    case 'listen':   return <ListenEditor   ex={exercise} update={update} onGenerateAudio={onGenerateAudio} />;
     case 'dialogue': return <DialogueEditor ex={exercise} update={update} />;
     case 'swap':     return <SwapEditor     ex={exercise} update={update} />;
     case 'levelup':  return <LevelUpEditor  ex={exercise} update={update} />;
@@ -672,9 +672,22 @@ function FlashEditor({ ex, update }) {
 }
 
 /* ─── 8. LISTENING ───────────────────────────────────────────── */
-function ListenEditor({ ex, update }) {
+function ListenEditor({ ex, update, onGenerateAudio }) {
   const [picker, setPicker] = useState(false);
   const [genImg, setGenImg] = useState(false);
+  const [audioProvider, setAudioProvider] = useState(ex.audioProvider || 'auto');
+  const [audioGender, setAudioGender] = useState(ex.audioGender || 'female');
+  const [generatingAudio, setGeneratingAudio] = useState(false);
+
+  async function generateAudio() {
+    if (!onGenerateAudio || !ex.audioText?.trim()) return;
+    setGeneratingAudio(true);
+    try {
+      await onGenerateAudio(ex, audioProvider, audioGender);
+    } finally {
+      setGeneratingAudio(false);
+    }
+  }
   return (
     <div>
       <ResourcePicker open={picker} onClose={() => setPicker(false)} onSelect={u => { update({ audioSrc: u }); setPicker(false); }} tab="audio" />
@@ -708,8 +721,32 @@ function ListenEditor({ ex, update }) {
           placeholder={'Girl: I was going to study for two hours, but I kept checking my phone.\nBoy: Maybe put your phone in another room next time.\nGirl: Yeah, that\'s probably the only way I\'ll focus.'}
         />
         <div style={hintText}>
-          Used as TTS source (ElevenLabs / browser fallback) when no URL above. Shown as transcript after the student answers.
+          Used as the source for generated audio and shown as the transcript after the student answers.
         </div>
+      </div>
+
+      <div style={{ ...fieldWrap, padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', background: 'var(--bg)' }}>
+        <label style={fieldLabel}>Create audio for this listening</label>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <select className="input" value={audioProvider} onChange={e => { setAudioProvider(e.target.value); update({ audioProvider: e.target.value }); }} style={{ flex: '1 1 180px' }}>
+            <option value="auto">Automatic (local Piper, then server)</option>
+            <option value="piper">Local Piper</option>
+            <option value="deepgram">Deepgram</option>
+          </select>
+          <select className="input" value={audioGender} onChange={e => { setAudioGender(e.target.value); update({ audioGender: e.target.value }); }} style={{ flex: '0 1 120px' }}>
+            <option value="female">Female voice</option>
+            <option value="male">Male voice</option>
+          </select>
+          <Button variant="primary" size="sm" onClick={generateAudio} disabled={!onGenerateAudio || !ex.audioText?.trim() || generatingAudio}>
+            <Icon.headphones size={12} /> {generatingAudio ? 'Generating…' : 'Generate & save audio'}
+          </Button>
+        </div>
+        <div style={hintText}>
+          The generated file is uploaded to your teacher resource library when signed in, saved with this exercise, and kept in the homework. AssemblyAI is used for scoring/transcription in this app, not speech synthesis.
+        </div>
+        {ex.audioSrc && (
+          <audio controls src={ex.audioSrc} style={{ width: '100%', height: 36, marginTop: 8 }} preload="metadata" />
+        )}
       </div>
 
       <div style={fieldWrap}>

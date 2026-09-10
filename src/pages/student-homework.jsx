@@ -499,6 +499,7 @@ export default function StudentHomework({ student, "data-testid": testId }) {
                       if (res) saveExerciseDraft(h.id, exerciseId, res);
                     }}
                     readOnly={false}
+                    submitting={submitting}
                   />
                 )}
 

@@ -38,7 +38,7 @@ export function StepPrebuilt({
   handleTopicAiGenerate, handleResourceSelect,
   packFilter, setPackFilter,
   unitBankExercises, addModuleFromB2Bank, addModuleFromLifestylePack,
-  addModuleFromDeepResearch, addModuleFromGrammarBank, addUnitBankPack,
+  addModuleFromDeepResearch, addModuleFromGrammarBank, addModuleFromDialogue, addUnitBankPack,
   onNavigate, setCurrentStep, populateFromDiagnosis, topicBank,
 }) {
   const SKILLS = ['all','reading','listening','grammar','vocabulary','writing','speaking'];
@@ -50,6 +50,17 @@ export function StepPrebuilt({
   const dlgMods = getDialogueModules().map(m => ({ ...m, pack:'Dialogue Practice', packLevel:'B2', level:'B2' }));
   const allPrebuilt = [...b2Mods, ...lifeMods, ...drMods, ...dlgMods, ...grMods];
   const filtered = packFilter === 'all' ? allPrebuilt : allPrebuilt.filter(m => m.skill === packFilter);
+  const presets = [
+    { id: 'met-core', label: 'MET Core Starter', description: 'A balanced starting set from the MET B2 bank.', modules: [{ mod: b2Mods[0], add: addModuleFromB2Bank }, { mod: b2Mods[1], add: addModuleFromB2Bank }] },
+    { id: 'grammar-repair', label: 'Grammar Repair', description: 'Two focused grammar modules for a targeted homework set.', modules: [{ mod: grMods[0], add: addModuleFromGrammarBank }, { mod: grMods[1], add: addModuleFromGrammarBank }] },
+    { id: 'everyday-dialogue', label: 'Everyday Conversation', description: 'Practical language plus dialogue practice.', modules: [{ mod: lifeMods[0], add: addModuleFromLifestylePack }, { mod: dlgMods[0], add: addModuleFromDialogue }] },
+  ].map(preset => ({ ...preset, modules: preset.modules.filter(item => item.mod) }));
+
+  function addPreset(preset) {
+    if (!preset.modules.length) { window.toast?.('This preset is not available yet.', 'warn'); return; }
+    preset.modules.forEach(({ mod, add }) => add(mod));
+    window.toast?.(`${preset.label} added. Review the exercises before assigning.`, 'ok');
+  }
 
   return (
     <div className="stack-list" style={{ gap: 'var(--space-4)' }}>
@@ -91,6 +102,20 @@ export function StepPrebuilt({
           <Field label="Homework Goal">
             <input className="input" value={form.objective} onChange={e => setForm(f => ({ ...f, objective: e.target.value }))} placeholder="What this homework targets..." />
           </Field>
+        </div>
+      </Card>
+      <Card className="card-sm card-p-5" data-testid="homework-presets">
+        <SectionHeader title="Preset Homework" sub="Start with a complete, reusable set, then adjust it for this student." />
+        <div className="homework-pack-list">
+          {presets.map(preset => (
+            <div key={preset.id} className="homework-pack-module">
+              <div className="homework-pack-module-info">
+                <div className="homework-pack-module-title">{preset.label}</div>
+                <div className="homework-pack-module-meta">{preset.description} · {preset.modules.length} modules</div>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => addPreset(preset)}>Use preset</Button>
+            </div>
+          ))}
         </div>
       </Card>
       {errorBankItems.filter(e => e.status !== 'solved').length > 0 && (
@@ -152,6 +177,7 @@ export function StepPrebuilt({
                 if (mod.pack === 'Everyday English') addModuleFromLifestylePack(mod);
                 else if (mod.pack === 'Extended Practice') addModuleFromDeepResearch(mod);
                 else if (mod.pack === 'Grammar Drill Bank') addModuleFromGrammarBank(mod);
+                else if (mod.pack === 'Dialogue Practice') addModuleFromDialogue(mod);
                 else addModuleFromB2Bank(mod);
               }}>Add</Button>
             </div>
@@ -263,6 +289,7 @@ export function StepBuild({
   languageDemand, setLanguageDemand,
   saving, handleAssign, libraryExercises,
   showLibrary, addFromLibrary, removeFromLibrary,
+  onGenerateAudio,
 }) {
   const warn = getHomeworkCognitiveSufficiencyWarning(form.exercises, diagnosis);
 
@@ -350,6 +377,7 @@ export function StepBuild({
               onRemove={() => removeExercise(ex.id)}
               onMove={(dir) => moveExercise(i, dir)}
               onSaveToLibrary={() => saveToLibrary(ex)}
+              onGenerateAudio={onGenerateAudio}
             />
           ))}
         </div>

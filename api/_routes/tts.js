@@ -104,7 +104,7 @@ export default async function handler(req, res) {
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
-  const { text, gender = 'female', voice } = body || {};
+  const { text, gender = 'female', voice, provider = 'auto' } = body || {};
 
   if (!text || typeof text !== 'string') {
     return res.status(400).json({ error: { message: 'Missing "text"' } });
@@ -114,10 +114,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: { message: 'Text too long for TTS (max 8000 characters).' } });
   }
 
-  // Cascade order: Deepgram (default) -> ElevenLabs -> Gemini
+  // Explicit Deepgram is useful for teacher-created listening assets. The
+  // default cascade remains available for existing student/player flows.
   let audioB64 = await tryDeepgram(text, gender, voice);
-  if (!audioB64) audioB64 = await tryElevenLabs(text, gender);
-  if (!audioB64) audioB64 = await tryGemini(text, gender);
+  if (provider !== 'deepgram' && !audioB64) audioB64 = await tryElevenLabs(text, gender);
+  if (provider !== 'deepgram' && !audioB64) audioB64 = await tryGemini(text, gender);
 
   if (audioB64) {
     // Ensure it has the data URI prefix if not already present

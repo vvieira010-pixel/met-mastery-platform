@@ -16,6 +16,8 @@ import { getDueCount } from '../lib/spaced-repetition.js';
 import { HomeworkStepThrough } from '../components/exercise-player.jsx';
 import { StepPrebuilt, StepRetrieval, StepBuild } from './homework-create/homework-form.jsx';
 import { useHomeworkAI } from './homework-create/prompt-builders.js';
+import { fetchAudioWithProvider } from '../lib/tts-utils.js';
+import { getDbContext, uploadTeacherResource } from '../lib/supabase-db.js';
 
 const EMPTY_FORM = {
   title: '', objective: '', description: '',
@@ -121,9 +123,23 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
   }, [diagnosisId, studentId]);
 
   function populateFromDiagnosis(dx, s) {
-    const priority = getPriorityItems(dx)[0];
+    const priorities = getPriorityItems(dx);
+    const priority = priorities[0];
     const title = priority ? `${s?.firstName || 'Student'}, ${priority.area}` : 'Homework from Diagnosis';
-    const type = inferSkillType(getPriorityItems(dx));
+    const type = inferSkillType(priorities);
+    const seededTopics = priorities.slice(0, 3).map((item, index) => {
+      const area = item.area || `Diagnostic priority ${index + 1}`;
+      const improvement = item.whatToImprove || item.howToImprove || '';
+      const evidence = item.evidence || item.example || '';
+      const nextAction = item.nextAction || item.recommendation || '';
+      return {
+        id: `diagnosis_${dx?.id || 'current'}_${index}`,
+        title: area,
+        content: [improvement, evidence && `Evidence from the diagnostic: ${evidence}`, nextAction && `Practice focus: ${nextAction}`].filter(Boolean).join('\n\n'),
+        aiPrompt: `Explain ${area} for this student using the diagnostic focus: ${improvement}`,
+        source: 'diagnosis',
+      };
+    }).filter(topic => topic.content);
     setForm({
       title,
       objective: priority ? priority.whatToImprove : '',
@@ -133,6 +149,56 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
       skillType: type,
       dueDate: '', teacherNotes: '',
     });
+    setTopicExplanations(seededTopics);
+  }
+
+  async function generateAudioForExercise(exercise, provider, gender) {
+    if (!exercise?.audioText?.trim()) {
+      window.toast?.('Add an audio script before generating the listening file.', 'warn');
+      return;
+    }
+    let objectUrl = null;
+    try {
+      objectUrl = await fetchAudioWithProvider(exercise.audioText.trim(), provider, gender);
+      if (!objectUrl) throw new Error('The TTS provider returned no audio.');
+
+      let audioSrc = objectUrl;
+      let audioStorage = 'browser-session';
+      const ctx = getDbContext();
+      const response = await fetch(objectUrl);
+      const blob = await response.blob();
+      if (ctx) {
+        const extension = blob.type.includes('wav') ? 'wav' : 'mp3';
+        const file = new globalThis.File([blob], `${exercise.id}.${extension}`, { type: blob.type || 'audio/mpeg' });
+        audioSrc = await uploadTeacherResource(file, 'audio');
+        audioStorage = 'teacher-resources';
+      } else {
+        audioSrc = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+      }
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+
+      const updated = {
+        ...exercise,
+        audioSrc,
+        audioProvider: provider || 'auto',
+        audioGender: gender || 'female',
+        audioStorage,
+        audioGeneratedAt: new Date().toISOString(),
+      };
+      updateExercise(exercise.id, updated);
+      await saveExerciseToLibrary(updated);
+      setLibVersion(v => v + 1);
+      window.toast?.('Audio generated, saved to the question bank, and attached to this homework.', 'ok');
+    } catch (e) {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      window.toast?.(`Audio generation failed: ${e?.message || 'try again.'}`, 'warn');
+    }
   }
 
   function addExercise(type, count = 1, level = 'B1') {
@@ -192,6 +258,14 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
     if (!exercises.length) { window.toast?.('No exercises in this module.', 'warn'); return; }
     setForm(f => ({ ...f, exercises: [...f.exercises, ...exercises] }));
     window.toast?.(`Added ${exercises.length} grammar exercises from "${mod.label}".`, 'ok');
+    setActivePanel(null);
+  }
+
+  function addModuleFromDialogue(mod) {
+    const exercises = (mod?.exercises || []).map(ex => ({ ...ex, id: generateId('dlg_') }));
+    if (!exercises.length) { window.toast?.('No exercises in this dialogue module.', 'warn'); return; }
+    setForm(f => ({ ...f, exercises: [...f.exercises, ...exercises] }));
+    window.toast?.(`Added ${exercises.length} dialogue exercises from "${mod.label}".`, 'ok');
     setActivePanel(null);
   }
 
@@ -341,6 +415,7 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
               unitBankExercises={unitBankExercises}
               addModuleFromB2Bank={addModuleFromB2Bank} addModuleFromLifestylePack={addModuleFromLifestylePack}
               addModuleFromDeepResearch={addModuleFromDeepResearch} addModuleFromGrammarBank={addModuleFromGrammarBank}
+              addModuleFromDialogue={addModuleFromDialogue}
               addUnitBankPack={addUnitBankPack}
               onNavigate={onNavigate} setCurrentStep={setCurrentStep}
               populateFromDiagnosis={populateFromDiagnosis} topicBank={topicBank}
@@ -381,6 +456,7 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
               saving={saving} handleAssign={handleAssign} libraryExercises={libraryExercises}
               showLibrary={showLibrary} addFromLibrary={addFromLibrary}
               removeFromLibrary={removeFromLibrary}
+              onGenerateAudio={generateAudioForExercise}
             />
           )}
         </div>
