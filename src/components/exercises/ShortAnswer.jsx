@@ -38,6 +38,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
   const [evalStatus, setEvalStatus] = useState('idle'); // idle | loading | done | error
   const [evalData, setEvalData] = useState(null);
   const [evalError, setEvalError] = useState('');
+  const [finalized, setFinalized] = useState(false);
   const mediaRef = useRef(null);
   const chunksRef = useRef([]);
   const timerRef = useRef(null);
@@ -77,20 +78,23 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
         try {
           await uploadSubmissionAudio(blob, path);
           setAudioPath(path);
-          if (onComplete) onComplete({ submitted: true, correct: null, audioPath: path, audioB64: null });
+          // In Practice Studio, an uploaded recording is still a draft. The
+          // student may record again until they deliberately request an AI
+          // score. The scored evaluation is the final, locked attempt.
+          if (!practiceStudio && onComplete) onComplete({ submitted: true, correct: null, audioPath: path, audioB64: null });
         } catch (e) {
           console.warn('[speak] audio upload failed:', e.message);
           if (blob.size < 500_000) {
             const reader = new FileReader();
-            reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result, audioPath: null }); };
+            reader.onloadend = () => { if (!practiceStudio && onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result, audioPath: null }); };
             reader.readAsDataURL(blob);
           } else {
-            if (onComplete) onComplete({ submitted: true, correct: null, audioB64: null, audioPath: null });
+            if (!practiceStudio && onComplete) onComplete({ submitted: true, correct: null, audioB64: null, audioPath: null });
           }
         }
       } else {
         const reader = new FileReader();
-        reader.onloadend = () => { if (onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result }); };
+        reader.onloadend = () => { if (!practiceStudio && onComplete) onComplete({ submitted: true, correct: null, audioB64: reader.result }); };
         reader.readAsDataURL(blob);
       }
     };
@@ -164,6 +168,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
     setEvalStatus('idle');
     setEvalData(null);
     setEvalError('');
+    setFinalized(false);
   }
 
   async function requestAiScore() {
@@ -181,6 +186,18 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
       setEvalData(data);
       setEvalStatus('done');
+      if (practiceStudio && onComplete) {
+        setFinalized(true);
+        onComplete({
+          submitted: true,
+          correct: null,
+          audioPath,
+          audioB64: null,
+          evaluation: data.evaluation,
+          score: data.evaluation?.rubricAvg ?? null,
+          total: 4,
+        });
+      }
     } catch (e) {
       setEvalError(e.message || 'AI scoring failed. Please try again.');
       setEvalStatus('error');
@@ -333,13 +350,14 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
 
           <button
             onClick={reset}
+            disabled={finalized}
             style={{
               background: 'none', border: `1.5px solid ${TEAL}`, color: TEAL,
               borderRadius: 99, padding: '6px 16px', fontSize: 'var(--text-sm)',
-              fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start',
+              fontWeight: 600, cursor: finalized ? 'not-allowed' : 'pointer', alignSelf: 'flex-start', opacity: finalized ? 0.55 : 1,
             }}
           >
-            ↺ Record again
+            {finalized ? 'AI score saved' : '↺ Record again'}
           </button>
 
           {/* AI MET score — Practice Studio recordings via /api/evaluate-speaking */}

@@ -66,6 +66,10 @@ test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a
       speakingQuestion: 'Q1',
       status: 'submitted',
       submittedAt: '2026-09-05T12:00:00.000Z',
+      result: {
+        correct: null,
+        evaluation: { feedback: 'Use one clear reason and a supporting example.', cefrEstimate: 'B2', rubricAvg: 3 },
+      },
       results: [],
     },
   }];
@@ -94,8 +98,8 @@ test('student sees Speaking Question 1–5, chooses a topic, and cannot reopen a
   await page.getByRole('button', { name: /Question 1 — Describe a Picture/ }).click();
   await expect(page.getByRole('heading', { name: 'Everyday scenes' })).toBeVisible();
   await page.getByRole('button', { name: /Everyday scenes/ }).click();
-  await expect(page.locator('[data-testid="practice-studio-submission-locked"]')).toBeVisible();
-  await expect(page.getByText('This topic has already been submitted', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-testid="practice-studio-saved-feedback"]')).toBeVisible();
+  await expect(page.getByText('Use one clear reason and a supporting example.', { exact: true })).toBeVisible();
   expect(pageErrors.map(error => error.message)).toEqual([]);
   expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);
 });

@@ -8,6 +8,7 @@ const practiceStudio = fs.readFileSync(path.join(root, 'src', 'pages', 'practice
 const dashboard = fs.readFileSync(path.join(root, 'src', 'pages', 'student-dashboard.jsx'), 'utf8');
 const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ExercisePlayer.jsx'), 'utf8');
 const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
+const writingScore = fs.readFileSync(path.join(root, 'src', 'lib', 'writing-score.js'), 'utf8');
 const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
@@ -34,10 +35,17 @@ test('Practice Studio does not ask a confidence question after each answer', () 
 });
 
 test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
-  assert.match(practiceStudio, /finalSubmissionLabel="Submit this practice once" practiceStudio/);
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
-  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio \}\)/);
+  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio, token \}\)/);
   assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);
+});
+
+test('Practice Studio only locks speaking after AI scoring and sends writing authentication', () => {
+  assert.match(shortAnswer, /if \(!practiceStudio && onComplete\)/);
+  assert.match(shortAnswer, /evaluation: data\.evaluation/);
+  assert.match(writing, /readStoredSupabaseSession/);
+  assert.match(writingScore, /Authorization: `Bearer \$\{token\}`/);
+  assert.match(writing, /evaluation: data\.evaluation/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {
@@ -47,4 +55,3 @@ test('Practice Studio exposes the image-description speaking topic', async () =>
   assert.equal(exercises.length, 15);
   assert.ok(exercises.every(ex => ex.type === 'speak' && ex.imageUrl && ex.metTaskType === 'Q1'));
 });
-
