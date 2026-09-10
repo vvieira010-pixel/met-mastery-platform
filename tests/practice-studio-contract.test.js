@@ -8,6 +8,7 @@ const practiceStudio = fs.readFileSync(path.join(root, 'src', 'pages', 'practice
 const dashboard = fs.readFileSync(path.join(root, 'src', 'pages', 'student-dashboard.jsx'), 'utf8');
 const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ExercisePlayer.jsx'), 'utf8');
 const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
+const writingScore = fs.readFileSync(path.join(root, 'src', 'lib', 'writing-score.js'), 'utf8');
 const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
@@ -36,12 +37,24 @@ test('Practice Studio does not ask a confidence question after each answer', () 
 test('Practice Studio saves and locks individual questions while preserving AI scoring labels', () => {
   assert.match(practiceStudio, /getPracticeStudioExerciseSubmissions/);
   assert.match(practiceStudio, /createPracticeStudioExerciseKey/);
-  assert.match(practiceStudio, /availableExercises/);
+  assert.match(practiceStudio, /const savedResults = useMemo/);
+  assert.match(practiceStudio, /submitPracticeStudioExercise/);
   assert.match(practiceStudio, /onExerciseComplete=\{handleExerciseComplete\}/);
-  assert.match(practiceStudio, /Each question is saved separately in Supabase/);
+  assert.match(practiceStudio, /record\?\.result \? \{ \.\.\.record\.result, index \} : undefined/);
+});
+
+test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
-  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio \}\)/);
+  assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio, token \}\)/);
   assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);
+});
+
+test('Practice Studio only locks speaking after AI scoring and sends writing authentication', () => {
+  assert.match(shortAnswer, /if \(!practiceStudio && onComplete\)/);
+  assert.match(shortAnswer, /evaluation: data\.evaluation/);
+  assert.match(writing, /readStoredSupabaseSession/);
+  assert.match(writingScore, /Authorization: `Bearer \$\{token\}`/);
+  assert.match(writing, /evaluation: data\.evaluation/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {
@@ -51,4 +64,3 @@ test('Practice Studio exposes the image-description speaking topic', async () =>
   assert.equal(exercises.length, 15);
   assert.ok(exercises.every(ex => ex.type === 'speak' && ex.imageUrl && ex.metTaskType === 'Q1'));
 });
-

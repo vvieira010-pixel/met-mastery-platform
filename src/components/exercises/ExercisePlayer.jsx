@@ -49,6 +49,35 @@ function InvalidExercise({ reason }) {
   );
 }
 
+function SavedPracticeFeedback({ result }) {
+  const evaluation = result?.evaluation;
+  if (!evaluation) {
+    return <p role="status" style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>Your response is saved. This question is locked and cannot be changed.</p>;
+  }
+
+  return (
+    <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <p style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
+        This AI-scored attempt is saved and locked. You can revisit its feedback any time.
+      </p>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {evaluation.estimatedBandLabel && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: TEAL, color: 'var(--on-dark)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>{evaluation.estimatedBandLabel}</span>}
+        {evaluation.cefrEstimate && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>{evaluation.cefrEstimate}</span>}
+        {evaluation.rubricAvg != null && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>Rubric average {evaluation.rubricAvg} / 4</span>}
+        {evaluation.scaledScore != null && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>Estimated score {evaluation.scaledScore} / 80</span>}
+      </div>
+      {evaluation.feedback && <div style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{evaluation.feedback}</div>}
+      {evaluation.deliveryEvidence && <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.55 }}><strong>Delivery note:</strong> {evaluation.deliveryEvidence}</div>}
+      {Array.isArray(evaluation.corrections) && evaluation.corrections.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <strong style={{ fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Corrections</strong>
+          {evaluation.corrections.slice(0, 4).map((correction, index) => <div key={index} style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}><s>{correction.original}</s> → <strong>{correction.corrected}</strong>{correction.explanation ? ` — ${correction.explanation}` : ''}</div>)}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function useAIPoweredHints(exercise, scaffoldLevel) {
   const [hints, setHints] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -273,9 +302,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       {/* Exercise body */}
       <div style={{ padding: '20px 20px 24px' }}>
         {done && practiceStudio ? (
-          <p role="status" style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
-            Your response is saved. This question is locked and cannot be changed.
-          </p>
+          <SavedPracticeFeedback result={result} />
         ) : renderExercise()}
         {saving && <p role="status" aria-live="polite" style={{ margin: '12px 0 0', color: 'var(--text-2)', fontSize: 13 }}>Saving this question…</p>}
       </div>
@@ -463,10 +490,10 @@ function ScoreSummary({ results, waitingForFinalSubmission = false }) {
  *   title — optional session title
  *   onSessionComplete — called with { results, score } when all done
  */
-export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, onExerciseComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false }) {
+export default function ExercisePlayer({ exercises: raw, title, onSessionComplete, onExerciseComplete, scaffoldLevel = 4, requireFinalSubmission = false, finalSubmissionLabel = 'Submit this practice once', practiceStudio = false, initialResults = [] }) {
   const { exercises, errors } = useMemo(() => loadExercises(Array.isArray(raw) ? raw : (raw || [])), [raw]);
   const [current, setCurrent] = useState(0);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(() => initialResults);
   const [done, setDone] = useState(false);
   const [reviewVersion, setReviewVersion] = useState(0);
   const [pendingSummary, setPendingSummary] = useState(null);
@@ -485,6 +512,13 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   useEffect(() => { totalRef.current = exercises.length; });
   useEffect(() => { onDoneRef.current = onSessionComplete; });
   useEffect(() => { resultsRef.current = results; });
+  useEffect(() => {
+    setResults(initialResults);
+    setCurrent(0);
+    setDone(false);
+    setPendingSummary(null);
+    setSubmissionError('');
+  }, [initialResults]);
 
   const handleHintLevelChange = useCallback((level) => {
     if (level > maxHintLevelRef.current) maxHintLevelRef.current = level;
@@ -699,4 +733,3 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     </div>
   );
 }
-

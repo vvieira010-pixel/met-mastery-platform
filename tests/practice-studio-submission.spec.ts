@@ -66,6 +66,10 @@ test('student sees Speaking Question 1–5 and skips an individually saved quest
       speakingQuestion: 'Q1',
       status: 'submitted',
       submittedAt: '2026-09-05T12:00:00.000Z',
+      result: {
+        correct: null,
+        evaluation: { feedback: 'Use one clear reason and a supporting example.', cefrEstimate: 'B2', rubricAvg: 3 },
+      },
       results: [],
     },
   }];
@@ -94,8 +98,30 @@ test('student sees Speaking Question 1–5 and skips an individually saved quest
   await page.getByRole('button', { name: /Question 1 — Describe a Picture/ }).click();
   await expect(page.getByRole('heading', { name: 'Everyday scenes' })).toBeVisible();
   await page.getByRole('button', { name: /Everyday scenes/ }).click();
-  await expect(page.getByText('Describe the bus interior.', { exact: false })).toBeVisible();
-  await expect(page.getByText('Describe the football match.', { exact: false })).toHaveCount(0);
+  await expect(page.getByTestId('practice-studio-saved-feedback')).toBeVisible();
+  await expect(page.getByText('This AI-scored attempt is saved and locked.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Use one clear reason and a supporting example.', { exact: true })).toBeVisible();
+  expect(pageErrors.map(error => error.message)).toEqual([]);
+  expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);
+});
+
+test('student sees the selected speaking prompt and one-time attempt warning before scoring', async ({ page }) => {
+  await seedStudentWorkspace(page, []);
+  const pageErrors: Error[] = [];
+  const consoleWarnings: string[] = [];
+  page.on('pageerror', error => pageErrors.push(error));
+  page.on('console', message => { if (message.type() === 'warning') consoleWarnings.push(message.text()); });
+
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await page.getByRole('button', { name: /Speaking Mirror/ }).click();
+  await page.getByRole('button', { name: /Question 1 — Describe a Picture/ }).click();
+  await expect(page.getByRole('heading', { name: 'Everyday scenes' })).toBeVisible();
+  await page.getByRole('button', { name: /Everyday scenes/ }).click();
+
+  await expect(page.getByText('Describe the football match.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Describe the bus interior.', { exact: false })).toHaveCount(0);
   await expect(page.getByRole('note', { name: 'One-time attempt warning' })).toBeVisible();
   expect(pageErrors.map(error => error.message)).toEqual([]);
   expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);

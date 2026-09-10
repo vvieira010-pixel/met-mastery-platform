@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { Icon } from '../components/shared.jsx';
@@ -22,7 +22,6 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   const [sessionKey,setSessionKey]=useState(0); const [exercises,setExercises]=useState([]); const [loading,setLoading]=useState(false);
   const [loadError, setLoadError] = useState(false); const [sessionComplete, setSessionComplete] = useState(null);
   const [submissionState, setSubmissionState] = useState({ status: 'idle', records: [], error: '' });
-  const [lockedQuestionKeys, setLockedQuestionKeys] = useState([]);
   const daysLeft=getDaysUntilExam(); const examMode=getExamMode(); const [topics,setTopics]=useState([]);
   const [scaffoldLevel,setScaffoldLevelState]=useState(4); const [fadingVerdict,setFadingVerdict]=useState(null);
   const heroRef=useRef(null);
@@ -59,7 +58,7 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   const showTopicPicker = selectedKind && (showListeningPartPicker || showSpeakingQuestionPicker || !selectedTopic);
   const selectedTopicTitle = topics.find(t=>t.id===selectedTopic)?.title||'';
   const showLanding = !selectedKind;
-  const resetSubmissionState=()=>{ setSubmissionState({ status: 'idle', records: [], error: '' }); setLockedQuestionKeys([]); };
+  const resetSubmissionState=()=>{ setSubmissionState({ status: 'idle', records: [], error: '' }); };
   const handleSelectMode=k=>{setSelectedKind(k); setSelectedTopic(null); setSelectedListeningPart(null); setSelectedSpeakingQuestion(null); setSelectedListeningFormat('all'); setListeningSearch(''); setSessionKey(v=>v+1); setFadingVerdict(null); setSessionComplete(null); resetSubmissionState();};
   const handleBackToLanding=()=>{setSelectedKind(null); setSelectedTopic(null); setSelectedListeningPart(null); setSelectedSpeakingQuestion(null); setSelectedListeningFormat('all'); setListeningSearch(''); setExercises([]); setFadingVerdict(null); setSessionComplete(null); resetSubmissionState();};
   const handleListeningPartSelect=partId=>{setSelectedListeningPart(partId); setSelectedTopic(null); setListeningSearch(''); setSessionComplete(null); resetSubmissionState();};
@@ -74,19 +73,24 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
   useEffect(()=>{
     let cancelled=false;
     if(!studentId || !practiceSessionKey || loading || loadError || exercises.length===0){
-      setSubmissionState({ status: 'idle', records: [], error: '' }); setLockedQuestionKeys([]);
+      setSubmissionState({ status: 'idle', records: [], error: '' });
       return()=>{cancelled=true};
     }
     setSubmissionState({ status: 'checking', records: [], error: '' });
     getPracticeStudioExerciseSubmissions(studentId,{ mode:selectedKind, topicId:selectedTopic, listeningPart:selectedListeningPart, speakingQuestion:selectedSpeakingQuestion })
-      .then(records=>{ if(!cancelled) { setLockedQuestionKeys(records.map(record=>record.sessionKey)); setSubmissionState({ status: 'ready', records, error: '' }); } })
+      .then(records=>{ if(!cancelled) { setSubmissionState({ status: 'ready', records, error: '' }); } })
       .catch(error=>{ if(!cancelled) setSubmissionState({ status: 'unavailable', records: [], error: error?.message || 'Practice Studio could not reach Supabase.' }); });
     return()=>{cancelled=true};
   },[studentId,practiceSessionKey,loading,loadError,exercises,selectedKind,selectedTopic,selectedListeningPart,selectedSpeakingQuestion]);
 
-  const studioSelection = { mode:selectedKind, topicId:selectedTopic, listeningPart:selectedListeningPart, speakingQuestion:selectedSpeakingQuestion };
-  const savedQuestionKeys = new Set(lockedQuestionKeys);
-  const availableExercises = exercises.filter((exercise,index)=>!savedQuestionKeys.has(createPracticeStudioExerciseKey(studioSelection,exercise,index)));
+  const studioSelection = useMemo(() => ({ mode:selectedKind, topicId:selectedTopic, listeningPart:selectedListeningPart, speakingQuestion:selectedSpeakingQuestion }), [selectedKind, selectedTopic, selectedListeningPart, selectedSpeakingQuestion]);
+  const savedResults = useMemo(() => {
+    const recordsByKey = new Map(submissionState.records.map(record => [record.sessionKey, record]));
+    return exercises.map((exercise, index) => {
+      const record = recordsByKey.get(createPracticeStudioExerciseKey(studioSelection, exercise, index));
+      return record?.result ? { ...record.result, index } : undefined;
+    });
+  }, [exercises, submissionState.records, studioSelection]);
 
   const handleExerciseComplete=async ({exercise,index,result})=>{
     if(!studentId || !practiceSessionKey) throw new Error('Sign in before saving this Practice Studio question.');
@@ -256,24 +260,15 @@ export default function PracticeStudio({ studentId, onBack: _onBack, "data-testi
                 <button onClick={handleBackToLanding} className="btn btn-outline">All skills</button>
               </div>
             </section>
-          ) : availableExercises.length === 0 ? (
-            <section className="card practice-studio-completion" data-testid="practice-studio-submission-locked">
-              <h2>All questions in this set are already saved</h2>
-              <p className="fading-note">Each question is saved separately in Supabase and cannot be completed a second time.</p>
-              <div style={{display:'flex',justifyContent:'center',gap:'var(--space-3)',marginTop:'var(--space-4)'}}>
-                <button onClick={()=>{setSelectedTopic(null); resetSubmissionState();}} className="btn btn-primary">Choose another topic</button>
-                <button onClick={handleBackToLanding} className="btn btn-outline">All skills</button>
-              </div>
-            </section>
           ) : (
             <>
               <FadingBanner level={scaffoldLevel} verdict={fadingVerdict?.verdict} reason={fadingVerdict?.reason} />
               <section role="note" aria-label="One-time attempt warning" className="card" style={{margin:'0 0 var(--space-3)',padding:'var(--space-3) var(--space-4)',borderLeft:'4px solid var(--warning, #b45309)',background:'var(--ex-hint-bg)'}}>
-                <strong>One-time attempt</strong>
-                <span style={{display:'block',marginTop:4,fontSize:'var(--text-sm)',color:'var(--text-2)'}}>When you answer or skip this question, it is saved and locked. You cannot retry it.</span>
+                <strong>{selectedKind==='speaking'||selectedKind==='writing' ? 'Choose your final AI-scored attempt' : 'One-time attempt'}</strong>
+                <span style={{display:'block',marginTop:4,fontSize:'var(--text-sm)',color:'var(--text-2)'}}>{selectedKind==='speaking' ? 'You may record again as often as you need. When you request an AI score, that recording and feedback are saved and locked.' : selectedKind==='writing' ? 'You may revise before scoring. When you save an AI score, that response and feedback are saved and locked.' : 'When you answer or skip this question, it is saved and locked. You cannot retry it.'}</span>
               </section>
               {submissionState.error&&<p role="alert" style={{margin:'0 0 var(--space-3)',color:'var(--ex-wrong-text)',fontSize:'var(--text-sm)'}}>{submissionState.error}</p>}
-              <ExercisePlayer exercises={availableExercises} onExerciseComplete={handleExerciseComplete} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} practiceStudio />
+              <ExercisePlayer key={practiceSessionKey} exercises={exercises} initialResults={savedResults} onExerciseComplete={handleExerciseComplete} onSessionComplete={handleSessionComplete} scaffoldLevel={scaffoldLevel} practiceStudio />
             </>
           )}
           </>

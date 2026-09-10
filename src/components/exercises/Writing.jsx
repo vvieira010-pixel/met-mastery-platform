@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { scoreWriting } from '../../lib/writing-score.js';
+import { readStoredSupabaseSession } from '../../lib/supabase-storage.js';
 
 const TEAL = 'var(--accent)';
 // `--accent-text` is white in the student Stitch theme and is reserved for
@@ -28,6 +29,7 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [finalized, setFinalized] = useState(false);
 
   const prompt = exercise.prompt || exercise.question || '';
   const instruction = exercise.instruction || '';
@@ -42,8 +44,19 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
     setLoading(true);
     setError(null);
     try {
-      const data = await scoreWriting({ essay: text, taskPrompt: prompt, practiceStudio });
+      const token = readStoredSupabaseSession()?.access_token || '';
+      const data = await scoreWriting({ essay: text, taskPrompt: prompt, practiceStudio, token });
       setResult(data.evaluation);
+      if (practiceStudio && onComplete) {
+        setFinalized(true);
+        onComplete({
+          score: data.evaluation?.scaledScore ?? null,
+          total: 80,
+          correct: null,
+          evaluation: data.evaluation,
+          responseText: text,
+        });
+      }
     } catch (e) {
       setError(e.message);
     } finally {
@@ -52,11 +65,15 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
   }
 
   function handleContinue() {
+    if (finalized) return;
+    setFinalized(true);
     if (onComplete) {
       onComplete({
         score: result?.scaledScore ?? null,
         total: 80,
         correct: null,
+        evaluation: result,
+        responseText: text,
       });
     }
   }
@@ -78,7 +95,7 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
         onChange={(e) => setText(e.target.value.slice(0, maxChars))}
         placeholder="Write your response here..."
         rows={exercise.rows || 8}
-        disabled={loading}
+        disabled={loading || finalized}
         style={{
           width: '100%',
           minHeight: 160,
@@ -101,19 +118,19 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
         <button
           data-testid="writing-score-button"
           onClick={handleScore}
-          disabled={!canScore || loading}
+          disabled={!canScore || loading || finalized}
           style={{
             padding: '11px 22px',
             borderRadius: 'var(--radius-sm, 6px)',
             border: 'none',
-            background: canScore && !loading ? `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)` : 'var(--border)',
-            color: canScore && !loading ? 'var(--on-dark)' : 'var(--muted)',
+            background: canScore && !loading && !finalized ? `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)` : 'var(--border)',
+            color: canScore && !loading && !finalized ? 'var(--on-dark)' : 'var(--muted)',
             fontWeight: 700,
             fontSize: 'var(--text-sm)',
-            cursor: canScore && !loading ? 'pointer' : 'not-allowed',
+            cursor: canScore && !loading && !finalized ? 'pointer' : 'not-allowed',
           }}
         >
-          {loading ? 'Scoring with AssemblyAI…' : 'Score my writing'}
+          {loading ? 'Scoring with AssemblyAI…' : finalized ? 'AI score saved' : 'Score my writing'}
         </button>
       </div>
 
@@ -198,24 +215,27 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
             </div>
           )}
 
-          <button
-            data-testid="writing-continue-button"
-            onClick={handleContinue}
-            style={{
-              marginTop: 8,
-              padding: '11px 22px',
-              borderRadius: 'var(--radius-sm, 6px)',
-              border: 'none',
-              background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
-              color: 'var(--on-dark)',
-              fontWeight: 700,
-              fontSize: 'var(--text-sm)',
-              cursor: 'pointer',
-              alignSelf: 'flex-start',
-            }}
-          >
-            Continue
-          </button>
+          {!practiceStudio && (
+            <button
+              data-testid="writing-continue-button"
+              onClick={handleContinue}
+              disabled={finalized}
+              style={{
+                marginTop: 8,
+                padding: '11px 22px',
+                borderRadius: 'var(--radius-sm, 6px)',
+                border: 'none',
+                background: `linear-gradient(120deg, ${TEAL} 0%, ${NAVY} 100%)`,
+                color: 'var(--on-dark)',
+                fontWeight: 700,
+                fontSize: 'var(--text-sm)',
+                cursor: finalized ? 'not-allowed' : 'pointer', opacity: finalized ? 0.55 : 1,
+                alignSelf: 'flex-start',
+              }}
+            >
+              {finalized ? 'AI score saved' : 'Continue'}
+            </button>
+          )}
         </div>
       )}
     </div>

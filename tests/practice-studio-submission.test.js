@@ -55,16 +55,16 @@ test('the database schema enforces one submitted question and RLS ownership', ()
   assert.match(migration, /practice_submissions_teacher_manage_roster/);
 });
 
-test('Practice Studio saves each question immediately and excludes saved questions when reopened', () => {
+test('Practice Studio saves each question once and reopens saved AI feedback in read-only mode', () => {
   const page = read('src/pages/practice-studio.jsx');
   const player = read('src/components/exercises/ExercisePlayer.jsx');
   assert.match(page, /getPracticeStudioExerciseSubmissions/);
   assert.match(page, /submitPracticeStudioExercise/);
-  assert.match(page, /const availableExercises = exercises\.filter/);
+  assert.match(page, /const savedResults = useMemo/);
+  assert.match(page, /initialResults=\{savedResults\}/);
   assert.match(page, /onExerciseComplete=\{handleExerciseComplete\}/);
-  assert.match(page, /One-time attempt/);
-  assert.match(page, /When you answer or skip this question, it is saved and locked\. You cannot retry it\./);
+  assert.match(page, /You may record again as often as you need\./);
   assert.doesNotMatch(page, /requireFinalSubmission/);
   assert.match(player, /await onExerciseComplete\?\.\(/);
-  assert.match(player, /This question is locked and cannot be changed\./);
+  assert.match(player, /You can revisit its feedback any time\./);
 });
