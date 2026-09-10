@@ -142,7 +142,7 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
     }).filter(topic => topic.content);
     setForm({
       title,
-      objective: priority ? priority.whatToImprove : '',
+      objective: priority ? (priority.whatToImprove || priority.howToImprove || '') : '',
       description: '',
       exercises: [],
       selfCheck: [''],
