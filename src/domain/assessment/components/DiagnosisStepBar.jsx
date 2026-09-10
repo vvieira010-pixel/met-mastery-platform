@@ -62,7 +62,7 @@ export function DiagnosisGeneratingProgress({ generatingStatus }) {
   );
 }
 
-export function DiagnosisSavedActions({ onBack, onSaveErrors, onSaveVocab, onSaveProgressNote, onCreateHomework, onDoneViewAll, zoomUrl, _creatingZoomMeeting }) {
+export function DiagnosisSavedActions({ onBack, onSaveErrors, onSaveVocab, onSaveProgressNote, onCreateHomework, onDoneViewAll, zoomUrl }) {
   const [copied, setCopied] = useState(false);
 
   function copyZoomLink() {
