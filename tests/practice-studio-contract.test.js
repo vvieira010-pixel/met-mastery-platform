@@ -77,6 +77,6 @@ test('Practice Studio exposes the image-description speaking topic', async () =>
   const bank = await import('../src/lib/vocab-homework-bank.js');
   assert.deepEqual(bank.getTopicList('speaking')[0], { id: 'describe_image', title: 'Describe the Image' });
   const exercises = await bank.getSpeakingExercises('describe_image');
-  assert.equal(exercises.length, 15);
+  assert.equal(exercises.length, 44);
   assert.ok(exercises.every(ex => ex.type === 'speak' && ex.imageUrl && ex.metTaskType === 'Q1'));
 });

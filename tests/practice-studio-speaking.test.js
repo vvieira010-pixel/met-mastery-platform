@@ -60,7 +60,7 @@ test('Question 1 contains real image assets and Questions 2–5 contain recordab
   const pictureTopics = await getPracticeStudioSpeakingTopics('Q1');
   assert.deepEqual(pictureTopics.map(topic => topic.id), ['Q1::describe_image']);
   const pictures = (await Promise.all(pictureTopics.map(topic => getPracticeStudioSpeakingExercises(topic.id)))).flat();
-  assert.equal(pictures.length, 15);
+  assert.equal(pictures.length, 44);
 
   for (const exercise of pictures) {
     assert.equal(exercise.metTaskType, 'Q1');

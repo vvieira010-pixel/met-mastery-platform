@@ -73,6 +73,12 @@ function criterionBlock(key, n, title) {
   return `${n}. ${title} — ${c.dimensions.join('; ')}.\n${lines}`;
 }
 
+// B2 base — 60s Q1 audio + transcript as a task-completion helper, not a strict 3/3/3 gold.
+// Use to show sufficient quantity/coverage for 60s (all main elements + general detail, ~145 words).
+// Keep this text identical to src/data/exercises/speaking/image-description.js B2_EXEMPLAR_STADIUM.transcript.
+export const B2_EXEMPLAR_TRANSCRIPT = `This image depicts a busy football stadium during a match, and it looks quite exciting. In the foreground, a goalkeeper dressed in green is jumping to the left to try to save the ball, while two players — one in a white shirt and another in red — are running close behind him. The player in white has probably just kicked the ball, but it is not completely clear from this angle. On the right side of the picture, there is a camera operator who is recording the game, which suggests that it is an important event, perhaps being shown on television. In the background, I can see hundreds of spectators sitting in the stands; some are standing and cheering. The sky looks a little cloudy, but the atmosphere still feels energetic and competitive. If I had to describe the overall mood, I would say it is tense because a goal is about to happen.`;
+export const B2_EXEMPLAR_SCORES = { task: 3, language: 3, delivery: 3, rubricAvg: 3.0, scaledScore: 60, cefr: 'B2' };
+
 export function buildExaminerPrompt({ taskPrompt, transcription, fluencyLine, asrProvider = 'unknown', asrConfidence = null }) {
   return `You are an official MET (Michigan English Test) Speaking Examiner evaluating a candidate's recorded speaking response.
 
@@ -90,10 +96,17 @@ ${fluencyLine}
 Follow this order and keep the evidence sources separate:
 
 PASS 1 — Delivery evidence from the first-pass AssemblyAI transcription and timing result (or the explicitly named fallback provider):
-- Use the supplied word timings, duration, speaking rate, pauses, false starts, and reformulations only when they are explicitly available.
+- Use the supplied word timings, duration, speaking rate, pauses, false starts, and reformulations only when they are explicitly available. Treat these as evidence, not automatic penalties.
 - Use this evidence primarily for Fluency and Hesitation within Intelligibility / Delivery.
 - An AssemblyAI transcript or ASR confidence is not direct evidence of pronunciation quality. Do not claim that pronunciation, accent, rhythm, stress, or intonation was correct or incorrect from text, spelling, punctuation, or ASR confidence alone.
 - If word-timing or direct audio evidence is missing, say so plainly and mark pronunciation, rhythm, and hesitation for teacher review. Do not invent acoustic observations.
+
+Delivery calibration — be fair to normal human speech:
+- Natural pauses for breathing, planning, emphasis, or turn-taking are expected at every level, including advanced speech. A pause alone is not a delivery weakness.
+- Do not lower the Delivery score because of one isolated pause, a few pauses around 0.5–1.2 seconds, or a single longer pause when communication remains clear and the response continues naturally.
+- A pause of approximately 1.2 seconds is not automatically a serious hesitation. Treat it as meaningful only when the pattern is repeated or disruptive, especially with false starts, reformulations, word-searching, broken delivery, or clear listener effort.
+- Judge the frequency, pattern, and effect on communication. Never convert pause counts or speaking rate into a score mechanically, and do not treat approximately 150 words per minute as a required target.
+- An advanced speaker may pause naturally and still receive a strong Delivery score when the overall response is smooth, clear, and easy to follow.
 
 PASS 2 — Transcript-based evidence:
 - Use the task prompt and transcript to judge Task Completion and Language Resources.
@@ -101,6 +114,11 @@ PASS 2 — Transcript-based evidence:
 - Do not lower Task Completion or Language Resources merely because the delivery was hesitant, and do not raise them because the delivery sounded fluent.
 
 Then score all three criteria independently against the official MET Speaking Rating Scale. Score 0.0–4.0 in 0.5 steps. For a half-point, explain the evidence between the two adjacent whole-level descriptors. Keep each rationale evidence-based and concise.
+
+Task-completion base (illustrative, not strict — do not require this exact language or delivery):
+Task: Describe the football match. Mention the setting, the players, the goalkeeper, the camera operator, and the spectators.
+B2 base transcript (145 words, 60s): "${B2_EXEMPLAR_TRANSCRIPT}"
+→ Use ONLY to judge Task Completion quantity/coverage: this covers all main elements with general detail — the kind of completeness that typically aligns with task ~3. A much shorter or partial response (missing 2+ elements, <80 words) is closer to 1.5–2. Do NOT treat its grammar, vocabulary, or delivery as a required gold — score Language and Delivery independently from the candidate's actual transcript and timing evidence.
 
 ${criterionBlock('task_completion', 1, 'Task Completion')}
 ${criterionBlock('language_resources', 2, 'Language Resources')}

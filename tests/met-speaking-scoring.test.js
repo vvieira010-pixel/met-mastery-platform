@@ -6,6 +6,9 @@ import { dirname, join } from 'node:path';
 import {
   MET_SPEAKING_SCALE,
   buildExaminerPrompt,
+  B2_EXEMPLAR_TRANSCRIPT,
+  B2_EXEMPLAR_SCORES,
+  rubricToScaled,
 } from '../api/_routes/_met-speaking-scale.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -40,6 +43,9 @@ describe('MET speaking scale — prompt evidence boundaries', () => {
     assert.match(prompt, /ASR confidence: 0\.91/);
     assert.match(prompt, /An AssemblyAI transcript or ASR confidence is not direct evidence of pronunciation quality/);
     assert.match(prompt, /Do not lower Task Completion or Language Resources merely because the delivery was hesitant/);
+    assert.match(prompt, /A pause alone is not a delivery weakness/);
+    assert.match(prompt, /A pause of approximately 1\.2 seconds is not automatically a serious hesitation/);
+    assert.match(prompt, /Never convert pause counts or speaking rate into a score mechanically/);
   });
 
   test('the endpoint passes the actual ASR metadata into the examiner prompt', () => {
@@ -59,5 +65,29 @@ describe('MET speaking scale — prompt evidence boundaries', () => {
     const source = readSrc('ShortAnswer.jsx');
     assert.match(source, /practiceStudio && audioPath/);
     assert.match(source, /Homework recordings are submitted for teacher-only evaluation/);
+  });
+
+  test('B2 task-completion base is wired to evaluation as illustrative audio + transcript helper', async () => {
+    // Transcript must be identical in both single sources of truth
+    const { B2_EXEMPLAR_STADIUM } = await import('../src/data/exercises/speaking/image-description.js');
+    assert.equal(B2_EXEMPLAR_TRANSCRIPT, B2_EXEMPLAR_STADIUM.transcript);
+    assert.equal(B2_EXEMPLAR_TRANSCRIPT, B2_EXEMPLAR_STADIUM.audioTranscript);
+    // Reference scores still map canonically (3.0 → 60 B2) but are illustrative, not strict gold
+    const conv = rubricToScaled(B2_EXEMPLAR_SCORES.rubricAvg);
+    assert.equal(conv.scaledScore, 60);
+    assert.equal(conv.cefr, 'B2');
+    // Audio placeholder exists and prompt contains the task-completion base
+    const audioExists = readFileSync(join(here, '..', 'public', 'audio', 'speaking', 'b2-exemplar-stadium.mp3')).length > 1000;
+    assert.ok(audioExists, 'b2-exemplar-stadium.mp3 missing — regenerate via POST /api/tts { text: B2_EXEMPLAR_TRANSCRIPT }');
+    const calibratedPrompt = buildExaminerPrompt({
+      taskPrompt: B2_EXEMPLAR_STADIUM.prompt,
+      transcription: B2_EXEMPLAR_TRANSCRIPT,
+      fluencyLine: 'Observed ASR word-timing facts: 145 words in 60s (~145 wpm), 2 pauses ≥0.5s, 0 pauses ≥1.2s.',
+      asrProvider: 'assemblyai',
+      asrConfidence: 0.92,
+    });
+    assert.match(calibratedPrompt, /Task-completion base/);
+    assert.match(calibratedPrompt, /Do NOT treat its grammar, vocabulary, or delivery as a required gold/);
+    assert.match(calibratedPrompt, /illustrative/);
   });
 });
