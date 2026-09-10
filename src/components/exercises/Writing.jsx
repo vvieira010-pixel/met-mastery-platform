@@ -3,9 +3,6 @@ import { scoreWriting } from '../../lib/writing-score.js';
 import { readStoredSupabaseSession } from '../../lib/supabase-storage.js';
 
 const TEAL = 'var(--accent)';
-// `--accent-text` is white in the student Stitch theme and is reserved for
-// text on accent-colored controls. Writing prompts and scores sit on the
-// light exercise surface, so they need the readable body-ink token.
 const NAVY = 'var(--ink)';
 
 function scoreColor(val) {
@@ -39,44 +36,73 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
   const canScore = text.trim().length >= minChars;
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
 
+  async function persistScoredResult(evaluation) {
+    if (!practiceStudio || !onComplete) return true;
+    const saved = await onComplete({
+      score: evaluation?.scaledScore ?? null,
+      total: 80,
+      correct: null,
+      evaluation,
+      responseText: text,
+    });
+    if (saved !== true) {
+      throw new Error('Your AI score was created, but it was not saved yet. Please retry saving.');
+    }
+    setFinalized(true);
+    return true;
+  }
+
   async function handleScore() {
-    if (!canScore) return;
+    if (!canScore || loading || finalized) return;
     setLoading(true);
     setError(null);
     try {
+      // If AI scoring already succeeded but persistence failed, retry the save
+      // only. Do not spend another AI request or change the student's score.
+      if (practiceStudio && result) {
+        await persistScoredResult(result);
+        return;
+      }
+
       const token = readStoredSupabaseSession()?.access_token || '';
-      const data = await scoreWriting({ essay: text, taskPrompt: prompt, practiceStudio, token });
-      setResult(data.evaluation);
-      if (practiceStudio && onComplete) {
-        setFinalized(true);
-        onComplete({
-          score: data.evaluation?.scaledScore ?? null,
-          total: 80,
-          correct: null,
-          evaluation: data.evaluation,
-          responseText: text,
-        });
+      const data = await scoreWriting({ essay: text, taskPrompt: prompt, token });
+      const evaluation = data?.evaluation;
+      if (!evaluation) throw new Error('AI scoring returned no evaluation. Please try again.');
+      setResult(evaluation);
+
+      if (practiceStudio) {
+        await persistScoredResult(evaluation);
       }
     } catch (e) {
-      setError(e.message);
+      setError(e.message || 'Writing scoring failed. Please try again.');
     } finally {
       setLoading(false);
     }
   }
 
-  function handleContinue() {
+  async function handleContinue() {
     if (finalized) return;
-    setFinalized(true);
-    if (onComplete) {
-      onComplete({
+    setError(null);
+    try {
+      const saved = onComplete ? await onComplete({
         score: result?.scaledScore ?? null,
         total: 80,
         correct: null,
         evaluation: result,
         responseText: text,
-      });
+      }) : true;
+      if (saved === false) throw new Error('Your response could not be saved. Please try again.');
+      setFinalized(true);
+    } catch (e) {
+      setError(e.message || 'Your response could not be saved. Please try again.');
     }
   }
+
+  const scoreButtonLabel = loading
+    ? (result ? 'Saving result…' : 'Analyzing your writing…')
+    : finalized
+      ? 'AI score saved'
+      : (practiceStudio && result ? 'Retry saving result' : 'Score my writing');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -95,7 +121,7 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
         onChange={(e) => setText(e.target.value.slice(0, maxChars))}
         placeholder="Write your response here..."
         rows={exercise.rows || 8}
-        disabled={loading || finalized}
+        disabled={loading || finalized || (practiceStudio && Boolean(result))}
         style={{
           width: '100%',
           minHeight: 160,
@@ -130,7 +156,7 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
             cursor: canScore && !loading && !finalized ? 'pointer' : 'not-allowed',
           }}
         >
-          {loading ? 'Scoring with AssemblyAI…' : finalized ? 'AI score saved' : 'Score my writing'}
+          {scoreButtonLabel}
         </button>
       </div>
 
@@ -142,7 +168,6 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
 
       {result && (
         <div data-testid="writing-results" style={{ display: 'flex', flexDirection: 'column', gap: 14, animation: 'fadeUp 0.22s ease-out both' }}>
-          {/* Overall */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: TEAL, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Estimated MET band</span>
             <span style={{ fontSize: '1.2rem', fontWeight: 700, color: NAVY }}>{result.scaledScore ?? '—'}</span>
@@ -152,7 +177,6 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
             </span>
           </div>
 
-          {/* Criteria */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
               { key: 'task', label: 'Task Completion' },
