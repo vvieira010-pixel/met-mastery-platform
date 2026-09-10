@@ -68,7 +68,22 @@ test('student sees Speaking Question 1–5 and skips an individually saved quest
       submittedAt: '2026-09-05T12:00:00.000Z',
       result: {
         correct: null,
-        evaluation: { feedback: 'Use one clear reason and a supporting example.', cefrEstimate: 'B2', rubricAvg: 3 },
+        evaluation: {
+          feedback: 'Use one clear reason and a supporting example.',
+          cefrEstimate: 'B2',
+          rubricAvg: 3,
+          scores: { task: 3, language: 3, delivery: 3 },
+          rationale: {
+            task: 'You completed the task with relevant supporting detail.',
+            language: 'Your vocabulary and grammar communicated the main idea clearly.',
+            delivery: 'Your response was generally clear, with some hesitation.',
+          },
+          strengths: ['Relevant response', 'Clear main idea', 'Useful supporting detail'],
+          weaknesses: ['Add one more specific example', 'Practise smoother transitions'],
+          corrections: [{ original: 'I think is useful', corrected: 'I think it is useful', explanation: 'Use a subject after think.' }],
+          deliveryEvidence: 'Transcript plus word-timing evidence. Pronunciation and rhythm still need teacher review.',
+          feedbackComplete: true,
+        },
       },
       results: [],
     },
@@ -101,6 +116,12 @@ test('student sees Speaking Question 1–5 and skips an individually saved quest
   await expect(page.getByTestId('practice-studio-saved-feedback')).toBeVisible();
   await expect(page.getByText('This AI-scored attempt is saved and locked.', { exact: false })).toBeVisible();
   await expect(page.getByText('Use one clear reason and a supporting example.', { exact: true })).toBeVisible();
+  await expect(page.getByText('Overall feedback', { exact: true })).toBeVisible();
+  await expect(page.getByText('Rubric feedback', { exact: true })).toBeVisible();
+  await expect(page.getByText('What worked', { exact: true })).toBeVisible();
+  await expect(page.getByText('Next steps', { exact: true })).toBeVisible();
+  await expect(page.getByText('Language corrections', { exact: true })).toBeVisible();
+  await expect(page.getByText('✓ AI scored', { exact: true })).toBeVisible();
   expect(pageErrors.map(error => error.message)).toEqual([]);
   expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);
 });

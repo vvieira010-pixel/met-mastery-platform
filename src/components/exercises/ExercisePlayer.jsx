@@ -49,11 +49,39 @@ function InvalidExercise({ reason }) {
   );
 }
 
+const SPEAKING_FEEDBACK_CRITERIA = [
+  ['task', 'Task completion'],
+  ['language', 'Language resources'],
+  ['delivery', 'Intelligibility / delivery'],
+];
+
+function feedbackList(value) {
+  return Array.isArray(value)
+    ? value.filter(item => typeof item === 'string' && item.trim()).slice(0, 4)
+    : [];
+}
+
+function FeedbackList({ items, tone = 'var(--text)' }) {
+  if (items.length === 0) return null;
+  return (
+    <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6, color: tone, fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+      {items.map((item, index) => <li key={`${item}-${index}`}>{item}</li>)}
+    </ul>
+  );
+}
+
 function SavedPracticeFeedback({ result }) {
   const evaluation = result?.evaluation;
   if (!evaluation) {
     return <p role="status" style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>Your response is saved. This question is locked and cannot be changed.</p>;
   }
+
+  const strengths = feedbackList(evaluation.strengths);
+  const weaknesses = feedbackList(evaluation.weaknesses);
+  const rationale = evaluation.rationale && typeof evaluation.rationale === 'object' ? evaluation.rationale : {};
+  const corrections = Array.isArray(evaluation.corrections)
+    ? evaluation.corrections.filter(correction => correction && (correction.original || correction.corrected)).slice(0, 4)
+    : [];
 
   return (
     <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -66,14 +94,54 @@ function SavedPracticeFeedback({ result }) {
         {evaluation.rubricAvg != null && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>Rubric average {evaluation.rubricAvg} / 4</span>}
         {evaluation.scaledScore != null && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>Estimated score {evaluation.scaledScore} / 80</span>}
       </div>
-      {evaluation.feedback && <div style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{evaluation.feedback}</div>}
-      {evaluation.deliveryEvidence && <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.55 }}><strong>Delivery note:</strong> {evaluation.deliveryEvidence}</div>}
-      {Array.isArray(evaluation.corrections) && evaluation.corrections.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <strong style={{ fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Corrections</strong>
-          {evaluation.corrections.slice(0, 4).map((correction, index) => <div key={index} style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}><s>{correction.original}</s> → <strong>{correction.corrected}</strong>{correction.explanation ? ` — ${correction.explanation}` : ''}</div>)}
+      {evaluation.feedback && (
+        <section aria-label="Overall speaking feedback" style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+          <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Overall feedback</strong>
+          <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{evaluation.feedback}</div>
+        </section>
+      )}
+      {SPEAKING_FEEDBACK_CRITERIA.some(([key]) => evaluation.scores?.[key] != null || rationale[key]) && (
+        <section aria-label="Speaking rubric feedback" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <strong style={{ fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Rubric feedback</strong>
+          {SPEAKING_FEEDBACK_CRITERIA.map(([key, label]) => {
+            const score = evaluation.scores?.[key];
+            const explanation = rationale[key];
+            if (score == null && !explanation) return null;
+            return (
+              <div key={key} style={{ padding: '10px 12px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'baseline' }}>
+                  <strong style={{ color: 'var(--text)', fontSize: 'var(--text-sm)' }}>{label}</strong>
+                  {score != null && <span style={{ color: TEAL, fontSize: 'var(--text-sm)', fontWeight: 700 }}>{score} / 4</span>}
+                </div>
+                {explanation && <p style={{ margin: '5px 0 0', color: 'var(--text-2)', fontSize: 'var(--text-sm)', lineHeight: 1.55 }}>{explanation}</p>}
+              </div>
+            );
+          })}
+        </section>
+      )}
+      {(strengths.length > 0 || weaknesses.length > 0) && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 10 }}>
+          {strengths.length > 0 && (
+            <section aria-label="Speaking strengths" style={{ padding: '12px 14px', background: 'var(--success-bg, var(--bg))', border: '1px solid var(--success-border, var(--border))', borderRadius: 'var(--radius-sm, 6px)' }}>
+              <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: 'var(--success, var(--text))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>What worked</strong>
+              <FeedbackList items={strengths} />
+            </section>
+          )}
+          {weaknesses.length > 0 && (
+            <section aria-label="Speaking next steps" style={{ padding: '12px 14px', background: 'var(--ex-hint-bg, var(--bg))', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+              <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Next steps</strong>
+              <FeedbackList items={weaknesses} tone="var(--text-2)" />
+            </section>
+          )}
         </div>
       )}
+      {corrections.length > 0 && (
+        <section aria-label="Speaking corrections" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <strong style={{ fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Language corrections</strong>
+          {corrections.map((correction, index) => <div key={index} style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)', lineHeight: 1.5 }}><s>{correction.original || 'Original wording'}</s> → <strong>{correction.corrected || 'Suggested wording'}</strong>{correction.explanation ? ` — ${correction.explanation}` : ''}</div>)}
+        </section>
+      )}
+      {evaluation.deliveryEvidence && <div style={{ paddingTop: 2, fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.55 }}><strong>Evidence note:</strong> {evaluation.deliveryEvidence}</div>}
     </div>
   );
 }
@@ -215,6 +283,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
 
   const isCorrect = done && result?.correct === true;
   const isIncorrect = done && result?.correct === false;
+  const isAiScored = done && practiceStudio && result?.evaluation;
   const doneBorderColor = isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--border)';
 
   return (
@@ -247,7 +316,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
               background: isCorrect ? 'var(--success)' : isIncorrect ? 'var(--error)' : 'var(--ink-soft)',
               color: isCorrect ? 'var(--on-dark)' : isIncorrect ? 'var(--on-dark)' : 'var(--text-muted)',
             }}>
-              {isCorrect ? '✓ Correct' : isIncorrect ? '✗ Incorrect' : 'Skipped'}
+              {isCorrect ? '✓ Correct' : isIncorrect ? '✗ Incorrect' : isAiScored ? '✓ AI scored' : 'Skipped'}
             </span>
           )}
           {skill && (

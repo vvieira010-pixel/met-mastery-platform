@@ -93,8 +93,15 @@ Return ONLY a valid JSON object formatted as:
   "corrections": [
     { "original": "...", "corrected": "...", "explanation": "..." }
   ],
-  "feedback": "...",
-  "strengths": ["...", "..."],
-  "weaknesses": ["...", "..."]
-}`;
+  "feedback": "A complete 2–4 sentence summary for the learner.",
+  "strengths": ["At least three specific, evidence-based strengths."],
+  "weaknesses": ["At least two specific, evidence-based next steps."]
+}
+
+Every rationale, strength, weakness, and the overall feedback must be present
+and specific to the candidate's response. Do not invent quotes or observations.
+If acoustic evidence is unavailable, say so in the delivery rationale and keep
+pronunciation and rhythm explicitly marked for teacher review. Keep each
+rationale to one short sentence and keep the complete JSON concise.
+`;
 }

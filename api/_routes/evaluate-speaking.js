@@ -29,6 +29,7 @@ const DEFAULT_AUDIO_BUCKET = 'mock-test-audio';
 const ALLOWED_AUDIO_BUCKETS = ['mock-test-audio', 'submission-audio'];
 const MAX_AUDIO_BYTES = 15 * 1024 * 1024;
 const SPEAKING_SCORE_KEYS = ['task', 'language', 'delivery'];
+const SPEAKING_RATIONALE_KEYS = ['task', 'language', 'delivery'];
 
 function validSpeakingScores(evaluation) {
   const scores = extractScores(evaluation, SPEAKING_SCORE_KEYS);
@@ -45,14 +46,47 @@ function validSpeakingScores(evaluation) {
   return normalized;
 }
 
+function validSpeakingFeedback(evaluation) {
+  if (!evaluation || typeof evaluation !== 'object') return null;
+  const feedback = typeof evaluation.feedback === 'string' ? evaluation.feedback.trim() : '';
+  const rationale = evaluation.rationale && typeof evaluation.rationale === 'object'
+    ? evaluation.rationale
+    : null;
+  const strengths = Array.isArray(evaluation.strengths)
+    ? evaluation.strengths.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim()).slice(0, 4)
+    : [];
+  const weaknesses = Array.isArray(evaluation.weaknesses)
+    ? evaluation.weaknesses.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim()).slice(0, 4)
+    : [];
+
+  // A score without learner-facing explanations is not a complete Practice
+  // Studio result. Reject it so the provider cascade can try again instead of
+  // saving a locked card that contains only a band and delivery disclaimer.
+  if (
+    feedback.length < 20
+    || !rationale
+    || !SPEAKING_RATIONALE_KEYS.every(key => typeof rationale[key] === 'string' && rationale[key].trim())
+    || strengths.length < 3
+    || weaknesses.length < 2
+  ) return null;
+
+  return {
+    feedback,
+    rationale: Object.fromEntries(SPEAKING_RATIONALE_KEYS.map(key => [key, rationale[key].trim()])),
+    strengths,
+    weaknesses,
+  };
+}
+
 function parseSpeakingEvaluation(rawText, provider) {
   const evaluation = parseLLMJson(rawText);
   const scores = validSpeakingScores(evaluation);
-  if (!scores) {
-    console.warn(`${provider} speaking evaluation had an invalid rubric payload.`);
+  const feedback = validSpeakingFeedback(evaluation);
+  if (!scores || !feedback) {
+    console.warn(`${provider} speaking evaluation had an invalid or incomplete payload.`);
     return null;
   }
-  return { ...evaluation, scores };
+  return { ...evaluation, ...feedback, scores, feedbackComplete: true };
 }
 
 async function fetchWithTimeout(url, init, ms = 25000) {
@@ -454,9 +488,9 @@ export default async function handler(req, res) {
         { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
         { retries: 1, validateKeys: SPEAKING_SCORE_KEYS },
       );
-      const scores = aai.ok ? validSpeakingScores(aai.evaluation) : null;
-      if (aai.ok && scores) {
-        evaluation = { ...aai.evaluation, scores };
+      const candidate = aai.ok ? parseSpeakingEvaluation(JSON.stringify(aai.evaluation), 'AssemblyAI') : null;
+      if (candidate) {
+        evaluation = candidate;
         evalProvider = 'assemblyai-llm';
         evalModelId = aai.model;
       } else {

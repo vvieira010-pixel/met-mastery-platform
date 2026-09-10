@@ -10,6 +10,8 @@ const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exe
 const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
 const writingScore = fs.readFileSync(path.join(root, 'src', 'lib', 'writing-score.js'), 'utf8');
 const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
+const evaluateSpeaking = fs.readFileSync(path.join(root, 'api', '_routes', 'evaluate-speaking.js'), 'utf8');
+const speakingScale = fs.readFileSync(path.join(root, 'api', '_routes', '_met-speaking-scale.js'), 'utf8');
 
 test('Practice Studio provides recovery UI for failed and empty exercise loads', () => {
   assert.match(practiceStudio, /const \[loadError, setLoadError\] = useState\(false\)/);
@@ -55,6 +57,20 @@ test('Practice Studio only locks speaking after AI scoring and sends writing aut
   assert.match(writing, /readStoredSupabaseSession/);
   assert.match(writingScore, /Authorization: `Bearer \$\{token\}`/);
   assert.match(writing, /evaluation: data\.evaluation/);
+});
+
+test('Practice Studio shows complete saved speaking feedback and rejects partial AI payloads', () => {
+  assert.match(exercisePlayer, /Overall speaking feedback/);
+  assert.match(exercisePlayer, /Speaking rubric feedback/);
+  assert.match(exercisePlayer, /Speaking strengths/);
+  assert.match(exercisePlayer, /Speaking next steps/);
+  assert.match(exercisePlayer, /Language corrections/);
+  assert.match(exercisePlayer, /isAiScored/);
+  assert.match(evaluateSpeaking, /function validSpeakingFeedback/);
+  assert.match(evaluateSpeaking, /strengths\.length < 3/);
+  assert.match(evaluateSpeaking, /weaknesses\.length < 2/);
+  assert.match(evaluateSpeaking, /feedbackComplete: true/);
+  assert.match(speakingScale, /At least three specific, evidence-based strengths/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {
