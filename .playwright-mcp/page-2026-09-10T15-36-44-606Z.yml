@@ -1,0 +1,207 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "MET Mastery — Unified Shell prototype" [level=1] [ref=e4]
+    - paragraph [ref=e5]:
+      - text: The panel below renders inside an
+      - code [ref=e6]: <iframe>
+      - text: that links
+      - code [ref=e7]: ./shell.css
+      - text: — the actual deliverable. Breakpoints are evaluated by the browser against the iframe's own viewport, so fractional widths are genuine, not simulated. Long PT strings (
+      - emphasis [ref=e8]: Preparação
+      - text: ","
+      - emphasis [ref=e9]: Acompanhamento
+      - text: ","
+      - emphasis [ref=e10]: Material de Apoio
+      - text: ) are included on purpose.
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: Width
+        - slider [ref=e15]: "1280"
+        - generic [ref=e16]: 1280px
+      - generic [ref=e17]:
+        - generic [ref=e18]: Presets
+        - button "360" [ref=e19] [cursor=pointer]
+        - button "390" [ref=e20] [cursor=pointer]
+        - button "768.5" [ref=e21] [cursor=pointer]
+        - button "860.5" [ref=e22] [cursor=pointer]
+        - button "1024" [ref=e23] [cursor=pointer]
+        - button "1280" [ref=e24] [cursor=pointer]
+        - button "1440" [ref=e25] [cursor=pointer]
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]: Role
+        - button "Teacher" [pressed] [ref=e29] [cursor=pointer]
+        - button "Student" [ref=e30] [cursor=pointer]
+      - generic [ref=e31]:
+        - generic [ref=e32]: Theme
+        - button "Light" [pressed] [ref=e33] [cursor=pointer]
+        - button "Dark" [ref=e34] [cursor=pointer]
+      - generic [ref=e35]:
+        - generic [ref=e36]: More sheet
+        - button "Closed" [pressed] [ref=e37] [cursor=pointer]
+        - button "Open" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]:
+        - generic [ref=e40]: .mm-rail node
+        - button "Show" [pressed] [ref=e41] [cursor=pointer]
+        - button "Hide" [ref=e42] [cursor=pointer]
+    - generic [ref=e44]:
+      - generic [ref=e45]: innerWidth 1280px
+      - generic [ref=e46]: ≥391 match
+      - generic [ref=e47]: ≥421 match
+      - generic [ref=e48]: ≥769 match
+      - generic [ref=e49]: ≥861 match
+      - generic [ref=e50]: ≥1025 match
+      - generic [ref=e51]: .mm-nav (absent)
+      - generic [ref=e52]: .mm-rail flex
+      - generic [ref=e53]: nav links 9/9
+      - generic [ref=e54]: nav landmarks 2
+      - generic [ref=e55]: .mm-tabbar none
+      - generic [ref=e56]: "--mm-rail-w 280px · consumed"
+      - generic [ref=e57]: main padding-top 56px
+    - generic [ref=e58]:
+      - strong [ref=e59]: shell.css status — what changed this pass and what is still open.
+      - generic [ref=e60]:
+        - text: "Fixed this pass: breakpoint blocks moved to the end of the file — they were authored before the component base rules at equal (0,2,0) specificity, so every breakpoint"
+        - code [ref=e61]: display
+        - text: switch was dead; rail geometry is now a two-column grid at ≥861px;
+        - code [ref=e62]: "--mm-rail-w"
+        - text: is declared in the base
+        - code [ref=e63]: :root
+        - text: and consumed by a real
+        - code [ref=e64]: .mm-rail
+        - text: base rule (
+        - code [ref=e65]: display:none
+        - text: below 861px);
+        - code [ref=e66]: "--mm-navbar-h: 0px"
+        - text: at ≥861;
+        - code [ref=e67]: .mm-main:focus:not(:focus-visible)
+        - text: ; topbar row
+        - code [ref=e68]: min-height
+        - text: "; outward focus rings on tabs and topbar icon buttons. De-duplicated: the nav is now ONE element, relocated between the topbar slot and the rail grid area by"
+        - code [ref=e69]: syncNavSlot()
+        - text: ". It used to be rendered twice — 18 links in the DOM for 9 destinations, and two identical landmarks in the a11y tree. The teacher workflow strip travels with it. The two chips above (nav links, nav landmarks) are the proof. Still open: the"
+        - code [ref=e70]: .mm-toast
+        - text: collision is fixed —
+        - code [ref=e71]: shell.css
+        - text: now ships
+        - code [ref=e72]: "--mm-z-toast: 1200"
+        - text: and a
+        - code [ref=e73]: .mm-toast-region
+        - text: "anchored clear of the bottom bar on mobile and of the rail on desktop. What remains is a one-line change in the app: the student toast at"
+        - code [ref=e74]: student-dashboard.jsx:124-145
+        - text: still pins
+        - code [ref=e75]: bottom:20px; right:20px; z-index:80
+        - text: ", which is behind the fixed tabbar."
+        - code [ref=e76]: .mm-flow
+        - text: "is intentionally absent: the WorkflowStageStrip is page content at ≤860px, never a slot in the global chrome."
+  - generic [ref=e78]:
+    - iframe [ref=e80]:
+      - generic [ref=f1e2]:
+        - link "Pular para o conteúdo" [ref=f1e3] [cursor=pointer]:
+          - /url: "#mm-main"
+        - banner [ref=f1e4]:
+          - generic [ref=f1e5]:
+            - button "MET Mastery — Teacher workspace" [ref=f1e6] [cursor=pointer]:
+              - generic [aria-hidden] [ref=f1e7]: M
+              - generic [ref=f1e8]:
+                - strong [ref=f1e9]: MET Mastery
+                - generic [ref=f1e10]: Teacher workspace
+            - generic [ref=f1e11]:
+              - button "Idioma" [ref=f1e12] [cursor=pointer]: PT
+              - button "Notificações" [ref=f1e13] [cursor=pointer]: "3"
+              - generic [aria-hidden] [ref=f1e14]: AB
+        - navigation "Navegação principal (lateral)" [ref=f1e15]:
+          - generic [ref=f1e16]:
+            - generic [ref=f1e17]: Hoje
+            - link "Painel" [ref=f1e18] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f1e24]:
+            - generic [ref=f1e25]: Fluxo
+            - link "Alunos" [ref=f1e26] [cursor=pointer]:
+              - /url: "#"
+            - link "Tarefas" [ref=f1e33] [cursor=pointer]:
+              - /url: "#"
+            - link "Entregas — 3 pendentes" [ref=f1e38] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f1e42]: Entregas
+              - generic [ref=f1e43]: "3"
+            - link "Diagnósticos" [ref=f1e44] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f1e47]:
+            - generic [ref=f1e48]: Turma
+            - link "Preparação" [ref=f1e49] [cursor=pointer]:
+              - /url: "#"
+            - link "Acompanhamento" [ref=f1e54] [cursor=pointer]:
+              - /url: "#"
+            - link "Turmas" [ref=f1e60] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f1e64]:
+            - generic [ref=f1e65]: Admin
+            - link "Configurações" [ref=f1e66] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f1e74]:
+            - generic [ref=f1e75]: Ciclo
+            - generic [ref=f1e76]:
+              - button "Diagnosticar" [ref=f1e77] [cursor=pointer]
+              - generic [aria-hidden] [ref=f1e80]: →
+              - button "Tarefa" [ref=f1e81] [cursor=pointer]
+              - generic [aria-hidden] [ref=f1e82]: →
+              - button "Feedback" [ref=f1e83] [cursor=pointer]
+        - main [ref=f1e84]:
+          - heading "Painel da turma" [level=1] [ref=f1e85]
+          - paragraph [ref=f1e86]: Ciclo de 10–16 de março · Turma A2 · 24 alunos matriculados. A fila abaixo mostra o que precisa de revisão hoje.
+          - generic [ref=f1e87]:
+            - generic [ref=f1e88]:
+              - generic [ref=f1e89]: Entregas pendentes
+              - generic [ref=f1e90]: "3"
+              - generic [ref=f1e91]: aguardando há 2 dias
+            - generic [ref=f1e92]:
+              - generic [ref=f1e93]: Diagnósticos concluídos
+              - generic [ref=f1e94]: "18"
+              - generic [ref=f1e95]: de 24 matriculados
+            - generic [ref=f1e96]:
+              - generic [ref=f1e97]: Alunos ativos
+              - generic [ref=f1e98]: "21"
+              - generic [ref=f1e99]: nos últimos 7 dias
+            - generic [ref=f1e100]:
+              - generic [ref=f1e101]: Próxima aula
+              - generic [ref=f1e102]: Qui 19h
+              - generic [ref=f1e103]: Sala 3 · speaking
+          - generic [ref=f1e104]: Fila de revisão
+          - table [ref=f1e105]:
+            - rowgroup [ref=f1e106]:
+              - row [ref=f1e107]:
+                - columnheader "Aluno" [ref=f1e108]
+                - columnheader "Tarefa" [ref=f1e109]
+                - columnheader "Enviado em" [ref=f1e110]
+                - columnheader "Situação" [ref=f1e111]
+            - rowgroup [ref=f1e112]:
+              - row [ref=f1e113]:
+                - cell "Ana Beatriz Souza" [ref=f1e114]
+                - cell "Writing — parte 2" [ref=f1e115]
+                - cell "12 mar, 21:40" [ref=f1e116]
+                - cell "Aguardando" [ref=f1e117]
+              - row [ref=f1e119]:
+                - cell "João Pedro Lima" [ref=f1e120]
+                - cell "Listening — sem. 4" [ref=f1e121]
+                - cell "13 mar, 08:12" [ref=f1e122]
+                - cell "Aguardando" [ref=f1e123]
+              - row [ref=f1e125]:
+                - cell "Mariana Costa Rocha" [ref=f1e126]
+                - cell "Speaking — simulado" [ref=f1e127]
+                - cell "13 mar, 19:05" [ref=f1e128]
+                - cell "Atrasado" [ref=f1e129]
+              - row [ref=f1e132]:
+                - cell "Rafael Nogueira" [ref=f1e133]
+                - cell "Grammar — revisão" [ref=f1e134]
+                - cell "—" [ref=f1e135]
+                - cell "Não enviado" [ref=f1e136]
+          - paragraph [ref=f1e138]: "O ciclo de ensino continua visível em todas as larguras, mas muda de lugar: em 861px ou mais ele encosta na base do trilho lateral; abaixo disso ele é renderizado aqui, dentro do conteúdo da página. O shell não oferece — e não deve oferecer — um slot de workflow no chrome global, porque estado de fluxo de trabalho é contexto da página, não navegação."
+          - generic [ref=f1e139]: Entregas por dia
+          - paragraph [ref=f1e149]:
+            - text: "Role a página para verificar que a rolagem acontece no documento, e não em um contêiner interno: o endereço do navegador continua recolhendo no Android e o cabeçalho acima permanece fixo via"
+            - code [ref=f1e150]: "position: sticky"
+            - text: .
+          - paragraph [ref=f1e151]: Texto de apoio para forçar rolagem e demonstrar o comportamento do chrome fixo.
+    - generic [ref=e81]: iframe viewport 1280px · media queries evaluated by the browser against this iframe
