@@ -360,8 +360,9 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
             {finalized ? 'AI score saved' : '↺ Record again'}
           </button>
 
-          {/* AI MET score — Practice Studio recordings via /api/evaluate-speaking */}
-          {audioPath && (
+          {/* AI MET score is intentionally available only in Practice Studio.
+              Homework recordings are submitted for teacher-only evaluation. */}
+          {practiceStudio && audioPath && (
             <div style={{ padding: '18px 20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md, 10px)' }}>
               <div style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 AI practice estimate

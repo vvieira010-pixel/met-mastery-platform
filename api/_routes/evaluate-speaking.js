@@ -318,7 +318,16 @@ function pauseStats(words, durationSec, text = '') {
 async function transcribeAudio(audio, { useAssemblyAI = false } = {}) {
   const deepgramKey = env('DEEPGRAM_API_KEY');
 
-  // 0. Local openai-whisper (no API cost) — preferred when a LOCAL_WHISPER_URL is set.
+  // AssemblyAI is the primary transcription and word-timing source for the
+  // Practice Studio speaking flow. The second pass then sends its transcript
+  // and timing evidence to the structured speaking evaluator.
+  if (useAssemblyAI) {
+    const aai = await transcribeWithAssemblyAI(audio);
+    if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration, aai.text) };
+  }
+
+  // Local openai-whisper (no API cost) is a fallback for Practice Studio and
+  // remains preferred for non-Practice-Studio callers when configured.
   // When WHISPER_PROVIDER=local, never fall back to paid cloud providers.
   const localUrl = env('LOCAL_WHISPER_URL');
   const forceLocal = (env('WHISPER_PROVIDER') || '').toLowerCase() === 'local';
@@ -328,14 +337,8 @@ async function transcribeAudio(audio, { useAssemblyAI = false } = {}) {
     if (forceLocal) return null;
   }
 
-  // AssemblyAI transcription is reserved for the Practice Studio speaking flow.
-  if (useAssemblyAI) {
-    const aai = await transcribeWithAssemblyAI(audio);
-    if (aai) return { ...aai, stats: pauseStats(aai.words, aai.duration, aai.text) };
-  }
-
-  // Hosted Whisper is available for the real recording path even when the
-  // AssemblyAI scorer is reserved for Practice Studio.
+  // Hosted Whisper and Deepgram are fallbacks when the preferred provider is
+  // unavailable.
   const whisper = await transcribeWithOpenAIWhisper(audio);
   if (whisper) return whisper;
 
@@ -404,6 +407,8 @@ export default async function handler(req, res) {
   }
 
   let transcription = typeof userTranscript === 'string' ? userTranscript.trim() : '';
+  let asrProvider = transcription ? 'provided-transcript' : 'unknown';
+  let asrConfidence = null;
   let fluency = null; // { stats } from acoustic transcription when audio was processed
   if (transcription.length > 12000) {
     return res.status(400).json({ error: 'Transcript is too long.' });
@@ -433,6 +438,8 @@ export default async function handler(req, res) {
       const storedAudio = await fetchStoredAudio(normalizedPath, audioBucket);
       const result = storedAudio ? await transcribeAudio(storedAudio, { useAssemblyAI }) : null;
       transcription = result?.text || '';
+      asrProvider = result?.asrProvider || asrProvider;
+      asrConfidence = result?.confidence ?? null;
       if (result?.stats?.wordCount) fluency = result.stats;
       // ASR is a separate cost centre from the LLM rubric call, so it gets its
       // own telemetry row. Accent-related WER is a known fairness risk — log
@@ -461,10 +468,10 @@ export default async function handler(req, res) {
   }
 
   const fluencyLine = fluency
-    ? `Acoustic fluency facts (from word timings — use for Delivery, do not re-derive from text): ${fluency.wordCount} words in ${fluency.durationSec ?? '?'}s (~${fluency.wpm ?? '?'} wpm vs ~150 conversational), ${fluency.pausesOver500ms} pauses ≥0.5s, ${fluency.pausesOver1200ms} pauses ≥1.2s, longest gaps ms: [${(fluency.longestPausesMs || []).join(', ')}].`
-    : 'No acoustic timing available (transcript-only input) — rate Delivery conservatively from textual coherence and flag it in rationale.';
+    ? `ASR word-timing facts (use for Delivery, do not re-derive from text): ${fluency.wordCount} words in ${fluency.durationSec ?? '?'}s (~${fluency.wpm ?? '?'} wpm vs ~150 conversational), ${fluency.pausesOver500ms} pauses ≥0.5s, ${fluency.pausesOver1200ms} pauses ≥1.2s, longest gaps ms: [${(fluency.longestPausesMs || []).join(', ')}].`
+    : 'No ASR word-timing evidence available (transcript-only input) — rate Delivery conservatively and flag pronunciation, rhythm, and hesitation evidence for teacher review.';
 
-  const prompt = buildExaminerPrompt({ taskPrompt, transcription, fluencyLine });
+  const prompt = buildExaminerPrompt({ taskPrompt, transcription, fluencyLine, asrProvider, asrConfidence });
 
   // Registry lookup is cached for 60s and degrades to 'unversioned', so it can
   // never take evaluation down. Gives telemetry a stable version to group by.
@@ -599,7 +606,9 @@ export default async function handler(req, res) {
   evaluation.overallScore = Math.round((Number(s.task) + Number(s.language) + Number(s.delivery)) * 10) / 10;
   evaluation.cefrEstimate = conversion.cefr;
   evaluation.provisional = true;
-  evaluation.scoreLabel = 'Practice estimate — not an official MET score';
+  evaluation.scoreLabel = practiceStudio
+    ? 'Practice estimate — may vary by approximately ±5 MET scaled points; not an official MET score'
+    : 'Practice estimate — not an official MET score';
   evaluation.estimatedBandLabel = `Estimated ${conversion.cefr} practice band`;
   evaluation.deliveryEvidence = fluency
     ? 'Transcript plus word-timing evidence. Pronunciation and rhythm still need teacher review.'
