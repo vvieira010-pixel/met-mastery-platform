@@ -128,7 +128,9 @@ export async function submitHomework(homeworkId, studentId, content, responses, 
     } catch (e) {
       if (/23505|duplicate key|unique constraint/i.test(String(e?.message || e))) {
         const dup = (await getSubmissions(studentId)).find(s => s.homeworkId === homeworkId);
-        if (dup) throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.');
+        // Preserve the original unique-violation error so the stack trace
+        // still points at the Postgres constraint, not just this guard.
+        if (dup) throw new Error('This homework has already been submitted — one attempt only. Your previous submission is locked.', { cause: e });
       }
       console.warn('[workflow] submitHomework via Supabase failed, using localStorage:', e.message);
       if (/already been submitted/i.test(e.message)) throw e;

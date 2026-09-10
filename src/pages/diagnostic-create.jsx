@@ -35,6 +35,8 @@ import {
   promoteErrorToLongTerm, saveVocabularyEntry, saveProgressNote,
 } from '../lib/workflow.js';
 
+import { createZoomMeetingForDiagnosis } from '../lib/zoom-diagnosis.js';
+
 import {
   SECTION_KEYS, SECTION_LABELS,
   DIAGNOSIS_DERIVED_KEYS, SECTION_GROUPS, SKILL_KEYS,
@@ -120,6 +122,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   const [runningPhase, setRunningPhase] = useState(null);
   const [regenerationError, setRegenerationError] = useState(null);
 
+  // Zoom meeting for diagnosis follow-up
+  const [diagnosisZoomUrl, setDiagnosisZoomUrl] = useState(null);
+
   // Student selector (if no studentId passed)
   const [selectedStudentId, setSelectedStudentId] = useState(studentId || '');
   const [selectedClassEventId, setSelectedClassEventId] = useState(classEventId || '');
@@ -197,6 +202,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         setSections(dx.sections);
         setAiResult(dx.aiRaw || null);
       }
+      if (dx.zoomUrl) setDiagnosisZoomUrl(dx.zoomUrl);
       // Earlier drafts predate saved phase metadata. They already have feedback
       // and should enter the new staged flow from the next optional phase.
       setCompletedPhases(dx.completedPhases || ['feedback']);
@@ -257,6 +263,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     nextAiResult = aiResult,
     nextCompletedPhases = completedPhases,
     approve = false,
+    zoomSettings = null,
   } = {}) {
     const feedback = nextSections.studentFeedback || {};
     return {
@@ -274,8 +281,8 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         vocabulary: normalizedEvidence?.vocabularyEvidenceCount || 0,
         testStrategy: normalizedEvidence?.testStrategyEvidenceCount || 0,
       },
-      // Keep the persisted record usable by older dashboards while retaining
-      // the phase state needed to safely resume this flow.
+      zoomUrl: zoomSettings?.joinUrl || savedDiagnosis?.zoomUrl || null,
+      zoomMeetingId: zoomSettings?.meetingId || savedDiagnosis?.zoomMeetingId || null,
       sections: {
         ...nextSections,
         studentFeedback: { ...feedback, content: feedback.content, approved: approve || Boolean(feedback.approved), hidden: false },
@@ -555,13 +562,41 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       const nextCompletedPhases = sections.studentFeedback?.content
         ? [...new Set([...completedPhases, 'feedback'])]
         : completedPhases;
-      await persistDiagnosisDraft({ approve, nextCompletedPhases });
+
+      // Create Zoom meeting before saving if approving
+      let zoomSettings = null;
+      if (approve && !savedDiagnosis?.zoomUrl) {
+        const zoomTopic = sections.priorityDiagnosis?.content?.[0]?.skill
+          || sections.nextClassFocus?.content?.primaryFocus
+          || `Follow-up with ${student?.name || studentId}`;
+        try {
+          const zoomResult = await createZoomMeetingForDiagnosis({
+            topic: zoomTopic,
+            duration: 60,
+          });
+          if (zoomResult?.ok) {
+            zoomSettings = {
+              joinUrl: zoomResult.joinUrl,
+              meetingId: zoomResult.meetingId,
+            };
+            setDiagnosisZoomUrl(zoomResult.joinUrl);
+          }
+        } catch (z) {
+          console.warn('[diagnosis] Zoom meeting creation failed:', z);
+        }
+      }
+
+      await persistDiagnosisDraft({ approve, nextCompletedPhases, zoomSettings });
       setCompletedPhases(nextCompletedPhases);
       if (selectedClassEventId || classEventId) {
         await updateClassEventStatus(selectedClassEventId || classEventId, { diagnosticStatus: approve ? 'approved' : 'draft' });
       }
-      window.toast?.(approve ? 'Diagnosis approved and saved!' : 'Draft saved.', 'ok');
-      if (approve) setStep('saved');
+      if (approve) {
+        window.toast?.('Diagnosis approved and saved!', 'ok');
+        setStep('saved');
+      } else {
+        window.toast?.('Draft saved.', 'ok');
+      }
     } catch (e) {
       window.toast?.(`Save failed: ${e.message}`, 'warn');
     }
@@ -635,6 +670,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         onSaveProgressNote={saveProgressNoteFromDx}
         onCreateHomework={() => onNavigate('homework:create', { studentId: selectedStudentId || studentId, diagnosisId: savedDiagnosis?.id })}
         onDoneViewAll={() => onNavigate('diagnostics', {})}
+        zoomUrl={diagnosisZoomUrl}
       />
     );
   }

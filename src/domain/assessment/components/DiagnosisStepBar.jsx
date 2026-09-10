@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Icon, SectionHeader } from '../../../components/shared.jsx';
 import { Card } from '../../../components/ui/Card.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
@@ -61,13 +62,40 @@ export function DiagnosisGeneratingProgress({ generatingStatus }) {
   );
 }
 
-export function DiagnosisSavedActions({ onBack, onSaveErrors, onSaveVocab, onSaveProgressNote, onCreateHomework, onDoneViewAll }) {
+export function DiagnosisSavedActions({ onBack, onSaveErrors, onSaveVocab, onSaveProgressNote, onCreateHomework, onDoneViewAll, zoomUrl, _creatingZoomMeeting }) {
+  const [copied, setCopied] = useState(false);
+
+  function copyZoomLink() {
+    if (!zoomUrl) return;
+    navigator.clipboard.writeText(zoomUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
   return (
     <div className="page-container page-container--sm">
       <button className="back-link" onClick={onBack}><Icon.arrowL size={14} /> Back to Review</button>
       <SectionHeader title="Post-Approval Actions" subtitle="Sync this diagnosis to other parts of the platform." />
       <Card className="card-p-5">
         <div className="stack-list gap-3">
+          {zoomUrl && (
+            <div className="zoom-section">
+              <div className="flex-row-gap3">
+                <Icon.globe size={14} color="var(--accent-text)" />
+                <span className="font-semibold text-sm">Diagnosis Follow-up Zoom</span>
+              </div>
+              <p className="card-row-meta text-xs" style={{ marginTop: 4 }}>Ready for student feedback session</p>
+              <div className="flex-row-gap2 mt-2">
+                <Button variant="primary" size="sm" onClick={copyZoomLink}>
+                  {copied ? <><Icon.check size={12} /> Link copied!</> : 'Copy Zoom Link'}
+                </Button>
+                <a href={zoomUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
+                  Open Zoom <Icon.arrowR size={12} />
+                </a>
+              </div>
+            </div>
+          )}
           <Button variant="ghost" onClick={onSaveErrors}><Icon.warning size={14} /> Save Errors to Error Bank</Button>
           <Button variant="ghost" onClick={onSaveVocab}><Icon.book size={14} /> Save Vocabulary to Vocab Bank</Button>
           <Button variant="ghost" onClick={onSaveProgressNote}><Icon.doc size={14} /> Save Progress Note</Button>

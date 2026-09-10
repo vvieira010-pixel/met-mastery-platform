@@ -10,7 +10,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { Card } from '../components/ui/Card.jsx';
 import { Reveal } from '../components/ui/Reveal.jsx';
 import {
-  getClassEvents, getAllSubmissions,
+  getClassEvents,
   getStudentCycleState, requestInboxNotificationPermission,
   getSeedsStages, setStudentSeedsStage,
 } from '../lib/workflow.js';
@@ -47,18 +47,24 @@ export default function TeacherDashboard({ students, onNavigate, teacherName = '
     async function load() {
       try {
         const todayStr = new Date().toISOString().slice(0, 10);
+        // NOTE: this array literal is evaluated synchronously, so any
+        // undefined identifier here throws BEFORE allSettled runs and is
+        // swallowed by the catch below — leaving the dashboard permanently
+        // empty (loading=false, every list []). Keep every entry resolvable.
+        // getAllSubmissions()/getReviews() used to sit here; neither result
+        // was ever read (pendingReview is derived from cycleStage at ~L109),
+        // so both were dead network calls on every mount and every window
+        // focus. Removed.
         const results = await Promise.allSettled([
           getClassEvents(),
-          getAllSubmissions(),
-          getReviews(),
           Promise.allSettled(students.map(s =>
             getStudentCycleState(s.id).then(state => [s.id, state]).catch(() => [s.id, null])
           )),
         ]);
         if (!live) return;
         const events = results[0].status === 'fulfilled' ? results[0].value : [];
-        const entries = results[3].status === 'fulfilled'
-          ? results[3].value.filter(r => r.status === 'fulfilled' && r.value[1]).map(r => r.value)
+        const entries = results[1].status === 'fulfilled'
+          ? results[1].value.filter(r => r.status === 'fulfilled' && r.value[1]).map(r => r.value)
           : [];
         const todays = (events || []).filter(e => e.date === todayStr && e.status !== 'canceled');
         setTodayClasses(todays);

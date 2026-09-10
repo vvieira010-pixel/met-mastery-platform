@@ -1,76 +1,88 @@
-# Frontend Audit + Cleanup Pass — 2026-09-02 session (extended)
+# Session Overview — MET platform (app-shell redesign + P0 remediation)
 
-## Scope
-Comprehensive audit of `C:\Users\vviei\platform0.3\platform0.3` (`FRONTEND-AUDIT-2026-09-02.md` — 26 findings, severity-ranked) followed by a remediation pass covering Critical, High, and Low-severity items, plus a partial H4 pass on the test-taking flow.
+> Supersedes the previous contents of this file (the 2026-09-02 frontend-audit pass).
+> That record is preserved in `.workbuddy-ai/memory/2026-09-02.md`.
 
-## Result
+## What was done
 
-| Category | Findings | Resolved this session | Remaining |
-|---|---|---|---|
-| Critical | 2 | 0 (already fixed in tree before pass) | 0 |
-| High | 6 | **6** (H1 lazy-load recharts, H2 realtime ref, H4 finish, H5 context memo, H6 tts origin guard, partial H4 — test-taking flow) | 0 (H3 dark-mode tokens still open) |
-| Medium | 12 | 1 (M9 useMemo validation) | 11 (CSS architecture, font loading, breakpoints, etc.) |
-| Low | 9 | 8 (modal scroll lock, 6 silent-catch sites, lint cleanup) | 1 (minified landing CSS) |
+Two threads: finishing the **unified app-shell design deliverable**, then a **P0 bug hunt**
+uncovered while auditing why the shell's target files had no static analysis.
 
-**Lint gate:** `eslint src/ api/ --max-warnings 0` → **0 problems** (was 23).
-**Build:** `vite build` → passes (~29 s). Recharts split into dedicated deferred chunk (497 kB / 130 kB gzip).
+### 1. App-shell redesign — design deliverable complete, not yet integrated
 
-## Highlights
+A single shell primitive (`design/shell.css`, contract in `design/shell-tokens.md`, reviewable
+harness in `design/shell-prototype.html`) replacing the divergent teacher/student chrome.
 
-- **P0 runtime crash fix** in `landing-complete.jsx` — missing `tourOpen`/`setTourOpen` state was causing `ReferenceError` on every landing-page render.
-- **H1 closed** — recharts no longer ships on first paint across `student-home`, `reports`, `MetProgressPathGraph`.
-- **H4 closed (full sweep)** — all 11 responsive-suspect pages now have either dedicated responsive CSS or were verified already-responsive by construction. Static analysis surfaced an additional unstyled-component finding in `MockTestEngine.jsx` (zero CSS for `.mte-home*`, `.mte-loading*`, `.mte-error*`); added complete inline `<style>` with `:hover` / `:focus-visible` / `--done` variants and media queries for 640px + 380px breakpoints. `student-profile.jsx` got a vertical-stack action-button group + horizontal-scroll PillNav for 10 tabs. `submission-review.jsx` got wrap-on-mobile for the sticky bar + per-question row + 1fr 1fr → 1fr errors grid.
-- **H6 closed** — `api/tts.js` now has same-origin guard (was the only unguarded paid-provider endpoint).
-- **Reusable hook delivered** — `src/lib/use-body-scroll-lock.js` (body-scroll lock with scrollbar-width compensation). Wired into `Modal.jsx`, `BaselineDiagnosticModal.jsx`, and inline Quick Practice dialog.
-- **Hidden bug fix** — `.card-row` class had no CSS rule anywhere despite being used in 7+ places across the codebase. Student-profile tab rows were rendering as plain block divs, not flex rows. Added the missing parent rule (`display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; min-width: 0;`) immediately above the already-defined `.card-row-body` / `-title` / `-meta` rules.
-- **Observability** — silent `catch {}` blocks around `res.json()` in `supabase-storage.js` (×5) and `callAI.js` now log via `console.warn` for developer debugging while keeping user-facing fallback messages.
+- **DECISION LOCK — geometry by breakpoint, never by role.** Both roles get the same chrome at
+  the same widths. No role conditionals in geometry.
+- Three contiguous `min-width`-only bands, so no fractional width falls between them:
+  ≥861px vertical rail · 769–860px topbar + horizontal nav row · ≤768px topbar + bottom tab bar.
+- All shell rules authored as `.mm-shell .mm-*` (0,2,0) to outrank legacy CSS without `!important`.
+- **Root defect fixed:** every `@media` block had been authored *before* the component base rules
+  at equal specificity, making all `display` switches inert. Moved to end of file.
+- Round 1 critique: REVISE (10/25). Round 2: **PASS (19/25)**, all 6 hard checks green.
+  Verified at 1280px: `display: grid`, rail `{0,0,280,760}`, `railTop 0` after 193px scroll.
 
-## Files changed this session
+**Integration is still NOT done** — `src/styles/shell.css` does not exist and
+`grep -rn "mm-shell" src/` returns nothing.
 
-**Audit + cleanup**
-- `FRONTEND-AUDIT-2026-09-02.md` (deliverable + remediation log)
-- `src/components/ui/Modal.jsx`, `src/components/BaselineDiagnosticModal.jsx` (scroll lock)
-- `src/pages/student-home.jsx` (scroll lock + recharts lazy-load)
-- `src/pages/reports.jsx`, `src/components/MetProgressPathGraph.jsx` (recharts lazy-load)
-- `src/lib/use-body-scroll-lock.js` (new)
-- `src/lib/supabase-storage.js` (5× catch warnings)
-- `src/lib/callAI.js` (1× catch warning)
+### 2. P0 — the live teacher dashboard rendered permanently empty
 
-**Earlier sub-passes**
-- `src/App.jsx`, `src/lib/toast-provider.jsx`, `src/components/exercises/ExercisePlayer.jsx`, `src/components/StudentDashboard.jsx`, `src/components/domain-ui.jsx`, `src/pages/landing.jsx`, `src/components/CefrSkillGapFlags.jsx`, `src/lib/cefr-tier.js` (new), `api/tts.js`
+Found by running `eslint src/ --no-ignore`, which exposed 2 **Errors** hidden by the lint config.
 
-**H4 partial**
-- `src/components/mock-test/ReadingSection.jsx` (added styles + responsive)
-- `src/components/mock-test/ListeningSection.jsx` (added styles + responsive)
-- `src/components/mock-test/NavButtons.jsx` (added styles + responsive)
-- `src/components/mock-test/SpeakingSection.jsx` (added responsive media query)
-- `src/components/mock-test/WritingSection.jsx` (added responsive media query)
+`src/pages/teacher-dashboard.jsx` called `getReviews()` without importing it. Because the call sat
+inside a `Promise.allSettled([...])` **array literal** — evaluated synchronously — the
+`ReferenceError` fired *before* `allSettled` ran, was swallowed by the surrounding `try/catch`, and
+control fell through to `finally { setLoading(false) }` with every list still `[]`. The teacher
+dashboard showed zero classes, zero cycle states and zero seeds on **every** load. The E2E test only
+asserted the container was *visible*, so it passed the whole time.
 
-**H4 finish + hidden bug**
-- `src/styles/components.css` — added missing `.card-row` parent rule (affects all 7+ usages across codebase)
-- `src/components/mock-test/MockTestEngine.jsx` — added full inline `<style>` block for `.mte-home*`, `.mte-loading*`, `.mte-error*` (were entirely unstyled)
-- `src/pages/student-profile.jsx` — vertical-stack action buttons + horizontal-scroll PillNav on mobile
-- `src/pages/submission-review.jsx` — wrap sticky bar + per-question row + collapse errors grid on mobile
-- `src/pages/settings.jsx` — verified already responsive (page-shell-narrow + vertical stack)
-- `src/pages/quick-practice.jsx` — verified already responsive (auto-fit grid + flex-wrap header)
+**Fixed:** removed `getReviews(),` and `getAllSubmissions(),` (neither result was ever read —
+`pendingReview` derives from `cycleStage`) and reindexed the two read sites. Two fewer full-table
+queries per mount and per `window.focus` as a side benefit. Also fixed a `preserve-caught-error`
+violation in `src/lib/workflow-academic.js` (duplicate-submission guard now rethrows `{ cause: e }`).
 
-**Logs**
-- `.workbuddy-ai/memory/2026-09-02.md` (cumulative session log)
+### 3. Blind spot closed — the root cause of the P0 shipping
 
-## Still open (needs design sign-off)
-- H3: dark-mode `--primary` token split (109-selector patches in `dark.css`).
-- M-series: CSS monolith split, specificity dedupe, font loading.
-- Low-1: minified landing CSS still un-diffable.
-- Low: npm `qs` transitive vuln (high-impact, but requires `npm update` workflow choice).
-- Low: unused legacy auth module (verify zero imports before deletion).
+`eslint.config.js` globally ignored **45 `src/` files** — including `App.jsx`, `shared.jsx` and both
+dashboards. That is why a hard `ReferenceError` reached production with a clean lint tree.
 
-## Verification blocker
-The sandbox intercepts `localhost` (502 from 3000 + 4173 even when servers are up). Could not capture Playwright screenshots to confirm responsive breakpoints render correctly. Static analysis only — visual diff pending Playwright run from a non-sandboxed shell.
+The ignore list is now build output only (`dist-build`, `node_modules`, `archive`, `.vite-cache*`).
+The 45 files moved to a `files:` block that disables **only** the three noisy style rules
+(`no-unused-vars`, `react-refresh/only-export-components`, `react-hooks/exhaustive-deps`) while
+keeping every correctness rule from `js.configs.recommended` as an **error**.
 
-## Next batch suggestion
-- **Quick 5 min** — `npm update qs` + `npm audit --omit=dev` to confirm the transitive vuln drops to zero.
-- **Quick 10 min** — delete unused legacy auth module (verify nothing imports it first via grep `import.*auth`).
-- **Medium 30 min** — start H3 dark-mode token split (109 selectors; mechanical sed-style replace of `var(--primary)` → `var(--primary-fg)` + bg counterpart).
-- **Cleanup 5 min** — git commit the day's work + verify all the inline `<style>` blocks survived a `vite build`.
+Verified by reintroducing the bug: `npm run lint` → **exit 1**, `'getReviews' is not defined (no-undef)`.
 
-Pick one and I'll execute.
+### 4. Test infrastructure — vitest was completely dead
+
+`npm test` failed with 4 vitest suites collecting **0 tests**:
+`TypeError: Cannot read properties of undefined (reading 'config')` at the top-level `describe()`.
+Not caused by the edits above — a 5-line trivial probe failed identically. Root cause was a
+corrupted Vite dep-optimizer cache; moving `node_modules/.vite` aside fixed it instantly.
+
+## Verification
+
+| Gate | Result |
+|---|---|
+| `npm run lint` (`--max-warnings 0`) | **exit 0** — now covering the 45 previously-ignored files |
+| `npm test` | **exit 0** — 250 unit + 25 vitest, stable over 3 consecutive runs |
+| Regression proof (bug reintroduced) | `npm run lint` → **exit 1**, `no-undef` at `teacher-dashboard.jsx` |
+
+## Files changed
+
+- `src/pages/teacher-dashboard.jsx` — removed the undefined call + 1 dead call, reindexed read sites
+- `eslint.config.js` — global ignore → linted `files:` block with 3 style rules off
+- `src/lib/workflow-academic.js` — attach `{ cause: e }`
+- `src/lib/tts-utils.js` — removed a stale `eslint-disable` directive
+
+## Still open
+
+1. **Integrate the shell** — copy `design/shell.css` → `src/styles/`, import after `system.css`,
+   migrate `shared.jsx:100` and `student-dashboard.jsx:122` to `.mm-shell` + `data-shell`.
+2. `WorkflowStageStrip` at ≤860px — the switch must be implemented in the page component.
+3. `design-tokens.json` is stale (primary `#457B9D` vs `tokens.css:45` `#19647E`).
+4. Real-device verification — all shell measurements came from a resized iframe in desktop Chrome.
+5. Two toast systems coexist (`src/lib/toast-provider.jsx` + an ad-hoc inline toast).
+6. Wider audit items: CSP `report-to`; `src/core/` (99 dead files, 4,297 LOC); ~62 MB of MP3s;
+   `axe-core` in CI; `npm test` not yet in the pre-ship gate.

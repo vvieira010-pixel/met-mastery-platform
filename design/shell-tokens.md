@@ -19,7 +19,10 @@
 | Width | Both roles |
 |---|---|
 | **≥861px** | vertical left rail (17.5rem / 280px, `tokens.css:112`) |
-| **≤860px** | horizontal topbar + bottom tab bar |
+| **769–860px** | horizontal topbar + horizontal nav row (no bottom bar) |
+| **≤768px** | horizontal topbar + bottom tab bar |
+
+Three bands, all `min-width`-only, zero role conditionals — the geometry-by-breakpoint-never-by-role invariant is unaffected by the *count* of bands. (Amended 2026-09-10: the two-row table below this point contradicted `shell.css`, which has always had three bands.)
 
 **Revision note.** An earlier version of this lock gave the student a topbar at every width. That was **reversed**. Reason: the stated justification ("students have less to navigate") is **false** — the student shell has **9 destinations** (`student-dashboard.jsx:36-43` six bottom tabs + `:30-34` mock-test / messages / settings) versus the teacher's 9 (`App.jsx:499-509`). Item count cannot justify the asymmetry. More importantly, **role-based geometry is exactly the drift this project exists to remove** — branching `data-layout` on role re-introduces a per-role layout branch that will drift again. One breakpoint rule, one code path, zero role conditionals in geometry.
 
@@ -497,7 +500,7 @@ Without it every `env(safe-area-inset-*)` in §3.4 evaluates to `0px` on iOS (F0
 
   <nav class="mm-tabbar" aria-label="Mobile navigation">…</nav> <!-- ≤768 only -->
   <div class="mm-scrim" hidden></div>
-  <div class="mm-sheet" role="menu" hidden>…</div>              <!-- overflow -->
+  <div class="mm-sheet" role="dialog" aria-modal="true" hidden>…</div>   <!-- overflow -->
 </div>
 ```
 
@@ -535,11 +538,13 @@ Row 2 = `.mm-nav` (`height: var(--mm-navbar-h)`, `border-top: 1px solid var(--mm
 Per DECISION LOCK (lines 9–36): at ≥861px **both roles** render a vertical left rail. One code path — geometry branches on breakpoint only, never on role. The horizontal nav described in §5.3 is retired at this width.
 
 - **Width:** `--mm-rail-w` = `280px` (17.5rem); not fluid. (`tokens.css:112`)
-- **Element:** `.mm-rail` — `display: flex; flex-direction: column;`. The existing `.mm-nav` content (same `<nav>` / `<ul>` / `<li>`) is **relocated**, not duplicated. No new markup element.
-- **Active marker:** `.mm-rail__item[aria-current="true"]` gets a `2px solid var(--mm-accent)` on `border-inline-start`. No background fills.
-- **Section labels:** "Today" / "Library" — `.mm-nav-section-label { display: block; }` activated at this breakpoint.
-- **Teacher-only slot:** `.mm-rail__strip` renders `WorkflowStageStrip` (`shared.jsx:128`) with `margin-block-start: auto`, pinning it to the rail bottom. Students simply omit the slot from markup — the rail still renders identically.
-- **Focus order:** rail → strip (if teacher) → main content. No skip-link — the rail is always in the initial viewport at ≥861px.
+- **Sticky, not static.** `.mm-rail` needs `position: sticky; top: 0; align-self: start; block-size: 100dvh; padding-top: var(--mm-chrome-h)` — the topbar is fixed and full-bleed, so the rail must clear it. ⚠ This is load-bearing, not polish: `.mm-nav` is `display:none` across this band, so a rail that scrolls away with the document leaves **no navigation on screen at all** — a regression against `redesign.css:359`, the code this replaces, whose desktop sidebar was `position: fixed; height: 100vh`.
+- **Own vertical rhythm.** The rail must not inherit the nav row's metrics: `.mm-rail .mm-nav-item { max-inline-size: none; padding-block: var(--mm-s-1); }` and `.mm-rail .mm-nav-section { gap: var(--mm-s-1); }`. Without `max-inline-size: none` the row clamps to `24ch` (≈187px inside a 264px column) and the hover/active tint reads as a floating pill with a 77px dead strip beside it.
+- **Element:** `.mm-rail` — `display: flex; flex-direction: column;`. The existing `.mm-nav` content (same `<nav>` / `<ul>` / `<li>`) is **rendered once into whichever slot is active**; if a shell mirrors the items (rail + sheet), keep `aria-current` in sync across every copy. (The earlier "relocated, not duplicated" wording was not achievable as written.)
+- **Active marker:** `.mm-rail .mm-nav-item[aria-current="page"]` gets `box-shadow: inset var(--mm-marker-w) 0 0 var(--mm-primary)` — a **3px left edge**, not the bottom underline used in horizontal mode. Same three signals (teal text, tint fill, shape); only the axis changes, because in a vertical list a bottom underline reads as a row separator rather than as selection. ⚠ Amber is **never** the marker colour — `--mm-accent` is fill/indicator only (§3.1).
+- **Section labels:** "Today" / "Library" — `.mm-nav-section-label { display: block; }` activated at **this** breakpoint (861px), not 1025px — at 900px the rail was nine unlabelled items. Cannot regress the horizontal nav, which is `display:none` across the whole band.
+- **Teacher-only slot:** `.mm-rail__strip` renders `WorkflowStageStrip` (`shared.jsx:128`) with `margin-block-start: auto`, pinning it to the rail bottom. Students simply omit the slot from markup — the rail still renders identically. At ≤860px the strip renders **inside `.mm-main` as page content**: the shell provides no topbar-mode slot, because workflow state is page context, not global chrome.
+- **Focus order:** skip-link → rail → strip (if teacher) → main content. **Keep the skip link at every width** — skipping nine rail items is valuable.
 
 ### 5.4 `.mm-nav-item` — states
 
@@ -547,20 +552,20 @@ Per DECISION LOCK (lines 9–36): at ≥861px **both roles** render a vertical l
 |---|---|---|---|---|
 | **default** | `transparent` | `var(--mm-ink-muted)` | none | `min-height: var(--mm-nav-item-h)`, `padding: 0 var(--mm-nav-item-px)`, `border-radius: var(--mm-r-sm)`, `gap: var(--mm-s-2)`, `font: var(--mm-t-nav)` |
 | **hover** | `var(--mm-primary-tint)` | `var(--mm-ink)` | — | `transition: background var(--mm-dur-1)` |
-| **active** (`[aria-current="page"]`) | `var(--mm-primary-tint)` | `var(--mm-primary)` weight 600 | `box-shadow: inset 0 -2px 0 var(--mm-primary)` | ⚠ **text is teal, never white-on-teal** — a filled teal pill on every active item would paint ~10% of the screen and break DESIGN.md's One Voice Rule |
+| **active** (`[aria-current="page"]`) | `var(--mm-primary-tint)` | `var(--mm-primary)` weight 600 | `box-shadow: inset 0 calc(-1 * var(--mm-marker-w)) 0 var(--mm-primary)` (3px via `--mm-marker-w`) | ⚠ **text is teal, never white-on-teal** — a filled teal pill on every active item would paint ~10% of the screen and break DESIGN.md's One Voice Rule |
 | **focus-visible** | as current | as current | `box-shadow: var(--mm-focus-ring)` | 2px chrome + 4px primary. Never `outline: none` without a replacement. |
 | **press** | `var(--mm-primary-tint)` | `var(--mm-primary-press)` | `transform: scale(.97)` | disabled under `prefers-reduced-motion` |
 | **disabled** | `transparent` | `var(--mm-ink-disabled)` | `cursor: not-allowed` | also `aria-disabled="true"`, keep focusable |
 
 Badge: `background: var(--mm-danger); color: var(--mm-danger-on); min-width: 18px; height: 18px; border-radius: var(--mm-r-pill); font-size: 10px; font-weight: 700` + `aria-label` on the parent ("3 unread").
 
-### 5.5 `.mm-tabbar` (bottom nav, ≤860px)
+### 5.5 `.mm-tabbar` (bottom nav, ≤768px)
 
-Per DECISION LOCK (lines 9–36): ≤860px = horizontal topbar + bottom tab bar; the rail is **removed**. (This spec previously stated ≤768px; that pre-dated the DECISION LOCK revision and has been corrected.)
+Per DECISION LOCK (lines 9–36): ≤768px = horizontal topbar + bottom tab bar; the rail is **removed**. At 769–860px the bottom bar is replaced by the horizontal nav row (§5.3). (The earlier "≤860px" wording pre-dated the three-band amendment; corrected here.)
 
-- **5 visible tabs.** Teacher: 4 + More = 5. Student: 5 + More = 6 total destinations collapsed to 5 + overflow (Decision 2, line 30). No `flex:1` shrink below ~57px/tab.
+- **5 visible slots = 4 destinations + "More", for BOTH roles.** No role branch. Both roles have 9 destinations (`App.jsx:499-509` teacher, `student-dashboard.jsx:30-43` student), so there is no count asymmetry to justify a split — the same argument that killed the rail asymmetry. `progress` moves into the More sheet for students (Decision 2, line 30). No `flex:1` shrink below ~60px/tab. ✅ **Confirmed by the owner 2026-09-10.** The call was made without usage analytics, so it stays cheap to revisit — it is one `bottom` array per role in the shell config (`design/shell-prototype.html:221` teacher, `:241` student).
 - **"More" overflow sheet** holds remaining destinations; the **progress** indicator renders inside More, never in the rail (rail is absent below 861px).
-- **Fractional proof:** 860.5px and 768.5px must both land in the bottom-bar zone — no dead zone. Min-width-only media queries guarantee this by construction (§4.1); 860.5px matches `min-width: 769px` only, never `861px`.
+- **Fractional proof:** every width — fractional included — lands in exactly one band, so there is no dead zone. This holds by construction because *all* queries are `min-width`-only (§4.1), never a `max-width`/`min-width` pair. Examples: 768.5px matches neither 769 nor 861 → base (bottom bar); 860.5px matches 769 but not 861 → nav row; 861px and up → rail.
 - **Focus:** bottom-bar tabs first, then main content.
 
 - `position: fixed; bottom:0; left:0; right:0; height: var(--mm-bottomnav-total)`
@@ -573,7 +578,7 @@ Per DECISION LOCK (lines 9–36): ≤860px = horizontal topbar + bottom tab bar;
 - **No `backdrop-filter`** (same 3G reason).
 - `display: flex` in the base; `display: none` in the `min-width: 769px` block (the exact complement of `.mm-nav` — the two never coexist).
 
-**Overflow menu (state 4).** Trigger is the 5th tab ("More"), `min-width: var(--mm-tab-min-w)`, `aria-haspopup="menu"`, `aria-expanded`. Panel:
+**Overflow menu (state 4).** Trigger is the 5th tab ("More"), `min-width: var(--mm-tab-min-w)`, `aria-haspopup="dialog"`, `aria-expanded`. Panel: `role="dialog" aria-modal="true"` — **not** `role="menu"`, which would oblige arrow-key roving-tabindex that this design does not implement (Tab cycles within instead).
 - `position: fixed; left: var(--mm-gutter); right: var(--mm-gutter); bottom: calc(var(--mm-bottomnav-total) + var(--mm-s-2))`
 - `background: var(--mm-surface); border: 1px solid var(--mm-border); border-radius: var(--mm-r-lg); box-shadow: var(--mm-e-3)`
 - `max-height: min(60dvh, 420px); overflow-y: auto; overscroll-behavior: contain`
@@ -595,7 +600,7 @@ Per DECISION LOCK (lines 9–36): ≤860px = horizontal topbar + bottom tab bar;
   min-height: 100vh;       /* fallback for engines without dvh */
   min-height: 100dvh;      /* dvh — Android Chrome URL bar */
   content-visibility: auto;
-  contain-intrinsic-size: 800px;   /* keep existing lazy-render win */
+  contain-intrinsic-size: auto 800px;   /* keep existing lazy-render win */
 }
 ```
 

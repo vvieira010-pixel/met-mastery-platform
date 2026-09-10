@@ -96,7 +96,6 @@ export async function fetchConversationAudio(utterances) {
 }
 
 async function concatenateAudioBlobs(urls) {
-  /* eslint-disable no-undef */
   if (typeof window === 'undefined' || !window.AudioContext) {
     console.warn('[tts] AudioContext not available, returning first blob');
     return urls[0];

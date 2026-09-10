@@ -8,6 +8,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { getClassEvents, saveClassEvent, deleteClassEvent, updateClassEventStatus } from '../lib/workflow.js';
 import { sendClassInvite, getZoomUrl, getMeetUrl, getVideoProvider } from '../lib/send-invite.js';
 import { MET_SKILLS } from '../lib/report-metrics.js';
+import { createZoomMeeting } from '../lib/zoom-calendar.js';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const STATUS_TONE = { scheduled: 'info', completed: 'success', canceled: 'danger' };
@@ -36,7 +37,14 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
   }
 
   function openSchedule(date) {
-    setForm({ ...EMPTY_FORM, date: date || new Date().toISOString().slice(0, 10) });
+    setForm({ 
+      ...EMPTY_FORM, 
+      date: date || new Date().toISOString().slice(0, 10),
+      videoProvider: getVideoProvider(),
+      zoomUrl: getZoomUrl(),
+      meetUrl: getMeetUrl(),
+      autoCreateZoom: localStorage.getItem('vv:auto_create_zoom_meeting') === 'true',
+    });
     setShowForm(true);
   }
 
@@ -45,6 +53,20 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
     if (!form.date) { window.toast?.('Set a date.', 'warn'); return; }
     setSaving(true);
     try {
+      const useAutoZoom = localStorage.getItem('vv:auto_create_zoom_meeting') === 'true';
+      if (useAutoZoom && form.videoProvider !== 'meet') {
+        const zoomUrl = await createZoomMeeting({
+          topic: form.title || 'English Class',
+          date: form.date,
+          startTime: form.startTime || '',
+          duration: '60',
+          timezone: form.timezone,
+        });
+        if (zoomUrl?.ok) {
+          form.zoomUrl = zoomUrl.joinUrl;
+          if (zoomUrl.password) form.zoomPassword = zoomUrl.password;
+        }
+      }
       await saveClassEvent(form);
       await load();
       setShowForm(false);
@@ -167,16 +189,33 @@ export default function CalendarPage({ students, onNavigate, "data-testid": test
             <Field label="Class title">
               <input className="input" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Speaking Practice #3" />
             </Field>
-            <Field label="Class focus">
-              <input className="input" value={form.classFocus} onChange={e => setForm(f => ({ ...f, classFocus: e.target.value }))} placeholder="e.g. Past simple retelling" />
-            </Field>
-            <Field label="MET skill focus">
-              <select className="input" value={form.metSkillFocus} onChange={e => setForm(f => ({ ...f, metSkillFocus: e.target.value }))}>
-                <option value="">Select skill…</option>
-                {[...MET_SKILLS, 'Mixed'].map(s => <option key={s}>{s}</option>)}
-              </select>
-            </Field>
-          </div>
+<Field label="Class focus">
+               <input className="input" value={form.classFocus} onChange={e => setForm(f => ({ ...f, classFocus: e.target.value }))} placeholder="e.g. Past simple retelling" />
+             </Field>
+             <Field label="Video provider">
+               <select className="input" value={form.videoProvider} onChange={e => setForm(f => ({ ...f, videoProvider: e.target.value }))}>
+                 <option value="zoom">Zoom</option>
+                 <option value="meet">Google Meet</option>
+               </select>
+             </Field>
+             <Field label="MET skill focus">
+               <select className="input" value={form.metSkillFocus} onChange={e => setForm(f => ({ ...f, metSkillFocus: e.target.value }))}>
+                 <option value="">Select skill…</option>
+                 {[...MET_SKILLS, 'Mixed'].map(s => <option key={s}>{s}</option>)}
+               </select>
+             </Field>
+             <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0 0' }}>
+               <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: 'var(--text-sm)' }}>
+                 <input
+                   type="checkbox"
+                   checked={form.autoCreateZoom || false}
+                   onChange={e => setForm(f => ({ ...f, autoCreateZoom: e.target.checked }))}
+                 />
+                 Auto-create Zoom meeting
+               </label>
+               <span style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginLeft: 'auto' }}>Save link to Zoom →</span>
+             </div>
+           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
             <Button variant="primary" onClick={handleSave} disabled={saving}>{saving ? 'Saving…' : 'Schedule Class'}</Button>
             <Button variant="ghost" onClick={() => setShowForm(false)}>Cancel</Button>
@@ -307,6 +346,6 @@ function Field({ label, children }) {
   );
 }
 
-const EMPTY_FORM = { studentId: '', date: '', startTime: '', endTime: '', title: 'English Class', classFocus: '', metSkillFocus: '', timezone: 'America/Sao_Paulo', status: 'scheduled', diagnosticStatus: 'not-started', homeworkStatus: 'not-generated' };
+const EMPTY_FORM = { studentId: '', date: '', startTime: '', endTime: '', title: 'English Class', classFocus: '', metSkillFocus: '', timezone: 'America/Sao_Paulo', status: 'scheduled', diagnosticStatus: 'not-started', homeworkStatus: 'not-generated', videoProvider: 'zoom', zoomUrl: '', meetUrl: '' };
 
 

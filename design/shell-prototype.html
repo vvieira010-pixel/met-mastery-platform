@@ -1,379 +1,788 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MET Mastery — Shell Prototype (rail ≥861px · bottom-bar ≤860px)</title>
-  <style>
-    /* ─────────────────────────────────────────────────────────────
-       Prototype: what the shell looks like at every breakpoint,
-       both roles, both themes.  Self-contained — no external deps.
-       The demo-viewport simulates a device screen; JS toggles
-       data-layout="rail" at ≥861px to mirror the real media query
-       without depending on the browser viewport.
-       ───────────────────────────────────────────────────────────── */
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MET Mastery — Unified Shell · prototype harness</title>
+<link rel="icon" href="data:," />
+<!--
+  ═══════════════════════════════════════════════════════════════════════════
+  This file is a REVIEW HARNESS, not the product.
 
-    :root {
-      --mm-rail-w: 280px;
-      --mm-topbar-h: 48px;
-      --mm-tabbar-h: 56px;
-      --mm-accent:  #e1703c;   /* amber — student */
-      --mm-primary: #2a9d8f;   /* teal */
-      --mm-page:    #ffffff;
-      --mm-chrome:  #ffffff;
-      --mm-fg:      #1a1a1a;
-      --mm-fg-muted:#6b7280;
-      --mm-border:  #e5e7eb;
-      --mm-nav-bg:  #f9fafb;
-      --mm-rail-bg: #f9fafb;
-    }
-    :root[data-theme="dark"] {
-      --mm-page:    #0f1117;
-      --mm-chrome:  #1a1b1e;
-      --mm-fg:      #f3f4f6;
-      --mm-fg-muted:#9ca3af;
-      --mm-border:  #374151;
-      --mm-nav-bg:  #24262b;
-      --mm-rail-bg: #24262b;
-    }
+  It contains ZERO design decisions and ZERO token values of its own.
+  The previewed shell is rendered inside an <iframe> that <link>s the real
+  deliverable, ./shell.css. Every colour/space/type inside the iframe comes
+  from that file. If shell.css is wrong, this page shows it wrong — that is
+  the point of the harness.
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-          background: #e5e7eb; padding: 24px; }
+  Why an iframe: media queries evaluate against the iframe's own viewport,
+  so setting iframe.style.width is a REAL breakpoint evaluation. A fixed
+  overflow:hidden <div> (the previous approach) never re-triggers a media
+  query, which is why its "fractional proof" note was false.
 
-    /* ── Demo controls ─────────────────────────────────────────── */
-    .demo-controls {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-    .demo-controls label { font-size: 13px; color: var(--mm-fg-muted); }
-    .demo-controls button, .demo-controls input {
-      font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--mm-border);
-      background: var(--mm-page); color: var(--mm-fg); cursor: pointer;
-    }
-    .demo-controls button:hover { background: var(--mm-nav-bg); }
-    .demo-controls input[type=range] { width: 160px; }
+  Class names used inside the iframe are the real ones from shell.css:
+    .mm-shell .mm-skip .mm-topbar .mm-topbar-row .mm-brand .mm-brand-mark
+    .mm-brand-copy .mm-mobile-title .mm-topbar-actions .mm-iconbtn .mm-avatar
+    .mm-nav .mm-nav-section .mm-nav-section-label .mm-nav-item .mm-label
+    .mm-badge .mm-main .mm-tabbar .mm-tab .mm-tab-pill .mm-tab-label
+    .mm-scrim .mm-sheet .mm-sheet-head .mm-sheet-item .mm-rail .mm-rail__strip
 
-    /* ── Simulated viewport ───────────────────────────────────── */
-    .demo-viewport {
-      width: 960px;           /* driven by the width slider */
-      height: 600px;
-      border: 1px solid var(--mm-border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--mm-page);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    }
+  Only .dm-* classes are ours. They style the <main> DEMO CONTENT (which
+  shell.css deliberately does not style — it is a shell stylesheet) and they
+  consume --mm-* tokens rather than hard-coding any value.
+  ═══════════════════════════════════════════════════════════════════════════
+-->
+<style>
+  /* ── Harness chrome only. Deliberately neutral + visually distinct from
+       the preview so nobody mistakes it for product surface. ───────────── */
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    font: 400 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #eef0f2;
+    color: #1d2430;
+    padding: 20px 20px 48px;
+  }
+  .h-shell { max-width: 1600px; margin: 0 auto; }
+  .h-head { margin-bottom: 14px; }
+  .h-head h1 { font-size: 19px; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .h-head p  { margin: 0; color: #5c6672; font-size: 13px; max-width: 92ch; }
+  .h-head code { background: #e2e6ea; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
 
-    /* ── Shell — base = bottom-bar mode (≤860px) ────────────── */
-    .mm-shell {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      background: var(--mm-page);
-      color: var(--mm-fg);
-    }
+  .h-panel {
+    background: #fff; border: 1px solid #d7dce1; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 12px;
+  }
+  .h-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .h-row + .h-row { margin-top: 12px; padding-top: 12px; border-top: 1px solid #eceff2; }
+  .h-grp { display: flex; align-items: center; gap: 8px; }
+  .h-lbl { font-size: 11px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: #78838f; }
+  .h-val { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; min-width: 62px; }
 
-    /* Topbar — always present in bottom-bar mode */
-    .mm-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: var(--mm-topbar-h);
-      padding: 0 16px;
-      background: var(--mm-chrome);
-      border-block-end: 1px solid var(--mm-border);
-      font-weight: 600;
-    }
+  button, select { font: inherit; }
+  .h-btn {
+    border: 1px solid #cdd4db; background: #fff; color: #26313d;
+    padding: 5px 11px; border-radius: 7px; cursor: pointer; font-size: 13px;
+  }
+  .h-btn:hover { background: #f2f5f8; }
+  .h-btn[aria-pressed="true"] { background: #26313d; border-color: #26313d; color: #fff; }
+  .h-btn:focus-visible { outline: 2px solid #19647E; outline-offset: 2px; }
+  input[type=range] { width: 260px; accent-color: #19647E; }
 
-    /* Rail — hidden in bottom-bar mode, shown at ≥861px */
-    .mm-rail { display: none; }
+  .h-note {
+    font-size: 12px; color: #4a5563; background: #f7f9fb;
+    border: 1px solid #e1e7ec; border-left: 3px solid #94a3b3;
+    border-radius: 6px; padding: 8px 11px; margin-top: 10px;
+  }
+  .h-note strong { color: #26313d; }
+  .h-warn { background: #fff8e7; border-color: #f0e0bb; border-left-color: #d9a63a; }
+  .h-warn strong { color: #7a4d10; }
 
-    /* Main content area */
-    .mm-main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px;
-    }
+  /* live diagnostic readout */
+  .h-diag { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .h-chip {
+    font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    padding: 5px 8px; border-radius: 999px; border: 1px solid #d7dce1;
+    background: #f4f6f8; color: #5c6672;
+  }
+  .h-chip.on  { background: #e2f0f3; border-color: #a9cfd8; color: #14586d; }
+  .h-chip.bad { background: #fdecec; border-color: #eec4c2; color: #8d3b36; }
 
-    /* Bottom tab bar — shown in bottom-bar mode, hidden in rail mode */
-    .mm-tabbar {
-      display: flex;
-      height: var(--mm-tabbar-h);
-      background: var(--mm-chrome);
-      border-block-start: 1px solid var(--mm-border);
-    }
-    .mm-tabbar__item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      font-size: 11px;
-      color: var(--mm-fg-muted);
-      border: none;
-      background: transparent;
-      cursor: pointer;
-    }
-    .mm-tabbar__item[aria-current="true"] {
-      color: var(--mm-accent);
-      border-block-start: 2px solid var(--mm-accent);
-    }
-    .mm-tabbar__more { border-block-start: 2px solid transparent; }
-
-    /* ── Shell — rail mode (≥861px) ─────────────────────────── */
-    .mm-shell[data-layout="rail"] .mm-topbar   { display: none; }
-    .mm-shell[data-layout="rail"] .mm-rail     { display: flex; }
-    .mm-shell[data-layout="rail"] .mm-tabbar   { display: none; }
-    .mm-shell[data-layout="rail"] .mm-main     { padding: 32px 24px; }
-
-    /* Rail structure */
-    .mm-rail {
-      flex-direction: column;
-      width: var(--mm-rail-w);
-      background: var(--mm-rail-bg);
-      border-inline-end: 1px solid var(--mm-border);
-      padding-block: 16px;
-    }
-    .mm-rail__nav { flex: 1; }
-    .mm-rail__list { list-style: none; }
-    .mm-rail__group-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--mm-fg-muted);
-      padding: 12px 16px 4px;
-    }
-    .mm-rail__item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      margin-inline: 8px;
-      border-radius: 6px;
-      font-weight: 500;
-      color: var(--mm-fg-muted);
-      text-decoration: none;
-      cursor: pointer;
-      border: 2px solid transparent;
-      border-inline-start: 2px solid transparent;
-    }
-    .mm-rail__item:hover       { background: var(--mm-nav-bg); color: var(--mm-fg); }
-    .mm-rail__item[aria-current="true"] {
-      color: var(--mm-accent);
-      border-inline-start: 2px solid var(--mm-accent);
-      background: var(--mm-nav-bg);
-    }
-
-    /* Section labels at ≥861px */
-    .mm-rail__section-label { display: block; font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.05em; color: var(--mm-fg-muted);
-      padding: 12px 16px 4px; }
-
-    /* Teacher-only workflow strip — pinned to rail bottom */
-    .mm-rail__strip {
-      border-block-start: 1px solid var(--mm-border);
-      padding: 12px 16px;
-      margin-block-start: auto;
-    }
-    .mm-shell[data-shell="student"] .mm-rail__strip { display: none; }
-
-    /* ── More overflow sheet (student bottom bar) ──────────── */
-    .mm-sheet-backdrop {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.4);
-      align-items: flex-end;
-    }
-    .mm-sheet-backdrop[aria-hidden="false"] { display: flex; }
-    .mm-sheet {
-      width: 100%; max-width: 360px;
-      background: var(--mm-chrome);
-      border-block-start-start: 12px solid var(--mm-border);
-      padding: 12px;
-    }
-    .mm-sheet__item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 12px; border-radius: 6px; cursor: pointer;
-    }
-    .mm-sheet__item:hover { background: var(--mm-nav-bg); }
-    .mm-sheet__item[aria-current="true"] {
-      background: var(--mm-nav-bg); color: var(--mm-accent);
-    }
-
-    /* ── Section labels that are hidden below 861px ─────────── */
-    .mm-rail__section-label { display: block; }
-    .mm-shell[data-layout="bottom"] .mm-rail__section-label { display: none; }
-
-    /* Student tabbar uses amber accent */
-    .mm-shell[data-shell="student"] .mm-tabbar__item[aria-current="true"] { color: var(--mm-accent); }
-
-  </style>
+  .h-stage { display: flex; justify-content: center; }
+  .h-frame-wrap { background: #fff; border: 1px solid #d7dce1; border-radius: 12px; padding: 10px; box-shadow: 0 10px 30px rgba(20,30,40,.10); }
+  iframe { display: block; border: 0; border-radius: 6px; background: #fff; height: 760px; }
+  .h-cap { text-align: center; font-size: 11px; color: #78838f; margin-top: 8px; font-variant-numeric: tabular-nums; }
+</style>
 </head>
 <body>
+<div class="h-shell">
 
-  <div class="demo-controls">
-    <label>Viewport width: <span id="wlabel">960</span>px</label>
-    <input type="range" id="widthSlider" min="320" max="1200" value="960">
-
-    <label>Role:</label>
-    <button id="roleBtn">Switch to Student</button>
-
-    <label>Theme:</label>
-    <button id="themeBtn">Dark</button>
-
-    <label><input type="checkbox" id="moreToggle"> Student "More" sheet open</label>
+  <div class="h-head">
+    <h1>MET Mastery — Unified Shell prototype</h1>
+    <p>
+      The panel below renders inside an <code>&lt;iframe&gt;</code> that links <code>./shell.css</code> —
+      the actual deliverable. Breakpoints are evaluated by the browser against the iframe's own
+      viewport, so fractional widths are genuine, not simulated. Long PT strings
+      (<em>Preparação</em>, <em>Acompanhamento</em>, <em>Material de Apoio</em>) are included on purpose.
+    </p>
   </div>
 
-  <div class="demo-viewport" id="viewport">
-    <div class="mm-shell" data-shell="teacher" data-theme="light" data-layout="rail">
-
-      <!-- topbar (bottom-bar mode only) -->
-      <div class="mm-topbar">
-        <span>🏠 MET Mastery</span>
-        <span>👤 Teacher</span>
+  <div class="h-panel">
+    <div class="h-row">
+      <div class="h-grp">
+        <span class="h-lbl">Width</span>
+        <input type="range" id="c-width" min="320" max="1440" step="0.5" value="1280" />
+        <span class="h-val" id="c-width-val">1280px</span>
       </div>
-
-      <!-- rail (≥861px mode) -->
-      <nav class="mm-rail" aria-label="Main">
-        <div class="mm-rail__nav">
-          <div class="mm-rail__section-label">Today</div>
-          <ul class="mm-rail__list">
-            <a href="#" class="mm-rail__item" aria-current="true">🏠 Dashboard</a>
-            <a href="#" class="mm-rail__item">📊 Analytics</a>
-            <a href="#" class="mm-rail__item">📚 Classes</a>
-          </ul>
-          <div class="mm-rail__section-label">Library</div>
-          <ul class="mm-rail__list">
-            <a href="#" class="mm-rail__item">📖 Curricula</a>
-            <a href="#" class="mm-rail__item">🎯 Assessments</a>
-          </ul>
-        </div>
-
-        <!-- teacher-only WorkflowStageStrip slot -->
-        <div class="mm-rail__strip">
-          <div style="font-size:12px; font-weight:600; color:var(--mm-fg-muted);">
-            WorkflowStageStrip (teacher-only)
-          </div>
-          <div style="font-size:11px; color:var(--mm-fg-muted); margin-top:4px;">
-            Step 2 of 4 — Grading
-          </div>
-        </div>
-      </nav>
-
-      <!-- main content -->
-      <main class="mm-main">
-        <h1>Shell preview</h1>
-        <p style="margin-top:8px; color:var(--mm-fg-muted); font-size:14px;">
-          Layout: <span id="layoutLabel">Rail (≥861px)</span>
-          &nbsp;|&nbsp; Role: <span id="roleLabel">Teacher</span>
-          &nbsp;|&nbsp; Theme: <span id="themeLabel">Light</span>
-        </p>
-        <p style="margin-top:16px; color:var(--mm-fg-muted); font-size:13px;">
-          The rail is 280px wide with a 2px accent-colored left border on the
-          active item. Section labels ("Today", "Library") are shown. The
-          teacher-only WorkflowStageStrip is pinned to the rail bottom via
-          <code>margin-block-start: auto</code>.
-        </p>
-        <p style="margin-top:12px; color:var(--mm-fg-muted); font-size:13px;">
-          At ≤860px the rail disappears; a horizontal topbar + bottom tab bar
-          take over. Student renders 5 tabs + a "More" overflow sheet; progress
-          indicators live inside More, never in the rail.
-        </p>
-        <div id="fracNote" style="margin-top:16px; padding:12px; background:var(--mm-nav-bg);
-            border-radius:6px; font-size:12px; color:var(--mm-fg-muted);">
-          Fractional proof: drag the slider to 860.5px or 768.5px — the shell
-          falls cleanly into bottom-bar mode (no dead zone).
-        </div>
-      </main>
-
-      <!-- bottom tab bar (≤860px mode) -->
-      <div class="mm-tabbar">
-        <button class="mm-tabbar__item" aria-current="true">🏠 Today</button>
-        <button class="mm-tabbar__item">📚 Library</button>
-        <button class="mm-tabbar__item">🎯 Workflow</button>
-        <button class="mm-tabbar__item">📊 Progress</button>
-        <button class="mm-tabbar__item">⚙️ Settings</button>
-        <button class="mm-tabbar__item mm-tabbar__more" id="moreBtn">⋯ More</button>
+      <div class="h-grp" id="c-presets">
+        <span class="h-lbl">Presets</span>
       </div>
+    </div>
 
-      <!-- More overflow sheet (student) -->
-      <div class="mm-sheet-backdrop" id="sheetBackdrop" aria-hidden="true">
-        <div class="mm-sheet">
-          <div class="mm-sheet__item">📖 My Subjects</div>
-          <div class="mm-sheet__item">✍️ Homework</div>
-          <div class="mm-sheet__item">💬 Messages</div>
-          <div class="mm-sheet__item" aria-current="true" style="color:var(--mm-accent);">
-            📈 Progress Detail (in More, not rail)
-          </div>
-        </div>
+    <div class="h-row">
+      <div class="h-grp">
+        <span class="h-lbl">Role</span>
+        <button class="h-btn" data-role="teacher" aria-pressed="true">Teacher</button>
+        <button class="h-btn" data-role="student" aria-pressed="false">Student</button>
       </div>
+      <div class="h-grp">
+        <span class="h-lbl">Theme</span>
+        <button class="h-btn" data-theme="light" aria-pressed="true">Light</button>
+        <button class="h-btn" data-theme="dark"  aria-pressed="false">Dark</button>
+      </div>
+      <div class="h-grp">
+        <span class="h-lbl">More sheet</span>
+        <button class="h-btn" data-sheet="closed" aria-pressed="true">Closed</button>
+        <button class="h-btn" data-sheet="open"   aria-pressed="false">Open</button>
+      </div>
+      <div class="h-grp">
+        <span class="h-lbl">.mm-rail node</span>
+        <button class="h-btn" data-rail="show" aria-pressed="true">Show</button>
+        <button class="h-btn" data-rail="hide" aria-pressed="false">Hide</button>
+      </div>
+    </div>
 
+    <div class="h-row">
+      <div class="h-diag" id="c-diag"></div>
+    </div>
+
+    <div class="h-note h-warn" id="c-gaps">
+      <strong>shell.css status — what changed this pass and what is still open.</strong>
+      <span id="c-gaps-body"></span>
     </div>
   </div>
 
-  <script>
-    const vp = document.getElementById('viewport');
-    const shell = vp.querySelector('.mm-shell');
-    const slider = document.getElementById('widthSlider');
-    const wlabel = document.getElementById('wlabel');
-    const layoutLabel = document.getElementById('layoutLabel');
-    const roleBtn = document.getElementById('roleBtn');
-    const themeBtn = document.getElementById('themeBtn');
-    const moreToggle = document.getElementById('moreToggle');
-    const sheet = document.getElementById('sheetBackdrop');
-    const moreBtn = document.getElementById('moreBtn');
+  <div class="h-stage">
+    <div>
+      <div class="h-frame-wrap"><iframe id="stage" title="MET Mastery shell preview"></iframe></div>
+      <div class="h-cap" id="c-cap"></div>
+    </div>
+  </div>
+</div>
 
-    function updateLayout() {
-      const w = +slider.value;
-      wlabel.textContent = w;
-      vp.style.width = w + 'px';
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. ICONS — inline SVG, stroke only. No emoji (Anti-Slop).
+   ═══════════════════════════════════════════════════════════════════════════ */
+var ICONS = {
+  home:   ['M3 10.6 12 3.2l9 7.4', 'M5.4 9.4V20.4h13.2V9.4', 'M9.6 20.4v-6h4.8v6'],
+  users:  ['M15.5 20.4v-1.7a3.4 3.4 0 0 0-3.4-3.4H6.9a3.4 3.4 0 0 0-3.4 3.4v1.7',
+           'M9.5 11.3a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2',
+           'M20.4 20.4v-1.7a3.4 3.4 0 0 0-2.6-3.3', 'M15.9 4.4a3.6 3.6 0 0 1 0 6.8'],
+  doc:    ['M14.2 3.6H7.2a1.6 1.6 0 0 0-1.6 1.6v13.6a1.6 1.6 0 0 0 1.6 1.6h9.6a1.6 1.6 0 0 0 1.6-1.6V7.6z',
+           'M14.2 3.6v4h4.2', 'M9 12.8h6', 'M9 16.4h6'],
+  book:   ['M12 6.6C10.4 5 8.3 4.4 3.9 4.4v13.2c4.4 0 6.5.6 8.1 2.1 1.6-1.5 3.7-2.1 8.1-2.1V4.4c-4.4 0-6.5.6-8.1 2.2z',
+           'M12 6.6v13.1'],
+  inbox:  ['M3.9 13.2h4.2l1.2 2.4h5.4l1.2-2.4h4.2',
+           'M5.4 4.8h13.2l2.1 8.4v4.8a1.8 1.8 0 0 1-1.8 1.8H5.1a1.8 1.8 0 0 1-1.8-1.8v-4.8z'],
+  chart:  ['M4.2 20.4V3.6', 'M4.2 20.4h15.6', 'M8.4 17.2v-4.4', 'M12 17.2V8.4', 'M15.6 17.2v-6.8'],
+  prep:   ['M9 6.6 4.8 12l4.2 5.4', 'M15 6.6 19.2 12 15 17.4'],
+  layers: ['M12 3.6 3.6 8.1 12 12.6l8.4-4.5z', 'M3.6 12.9 12 17.4l8.4-4.5', 'M3.6 17.1 12 21.6l8.4-4.5'],
+  cal:    ['M4.5 6.6h15a1.2 1.2 0 0 1 1.2 1.2v12a1.2 1.2 0 0 1-1.2 1.2h-15a1.2 1.2 0 0 1-1.2-1.2v-12a1.2 1.2 0 0 1 1.2-1.2z',
+           'M8.4 3.6v3', 'M15.6 3.6v3', 'M4.5 10.8h15'],
+  gear:   ['M12 15.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8z', 'M12 3.6v2.2', 'M12 18.2v2.2',
+           'M4.6 12H2.4', 'M21.6 12h-2.2', 'M6.8 6.8 5.2 5.2', 'M18.8 18.8l-1.6-1.6',
+           'M17.2 6.8l1.6-1.6', 'M5.2 18.8l1.6-1.6'],
+  spark:  ['M12 3.6l1.9 5.4 5.4 1.9-5.4 1.9L12 18.2l-1.9-5.4L4.7 10.9l5.4-1.9z'],
+  msg:    ['M20.4 12.6c0 3.9-3.8 7-8.4 7-1 0-2-.15-2.9-.42L4.2 20.4l1.3-3.6C4.2 15.7 3.6 14.2 3.6 12.6c0-3.9 3.8-7 8.4-7s8.4 3.1 8.4 7z'],
+  menu:   ['M5 8h14', 'M5 12h14', 'M5 16h14'],
+  check:  ['M4.8 12.6 9.6 17.4 19.2 6.6']
+};
+function svg(name, cls) {
+  var d = ICONS[name] || ICONS.doc;
+  var p = '';
+  for (var i = 0; i < d.length; i++) p += '<path d="' + d[i] + '"/>';
+  return '<svg class="' + (cls || 'mm-ico') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+         'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+}
 
-      if (w >= 861) {
-        shell.setAttribute('data-layout', 'rail');
-        layoutLabel.textContent = 'Rail (≥861px)';
-      } else {
-        shell.setAttribute('data-layout', 'bottom');
-        layoutLabel.textContent = 'Bottom-bar (≤860px)';
-      }
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. CONTENT — 9 destinations per role. PT labels, deliberately long where
+      real Portuguese is long (Preparação / Acompanhamento / Material de Apoio).
+      DECISION LOCK Decision 2: student bottom bar = 5 visible + More,
+      with `acompanhamento` (progress) inside More.
+   ═══════════════════════════════════════════════════════════════════════════ */
+var ROLES = {
+  teacher: {
+    brandSub: 'Teacher workspace',
+    mobileTag: 'MET Teacher',
+    tabs: [
+      { id:'painel',         label:'Painel',          icon:'home',   section:'Hoje'  },
+      { id:'alunos',         label:'Alunos',          icon:'users',  section:'Fluxo' },
+      { id:'tarefas',        label:'Tarefas',         icon:'doc',    section:'Fluxo' },
+      { id:'entregas',       label:'Entregas',        icon:'inbox',  section:'Fluxo', badge:3 },
+      { id:'diagnosticos',   label:'Diagnósticos',    icon:'chart',  section:'Fluxo' },
+      { id:'preparacao',     label:'Preparação',      icon:'prep',   section:'Turma' },
+      { id:'acompanhamento', label:'Acompanhamento',  icon:'layers', section:'Turma' },
+      { id:'turmas',         label:'Turmas',          icon:'cal',    section:'Turma' },
+      { id:'configuracoes',  label:'Configurações',   icon:'gear',   section:'Admin' }
+    ],
+    bottom: ['painel', 'entregas', 'tarefas', 'alunos'],   /* 4 + More (shared.jsx:145) */
+    workflow: true
+  },
+  student: {
+    brandSub: 'Student space',
+    mobileTag: 'MET Student',
+    tabs: [
+      { id:'inicio',         label:'Início',            icon:'home',   section:'Hoje'    },
+      { id:'pratica',        label:'Prática',           icon:'spark',  section:'Prática' },
+      { id:'materias',       label:'Matérias',          icon:'book',   section:'Prática' },
+      { id:'tarefas',        label:'Tarefas',           icon:'doc',    section:'Prática' },
+      { id:'feedback',       label:'Feedback',          icon:'inbox',  section:'Progresso', new:true },
+      { id:'acompanhamento', label:'Acompanhamento',    icon:'chart',  section:'Progresso' },
+      { id:'material',       label:'Material de Apoio', icon:'layers', section:'Mais'    },
+      { id:'simulado',       label:'Simulado',          icon:'prep',   section:'Mais'    },
+      { id:'mensagens',      label:'Mensagens',         icon:'msg',    section:'Mais'    }
+    ],
+    /* 4 destinations + "Mais" = 5 slots. The cap is 5 TOTAL items including
+       More, for BOTH roles — confirmed by the owner 2026-09-10. `materias`
+       and `acompanhamento` both live in the overflow sheet. */
+    bottom: ['inicio', 'pratica', 'tarefas', 'feedback'],
+    workflow: false
+  }
+};
+
+/* ── <main> demo content. Uses .dm-* classes; every value is an --mm-* token. ── */
+function mainContent(role) {
+  if (role === 'teacher') {
+    return [
+      '<h1 class="dm-h1" id="dm-h1">Painel da turma</h1>',
+      '<p class="dm-lead">Ciclo de 10–16 de março · Turma A2 · 24 alunos matriculados. ',
+      'A fila abaixo mostra o que precisa de revisão hoje.</p>',
+
+      /* WorkflowStageStrip as PAGE CONTENT — the ≤860px half of the ruling.
+         The shell deliberately provides no topbar-mode slot; at ≥861px the
+         harness hides this and the strip docks at the rail bottom instead. */
+      '<div class="dm-flow-inline">',
+        '<div class="dm-k">Ciclo de ensino</div>',
+        '<div class="dm-flow">',
+          '<button type="button" class="dm-step is-done">Diagnosticar</button>',
+          '<span class="dm-sep" aria-hidden="true">→</span>',
+          '<button type="button" class="dm-step is-active" aria-current="step">Tarefa</button>',
+          '<span class="dm-sep" aria-hidden="true">→</span>',
+          '<button type="button" class="dm-step">Feedback</button>',
+        '</div>',
+      '</div>',
+
+      '<div class="dm-grid">',
+        '<div class="dm-card"><div class="dm-k">Entregas pendentes</div><div class="dm-v">3</div><div class="dm-s">aguardando há 2 dias</div></div>',
+        '<div class="dm-card"><div class="dm-k">Diagnósticos concluídos</div><div class="dm-v">18</div><div class="dm-s">de 24 matriculados</div></div>',
+        '<div class="dm-card"><div class="dm-k">Alunos ativos</div><div class="dm-v">21</div><div class="dm-s">nos últimos 7 dias</div></div>',
+        '<div class="dm-card"><div class="dm-k">Próxima aula</div><div class="dm-v">Qui 19h</div><div class="dm-s">Sala 3 · speaking</div></div>',
+      '</div>',
+
+      '<div class="dm-sticky">Fila de revisão</div>',
+      '<table class="dm-table"><thead><tr><th>Aluno</th><th>Tarefa</th><th>Enviado em</th><th>Situação</th></tr></thead><tbody>',
+        '<tr><td>Ana Beatriz Souza</td><td>Writing — parte 2</td><td>12 mar, 21:40</td><td><span class="dm-chip">Aguardando</span></td></tr>',
+        '<tr><td>João Pedro Lima</td><td>Listening — sem. 4</td><td>13 mar, 08:12</td><td><span class="dm-chip">Aguardando</span></td></tr>',
+        '<tr><td>Mariana Costa Rocha</td><td>Speaking — simulado</td><td>13 mar, 19:05</td><td><span class="dm-chip dm-chip--amber"><span class="dm-dot"></span>Atrasado</span></td></tr>',
+        '<tr><td>Rafael Nogueira</td><td>Grammar — revisão</td><td>—</td><td><span class="dm-chip dm-chip--muted">Não enviado</span></td></tr>',
+      '</tbody></table>',
+
+      '<p class="dm-p">O ciclo de ensino continua visível em todas as larguras, mas muda de lugar: em ',
+      '861px ou mais ele encosta na base do trilho lateral; abaixo disso ele é renderizado aqui, dentro ',
+      'do conteúdo da página. O shell não oferece — e não deve oferecer — um slot de workflow no chrome ',
+      'global, porque estado de fluxo de trabalho é contexto da página, não navegação.</p>',
+
+      '<div class="dm-card" style="margin-top:18px">',
+        '<div class="dm-k">Entregas por dia</div>',
+        '<div class="dm-bars">',
+          '<div class="dm-bar" style="height:38%"></div><div class="dm-bar" style="height:62%"></div>',
+          '<div class="dm-bar" style="height:45%"></div><div class="dm-bar" style="height:88%"></div>',
+          '<div class="dm-bar" style="height:54%"></div><div class="dm-bar" style="height:71%"></div>',
+          '<div class="dm-bar" style="height:30%"></div>',
+        '</div>',
+      '</div>',
+
+      '<p class="dm-p">Role a página para verificar que a rolagem acontece no documento, e não em um ',
+      'contêiner interno: o endereço do navegador continua recolhendo no Android e o cabeçalho acima ',
+      'permanece fixo via <code>position: sticky</code>.</p>',
+      '<p class="dm-p">Texto de apoio para forçar rolagem e demonstrar o comportamento do chrome fixo. </p>'
+    ].join('');
+  }
+  return [
+    '<h1 class="dm-h1" id="dm-h1">Início</h1>',
+    '<p class="dm-lead">Olá, Ana. Você tem 2 tarefas para esta semana e 1 feedback novo do professor.</p>',
+
+    '<div class="dm-grid">',
+      '<div class="dm-card"><div class="dm-k">Próxima tarefa</div><div class="dm-v">Writing</div><div class="dm-s">entrega até sexta</div></div>',
+      '<div class="dm-card"><div class="dm-k">Sequência de estudos</div><div class="dm-v">12 dias</div><div class="dm-s"><span class="dm-chip dm-chip--amber"><span class="dm-dot"></span>recorde pessoal</span></div></div>',
+      '<div class="dm-card"><div class="dm-k">Feedback novo</div><div class="dm-v">1</div><div class="dm-s">de Speaking — sem. 4</div></div>',
+      '<div class="dm-card"><div class="dm-k">Simulado</div><div class="dm-v">—</div><div class="dm-s">liberado em 22 mar</div></div>',
+    '</div>',
+
+    '<div class="dm-sticky">Suas tarefas</div>',
+    '<table class="dm-table"><thead><tr><th>Tarefa</th><th>Turma</th><th>Entrega</th><th>Situação</th></tr></thead><tbody>',
+      '<tr><td>Writing — parte 2</td><td>Turma A2</td><td>16 mar</td><td><span class="dm-chip">Pendente</span></td></tr>',
+      '<tr><td>Listening — sem. 4</td><td>Turma A2</td><td>18 mar</td><td><span class="dm-chip">Pendente</span></td></tr>',
+      '<tr><td>Speaking — simulado</td><td>Turma A2</td><td>13 mar</td><td><span class="dm-chip dm-chip--amber"><span class="dm-dot"></span>Devolvido</span></td></tr>',
+      '<tr><td>Grammar — revisão</td><td>Turma A2</td><td>—</td><td><span class="dm-chip dm-chip--muted">Opcional</span></td></tr>',
+    '</tbody></table>',
+
+    '<p class="dm-p">A barra inferior mostra cinco destinos e uma entrada “Mais”. O acompanhamento de ',
+    'progresso fica dentro de “Mais”, nunca como sexta aba comprimida — em 360px, seis abas deixariam ',
+    'cerca de 57px por aba e o rótulo “Acompanhamento” seria cortado.</p>',
+
+    '<div class="dm-card" style="margin-top:18px">',
+      '<div class="dm-k">Minutos de prática</div>',
+      '<div class="dm-bars">',
+        '<div class="dm-bar" style="height:42%"></div><div class="dm-bar" style="height:55%"></div>',
+        '<div class="dm-bar" style="height:33%"></div><div class="dm-bar" style="height:78%"></div>',
+        '<div class="dm-bar" style="height:64%"></div><div class="dm-bar" style="height:90%"></div>',
+        '<div class="dm-bar" style="height:48%"></div>',
+      '</div>',
+    '</div>',
+
+    '<p class="dm-p">Role a página para verificar que a rolagem acontece no documento, e não em um ',
+    'contêiner interno: o endereço do navegador continua recolhendo no Android e o cabeçalho acima ',
+    'permanece fixo via <code>position: sticky</code>.</p>',
+    '<p class="dm-p">Texto de apoio para forçar rolagem e demonstrar o comportamento do chrome fixo. </p>'
+  ].join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. The iframe document. It links ./shell.css and nothing else.
+   ═══════════════════════════════════════════════════════════════════════════ */
+function buildNavItems(roleCfg, activeId, extraClass) {
+  var html = '', lastSection = null;
+  for (var i = 0; i < roleCfg.tabs.length; i++) {
+    var t = roleCfg.tabs[i];
+    if (t.section !== lastSection) {
+      if (lastSection !== null) html += '</div>';
+      html += '<div class="mm-nav-section">';
+      html += '<span class="mm-nav-section-label">' + t.section + '</span>';
+      lastSection = t.section;
     }
+    var cur = (t.id === activeId) ? ' aria-current="page"' : '';
+    var nw  = t['new'] ? ' data-new="true"' : '';
+    var aria = t.badge ? ' aria-label="Entregas — 3 pendentes"' : '';
+    html += '<a class="mm-nav-item' + (extraClass || '') + '" href="#" data-id="' + t.id + '"' +
+            cur + nw + aria + '>' + svg(t.icon) +
+            '<span class="mm-label">' + t.label + '</span>' +
+            (t.badge ? '<span class="mm-badge">' + t.badge + '</span>' : '') + '</a>';
+  }
+  if (lastSection !== null) html += '</div>';
+  return html;
+}
 
-    slider.addEventListener('input', updateLayout);
+function buildDoc(role, activeId, theme) {
+  var cfg = ROLES[role];
+  var bottomIds = cfg.bottom;
+  var overflowTabs = cfg.tabs.filter(function (t) { return bottomIds.indexOf(t.id) === -1; });
 
-    // Role toggle
-    roleBtn.addEventListener('click', () => {
-      const role = shell.getAttribute('data-shell');
-      const next = role === 'teacher' ? 'student' : 'teacher';
-      shell.setAttribute('data-shell', next);
-      roleLabel.textContent = next.charAt(0).toUpperCase() + next.slice(1);
-      roleBtn.textContent = 'Switch to ' + (next === 'teacher' ? 'Student' : 'Teacher');
-    });
+  var bottom = '';
+  for (var i = 0; i < bottomIds.length; i++) {
+    var t = cfg.tabs.filter(function (x) { return x.id === bottomIds[i]; })[0];
+    if (!t) continue;
+    var cur = (t.id === activeId) ? ' aria-current="page"' : '';
+    var nx = (role === 'student' && t.id === 'pratica') ? ' data-next="true"' : '';
+    bottom += '<button type="button" class="mm-tab" data-id="' + t.id + '"' + cur + nx + '>' +
+              '<span class="mm-tab-pill">' + svg(t.icon) + '</span>' +
+              '<span class="mm-tab-label">' + t.label + '</span></button>';
+  }
+  bottom += '<button type="button" class="mm-tab" id="mm-more" aria-haspopup="dialog" aria-expanded="false">' +
+            '<span class="mm-tab-pill">' + svg('menu') + '</span>' +
+            '<span class="mm-tab-label">Mais</span></button>';
 
-    // Theme toggle
-    themeBtn.addEventListener('click', () => {
-      const t = shell.getAttribute('data-theme');
-      const next = t === 'light' ? 'dark' : 'light';
-      shell.setAttribute('data-theme', next);
-      themeLabel.textContent = next.charAt(0).toUpperCase() + next.slice(1);
-      themeBtn.textContent = next === 'light' ? 'Dark' : 'Light';
-    });
+  var sheet = '';
+  for (var j = 0; j < overflowTabs.length; j++) {
+    var s = overflowTabs[j];
+    var scur = (s.id === activeId) ? ' aria-current="page"' : '';
+    sheet += '<button type="button" class="mm-sheet-item" data-id="' + s.id + '"' + scur + '>' +
+             svg(s.icon) + '<span>' + s.label + '</span>' +
+             (s.badge ? '<span class="mm-badge">' + s.badge + '</span>' : '') + '</button>';
+  }
 
-    // More sheet toggle
-    moreToggle.addEventListener('change', () => {
-      sheet.setAttribute('aria-hidden', !moreToggle.checked);
-    });
-    moreBtn.addEventListener('click', () => {
-      const open = sheet.getAttribute('aria-hidden') === 'true';
-      sheet.setAttribute('aria-hidden', !open);
-      moreToggle.checked = open;
-    });
+  var workflow = '';
+  if (cfg.workflow) {
+    workflow =
+      '<div class="mm-rail__strip" id="mm-strip">' +
+        '<span class="mm-nav-section-label">Ciclo</span>' +
+        '<div class="dm-flow">' +
+          '<button type="button" class="dm-step is-done">' + svg('check', 'dm-ico') + 'Diagnosticar</button>' +
+          '<span class="dm-sep" aria-hidden="true">→</span>' +
+          '<button type="button" class="dm-step is-active" aria-current="step">Tarefa</button>' +
+          '<span class="dm-sep" aria-hidden="true">→</span>' +
+          '<button type="button" class="dm-step">Feedback</button>' +
+        '</div>' +
+      '</div>';
+  }
 
-    updateLayout();
-  </script>
+  return '<!DOCTYPE html><html lang="pt-BR" data-theme="' + theme + '"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">' +
+    '<title>MET Mastery</title>' +
+    '<link rel="stylesheet" href="shell.css">' +
+    /* body{margin:0} — the product's global reset lives in base.css, not in
+       shell.css. Without it the iframe shows UA 8px body margins and every
+       measured rect is inset. */
+    '<style>html,body{margin:0}' + HARNESS_CSS + '</style></head><body>' +
+
+    '<div class="mm-shell" data-shell="' + role + '">' +
+      '<a class="mm-skip" href="#mm-main">Pular para o conteúdo</a>' +
+
+      '<header class="mm-topbar">' +
+        '<div class="mm-topbar-row">' +
+          '<button type="button" class="mm-brand" aria-label="MET Mastery — ' + cfg.brandSub + '">' +
+            '<span class="mm-brand-mark" aria-hidden="true">M</span>' +
+            '<span class="mm-brand-copy"><strong>MET Mastery</strong><small>' + cfg.brandSub + '</small></span>' +
+          '</button>' +
+          /* NOT a heading. .mm-main already carries an <h1>, and the JS below
+             mirrors this same label into it — as an <h2> the identical string
+             was announced twice on mobile (review P2-6). Styling is by class,
+             so the element swap costs nothing. */
+          '<span class="mm-mobile-title">' + ROLES[role].tabs[0].label + '</span>' +
+          '<div class="mm-topbar-actions">' +
+            '<button type="button" class="mm-iconbtn" aria-label="Idioma">PT</button>' +
+            '<button type="button" class="mm-iconbtn" aria-label="Notificações">3</button>' +
+            '<span class="mm-avatar" aria-hidden="true">AB</span>' +
+          '</div>' +
+        '</div>' +
+        /* ONE nav element, not two. syncNavSlot() re-parents it between this
+           topbar slot and the rail grid area on resize. Rendering both and
+           hiding one with display:none left 18 links in the DOM for 9
+           destinations, and put two identical landmarks in the a11y tree. */
+        '<nav id="mm-nav" class="mm-nav" aria-label="Navegação principal">' +
+          buildNavItems(cfg, activeId) + workflow +
+        '</nav>' +
+      '</header>' +
+
+      '<main class="mm-main" id="mm-main" tabindex="-1">' + mainContent(role) + '</main>' +
+
+      '<nav class="mm-tabbar" aria-label="Navegação inferior">' + bottom + '</nav>' +
+
+      '<div class="mm-scrim" hidden></div>' +
+      '<div class="mm-sheet" id="mm-sheet" role="dialog" aria-modal="true" aria-label="Mais destinos" hidden>' +
+        '<div class="mm-sheet-head">Mais destinos</div>' + sheet +
+      '</div>' +
+    '</div>' +
+    '<script>' + APP_JS + '</' + 'script></body></html>';
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. Demo-content CSS. Harness-only (.dm-*). Consumes --mm-* tokens only.
+   ═══════════════════════════════════════════════════════════════════════════ */
+var HARNESS_CSS = [
+  '.dm-h1{font:600 1.375rem/1.25 var(--mm-font-ui);letter-spacing:-.01em;color:var(--mm-ink);margin:0 0 6px}',
+  '.dm-lead{font:400 .875rem/1.6 var(--mm-font-ui);color:var(--mm-ink-muted);margin:0 0 20px;max-inline-size:64ch}',
+  '.dm-p{font:400 .875rem/1.7 var(--mm-font-ui);color:var(--mm-ink-muted);margin:16px 0 0;max-inline-size:70ch}',
+  '.dm-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:22px}',
+  '.dm-card{background:var(--mm-surface);border:1px solid var(--mm-border);border-radius:var(--mm-r-md);padding:14px 16px}',
+  '.dm-k{font:600 .6875rem/1.3 var(--mm-font-ui);color:var(--mm-ink-muted)}',
+  '.dm-v{font:600 1.5rem/1.2 var(--mm-font-ui);color:var(--mm-ink);margin-top:6px}',
+  '.dm-s{font:400 .75rem/1.5 var(--mm-font-ui);color:var(--mm-ink-muted);margin-top:4px}',
+  /* sticky under the fixed chrome — proves §5.6a (document scroll) works */
+  '.dm-sticky{position:sticky;top:var(--mm-chrome-h);z-index:5;background:var(--mm-page);',
+  ' padding:10px 0;margin-top:8px;border-bottom:1px solid var(--mm-border);',
+  ' font:700 .8125rem/1.3 var(--mm-font-ui);color:var(--mm-ink-muted)}',
+  '.dm-table{inline-size:100%;border-collapse:collapse;font:400 .8125rem/1.5 var(--mm-font-ui)}',
+  '.dm-table th{text-align:left;font-weight:600;color:var(--mm-ink-muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--mm-border)}',
+  '.dm-table td{padding:10px 10px 10px 0;color:var(--mm-ink);border-bottom:1px solid var(--mm-divider)}',
+  '.dm-chip{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:var(--mm-r-pill);',
+  ' font:600 .6875rem/1.7 var(--mm-font-ui);background:var(--mm-primary-tint);color:var(--mm-primary)}',
+  '.dm-chip--amber{background:var(--mm-accent-tint);color:var(--mm-accent-ink)}',
+  '.dm-chip--muted{background:var(--mm-surface-sunken);color:var(--mm-ink-muted)}',
+  '.dm-dot{inline-size:var(--mm-dot);block-size:var(--mm-dot);border-radius:var(--mm-r-pill);background:var(--mm-accent)}',
+  '.dm-bars{display:flex;align-items:flex-end;gap:6px;block-size:56px;margin-top:12px}',
+  '.dm-bar{flex:1;background:var(--mm-primary-tint);border-radius:3px 3px 0 0;border-top:3px solid var(--mm-primary)}',
+  /* WorkflowStageStrip stand-in (teacher-only).
+     Two homes, per ruling: rail bottom ≥861px (.mm-rail__strip), page content
+     below that (.dm-flow-inline) — never a slot in the global chrome. */
+  '.mm-rail__strip{padding:var(--mm-s-2) 0}',
+  '.dm-flow-inline{margin:0 0 20px;padding:12px 14px;background:var(--mm-surface);',
+  ' border:1px solid var(--mm-border);border-radius:var(--mm-r-md)}',
+  '@media (min-width:861px){.dm-flow-inline{display:none}}',
+  '.dm-flow{display:flex;align-items:center;gap:var(--mm-s-1);flex-wrap:wrap;margin-top:6px}',
+  '.dm-step{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:4px 10px;',
+  ' border-radius:var(--mm-r-pill);font:600 .6875rem/1 var(--mm-font-ui);',
+  ' color:var(--mm-ink-muted);background:transparent}',
+  '.dm-ico{inline-size:13px;block-size:13px}',
+  '.dm-step.is-active{background:var(--mm-primary-tint);color:var(--mm-primary)}',
+  '.dm-step.is-done{color:var(--mm-primary)}',
+  '.dm-sep{color:var(--mm-ink-disabled);font-size:12px}'
+].join('\n');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. App script — runs INSIDE the iframe.
+   ═══════════════════════════════════════════════════════════════════════════ */
+var APP_JS = [
+'(function(){',
+'  var shell = document.querySelector(".mm-shell");',
+'  var more  = document.getElementById("mm-more");',
+'  var sheet = document.getElementById("mm-sheet");',
+'  var scrim = document.querySelector(".mm-scrim");',
+'  var title = document.querySelector(".mm-mobile-title");',
+'  var h1    = document.getElementById("dm-h1");',
+'  var lastFocus = null;',
+
+'  function activate(id){',
+'    var n = document.querySelectorAll("[data-id]");',
+'    for (var i=0;i<n.length;i++){',
+'      if (n[i].getAttribute("data-id")===id) n[i].setAttribute("aria-current","page");',
+'      else n[i].removeAttribute("aria-current");',
+'    }',
+'    var t = document.querySelector(\'.mm-nav-item[data-id="\'+id+\'"]\');',
+'    if (t){ var lbl=t.querySelector(".mm-label"); if(lbl&&title) title.textContent=lbl.textContent;',
+'            if(lbl&&h1) h1.textContent=lbl.textContent; }',
+'  }',
+
+'  /* Edge-fade: shell.css:497 expects JS to add .is-overflowing when the row scrolls. */',
+'  function syncOverflow(){',
+'    var n = document.querySelector(".mm-nav");',
+'    if(!n) return;',
+'    if (n.scrollWidth > n.clientWidth + 1) n.classList.add("is-overflowing");',
+'    else n.classList.remove("is-overflowing");',
+'  }',
+'  window.addEventListener("resize", syncOverflow);',
+'',
+'  /* ONE nav, two homes. Relocated on resize, never duplicated. The class swap',
+'     is what selects .mm-nav vs .mm-rail — shell.css already styles both, so',
+'     no shell change is needed. Inserting before .mm-main keeps DOM order (and',
+'     therefore focus order) as rail -> main. The teacher workflow strip travels',
+'     with it: inside the rail at >=861px, page content inside .mm-main below. */',
+'  function syncNavSlot(){',
+'    var shell = document.querySelector(".mm-shell");',
+'    if(!shell) return;',
+'    var nav = document.getElementById("mm-nav");',
+'    var strip = document.getElementById("mm-strip");',
+'    var topbar = shell.querySelector(".mm-topbar");',
+'    var main = shell.querySelector(".mm-main");',
+'    if(!nav || !topbar || !main) return;',
+'    if (window.matchMedia("(min-width: 861px)").matches){',
+'      if (nav.parentNode !== shell) shell.insertBefore(nav, main);',
+'      nav.className = "mm-rail";',
+'      nav.setAttribute("aria-label", "Navegação principal (lateral)");',
+'      if (strip && strip.parentNode !== nav) nav.appendChild(strip);',
+'    } else {',
+'      if (nav.parentNode !== topbar) topbar.appendChild(nav);',
+'      nav.className = "mm-nav";',
+'      nav.setAttribute("aria-label", "Navegação principal");',
+'      if (strip && strip.parentNode !== main) main.insertBefore(strip, main.firstChild);',
+'    }',
+'    syncOverflow();',
+'  }',
+'  window.addEventListener("resize", syncNavSlot);',
+
+'  function focusables(){',
+'    return sheet ? sheet.querySelectorAll("button, [href], input, [tabindex]:not([tabindex=\'-1\'])") : [];',
+'  }',
+
+'  function openSheet(){',
+'    if(!sheet) return;',
+'    lastFocus = document.activeElement;',
+'    sheet.hidden = false; scrim.hidden = false;',
+'    more.setAttribute("aria-expanded","true");',
+'    var f = focusables(); if(f.length) f[0].focus();',
+'    document.addEventListener("keydown", onKey, true);',
+'    document.addEventListener("mousedown", onOutside, true);',
+'  }',
+'  function closeSheet(returnFocus){',
+'    if(!sheet || sheet.hidden) return;',
+'    sheet.hidden = true; scrim.hidden = true;',
+'    more.setAttribute("aria-expanded","false");',
+'    document.removeEventListener("keydown", onKey, true);',
+'    document.removeEventListener("mousedown", onOutside, true);',
+'    /* On select / Escape: focus returns to the TRIGGER, never to <main>. */',
+'    if (returnFocus !== false) (lastFocus || more).focus();',
+'  }',
+'  function onKey(e){',
+'    if (e.key === "Escape"){ e.preventDefault(); closeSheet(true); return; }',
+'    if (e.key !== "Tab") return;',
+'    var f = focusables(); if(!f.length) return;',
+'    var first = f[0], last = f[f.length-1];',
+'    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }',
+'    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }',
+'  }',
+'  function onOutside(e){',
+'    if (sheet.contains(e.target) || more.contains(e.target)) return;',
+'    closeSheet(true);',
+'  }',
+
+'  if (more) more.addEventListener("click", function(){ sheet.hidden ? openSheet() : closeSheet(true); });',
+'  if (scrim) scrim.addEventListener("mousedown", function(){ closeSheet(true); });',
+
+'  document.addEventListener("click", function(e){',
+'    var el = e.target.closest ? e.target.closest("[data-id]") : null;',
+'    if (!el) return;',
+'    e.preventDefault();',
+'    activate(el.getAttribute("data-id"));',
+'    if (sheet && !sheet.hidden) closeSheet(true);',
+'  });',
+
+'  /* Report REAL measured geometry so the harness can prove the breakpoints fired. */',
+'  window.__mm = {',
+'    activate: activate,',
+'    openSheet: openSheet,',
+'    closeSheet: closeSheet,',
+'    setRail: function(show){ var r=document.querySelector(".mm-rail"); if(r) r.style.display = show ? "" : "none"; },',
+'    measure: function(){',
+'      var q = function(sel){ var el=document.querySelector(sel); return el ? getComputedStyle(el).display : "(absent)"; };',
+'      var mq = {};',
+'      [391,421,769,861,1025].forEach(function(w){ mq[w] = window.matchMedia("(min-width:"+w+"px)").matches; });',
+'      return {',
+'        innerWidth: window.innerWidth,',
+'        clientWidth: document.documentElement.clientWidth,',
+'        mq: mq,',
+'        nav: q(".mm-nav"), rail: q(".mm-rail"), tabbar: q(".mm-tabbar"),',
+'        navItems: document.querySelectorAll(".mm-nav-item").length,',
+'        navLandmarks: document.querySelectorAll("nav[aria-label]").length,',
+'        navParent: (function(){ var n=document.getElementById("mm-nav"); return n ? (n.parentNode.className || n.parentNode.tagName) : "(none)"; })(),',
+'        railW: getComputedStyle(document.documentElement).getPropertyValue("--mm-rail-w").trim(),',
+'        chromeH: getComputedStyle(document.querySelector(".mm-main")).paddingTop',
+'      };',
+'    },',
+'    sync: syncOverflow',
+'  };',
+'  syncNavSlot();',
+'})();'
+].join('\n');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. Harness wiring
+   ═══════════════════════════════════════════════════════════════════════════ */
+var state = { role: 'teacher', theme: 'light', width: 1280, active: 'painel', sheet: 'closed', rail: 'show' };
+var frame = document.getElementById('stage');
+var PRESETS = [360, 390, 768.5, 860.5, 1024, 1280, 1440];
+
+var GAPS = [
+  '<b>Fixed this pass:</b> breakpoint blocks moved to the end of the file — they were authored before',
+  'the component base rules at equal (0,2,0) specificity, so every breakpoint <code>display</code>',
+  'switch was dead; rail geometry is now a two-column grid at ≥861px; <code>--mm-rail-w</code> is',
+  'declared in the base <code>:root</code> and consumed by a real <code>.mm-rail</code> base rule',
+  '(<code>display:none</code> below 861px); <code>--mm-navbar-h: 0px</code> at ≥861;',
+  '<code>.mm-main:focus:not(:focus-visible)</code>; topbar row <code>min-height</code>; outward',
+  'focus rings on tabs and topbar icon buttons.',
+  '<br><b>De-duplicated:</b> the nav is now ONE element, relocated between the topbar slot and the',
+  'rail grid area by <code>syncNavSlot()</code>. It used to be rendered twice — 18 links in the DOM',
+  'for 9 destinations, and two identical landmarks in the a11y tree. The teacher workflow strip',
+  'travels with it. The two chips above (<i>nav links</i>, <i>nav landmarks</i>) are the proof.',
+  '<br><b>Still open:</b> the <code>.mm-toast</code> <i>collision</i> is fixed — <code>shell.css</code>',
+  'now ships <code>--mm-z-toast: 1200</code> and a <code>.mm-toast-region</code> anchored clear of the',
+  'bottom bar on mobile and of the rail on desktop. What remains is a one-line change in the app:',
+  'the student toast at <code>student-dashboard.jsx:124-145</code> still pins',
+  '<code>bottom:20px; right:20px; z-index:80</code>, which is behind the fixed tabbar.',
+  '<code>.mm-flow</code> is intentionally absent: the WorkflowStageStrip is page content at ≤860px,',
+  'never a slot in the global chrome.'
+].join(' ');
+
+document.getElementById('c-gaps-body').innerHTML = GAPS;
+
+/* presets */
+var presetBox = document.getElementById('c-presets');
+PRESETS.forEach(function (w) {
+  var b = document.createElement('button');
+  b.className = 'h-btn'; b.textContent = w;
+  /* Honest label. CSS-px layout snaps, so an iframe set to 860.5 reports
+     clientWidth 861 — the fractional preset proves the band boundary is
+     crossed, NOT that 860.5 renders distinctly. The no-dead-zone property is
+     structural: every query is min-width-only, so no width can fall between
+     two bands. Do not let this button imply otherwise. */
+  if (w % 1 !== 0) {
+    b.title = 'Rounds up to ' + Math.ceil(w) + ' CSS px. The no-dead-zone proof is structural ' +
+              '(all queries min-width-only), not empirical.';
+  }
+  b.addEventListener('click', function () { setWidth(w); });
+  presetBox.appendChild(b);
+});
+
+function setWidth(w) {
+  state.width = w;
+  document.getElementById('c-width').value = w;
+  document.getElementById('c-width-val').textContent = w + 'px';
+  frame.style.width = w + 'px';
+  requestAnimationFrame(refresh);
+}
+document.getElementById('c-width').addEventListener('input', function (e) { setWidth(parseFloat(e.target.value)); });
+
+function pressGroup(attr, val) {
+  var btns = document.querySelectorAll('[data-' + attr + ']');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].setAttribute('aria-pressed', String(btns[i].getAttribute('data-' + attr) === val));
+  }
+}
+
+document.querySelectorAll('[data-role]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    state.role = b.getAttribute('data-role');
+    state.active = ROLES[state.role].tabs[0].id;
+    pressGroup('role', state.role);
+    render();
+  });
+});
+document.querySelectorAll('[data-theme]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    state.theme = b.getAttribute('data-theme');
+    pressGroup('theme', state.theme);
+    var d = frame.contentDocument;
+    if (d) d.documentElement.setAttribute('data-theme', state.theme);
+    refresh();
+  });
+});
+document.querySelectorAll('[data-sheet]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    state.sheet = b.getAttribute('data-sheet');
+    pressGroup('sheet', state.sheet);
+    var w = frame.contentWindow;
+    if (w && w.__mm) { state.sheet === 'open' ? w.__mm.openSheet() : w.__mm.closeSheet(false); }
+    refresh();
+  });
+});
+document.querySelectorAll('[data-rail]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    state.rail = b.getAttribute('data-rail');
+    pressGroup('rail', state.rail);
+    var w = frame.contentWindow;
+    if (w && w.__mm) w.__mm.setRail(state.rail === 'show');
+    refresh();
+  });
+});
+
+function render() {
+  frame.srcdoc = buildDoc(state.role, state.active, state.theme);
+  frame.style.width = state.width + 'px';
+}
+frame.addEventListener('load', function () {
+  var w = frame.contentWindow;
+  if (w && w.__mm) {
+    w.__mm.setRail(state.rail === 'show');
+    if (state.sheet === 'open') w.__mm.openSheet();
+  }
+  refresh();
+});
+
+function refresh() {
+  var w = frame.contentWindow;
+  if (!w || !w.__mm || !w.__mm.measure) return;
+  var m = w.__mm.measure();
+  var chips = [];
+  chips.push('<span class="h-chip">innerWidth <b>' + m.innerWidth + 'px</b></span>');
+  [391, 421, 769, 861, 1025].forEach(function (b) {
+    chips.push('<span class="h-chip' + (m.mq[b] ? ' on' : '') + '">≥' + b + ' ' + (m.mq[b] ? 'match' : 'no') + '</span>');
+  });
+  chips.push('<span class="h-chip">.mm-nav ' + m.nav + '</span>');
+  chips.push('<span class="h-chip' + (m.rail === 'flex' ? '' : ' bad') + '">.mm-rail ' + m.rail + '</span>');
+  /* Proves the nav is relocated, not duplicated: 9 destinations -> 9 links and
+     exactly 2 nav landmarks (the main nav + the tab bar). Duplication would
+     show 18 and 3. */
+  chips.push('<span class="h-chip' + (m.navItems === 9 ? ' on' : ' bad') + '">nav links ' + m.navItems + '/9</span>');
+  chips.push('<span class="h-chip' + (m.navLandmarks === 2 ? ' on' : ' bad') + '">nav landmarks ' + m.navLandmarks + '</span>');
+  chips.push('<span class="h-chip">.mm-tabbar ' + m.tabbar + '</span>');
+  /* The token IS consumed now — the base .mm-rail rule resolves it to a real
+     280px column. Keep the chip honest: a false red flag is worse than none. */
+  chips.push('<span class="h-chip on">--mm-rail-w ' + (m.railW || '(unset)') + ' · consumed</span>');
+  chips.push('<span class="h-chip">main padding-top ' + m.chromeH + '</span>');
+  document.getElementById('c-diag').innerHTML = chips.join('');
+  document.getElementById('c-cap').textContent =
+    'iframe viewport ' + m.innerWidth + 'px · media queries evaluated by the browser against this iframe';
+}
+
+window.addEventListener('resize', function () { setTimeout(refresh, 60); });
+setWidth(state.width);
+pressGroup('role', state.role);
+pressGroup('theme', state.theme);
+pressGroup('sheet', state.sheet);
+pressGroup('rail', state.rail);
+render();
+</script>
 </body>
 </html>

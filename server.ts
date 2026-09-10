@@ -7,6 +7,7 @@ import aiHandler from './api/_routes/ai.js';
 import aiStatusHandler from './api/_routes/ai-status.js';
 import ttsHandler from './api/_routes/tts.js';
 import generateImageHandler from './api/_routes/generate-image.js';
+import createZoomMeetingHandler from './api/_routes/create-zoom-meeting.js';
 import getSubmissionsHandler from './api/_routes/get-submissions.js';
 import saveSubmissionHandler from './api/_routes/save-submission.js';
 import sendInviteHandler from './api/_routes/send-invite.js';
@@ -82,11 +83,12 @@ async function startServer() {
     }
   };
 
-  app.all('/api/health', wrap(healthHandler));
+app.all('/api/health', wrap(healthHandler));
   app.all('/api/v1/info', wrap(infoHandler));
 
   app.all('/api/ai', wrap(aiHandler));
   app.all('/api/tts', wrap(ttsHandler));
+  app.all('/api/create-zoom-meeting', wrap(createZoomMeetingHandler));
   app.all('/api/generate-image', wrap(generateImageHandler));
   app.all('/api/get-submissions', wrap(getSubmissionsHandler));
   app.all('/api/save-submission', wrap(saveSubmissionHandler));

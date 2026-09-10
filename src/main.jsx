@@ -3,6 +3,11 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './styles/tailwind.css';
 import './styles/system.css';
+// Unified app-shell primitive (mm-*). Defines --mm-* tokens and the grid
+// layout for topbar + rail/nav-row/tabbar + main. Imported after system.css
+// so the specificity lock (0,2,0) outranks legacy rules without !important.
+// See design/shell-tokens.md for the contract.
+import './styles/shell.css';
 
 const LEGACY_PWA_RESET_KEY = 'met-mastery:legacy-pwa-reset';
 

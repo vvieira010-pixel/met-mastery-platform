@@ -104,15 +104,26 @@ export default [
       },
     },
   },
-  // Pre-existing benign warnings (unused-vars / react-hooks/exhaustive-deps tech-debt).
-  // These files are intentionally ignored so the `--max-warnings 0` gate stays green.
-  // The security-critical api/ code is NOT in this list and must remain warning-free.
+  // True ignore list — build output and vendored code only. Source files are no
+  // longer globally ignored; see the legacy-tech-debt block below.
   {
-    ignores: [
-      'dist-build',
-      'node_modules',
-      'archive',
-      '.vite-cache*',
+    ignores: ['dist-build', 'node_modules', 'archive', '.vite-cache*'],
+  },
+  // Legacy files carrying pre-existing style tech-debt. These are LINTED, not
+  // ignored: every correctness rule from js.configs.recommended (no-undef,
+  // no-dupe-keys, no-unreachable, no-cond-assign, …) still applies to them.
+  // Only the three noisy style rules are switched off, so the repo-wide
+  // `--max-warnings 0` gate stays green.
+  //
+  // Why a `files` block instead of an `ignores` entry: as a global ignore this
+  // list hid a real P0. src/pages/teacher-dashboard.jsx called `getReviews()`
+  // without importing it. That ReferenceError fired while the
+  // Promise.allSettled array literal was being evaluated (synchronously, before
+  // allSettled ever ran), was swallowed by the surrounding catch, and the
+  // teacher dashboard rendered permanently empty in production — while
+  // `npm run lint` reported a clean tree.
+  {
+    files: [
       'src/App.jsx',
       'src/components/exercises/Listening.jsx',
       'src/components/mock-test/ListeningSection.jsx',
@@ -173,5 +184,10 @@ export default [
       // rather than restructured. Remove both files if the harness is retired.
       'src/__harness.jsx',
     ],
+    rules: {
+      'no-unused-vars': 'off',
+      'react-refresh/only-export-components': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+    },
   },
 ];

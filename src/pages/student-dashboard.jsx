@@ -125,7 +125,19 @@ export default function StudentDashboard({ student, onSignOut, onSwitchRole, "da
           <div
             role="status"
             style={{
-              position: 'fixed', zIndex: 80, right: 20, bottom: 20, maxWidth: 340,
+              position: 'fixed',
+              /* Was zIndex: 80 — which is BELOW the fixed bottom nav, and that
+                 nav sits at --z-fixed (1000, tokens.css:207). The bottom of
+                 this toast, including the Dismiss button, rendered behind the
+                 tab bar on every mobile width. --z-toast (3000) is the app's
+                 own top layer. */
+              zIndex: 'var(--z-toast, 3000)',
+              right: 20,
+              /* Clear the fixed bottom nav rather than sitting inside it.
+                 Pre-migration the shell token is absent, so the 70px fallback
+                 (~nav height + safe area) applies. */
+              bottom: 'calc(var(--mm-bottomnav-total, 70px) + 16px)',
+              maxWidth: 340,
               padding: '14px 16px', borderRadius: 'var(--radius-md)', background: 'var(--surface)',
               border: '1px solid var(--accent)', boxShadow: '0 12px 30px rgba(11, 31, 58, .18)',
             }}
