@@ -27,7 +27,12 @@ export default function ErrorCorrection({ exercise, onComplete }) {
     if (!answer.trim()) return;
     setSubmitted(true);
     const correct = normalize(answer) === normalize(correctedText);
-    if (onComplete) onComplete({ correct });
+    if (onComplete) onComplete({
+      correct,
+      givenAnswer: answer,
+      correctAnswer: correctedText,
+      explanation: explanation || '',
+    });
   }
 
   const isCorrect = submitted && normalize(answer) === normalize(correctedText);

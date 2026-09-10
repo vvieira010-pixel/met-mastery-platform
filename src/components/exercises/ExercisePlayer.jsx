@@ -5,6 +5,7 @@ import { loadExercises } from './validateExercise.js';
 import { hintLimit } from '../../lib/fading-manager.js';
 import { callAI } from '../../lib/callAI.js';
 import { withSkills } from '../../education-skills/active-skills.js';
+import { createSignedAudioUrl } from '../../lib/supabase-db.js';
 import MultipleChoice from './MultipleChoice.jsx';
 import FillBlank from './FillBlank.jsx';
 import ShortAnswer from './ShortAnswer.jsx';
@@ -70,10 +71,90 @@ function FeedbackList({ items, tone = 'var(--text)' }) {
   );
 }
 
-function SavedPracticeFeedback({ result }) {
+function SavedPracticeFeedback({ exercise, result }) {
+  const [savedAudioUrl, setSavedAudioUrl] = useState(() => result?.audioB64 || result?.audioUrl || null);
   const evaluation = result?.evaluation;
+
+  useEffect(() => {
+    let cancelled = false;
+    if (result?.audioB64 || result?.audioUrl) {
+      setSavedAudioUrl(result.audioB64 || result.audioUrl);
+      return () => { cancelled = true; };
+    }
+    if (!result?.audioPath) {
+      setSavedAudioUrl(null);
+      return () => { cancelled = true; };
+    }
+    setSavedAudioUrl(null);
+    createSignedAudioUrl(result.audioPath).then(url => {
+      if (!cancelled && url) setSavedAudioUrl(url);
+    });
+    return () => { cancelled = true; };
+  }, [result?.audioB64, result?.audioPath, result?.audioUrl]);
+
+  const prompt = exercise?.question || exercise?.prompt || exercise?.template || exercise?.errorText || '';
+  const options = Array.isArray(exercise?.options) ? exercise.options : [];
+  const correctAnswer = result?.correctAnswer
+    || (options.length > 0 && Number.isInteger(exercise?.correct) ? options[exercise.correct] : '')
+    || exercise?.correctedText
+    || '';
+  const selectedAnswer = result?.selectedAnswer || result?.givenAnswer || '';
+  const answerRows = Array.isArray(result?.answers) ? result.answers : [];
+  const explanation = result?.explanation || exercise?.explanation || '';
+
   if (!evaluation) {
-    return <p role="status" style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>Your response is saved. This question is locked and cannot be changed.</p>;
+    return (
+      <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <p style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
+          Your answer is saved and locked. You can review this question and its explanation, but you cannot try it again.
+        </p>
+        {prompt && (
+          <section aria-label="Saved question" style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+            <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Question</strong>
+            <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{prompt}</div>
+          </section>
+        )}
+        {result?.correct !== null && result?.correct !== undefined && (
+          <div style={{ padding: '9px 12px', background: result.correct ? 'var(--ex-correct-bg)' : 'var(--ex-wrong-bg)', border: `1px solid ${result.correct ? 'var(--ex-correct-border)' : 'var(--ex-wrong-border)'}`, borderRadius: 'var(--radius-sm, 6px)', color: result.correct ? 'var(--ex-correct-text)' : 'var(--ex-wrong-text)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>
+            {result.correct ? 'Correct answer' : 'Answer checked — review the correct answer below'}
+          </div>
+        )}
+        {selectedAnswer && (
+          <div style={{ padding: '11px 14px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+            <strong style={{ display: 'block', marginBottom: 4, color: 'var(--text)' }}>Your answer</strong>
+            <span style={{ color: 'var(--text-2)' }}>{selectedAnswer}</span>
+          </div>
+        )}
+        {answerRows.length > 0 && (
+          <div style={{ padding: '11px 14px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+            <strong style={{ display: 'block', marginBottom: 6, color: 'var(--text)' }}>Your answers</strong>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              {answerRows.map((answer, index) => {
+                const given = typeof answer === 'string' ? answer : answer?.given || answer?.answer || '(blank)';
+                const expected = answer && typeof answer === 'object' ? answer.expected : '';
+                return (
+                  <div key={index} style={{ color: 'var(--text-2)' }}>
+                    <span style={{ color: 'var(--muted)' }}>Item {index + 1}: </span>{given}
+                    {expected && <span style={{ display: 'block', marginLeft: 42, color: 'var(--ex-panel-text)' }}>Correct: {expected}</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {correctAnswer && (
+          <div style={{ padding: '11px 14px', background: 'var(--ex-panel-bg)', border: '1px solid var(--ex-panel-border)', borderRadius: 'var(--radius-sm, 6px)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+            <strong style={{ display: 'block', marginBottom: 4, color: 'var(--text)' }}>Correct answer</strong>
+            <span style={{ color: 'var(--ex-panel-text)' }}>{correctAnswer}</span>
+          </div>
+        )}
+        {explanation && (
+          <div style={{ padding: '11px 14px', background: 'var(--ex-hint-bg)', border: '1px solid var(--ex-hint-border)', borderRadius: 'var(--radius-sm, 6px)', color: 'var(--ex-hint-text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>
+            <strong style={{ color: 'var(--text)' }}>Why: </strong>{explanation}
+          </div>
+        )}
+      </div>
+    );
   }
 
   const strengths = feedbackList(evaluation.strengths);
@@ -82,12 +163,31 @@ function SavedPracticeFeedback({ result }) {
   const corrections = Array.isArray(evaluation.corrections)
     ? evaluation.corrections.filter(correction => correction && (correction.original || correction.corrected)).slice(0, 4)
     : [];
+  const responseText = result?.responseText || result?.transcript || '';
 
   return (
     <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       <p style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
         This AI-scored attempt is saved and locked. You can revisit its feedback any time.
       </p>
+      {prompt && (
+        <section aria-label="Saved question" style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+          <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Question</strong>
+          <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{prompt}</div>
+        </section>
+      )}
+      {savedAudioUrl && (
+        <section aria-label="Saved speaking recording" style={{ padding: '11px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+          <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Final recording</strong>
+          <audio controls src={savedAudioUrl} style={{ width: '100%', height: 40 }} />
+        </section>
+      )}
+      {responseText && (
+        <section aria-label="Saved response" style={{ padding: '11px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+          <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your response</strong>
+          <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65, whiteSpace: 'pre-wrap' }}>{responseText}</div>
+        </section>
+      )}
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         {evaluation.estimatedBandLabel && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: TEAL, color: 'var(--on-dark)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>{evaluation.estimatedBandLabel}</span>}
         {evaluation.cefrEstimate && <span style={{ padding: '5px 10px', borderRadius: 'var(--radius-sm, 6px)', background: 'var(--accent-subtle)', color: 'var(--text)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>{evaluation.cefrEstimate}</span>}
@@ -371,7 +471,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
       {/* Exercise body */}
       <div style={{ padding: '20px 20px 24px' }}>
         {done && practiceStudio ? (
-          <SavedPracticeFeedback result={result} />
+          <SavedPracticeFeedback exercise={exercise} result={result} />
         ) : renderExercise()}
         {saving && <p role="status" aria-live="polite" style={{ margin: '12px 0 0', color: 'var(--text-2)', fontSize: 13 }}>Saving this question…</p>}
       </div>
@@ -582,11 +682,16 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   useEffect(() => { onDoneRef.current = onSessionComplete; });
   useEffect(() => { resultsRef.current = results; });
   useEffect(() => {
-    setResults(initialResults);
-    setCurrent(0);
-    setDone(false);
-    setPendingSummary(null);
-    setSubmissionError('');
+    // Saved results arrive from the Practice Studio parent after each answer.
+    // Merge them into the current session instead of resetting the student to
+    // exercise 1. The session key remounts this component for a new topic.
+    setResults(previous => {
+      const next = [...previous];
+      initialResults.forEach((result, index) => {
+        if (result) next[index] = result;
+      });
+      return next;
+    });
   }, [initialResults]);
 
   const handleHintLevelChange = useCallback((level) => {

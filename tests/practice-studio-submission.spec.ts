@@ -148,6 +148,40 @@ test('student sees the selected speaking prompt and one-time attempt warning bef
   expect(consoleWarnings.filter(message => message.includes('GSAP target'))).toEqual([]);
 });
 
+test('objective Practice Studio answers stay on the question until Next and remain reviewable', async ({ page }) => {
+  await seedStudentWorkspace(page, []);
+  const pageErrors: Error[] = [];
+  page.on('pageerror', error => pageErrors.push(error));
+
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await page.getByRole('button', { name: /Vocab Deep-Dive/ }).click();
+  await page.getByRole('button', { name: /Complete Vocabulary Collection/ }).click();
+
+  await expect(page.getByText('The hiring committee was impressed by the candidate', { exact: false })).toBeVisible();
+  await page.getByRole('button', { name: /background/ }).click();
+  await page.getByRole('button', { name: 'Submit answer', exact: true }).click();
+
+  const saved = page.getByTestId('practice-studio-saved-feedback');
+  await expect(saved).toBeVisible();
+  await expect(saved).toContainText('Your answer is saved and locked.');
+  await expect(saved).toContainText('The hiring committee was impressed by the candidate');
+  await expect(saved).toContainText('Correct answer');
+  await expect(saved).toContainText('background');
+  await expect(saved).toContainText('Why:');
+  await expect(page.getByText('1 / 128', { exact: true })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Next exercise', exact: true }).last().click();
+  await expect(page.getByText('2 / 128', { exact: true })).toBeVisible();
+  await expect(page.getByText('Your answer is saved and locked.', { exact: false })).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'Previous exercise', exact: true }).last().click();
+  await expect(page.getByTestId('practice-studio-saved-feedback')).toBeVisible();
+  await expect(page.getByTestId('practice-studio-saved-feedback')).toContainText('Why:');
+  expect(pageErrors.map(error => error.message)).toEqual([]);
+});
+
 test('speaking gives preparation time before automatically opening the timed recorder', async ({ page }) => {
   await seedStudentWorkspace(page, []);
   await page.addInitScript(() => {

@@ -57,7 +57,12 @@ export default function OrderSentences({ exercise, onComplete }) {
   function handleSubmit() {
     setSubmitted(true);
     const correct = order.every((origIdx, pos) => origIdx === pos);
-    if (onComplete) onComplete({ correct });
+    if (onComplete) onComplete({
+      correct,
+      answers: order.map(origIdx => sentences[origIdx]),
+      correctAnswer: sentences.join(' '),
+      explanation: exercise.explanation || '',
+    });
   }
 
   function handleReset() {

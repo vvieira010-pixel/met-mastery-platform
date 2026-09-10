@@ -51,7 +51,13 @@ export default function MultipleChoice({ exercise, onComplete }) {
   function handleSubmit() {
     if (selected == null) return;
     setSubmitted(true);
-    if (onComplete) onComplete({ correct: isCorrect });
+    if (onComplete) onComplete({
+      correct: isCorrect,
+      selectedIndex: selected,
+      selectedAnswer: options[selected],
+      correctAnswer: options[correct],
+      explanation: exercise.explanation || '',
+    });
   }
 
   function getOptionStyle(i) {

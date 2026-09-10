@@ -200,7 +200,26 @@ const [playCount, setPlayCount] = useState(0);
       isCorrect = selected === correct;
     }
     setSubmitted(true);
-    if (onComplete) onComplete({ correct: isCorrect });
+    if (onComplete) onComplete({
+      correct: isCorrect,
+      selectedIndex: selected,
+      selectedAnswer: selected != null ? options[selected] : '',
+      correctAnswer: correct != null ? options[correct] : '',
+      answers: listeningFormat === 'gap_fill'
+        ? gaps.map((gap, i) => ({
+          given: gapAnswers[gap.id || i] || '',
+          expected: (gap.acceptableAnswers || [])[0] || '',
+          correct: (gap.acceptableAnswers || []).some(answer => normalize(answer) === normalize(gapAnswers[gap.id || i])),
+        }))
+        : listeningFormat === 'ordering'
+          ? orderAnswer.map((value, i) => ({
+            given: sequenceItems[Number(value)] || '',
+            expected: sequenceItems[Number(correctOrder[i] ?? i)] || '',
+            correct: Number(value) === Number(correctOrder[i] ?? i),
+          }))
+          : [],
+      explanation,
+    });
   }
 
   const isCorrect = submitted && (listeningFormat === 'gap_fill'

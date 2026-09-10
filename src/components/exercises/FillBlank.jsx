@@ -33,7 +33,13 @@ export default function FillBlank({ exercise, onComplete }) {
     setResults(r);
     setSubmitted(true);
     const allCorrect = r.every(x => x.correct);
-    if (onComplete) onComplete({ correct: allCorrect, score: r.filter(x => x.correct).length, total: r.length });
+    if (onComplete) onComplete({
+      correct: allCorrect,
+      score: r.filter(x => x.correct).length,
+      total: r.length,
+      answers: r.map(item => ({ given: item.given, expected: item.expected, correct: item.correct })),
+      explanation: exercise.explanation || '',
+    });
   }
 
   function setValue(i, v) {
