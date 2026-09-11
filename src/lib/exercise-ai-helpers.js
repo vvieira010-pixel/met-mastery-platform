@@ -1,4 +1,5 @@
 import { createExercise, exId } from './exercise-types.js';
+import { normalizeListeningScript } from './listening-script.js';
 
 // Balanced set covering all 4 MET competencies: IV (speak), III (short), I (listen), II (mcq/blank/fix)
 const MET_BALANCED_TYPES = ['speak', 'short', 'listen', 'mcq', 'blank', 'fix'];
@@ -175,7 +176,11 @@ export function applyAiTaskToExercise(exercise, aiTask) {
 
   if (ex.type === 'listen') {
     const options = normalizeMcqOptions(aiTask?.options);
-    ex.audioText = aiTask?.audioText || aiTask?.script || content;
+    const listeningScript = normalizeListeningScript({ ...aiTask, audioText: aiTask?.audioText || aiTask?.script || content });
+    ex.audioMode = listeningScript.audioMode;
+    ex.audioText = listeningScript.audioText;
+    ex.audioLines = listeningScript.audioLines;
+    ex.speakers = listeningScript.speakers;
     ex.question = aiTask?.question || 'What is the speaker mainly trying to do?';
     ex.options = options;
     ex.correct = normalizeCorrectIndex(aiTask?.correct, options.length);

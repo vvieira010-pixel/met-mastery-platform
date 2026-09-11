@@ -22,6 +22,7 @@ const SENSITIVE_LOCAL_KEYS = new Set([
 
 export default function SettingsPage({ onNavigate, "data-testid": testId }) {
   const [piperUrl, setPiperUrl] = useState(() => localStorage.getItem('vv:piper_server_url') || '');
+  const [chatterboxUrl, setChatterboxUrl] = useState(() => localStorage.getItem('vv:chatterbox_server_url') || '');
   const [generalMemo, setGeneralMemo] = useState(() => localStorage.getItem('vv:student_general_memo') || '');
   const [examDate, setExamDate] = useState(() => localStorage.getItem('vv:met_exam_date') || '');
   const [zoomUrl, setZoomUrl] = useState(() => localStorage.getItem('vv:zoom_meeting_url') || '');
@@ -123,6 +124,14 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
     setSaved('Saved!');
     setTimeout(() => setSaved(''), 2000);
     window.toast?.('Piper server URL saved.', 'ok');
+  }
+
+  function saveChatterboxUrl() {
+    if (chatterboxUrl.trim()) localStorage.setItem('vv:chatterbox_server_url', chatterboxUrl.trim());
+    else localStorage.removeItem('vv:chatterbox_server_url');
+    setSaved('Saved!');
+    setTimeout(() => setSaved(''), 2000);
+    window.toast?.('Chatterbox server URL saved.', 'ok');
   }
 
   function saveExamDate() {
@@ -248,21 +257,19 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
       <Card style={{ marginTop: 'var(--space-4)' }}>
         <SectionHeader title="TTS, Listening Exercise Audio" icon={<Icon.mic size={15} />} />
         <p className="card-row-meta" style={{ margin: 'var(--space-2) 0 var(--space-1)', lineHeight: 1.6 }}>
-          Audio for listening exercises is generated server-side. API keys are configured in the server environment.
-          The server tries providers in this order:
+          Audio for listening exercises can use a local offline server or the configured server-side provider. Local audio stays on your machine until you save the exercise.
         </p>
         <ol style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', margin: '4px 0 16px', paddingLeft: 18, lineHeight: 1.8 }}>
-          <li><strong>Camb.ai</strong> (default)</li>
-          <li><strong>ElevenLabs</strong></li>
-          <li><strong>OpenAI TTS</strong></li>
-          <li><strong>Deepgram</strong></li>
+          <li><strong>Local Piper</strong> or <strong>Chatterbox</strong> (offline)</li>
+          <li><strong>Deepgram</strong> (server API key)</li>
+          <li><strong>ElevenLabs/Gemini</strong> (server fallback when configured)</li>
         </ol>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
           <FormField
             label="Piper server URL (optional, local/offline)"
             hint={
               <span style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 3, lineHeight: 1.5 }}>
-                Run <code>python scripts/piper-server.py --model path/to/voice.onnx</code> on your machine.
+                Run <code>.venv-tts\Scripts\python.exe scripts/piper-server.py --model path/to/voice.onnx</code> on your machine. For distinct dialogue voices, use <code>--female-model female.onnx --male-model male.onnx</code>.
                 Free, fully offline, no API key needed. From your voices list, good starting points are <code>en_US-lessac-medium</code> or <code>en_US-amy-medium</code> for a US woman voice, <code>en_US-ryan-medium</code> or <code>en_US-hfc_male-medium</code> for a US man voice.
                 Listen to samples at <a href="https://rhasspy.github.io/piper-samples" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper samples</a> and download models from <a href="https://huggingface.co/rhasspy/piper-voices/tree/main" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>Piper voices</a>.
               </span>
@@ -278,6 +285,28 @@ export default function SettingsPage({ onNavigate, "data-testid": testId }) {
           </FormField>
           <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
             <Button variant="primary" onClick={savePiperUrl}>Save Piper URL</Button>
+            {saved && <span style={{ color: 'var(--success)', fontSize: 'var(--text-sm)' }}>{saved}</span>}
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', marginTop: 'var(--space-4)', paddingTop: 'var(--space-4)', borderTop: '1px solid var(--divider)' }}>
+          <FormField
+            label="Chatterbox server URL (optional, local/offline)"
+            hint={
+              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--muted)', marginTop: 3, lineHeight: 1.5 }}>
+                Start the existing local API with <code>cd E:\chatterbox-tts-api</code>, then <code>.venv\Scripts\python.exe main.py</code>. It listens on <code>http://127.0.0.1:4123</code>, uses your local model, and returns a WAV file to the browser; no API key is needed.
+              </span>
+            }
+          >
+            <input
+              className="input"
+              type="url"
+              value={chatterboxUrl}
+              onChange={e => setChatterboxUrl(e.target.value)}
+              placeholder="http://127.0.0.1:4123"
+            />
+          </FormField>
+          <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+            <Button variant="primary" onClick={saveChatterboxUrl}>Save Chatterbox URL</Button>
             {saved && <span style={{ color: 'var(--success)', fontSize: 'var(--text-sm)' }}>{saved}</span>}
           </div>
         </div>

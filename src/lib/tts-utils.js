@@ -15,6 +15,7 @@ export const VOICES = {
 
 function lsGet(key) { try { return localStorage.getItem(key) || ''; } catch { return ''; } }
 const getPiperUrl  = () => lsGet('vv:piper_server_url');
+const getChatterboxUrl = () => lsGet('vv:chatterbox_server_url');
 
 function getSessionToken() {
   try {
@@ -25,12 +26,12 @@ function getSessionToken() {
   } catch { return ''; }
 }
 
-async function fetchServerAudio(text, gender = 'female', provider = 'auto') {
+async function fetchServerAudio(text, gender = 'female', provider = 'auto', voice = '') {
   const token = getSessionToken();
   const res = await fetch('/api/tts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-    body: JSON.stringify({ text, gender, provider }),
+    body: JSON.stringify({ text, gender, provider, ...(voice ? { voice } : {}) }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -62,6 +63,19 @@ async function fetchPiperAudio(text, serverUrl, gender) {
   return URL.createObjectURL(await res.blob());
 }
 
+async function fetchChatterboxAudio(text, serverUrl, voice = '') {
+  const res = await fetch(`${serverUrl.replace(/\/$/, '')}/v1/audio/speech`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ input: text, response_format: 'wav', ...(voice ? { voice } : {}) }),
+  });
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({}));
+    throw new Error(e.detail || `Chatterbox TTS error ${res.status}`);
+  }
+  return URL.createObjectURL(await res.blob());
+}
+
 export async function fetchAudio(text) {
   const piperUrl = getPiperUrl();
   if (piperUrl) { try { return await fetchPiperAudio(text, piperUrl); } catch (e) { console.warn('[tts] Piper failed:', e.message); } }
@@ -72,13 +86,15 @@ export async function fetchAudio(text) {
 export async function fetchAudioWithGender(text, gender = 'female') {
   const piperUrl = getPiperUrl();
   if (piperUrl) { try { return await fetchPiperAudio(text, piperUrl, gender); } catch (e) { console.warn('[tts] Piper failed:', e.message); } }
+  const chatterboxUrl = getChatterboxUrl();
+  if (chatterboxUrl) { try { return await fetchChatterboxAudio(text, chatterboxUrl); } catch (e) { console.warn('[tts] Chatterbox failed:', e.message); } }
   try { return await fetchServerAudio(text, gender); } catch (e) { console.warn('[tts] Server proxy failed:', e.message); }
   return null;
 }
 
 /**
  * Generate one listening asset using the teacher's selected provider.
- * `auto` preserves the existing Piper -> server fallback behavior.
+ * `auto` tries local Piper, local Chatterbox, then the server provider.
  * `piper` deliberately fails when no local Piper URL is configured so the
  * builder never reports a local asset that was actually generated remotely.
  */
@@ -91,6 +107,12 @@ export async function fetchAudioWithProvider(text, provider = 'auto', gender = '
     return fetchPiperAudio(text, piperUrl, gender);
   }
 
+  if (selected === 'chatterbox') {
+    const chatterboxUrl = getChatterboxUrl();
+    if (!chatterboxUrl) throw new Error('Add your local Chatterbox server URL in Settings first.');
+    return fetchChatterboxAudio(text, chatterboxUrl);
+  }
+
   if (selected === 'deepgram') {
     return fetchServerAudio(text, gender, 'deepgram');
   }
@@ -99,25 +121,56 @@ export async function fetchAudioWithProvider(text, provider = 'auto', gender = '
 }
 
 export async function fetchConversationAudio(utterances) {
+  return fetchConversationAudioWithProvider(utterances, 'auto');
+}
+
+/**
+ * Synthesize a labelled listening dialogue one turn at a time. Chatterbox
+ * remains a first-class local provider; its configured voice is used unless a
+ * Chatterbox voice name is supplied on an utterance.
+ */
+export async function fetchConversationAudioWithProvider(utterances, provider = 'auto', fallbackGender = 'female') {
+  const turns = (Array.isArray(utterances) ? utterances : []).filter(u => u?.text?.trim());
+  if (!turns.length) return null;
+  const selected = provider || 'auto';
   const piperUrl = getPiperUrl();
-  if (piperUrl) {
-    try {
-      const audioBlobs = await Promise.all(
-        utterances.map(u => fetchPiperAudio(u.text, piperUrl, u.gender))
-      );
-      return concatenateAudioBlobs(audioBlobs);
-    } catch (e) { console.warn('[tts] Piper conversation failed:', e.message); }
+  const chatterboxUrl = getChatterboxUrl();
+  const synthesize = (u, selectedProvider) => {
+    const gender = u.gender || fallbackGender;
+    if (selectedProvider === 'piper') return fetchPiperAudio(u.text.trim(), piperUrl, gender);
+    if (selectedProvider === 'chatterbox') return fetchChatterboxAudio(u.text.trim(), chatterboxUrl, u.voice || '');
+    return fetchServerAudio(u.text.trim(), gender, 'deepgram', u.voice || '');
+  };
+
+  const tryProvider = async (selectedProvider) => {
+    if (selectedProvider === 'piper' && !piperUrl) throw new Error('Add your local Piper server URL in Settings first.');
+    if (selectedProvider === 'chatterbox' && !chatterboxUrl) throw new Error('Add your local Chatterbox server URL in Settings first.');
+    // Keep local model requests sequential. Chatterbox and Piper may each
+    // hold a large model in memory, so parallel turns can cause avoidable OOMs.
+    const audioUrls = [];
+    for (const turn of turns) audioUrls.push(await synthesize(turn, selectedProvider));
+    return concatenateAudioBlobs(audioUrls);
+  };
+
+  if (selected !== 'auto') return tryProvider(selected);
+
+  const candidates = [
+    piperUrl && 'piper',
+    chatterboxUrl && 'chatterbox',
+    'deepgram',
+  ].filter(Boolean);
+  let lastError = null;
+  for (const candidate of candidates) {
+    try { return await tryProvider(candidate); } catch (e) {
+      lastError = e;
+      console.warn(`[tts] ${candidate} conversation failed:`, e.message);
+    }
   }
-  try {
-    const audioBlobs = await Promise.all(
-      utterances.map(u => fetchServerAudio(u.text, u.gender))
-    );
-    return concatenateAudioBlobs(audioBlobs);
-  } catch (e) { console.warn('[tts] Server conversation failed:', e.message); }
+  if (lastError) throw lastError;
   return null;
 }
 
-async function concatenateAudioBlobs(urls) {
+async function concatenateAudioBlobs(urls, pauseMs = 320) {
   if (typeof window === 'undefined' || !window.AudioContext) {
     console.warn('[tts] AudioContext not available, returning first blob');
     return urls[0];
@@ -135,8 +188,9 @@ async function concatenateAudioBlobs(urls) {
       })
     );
 
-    const totalLength = audioBuffers.reduce((acc, buf) => acc + buf.length, 0);
     const sampleRate = audioBuffers[0].sampleRate;
+    const pauseSamples = Math.round(sampleRate * pauseMs / 1000);
+    const totalLength = audioBuffers.reduce((acc, buf) => acc + buf.length, 0) + (pauseSamples * Math.max(0, audioBuffers.length - 1));
     const numberOfChannels = audioBuffers[0].numberOfChannels;
 
     const offlineCtx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(
@@ -146,12 +200,13 @@ async function concatenateAudioBlobs(urls) {
     );
 
     let offset = 0;
-    audioBuffers.forEach((buffer) => {
+    audioBuffers.forEach((buffer, index) => {
       const source = offlineCtx.createBufferSource();
       source.buffer = buffer;
       source.connect(offlineCtx.destination);
-      source.start(offset);
-      offset += buffer.duration;
+      source.start(offset / sampleRate);
+      offset += buffer.length;
+      if (index < audioBuffers.length - 1) offset += pauseSamples;
     });
 
     const renderedBuffer = await offlineCtx.startRendering();

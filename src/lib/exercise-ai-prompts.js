@@ -47,12 +47,14 @@ Requirements:
 Return JSON only with fields: type "flash", pairs (array of {term, def} objects).`,
   listen: `Create one B1-level listening exercise for an MET student.
 Requirements:
-- Write the audioText as a realistic short conversation using natural B1-level English
+- Decide whether the audio is best as a short narration/announcement or a dialogue. Use "dialogue" only when interaction, disagreement, clarification, or speaker attitude is important; otherwise use "narration".
+- For narration, write one natural short monologue and set audioMode to "narration". Do not add speaker labels.
+- For dialogue, write 4-8 natural turns, set audioMode to "dialogue", and provide audioLines with explicit speaker, label, gender, and text fields. Also put the same labelled turns in audioText (one turn per line, such as "Nurse: ...\\nPatient: ...").
 - The question should test inference, speaker attitude, or purpose — NOT surface detail
 - All options must use B1-level vocabulary
 - For healthcare conversations, use natural, accurate medical language
-- Average max 15 words per turn in the dialogue
-Return JSON only with fields: type "listen", audioText, question, options (array of 4 strings), correct (0-3 index), explanation, plays (2).`,
+- Keep the total audio short enough to play in about 20-45 seconds. Average max 15 words per dialogue turn.
+Return JSON only with fields: type "listen", audioMode ("narration" or "dialogue"), speakers (array of {id, label, gender}), audioLines (array of {speaker, label, gender, text}; required for dialogue and [] for narration), audioText, question, options (array of 4 strings), correct (0-3 index), explanation, plays (2).`,
   dialogue: `Create one B1-level dialogue exercise for an MET student.
 Requirements:
 - Write natural conversational English at B1 level

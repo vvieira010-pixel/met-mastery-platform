@@ -16,7 +16,8 @@ import { getDueCount } from '../lib/spaced-repetition.js';
 import { HomeworkStepThrough } from '../components/exercise-player.jsx';
 import { StepPrebuilt, StepRetrieval, StepBuild } from './homework-create/homework-form.jsx';
 import { useHomeworkAI } from './homework-create/prompt-builders.js';
-import { fetchAudioWithProvider } from '../lib/tts-utils.js';
+import { fetchAudioWithProvider, fetchConversationAudioWithProvider } from '../lib/tts-utils.js';
+import { listeningUtterances, normalizeListeningScript } from '../lib/listening-script.js';
 import { getDbContext, uploadTeacherResource } from '../lib/supabase-db.js';
 
 const EMPTY_FORM = {
@@ -159,7 +160,11 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
     }
     let objectUrl = null;
     try {
-      objectUrl = await fetchAudioWithProvider(exercise.audioText.trim(), provider, gender);
+      const listeningScript = normalizeListeningScript(exercise);
+      const utterances = listeningUtterances(exercise, gender);
+      objectUrl = utterances.length
+        ? await fetchConversationAudioWithProvider(utterances, provider, gender)
+        : await fetchAudioWithProvider(listeningScript.audioText.trim(), provider, gender);
       if (!objectUrl) throw new Error('The TTS provider returned no audio.');
 
       let audioSrc = objectUrl;
@@ -185,6 +190,7 @@ export default function HomeworkCreate({ diagnosisId, studentId, students, onNav
 
       const updated = {
         ...exercise,
+        ...listeningScript,
         audioSrc,
         audioProvider: provider || 'auto',
         audioGender: gender || 'female',

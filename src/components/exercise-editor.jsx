@@ -714,6 +714,15 @@ function ListenEditor({ ex, update, onGenerateAudio }) {
       </div>
 
       <div style={fieldWrap}>
+        <label style={fieldLabel}>Audio style</label>
+        <select className="input" value={ex.audioMode || 'narration'} onChange={e => update({ audioMode: e.target.value })}>
+          <option value="narration">Narration / one speaker</option>
+          <option value="dialogue">Dialogue / multiple speakers</option>
+        </select>
+        <div style={hintText}>AI chooses this automatically. Use dialogue when turn-taking, clarification, disagreement, or speaker attitude matters.</div>
+      </div>
+
+      <div style={fieldWrap}>
         <label style={fieldLabel}>Audio script (spoken to student via TTS, or transcript fallback)</label>
         <textarea
           className="input" rows={5} value={ex.audioText || ''}
@@ -729,11 +738,12 @@ function ListenEditor({ ex, update, onGenerateAudio }) {
         <label style={fieldLabel}>Create audio for this listening</label>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
           <select className="input" value={audioProvider} onChange={e => { setAudioProvider(e.target.value); update({ audioProvider: e.target.value }); }} style={{ flex: '1 1 180px' }}>
-            <option value="auto">Automatic (local Piper, then server)</option>
+            <option value="auto">Automatic (local Piper/Chatterbox, then server)</option>
             <option value="piper">Local Piper</option>
+            <option value="chatterbox">Local Chatterbox</option>
             <option value="deepgram">Deepgram</option>
           </select>
-          <select className="input" value={audioGender} onChange={e => { setAudioGender(e.target.value); update({ audioGender: e.target.value }); }} style={{ flex: '0 1 120px' }}>
+          <select className="input" value={audioGender} onChange={e => { setAudioGender(e.target.value); update({ audioGender: e.target.value }); }} style={{ flex: '0 1 120px' }} disabled={audioProvider === 'chatterbox'} title={audioProvider === 'chatterbox' ? 'Chatterbox uses the voice configured in its local API.' : undefined}>
             <option value="female">Female voice</option>
             <option value="male">Male voice</option>
           </select>
@@ -742,7 +752,7 @@ function ListenEditor({ ex, update, onGenerateAudio }) {
           </Button>
         </div>
         <div style={hintText}>
-          The generated file is uploaded to your teacher resource library when signed in, saved with this exercise, and kept in the homework. AssemblyAI is used for scoring/transcription in this app, not speech synthesis.
+          The generated file is uploaded to your teacher resource library when signed in, saved with this exercise, and kept in the homework. Chatterbox uses the voice configured in its local API; AssemblyAI is used for scoring/transcription in this app, not speech synthesis.
         </div>
         {ex.audioSrc && (
           <audio controls src={ex.audioSrc} style={{ width: '100%', height: 36, marginTop: 8 }} preload="metadata" />

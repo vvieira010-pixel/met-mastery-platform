@@ -606,7 +606,7 @@ const EXERCISE_COMPLETENESS_RULES = `Complete exercise JSON requirements:
 - order: type, title, sentences array in correct order with at least 3 sentences.
 - fix: type, title, errorText, correctedText, hint.
 - flash: type, title, pairs array with at least 10 { "term", "def" } items.
-- listen: type, title, audioText, question, options with exactly 4 choices, correct as 0-3, explanation, plays, pictureHint (1–2 sentence visual description of a scene related to the audio topic — used to generate an image shown before the student listens).
+- listen: type, title, audioMode ("narration" or "dialogue"), audioText, audioLines (speaker turns when dialogue), speakers (speaker labels and gender when dialogue), question, options with exactly 4 choices, correct as 0-3, explanation, plays, pictureHint (1–2 sentence visual description of a scene related to the audio topic — used to generate an image shown before the student listens).
 - read: type, title, passage (full reading text, 150–250 words, authentic MET-style), questions array of at least 3 items each with {question, options[4], correct as 0-3, explanation}.
 Do not return placeholder text. Do not omit answer keys.`;
 
@@ -1025,16 +1025,19 @@ Vocab: ${vocab.slice(0, 4).map(v => v.wordOrPhrase).join(', ') || 'general MET v
 
 ━━━ RULES ━━━
 1. COMPLETENESS: The output must be a single valid JSON object for the 'listen' type.
-2. AUDIO TEXT: The 'audioText' must be a realistic, 2–5 sentence dialogue or monologue. 
+2. AUDIO FORMAT: Decide whether the task needs a 'narration' or a 'dialogue'. Use dialogue only when hearing different speakers is useful for understanding interaction, attitude, clarification, or disagreement. Use narration for announcements, reports, explanations, and short talks.
+   - For narration, set 'audioMode' to 'narration', keep 'audioLines' and 'speakers' as empty arrays, and write 'audioText' without speaker labels.
+   - For dialogue, set 'audioMode' to 'dialogue', provide 4–8 'audioLines' objects with speaker, label, gender ('female' or 'male'), and text, and write 'audioText' with the same labels, one turn per line.
+3. AUDIO TEXT: The 'audioText' must be a realistic, 2–5 sentence dialogue or monologue.
    - Use a general MET topic by default, not the student's professional context.
    - ${MET_TOPIC_RULES}
    - It should target B1-B2 level complexity.
-3. MET FOCUS: The task must target one of these MET listening subskills: main_idea, detail, inference, speaker_purpose, or vocabulary_in_context.
-4. QUESTIONS: The 'question' must be clear. The 'options' must have exactly 4 choices.
-5. DISTRACTORS: At least one distractor must be a "plausible mistake" (e.g., a detail mentioned in the audio that is NOT the answer to the question).
-6. EXPLANATION: Provide a clear, supportive explanation of WHY the correct answer is right.
-7. PICTURE HINT: Include a pictureHint that describes a concrete visual scene related to the audio topic. Use specific, visible details (people, setting, objects, actions) that can be turned into an illustration. Avoid abstract concepts — describe what someone would see.
-8. FORMAT: Use the following structure.
+4. MET FOCUS: The task must target one of these MET listening subskills: main_idea, detail, inference, speaker_purpose, or vocabulary_in_context.
+5. QUESTIONS: The 'question' must be clear. The 'options' must have exactly 4 choices.
+6. DISTRACTORS: At least one distractor must be a "plausible mistake" (e.g., a detail mentioned in the audio that is NOT the answer to the question).
+7. EXPLANATION: Provide a clear, supportive explanation of WHY the correct answer is right.
+8. PICTURE HINT: Include a pictureHint that describes a concrete visual scene related to the audio topic. Use specific, visible details (people, setting, objects, actions) that can be turned into an illustration. Avoid abstract concepts — describe what someone would see.
+9. FORMAT: Use the following structure.
 
 ${EXERCISE_COMPLETENESS_RULES}
 
@@ -1042,7 +1045,10 @@ RETURN ONLY VALID JSON:
 {
   "type": "listen",
   "title": "short title",
-  "audioText": "the script to be read aloud",
+  "audioMode": "narration",
+  "speakers": [],
+  "audioLines": [],
+  "audioText": "the script to be read aloud; use labelled lines if audioMode is dialogue",
   "question": "the question",
   "options": ["opt1", "opt2", "opt3", "opt4"],
   "correct": 0,

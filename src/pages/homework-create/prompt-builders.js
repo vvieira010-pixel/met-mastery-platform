@@ -16,6 +16,7 @@ import { AI_EXERCISE_PROMPTS } from '../../lib/exercise-ai-prompts.js';
 import { saveExerciseToLibrary } from '../../lib/exercise-library.js';
 import { generateExerciseImage } from '../../lib/image-generation.js';
 import { generateId, generateShortId } from '../../lib/utils.js';
+import { normalizeListeningScript } from '../../lib/listening-script.js';
 
 const AI_OPTS = {};
 
@@ -84,7 +85,8 @@ export function useHomeworkAI(scope) {
       if (!parsed || parsed.type !== 'listen') throw new Error('AI returned invalid listening task.');
       const fresh = createExercise('listen');
       const listeningId = generateId('ex_');
-      const listeningEx = { ...fresh, ...parsed, id: listeningId };
+      const listeningScript = normalizeListeningScript(parsed);
+      const listeningEx = { ...fresh, ...parsed, ...listeningScript, id: listeningId };
       setForm(f => ({ ...f, exercises: [...f.exercises, listeningEx] }));
       setExpandedEx(listeningEx.id);
       try { await saveExerciseToLibrary(listeningEx); setLibVersion(v => v + 1); } catch {}
