@@ -12,6 +12,11 @@ export default {
       "instruction": "Listen to the prompt audio. 15 seconds to prepare, 60 seconds to speak.",
       "audioSrc": "/audio/speaking/speaking_prompt02.mp3",
       "transcript": "Talk about a time when you had to make a difficult decision. What was the situation? What did you decide? How did it turn out? You have 15 seconds to prepare and 60 seconds to speak.",
+      "sampleAnswer": "A few years ago I had to decide whether to accept a job offer in another city or stay in my current position. The new role offered a higher salary and better growth prospects, but it meant leaving my family and friends behind. After a week of careful thought, I decided to take the job. It was challenging at first — everything from the commute to the new team dynamics required adjustment. However, within six months I had settled in well, and the skills I gained opened doors to even better opportunities. The decision ultimately paid off both professionally and financially, and I learned a great deal about adapting to change.",
+      "followUps": [
+        "Would you make the same decision today?",
+        "How do you usually weigh pros and cons?"
+      ],
       "seconds": 60,
       "metTaskType": "Q2"
     },
@@ -25,6 +30,11 @@ export default {
       "instruction": "Listen to the prompt audio. 15 seconds to prepare, 60 seconds to speak.",
       "audioSrc": "/audio/speaking/speaking_prompt03.mp3",
       "transcript": "Some people believe that university education should be free for all students. Others think students should pay tuition fees. Which view do you support? Explain why you have 15 seconds to prepare and 60 seconds to speak.",
+      "sampleAnswer": "I believe that university education should be tuition-free for all students. The primary reason is that education is a fundamental right, not a privilege reserved for those who can afford it. When people are burdened with massive debt from day one, it limits their career choices — they may avoid lower-paying but socially valuable jobs like teaching or social work. Free university would also reduce inequality, giving capable students from low-income families the same opportunities as their wealthier peers. Countries like Germany and Norway have successfully implemented free higher education, and their graduate outcomes are strong. While taxpayers would bear the cost, the long-term economic benefits of an educated population outweigh the expense.",
+      "followUps": [
+        "Should universities be free at any level?",
+        "What about private universities — should they also be free?"
+      ],
       "seconds": 60,
       "metTaskType": "Q3"
     },
@@ -38,6 +48,11 @@ export default {
       "instruction": "Listen to the prompt audio. 20 seconds to prepare, 90 seconds to speak.",
       "audioSrc": "/audio/speaking/speaking_prompt04.mp3",
       "transcript": "Our city is planning to ban private cars from the city center to reduce pollution and traffic. What are the advantages and disadvantages of this plan? You have 20 seconds to prepare and 90 seconds to speak.",
+      "sampleAnswer": "Banning private cars from the city center has both clear advantages and notable disadvantages. On the positive side, air quality would improve significantly, especially in the downtown area where traffic congestion is heaviest. This would benefit public health, particularly for people with respiratory conditions like asthma. Noise pollution would also decrease, making the city center more pleasant for residents and visitors. Additionally, the move would encourage people to use public transport, cycling, and walking, which promotes a healthier lifestyle. However, the disadvantages are also important. Not everyone lives near reliable public transport, so some commuters would face longer, less convenient journeys. Delivery services and tradespeople might struggle to access businesses on time. There could also be economic impacts on parking-dependent businesses. A balanced approach might include exemptions for essential services and a transition period with improved bus and bike-lane infrastructure before the ban takes full effect.",
+      "followUps": [
+        "What alternatives to driving would work in your city?",
+        "How should the transition be managed?"
+      ],
       "seconds": 90,
       "metTaskType": "Q4"
     },
@@ -51,6 +66,11 @@ export default {
       "instruction": "Listen to the prompt audio. 20 seconds to prepare, 90 seconds to speak.",
       "audioSrc": "/audio/speaking/speaking_prompt05.mp3",
       "transcript": "Your school is considering replacing traditional textbooks with tablets and digital materials entirely. I am the school principal. Convince me that this is or is not a good idea for our students. You have 20 seconds to prepare and 90 seconds to speak.",
+      "sampleAnswer": "Thank you for raising this important question. While digital materials offer several benefits, I believe the school should not replace traditional textbooks entirely at this time. On the positive side, tablets can hold hundreds of books, which reduces costs and makes it easier to keep content up to date — no need to print new editions every few years. Students can also search text instantly, highlight passages, and use built-in dictionaries, which supports independent learning. However, there are significant risks. Many students already spend too much time on screens, leading to eye strain and disrupted sleep patterns. Tablets are also expensive to replace if damaged or stolen, and not all families may be able to afford them. Furthermore, some research suggests that reading on paper improves comprehension and retention compared to reading on screens. My recommendation is a hybrid approach: use tablets for subjects where interactivity is valuable, such as science and language learning, while keeping physical textbooks for longer reading passages in literature and history.",
+      "followUps": [
+        "Do tablets really help learning?",
+        "How can schools manage the cost of devices?"
+      ],
       "seconds": 90,
       "metTaskType": "Q5"
     },

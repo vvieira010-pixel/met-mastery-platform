@@ -71,6 +71,74 @@ function FeedbackList({ items, tone = 'var(--text)' }) {
   );
 }
 
+function normalizeAnswer(str) {
+  return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+}
+
+// Resolve the correct answer from the saved result first, then fall back to the
+// exercise definition. Some Practice Studio exercise types (Level Up, Synonym
+// Swap, grammar sentence-correction) only persist `correct` and never a
+// `correctAnswer`, so we must read the answer off the exercise itself — otherwise
+// the "review the correct answer below" banner dangles with nothing beneath it.
+function deriveCorrectAnswer(result, exercise) {
+  if (result?.correctAnswer) return result.correctAnswer;
+  const answers = Array.isArray(result?.answers) ? result.answers : [];
+  if (answers.length) {
+    const expected = answers.map(a => (a && (a.expected || a.correct)) || '').filter(Boolean);
+    if (expected.length) return expected.join('  •  ');
+  }
+  const opts = Array.isArray(exercise?.options) ? exercise.options : [];
+  if (opts.length) {
+    const c = exercise?.correct;
+    if (Number.isInteger(c) && opts[c] != null) {
+      const val = opts[c];
+      if (typeof val === 'string') return val;
+      if (val && typeof val === 'object' && 'text' in val) return val.text;
+    }
+    if (typeof c === 'string') {
+      const direct = opts.find(o => typeof o === 'string' && normalizeAnswer(o) === normalizeAnswer(c));
+      if (direct) return direct;
+    }
+  }
+  if (Array.isArray(exercise?.swaps) && exercise.swaps.length) {
+    const swapAnswers = exercise.swaps.map(swap => {
+      const swapOpts = Array.isArray(swap?.options) ? swap.options : [];
+      if (Number.isInteger(swap?.correct) && swapOpts[swap.correct] != null) {
+        const val = swapOpts[swap.correct];
+        return typeof val === 'string' ? val : val?.text || '';
+      }
+      return '';
+    }).filter(Boolean);
+    if (swapAnswers.length > 0) return swapAnswers.join('  •  ');
+  }
+  if (exercise?.correctedText) return exercise.correctedText;
+  if (typeof exercise?.correct === 'string') return exercise.correct;
+  if (exercise?.answer) return exercise.answer;
+  return '';
+}
+
+function deriveSelectedAnswer(result, exercise) {
+  if (result?.selectedAnswer) return result.selectedAnswer;
+  if (result?.givenAnswer) return result.givenAnswer;
+  if (typeof result?.selected === 'string') return result.selected;
+  // Synonym Swap stores selected as {0: 1, 1: 2} — resolve indices to option text
+  if (result?.selected && typeof result?.selected === 'object' && !Array.isArray(result?.selected) && Array.isArray(exercise?.swaps)) {
+    const selected = result.selected;
+    const parts = exercise.swaps.map((swap, i) => {
+      const idx = selected[i];
+      const opts = Array.isArray(swap?.options) ? swap.options : [];
+      if (idx != null && opts[idx] != null) {
+        const val = opts[idx];
+        return typeof val === 'string' ? val : val?.text || '';
+      }
+      return swap?.word || '';
+    }).filter(Boolean);
+    if (parts.length > 0) return parts.join('  •  ');
+  }
+  if (result?.selected != null) return String(result.selected);
+  return '';
+}
+
 function SavedPracticeFeedback({ exercise, result }) {
   const [savedAudioUrl, setSavedAudioUrl] = useState(() => result?.audioB64 || result?.audioUrl || null);
   const evaluation = result?.evaluation;
@@ -93,12 +161,8 @@ function SavedPracticeFeedback({ exercise, result }) {
   }, [result?.audioB64, result?.audioPath, result?.audioUrl]);
 
   const prompt = exercise?.question || exercise?.prompt || exercise?.template || exercise?.errorText || '';
-  const options = Array.isArray(exercise?.options) ? exercise.options : [];
-  const correctAnswer = result?.correctAnswer
-    || (options.length > 0 && Number.isInteger(exercise?.correct) ? options[exercise.correct] : '')
-    || exercise?.correctedText
-    || '';
-  const selectedAnswer = result?.selectedAnswer || result?.givenAnswer || '';
+  const correctAnswer = deriveCorrectAnswer(result, exercise);
+  const selectedAnswer = deriveSelectedAnswer(result, exercise);
   const answerRows = Array.isArray(result?.answers) ? result.answers : [];
   const explanation = result?.explanation || exercise?.explanation || '';
 
@@ -116,7 +180,11 @@ function SavedPracticeFeedback({ exercise, result }) {
         )}
         {result?.correct !== null && result?.correct !== undefined && (
           <div style={{ padding: '9px 12px', background: result.correct ? 'var(--ex-correct-bg)' : 'var(--ex-wrong-bg)', border: `1px solid ${result.correct ? 'var(--ex-correct-border)' : 'var(--ex-wrong-border)'}`, borderRadius: 'var(--radius-sm, 6px)', color: result.correct ? 'var(--ex-correct-text)' : 'var(--ex-wrong-text)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>
-            {result.correct ? 'Correct answer' : 'Answer checked — review the correct answer below'}
+            {result.correct
+              ? 'Correct'
+              : correctAnswer
+                ? 'Answer checked — review the correct answer below'
+                : 'Not quite — see the question above for guidance'}
           </div>
         )}
         {selectedAnswer && (
@@ -242,6 +310,22 @@ function SavedPracticeFeedback({ exercise, result }) {
         </section>
       )}
       {evaluation.deliveryEvidence && <div style={{ paddingTop: 2, fontSize: 'var(--text-xs)', color: 'var(--text-2)', lineHeight: 1.55 }}><strong>Evidence note:</strong> {evaluation.deliveryEvidence}</div>}
+      {exercise.sampleAnswer && (
+        <section aria-label="Sample answer" style={{ padding: '12px 14px', background: 'var(--ex-panel-bg)', border: '1px solid var(--ex-panel-border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+          <strong style={{ display: 'block', marginBottom: 8, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Sample answer</strong>
+          <div style={{ color: 'var(--ex-panel-text)', fontSize: 'var(--text-sm)', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{exercise.sampleAnswer}</div>
+          {Array.isArray(exercise.followUps) && exercise.followUps.length > 0 && (
+            <div style={{ marginTop: 12 }}>
+              <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Try answering these follow-up questions</strong>
+              <ul style={{ margin: 0, padding: '0 0 0 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {exercise.followUps.map((q, i) => (
+                  <li key={i} style={{ fontSize: 'var(--text-sm)', color: 'var(--text)', lineHeight: 1.6 }}>{q}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 }
