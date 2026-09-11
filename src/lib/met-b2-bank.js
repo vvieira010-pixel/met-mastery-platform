@@ -26,7 +26,7 @@ function convertItem(moduleType, item) {
         question: q.stem,
         options: q.options,
         correct: q.correct,
-        explanation: q.explanation,
+        explanation: q.explanation || q.answerExplanation || q.rationale || '',
         pictureHint: '',
       }));
 

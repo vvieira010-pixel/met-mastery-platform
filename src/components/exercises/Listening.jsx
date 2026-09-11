@@ -7,7 +7,8 @@
  *
  * Flow:
  *   Student presses ▶ → audio plays (limit: exercise.plays, default 2)
- *   After first play → question + options appear
+ *   The question and options are visible immediately; audio can be played before
+ *   or after answering, subject to the configured play limit.
  *   Student selects an option → submits → instant feedback + explanation
  *
  * Supports multi-speaker dialogues via exercise.script array:
@@ -40,7 +41,7 @@ function getVoiceForSpeaker(speaker, voices) {
 }
 
 /* ── Component ────────────────────────────────────────────────── */
-export default function Listening({ exercise, onComplete }) {
+export default function Listening({ exercise, response, onComplete }) {
   const {
     audioText = '',
     audioSrc = '',
@@ -58,13 +59,18 @@ export default function Listening({ exercise, onComplete }) {
     script = null,
   } = exercise;
 
-const [playCount, setPlayCount] = useState(0);
+  const savedSelected = Number.isInteger(response?.selectedIndex)
+    ? response.selectedIndex
+    : Number.isInteger(response?.selected) && response.selected >= 0
+      ? response.selected
+      : null;
+  const [playCount, setPlayCount] = useState(0);
   const [, setError]              = useState('');
   const [playing, setPlaying]     = useState(false);
-  const [selected, setSelected]   = useState(null);
-  const [gapAnswers, setGapAnswers] = useState({});
-  const [orderAnswer, setOrderAnswer] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
+  const [selected, setSelected]   = useState(savedSelected);
+  const [gapAnswers, setGapAnswers] = useState(response?.gaps || {});
+  const [orderAnswer, setOrderAnswer] = useState(response?.order || []);
+  const [submitted, setSubmitted] = useState(Boolean(response?.submitted || response?.locked));
   const [showTranscript, setShowTranscript] = useState(false);
   const [audioUrl, setAudioUrl]   = useState(audioSrc || null);
   const [isFetchingAudio, setIsFetchingAudio] = useState(false);
@@ -205,6 +211,11 @@ const [playCount, setPlayCount] = useState(0);
       selectedIndex: selected,
       selectedAnswer: selected != null ? options[selected] : '',
       correctAnswer: correct != null ? options[correct] : '',
+      selected,
+      gaps: gapAnswers,
+      order: orderAnswer,
+      submitted: true,
+      locked: true,
       answers: listeningFormat === 'gap_fill'
         ? gaps.map((gap, i) => ({
           given: gapAnswers[gap.id || i] || '',
@@ -350,7 +361,7 @@ const [playCount, setPlayCount] = useState(0);
         </div>
       )}
 
-      {playCount > 0 && (
+      <div>
         <div>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{listeningFormat.replace(/_/g, ' ')}</div>
           {sourceSentence && listeningFormat === 'paraphrase' && <div style={{ padding: '10px 12px', marginBottom: 12, borderLeft: '3px solid #0E5F6B', background: 'var(--accent-subtle)', color: TEXT, fontStyle: 'italic' }}>“{sourceSentence}”</div>}
@@ -366,6 +377,7 @@ const [playCount, setPlayCount] = useState(0);
               <button
                 key={i}
                 onClick={() => !submitted && setSelected(i)}
+                disabled={submitted}
                 style={optionStyle(i)}
                 role="radio"
                 aria-checked={selected === i}
@@ -441,7 +453,7 @@ const [playCount, setPlayCount] = useState(0);
             </div>
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

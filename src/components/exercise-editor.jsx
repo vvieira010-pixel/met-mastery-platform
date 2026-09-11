@@ -873,7 +873,7 @@ function ListenEditor({ ex, update, onGenerateAudio }) {
           <input
             className="input" value={ex.explanation || ''}
             onChange={e => update({ explanation: e.target.value })}
-            placeholder="She says she kept checking her phone and only finished one chapter."
+            placeholder="Explain why the correct answer fits the listening script."
           />
         </div>
         <div style={fieldWrap}>

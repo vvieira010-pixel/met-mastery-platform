@@ -37,7 +37,18 @@ export function ExercisePlayer({ exercise, response, onResponse, readOnly = fals
     case 'order': return <OrderPlayer ex={exercise} res={response} update={update} readOnly={readOnly} />;
     case 'fix':   return <FixPlayer   ex={exercise} res={response} update={update} readOnly={readOnly} />;
     case 'flash':    return <FlashPlayer    ex={exercise} res={response} update={update} readOnly={readOnly} />;
-    case 'listen':   return <Listening exercise={exercise} onComplete={(result) => update({ selected: result?.correct ? exercise.correct : -1 })} />;
+    case 'listen':   return (
+      <Listening
+        exercise={exercise}
+        response={response}
+        onComplete={(result) => update({
+          ...result,
+          selected: result?.selectedIndex ?? null,
+          submitted: true,
+          locked: true,
+        })}
+      />
+    );
     case 'dialogue': return <DialoguePlayer ex={exercise} res={response} update={update} readOnly={readOnly} />;
     case 'swap':     return <SwapPlayer     ex={exercise} res={response} update={update} readOnly={readOnly} />;
     case 'levelup':  return <LevelUpPlayer  ex={exercise} res={response} update={update} readOnly={readOnly} />;

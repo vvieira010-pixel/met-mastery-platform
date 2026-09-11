@@ -220,6 +220,7 @@ export default function StudentHomework({ student, "data-testid": testId }) {
         case 'blank': return `[BLANK] ${ex.template}\nAnswers: ${(res.blanks || []).join(', ')}`;
         case 'short': return `[SHORT] ${ex.prompt}\n${res.text || ''}`;
         case 'speak': return `[SPEAK] ${ex.prompt}\nTranscript: ${res.transcript || '(audio submitted)'}`;
+        case 'listen': return `[LISTEN] ${ex.question}\nAnswer: ${res.selectedAnswer || ex.options?.[res.selected] || 'none'}\nResult: ${res.correct ? 'correct' : 'incorrect'}`;
         case 'order': return `[ORDER] Order: ${(res.order || []).map(i => i + 1).join(' → ')}`;
         case 'fix':   return `[FIX] ${res.text || ''}`;
         case 'flash': return `[FLASH] ${res.learned || 0} cards learned`;
