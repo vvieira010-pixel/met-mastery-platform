@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import '../styles/landing-complete.css';
-import '../styles/landing-complete-overrides.css';
-import '../styles/landing-complete-full-page.css';
-import '../styles/landing-palette.css';
+import '../styles/landing-complete.bundle.css';
 
 const skills = [['Reading', '78%'], ['Listening', '54%'], ['Writing', '66%'], ['Speaking', '71%'], ['Grammar', '64%'], ['Vocabulary', '69%']];
 const methodSteps = [

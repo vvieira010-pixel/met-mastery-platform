@@ -1,5 +1,5 @@
-/* eslint-disable no-undef */
-const crypto = require('crypto');
+import { createHmac } from 'node:crypto';
+
 const env = (name) => process.env[name] || '';
 
 const BASE_URL = 'https://api.zoom.us/v2';
@@ -24,7 +24,7 @@ async function getJwtToken() {
     aud: 'https://api.zoom.us'
   }));
   const signature = base64url(
-    crypto.createHmac('sha256', secret)
+    createHmac('sha256', secret)
       .update(`${header}.${payload}`).digest()
   );
   return `${header}.${payload}.${signature}`;

@@ -167,7 +167,14 @@ export function useHomeworkAI(scope) {
         try { await saveExerciseToLibrary(ex); } catch {}
       }
       setLibVersion(v => v + 1);
-      window.toast?.(`MET Homework forged: ${result.exercises.length} validated exercises.`, 'ok');
+      // A partial set is still a success — say so plainly instead of reporting a
+      // clean forge. `partialNote` is null when every requested task type landed.
+      window.toast?.(
+        result.partialNote
+          ? `MET Homework forged: ${result.exercises.length} validated exercises. ${result.partialNote}`
+          : `MET Homework forged: ${result.exercises.length} validated exercises.`,
+        result.partialNote ? 'warn' : 'ok',
+      );
     } catch (e) {
       window.toast?.(`Forge failed: ${e.message}`, 'error');
     } finally {

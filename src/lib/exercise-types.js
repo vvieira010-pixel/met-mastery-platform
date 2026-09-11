@@ -105,19 +105,25 @@ export function autoGrade(exercise, response) {
       const studentBlanks = response.blanks || [];
       const correctBlanks = exercise.blanks || [];
       let hits = 0;
+      let total = 0;
       correctBlanks.forEach((answer, i) => {
+        if (!answer || !String(answer).trim()) return; // no answer key -> skip (teacher review)
+        total += 1;
         const student = (studentBlanks[i] || '').trim().toLowerCase();
         // answer can be pipe-separated alternatives: "have been working|have worked"
-        const accepted = answer.split('|').map(a => a.trim().toLowerCase());
-        if (accepted.includes(student)) hits++;
+        const accepted = String(answer).split('|').map(a => a.trim().toLowerCase());
+        if (accepted.includes(student)) hits += 1;
       });
-      const total = correctBlanks.length || 1;
+      const denom = total || 1;
+      const allCorrect = total > 0 && hits === total;
       return {
-        correct: hits === total,
-        score: hits / total,
-        feedback: hits === total
-          ? 'All blanks correct!'
-          : `${hits}/${total} blanks correct.`,
+        correct: allCorrect,
+        score: hits / denom,
+        feedback: total === 0
+          ? 'No answer key for this item yet.'
+          : allCorrect
+            ? 'All blanks correct!'
+            : `${hits}/${total} blanks correct.`,
       };
     }
 

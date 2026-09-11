@@ -47,7 +47,11 @@ jobs:
 
       - name: Run ESLint
         # eslint --max-warnings 0 turns warnings into errors so the gate is strict.
-        run: npx eslint src/ --max-warnings 0 --format compact
+        # api/ must be linted too: it is a separate ES-module tree ("type": "module")
+        # that the bundler compiles independently, and an api/-only defect (a stray
+        # CommonJS require() in api/_routes/_zoom.js) once crashed `npm run dev`
+        # outright while src/ stayed green.
+        run: npx eslint src/ api/ --max-warnings 0 --format compact
 
   # ------------------------------------------------------------------
   # 2. Type check — TypeScript no-emit

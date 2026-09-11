@@ -55,7 +55,9 @@ export function isStructuredAiExerciseComplete(ex) {
   }
   if (ex.type === 'blank') {
     const blankCount = (String(ex.template || '').match(/_{3,}/g) || []).length;
-    return Boolean(ex.template) && blankCount > 0 && (ex.blanks || []).filter(Boolean).length >= blankCount;
+    // Require at least one real answer key (not all blanks filled) so a partially
+    // returned item is still usable; the auto-grader skips blanks without a key.
+    return Boolean(ex.template) && blankCount > 0 && (ex.blanks || []).filter(Boolean).length >= 1;
   }
   if (ex.type === 'short') return Boolean(ex.prompt) && Boolean(ex.rubric) && Number(ex.targetWords) > 0;
   if (ex.type === 'speak') return Boolean(ex.prompt) && Number(ex.targetSeconds) > 0;
@@ -117,10 +119,10 @@ export function applyAiTaskToExercise(exercise, aiTask) {
   if (aiTask?.teacherNote) ex.teacherNote = aiTask.teacherNote;
 
   if (ex.type === 'mcq') {
-    const options = normalizeMcqOptions(aiTask?.options);
+    const { options, correct } = normalizeMcq(aiTask?.options, aiTask?.correct);
     ex.question = aiTask?.question || content;
     ex.options = options;
-    ex.correct = normalizeCorrectIndex(aiTask?.correct, options.length);
+    ex.correct = correct;
     ex.explanation = aiTask?.explanation || aiTask?.rationale || aiTask?.teacherNote || 'The correct answer best matches the MET skill focus in this item.';
     return ex;
   }
@@ -163,27 +165,30 @@ export function applyAiTaskToExercise(exercise, aiTask) {
     ex.source = aiTask?.source || '';
     const aiQs = Array.isArray(aiTask?.questions) ? aiTask.questions : [];
     ex.questions = aiQs.length
-      ? aiQs.map(q => ({
-          id: exId(),
-          question: q.question || '',
-          options: normalizeMcqOptions(q.options),
-          correct: normalizeCorrectIndex(q.correct, 4),
-          explanation: q.explanation || '',
-        }))
+      ? aiQs.map(q => {
+          const { options, correct } = normalizeMcq(q.options, q.correct);
+          return {
+            id: exId(),
+            question: q.question || '',
+            options,
+            correct,
+            explanation: q.explanation || '',
+          };
+        })
       : ex.questions;
     return ex;
   }
 
   if (ex.type === 'listen') {
-    const options = normalizeMcqOptions(aiTask?.options);
     const listeningScript = normalizeListeningScript({ ...aiTask, audioText: aiTask?.audioText || aiTask?.script || content });
+    const { options, correct } = normalizeMcq(aiTask?.options, aiTask?.correct);
     ex.audioMode = listeningScript.audioMode;
     ex.audioText = listeningScript.audioText;
     ex.audioLines = listeningScript.audioLines;
     ex.speakers = listeningScript.speakers;
     ex.question = aiTask?.question || 'What is the speaker mainly trying to do?';
     ex.options = options;
-    ex.correct = normalizeCorrectIndex(aiTask?.correct, options.length);
+    ex.correct = correct;
     ex.explanation = aiTask?.explanation || aiTask?.rationale || aiTask?.teacherNote || 'The correct answer follows from the speaker purpose and key details in the audio.';
     ex.plays = Number.isFinite(Number(aiTask?.plays)) ? Number(aiTask.plays) : 2;
     if (aiTask?.pictureHint) ex.pictureHint = aiTask.pictureHint;
@@ -197,20 +202,50 @@ export function applyAiTaskToExercise(exercise, aiTask) {
   return ex;
 }
 
-function normalizeMcqOptions(options) {
-  if (!Array.isArray(options) || options.length === 0) return ['', '', '', ''];
-  const clean = options
-    .map(opt => (typeof opt === 'string' ? opt : opt?.text || opt?.label || ''))
-    .filter(Boolean)
-    .slice(0, 4);
-  while (clean.length < 4) clean.push('');
-  return clean;
+// Generic, context-neutral distractors used to repair MCQ items that came back
+// from the AI with fewer than four answer options. They are safe because the
+// correct index is always resolved against the COUNT OF REAL options (see
+// normalizeMcq), so a repaired item can never auto-grade one of these as the
+// keyed answer.
+const MCQ_FALLBACK_DISTRACTORS = [
+  'None of the above',
+  'All of the above',
+  'Both A and B',
+  "I'm not sure",
+];
+
+export function normalizeMcq(rawOptions, correct) {
+  const clean = Array.isArray(rawOptions)
+    ? rawOptions
+        .map(opt => (typeof opt === 'string' ? opt : opt?.text || opt?.label || ''))
+        .filter(Boolean)
+    : [];
+  const realCount = clean.length;
+  const used = new Set(clean.map(o => o.toLowerCase()));
+  const options = [...clean];
+  for (const d of MCQ_FALLBACK_DISTRACTORS) {
+    if (options.length >= 4) break;
+    if (!used.has(d.toLowerCase())) options.push(d);
+  }
+  while (options.length < 4) options.push('');
+  // Resolve the answer key against the real option count, not the padded length,
+  // so a 3-option item whose key points past the last real option (e.g. "D") is
+  // treated as a broken key (null) and dropped rather than mis-graded toward a
+  // synthetic distractor. With zero real options this yields null and the item
+  // is dropped rather than keyed to a fallback distractor.
+  const correctIndex = normalizeCorrectIndex(correct, realCount);
+  return { options, correct: correctIndex };
 }
 
 function normalizeCorrectIndex(correct, optionCount) {
   if (typeof correct === 'string') {
     const trimmed = correct.trim().toUpperCase();
-    if (/^[A-D]$/.test(trimmed)) return trimmed.charCodeAt(0) - 65;
+    if (/^[A-D]$/.test(trimmed)) {
+      const idx = trimmed.charCodeAt(0) - 65;
+      // Letter key must stay within the real option count; an item keyed "D"
+      // when only three options exist is a broken key, not a valid distractor.
+      return idx < optionCount ? idx : null;
+    }
   }
   const n = Number(correct);
   if (Number.isInteger(n) && n >= 0 && n < optionCount) return n;
@@ -234,16 +269,22 @@ function normalizeBlankAnswer(value) {
 }
 
 function normalizeBlankAnswers(blanks, template) {
-  if (Array.isArray(blanks) && blanks.length > 0) {
-    const clean = blanks.map(normalizeBlankAnswer).filter(Boolean);
-    if (clean.length > 0) return clean;
-  }
-  if (blanks && typeof blanks === 'object') {
-    const direct = normalizeBlankAnswer(blanks);
-    if (direct) return [direct];
-  }
   const count = (String(template || '').match(/_{3,}/g) || []).length;
-  return Array.from({ length: count }, () => '');
+  if (count === 0) return [];
+  let real = [];
+  if (Array.isArray(blanks)) {
+    real = blanks.map(normalizeBlankAnswer).filter(Boolean);
+  } else if (blanks && typeof blanks === 'object') {
+    const direct = normalizeBlankAnswer(blanks);
+    if (direct) real = [direct];
+  }
+  // Preserve one slot per ___ in the template so answer keys stay aligned with
+  // the rendered blank inputs. Real answers are kept in place; missing slots are
+  // left empty and surfaced for teacher review instead of silently dropping the
+  // whole exercise.
+  const result = [];
+  for (let i = 0; i < count; i++) result.push(real[i] || '');
+  return result;
 }
 
 function normalizeSentences(sentences, content) {

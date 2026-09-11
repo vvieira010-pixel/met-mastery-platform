@@ -482,7 +482,7 @@ export default function App() {
     return (
       <>
         <OfflineBar />
-        <a href="#student-content" className="skip-nav">Skip to content</a>
+        <a href="#main-content" className="skip-nav">Skip to content</a>
         <ErrorBoundary label="Dashboard unavailable">
           <Suspense fallback={<PageLoader />}>
             <StudentDashboard 

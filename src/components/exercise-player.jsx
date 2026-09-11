@@ -86,7 +86,7 @@ function MCQPlayer({ ex, res, update, readOnly }) {
     <div>
       {ex.imageUrl && (
         <div style={{ marginBottom: 14, textAlign: 'center' }}>
-           <img src={ex.imageUrl} alt={ex.imageAlt || ''} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', borderRadius: 'var(--radius-sm)', objectFit: 'contain' }} />
+           <img src={ex.imageUrl} alt={ex.imageAlt || ex.imageDescription || 'Picture for this task'} loading="lazy" width="640" height="360" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', borderRadius: 'var(--radius-sm)', objectFit: 'contain' }} />
         </div>
       )}
       <p style={{ margin: '0 0 14px', fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--text)', lineHeight: 1.55 }}>
@@ -1582,7 +1582,7 @@ function ReadPlayer({ ex, res, update, readOnly }) {
 
       {ex.imageUrl && (
         <div style={{ marginBottom: 14, textAlign: 'center' }}>
-           <img src={ex.imageUrl} alt={ex.imageAlt || ''} loading="lazy" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', borderRadius: 'var(--radius-sm)', objectFit: 'contain' }} />
+           <img src={ex.imageUrl} alt={ex.imageAlt || ex.imageDescription || 'Picture for this task'} loading="lazy" width="640" height="360" style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9', borderRadius: 'var(--radius-sm)', objectFit: 'contain' }} />
         </div>
       )}
 

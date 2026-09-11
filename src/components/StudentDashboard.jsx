@@ -416,7 +416,7 @@ export default function StudentDashboard({
   }
 
   return (
-    <div className="student-dashboard-main" style={{ padding: '24px 16px 48px', maxWidth: 1120, margin: '0 auto' }} data-testid={testId}>
+    <main id="main-content" tabIndex={-1} className="student-dashboard-main" style={{ padding: '24px 16px 48px', maxWidth: 1120, margin: '0 auto' }} data-testid={testId}>
       {/* ── ONBOARDING TOUR ── */}
       <StudentOnboardingTour />
 
@@ -1187,6 +1187,6 @@ export default function StudentDashboard({
         </div>
 
       </div>
-    </div>
+    </main>
   );
 }
