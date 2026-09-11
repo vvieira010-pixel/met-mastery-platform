@@ -468,7 +468,7 @@ export default async function handler(req, res) {
   }
 
   const fluencyLine = fluency
-    ? `ASR word-timing facts (use for Delivery, do not re-derive from text): ${fluency.wordCount} words in ${fluency.durationSec ?? '?'}s (~${fluency.wpm ?? '?'} wpm vs ~150 conversational), ${fluency.pausesOver500ms} pauses ≥0.5s, ${fluency.pausesOver1200ms} pauses ≥1.2s, longest gaps ms: [${(fluency.longestPausesMs || []).join(', ')}].`
+    ? `Observed ASR word-timing facts (use as contextual evidence for Delivery, not as automatic penalties): ${fluency.wordCount} words in ${fluency.durationSec ?? '?'}s (~${fluency.wpm ?? '?'} wpm; approximately 150 wpm is only a rough conversational reference), ${fluency.pausesOver500ms} pauses ≥0.5s, ${fluency.pausesOver1200ms} pauses ≥1.2s, longest gaps ms: [${(fluency.longestPausesMs || []).join(', ')}].`
     : 'No ASR word-timing evidence available (transcript-only input) — rate Delivery conservatively and flag pronunciation, rhythm, and hesitation evidence for teacher review.';
 
   const prompt = buildExaminerPrompt({ taskPrompt, transcription, fluencyLine, asrProvider, asrConfidence });

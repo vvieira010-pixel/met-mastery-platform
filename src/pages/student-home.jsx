@@ -45,6 +45,8 @@ function StatChip({ icon, label, value, sub, tone, onClick, muted }) {
   return <div className={cls} style={muted ? { opacity: 0.55 } : undefined} aria-disabled={muted || undefined}>{content}</div>;
 }
 
+const REFERRAL_MESSAGE = 'I’m studying with MET Mastery. If you start the course through my referral, we both receive one extra class. Ask the teacher to register the referral before you start.';
+
 const LEARNING_LOOP = [
   { id: 'class', label: 'Class', tab: 'home' },
   { id: 'feedback', label: 'Feedback', tab: 'feedback' },
@@ -104,6 +106,7 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
   const [qpSessionKey, setQpSessionKey] = useState(0);
   const [qpProgress, setQpProgress] = useState({});
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [referralCopied, setReferralCopied] = useState(false);
 
   // recharts is ~127 KB gzip — lazy-load it so it stays out of the entry chunk.
   const [loaded, setLoaded] = useState(false);
@@ -262,6 +265,35 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
     const exercises = due.map(e => toMCQ(e, all));
     setReviewExercises(exercises);
     setReviewMode(true);
+  }
+
+  async function copyReferralMessage() {
+    if (!navigator.clipboard?.writeText) {
+      window.toast?.('Copy is not available in this browser. Please copy the message manually.', 'warn');
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(REFERRAL_MESSAGE);
+      setReferralCopied(true);
+      window.toast?.('Referral message copied.', 'ok');
+    } catch (error) {
+      console.warn('[StudentHome] failed to copy referral message:', error);
+      window.toast?.('Could not copy the referral message. Please try again.', 'warn');
+    }
+  }
+
+  async function shareReferral() {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'MET Mastery referral', text: REFERRAL_MESSAGE });
+        return;
+      } catch (error) {
+        // Closing the native share sheet is not an error. Fall back to copy for
+        // browsers where sharing is unavailable or fails for another reason.
+        if (error?.name === 'AbortError') return;
+      }
+    }
+    await copyReferralMessage();
   }
 
   const QP_SKILLS = [
@@ -547,6 +579,28 @@ export default function StudentHome({ student, onTab, "data-testid": testId }) {
                 )}
               </Card>
             )}
+
+            <Card bezel className="referral-card" data-testid="student-referral-card">
+              <div className="referral-card-inner">
+                <span className="referral-card-icon" aria-hidden="true"><Icon.group size={22} /></span>
+                <div className="referral-card-body">
+                  <h2 className="referral-card-title">Refer a friend, earn one extra class</h2>
+                  <p className="referral-card-desc">
+                    When someone starts the course because you referred them, you both receive one extra class. Ask your teacher to register the referral before the new student starts.
+                  </p>
+                  <div className="referral-card-actions">
+                    <button type="button" className="referral-btn referral-btn--primary" onClick={shareReferral}>
+                      <Icon.send size={14} />
+                      Share referral
+                    </button>
+                    <button type="button" className="referral-btn" onClick={copyReferralMessage}>
+                      {referralCopied ? <Icon.check size={14} /> : <Icon.copy size={14} />}
+                      {referralCopied ? 'Copied' : 'Copy message'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Card>
 
             <div className="home-bento-cell" style={{ gridColumn: '1 / -1' }}>
               <LiveClassSchedulingGuardrails
