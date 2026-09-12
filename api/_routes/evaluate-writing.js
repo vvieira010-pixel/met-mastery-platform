@@ -51,9 +51,8 @@ function extractWholeWritingScores(evaluation) {
   for (const key of WRITING_KEYS) {
     const raw = source[key];
     if (raw === null || raw === undefined || raw === '') return null;
-    const value = Number(raw);
-    if (!Number.isInteger(value) || value < 0 || value > 4) return null;
-    scores[key] = value;
+    if (typeof raw !== 'number' || !Number.isInteger(raw) || raw < 0 || raw > 4) return null;
+    scores[key] = raw;
   }
   return scores;
 }
