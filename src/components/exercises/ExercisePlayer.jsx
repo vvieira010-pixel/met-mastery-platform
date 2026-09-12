@@ -443,7 +443,7 @@ const ExerciseCard = memo(function ExerciseCard({ exercise, index, total, result
   }, [onHintLevelChange]);
 
   const handleComplete = useCallback((answerResult) => {
-    onComplete?.({ ...answerResult, errorCategory: errorCategory || null });
+    return onComplete?.({ ...answerResult, errorCategory: errorCategory || null });
   }, [onComplete, errorCategory]);
 
   function renderExercise() {
@@ -801,6 +801,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
     const savedResult = { ...result, index: idx };
     savingExerciseRef.current = true;
     setSavingExercise(true);
+    setSubmissionError('');
     try {
       await onExerciseComplete?.({ exercise: exercises[idx], index: idx, result: savedResult });
       setResults(prev => {
@@ -811,7 +812,6 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
       return true;
     } catch (error) {
       setSubmissionError(error?.message || 'We could not save this question. Please try again.');
-      setReviewVersion(version => version + 1);
       return false;
     } finally {
       savingExerciseRef.current = false;
@@ -820,7 +820,7 @@ export default function ExercisePlayer({ exercises: raw, title, onSessionComplet
   }, [exercises, onExerciseComplete]);
 
   const handleComplete = useCallback((result) => {
-    void saveExerciseResult(result);
+    return saveExerciseResult(result);
   }, [saveExerciseResult]);
 
   const buildSummary = useCallback((completedResults = resultsRef.current) => {

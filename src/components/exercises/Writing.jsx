@@ -38,24 +38,45 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
 
   const canScore = text.trim().length >= minChars;
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  const scoredAttemptLocked = practiceStudio && Boolean(result);
+
+  async function persistScoredResult(evaluation) {
+    if (!practiceStudio || !onComplete) return true;
+    const saved = await onComplete({
+      score: evaluation?.scaledScore ?? null,
+      total: 80,
+      correct: null,
+      evaluation,
+      responseText: text,
+    });
+    if (saved !== true) {
+      throw new Error('Your AI score is ready, but it was not saved. Retry saving without rescoring.');
+    }
+    setFinalized(true);
+    return true;
+  }
 
   async function handleScore() {
-    if (!canScore) return;
+    if (!canScore || loading || finalized) return;
     setLoading(true);
     setError(null);
     try {
+      // If scoring already succeeded but persistence failed, retry only the
+      // Supabase save. The learner should never have to pay for another score
+      // or rewrite the response because of a transient database failure.
+      if (practiceStudio && result) {
+        await persistScoredResult(result);
+        return;
+      }
+
       const token = readStoredSupabaseSession()?.access_token || '';
       const data = await scoreWriting({ essay: text, taskPrompt: prompt, practiceStudio, token });
-      setResult(data.evaluation);
-      if (practiceStudio && onComplete) {
-        setFinalized(true);
-        onComplete({
-          score: data.evaluation?.scaledScore ?? null,
-          total: 80,
-          correct: null,
-          evaluation: data.evaluation,
-          responseText: text,
-        });
+      const evaluation = data?.evaluation;
+      if (!evaluation) throw new Error('AI scoring returned no evaluation. Please try again.');
+      setResult(evaluation);
+
+      if (practiceStudio) {
+        await persistScoredResult(evaluation);
       }
     } catch (e) {
       setError(e.message);
@@ -95,7 +116,7 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
         onChange={(e) => setText(e.target.value.slice(0, maxChars))}
         placeholder="Write your response here..."
         rows={exercise.rows || 8}
-        disabled={loading || finalized}
+        disabled={loading || finalized || scoredAttemptLocked}
         style={{
           width: '100%',
           minHeight: 160,
@@ -130,7 +151,13 @@ export default function Writing({ exercise, onComplete, practiceStudio = false }
             cursor: canScore && !loading && !finalized ? 'pointer' : 'not-allowed',
           }}
         >
-          {loading ? 'Scoring with AssemblyAI…' : finalized ? 'AI score saved' : 'Score my writing'}
+          {loading
+            ? (result ? 'Saving score…' : 'Scoring your writing…')
+            : finalized
+              ? 'AI score saved'
+              : practiceStudio && result
+                ? 'Retry saving'
+                : 'Score my writing'}
         </button>
       </div>
 

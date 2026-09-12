@@ -10,6 +10,7 @@ const exercisePlayer = fs.readFileSync(path.join(root, 'src', 'components', 'exe
 const writing = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'Writing.jsx'), 'utf8');
 const writingScore = fs.readFileSync(path.join(root, 'src', 'lib', 'writing-score.js'), 'utf8');
 const shortAnswer = fs.readFileSync(path.join(root, 'src', 'components', 'exercises', 'ShortAnswer.jsx'), 'utf8');
+const evaluateWriting = fs.readFileSync(path.join(root, 'api', '_routes', 'evaluate-writing.js'), 'utf8');
 const evaluateSpeaking = fs.readFileSync(path.join(root, 'api', '_routes', 'evaluate-speaking.js'), 'utf8');
 const speakingScale = fs.readFileSync(path.join(root, 'api', '_routes', '_met-speaking-scale.js'), 'utf8');
 
@@ -45,18 +46,32 @@ test('Practice Studio saves and locks individual questions while preserving AI s
   assert.match(practiceStudio, /record\?\.result \? \{ \.\.\.record\.result, index \} : undefined/);
 });
 
-test('only Practice Studio labels writing and speaking requests for AssemblyAI scoring', () => {
+test('Writing stays off AssemblyAI while speaking identifies Practice Studio requests', () => {
   assert.match(exercisePlayer, /practiceStudio=\{practiceStudio\}/);
   assert.match(writing, /scoreWriting\(\{ essay: text, taskPrompt: prompt, practiceStudio, token \}\)/);
   assert.match(shortAnswer, /taskPrompt: prompt \|\| 'Speak on the topic\.', practiceStudio/);
+  assert.match(evaluateWriting, /const attempts = \[scoreWithGemini, scoreWithGroq\]/);
+  assert.doesNotMatch(evaluateWriting, /callAssemblyAILLMJson|scoreWithAssemblyAI/);
 });
 
-test('Practice Studio only locks speaking after AI scoring and sends writing authentication', () => {
-  assert.match(shortAnswer, /if \(!practiceStudio && onComplete\)/);
-  assert.match(shortAnswer, /evaluation: data\.evaluation/);
+test('Practice Studio scored attempts lock only after AI scoring and persist before finalization', () => {
+  assert.match(shortAnswer, /const recordingLocked = finalized \|\| \(practiceStudio && Boolean\(evalData\?\.evaluation\)\)/);
+  assert.match(shortAnswer, /await persistScoredResult\(data\)/);
+  assert.match(shortAnswer, /Retry saving/);
+  assert.match(shortAnswer, /transcription: data\?\.transcription \|\| null/);
+  assert.match(writing, /await persistScoredResult\(evaluation\)/);
+  assert.match(writing, /practiceStudio && result/);
+  assert.match(writing, /Retry saving/);
   assert.match(writing, /readStoredSupabaseSession/);
   assert.match(writingScore, /Authorization: `Bearer \$\{token\}`/);
-  assert.match(writing, /evaluation: data\.evaluation/);
+});
+
+test('ExercisePlayer returns persistence success and does not remount a scored child on save failure', () => {
+  assert.match(exercisePlayer, /return onComplete\?\.\(\{ \.\.\.answerResult, errorCategory: errorCategory \|\| null \}\)/);
+  assert.match(exercisePlayer, /return saveExerciseResult\(result\)/);
+  const catchBlock = exercisePlayer.match(/catch \(error\) \{[\s\S]*?return false;\n    \}/)?.[0] || '';
+  assert.ok(catchBlock.includes('setSubmissionError'));
+  assert.doesNotMatch(catchBlock, /setReviewVersion/);
 });
 
 test('Practice Studio shows complete saved speaking feedback and rejects partial AI payloads', () => {
@@ -71,6 +86,11 @@ test('Practice Studio shows complete saved speaking feedback and rejects partial
   assert.match(evaluateSpeaking, /weaknesses\.length < 2/);
   assert.match(evaluateSpeaking, /feedbackComplete: true/);
   assert.match(speakingScale, /At least three specific, evidence-based strengths/);
+});
+
+test('Speaking AI scoring remains Practice Studio-only in the student exercise UI', () => {
+  assert.match(shortAnswer, /\{practiceStudio && audioPath && \(/);
+  assert.match(shortAnswer, /if \(!practiceStudio && onComplete\)/);
 });
 
 test('Practice Studio exposes the image-description speaking topic', async () => {

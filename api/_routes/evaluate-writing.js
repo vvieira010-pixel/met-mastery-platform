@@ -3,14 +3,14 @@
  *
  * Takes { essay, taskPrompt, subject, submissionId }
  * Scores the essay against the official MET Writing Rating Scale (5 criteria,
- * 0.0–4.0 each in 0.5 steps) via Gemini (primary) with graceful fallback to
- * Groq. Scoring (avg → scaled 0–80 → CEFR) is computed server-side,
+ * whole levels 0–4) via Gemini (primary) with graceful fallback to Groq.
+ * Scoring (avg → scaled 0–80 → CEFR) is computed server-side,
  * deterministically — never LLM-derived.
  */
 
 import { verifySupabaseSession } from './_supabase-auth.js';
 import { buildExaminerPrompt, rubricToScaled } from './_met-writing-scale.js';
-import { callAssemblyAILLMJson, extractScores, parseLLMJson } from './_assemblyai-llm.js';
+import { parseLLMJson } from './_assemblyai-llm.js';
 import { logPrediction } from './_ml/log.js';
 import { guardRateLimit, enforceDistributedCap, rateLimitIdentity, LIMITS } from './_rate-limit.js';
 import { getActive } from './_ml/registry.js';
@@ -19,6 +19,7 @@ import { telemetryEnabled } from './_ml/store.js';
 const env = (name) => process.env[name] || '';
 
 const MAX_ESSAY_CHARS = 12000;
+const WRITING_KEYS = ['task', 'organization', 'grammar', 'vocabulary', 'mechanics'];
 
 function fetchWithTimeout(url, init, ms = 25000) {
   const ctrl = new AbortController();
@@ -26,7 +27,22 @@ function fetchWithTimeout(url, init, ms = 25000) {
   return fetch(url, { ...init, signal: ctrl.signal }).finally(() => clearTimeout(timer));
 }
 
-const WRITING_KEYS = ['task', 'organization', 'grammar', 'vocabulary', 'mechanics'];
+/**
+ * MET Writing uses whole criterion levels only. Reject partial/missing values,
+ * decimals, strings, booleans, and values outside 0–4 instead of coercing an
+ * invalid model response into a plausible-looking score.
+ */
+export function extractWholeWritingScores(evaluation) {
+  const source = evaluation?.scores;
+  if (!source || typeof source !== 'object' || Array.isArray(source)) return null;
+  const scores = {};
+  for (const key of WRITING_KEYS) {
+    const value = source[key];
+    if (typeof value !== 'number' || !Number.isInteger(value) || value < 0 || value > 4) return null;
+    scores[key] = value;
+  }
+  return scores;
+}
 
 async function scoreWithGemini(prompt) {
   const key = env('GEMINI_API_KEY');
@@ -37,15 +53,25 @@ async function scoreWithGemini(prompt) {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 2048 } }),
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            temperature: 0.2,
+            maxOutputTokens: 2048,
+            responseMimeType: 'application/json',
+          },
+        }),
       },
       12000,
     );
     if (!res.ok) return null;
     const data = await res.json();
     const raw = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-    const parsed = parseLLMJson(raw);
-    return extractScores(parsed, WRITING_KEYS) ? { evaluation: parsed, provider: 'gemini', modelId: 'gemini-2.5-flash' } : null;
+    const evaluation = parseLLMJson(raw);
+    const scores = extractWholeWritingScores(evaluation);
+    return scores
+      ? { evaluation: { ...evaluation, scores }, provider: 'gemini', modelId: 'gemini-2.5-flash' }
+      : null;
   } catch (e) {
     console.warn('Gemini writing eval error:', e.message);
     return null;
@@ -61,34 +87,24 @@ async function scoreWithGroq(prompt) {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-        body: JSON.stringify({ model: 'llama-3.3-70b-versatile', temperature: 0.2, messages: [{ role: 'user', content: prompt }] }),
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          temperature: 0.2,
+          response_format: { type: 'json_object' },
+          messages: [{ role: 'user', content: prompt }],
+        }),
       },
       12000,
     );
     if (!res.ok) return null;
     const data = await res.json();
-    const parsed = parseLLMJson(data?.choices?.[0]?.message?.content || '');
-    return extractScores(parsed, WRITING_KEYS) ? { evaluation: parsed, provider: 'groq', modelId: 'llama-3.3-70b-versatile' } : null;
+    const evaluation = parseLLMJson(data?.choices?.[0]?.message?.content || '');
+    const scores = extractWholeWritingScores(evaluation);
+    return scores
+      ? { evaluation: { ...evaluation, scores }, provider: 'groq', modelId: 'llama-3.3-70b-versatile' }
+      : null;
   } catch (e) {
     console.warn('Groq writing eval error:', e.message);
-    return null;
-  }
-}
-
-async function scoreWithAssemblyAI(prompt) {
-  if (!env('ASSEMBLYAI_API_KEY')) return null;
-  try {
-    const aai = await callAssemblyAILLMJson(
-      { messages: [{ role: 'user', content: prompt }], temperature: 0.2, maxTokens: 3072 },
-      { retries: 1, validateKeys: WRITING_KEYS },
-    );
-    if (aai.ok && aai.evaluation) {
-      return { evaluation: aai.evaluation, provider: 'assemblyai-llm', modelId: aai.model };
-    }
-    if (aai.error) console.warn('AssemblyAI writing eval error:', aai.error, aai.requestId || '');
-    return null;
-  } catch (e) {
-    console.warn('AssemblyAI writing eval error:', e.message);
     return null;
   }
 }
@@ -110,7 +126,7 @@ export default async function handler(req, res) {
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
-  const { essay, taskPrompt = 'Write an essay on the topic.', subject = null, submissionId = null, practiceStudio = false } = body || {};
+  const { essay, taskPrompt = 'Write an essay on the topic.', subject = null, submissionId = null } = body || {};
 
   if (typeof essay !== 'string' || essay.trim().length < 10) {
     return res.status(400).json({ error: 'A written essay of at least 10 characters is required.' });
@@ -128,13 +144,8 @@ export default async function handler(req, res) {
     ? await getActive('model', 'writing_eval', { version: 'unversioned', promptSha: 'unversioned' })
     : { version: 'unversioned', promptSha: 'unversioned' };
 
-  // AssemblyAI is reserved for the student Practice Studio writing flow.
-  // Other callers retain the existing Gemini → Groq fallback order.
-  const attempts = [
-    ...(practiceStudio === true ? [scoreWithAssemblyAI] : []),
-    scoreWithGemini,
-    scoreWithGroq,
-  ];
+  // Writing never uses AssemblyAI. AssemblyAI is reserved for speaking/audio.
+  const attempts = [scoreWithGemini, scoreWithGroq];
   let result = null;
   const llmStartedAt = Date.now();
   for (const attempt of attempts) {
@@ -154,24 +165,27 @@ export default async function handler(req, res) {
       inputChars: prompt.length,
       latencyMs: Date.now() - llmStartedAt,
       status: 'provider_error',
-      error: 'no provider returned a parseable evaluation',
+      error: 'no provider returned a valid whole-level writing evaluation',
     }).catch(() => {});
-    return res.status(503).json({ error: 'AI evaluation unavailable — no provider responded. Please try again.' });
+    return res.status(503).json({ error: 'AI writing evaluation unavailable. Please try again.' });
   }
 
   const { evaluation, provider, modelId } = result;
+  const scores = extractWholeWritingScores(evaluation);
+  if (!scores) {
+    return res.status(502).json({ error: 'AI writing evaluation returned invalid rubric scores. Please try again.' });
+  }
 
-  // Server-side scoring: average 5 criteria → snap to 0.5 → scaled 0–80 + CEFR.
-  const s = extractScores(evaluation, WRITING_KEYS) || {};
-  // Clamp to the official 0–4 range so an out-of-range model value can't skew the average.
-  const nums = WRITING_KEYS.map((k) => Math.min(4, Math.max(0, Number(s[k] || 0))));
+  // Server-side scoring: average the five official whole-level criteria, then
+  // use the formative conversion table to produce the estimated MET band.
+  evaluation.scores = scores;
+  const nums = WRITING_KEYS.map((key) => scores[key]);
   const avgRaw = nums.reduce((a, b) => a + b, 0) / nums.length;
-  const conversion = rubricToScaled(Number.isFinite(avgRaw) ? avgRaw : 0);
+  const conversion = rubricToScaled(avgRaw);
   evaluation.rubricAvg = conversion.rubricAvg;
   evaluation.scaledScore = conversion.scaledScore;
   evaluation.scaledRange = conversion.scaledRange;
   evaluation.cefrEstimate = conversion.cefr;
-  // Backward-compatible summary used by results UIs.
   evaluation.overallScore = Math.round(avgRaw * 10) / 10;
 
   void logPrediction({
@@ -188,8 +202,8 @@ export default async function handler(req, res) {
     latencyMs: Date.now() - llmStartedAt,
     status: 'ok',
     confidence: Number.isFinite(Number(evaluation.confidence)) ? Number(evaluation.confidence) : null,
-    parsedOutput: { scores: evaluation.scores || null, rubricAvg: evaluation.rubricAvg ?? null, cefr: evaluation.cefrEstimate ?? null },
+    parsedOutput: { scores: evaluation.scores, rubricAvg: evaluation.rubricAvg, cefr: evaluation.cefrEstimate },
   }).catch(() => {});
 
-  return res.status(200).json({ evaluation, provider, model: modelId || 'gemini-2.5-flash' });
+  return res.status(200).json({ evaluation, provider, model: modelId });
 }

@@ -9,6 +9,7 @@ import {
   buildExaminerPrompt,
 } from '../api/_routes/_met-writing-scale.js';
 import { parseLLMJson, extractScores } from '../api/_routes/_assemblyai-llm.js';
+import { extractWholeWritingScores } from '../api/_routes/evaluate-writing.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const readApi = (name) => readFileSync(join(here, '..', 'api', '_routes', name), 'utf8');
@@ -33,7 +34,6 @@ describe('MET writing scale — official rubric structure', () => {
   });
 
   test('level-0 descriptors match the official 20.02.PDF (one line per criterion, in order)', () => {
-    // The official scale's "0" row lists five lines mapping 1:1 to the criteria.
     assert.equal(MET_WRITING_SCALE.grammar[0], 'Language produced is impossible to process for meaning.');
     assert.equal(MET_WRITING_SCALE.vocabulary[0], 'No vocabulary that is relevant to the task.');
     assert.equal(MET_WRITING_SCALE.mechanics[0], 'No legible or decipherable text.');
@@ -77,7 +77,7 @@ describe('MET writing scale — rubricToScaled conversion', () => {
     assert.equal(rubricToScaled(2.4).rubricAvg, 2.5);
     assert.equal(rubricToScaled(1.2).rubricAvg, 1.0);
     assert.equal(rubricToScaled(0.1).cefr, 'Below A2');
-    assert.equal(rubricToScaled(2.6).cefr, 'B2'); // 2.5 -> B2
+    assert.equal(rubricToScaled(2.6).cefr, 'B2');
   });
 
   test('never returns undefined for out-of-range input', () => {
@@ -105,7 +105,6 @@ describe('MET writing scale — examiner prompt', () => {
   });
 
   test('de-biases: independent criteria + scoped Mechanics', () => {
-    // Guards the anti-halo rules added after the model collapsed all criteria to 1.
     assert.match(prompt, /INDEPENDENTLY/);
     assert.match(prompt, /avoid halo effect/);
     assert.match(prompt, /Mechanics is ONLY about spelling, punctuation, and sentence boundaries/);
@@ -167,25 +166,41 @@ describe('AssemblyAI client — extractScores validation', () => {
   });
 });
 
+describe('evaluate-writing endpoint — strict score validation', () => {
+  const valid = { scores: { task: 4, organization: 3, grammar: 2, vocabulary: 1, mechanics: 0 } };
+
+  test('accepts complete whole-number 0-4 criterion scores', () => {
+    assert.deepEqual(extractWholeWritingScores(valid), valid.scores);
+  });
+
+  test('rejects missing and partial score objects', () => {
+    assert.equal(extractWholeWritingScores({ scores: { task: 2 } }), null);
+    assert.equal(extractWholeWritingScores({ scores: {} }), null);
+    assert.equal(extractWholeWritingScores({}), null);
+    assert.equal(extractWholeWritingScores(null), null);
+  });
+
+  test('rejects decimals and out-of-range values', () => {
+    for (const bad of [2.5, -1, 5]) {
+      assert.equal(extractWholeWritingScores({ scores: { ...valid.scores, task: bad } }), null);
+    }
+  });
+
+  test('rejects values that JavaScript Number coercion would otherwise accept', () => {
+    for (const bad of ['2', true, false, [], [2], '']) {
+      assert.equal(extractWholeWritingScores({ scores: { ...valid.scores, task: bad } }), null);
+    }
+  });
+});
+
 describe('evaluate-writing endpoint — contract', () => {
   const src = readApi('evaluate-writing.js');
 
-  test('uses AssemblyAI as the primary scorer with Gemini and Groq fallbacks', () => {
-    assert.ok(src.includes("provider: 'assemblyai-llm'"), 'must use AssemblyAI as primary');
-    assert.ok(src.includes("provider: 'gemini'"), 'must keep Gemini as a fallback');
-    // Groq is the final fallback so evaluation never goes down. OpenAI and
-    // Anthropic were removed from the cascade intentionally (see a3244cb).
-    assert.ok(src.includes("provider: 'groq'"), 'must keep a fallback provider');
-    assert.ok(
-      !src.includes("provider: 'openai'") && !src.includes("provider: 'anthropic'"),
-      'OpenAI/Anthropic must stay out of the grading cascade'
-    );
-    assert.match(
-      src,
-      /const attempts = \[\s*\.\.\.\(practiceStudio === true \? \[scoreWithAssemblyAI\] : \[\]\),\s*scoreWithGemini,\s*scoreWithGroq,/,
-      'Practice Studio fallback order must remain AssemblyAI → Gemini → Groq',
-    );
-    assert.match(src, /practiceStudio = false/, 'the endpoint must distinguish Practice Studio callers');
+  test('uses Gemini with Groq fallback and never routes writing through AssemblyAI', () => {
+    assert.ok(src.includes("provider: 'gemini'"), 'must use Gemini as the primary writing provider');
+    assert.ok(src.includes("provider: 'groq'"), 'must keep Groq as the writing fallback');
+    assert.doesNotMatch(src, /callAssemblyAILLMJson|scoreWithAssemblyAI|provider: 'assemblyai-llm'/);
+    assert.match(src, /const attempts = \[scoreWithGemini, scoreWithGroq\]/);
   });
 
   test('requires an authenticated session (paid AI endpoint)', () => {
@@ -198,9 +213,12 @@ describe('evaluate-writing endpoint — contract', () => {
     assert.match(src, /essay\.trim\(\)\.length < 10/);
   });
 
-  test('computes scores server-side and clamps to the official 0-4 range', () => {
-    assert.ok(src.includes('rubricToScaled'));
-    assert.match(src, /Math\.min\(4, Math\.max\(0/);
+  test('requires strict whole-level scores before computing the estimated MET band', () => {
+    assert.match(src, /extractWholeWritingScores\(evaluation\)/);
+    assert.match(src, /typeof value !== 'number'/);
+    assert.match(src, /Number\.isInteger\(value\)/);
+    assert.match(src, /value < 0 \|\| value > 4/);
+    assert.doesNotMatch(src, /Math\.min\(4, Math\.max\(0/);
   });
 });
 
@@ -208,7 +226,6 @@ describe('evaluate-speaking endpoint — AssemblyAI wiring', () => {
   const src = readApi('evaluate-speaking.js');
 
   test('AssemblyAI gateway is the first evaluator in the cascade', () => {
-    // speaking assigns `evalProvider = 'gemini'` (the log row uses `provider:`).
     const aaiIdx = src.indexOf('callAssemblyAILLMJson');
     const geminiIdx = src.indexOf("evalProvider = 'gemini'");
     assert.ok(aaiIdx > 0, 'AssemblyAI evaluator must be present');

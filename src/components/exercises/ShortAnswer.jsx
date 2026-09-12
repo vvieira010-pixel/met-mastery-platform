@@ -152,6 +152,9 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
   }
 
   function reset() {
+    // After Practice Studio AI scoring, preserve the exact scored attempt even
+    // if cloud persistence fails. The only allowed retry is saving that result.
+    if (practiceStudio && (finalized || evalData?.evaluation)) return;
     clearInterval(timerRef.current);
     clearInterval(preparationTimerRef.current);
     streamRef.current?.getTracks().forEach(track => track.stop());
@@ -171,11 +174,39 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
     setFinalized(false);
   }
 
+  async function persistScoredResult(data) {
+    if (!practiceStudio || !onComplete) return true;
+    const saved = await onComplete({
+      submitted: true,
+      correct: null,
+      audioPath,
+      audioB64: null,
+      transcription: data?.transcription || null,
+      fluency: data?.fluency || null,
+      evaluation: data?.evaluation,
+      score: data?.evaluation?.rubricAvg ?? null,
+      total: 4,
+    });
+    if (saved !== true) {
+      throw new Error('Your AI score is ready, but it was not saved. Retry saving without rescoring.');
+    }
+    setFinalized(true);
+    return true;
+  }
+
   async function requestAiScore() {
-    if (!audioPath || evalStatus === 'loading') return;
+    if (!audioPath || evalStatus === 'loading' || finalized) return;
     setEvalStatus('loading');
     setEvalError('');
     try {
+      // If scoring already succeeded and only persistence failed, retry the
+      // Supabase write without transcribing or scoring the audio again.
+      if (practiceStudio && evalData?.evaluation) {
+        await persistScoredResult(evalData);
+        setEvalStatus('done');
+        return;
+      }
+
       const token = readStoredSupabaseSession()?.access_token || '';
       const res = await fetch('/api/evaluate-speaking', {
         method: 'POST',
@@ -184,25 +215,18 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+      if (!data?.evaluation) throw new Error('AI scoring returned no evaluation. Please try again.');
       setEvalData(data);
+
+      if (practiceStudio) await persistScoredResult(data);
       setEvalStatus('done');
-      if (practiceStudio && onComplete) {
-        setFinalized(true);
-        onComplete({
-          submitted: true,
-          correct: null,
-          audioPath,
-          audioB64: null,
-          evaluation: data.evaluation,
-          score: data.evaluation?.rubricAvg ?? null,
-          total: 4,
-        });
-      }
     } catch (e) {
       setEvalError(e.message || 'AI scoring failed. Please try again.');
       setEvalStatus('error');
     }
   }
+
+  const recordingLocked = finalized || (practiceStudio && Boolean(evalData?.evaluation));
 
   return (
     <div>
@@ -332,7 +356,7 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
               color: target && seconds <= 10 ? 'var(--danger)' : 'var(--error)',
               fontVariantNumeric: 'tabular-nums',
             }}>
-              {target ? fmt(seconds) : fmt(seconds)}
+              {fmt(seconds)}
               {target && seconds <= 10 && ' — almost done!'}
             </span>
           </div>
@@ -350,14 +374,14 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
 
           <button
             onClick={reset}
-            disabled={finalized}
+            disabled={recordingLocked}
             style={{
               background: 'none', border: `1.5px solid ${TEAL}`, color: TEAL,
               borderRadius: 99, padding: '6px 16px', fontSize: 'var(--text-sm)',
-              fontWeight: 600, cursor: finalized ? 'not-allowed' : 'pointer', alignSelf: 'flex-start', opacity: finalized ? 0.55 : 1,
+              fontWeight: 600, cursor: recordingLocked ? 'not-allowed' : 'pointer', alignSelf: 'flex-start', opacity: recordingLocked ? 0.55 : 1,
             }}
           >
-            {finalized ? 'AI score saved' : '↺ Record again'}
+            {finalized ? 'AI score saved' : practiceStudio && evalData?.evaluation ? 'AI score ready — save required' : '↺ Record again'}
           </button>
 
           {/* AI MET score is intentionally available only in Practice Studio.
@@ -378,16 +402,16 @@ function SpeakingRecorder({ exercise, taskConfig, reflectionChecks, onComplete, 
               {evalStatus === 'loading' && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0' }}>
                   <span style={{ width: 18, height: 18, border: `2.5px solid var(--border)`, borderTopColor: TEAL, borderRadius: '50%', animation: 'spin 0.8s linear infinite', display: 'inline-block' }} />
-                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>Scoring your recording…</span>
+                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-2)' }}>{evalData?.evaluation ? 'Saving your scored attempt…' : 'Transcribing and scoring your recording…'}</span>
                 </div>
               )}
               {evalStatus === 'error' && (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: evalData?.evaluation ? 12 : 0 }}>
                   <p role="alert" style={{ margin: 0, fontSize: 'var(--text-sm)', color: 'var(--ex-wrong-text)' }}>{evalError}</p>
-                  <button onClick={requestAiScore} style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm, 6px)', border: `1.5px solid ${TEAL}`, background: 'none', color: TEAL, fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer', whiteSpace: 'nowrap' }}>Try again</button>
+                  <button onClick={requestAiScore} style={{ padding: '8px 18px', borderRadius: 'var(--radius-sm, 6px)', border: `1.5px solid ${TEAL}`, background: 'none', color: TEAL, fontWeight: 700, fontSize: 'var(--text-sm)', cursor: 'pointer', whiteSpace: 'nowrap' }}>{evalData?.evaluation ? 'Retry saving' : 'Try again'}</button>
                 </div>
               )}
-              {evalStatus === 'done' && evalData?.evaluation && (
+              {(evalStatus === 'done' || (evalStatus === 'error' && evalData?.evaluation)) && evalData?.evaluation && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--muted)', lineHeight: 1.5 }}>
                     {evalData.evaluation.scoreLabel || 'Practice estimate — not an official MET score'}
