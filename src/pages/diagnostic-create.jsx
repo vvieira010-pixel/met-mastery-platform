@@ -1,12 +1,13 @@
 /**
- * diagnostic-create.jsx — Short diagnosis flow: prereqs → feedback first → review/save
+ * diagnostic-create.jsx — Diagnosis flow: evidence → AI diagnosis → feedback → review/save
  *
  * The most important page. Teacher must:
  * 1. Select target score profile (blocker)
- * 2. Confirm evaluated skills (blocker)
- * 3. Create an honest feedback draft immediately
- * 4. Save each optional, deeper phase only when it is needed
- * 5. Preview, edit, and approve the student-facing feedback
+ * 2. Confirm evaluated skills and evidence (blocker)
+ * 3. Create a valid structured AI diagnosis before any success state
+ * 4. Derive student-facing feedback from that diagnosis
+ * 5. Save to Supabase before showing the diagnosis as saved/reviewable
+ * 6. Preview, edit, and approve the student-facing feedback
  *
  * Business logic lives in src/domain/assessment/:
  *   constants.js, diagnosis-utils.js, hooks/useSectionApproval.js, components/SectionContent.jsx
@@ -31,9 +32,10 @@ import {
   getStudent, getStudents,
   getTargetProfiles, saveTargetProfile, setActiveTargetProfile,
   getClassEvent, getClassEvidence,
-  getDiagnosis, saveDiagnosis, updateClassEventStatus,
+  getDiagnosis, updateClassEventStatus,
   promoteErrorToLongTerm, saveVocabularyEntry, saveProgressNote,
 } from '../lib/workflow.js';
+import { saveDiagnosisAuthoritative } from '../lib/diagnosis-authoritative.js';
 
 import { createZoomMeetingForDiagnosis } from '../lib/zoom-diagnosis.js';
 
@@ -56,17 +58,17 @@ import { DiagnosisStepBar, DiagnosisGeneratingProgress, DiagnosisSavedActions } 
 
 const DIAGNOSTIC_PHASES = [
   {
-    id: 'feedback', number: 1, title: 'Student feedback',
-    description: 'Create and save the editable student-facing feedback first.',
+    id: 'analysis', number: 1, title: 'AI diagnosis',
+    description: 'Create the structured evidence analysis first. This must succeed before the diagnosis can continue.',
+    action: 'Recreate AI diagnosis',
+  },
+  {
+    id: 'feedback', number: 2, title: 'Student feedback', requires: ['analysis'],
+    description: 'Create editable student-facing feedback from the valid diagnosis and recorded evidence.',
     action: 'Create feedback draft',
   },
   {
-    id: 'analysis', number: 2, title: 'Evidence analysis', requires: ['feedback'],
-    description: 'Generate the teacher analysis, scores, priorities, and next-class focus from the recorded evidence.',
-    action: 'Create evidence analysis',
-  },
-  {
-    id: 'targets', number: 3, title: 'Language targets', requires: ['analysis'],
+    id: 'targets', number: 3, title: 'Language targets', requires: ['feedback'],
     description: 'Extract errors plus vocabulary and grammar targets from the evidence.',
     action: 'Create language targets',
   },
@@ -95,13 +97,13 @@ function readStudentFeedbackResponse(data, emptyMessage = 'AI returned an empty 
  * The feedback prompt is quote-anchored: every strength must point at something
  * the student actually said or wrote. When the linked class evidence has skill
  * flags but no real text, the model has nothing to quote and silently invents
- * filler ("even without a specific prompt provided here..."). Block the call
- * instead and tell the teacher what to add.
+ * filler. Block diagnosis creation instead of treating generic content as
+ * evidence-based analysis.
  */
-const NO_EVIDENCE_MESSAGE = 'No class evidence text yet. Add a transcript, the student\'s answer, or teacher notes before generating feedback — otherwise the AI can only write generic filler.';
+const NO_EVIDENCE_MESSAGE = 'No class evidence text yet. Add a transcript, the student\'s answer, or teacher notes before generating a diagnosis — otherwise the AI can only write generic filler.';
 function hasUsableEvidenceText(evidence) {
   if (!evidence || typeof evidence !== 'object') return false;
-  return ['studentTranscript', 'studentAnswer', 'teacherNotes']
+  return ['studentTranscript', 'studentAnswer', 'teacherNotes', 'studentPerformance', 'additionalNotes']
     .some(field => String(evidence[field] || '').trim().length > 0);
 }
 
@@ -124,6 +126,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
   // Zoom meeting for diagnosis follow-up
   const [diagnosisZoomUrl, setDiagnosisZoomUrl] = useState(null);
+  const [diagnosisZoomMeetingId, setDiagnosisZoomMeetingId] = useState(null);
 
   // Student selector (if no studentId passed)
   const [selectedStudentId, setSelectedStudentId] = useState(studentId || '');
@@ -203,9 +206,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         setAiResult(dx.aiRaw || null);
       }
       if (dx.zoomUrl) setDiagnosisZoomUrl(dx.zoomUrl);
-      // Earlier drafts predate saved phase metadata. They already have feedback
-      // and should enter the new staged flow from the next optional phase.
-      setCompletedPhases(dx.completedPhases || ['feedback']);
+      if (dx.zoomMeetingId) setDiagnosisZoomMeetingId(dx.zoomMeetingId);
+      // Do not infer that an older draft completed an AI phase. Earlier builds
+      // could persist normalizer defaults in aiRaw even when no diagnosis call
+      // succeeded, so only explicit phase metadata is trusted here.
+      setCompletedPhases(Array.isArray(dx.completedPhases) ? dx.completedPhases : []);
       setTeacherMeaning({
         classSummary: dx.content?.overall_result || dx.classSummary || '',
         studentFeedback: dx.content?.student_friendly_feedback || dx.sections?.studentFeedback?.content || '',
@@ -252,9 +257,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     testStrategy: normalizedEvidence.evaluatedTestStrategy,
   }).filter(([, v]) => v).map(([k]) => k) : [];
 
-  const inlineReady = noLinkedEvidence
-    ? (inlineTranscript.trim().length > 0 || inlineTeacherNotes.trim().length > 0) && evaluatedSkills.length > 0
-    : evaluatedSkills.length > 0;
+  const inlineReady = evaluatedSkills.length > 0 && hasUsableEvidenceText(normalizedEvidence);
 
   const prereqOk = selectedStudent && targetProfile && inlineReady;
 
@@ -314,7 +317,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   }
 
   async function persistDiagnosisDraft(options = {}) {
-    const dx = await saveDiagnosis(buildDiagnosisRecord(options));
+    const dx = await saveDiagnosisAuthoritative(buildDiagnosisRecord(options));
     setSavedDiagnosis(dx);
     return dx;
   }
@@ -323,45 +326,57 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   async function handleGenerate() {
     if (!prereqOk) return;
     setStep('generating');
-    setGeneratingStatus('Analyzing class evidence…');
+    setGeneratingStatus('Creating AI diagnosis from class evidence…');
     setError('');
     if (!diagnosisId) setSavedDiagnosis(null);
 
     try {
-      const fallbackDiagnosis = normalizeDiagnosisJson({}, normalizedEvidence);
+      if (!hasUsableEvidenceText(normalizedEvidence)) throw new Error(NO_EVIDENCE_MESSAGE);
+
+      const promptData = {
+        student: selectedStudent,
+        classEvent,
+        classEvidence: normalizedEvidence,
+        targetProfile,
+      };
+
+      // The diagnosis is the first authoritative AI operation. The guarded
+      // helper rejects incomplete provider output and throws when both the full
+      // and compact diagnosis attempts fail. Normalizer defaults are never
+      // persisted as if they came from the model.
+      const { parsed: diagnosis } = await generateDiagnosisJson(promptData, setGeneratingStatus);
+
       const feedbackDraft = buildFeedbackDraft({
         student: selectedStudent,
         classEvent,
         classEvidence: normalizedEvidence,
         evaluatedSkills,
       });
-      const createSections = ({ diagnosis, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank } = {}) => ({
-        skillDiagnosis:           { content: diagnosis.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
+      const createSections = ({ diagnosis: diagnosisResult, feedback = { content: feedbackDraft, approved: false, hidden: false, edited: false }, errorBank } = {}) => ({
+        skillDiagnosis:           { content: diagnosisResult.skillDiagnosis ?? null,                                                    approved: false, hidden: false, edited: false },
         studentFeedback:          feedback,
-        errorBankSuggestions:     { content: errorBank?.errorBankSuggestions ?? [],                                              approved: false, hidden: false, edited: false },
-        vocabGrammarTargets:      { content: errorBank?.vocabGrammarTargets ?? { vocabularyTargets: [], grammarTargets: [] },    approved: false, hidden: false, edited: false },
+        errorBankSuggestions:     { content: errorBank?.errorBankSuggestions ?? [],                                                    approved: false, hidden: false, edited: false },
+        vocabGrammarTargets:      { content: errorBank?.vocabGrammarTargets ?? { vocabularyTargets: [], grammarTargets: [] },          approved: false, hidden: false, edited: false },
         readinessCheck:           { content: { targetProfileSelected: !!targetProfile, evaluatedSkills, notEvaluatedSkills: [], diagnosisAllowed: true }, approved: true, hidden: false, edited: false },
-        classSummary:             { content: diagnosis.classSummary || '',                                                        approved: false, hidden: false, edited: false },
-        targetScoreRelevance:     { content: diagnosis.targetScoreRelevance || {},                                                approved: false, hidden: false, edited: false },
-        estimatedOverallScore:    { content: diagnosis.estimatedOverallScore || {},                                               approved: false, hidden: false, edited: false },
-        priorityDiagnosis:        { content: diagnosis.priorityDiagnosis || [],                                                   approved: false, hidden: false, edited: false },
-        nextClassFocus:           { content: diagnosis.nextClassFocus || {},                                                      approved: false, hidden: false, edited: false },
-        profileUpdateSuggestions: { content: diagnosis.profileUpdateSuggestions || {},                                            approved: false, hidden: false, edited: false },
+        classSummary:             { content: diagnosisResult.classSummary || '',                                                       approved: false, hidden: false, edited: false },
+        targetScoreRelevance:     { content: diagnosisResult.targetScoreRelevance || {},                                               approved: false, hidden: false, edited: false },
+        estimatedOverallScore:    { content: diagnosisResult.estimatedOverallScore || {},                                              approved: false, hidden: false, edited: false },
+        priorityDiagnosis:        { content: diagnosisResult.priorityDiagnosis || [],                                                  approved: false, hidden: false, edited: false },
+        nextClassFocus:           { content: diagnosisResult.nextClassFocus || {},                                                     approved: false, hidden: false, edited: false },
+        profileUpdateSuggestions: { content: diagnosisResult.profileUpdateSuggestions || {},                                          approved: false, hidden: false, edited: false },
       });
-      // Generate the editable student-facing feedback first. The feedback
-      // prompt already contains its teaching, evidence, voice, and JSON rules,
-      // so do not add the large optional education-skill attachments here.
-      setGeneratingStatus('Writing personalized feedback…');
+
+      // Student-facing feedback is derived only after the diagnosis exists.
+      // If the feedback provider fails, the evidence-based local draft remains
+      // editable, but the successful AI diagnosis is still the authoritative
+      // analysis and the fallback is never presented as AI-generated feedback.
+      setGeneratingStatus('Writing personalized feedback from the diagnosis…');
       let feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
       let feedbackWasAiGenerated = false;
       try {
-        if (!hasUsableEvidenceText(normalizedEvidence)) throw new Error(NO_EVIDENCE_MESSAGE);
         const aiFeedback = await callAI(buildStudentFeedbackPrompt({
-          student: selectedStudent,
-          classEvent,
-          classEvidence: normalizedEvidence,
-          targetProfile,
-          diagnosis: fallbackDiagnosis,
+          ...promptData,
+          diagnosis,
         }), { max_tokens: 2600, temperature: 0.3 });
         feedbackSection = {
           content: readStudentFeedbackResponse(aiFeedback),
@@ -371,44 +386,34 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         };
         feedbackWasAiGenerated = true;
       } catch (feedbackError) {
-        // Keep a truthful, editable draft available when an external provider
-        // is unavailable; do not present this fallback as AI feedback.
-        console.warn('Initial AI feedback generation failed:', feedbackError);
-        window.toast?.(
-          feedbackError?.message === NO_EVIDENCE_MESSAGE
-            ? NO_EVIDENCE_MESSAGE
-            : 'AI feedback was unavailable, so an editable evidence-based draft was created. You can edit it or try Regen later.',
-          'warn',
-        );
-      }
-      const feedbackSections = createSections({ diagnosis: fallbackDiagnosis, feedback: feedbackSection });
-      setAiResult(fallbackDiagnosis);
-      setSections(feedbackSections);
-      setGeneratingStatus('Saving feedback draft…');
-      let feedbackSaved = false;
-      try {
-        const draft = await persistDiagnosisDraft({
-          nextSections: feedbackSections,
-          nextAiResult: fallbackDiagnosis,
-          nextCompletedPhases: ['feedback'],
-        });
-        if (draft) {
-          setSavedDiagnosis(draft);
-          feedbackSaved = true;
-        }
-      } catch (autoSaveErr) {
-        console.warn('Feedback-first draft save failed:', autoSaveErr);
-        window.toast?.('The feedback draft could not be saved yet. You can still edit it and retry Save Draft.', 'warn');
+        console.warn('AI feedback generation failed after valid diagnosis:', feedbackError);
+        window.toast?.('The AI diagnosis succeeded, but personalized feedback generation was unavailable. An editable evidence-based feedback draft will be saved instead.', 'warn');
       }
 
-      setCompletedPhases(feedbackSaved ? ['feedback'] : []);
+      const diagnosisSections = createSections({ diagnosis, feedback: feedbackSection });
+      const nextCompletedPhases = ['analysis', 'feedback'];
+
+      // Do not expose a normal success/review state until Supabase confirms the
+      // authoritative diagnosis record. A database failure is a visible retry,
+      // never a localStorage-only "Saved" state.
+      setGeneratingStatus('Saving diagnosis securely to the cloud…');
+      const draft = await persistDiagnosisDraft({
+        nextSections: diagnosisSections,
+        nextAiResult: diagnosis,
+        nextCompletedPhases,
+      });
+      if (!draft?.id) throw new Error('Supabase did not confirm the diagnosis save. Retry before continuing.');
+
+      setAiResult(diagnosis);
+      setSections(diagnosisSections);
+      setCompletedPhases(nextCompletedPhases);
       window.toast?.(feedbackWasAiGenerated
-        ? 'AI feedback generated. Review, edit, and approve it now; other sections are optional.'
-        : 'Feedback draft created. Review it, edit it, and try AI Regen later when the service is available.', 'ok');
+        ? 'AI diagnosis and personalized feedback saved. Review and approve the result.'
+        : 'AI diagnosis saved. Review the editable feedback draft before approval.', 'ok');
       setStep('review');
     } catch (e) {
       console.error(e);
-      setError(friendlyAiError(e));
+      setError(e?.message === NO_EVIDENCE_MESSAGE ? NO_EVIDENCE_MESSAGE : friendlyAiError(e));
       setStep('prereq');
     }
   }
@@ -475,9 +480,6 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       setSections(s => ({ ...s, [key]: { ...(s[key] || {}), content, approved: false } }));
       window.toast?.('Section regenerated. Review it, then save the diagnosis.', 'ok');
     } catch (e) {
-      // An open page can briefly point at an old code-split asset after a
-      // deployment. Reload once into the current bundle rather than making
-      // the teacher decipher a browser-level import error.
       if (refreshForFailedDynamicImport(e)) return;
       const message = `Regeneration failed: ${e.message}`;
       setRegenerationError({ key, message });
@@ -492,6 +494,10 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     if (!phase || phaseId === 'feedback') return;
     if ((phase.requires || []).some(required => !completedPhases.includes(required))) {
       window.toast?.('Finish and save the earlier phase first.', 'warn');
+      return;
+    }
+    if (phaseId === 'analysis' && !prereqOk) {
+      window.toast?.(NO_EVIDENCE_MESSAGE, 'warn');
       return;
     }
 
@@ -511,12 +517,44 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       let nextAiResult = aiResult;
 
       if (phaseId === 'analysis') {
-        const { parsed: analysis } = await generateDiagnosisJson(promptData);
-        nextAiResult = { ...(aiResult || {}), ...analysis };
+        const { parsed: analysis } = await generateDiagnosisJson(promptData, setGeneratingStatus);
+        nextAiResult = analysis;
         nextSections = { ...sections };
         DIAGNOSIS_DERIVED_KEYS.forEach(key => {
           nextSections[key] = { ...(sections[key] || {}), content: analysis[key], approved: false, hidden: false, edited: false };
         });
+
+        const feedbackDraft = buildFeedbackDraft({
+          student: selectedStudent,
+          classEvent,
+          classEvidence: normalizedEvidence,
+          evaluatedSkills,
+        });
+        let feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
+        try {
+          const aiFeedback = await callAI(buildStudentFeedbackPrompt({
+            ...promptData,
+            diagnosis: analysis,
+          }), { max_tokens: 2600, temperature: 0.3 });
+          feedbackSection = {
+            content: readStudentFeedbackResponse(aiFeedback),
+            approved: false,
+            hidden: false,
+            edited: false,
+          };
+        } catch (feedbackError) {
+          console.warn('AI feedback regeneration failed after recreated diagnosis:', feedbackError);
+          window.toast?.('The AI diagnosis was recreated, but feedback generation was unavailable. An editable evidence-based feedback draft will replace the old feedback.', 'warn');
+        }
+        nextSections.studentFeedback = feedbackSection;
+        nextSections.errorBankSuggestions = { ...(sections.errorBankSuggestions || {}), content: [], approved: false, hidden: false, edited: false };
+        nextSections.vocabGrammarTargets = {
+          ...(sections.vocabGrammarTargets || {}),
+          content: { vocabularyTargets: [], grammarTargets: [] },
+          approved: false,
+          hidden: false,
+          edited: false,
+        };
       } else if (phaseId === 'targets') {
         const data = await callAI(buildErrorBankPrompt(promptData), await withSkills('diagnosis', { max_tokens: 3000 }));
         const raw = data.content?.map(block => block.text || '').join('') || '';
@@ -530,7 +568,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         };
       }
 
-      const nextCompletedPhases = [...new Set([...completedPhases, phaseId])];
+      const nextCompletedPhases = phaseId === 'analysis'
+        ? ['analysis', 'feedback']
+        : [...new Set([...completedPhases, phaseId])];
       await persistDiagnosisDraft({ nextSections, nextAiResult, nextCompletedPhases });
       setAiResult(nextAiResult);
       setSections(nextSections);
@@ -548,6 +588,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   async function handleSave(approve = false) {
     setSaving(true);
     try {
+      if (!completedPhases.includes('analysis')) {
+        window.toast?.('Create and save a valid AI diagnosis before saving or approving this draft.', 'warn');
+        setSaving(false);
+        return;
+      }
       if (approve && canApprove === false) {
         window.toast?.('Only the teacher can approve a diagnosis.', 'warn');
         setSaving(false);
@@ -563,9 +608,12 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         ? [...new Set([...completedPhases, 'feedback'])]
         : completedPhases;
 
-      // Create Zoom meeting before saving if approving
-      let zoomSettings = null;
-      if (approve && !savedDiagnosis?.zoomUrl) {
+      // Reuse a successfully created Zoom meeting if the cloud diagnosis save
+      // fails. Retrying approval must not create orphaned duplicate meetings.
+      let zoomSettings = diagnosisZoomUrl && !savedDiagnosis?.zoomUrl
+        ? { joinUrl: diagnosisZoomUrl, meetingId: diagnosisZoomMeetingId }
+        : null;
+      if (approve && !savedDiagnosis?.zoomUrl && !zoomSettings?.joinUrl) {
         const zoomTopic = sections.priorityDiagnosis?.content?.[0]?.skill
           || sections.nextClassFocus?.content?.primaryFocus
           || `Follow-up with ${student?.name || studentId}`;
@@ -580,6 +628,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
               meetingId: zoomResult.meetingId,
             };
             setDiagnosisZoomUrl(zoomResult.joinUrl);
+            setDiagnosisZoomMeetingId(zoomResult.meetingId || null);
           }
         } catch (z) {
           console.warn('[diagnosis] Zoom meeting creation failed:', z);
@@ -595,7 +644,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         window.toast?.('Diagnosis approved and saved!', 'ok');
         setStep('saved');
       } else {
-        window.toast?.('Draft saved.', 'ok');
+        window.toast?.('Draft saved to Supabase.', 'ok');
       }
     } catch (e) {
       window.toast?.(`Save failed: ${e.message}`, 'warn');
@@ -843,10 +892,13 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
                   {evaluatedSkills.length === 0 && (
                     <p className="card-row-meta mt-2" style={{ color: 'var(--danger)' }}><Icon.warning size={12} /> Select at least one skill that was covered in class.</p>
                   )}
-                  {!inlineTranscript.trim() && !inlineTeacherNotes.trim() && evaluatedSkills.length > 0 && (
-                    <p className="card-row-meta mt-2" style={{ color: 'var(--warning)' }}><Icon.warning size={12} /> Paste a transcript or add teacher notes — the AI needs evidence to diagnose.</p>
+                  {!hasUsableEvidenceText(normalizedEvidence) && evaluatedSkills.length > 0 && (
+                    <p className="card-row-meta mt-2" style={{ color: 'var(--warning)' }}><Icon.warning size={12} /> Paste a transcript or add teacher notes — the AI needs evidence text to diagnose.</p>
                   )}
                 </div>
+              )}
+              {classEvidence && evaluatedSkills.length > 0 && !hasUsableEvidenceText(normalizedEvidence) && (
+                <p className="card-row-meta mt-3" style={{ color: 'var(--warning)' }}><Icon.warning size={12} /> The linked class marks skills as evaluated but contains no transcript, student answer, or teacher notes. Add evidence text to the class record before diagnosing.</p>
               )}
             </Card>
           )}
@@ -868,9 +920,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
                 <PrereqRow done={!!targetProfile} label="Choose a target score profile (or pick a preset like B1 / C1)" />
                 <PrereqRow
                   done={inlineReady}
-                  label={noLinkedEvidence
-                    ? 'Paste a transcript or teacher notes AND toggle at least one evaluated skill'
-                    : 'At least one evaluated skill in the linked class'}
+                  label="Provide evidence text and mark at least one evaluated skill"
                 />
               </div>
             </Card>
@@ -878,13 +928,13 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
           <div>
             <Button variant="primary" className="text-base" style={{ padding: '12px 24px' }} onClick={handleGenerate} disabled={!prereqOk}>
-              <Icon.diagnose size={16} /> Create Feedback Draft
+              <Icon.diagnose size={16} /> Create AI Diagnosis
             </Button>
             {!prereqOk && (
               <p className="card-row-meta mt-2">
                 {!selectedStudent ? 'Step 1: Select a student →' : ''}
                 {!targetProfile ? ' Step 2: Pick a target score profile →' : ''}
-                {!inlineReady ? ' Step 3: Add evidence →' : ''}
+                {!inlineReady ? ' Step 3: Add evidence text and evaluated skills →' : ''}
               </p>
             )}
           </div>
@@ -1029,23 +1079,22 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       {/* ── STEP: REVIEW ── */}
       {step === 'review' && (
         <div className="mt-5">
-          {/* Feedback-first recovery path */}
           <Card className="card-p-4 mb-4" style={{ border: '1px solid var(--accent)', background: 'var(--accent-soft)' }}>
             <div className="flex-row-gap3">
-              <Icon.chat size={18} color="var(--accent-text)" />
+              <Icon.diagnose size={18} color="var(--accent-text)" />
               <div>
-                <div className="card-row-title">Feedback is ready first</div>
+                <div className="card-row-title">AI diagnosis confirmed first</div>
                 <p className="card-row-meta mt-1">
-                  This editable student-facing draft is the first result. Review it, add the specific teaching note, and approve it before using the supporting analysis below. Use Regen on any deeper section when you need more detail.
+                  The structured diagnosis was generated from the recorded evidence and saved to Supabase before this review opened. Student-facing feedback is derived from that diagnosis and remains editable before approval.
                 </p>
               </div>
             </div>
           </Card>
 
           <Card className="card-p-4 mb-4">
-            <div className="card-row-title">Create this diagnostic in saved phases</div>
+            <div className="card-row-title">Diagnostic phases</div>
             <p className="card-row-meta mt-1 mb-3">
-              Each phase saves before the next one becomes available. Feedback stays available even if a later AI request fails.
+              AI diagnosis and feedback are created together at the start. Optional language targets can be added afterward, and every saved phase requires cloud confirmation.
             </p>
             <div className="stack-list gap-3">
               {DIAGNOSTIC_PHASES.map(phase => {
@@ -1092,7 +1141,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
             </div>
             <Button variant="ghost" size="sm" onClick={approveAll}>Approve All</Button>
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !completedPhases.includes('analysis') || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save
             </Button>
           </div>
@@ -1167,8 +1216,8 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
               );
             };
 
-            // Put the student-facing result first: feedback is the useful
-            // outcome even when optional teacher analysis is unavailable.
+            // Keep the student-facing result prominent while preserving the
+            // diagnosis-first data dependency underneath it.
             return [...SECTION_GROUPS]
               .sort((a, b) => Number(b.studentFacing) - Number(a.studentFacing))
               .map(zone => {
@@ -1198,7 +1247,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           {/* Bottom actions */}
           <div className="flex flex-wrap gap-3 mt-5">
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !completedPhases.includes('analysis') || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save ({approvedCount}/{totalSections})
             </Button>
             {savedDiagnosis && <Button variant="ghost" size="sm" onClick={() => setStep('saved')}>Post-approval actions</Button>}
@@ -1208,6 +1257,5 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
     </div>
   );
 }
-
 
 
