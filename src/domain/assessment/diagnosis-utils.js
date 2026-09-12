@@ -6,6 +6,8 @@ import {
 } from '../../lib/prompts.js';
 import { SKILL_KEYS } from './constants.js';
 
+export const DIAGNOSIS_EVIDENCE_REQUIRED_MESSAGE = 'Diagnosis requires real class evidence text and at least one evaluated skill.';
+
 export function shouldRetryCompact(error) {
   const msg = String(error?.message || error || '').toLowerCase();
   return msg.includes('request too large')
@@ -34,7 +36,19 @@ export function aiText(res) {
   return res?.content?.map(b => b.text || '').join('') || '';
 }
 
+export function hasDiagnosisEvidence(evidence) {
+  if (!evidence || typeof evidence !== 'object') return false;
+  const hasText = ['studentTranscript', 'studentAnswer', 'teacherNotes']
+    .some(field => String(evidence[field] || '').trim().length > 0);
+  const hasEvaluatedSkill = SKILL_KEYS.some(({ evalKey }) => Boolean(evidence[evalKey]));
+  return hasText && hasEvaluatedSkill;
+}
+
 export async function generateDiagnosisJson(promptData, setStatus = () => {}, requestAI = callAI) {
+  if (!hasDiagnosisEvidence(promptData?.classEvidence)) {
+    throw new Error(DIAGNOSIS_EVIDENCE_REQUIRED_MESSAGE);
+  }
+
   let firstError;
   try {
     // The diagnosis prompt is already evidence-rich. Adding the optional
@@ -71,11 +85,21 @@ export async function generateDiagnosisJson(promptData, setStatus = () => {}, re
 
 export function hasUsefulDiagnosis(parsed) {
   const source = parsed?.diagnosis && typeof parsed.diagnosis === 'object' ? parsed.diagnosis : parsed;
+  const isNonEmptyObject = value => Boolean(
+    value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length > 0
+  );
+  const requiredSkillKeys = ['speaking', 'writing', 'reading', 'listening', 'grammar', 'vocabulary', 'testStrategy'];
+
   return Boolean(
-    source?.skillDiagnosis && Object.keys(source.skillDiagnosis).length &&
-    source.classSummary &&
-    Array.isArray(source.priorityDiagnosis) &&
-    source.nextClassFocus && Object.keys(source.nextClassFocus).length
+    source && typeof source === 'object' &&
+    isNonEmptyObject(source.skillDiagnosis) &&
+    requiredSkillKeys.every(key => isNonEmptyObject(source.skillDiagnosis[key])) &&
+    typeof source.classSummary === 'string' && source.classSummary.trim().length > 0 &&
+    Array.isArray(source.priorityDiagnosis) && source.priorityDiagnosis.length > 0 &&
+    isNonEmptyObject(source.targetScoreRelevance) &&
+    isNonEmptyObject(source.nextClassFocus) &&
+    isNonEmptyObject(source.profileUpdateSuggestions) &&
+    isNonEmptyObject(source.estimatedOverallScore)
   );
 }
 
