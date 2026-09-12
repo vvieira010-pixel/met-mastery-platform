@@ -4,9 +4,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 # Cancel in-flight runs on the same branch when a new commit arrives.
