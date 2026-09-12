@@ -45,7 +45,7 @@ export async function saveDiagnosisAuthoritative(data) {
   try {
     savedRecord = await dbUpsert('diagnoses', record);
   } catch (error) {
-    throw new Error(`Cloud diagnosis save failed: ${error?.message || 'unknown Supabase error'}`);
+    throw new Error(`Cloud diagnosis save failed: ${error?.message || 'unknown Supabase error'}`, { cause: error });
   }
 
   if (!savedRecord?.id) {
