@@ -19,6 +19,7 @@ function storedSession() {
 
 async function seedStudentWorkspace(page: Page, practiceRows: Array<Record<string, unknown>>) {
   const context = page.context();
+  const remotePracticeRows = [...practiceRows];
   const studentRow = {
     id: STUDENT.id,
     local_id: STUDENT_LOCAL_ID,
@@ -41,11 +42,24 @@ async function seedStudentWorkspace(page: Page, practiceRows: Array<Record<strin
     contentType: 'application/json',
     body: JSON.stringify([studentRow]),
   }));
-  await context.route('**/rest/v1/practice_submissions**', route => route.fulfill({
-    status: 200,
-    contentType: 'application/json',
-    body: JSON.stringify(practiceRows),
-  }));
+  await context.route('**/rest/v1/practice_submissions**', async route => {
+    if (route.request().method() === 'POST') {
+      const body = route.request().postDataJSON() as Record<string, unknown>;
+      const saved = {
+        id: `practice-row-${remotePracticeRows.length + 1}`,
+        ...body,
+        created_at: new Date().toISOString(),
+      };
+      remotePracticeRows.unshift(saved);
+    }
+    await route.fulfill({
+      status: route.request().method() === 'POST' ? 201 : 200,
+      contentType: 'application/json',
+      body: route.request().method() === 'POST'
+        ? JSON.stringify([remotePracticeRows[0]])
+        : JSON.stringify(remotePracticeRows),
+    });
+  });
   await page.addInitScript(({ session }) => {
     localStorage.setItem('vv:supabase_session', JSON.stringify(session));
   }, { session: storedSession() });
@@ -114,7 +128,7 @@ test('student sees Speaking Question 1–5 and skips an individually saved quest
   await expect(page.getByRole('heading', { name: 'Everyday scenes' })).toBeVisible();
   await page.getByRole('button', { name: /Everyday scenes/ }).click();
   await expect(page.getByTestId('practice-studio-saved-feedback')).toBeVisible();
-  await expect(page.getByText('This AI-scored attempt is saved and locked.', { exact: false })).toBeVisible();
+  await expect(page.getByText('This AI-scored attempt is saved and locked.', { exact: false })).toHaveCount(0);
   await expect(page.getByText('Use one clear reason and a supporting example.', { exact: true })).toBeVisible();
   await expect(page.getByText('Overall feedback', { exact: true })).toBeVisible();
   await expect(page.getByText('Rubric feedback', { exact: true })).toBeVisible();
@@ -160,12 +174,12 @@ test('objective Practice Studio answers stay on the question until Next and rema
   await page.getByRole('button', { name: /Complete Vocabulary Collection/ }).click();
 
   await expect(page.getByText('The hiring committee was impressed by the candidate', { exact: false })).toBeVisible();
-  await page.getByRole('button', { name: /background/ }).click();
+  await page.getByRole('radio', { name: /background/ }).click();
   await page.getByRole('button', { name: 'Submit answer', exact: true }).click();
 
   const saved = page.getByTestId('practice-studio-saved-feedback');
   await expect(saved).toBeVisible();
-  await expect(saved).toContainText('Your answer is saved and locked.');
+  await expect(saved).not.toContainText('Your answer is saved and locked.');
   await expect(saved).toContainText('The hiring committee was impressed by the candidate');
   await expect(saved).toContainText('Correct answer');
   await expect(saved).toContainText('background');
@@ -179,6 +193,56 @@ test('objective Practice Studio answers stay on the question until Next and rema
   await page.getByRole('button', { name: 'Previous exercise', exact: true }).last().click();
   await expect(page.getByTestId('practice-studio-saved-feedback')).toBeVisible();
   await expect(page.getByTestId('practice-studio-saved-feedback')).toContainText('Why:');
+  expect(pageErrors.map(error => error.message)).toEqual([]);
+});
+
+test('submitted listening questions keep replay audio and the transcript visible', async ({ page }) => {
+  await seedStudentWorkspace(page, []);
+  const pageErrors: Error[] = [];
+  page.on('pageerror', error => pageErrors.push(error));
+
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await page.getByRole('button', { name: /Listening Lab/ }).click();
+  await expect(page.getByRole('heading', { name: 'MET-style Listening Practice' })).toBeVisible();
+
+  // The first two pickers are the MET part and then its topic. The bank test
+  // guarantees that each rendered choice has at least one playable question.
+  await page.locator('.topic-grid .topic-card').first().click();
+  await page.locator('.topic-grid .topic-card').first().click();
+  await expect(page.locator('[role="radiogroup"]')).toBeVisible();
+  const firstListeningOption = page.getByRole('radio').first();
+  await firstListeningOption.click({ force: true });
+  await expect(firstListeningOption).toHaveAttribute('aria-checked', 'true');
+  await page.getByRole('button', { name: 'Submit answer', exact: true }).click();
+
+  const saved = page.getByTestId('practice-studio-saved-feedback');
+  await expect(saved).toBeVisible();
+  const listeningReview = saved.getByRole('region', { name: 'Saved listening review' });
+  await expect(listeningReview).toBeVisible();
+  await expect(listeningReview.locator('audio')).toHaveCount(1);
+  await expect(listeningReview.getByText('Transcript', { exact: true })).toBeVisible();
+  await expect(listeningReview).toContainText(/A:|B:/);
+  await expect(saved).not.toContainText('Your answer is saved and locked.');
+  expect(pageErrors.map(error => error.message)).toEqual([]);
+});
+
+test('student can open Grammar Sprint and start a Grammar Sprint question', async ({ page }) => {
+  await seedStudentWorkspace(page, []);
+  const pageErrors: Error[] = [];
+  page.on('pageerror', error => pageErrors.push(error));
+
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.dash')).toBeVisible({ timeout: 15_000 });
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await page.getByRole('button', { name: /Grammar Sprint/ }).click();
+
+  await expect(page.getByRole('heading', { name: 'Grammar Sprint' })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Common Errors & Collocations/ })).toBeVisible();
+  await page.getByRole('button', { name: /Common Errors & Collocations/ }).click();
+  await expect(page.locator('[data-tour-target="practice-session"]')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Submit answer', exact: true })).toBeVisible();
   expect(pageErrors.map(error => error.message)).toEqual([]);
 });
 

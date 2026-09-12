@@ -80,3 +80,18 @@ test('Practice Studio exposes the image-description speaking topic', async () =>
   assert.equal(exercises.length, 44);
   assert.ok(exercises.every(ex => ex.type === 'speak' && ex.imageUrl && ex.metTaskType === 'Q1'));
 });
+
+test('every listed Grammar Sprint topic resolves to renderable exercises', async () => {
+  const bank = await import('../src/lib/vocab-homework-bank.js');
+  const { loadExercises } = await import('../src/components/exercises/validateExercise.js');
+  const topics = bank.getTopicList('grammar');
+
+  assert.equal(topics.length, 22);
+  for (const topic of topics) {
+    const raw = await bank.getGrammarExercises(topic.id);
+    const loaded = loadExercises(raw);
+    assert.ok(raw.length > 0, `${topic.id} returned no exercises`);
+    assert.equal(loaded.errors.length, 0, `${topic.id} returned invalid exercises: ${loaded.errors.join('; ')}`);
+    assert.equal(loaded.exercises.length, raw.length, `${topic.id} lost exercises during validation`);
+  }
+});

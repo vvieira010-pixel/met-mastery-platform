@@ -9,6 +9,7 @@ import b2ReadingData from '../data/exercises/reading/b2-reading.js';
 import b2ReadingMoreData from '../data/exercises/reading/b2-reading-50-more.js';
 import readingTreesData from '../data/exercises/reading/reading-23-trees-77.js';
 import readingSubjectsData from '../data/exercises/reading/reading-23-met-subjects-77.js';
+import { grammarMCQs } from '../data/exercises/grammar/grammar-92.js';
 import { MET_TASK_CONFIG } from './met-task-spec.js';
 
 let fullDataPromise = null;
@@ -572,7 +573,6 @@ export async function getGrammarExercises(topicId) {
   const drillMod = await import('./met-grammar-bank.js');
   const allModules = drillMod.getGrammarModules();
   if (topicId === 'gm_full_bank') {
-    const { grammarMCQs } = await getFullData();
     const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
     return [...grammarMCQs, ...allModules.flatMap(m => m.exercises), ...getMetB2MultipleChoice('grammar')];
   }
@@ -580,7 +580,6 @@ export async function getGrammarExercises(topicId) {
     const mod = allModules.find(m => m.id === topicId);
     if (mod) return mod.exercises;
   }
-  const { grammarMCQs } = await getFullData();
   const drillQuestions = allModules.flatMap(m => m.exercises);
   const { getMetB2MultipleChoice } = await import('./met-b2-multiple-choice-data.js');
   const b2 = getMetB2MultipleChoice('grammar');

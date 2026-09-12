@@ -66,8 +66,11 @@ test('Practice Studio saves each question once and reopens saved AI feedback in 
   assert.match(page, /You may record again as often as you need\./);
   assert.doesNotMatch(page, /requireFinalSubmission/);
   assert.match(player, /await onExerciseComplete\?\.\(/);
-  assert.match(player, /You can revisit its feedback any time\./);
-  assert.match(player, /Your answer is saved and locked\./);
+  assert.doesNotMatch(player, /Your answer is saved and locked\./);
+  assert.doesNotMatch(player, /This AI-scored attempt is saved and locked\./);
+  assert.match(player, /aria-label="Saved listening review"/);
+  assert.match(player, /<audio controls preload="metadata" src=\{listeningAudioSrc\}/);
+  assert.match(player, /listeningTranscript/);
   assert.match(player, /<strong[^>]*>Question<\/strong>/);
   assert.match(player, /<strong[^>]*>Correct answer<\/strong>/);
   assert.match(player, /<strong[^>]*>Why: <\/strong>/);

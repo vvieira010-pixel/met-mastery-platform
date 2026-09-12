@@ -165,17 +165,33 @@ function SavedPracticeFeedback({ exercise, result }) {
   const selectedAnswer = deriveSelectedAnswer(result, exercise);
   const answerRows = Array.isArray(result?.answers) ? result.answers : [];
   const explanation = result?.explanation || exercise?.explanation || '';
+  const isListening = exercise?.type === 'listen';
+  const listeningAudioSrc = isListening ? exercise?.audioSrc || '' : '';
+  const listeningTranscript = isListening ? exercise?.audioText || exercise?.transcript || '' : '';
 
   if (!evaluation) {
     return (
       <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <p style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
-          Your answer is saved and locked. You can review this question and its explanation, but you cannot try it again.
-        </p>
         {prompt && (
           <section aria-label="Saved question" style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
             <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Question</strong>
             <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.65 }}>{prompt}</div>
+          </section>
+        )}
+        {isListening && (listeningAudioSrc || listeningTranscript) && (
+          <section aria-label="Saved listening review" style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '11px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
+            {listeningAudioSrc && (
+              <div>
+                <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Listen again</strong>
+                <audio controls preload="metadata" src={listeningAudioSrc} style={{ width: '100%', height: 40 }} />
+              </div>
+            )}
+            {listeningTranscript && (
+              <div>
+                <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Transcript</strong>
+                <div style={{ color: 'var(--text)', fontSize: 'var(--text-sm)', lineHeight: 1.7, whiteSpace: 'pre-line' }}>{listeningTranscript}</div>
+              </div>
+            )}
           </section>
         )}
         {result?.correct !== null && result?.correct !== undefined && (
@@ -235,9 +251,6 @@ function SavedPracticeFeedback({ exercise, result }) {
 
   return (
     <div role="status" data-testid="practice-studio-saved-feedback" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <p style={{ margin: 0, color: 'var(--text-2)', lineHeight: 1.55 }}>
-        This AI-scored attempt is saved and locked. You can revisit its feedback any time.
-      </p>
       {prompt && (
         <section aria-label="Saved question" style={{ padding: '12px 14px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm, 6px)' }}>
           <strong style={{ display: 'block', marginBottom: 6, fontSize: 'var(--text-xs)', color: TEAL, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Question</strong>
