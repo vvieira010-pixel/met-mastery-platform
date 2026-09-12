@@ -9,23 +9,44 @@ test('only personalized student feedback blocks diagnosis approval', () => {
   assert.deepEqual(REQUIRED_APPROVAL_KEYS, ['studentFeedback']);
 });
 
-test('feedback-first flow generates personalized AI feedback before saving and opening review', async () => {
+test('diagnosis-first flow requires valid AI analysis before feedback, persistence, and review', async () => {
   const source = await readFile(new URL('../src/pages/diagnostic-create.jsx', import.meta.url), 'utf8');
-  const feedbackDraft = source.indexOf('buildFeedbackDraft({');
+  const handleGenerate = source.indexOf('async function handleGenerate()');
+  const diagnosisCall = source.indexOf('generateDiagnosisJson(promptData, setGeneratingStatus)', handleGenerate);
+  const feedbackDraft = source.indexOf('buildFeedbackDraft({', diagnosisCall);
   const aiFeedback = source.indexOf('callAI(buildStudentFeedbackPrompt({', feedbackDraft);
-  const feedbackSave = source.indexOf("nextCompletedPhases: ['feedback']", feedbackDraft);
-  const review = source.indexOf("setStep('review');", feedbackSave);
-  const downstreamDiagnosis = source.indexOf('generateDiagnosisJson(promptData)');
+  const cloudSave = source.indexOf('await persistDiagnosisDraft({', aiFeedback);
+  const setDiagnosis = source.indexOf('setAiResult(diagnosis);', cloudSave);
+  const review = source.indexOf("setStep('review');", setDiagnosis);
 
-  assert.ok(feedbackDraft >= 0, 'an honest fallback is prepared');
-  assert.ok(aiFeedback > feedbackDraft, 'AI feedback is generated before the feedback draft is saved');
-  assert.match(source.slice(aiFeedback), /max_tokens: 2600, temperature: 0\.3/, 'initial feedback avoids oversized skill augmentations');
-  assert.match(source, /readStudentFeedbackResponse\(aiFeedback\)/, 'initial feedback must meet the student feedback contract');
+  assert.ok(handleGenerate >= 0, 'diagnosis creation handler exists');
+  assert.ok(diagnosisCall > handleGenerate, 'structured AI diagnosis is the first AI result');
+  assert.ok(feedbackDraft > diagnosisCall, 'fallback feedback is derived only after diagnosis succeeds');
+  assert.ok(aiFeedback > diagnosisCall, 'personalized AI feedback is generated from a valid diagnosis');
+  assert.match(source.slice(aiFeedback), /diagnosis,/);
+  assert.match(source.slice(aiFeedback), /max_tokens: 2600, temperature: 0\.3/, 'feedback keeps its focused prompt budget');
+  assert.match(source, /readStudentFeedbackResponse\(aiFeedback\)/, 'AI feedback must satisfy the student feedback contract');
   assert.match(source, /content\.whatYouDidWell\.length < 3/, 'AI feedback must contain at least three strengths');
-  assert.ok(feedbackSave > feedbackDraft, 'feedback is persisted');
-  assert.ok(review > feedbackSave, 'the teacher reaches review after feedback persistence');
-  assert.ok(downstreamDiagnosis > review, 'downstream diagnosis is only available after the feedback-first review stage');
-  assert.match(source, /sort\(\(a, b\) => Number\(b\.studentFacing\) - Number\(a\.studentFacing\)\)/, 'student-facing feedback is rendered before teacher analysis');
+  assert.ok(cloudSave > aiFeedback, 'diagnosis and feedback are persisted after generation');
+  assert.ok(setDiagnosis > cloudSave, 'AI result is exposed only after persistence succeeds');
+  assert.ok(review > setDiagnosis, 'review opens only after cloud-confirmed persistence');
+  assert.doesNotMatch(source.slice(handleGenerate, review), /normalizeDiagnosisJson\(\{\}/, 'normalizer defaults cannot stand in for an AI diagnosis');
+  assert.match(source, /sort\(\(a, b\) => Number\(b\.studentFacing\) - Number\(a\.studentFacing\)\)/, 'student-facing feedback remains prominent in review');
+});
+
+test('diagnosis persistence is Supabase-authoritative and never falls back to local-only success', async () => {
+  const [pageSource, persistenceSource] = await Promise.all([
+    readFile(new URL('../src/pages/diagnostic-create.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/lib/diagnosis-authoritative.js', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(pageSource, /saveDiagnosisAuthoritative\(buildDiagnosisRecord\(options\)\)/);
+  assert.doesNotMatch(pageSource, /saveDiagnosis\(buildDiagnosisRecord\(options\)\)/);
+  assert.match(persistenceSource, /if \(!dbReady\('diagnoses'\)\)/);
+  assert.match(persistenceSource, /await dbUpsert\('diagnoses', record\)/);
+  assert.match(persistenceSource, /Cloud diagnosis save failed/);
+  assert.match(persistenceSource, /Cloud diagnosis save was not confirmed by Supabase/);
+  assert.doesNotMatch(persistenceSource, /saveVia\(/);
 });
 
 test('feedback draft uses supplied evidence and clearly requires teacher review', () => {
@@ -65,13 +86,14 @@ test('regeneration restores saved session evidence and rejects empty AI response
   assert.match(source, /refreshForFailedDynamicImport\(e\)/);
 });
 
-test('diagnostic creation saves feedback and then unlocks separate saved phases', async () => {
+test('diagnostic creation records analysis first, then feedback, then optional language targets', async () => {
   const source = await readFile(new URL('../src/pages/diagnostic-create.jsx', import.meta.url), 'utf8');
 
-  assert.match(source, /id: 'feedback', number: 1/);
-  assert.match(source, /id: 'analysis', number: 2, title: 'Evidence analysis', requires: \['feedback'\]/);
-  assert.match(source, /id: 'targets', number: 3, title: 'Language targets', requires: \['analysis'\]/);
+  assert.match(source, /id: 'analysis', number: 1, title: 'AI diagnosis'/);
+  assert.match(source, /id: 'feedback', number: 2, title: 'Student feedback', requires: \['analysis'\]/);
+  assert.match(source, /id: 'targets', number: 3, title: 'Language targets', requires: \['feedback'\]/);
   assert.doesNotMatch(source, /id: 'homework', number: 4/);
+  assert.match(source, /const nextCompletedPhases = \['analysis', 'feedback'\]/);
   assert.match(source, /completedPhases: nextCompletedPhases/);
   assert.match(source, /Finish and save the earlier phase first\./);
 
@@ -79,7 +101,15 @@ test('diagnostic creation saves feedback and then unlocks separate saved phases'
   const updateUi = source.indexOf('setSections(nextSections);', persist);
   assert.ok(persist >= 0, 'each later phase is persisted');
   assert.ok(updateUi > persist, 'a later phase becomes visible only after its save succeeds');
-  assert.match(source, /generateDiagnosisJson\(promptData\)/, 'analysis uses the guarded direct AI request path');
+  assert.match(source, /generateDiagnosisJson\(promptData, setGeneratingStatus\)/, 'analysis uses the guarded direct AI request path');
+});
+
+test('diagnosis creation requires evidence text, not only evaluated-skill flags', async () => {
+  const source = await readFile(new URL('../src/pages/diagnostic-create.jsx', import.meta.url), 'utf8');
+
+  assert.match(source, /const inlineReady = evaluatedSkills\.length > 0 && hasUsableEvidenceText\(normalizedEvidence\)/);
+  assert.match(source, /no transcript, student answer, or teacher notes/i);
+  assert.match(source, /Create AI Diagnosis/);
 });
 
 test('the feedback improvement matrix uses real lesson targets instead of seeded examples', async () => {
