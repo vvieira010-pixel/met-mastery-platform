@@ -85,6 +85,19 @@ export const DEFAULT_MODELS = {
     'google/gemma-4-31b-it',
     'nvidia/llama-3.1-nemotron-51b-instruct',
   ],
+  // OpenAI + Perplexity are OpenAI-compatible chat endpoints. They are wired in
+  // so operators can extend the cascade with OPENAI_API_KEY / PERPLEXITY_API_KEY.
+  openai: [
+    'gpt-4o-mini',
+    'gpt-4.1-mini',
+    'gpt-4o',
+    'o4-mini',
+  ],
+  perplexity: [
+    'sonar',
+    'sonar-pro',
+    'sonar-reasoning',
+  ],
   // AssemblyAI's LLM Gateway. Small (32k) context, so it is a last resort for
   // short prompts only — but it is already paid for and it answers when every
   // other provider is rate limited.
@@ -135,6 +148,8 @@ export function providerConfig({ isEvidenceHeavy = false } = {}) {
     groq: configuredGroq,
     openrouter: configuredOpenRouter,
     nvidia: nvidiaModels(isEvidenceHeavy),
+    openai: resolveModels('OPENAI_MODEL', 'OPENAI_MODELS', DEFAULT_MODELS.openai),
+    perplexity: resolveModels('PERPLEXITY_MODEL', 'PERPLEXITY_MODELS', DEFAULT_MODELS.perplexity),
   };
   const keys = {
     // GEMINI_API_KEY plus any _2…_5 suffixed key are honored, so a rate-limited
@@ -150,6 +165,8 @@ export function providerConfig({ isEvidenceHeavy = false } = {}) {
     groq: multiKeys('GROQ_API_KEY'),
     openrouter: multiKeys('OPENROUTER_API_KEY'),
     nvidia: multiKeys('NVIDIA_API_KEY'),
+    openai: multiKeys('OPENAI_API_KEY'),
+    perplexity: multiKeys('PERPLEXITY_API_KEY'),
   };
   return { models, keys };
 }
@@ -170,6 +187,8 @@ export function modelPriority({ isEvidenceHeavy = false } = {}) {
   push('groq');
   push('openrouter');
   push('nvidia');
+  push('openai');
+  push('perplexity');
   const seen = new Set();
   return order.filter(([model, provider]) => {
     const k = `${provider}:${model}`;

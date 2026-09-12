@@ -126,7 +126,6 @@ describe('mock-test-scoring — real bank consistency', () => {
     assert.ok(r.details.every(d => d.correct));
   });
   test('scoreListening returns documented shape; details length == max', () => {
-    const qs = getAllListeningQuestions();
     const r = scoreListening({});
     assert.equal(r.total, 0);
     assert.ok(Array.isArray(r.details));

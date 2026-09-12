@@ -104,6 +104,70 @@ export default [
       },
     },
   },
+  // Node test files (node --test). They run under Node, so process/globalThis/
+  // fetch/console etc. are real globals. This closes the blind spot so test
+  // files are held to the same no-undef quality bar as api/ and src/.
+  {
+    files: ['tests/**/*.{js,mjs}'],
+    rules: {
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+      'no-empty': ['error', { allowEmptyCatch: true }],
+    },
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        process: 'readonly',
+        globalThis: 'readonly',
+        Buffer: 'readonly',
+        console: 'readonly',
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        AbortController: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        URLSearchParams: 'readonly',
+        JSON: 'readonly',
+        Math: 'readonly',
+        Date: 'readonly',
+        Intl: 'readonly',
+        atob: 'readonly',
+        btoa: 'readonly',
+        URL: 'readonly',
+        structuredClone: 'readonly',
+      },
+    },
+  },
+  // Manual self-test harnesses (run via `bun`, not node:test). They print
+  // progress with console.log, so the stricter node:test console discipline
+  // does not apply. Kept in the lint net for no-undef/correctness; only
+  // console is freed for these files.
+  {
+    files: ['tests/**/*.selftest.mjs'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+  // k6 load-test scripts (run via `k6 run`, not node:test). They execute in
+  // k6's own runtime, whose globals (__ENV, __VU, __ITER, …) are not Node's.
+  // Declare the k6 globals actually used so no-undef stays meaningful without
+  // forcing the script into a Node-shaped config. (http/check/sleep/Rate/Trend
+  // are imported from k6 packages, so they need no global entry.)
+  {
+    files: ['tests/**/*.k6.js'],
+    languageOptions: {
+      globals: {
+        __ENV: 'readonly',
+        __VU: 'readonly',
+        __ITER: 'readonly',
+      },
+    },
+  },
   // True ignore list — build output and vendored code only. Source files are no
   // longer globally ignored; see the legacy-tech-debt block below.
   {

@@ -12,6 +12,7 @@
  * Vercel dashboard so the keys stop being inlined into the client build.
  *
  *   GEMINI_API_KEY / GROQ_API_KEY / OPENROUTER_API_KEY / NVIDIA_API_KEY
+ *   OPENAI_API_KEY / PERPLEXITY_API_KEY
  *   (comma- or newline-separated for multiple keys)
  *
  * Optional model overrides, resolved in this precedence order:
@@ -267,6 +268,8 @@ export default async function handler(req, res) {
     groq: (k, m) => ({ id: 'groq', model: m, run: () => tryOpenAICompat('https://api.groq.com/openai/v1/chat/completions', k, m, {}, 'Groq') }),
     openrouter: (k, m) => ({ id: 'openrouter', model: m, run: () => tryOpenAICompat('https://openrouter.ai/api/v1/chat/completions', k, m, { 'X-Title': 'MET Proficiency Mastery' }, 'OpenRouter') }),
     nvidia: (k, m) => ({ id: 'nvidia', model: m, run: () => tryOpenAICompat('https://integrate.api.nvidia.com/v1/chat/completions', k, m, {}, 'Nvidia') }),
+    openai: (k, m) => ({ id: 'openai', model: m, run: () => tryOpenAICompat('https://api.openai.com/v1/chat/completions', k, m, {}, 'OpenAI') }),
+    perplexity: (k, m) => ({ id: 'perplexity', model: m, run: () => tryOpenAICompat('https://api.perplexity.ai/chat/completions', k, m, {}, 'Perplexity') }),
   };
 
   const attempts = [];
