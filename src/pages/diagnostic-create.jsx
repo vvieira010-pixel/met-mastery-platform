@@ -103,7 +103,7 @@ function readStudentFeedbackResponse(data, emptyMessage = 'AI returned an empty 
 const NO_EVIDENCE_MESSAGE = 'No class evidence text yet. Add a transcript, the student\'s answer, or teacher notes before generating a diagnosis — otherwise the AI can only write generic filler.';
 function hasUsableEvidenceText(evidence) {
   if (!evidence || typeof evidence !== 'object') return false;
-  return ['studentTranscript', 'studentAnswer', 'teacherNotes']
+  return ['studentTranscript', 'studentAnswer', 'teacherNotes', 'studentPerformance', 'additionalNotes']
     .some(field => String(evidence[field] || '').trim().length > 0);
 }
 
@@ -126,6 +126,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
   // Zoom meeting for diagnosis follow-up
   const [diagnosisZoomUrl, setDiagnosisZoomUrl] = useState(null);
+  const [diagnosisZoomMeetingId, setDiagnosisZoomMeetingId] = useState(null);
 
   // Student selector (if no studentId passed)
   const [selectedStudentId, setSelectedStudentId] = useState(studentId || '');
@@ -205,6 +206,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         setAiResult(dx.aiRaw || null);
       }
       if (dx.zoomUrl) setDiagnosisZoomUrl(dx.zoomUrl);
+      if (dx.zoomMeetingId) setDiagnosisZoomMeetingId(dx.zoomMeetingId);
       // Do not infer that an older draft completed an AI phase. Earlier builds
       // could persist normalizer defaults in aiRaw even when no diagnosis call
       // succeeded, so only explicit phase metadata is trusted here.
@@ -494,6 +496,10 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
       window.toast?.('Finish and save the earlier phase first.', 'warn');
       return;
     }
+    if (phaseId === 'analysis' && !prereqOk) {
+      window.toast?.(NO_EVIDENCE_MESSAGE, 'warn');
+      return;
+    }
 
     setRunningPhase(phaseId);
     try {
@@ -512,11 +518,43 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
 
       if (phaseId === 'analysis') {
         const { parsed: analysis } = await generateDiagnosisJson(promptData, setGeneratingStatus);
-        nextAiResult = { ...(aiResult || {}), ...analysis };
+        nextAiResult = analysis;
         nextSections = { ...sections };
         DIAGNOSIS_DERIVED_KEYS.forEach(key => {
           nextSections[key] = { ...(sections[key] || {}), content: analysis[key], approved: false, hidden: false, edited: false };
         });
+
+        const feedbackDraft = buildFeedbackDraft({
+          student: selectedStudent,
+          classEvent,
+          classEvidence: normalizedEvidence,
+          evaluatedSkills,
+        });
+        let feedbackSection = { content: feedbackDraft, approved: false, hidden: false, edited: false };
+        try {
+          const aiFeedback = await callAI(buildStudentFeedbackPrompt({
+            ...promptData,
+            diagnosis: analysis,
+          }), { max_tokens: 2600, temperature: 0.3 });
+          feedbackSection = {
+            content: readStudentFeedbackResponse(aiFeedback),
+            approved: false,
+            hidden: false,
+            edited: false,
+          };
+        } catch (feedbackError) {
+          console.warn('AI feedback regeneration failed after recreated diagnosis:', feedbackError);
+          window.toast?.('The AI diagnosis was recreated, but feedback generation was unavailable. An editable evidence-based feedback draft will replace the old feedback.', 'warn');
+        }
+        nextSections.studentFeedback = feedbackSection;
+        nextSections.errorBankSuggestions = { ...(sections.errorBankSuggestions || {}), content: [], approved: false, hidden: false, edited: false };
+        nextSections.vocabGrammarTargets = {
+          ...(sections.vocabGrammarTargets || {}),
+          content: { vocabularyTargets: [], grammarTargets: [] },
+          approved: false,
+          hidden: false,
+          edited: false,
+        };
       } else if (phaseId === 'targets') {
         const data = await callAI(buildErrorBankPrompt(promptData), await withSkills('diagnosis', { max_tokens: 3000 }));
         const raw = data.content?.map(block => block.text || '').join('') || '';
@@ -530,7 +568,9 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         };
       }
 
-      const nextCompletedPhases = [...new Set([...completedPhases, phaseId])];
+      const nextCompletedPhases = phaseId === 'analysis'
+        ? ['analysis', 'feedback']
+        : [...new Set([...completedPhases, phaseId])];
       await persistDiagnosisDraft({ nextSections, nextAiResult, nextCompletedPhases });
       setAiResult(nextAiResult);
       setSections(nextSections);
@@ -548,6 +588,11 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
   async function handleSave(approve = false) {
     setSaving(true);
     try {
+      if (!completedPhases.includes('analysis')) {
+        window.toast?.('Create and save a valid AI diagnosis before saving or approving this draft.', 'warn');
+        setSaving(false);
+        return;
+      }
       if (approve && canApprove === false) {
         window.toast?.('Only the teacher can approve a diagnosis.', 'warn');
         setSaving(false);
@@ -563,9 +608,12 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
         ? [...new Set([...completedPhases, 'feedback'])]
         : completedPhases;
 
-      // Create Zoom meeting before saving if approving
-      let zoomSettings = null;
-      if (approve && !savedDiagnosis?.zoomUrl) {
+      // Reuse a successfully created Zoom meeting if the cloud diagnosis save
+      // fails. Retrying approval must not create orphaned duplicate meetings.
+      let zoomSettings = diagnosisZoomUrl && !savedDiagnosis?.zoomUrl
+        ? { joinUrl: diagnosisZoomUrl, meetingId: diagnosisZoomMeetingId }
+        : null;
+      if (approve && !savedDiagnosis?.zoomUrl && !zoomSettings?.joinUrl) {
         const zoomTopic = sections.priorityDiagnosis?.content?.[0]?.skill
           || sections.nextClassFocus?.content?.primaryFocus
           || `Follow-up with ${student?.name || studentId}`;
@@ -580,6 +628,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
               meetingId: zoomResult.meetingId,
             };
             setDiagnosisZoomUrl(zoomResult.joinUrl);
+            setDiagnosisZoomMeetingId(zoomResult.meetingId || null);
           }
         } catch (z) {
           console.warn('[diagnosis] Zoom meeting creation failed:', z);
@@ -1092,7 +1141,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
             </div>
             <Button variant="ghost" size="sm" onClick={approveAll}>Approve All</Button>
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !completedPhases.includes('analysis') || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save
             </Button>
           </div>
@@ -1198,7 +1247,7 @@ export default function DiagnosticCreate({ studentId, classEventId, diagnosisId,
           {/* Bottom actions */}
           <div className="flex flex-wrap gap-3 mt-5">
             <Button variant="ghost" size="sm" onClick={() => handleSave(false)} disabled={saving}>Save Draft</Button>
-            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !canApproveDiagnosis || canApprove === false}>
+            <Button variant="primary" onClick={() => handleSave(true)} disabled={saving || !completedPhases.includes('analysis') || !canApproveDiagnosis || canApprove === false}>
               <Icon.check size={14} /> Approve & Save ({approvedCount}/{totalSections})
             </Button>
             {savedDiagnosis && <Button variant="ghost" size="sm" onClick={() => setStep('saved')}>Post-approval actions</Button>}
