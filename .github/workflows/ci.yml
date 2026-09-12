@@ -193,7 +193,7 @@ jobs:
           npm audit --audit-level=moderate || true
 
   # ------------------------------------------------------------------
-  # 6. Preview deploy — every PR gets an isolated URL
+  # 6. Preview deploy — every PR can get an isolated URL when Netlify is configured
   # ------------------------------------------------------------------
   preview:
     name: Deploy preview (PR ${{ github.event.pull_request.number }})
@@ -208,25 +208,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check Netlify preview configuration
+        id: netlify-config
+        shell: bash
+        run: |
+          if [[ -n "$NETLIFY_AUTH_TOKEN" && -n "$NETLIFY_SITE_ID" && -n "$NETLIFY_SITE_NAME" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "Netlify preview skipped because Netlify secrets are not configured; Vercel Git previews remain independent." >> "$GITHUB_STEP_SUMMARY"
+          fi
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
+
       - name: Setup Node ${{ env.NODE_VERSION }}
+        if: steps.netlify-config.outputs.configured == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install dependencies
+        if: steps.netlify-config.outputs.configured == 'true'
         run: npm ci --no-audit --no-fund
 
       - name: Install Netlify CLI
+        if: steps.netlify-config.outputs.configured == 'true'
         run: npm install -g netlify-cli@latest
 
       - name: Download build artifact
+        if: steps.netlify-config.outputs.configured == 'true'
         uses: actions/download-artifact@v4
         with:
           name: met-build
           path: .
 
       - name: Deploy preview to Netlify
+        if: steps.netlify-config.outputs.configured == 'true'
         id: deploy
         run: |
           # Each PR gets a unique alias for easy sharing.
@@ -245,6 +265,7 @@ jobs:
           NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
 
       - name: Comment preview URL on PR
+        if: steps.netlify-config.outputs.configured == 'true' && steps.deploy.outputs.url != ''
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: preview-deploy
